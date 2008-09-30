@@ -1,0 +1,36 @@
+"Adjustment" = "Adjustment";
+
+"Amount" = "Amount";
+
+"Balance" = "Balance";
+
+"Date" = "Date";
+
+"Delete Transaction" = "Delete Transaction";
+
+"Deposit" = "Deposit";
+
+"Info" = "Info";
+
+"Name" = "Name";
+
+"Payment" = "Payment";
+
+"Transaction" = "Transaction";
+
+"Transactions" = "Transactions";
+
+"Type" = "Type";
+
+"HelpURL" = "http://www.tmurakam.org/cashflow/help.html";
+
+"Export" = "Export";
+"OFXHeadString" = "Cut & paste text between BEGIN and END line with text editor, and save as UTF-8 text file with .ofx extension.";
+
+"No data" = "No data";
+"No data to be exported." = "No data to be exported.";
+
+"Delete Transactions" = "Delete Transactions";
+"Delete with all past transactions" = "Delete all older transactions";
+
+"Cancel" = "Cancel";

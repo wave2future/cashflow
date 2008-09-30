@@ -1,0 +1,37 @@
+"Adjustment" = "残高調整";
+
+"Amount" = "金額";
+
+"Balance" = "残高";
+
+"Date" = "日付";
+
+"Delete Transaction" = "取引の削除";
+
+"Deposit" = "入金";
+
+"Info" = "情報";
+
+"Name" = "摘要";
+
+"Payment" = "支払";
+
+"Transaction" = "取引";
+
+"Transactions" = "取引一覧";
+
+"Type" = "種別";
+
+"HelpURL" = "http://www.tmurakam.org/cashflow/help-j.html";
+
+"Export" = "エクスポート";
+"OFXHeadString" = "BEGIN から END の間までのテキストをテキストエディタにカット＆ペーストし、UTF-8 テキストファイルとして保存してください。拡張子は .ofx としてください。";
+
+"No data" = "No data";
+"No data to be exported." = "エクスポートする対象データがありません";
+
+"Delete transaction" = "取引を削除";
+"Delete with all past transactions" = "これ以前の取引を一括削除";
+
+"Cancel" = "キャンセル";
+

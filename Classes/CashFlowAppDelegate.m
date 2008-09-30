@@ -1,0 +1,142 @@
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+/*
+  CashFlow for iPhone/iPod touch
+
+  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions are
+  met:
+
+  1. Redistributions of source code must retain the above copyright notice,
+  this list of conditions and the following disclaimer. 
+
+  2. Redistributions in binary form must reproduce the above copyright
+  notice, this list of conditions and the following disclaimer in the
+  documentation and/or other materials provided with the distribution. 
+
+  3. Neither the name of the project nor the names of its contributors
+  may be used to endorse or promote products derived from this software
+  without specific prior written permission. 
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
+  CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+  EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+  PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+  PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF
+  LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+  NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+  SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+*/
+
+#import "CashFlowAppDelegate.h"
+#import "RootViewController.h"
+#import "DataModel.h"
+#import "Transaction.h"
+
+@implementation CashFlowAppDelegate
+
+@synthesize window;
+@synthesize navigationController;
+
+static DataModel *s_theDataModel = nil;
+
+- (id)init {
+	if (self = [super init]) {
+		// 
+	}
+	return self;
+}
+
++ (DataModel*)theDataModel
+{
+	return s_theDataModel;
+}
+
+//
+// 開始処理
+//
+- (void)applicationDidFinishLaunching:(UIApplication *)application
+{
+	s_theDataModel = nil;
+
+	// データロード
+	NSString *path = [self pathOfDataFile];
+	NSData *data = [NSData dataWithContentsOfFile:path];
+	if (data != nil) {
+		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+
+		s_theDataModel = [ar decodeObjectForKey:@"DataModel"];
+		if (s_theDataModel != nil) {
+			[s_theDataModel retain];
+			[ar finishDecoding];
+		
+			[s_theDataModel recalcBalance];
+		}
+	}
+	if (s_theDataModel == nil) {
+		// initial or some error...
+		s_theDataModel = [[DataModel alloc] init];
+	}
+
+	// Configure and show the window
+	[window addSubview:[navigationController view]];
+	[window makeKeyAndVisible];
+}
+
+- (IBAction)addTransaction:(id)sender
+{
+	RootViewController *v = (RootViewController *)[navigationController topViewController];
+	[v addTransaction];
+}
+
+- (IBAction)showHelp:(id)sender
+{
+	NSURL *url = [NSURL URLWithString:NSLocalizedString(@"HelpURL", @"web help url")];
+	[[UIApplication sharedApplication] openURL:url];
+}
+
+//
+// 終了処理 : データ保存
+//
+- (void)applicationWillTerminate:(UIApplication *)application {
+	// Save data if appropriate
+	NSString *path = [self pathOfDataFile];
+
+	NSMutableData *data = [NSMutableData data];
+	NSKeyedArchiver *ar = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
+
+	[ar encodeObject:s_theDataModel forKey:@"DataModel"];
+	[ar finishEncoding];
+
+	BOOL result = [data writeToFile:path atomically:YES];
+	if (!result) {
+		// TBD
+	}	
+}
+
+// データファイルのパスを取得
+- (NSString*)pathOfDataFile
+{
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(
+		NSDocumentDirectory, NSUserDomainMask, YES);
+
+	NSString *datapath = [paths objectAtIndex:0];
+	NSString *path = [datapath stringByAppendingPathComponent:@"Transactions.dat"];
+	//[paths release];
+
+	return path;
+}
+
+- (void)dealloc {
+	[s_theDataModel release];
+
+	[navigationController release];
+	[window release];
+	[super dealloc];
+}
+
+@end
