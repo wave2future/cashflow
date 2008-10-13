@@ -25,7 +25,7 @@
 "HelpURL" = "http://www.tmurakam.org/cashflow/help-j.html";
 
 "Export" = "エクスポート";
-"OFXHeadString" = "BEGIN から END の間までのテキストをテキストエディタにカット＆ペーストし、UTF-8 テキストファイルとして保存してください。拡張子は .ofx としてください。";
+"OFXHeadString" = "BEGIN と END に挟まれた部分のテキストをテキストエディタ(メモ帳など)にカット＆ペーストし、ファイルとして保存してください。このとき、漢字コードを必ず 'UTF-8' とし、拡張子は .ofx としてください。";
 
 "No data" = "No data";
 "No data to be exported." = "エクスポートする対象データがありません";

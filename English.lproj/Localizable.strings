@@ -25,7 +25,7 @@
 "HelpURL" = "http://www.tmurakam.org/cashflow/help.html";
 
 "Export" = "Export";
-"OFXHeadString" = "Cut & paste text between BEGIN and END line with text editor, and save as UTF-8 text file with .ofx extension.";
+"OFXHeadString" = "Cut & paste text between BEGIN and END lines with text editor, and save as UTF-8 text file with .ofx extension.";
 
 "No data" = "No data";
 "No data to be exported." = "No data to be exported.";
