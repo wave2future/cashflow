@@ -34,14 +34,19 @@
 
 
 #import <UIKit/UIKit.h>
+#import "WebServer.h"
 
-@interface ExportBase : NSObject {
+@interface ExportBase : NSObject <UIAlertViewDelegate> {
 	NSDate *firstDate;
+	
+	WebServer *webServer;
 }
 
 @property(nonatomic,retain) NSDate *firstDate;
 
+- (NSMutableString*)generateBody;
 - (void)EncodeMailBody:(NSMutableString*)str;
+- (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename;
 
 @end
 

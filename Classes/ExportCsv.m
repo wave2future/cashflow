@@ -61,8 +61,8 @@
 	[data appendString:@"%20CashFlow%20generated%20CSV%20data%20%0D%0A"];
 	[data appendString:@"Serial,Date,Value,Balance,Description%0D%0A"];
 
-	NSMutableString *body = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
-	if (! [self generateCsv:body]) {
+	NSMutableString *body = [self generateBody];
+	if (body == nil) {
 		return nil; // no data
 	}
 	[self EncodeMailBody:body];
@@ -71,8 +71,9 @@
 	return data;
 }
 
-- (BOOL)generateCsv:(NSMutableString *)data
+- (NSMutableString *)generateBody
 {
+	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 	DataModel *dm = [CashFlowAppDelegate theDataModel];
 
 	int max = [dm getTransactionCount];
@@ -86,7 +87,7 @@
 	if (firstDate != nil) {
 		i = [dm firstTransactionByDate:firstDate];
 		if (i < 0) {
-			return NO; // do nothing
+			return nil;
 		}
 	}
 	for (; i < max; i++) {
@@ -104,7 +105,7 @@
 		[data appendString:d];
 		[d release];
 	}
-	return YES;
+	return data;
 }
 
 @end

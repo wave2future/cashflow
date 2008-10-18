@@ -42,7 +42,6 @@
 - (BOOL)sendMail;
 
 - (NSMutableString *)generateMailUrl;
-- (BOOL)generateCsv:(NSMutableString *)data;
 
 @end
 

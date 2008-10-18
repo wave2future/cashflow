@@ -5,7 +5,7 @@
 
 @implementation WebServer
 
-@synthesize contentBody, contentType;
+@synthesize contentBody, contentType, filename;
 
 - (BOOL)startServer
 {
@@ -136,7 +136,7 @@
 		NSString *outcontent = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"];
 		write(s, [outcontent UTF8String], [outcontent length]);
 		
-		outcontent = @"<html><head><meta http-equiv=\"refresh\" content=\"0;url=CashFlow.ofx\"></head></html>";
+		outcontent = [NSString stringWithFormat:@"<html><head><meta http-equiv=\"refresh\" content=\"0;url=%@\"></head></html>", filename];
 		write(s, [outcontent UTF8String], [outcontent length]);
 		
 		return;

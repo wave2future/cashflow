@@ -43,13 +43,15 @@
 	
     NSString *contentType;
     NSString *contentBody;
+	NSString *filename;
 	
 	NSThread *thread;
 }
 
 @property(nonatomic,retain) NSString* contentType;
 @property(nonatomic,retain) NSString* contentBody;
-		  
+@property(nonatomic,retain) NSString* filename;
+
 - (BOOL)startServer;
 - (void)stopServer;
 - (NSString*)serverUrl;

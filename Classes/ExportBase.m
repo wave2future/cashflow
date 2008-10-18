@@ -83,4 +83,37 @@
 	REPLACE(@"&", @"%26");
 }
 
+
+- (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
+{
+
+	if (webServer == nil) {
+		webServer = [[WebServer alloc] init];
+	}
+	webServer.contentBody = contentBody;
+	webServer.contentType = contentType;
+	webServer.filename = filename;
+	
+	NSString *url = [webServer serverUrl];
+
+	[webServer startServer];
+	
+	// Alert view
+	NSString *message = [NSString stringWithFormat:@"%@\n%@", 
+						 NSLocalizedString(@"Access following URL with browser of your PC:", @""),
+						 url];
+	
+	UIAlertView *v = [[UIAlertView alloc] 
+					  initWithTitle:NSLocalizedString(@"Export", @"")
+					  message:message
+					  delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[v show];
+	[v release];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	[webServer stopServer];
+}
+
 @end

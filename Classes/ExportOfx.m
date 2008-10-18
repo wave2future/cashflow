@@ -50,7 +50,7 @@
 	[self EncodeMailBody:tmp];
 	[data appendString:tmp];
 	
-	NSMutableString *body = [self generateOfx];
+	NSMutableString *body = [self generateBody];
 	if (body == nil) {
 		return NO;
 	}
@@ -75,18 +75,24 @@
 
 - (BOOL)sendWithWebServer
 {
-	NSMutableString *body = [self generateOfx];
+	NSMutableString *body = [self generateBody];
 	if (body == nil) {
 		return NO;
 	}
+	
+	[self sendWithWebServer:body contentType:@"application/x-ofx" filename:@"cashflow.ofx"];
+	return YES;
+	
+#if 0	
+	
+	- (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
+	
 	
 	if (webServer == nil) {
 		webServer = [[WebServer alloc] init];
 	}
 	webServer.contentBody = body;
 	webServer.contentType = @"application/x-ofx";
-	
-
 	
 	NSString *url = [webServer serverUrl];
 	[webServer startServer];
@@ -101,21 +107,13 @@
 					  message:message
 					  delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
 	[v show];
-	//[v release];
+	[v release];
 	
 	return YES;
+#endif
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-	[webServer stopServer];
-}
-
-- (void)alertView:(UIAlertView *)alertview didDimissWithButtonIndex:(NSInteger)buttonIndex
-{
-}
-
-- (NSMutableString *)generateOfx
+- (NSMutableString *)generateBody
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 

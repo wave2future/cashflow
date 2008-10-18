@@ -41,15 +41,12 @@
 @interface ExportOfx : ExportBase <UIAlertViewDelegate> {
 	NSDateFormatter *df;
 	NSCalendar *greg;
-	
-	WebServer *webServer;
 }
 
 - (BOOL)sendMail;
 - (BOOL)sendWithWebServer;
 
 // private
-- (NSMutableString *)generateOfx;
 - (NSString*)transTypeString:(Transaction*)t;
 - (double)transValue:(Transaction*)t;
 - (NSString*)dateStr:(Transaction*)t;
