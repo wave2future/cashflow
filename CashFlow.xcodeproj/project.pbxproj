@@ -25,15 +25,16 @@
 		3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
 		3E0888050E6EAD0B00739AC9 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888030E6EAD0B00739AC9 /* EditTypeVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
-		3E15A64F0E7ACE0A006C78CA /* MailOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E15A64E0E7ACE0A006C78CA /* MailOfx.m */; };
 		3E1F6EA90E76E74500CCDF57 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EA80E76E74500CCDF57 /* icon.png */; };
 		3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
-		3E54C6860E6EE0C7001872AD /* MailCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E54C6850E6EE0C7001872AD /* MailCsv.m */; };
+		3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E27113A0EAA208E00E57E51 /* ExportView.xib */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
-		3EA0C2320E8E5718005A04F5 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C2310E8E5718005A04F5 /* ExportView.xib */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB540790E8E90F400608B77 /* MainWindow.xib */; };
-		3EBFBC530E7ACBB20064877D /* Mail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EBFBC520E7ACBB20064877D /* Mail.m */; };
+		3ECF38040EA9CF4900420060 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* WebServer.m */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
 		3EDDADBE0E89280800268AED /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
@@ -71,18 +72,20 @@
 		3E0888030E6EAD0B00739AC9 /* EditTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTypeVC.m; sourceTree = "<group>"; };
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
-		3E15A64D0E7ACE04006C78CA /* MailOfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MailOfx.h; path = Classes/MailOfx.h; sourceTree = "<group>"; };
-		3E15A64E0E7ACE0A006C78CA /* MailOfx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MailOfx.m; path = Classes/MailOfx.m; sourceTree = "<group>"; };
 		3E1F6EA80E76E74500CCDF57 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = icon.png; path = images/icon.png; sourceTree = "<group>"; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = images/Default.png; sourceTree = "<group>"; };
-		3E54C6850E6EE0C7001872AD /* MailCsv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MailCsv.m; path = Classes/MailCsv.m; sourceTree = "<group>"; };
-		3E54C6870E6EE0CE001872AD /* MailCsv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MailCsv.h; path = Classes/MailCsv.h; sourceTree = "<group>"; };
+		3E27103F0EAA196A00E57E51 /* ExportBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportBase.h; path = Classes/ExportBase.h; sourceTree = "<group>"; };
+		3E2710400EAA196A00E57E51 /* ExportBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportBase.m; path = Classes/ExportBase.m; sourceTree = "<group>"; };
+		3E2710410EAA196A00E57E51 /* ExportCsv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportCsv.h; path = Classes/ExportCsv.h; sourceTree = "<group>"; };
+		3E2710420EAA196A00E57E51 /* ExportCsv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportCsv.m; path = Classes/ExportCsv.m; sourceTree = "<group>"; };
+		3E2710430EAA196A00E57E51 /* ExportOfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportOfx.h; path = Classes/ExportOfx.h; sourceTree = "<group>"; };
+		3E2710440EAA196A00E57E51 /* ExportOfx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportOfx.m; path = Classes/ExportOfx.m; sourceTree = "<group>"; };
+		3E27113C0EAA209500E57E51 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/ExportView.xib; sourceTree = "<group>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionView.xib; path = Resources/TransactionView.xib; sourceTree = "<group>"; };
-		3EA0C2330E8E5726005A04F5 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/ExportView.xib; sourceTree = "<group>"; };
 		3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rendered.png"; path = "images/icon-rendered.png"; sourceTree = "<group>"; };
 		3EB540790E8E90F400608B77 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
-		3EBFBC510E7ACBAC0064877D /* Mail.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Mail.h; path = Classes/Mail.h; sourceTree = "<group>"; };
-		3EBFBC520E7ACBB20064877D /* Mail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Mail.m; path = Classes/Mail.m; sourceTree = "<group>"; };
+		3ECF38030EA9CF4900420060 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
+		3ECF38080EA9CFB600420060 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redButton.png; path = images/redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoView.xib; path = Resources/InfoView.xib; sourceTree = "<group>"; };
 		3EDDADBC0E89280800268AED /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoVC.h; sourceTree = "<group>"; };
@@ -177,7 +180,7 @@
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
 				3E0887F70E6EACA500739AC9 /* EditTypeView.xib */,
-				3EA0C2310E8E5718005A04F5 /* ExportView.xib */,
+				3E27113A0EAA208E00E57E51 /* ExportView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
@@ -212,12 +215,14 @@
 				3E0519130E6A9D09008F1F65 /* Transaction.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
 				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
-				3EBFBC510E7ACBAC0064877D /* Mail.h */,
-				3EBFBC520E7ACBB20064877D /* Mail.m */,
-				3E54C6870E6EE0CE001872AD /* MailCsv.h */,
-				3E54C6850E6EE0C7001872AD /* MailCsv.m */,
-				3E15A64D0E7ACE04006C78CA /* MailOfx.h */,
-				3E15A64E0E7ACE0A006C78CA /* MailOfx.m */,
+				3E27103F0EAA196A00E57E51 /* ExportBase.h */,
+				3E2710400EAA196A00E57E51 /* ExportBase.m */,
+				3E2710410EAA196A00E57E51 /* ExportCsv.h */,
+				3E2710420EAA196A00E57E51 /* ExportCsv.m */,
+				3E2710430EAA196A00E57E51 /* ExportOfx.h */,
+				3E2710440EAA196A00E57E51 /* ExportOfx.m */,
+				3ECF38080EA9CFB600420060 /* WebServer.h */,
+				3ECF38030EA9CF4900420060 /* WebServer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -284,7 +289,7 @@
 				3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */,
 				3EDDAC750E89148500268AED /* redButton.png in Resources */,
 				3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */,
-				3EA0C2320E8E5718005A04F5 /* ExportView.xib in Resources */,
+				3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */,
 				3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */,
 				3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */,
 			);
@@ -307,11 +312,12 @@
 				3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */,
 				3E0888050E6EAD0B00739AC9 /* EditTypeVC.m in Sources */,
 				3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */,
-				3E54C6860E6EE0C7001872AD /* MailCsv.m in Sources */,
-				3EBFBC530E7ACBB20064877D /* Mail.m in Sources */,
-				3E15A64F0E7ACE0A006C78CA /* MailOfx.m in Sources */,
 				3EDDADBE0E89280800268AED /* InfoVC.m in Sources */,
 				3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */,
+				3ECF38040EA9CF4900420060 /* WebServer.m in Sources */,
+				3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */,
+				3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */,
+				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,11 +333,11 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		3EA0C2310E8E5718005A04F5 /* ExportView.xib */ = {
+		3E27113A0EAA208E00E57E51 /* ExportView.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				3EDDAE780E8E467200268AED /* English */,
-				3EA0C2330E8E5726005A04F5 /* Japanese */,
+				3E27113C0EAA209500E57E51 /* Japanese */,
 			);
 			name = ExportView.xib;
 			sourceTree = "<group>";

@@ -25,6 +25,8 @@
 "HelpURL" = "http://www.tmurakam.org/cashflow/help.html";
 
 "Export" = "Export";
+"WebExportNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
+
 "OFXHeadString" = "Cut & paste text between BEGIN and END lines with text editor, and save as UTF-8 text file with .ofx extension.";
 
 "No data" = "No data";
