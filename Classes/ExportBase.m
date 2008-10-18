@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "Mail.h"
+#import "ExportBase.h"
 
 @implementation Mail
 

@@ -33,7 +33,7 @@
 */
 
 
-#import "MailOfx.h"
+#import "ExportOfx.h"
 #import "CashFlowAppDelegate.h"
 #import "WebServer.h"
 

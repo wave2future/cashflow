@@ -34,7 +34,7 @@
 
 
 #import <UIKit/UIKit.h>
-#import "Mail.h"
+#import "ExportBase.h"
 
 @interface MailCsv : Mail {
 }

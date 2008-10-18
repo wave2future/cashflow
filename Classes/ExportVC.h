@@ -34,8 +34,8 @@
 
 
 #import <UIKit/UIKit.h>
-#import "MailCsv.h"
-#import "MailOfx.h"
+#import "ExportCsv.h"
+#import "ExportOfx.h"
 
 @interface ExportVC : UIViewController {
 	IBOutlet UIButton *exportButton;
