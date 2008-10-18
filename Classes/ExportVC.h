@@ -34,13 +34,17 @@
 
 
 #import <UIKit/UIKit.h>
-
+#import "MailCsv.h"
+#import "MailOfx.h"
 
 @interface ExportVC : UIViewController {
 	IBOutlet UIButton *exportButton;
 	IBOutlet UISegmentedControl *formatControl;
 	IBOutlet UISegmentedControl *rangeControl;
 	IBOutlet UITextView *noteTextView;
+	
+	MailCsv *csv;
+	MailOfx *ofx;
 }
 
 - (IBAction)doExport;

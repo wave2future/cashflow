@@ -35,6 +35,7 @@
 
 #import "MailOfx.h"
 #import "CashFlowAppDelegate.h"
+#import "WebServer.h"
 
 @implementation MailOfx
 
@@ -53,6 +54,7 @@
 	if (body == nil) {
 		return NO;
 	}
+
 	[self EncodeMailBody:body];
 
 	[data appendString:body];
@@ -69,6 +71,48 @@
 	
 	// not reach here...
 	return YES;
+}
+
+- (BOOL)sendWithWebServer
+{
+	NSMutableString *body = [self generateOfx];
+	if (body == nil) {
+		return NO;
+	}
+	
+	if (webServer == nil) {
+		webServer = [[WebServer alloc] init];
+	}
+	webServer.contentBody = body;
+	webServer.contentType = @"application/x-ofx";
+	
+
+	
+	NSString *url = [webServer serverUrl];
+	[webServer startServer];
+	
+	// Alert view
+	NSString *message = [NSString stringWithFormat:@"%@\n%@", 
+						 NSLocalizedString(@"Access following URL with browser of your PC:", @""),
+						 url];
+	
+	UIAlertView *v = [[UIAlertView alloc] 
+					  initWithTitle:NSLocalizedString(@"Export OFX", @"")
+					  message:message
+					  delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+	[v show];
+	//[v release];
+	
+	return YES;
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	[webServer stopServer];
+}
+
+- (void)alertView:(UIAlertView *)alertview didDimissWithButtonIndex:(NSInteger)buttonIndex
+{
 }
 
 - (NSMutableString *)generateOfx

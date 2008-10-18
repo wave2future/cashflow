@@ -1,9 +1,11 @@
 #import "WebServer.h"
 #import <arpa/inet.h>
 
+#define PORT_NUMBER		8080
+
 @implementation WebServer
 
-@synthesize contentBody;
+@synthesize contentBody, contentType;
 
 - (BOOL)startServer
 {
@@ -20,7 +22,7 @@
 
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    addr.sin_port = htons(8080);
+    addr.sin_port = htons(PORT_NUMBER);
 
     if (bind(listen_sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
         close(listen_sock);
@@ -70,7 +72,7 @@
 	
 	char addrstr[64];
 	inet_ntop(AF_INET, (void*)&addr.sin_addr.s_addr, addrstr, sizeof(addrstr));
-	NSString *url = [[[NSString alloc] initWithFormat:@"http://%s", addrstr] autorelease];
+	NSString *url = [[[NSString alloc] initWithFormat:@"http://%s:%d", addrstr, PORT_NUMBER] autorelease];
 	return url;
 }
 
@@ -110,17 +112,44 @@
 {
     char buf[BUFSZ+1];
 
-    int len = recv(s, buf, sizeof(BUFSZ), 0);
-    if (len <= 0) {
-        return; 
-    }
-    buf[len] = '\0'; // null terminate
+	int len = read(s, buf, BUFSZ);
+	if (len < 0) {
+		return;
+	}
+	buf[len] = '\0'; // null terminate
+	
+	// get request line
+	NSArray *reqs = [[NSString stringWithCString:buf] componentsSeparatedByString:@"\n"];
+	NSString *getreq = [[reqs objectAtIndex:0] substringFromIndex:4]; // GET .....
 
+	// get requested file name
+	NSRange range = [getreq rangeOfString:@"HTTP/"];
+	if (range.location == NSNotFound) {
+		// GET request error ...
+		return;
+	}
+	NSString *filereq = [[getreq substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+	
+	// index
+	if ([filereq isEqualToString:@"/"])
+	{
+		NSString *outcontent = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"];
+		write(s, [outcontent UTF8String], [outcontent length]);
+		
+		outcontent = @"<html><head><meta http-equiv=\"refresh\" content=\"0;url=CashFlow.ofx\"></head></html>";
+		write(s, [outcontent UTF8String], [outcontent length]);
+		
+		return;
+	}
+		
+	// Ad hoc...
     // No need to read request... Just send only one file!
 
     NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
-    send(s, [content UTF8String], [content length], 0);
-    send(s, [contentBody UTF8String], [contentBody length], 0);
+    write(s, [content UTF8String], [content length]);
+	
+	const char *utf8 = [contentBody UTF8String];
+    write(s, utf8, strlen(utf8));
 }
 
 @end

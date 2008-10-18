@@ -47,6 +47,7 @@
 	NSThread *thread;
 }
 
+@property(nonatomic,retain) NSString* contentType;
 @property(nonatomic,retain) NSString* contentBody;
 		  
 - (BOOL)startServer;

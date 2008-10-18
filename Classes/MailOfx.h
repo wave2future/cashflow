@@ -36,13 +36,17 @@
 #import <UIKit/UIKit.h>
 #import "Mail.h"
 #import "Transaction.h"
+#import "WebServer.h"
 
-@interface MailOfx : Mail {
+@interface MailOfx : Mail <UIAlertViewDelegate> {
 	NSDateFormatter *df;
 	NSCalendar *greg;
+	
+	WebServer *webServer;
 }
 
 - (BOOL)sendMail;
+- (BOOL)sendWithWebServer;
 
 // private
 - (NSMutableString *)generateOfx;

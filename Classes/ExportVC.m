@@ -34,9 +34,6 @@
 
 
 #import "ExportVC.h"
-#import "MailCsv.h"
-#import "MailOfx.h"
-
 
 @implementation ExportVC
 
@@ -72,9 +69,6 @@
 
 - (IBAction)doExport
 {
-	MailCsv *csv;
-	MailOfx *ofx;
-	
 	int range;
 	switch (rangeControl.selectedSegmentIndex) {
 		case 0:
@@ -100,14 +94,19 @@
 	BOOL result;
 	switch (formatControl.selectedSegmentIndex) {
 		case 0:
-			csv = [[[MailCsv alloc] init] autorelease];
+			if (csv == nil) {
+				csv = [[MailCsv alloc] init];
+			}
 			csv.firstDate = date;
 			result = [csv sendMail];
 			break;
 		case 1:
-			ofx = [[[MailOfx alloc] init] autorelease];
+			if (ofx == nil) {
+				ofx = [[MailOfx alloc] init];
+			}
 			ofx.firstDate = date;
 			result = [ofx sendMail];
+			//result = [ofx sendWithWebServer];
 			break;
 	}
 	
