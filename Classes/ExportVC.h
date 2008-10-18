@@ -41,7 +41,7 @@
 	IBOutlet UIButton *exportButton;
 	IBOutlet UISegmentedControl *formatControl;
 	IBOutlet UISegmentedControl *rangeControl;
-	IBOutlet UITextView *noteTextView;
+	IBOutlet UISegmentedControl *methodControl;
 	
 	ExportCsv *csv;
 	ExportOfx *ofx;

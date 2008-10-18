@@ -38,10 +38,10 @@
 
 @synthesize firstDate;
 
-- (NSMutableString*)generateBody
-{
-	return nil;
-}
+- (BOOL)sendMail { return NO; }
+- (BOOL)sendWithWebServer { return NO; }
+- (NSMutableString*)generateBody {	return nil; }
+
 
 /*
   変換規則:
@@ -99,14 +99,12 @@
 	[webServer startServer];
 	
 	// Alert view
-	NSString *message = [NSString stringWithFormat:@"%@\n%@", 
-						 NSLocalizedString(@"Access following URL with browser of your PC:", @""),
-						 url];
+	NSString *message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
 	
 	UIAlertView *v = [[UIAlertView alloc] 
 					  initWithTitle:NSLocalizedString(@"Export", @"")
 					  message:message
-					  delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+					  delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
 	[v show];
 	[v release];
 }

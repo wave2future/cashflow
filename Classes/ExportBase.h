@@ -45,6 +45,9 @@
 @property(nonatomic,retain) NSDate *firstDate;
 
 - (NSMutableString*)generateBody;
+- (BOOL)sendMail;
+- (BOOL)sendWithWebServer;
+
 - (void)EncodeMailBody:(NSMutableString*)str;
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename;
 

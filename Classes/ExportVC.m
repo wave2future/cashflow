@@ -64,7 +64,7 @@
 	[exportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[exportButton setBackgroundImage:bg forState:UIControlStateNormal];
 	
-	noteTextView.font = [UIFont systemFontOfSize:12.0];
+	//noteTextView.font = [UIFont systemFontOfSize:12.0];
 }
 
 - (IBAction)doExport
@@ -92,21 +92,30 @@
 	}
 	
 	BOOL result;
+	ExportBase *ex;
+	
 	switch (formatControl.selectedSegmentIndex) {
 		case 0:
 			if (csv == nil) {
 				csv = [[ExportCsv alloc] init];
 			}
-			csv.firstDate = date;
-			result = [csv sendMail];
+			ex = csv;
 			break;
 		case 1:
 			if (ofx == nil) {
 				ofx = [[ExportOfx alloc] init];
 			}
-			ofx.firstDate = date;
-			result = [ofx sendMail];
-			//result = [ofx sendWithWebServer];
+			ex = ofx;
+			break;
+	}
+	ex.firstDate = date;
+	
+	switch (methodControl.selectedSegmentIndex) {
+		case 0:
+			result = [ex sendMail];
+			break;
+		case 1:
+			result = [ex sendWithWebServer];
 			break;
 	}
 	
