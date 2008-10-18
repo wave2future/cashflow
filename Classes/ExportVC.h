@@ -43,8 +43,8 @@
 	IBOutlet UISegmentedControl *rangeControl;
 	IBOutlet UITextView *noteTextView;
 	
-	MailCsv *csv;
-	MailOfx *ofx;
+	ExportCsv *csv;
+	ExportOfx *ofx;
 }
 
 - (IBAction)doExport;

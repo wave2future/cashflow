@@ -36,7 +36,7 @@
 #import "ExportCsv.h"
 #import "CashFlowAppDelegate.h"
 
-@implementation MailCsv
+@implementation ExportCsv
 
 - (BOOL)sendMail
 {

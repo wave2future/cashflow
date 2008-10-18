@@ -34,7 +34,7 @@
 
 #import "ExportBase.h"
 
-@implementation Mail
+@implementation ExportBase
 
 @synthesize firstDate;
 

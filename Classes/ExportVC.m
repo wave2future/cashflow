@@ -95,14 +95,14 @@
 	switch (formatControl.selectedSegmentIndex) {
 		case 0:
 			if (csv == nil) {
-				csv = [[MailCsv alloc] init];
+				csv = [[ExportCsv alloc] init];
 			}
 			csv.firstDate = date;
 			result = [csv sendMail];
 			break;
 		case 1:
 			if (ofx == nil) {
-				ofx = [[MailOfx alloc] init];
+				ofx = [[ExportOfx alloc] init];
 			}
 			ofx.firstDate = date;
 			result = [ofx sendMail];

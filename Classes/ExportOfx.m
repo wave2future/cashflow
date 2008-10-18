@@ -37,7 +37,7 @@
 #import "CashFlowAppDelegate.h"
 #import "WebServer.h"
 
-@implementation MailOfx
+@implementation ExportOfx
 
 - (BOOL)sendMail
 {

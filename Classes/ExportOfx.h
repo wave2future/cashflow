@@ -38,7 +38,7 @@
 #import "Transaction.h"
 #import "WebServer.h"
 
-@interface MailOfx : Mail <UIAlertViewDelegate> {
+@interface ExportOfx : ExportBase <UIAlertViewDelegate> {
 	NSDateFormatter *df;
 	NSCalendar *greg;
 	

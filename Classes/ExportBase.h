@@ -35,7 +35,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Mail : NSObject {
+@interface ExportBase : NSObject {
 	NSDate *firstDate;
 }
 
