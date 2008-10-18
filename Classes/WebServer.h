@@ -36,16 +36,23 @@
 #import <sys/socket.h>
 #import <netinet/in.h>
 
-@interface WebServer
+@interface WebServer : NSObject
 {
     int listen_sock;
-
+	struct sockaddr_in serv_addr;
+	
     NSString *contentType;
     NSString *contentBody;
+	
+	NSThread *thread;
 }
 
+@property(nonatomic,retain) NSString* contentBody;
+		  
 - (BOOL)startServer;
 - (void)stopServer;
+- (NSString*)serverUrl;
+- (void)threadMain:(id)dummy;
 - (void)handleHttpRequest:(int)s;
 
 @end
