@@ -71,6 +71,17 @@
 	return data;
 }
 
+- (BOOL)sendWithWebServer
+{
+	NSMutableString *body = [self generateBody];
+	if (body == nil) {
+		return NO;
+	}
+	
+	[self sendWithWebServer:body contentType:@"text/csv" filename:@"cashflow.csv"];
+	return YES;
+}
+
 - (NSMutableString *)generateBody
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];

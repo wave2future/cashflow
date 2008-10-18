@@ -82,35 +82,6 @@
 	
 	[self sendWithWebServer:body contentType:@"application/x-ofx" filename:@"cashflow.ofx"];
 	return YES;
-	
-#if 0	
-	
-	- (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
-	
-	
-	if (webServer == nil) {
-		webServer = [[WebServer alloc] init];
-	}
-	webServer.contentBody = body;
-	webServer.contentType = @"application/x-ofx";
-	
-	NSString *url = [webServer serverUrl];
-	[webServer startServer];
-	
-	// Alert view
-	NSString *message = [NSString stringWithFormat:@"%@\n%@", 
-						 NSLocalizedString(@"Access following URL with browser of your PC:", @""),
-						 url];
-	
-	UIAlertView *v = [[UIAlertView alloc] 
-					  initWithTitle:NSLocalizedString(@"Export OFX", @"")
-					  message:message
-					  delegate:self cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
-	[v show];
-	[v release];
-	
-	return YES;
-#endif
 }
 
 - (NSMutableString *)generateBody

@@ -40,6 +40,7 @@
 }
 
 - (BOOL)sendMail;
+- (BOOL)sendWithWebServer;
 
 - (NSMutableString *)generateMailUrl;
 

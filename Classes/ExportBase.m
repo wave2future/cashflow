@@ -38,9 +38,9 @@
 
 @synthesize firstDate;
 
-- (void)init
+- (NSMutableString*)generateBody
 {
-	firstDate = nil;
+	return nil;
 }
 
 /*
