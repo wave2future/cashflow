@@ -1,7 +1,12 @@
+#import "WebServer.h"
+
+@implementation WebServer
+
 - (BOOL)startServer
 {
     int s;
-    int len, on;
+    int on;
+	socklen_t len;
     struct sockaddr_in addr, caddr;
 
     listen_sock = socket(AF_INET, SOCK_STREAM, 0);
@@ -53,7 +58,7 @@
 {
     char buf[BUFSZ+1];
 
-    int len = recv(s, buf, sizeof(BUFSZ));
+    int len = recv(s, buf, sizeof(BUFSZ), 0);
     if (len <= 0) {
         return; 
     }
@@ -61,9 +66,11 @@
 
     // No need to read request... Just send only one file!
 
-    NSString *content = [NSString stringWithFormat:
-                                      @"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
-    send(s, [content UTF8String], [content length]);
-    send(s, [contentBody UTF8String], [contentBody length]);
+    NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
+    send(s, [content UTF8String], [content length], 0);
+    send(s, [contentBody UTF8String], [contentBody length], 0);
 }
+
+@end
+
         
