@@ -90,6 +90,7 @@
 
 - (NSString*)serverUrl
 {
+	// connect dummy UDP socket to get local IP address.
 	int s = socket(AF_INET, SOCK_DGRAM, 0);
 	struct sockaddr_in addr;
 	addr.sin_family = AF_INET;
@@ -103,10 +104,17 @@
 	
 	socklen_t len = sizeof(addr);
 	getsockname(s, (struct sockaddr*)&addr, &len);
-	
+	close(s);
+
 	char addrstr[64];
 	inet_ntop(AF_INET, (void*)&addr.sin_addr.s_addr, addrstr, sizeof(addrstr));
-	NSString *url = [[[NSString alloc] initWithFormat:@"http://%s:%d", addrstr, PORT_NUMBER] autorelease];
+
+	NSString *url;
+	if (PORT_NUMBER == 80) {
+		url = [NSString stringWithFormat:@"http://%s", addrstr];
+	} else {
+		url = [NSString stringWithFormat:@"http://%s:%d", addrstr, PORT_NUMBER];
+	}
 	return url;
 }
 

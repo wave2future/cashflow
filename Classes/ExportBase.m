@@ -86,6 +86,8 @@
 
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
 {
+	BOOL result = NO;
+
 	if (webServer == nil) {
 		webServer = [[WebServer alloc] init];
 	}
@@ -94,8 +96,10 @@
 	webServer.filename = filename;
 	
 	NSString *url = [webServer serverUrl];
+	if (url != nil) {
+		result = [webServer startServer];
+	}
 
-	BOOL result = [webServer startServer];
 	UIAlertView *v;
 	if (!result) {
 		// error!
