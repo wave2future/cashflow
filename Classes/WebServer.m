@@ -171,8 +171,9 @@
 		return;
 	}
 	NSString *filereq = [[getreq substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-	
-	// index
+
+	// Request to '/' url.
+	// Return redirect to target file name.
 	if ([filereq isEqualToString:@"/"])
 	{
 		NSString *outcontent = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"];
@@ -186,7 +187,6 @@
 		
 	// Ad hoc...
     // No need to read request... Just send only one file!
-
     NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
     write(s, [content UTF8String], [content length]);
 	
