@@ -86,7 +86,6 @@
 
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
 {
-
 	if (webServer == nil) {
 		webServer = [[WebServer alloc] init];
 	}
@@ -96,15 +95,23 @@
 	
 	NSString *url = [webServer serverUrl];
 
-	[webServer startServer];
+	BOOL result = [webServer startServer];
+	UIAlertView *v;
+	if (!result) {
+		// error!
+		v = [[UIAlertView alloc]
+				initWithTitle:@"Error"
+				message:NSLocalizedString(@"Cannot start web server.", @"")
+				delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
+	} else {
+		NSString *message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
 	
-	// Alert view
-	NSString *message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
-	
-	UIAlertView *v = [[UIAlertView alloc] 
-					  initWithTitle:NSLocalizedString(@"Export", @"")
-					  message:message
-					  delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
+		v = [[UIAlertView alloc] 
+				initWithTitle:NSLocalizedString(@"Export", @"")
+				message:message
+				delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
+	}
+
 	[v show];
 	[v release];
 }

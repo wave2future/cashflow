@@ -38,11 +38,11 @@
 
 @interface WebServer : NSObject
 {
-    int listen_sock;
+	int listen_sock;
 	struct sockaddr_in serv_addr;
 	
-    NSString *contentType;
-    NSString *contentBody;
+	NSString *contentType;
+	NSString *contentBody;
 	NSString *filename;
 	
 	NSThread *thread;
