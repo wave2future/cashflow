@@ -414,7 +414,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4529C6E5-73A1-49BD-9F59-1969ECB196B8";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75EE16C3-BD0B-4E49-B7F2-3C74272DC723";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";
@@ -424,6 +424,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
