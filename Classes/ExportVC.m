@@ -104,17 +104,19 @@
 			break;
 		case 1:
 #ifdef FREE_VERSION
-			v = [[UIAlertView alloc] 
-					initWithTitle:NSLocalizedString(@"Error", @"")
-					message:NSLocalizedString(@"You can't export OFX file with free version.", @"")
-					delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-			[[v show] autorelease];
-#endif
+			v = [[[UIAlertView alloc] 
+				  initWithTitle:NSLocalizedString(@"Error", @"")
+				  message:NSLocalizedString(@"You can't export OFX file with free version.", @"")
+				  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[v show];
+			return;
+#else
 			if (ofx == nil) {
 				ofx = [[ExportOfx alloc] init];
 			}
 			ex = ofx;
 			break;
+#endif
 	}
 	ex.firstDate = date;
 	
@@ -123,8 +125,17 @@
 			result = [ex sendMail];
 			break;
 		case 1:
+#ifdef FREE_VERSION
+			v = [[[UIAlertView alloc]
+				  initWithTitle:NSLocalizedString(@"Error", @"")
+				  message:NSLocalizedString(@"You can't use web export feature with free version.", @"")
+				  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+			[v show];
+			return;
+#else
 			result = [ex sendWithWebServer];
 			break;
+#endif
 	}
 	
 	if (!result) {
@@ -132,7 +143,8 @@
 						  initWithTitle:NSLocalizedString(@"No data", @"")
 						  message:NSLocalizedString(@"No data to be exported.", @"")
 						  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[[v show] autorelease];
+		[v show];
+		[v autorelease];
 	}
 }
 

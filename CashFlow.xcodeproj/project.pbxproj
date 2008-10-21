@@ -407,6 +407,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -414,7 +415,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "75EE16C3-BD0B-4E49-B7F2-3C74272DC723";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AC114EB-9434-4F33-940D-D35DC420DB1B";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";

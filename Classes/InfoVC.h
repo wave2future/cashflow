@@ -36,6 +36,7 @@
 
 
 @interface InfoVC : UIViewController {
+	IBOutlet UILabel *nameLabel;
 	IBOutlet UILabel *versionLabel;
 }
 

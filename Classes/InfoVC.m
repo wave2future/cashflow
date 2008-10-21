@@ -58,14 +58,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 	self.title = NSLocalizedString(@"Info", @"");
+
+#ifdef FREE_VERSION
+	[namLabel setText:@"CashFlow Free"];
+#endif
 	
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
-#ifdef FREE_VERSION
-	[versionLabel setText:[NSString stringWithFormat:@"Version %@ (Free)", version]];
-#else
 	[versionLabel setText:[NSString stringWithFormat:@"Version %@", version]];
-#endif
-
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
