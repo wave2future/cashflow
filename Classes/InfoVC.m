@@ -60,7 +60,7 @@
 	self.title = NSLocalizedString(@"Info", @"");
 
 #ifdef FREE_VERSION
-	[namLabel setText:@"CashFlow Free"];
+	[nameLabel setText:@"CashFlow Free"];
 #endif
 	
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
