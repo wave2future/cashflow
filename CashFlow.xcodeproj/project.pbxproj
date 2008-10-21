@@ -32,6 +32,7 @@
 		3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
 		3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E27113A0EAA208E00E57E51 /* ExportView.xib */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
+		3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A8D7E0EAE34B200118C3C /* Info-free.plist */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB540790E8E90F400608B77 /* MainWindow.xib */; };
@@ -47,7 +48,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* CashFlowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* CashFlowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* CashFlow Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CashFlow Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = Resources/RootViewController.xib; sourceTree = "<group>"; };
@@ -83,6 +84,7 @@
 		3E2710440EAA196A00E57E51 /* ExportOfx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportOfx.m; path = Classes/ExportOfx.m; sourceTree = "<group>"; };
 		3E27113C0EAA209500E57E51 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/ExportView.xib; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		3E5A8D7E0EAE34B200118C3C /* Info-free.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-free.plist"; sourceTree = "<group>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionView.xib; path = Resources/TransactionView.xib; sourceTree = "<group>"; };
 		3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rendered.png"; path = "images/icon-rendered.png"; sourceTree = "<group>"; };
 		3EB540790E8E90F400608B77 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* CashFlow.app */,
+				1D6058910D05DD3D006BFB54 /* CashFlow Free.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +188,7 @@
 				3E27113A0EAA208E00E57E51 /* ExportView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				3E5A8D7E0EAE34B200118C3C /* Info-free.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -247,7 +250,7 @@
 			);
 			name = CashFlow;
 			productName = CashFlow;
-			productReference = 1D6058910D05DD3D006BFB54 /* CashFlow.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* CashFlow Free.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -296,6 +299,7 @@
 				3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */,
 				3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */,
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
+				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -461,8 +465,8 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = CashFlow;
+				INFOPLIST_FILE = "Info-free.plist";
+				PRODUCT_NAME = "CashFlow Free";
 			};
 			name = "Debug Free";
 		};
@@ -475,6 +479,8 @@
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "Info-free.plist";
+				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow Free";
@@ -490,8 +496,8 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
-				PRODUCT_NAME = CashFlow;
+				INFOPLIST_FILE = "Info-free.plist";
+				PRODUCT_NAME = "CashFlow Free";
 			};
 			name = "Distribution Free";
 		};
