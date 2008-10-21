@@ -93,7 +93,8 @@
 	
 	BOOL result;
 	ExportBase *ex;
-	
+	UIAlertView *v;
+
 	switch (formatControl.selectedSegmentIndex) {
 		case 0:
 			if (csv == nil) {
@@ -102,6 +103,13 @@
 			ex = csv;
 			break;
 		case 1:
+#ifdef FREE_VERSION
+			v = [[UIAlertView alloc] 
+					initWithTitle:NSLocalizedString(@"Error", @"")
+					message:NSLocalizedString(@"You can't export OFX file with free version.", @"")
+					delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+			[[v show] autorelease];
+#endif
 			if (ofx == nil) {
 				ofx = [[ExportOfx alloc] init];
 			}
@@ -120,12 +128,11 @@
 	}
 	
 	if (!result) {
-		UIAlertView *v = [[UIAlertView alloc] 
+		v = [[UIAlertView alloc] 
 						  initWithTitle:NSLocalizedString(@"No data", @"")
 						  message:NSLocalizedString(@"No data to be exported.", @"")
 						  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[v show];
-		[v release];
+		[[v show] autorelease];
 	}
 }
 
