@@ -435,6 +435,66 @@
 			};
 			name = "Ad hoc distribution";
 		};
+		3EA482320EAE1CF60005B156 /* Debug Free */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "CashFlow Free";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2BF5AD22-6DFE-4EF1-8D57-0ECA9D27EA46";
+				SDKROOT = iphoneos2.0;
+			};
+			name = "Debug Free";
+		};
+		3EA482330EAE1CF60005B156 /* Debug Free */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = CashFlow;
+			};
+			name = "Debug Free";
+		};
+		3EA482340EAE1D250005B156 /* Distribution Free */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				PRODUCT_NAME = "CashFlow Free";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
+				SDKROOT = iphoneos2.0;
+			};
+			name = "Distribution Free";
+		};
+		3EA482350EAE1D250005B156 /* Distribution Free */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				PRODUCT_NAME = CashFlow;
+			};
+			name = "Distribution Free";
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -474,8 +534,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
+				3EA482330EAE1CF60005B156 /* Debug Free */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				3E4181BF0E76CDC300F0B14C /* Distribution */,
+				3EA482350EAE1D250005B156 /* Distribution Free */,
 				3E4DA8AC0EAB6CAE001FBB70 /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -485,8 +547,10 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
+				3EA482320EAE1CF60005B156 /* Debug Free */,
 				C01FCF5008A954540054247B /* Release */,
 				3E4181BE0E76CDC300F0B14C /* Distribution */,
+				3EA482340EAE1D250005B156 /* Distribution Free */,
 				3E4DA8AB0EAB6CAE001FBB70 /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
