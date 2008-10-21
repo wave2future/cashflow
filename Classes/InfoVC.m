@@ -60,7 +60,12 @@
 	self.title = NSLocalizedString(@"Info", @"");
 	
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
+#ifdef FREE_VERSION
+	[versionLabel setText:[NSString stringWithFormat:@"Version %@ (Free)", version]];
+#else
 	[versionLabel setText:[NSString stringWithFormat:@"Version %@", version]];
+#endif
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
