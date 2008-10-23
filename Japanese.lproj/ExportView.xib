@@ -281,6 +281,22 @@
 					</object>
 					<int key="connectionID">20</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">formatLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="173322423"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">methodLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="823138685"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -376,7 +392,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ExportVC</string>
 					<string>UIResponder</string>
-					<string>{{669, 340}, {320, 480}}</string>
+					<string>{{669, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -407,7 +423,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">20</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -425,14 +441,18 @@
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>exportButton</string>
 							<string>formatControl</string>
+							<string>formatLabel</string>
 							<string>methodControl</string>
+							<string>methodLabel</string>
 							<string>rangeControl</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
 							<bool key="EncodedWithXMLCoder">YES</bool>
 							<string>UIButton</string>
 							<string>UISegmentedControl</string>
+							<string>UILabel</string>
 							<string>UISegmentedControl</string>
+							<string>UILabel</string>
 							<string>UISegmentedControl</string>
 						</object>
 					</object>
