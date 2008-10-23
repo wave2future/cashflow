@@ -64,6 +64,13 @@
 	[exportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
 	[exportButton setBackgroundImage:bg forState:UIControlStateNormal];
 	
+#ifdef FREE_VERSION
+	formatLabel.hidden = YES;
+	formatControl.hidden = YES;
+	methodLabel.hidden = YES;
+	methodControl.hidden = YES;
+#endif
+
 	//noteTextView.font = [UIFont systemFontOfSize:12.0];
 }
 
@@ -97,20 +104,15 @@
 
 	switch (formatControl.selectedSegmentIndex) {
 		case 0:
+		default:
 			if (csv == nil) {
 				csv = [[ExportCsv alloc] init];
 			}
 			ex = csv;
 			break;
+
+#ifndef FREE_VERSION
 		case 1:
-#ifdef FREE_VERSION
-			v = [[[UIAlertView alloc] 
-				  initWithTitle:NSLocalizedString(@"Error", @"")
-				  message:NSLocalizedString(@"You can't export OFX file with free version.", @"")
-				  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[v show];
-			return;
-#else
 			if (ofx == nil) {
 				ofx = [[ExportOfx alloc] init];
 			}
@@ -122,17 +124,11 @@
 	
 	switch (methodControl.selectedSegmentIndex) {
 		case 0:
+		default:
 			result = [ex sendMail];
 			break;
+#ifndef FREE_VERSION
 		case 1:
-#ifdef FREE_VERSION
-			v = [[[UIAlertView alloc]
-				  initWithTitle:NSLocalizedString(@"Error", @"")
-				  message:NSLocalizedString(@"You can't use web export feature with free version.", @"")
-				  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
-			[v show];
-			return;
-#else
 			result = [ex sendWithWebServer];
 			break;
 #endif
