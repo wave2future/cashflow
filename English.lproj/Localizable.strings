@@ -22,7 +22,7 @@
 
 "Type" = "Type";
 
-"HelpURL" = "http://www.tmurakam.org/cashflow/help.html";
+"HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
 
 "Export" = "Export";
 "WebExportNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
