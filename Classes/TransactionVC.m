@@ -44,6 +44,7 @@
 #define ROW_TYPE  1
 #define ROW_VALUE 2
 #define ROW_DESC  3
+#define ROW_MEMO  4
 
 
 - (void)viewDidLoad
@@ -55,26 +56,31 @@
 												  action:@selector(saveAction)] autorelease];
 
 	// 下位の ViewController を生成しておく
-	editDescVC = [[EditDescViewController alloc]
-				  initWithNibName:@"EditDescView"
+	editDateVC = [[EditDateViewController alloc]
+				  initWithNibName:@"EditDateView"
 				  bundle:[NSBundle mainBundle]];
-	
-	editValueVC = [[EditValueViewController alloc]
-				   initWithNibName:@"EditValueView"
-				   bundle:[NSBundle mainBundle]];
 
 	editTypeVC = [[EditTypeViewController alloc]
 				  initWithNibName:@"EditTypeView"
 				  bundle:[NSBundle mainBundle]];
 
-	editDateVC = [[EditDateViewController alloc]
-				  initWithNibName:@"EditDateView"
-				  bundle:[NSBundle mainBundle]];
+	editValueVC = [[EditValueViewController alloc]
+				   initWithNibName:@"EditValueView"
+				   bundle:[NSBundle mainBundle]];
 
-	editDescVC.parent = self;
-	editValueVC.parent = self;
-	editTypeVC.parent = self;
+	editDescVC = [[EditDescViewController alloc]
+				  initWithNibName:@"EditDescView"
+				  bundle:[NSBundle mainBundle]];
+	
+	editMemoVC = [[EditMemoViewController alloc]
+				  initWithNibName:@"EditMemoView"
+				  bundle:[NSBundle mainBundle]];
+	
 	editDateVC.parent = self;
+	editTypeVC.parent = self;
+	editValueVC.parent = self;
+	editDescVC.parent = self;
+	editMemoVC.parent = self;
 	
 	// ボタン生成
 	UIButton *b;
@@ -89,12 +95,12 @@
 		[b setBackgroundImage:bg forState:UIControlStateNormal];
 		
 		if (i == 0) {
-			[b setFrame:CGRectMake(10, 250, 300, 44)];
+			[b setFrame:CGRectMake(10, 280, 300, 44)];
 			[b setTitle:NSLocalizedString(@"Delete transaction", @"") forState:UIControlStateNormal];
 			[b addTarget:self action:@selector(delButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 			delButton = [b retain];
 		} else {
-			[b setFrame:CGRectMake(10, 320, 300, 44)];
+			[b setFrame:CGRectMake(10, 340, 300, 44)];
 			[b setTitle:NSLocalizedString(@"Delete with all past transactions", @"") forState:UIControlStateNormal];
 			[b addTarget:self action:@selector(delPastButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 			delPastButton = [b retain];
@@ -104,10 +110,11 @@
 
 - (void)dealloc
 {
-	[editDescVC release];
-	[editValueVC release];
-	[editTypeVC release];
 	[editDateVC release];
+	[editTypeVC release];
+	[editValueVC release];
+	[editDescVC release];
+	[editMemoVC release];
 	
 	[delButton release];
 	[delPastButton release];
@@ -171,7 +178,7 @@
 // 行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	return 4; // details
+	return 5; // details
 }
 
 // 行の内容
@@ -248,6 +255,11 @@
 			name.text = NSLocalizedString(@"Name", @"Description");
 			value.text = trans.description;
 			break;
+			
+		case ROW_MEMO:
+			name.text = NSLocalizedString(@"Memo", @"");
+			value.text = trans.memo;
+			break;
 	}
 
 	return cell;
@@ -272,6 +284,9 @@
 			break;
 		case ROW_DESC:
 			v = editDescVC;
+			break;
+		case ROW_MEMO:
+			v = editMemoVC;
 			break;
 	}
 	[nc pushViewController:v animated:YES];

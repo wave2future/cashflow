@@ -31,6 +31,8 @@
 		3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
 		3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
 		3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E27113A0EAA208E00E57E51 /* ExportView.xib */; };
+		3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */; };
+		3E3EDEDF0EB61B9A00C35FBA /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
 		3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A8D7E0EAE34B200118C3C /* Info-free.plist */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
@@ -48,7 +50,7 @@
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1D3623240D0F684500981E51 /* CashFlowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlowAppDelegate.h; sourceTree = "<group>"; };
 		1D3623250D0F684500981E51 /* CashFlowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashFlowAppDelegate.m; sourceTree = "<group>"; };
-		1D6058910D05DD3D006BFB54 /* CashFlow Free.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CashFlow Free.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1D6058910D05DD3D006BFB54 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = RootViewController.xib; path = Resources/RootViewController.xib; sourceTree = "<group>"; };
@@ -83,6 +85,9 @@
 		3E2710430EAA196A00E57E51 /* ExportOfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportOfx.h; path = Classes/ExportOfx.h; sourceTree = "<group>"; };
 		3E2710440EAA196A00E57E51 /* ExportOfx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportOfx.m; path = Classes/ExportOfx.m; sourceTree = "<group>"; };
 		3E27113C0EAA209500E57E51 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/ExportView.xib; sourceTree = "<group>"; };
+		3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditMemoView.xib; path = Resources/EditMemoView.xib; sourceTree = "<group>"; };
+		3E3EDEDD0EB61B9A00C35FBA /* EditMemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMemoVC.h; sourceTree = "<group>"; };
+		3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMemoVC.m; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3E5A8D7E0EAE34B200118C3C /* Info-free.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-free.plist"; sourceTree = "<group>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionView.xib; path = Resources/TransactionView.xib; sourceTree = "<group>"; };
@@ -127,12 +132,14 @@
 				3E0888110E6EAEEB00739AC9 /* TransactionVC.m */,
 				3E0887FA0E6EACEB00739AC9 /* EditDateVC.h */,
 				3E0887F90E6EACEB00739AC9 /* EditDateVC.m */,
-				3E0887FD0E6EACF400739AC9 /* EditDescVC.h */,
-				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
-				3E0888020E6EAD0B00739AC9 /* EditValueVC.h */,
-				3E0888010E6EAD0B00739AC9 /* EditValueVC.m */,
 				3E0888000E6EAD0500739AC9 /* EditTypeVC.h */,
 				3E0888030E6EAD0B00739AC9 /* EditTypeVC.m */,
+				3E0888020E6EAD0B00739AC9 /* EditValueVC.h */,
+				3E0888010E6EAD0B00739AC9 /* EditValueVC.m */,
+				3E0887FD0E6EACF400739AC9 /* EditDescVC.h */,
+				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
+				3E3EDEDD0EB61B9A00C35FBA /* EditMemoVC.h */,
+				3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */,
 				3EDDADBC0E89280800268AED /* InfoVC.h */,
 				3EDDADBD0E89280800268AED /* InfoVC.m */,
 				3EDDAE7C0E8E468700268AED /* ExportVC.h */,
@@ -145,7 +152,7 @@
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1D6058910D05DD3D006BFB54 /* CashFlow Free.app */,
+				1D6058910D05DD3D006BFB54 /* CashFlow.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -182,6 +189,7 @@
 				3EB540790E8E90F400608B77 /* MainWindow.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
+				3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
 				3E0887F70E6EACA500739AC9 /* EditTypeView.xib */,
@@ -250,7 +258,7 @@
 			);
 			name = CashFlow;
 			productName = CashFlow;
-			productReference = 1D6058910D05DD3D006BFB54 /* CashFlow Free.app */;
+			productReference = 1D6058910D05DD3D006BFB54 /* CashFlow.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -300,6 +308,7 @@
 				3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */,
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
 				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
+				3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +335,7 @@
 				3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */,
 				3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */,
 				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,
+				3E3EDEDF0EB61B9A00C35FBA /* EditMemoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -513,7 +523,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2BF5AD22-6DFE-4EF1-8D57-0ECA9D27EA46";
-				SDKROOT = iphoneos2.0;
+				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;
 		};

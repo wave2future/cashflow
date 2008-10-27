@@ -59,7 +59,7 @@
 
 	[data appendString:@"mailto:?Subject=CashFlow%20CSV%20Data&body="];
 	[data appendString:@"%20CashFlow%20generated%20CSV%20data%20%0D%0A"];
-	[data appendString:@"Serial,Date,Value,Balance,Description%0D%0A"];
+	[data appendString:@"Serial,Date,Value,Balance,Description,Memo%0D%0A"];
 
 	NSMutableString *body = [self generateBody];
 	if (body == nil) {
@@ -111,7 +111,8 @@
 		[d appendFormat:@"%@,", [datefmt stringFromDate:t.date]];
 		[d appendFormat:@"%.2f,", t.value];
 		[d appendFormat:@"%.2f,", t.balance];
-		[d appendFormat:@"%@", t.description];
+		[d appendFormat:@"%@,", t.description];
+		[d appendFormat:@"%@", t.memo];
 		[d appendString:@"\n"];
 		[data appendString:d];
 		[d release];

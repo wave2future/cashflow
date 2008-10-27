@@ -33,31 +33,20 @@
 */
 
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "Transaction.h"
 
-#define TYPE_OUTGO 0 // 支払
-#define TYPE_INCOME	1 // 入金
-#define	TYPE_ADJ 2 // 残高調整
+@class TransactionViewController;
 
-@interface Transaction : NSObject <NSCoding, NSCopying> {
-	NSDate *date;
-	NSString *description;
-	NSString *memo;
-	double value; // plus - income, minus - outgo.
-	double balance;
-	int type;
-	int serial;
+@interface EditMemoViewController : UIViewController {
+	IBOutlet UITextField *textField;
+	
+	TransactionViewController *parent;
 }
 
-@property(nonatomic,copy) NSDate *date;
-@property(nonatomic,copy) NSString *description;
-@property(nonatomic,copy) NSString *memo;
-@property(nonatomic,assign) double value;
-@property(nonatomic,assign) double balance;
-@property(nonatomic,assign) int type;
-@property(nonatomic,assign) int serial;
+@property(nonatomic,assign) TransactionViewController *parent;
+@property(nonatomic,retain) UITextField *textField;
 
-- (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
+- (void)doneAction;
 
-- (id)initWithCoder:(NSCoder *)decoder;
-- (void)encodeWithCoder:(NSCoder *)coder;
 @end

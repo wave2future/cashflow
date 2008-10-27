@@ -37,7 +37,7 @@
 
 @implementation Transaction
 
-@synthesize date, description, value, balance, type, serial;
+@synthesize date, description, memo, value, balance, type, serial;
 
 - (id)init
 {
@@ -45,6 +45,7 @@
 	NSDate *dt = [[[NSDate alloc] init] autorelease];
 	self.date = dt;
 	self.description = @"";
+	self.memo = @"";
 	value = 0.0;
 	balance = 0.0;
 	type = 0;
@@ -56,6 +57,7 @@
 {
 	[date release];
 	[description release];
+	[memo release];
 	[super dealloc];
 }
 
@@ -63,6 +65,7 @@
 {
 	self.date = dt;
 	self.description = desc;
+	self.memo = @"";
 	value = v;
 	balance = 0.0; // ###
 	serial = 0; // init
@@ -75,6 +78,7 @@
 	n.serial = self.serial;
 	n.date = self.date;
 	n.description = self.description;
+	n.memo = self.memo;
 	n.value = self.value;
 	n.balance = self.balance;
 	n.type = self.type;
@@ -91,6 +95,7 @@
 		self.value = [decoder decodeDoubleForKey:@"Value"];
 		self.balance = [decoder decodeDoubleForKey:@"Balance"];
 		self.description = [decoder decodeObjectForKey:@"Description"];
+		self.memo = [decoder decodeObjectForKey:@"Memo"];
 		
 		if (self.type < 0 || self.type > 2) {
 			self.type = 0; // for safety
@@ -108,6 +113,7 @@
 	[coder encodeDouble:value forKey:@"Value"];
 	[coder encodeDouble:balance forKey:@"Balance"];
 	[coder encodeObject:description forKey:@"Description"];
+	[coder encodeObject:memo forKey:@"Memo"];
 }
 
 @end

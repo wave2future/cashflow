@@ -38,6 +38,7 @@
 #import "Transaction.h"
 
 #import "EditDescVC.h";
+#import "EditMemoVC.h";
 #import "EditValueVC.h";
 #import "EditTypeVC.h";
 #import "EditDateVC.h";
@@ -46,10 +47,11 @@
 	int transactionIndex;
 	Transaction *trans;
 
-	EditDescViewController *editDescVC;
-	EditValueViewController *editValueVC;
-	EditTypeViewController *editTypeVC;
 	EditDateViewController *editDateVC;
+	EditTypeViewController *editTypeVC;
+	EditValueViewController *editValueVC;
+	EditDescViewController *editDescVC;
+	EditMemoViewController *editMemoVC;
 	
 	UIButton *delButton;
 	UIButton *delPastButton;
