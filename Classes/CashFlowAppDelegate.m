@@ -42,7 +42,7 @@
 @synthesize window;
 @synthesize navigationController;
 
-static DataModel *s_theDataModel = nil;
+ataModel *theDataModel = nil;
 
 - (id)init {
 	if (self = [super init]) {
@@ -51,20 +51,13 @@ static DataModel *s_theDataModel = nil;
 	return self;
 }
 
-+ (DataModel*)theDataModel
-{
-	return s_theDataModel;
-}
-
 //
 // 開始処理
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	s_theDataModel = nil;
-
 	// データロード
-	s_theDataModel = [DataModel allocWithLoad:[self pathOfDataFile]];
+	theDataModel = [DataModel allocWithLoad:[self pathOfDataFile]];
 
 	// Configure and show the window
 	[window addSubview:[navigationController view]];
@@ -116,7 +109,7 @@ static DataModel *s_theDataModel = nil;
 }
 
 - (void)dealloc {
-	[s_theDataModel release];
+	[theDataModel release];
 
 	[navigationController release];
 	[window release];

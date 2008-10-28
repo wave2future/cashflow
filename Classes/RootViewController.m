@@ -107,8 +107,7 @@
 
 - (void)updateBalance
 {
-	DataModel *dm = [CashFlowAppDelegate theDataModel];
-	double lastBalance = [dm lastBalance];
+	double lastBalance = [theDataModel lastBalance];
 	NSString *bstr = [DataModel currencyString:lastBalance];
 
 #if 0
@@ -144,8 +143,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	DataModel *d = [CashFlowAppDelegate theDataModel];
-	return [d getTransactionCount];
+	return [theDataModel getTransactionCount];
 }
 
 //
@@ -205,8 +203,7 @@
 	}
 	
 	// Set up the cell
-	DataModel *d = [CashFlowAppDelegate theDataModel];
-	Transaction *t = [d getTransactionAt:[d getTransactionCount] - indexPath.row - 1];
+	Transaction *t = [theDataModel getTransactionAt:[theDataModel getTransactionCount] - indexPath.row - 1];
 	
 	desc.text = t.description;
 	
@@ -237,9 +234,8 @@
 //
  - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	 DataModel *d = [CashFlowAppDelegate theDataModel];
 	 //transactionView.transactionIndex = [d getTransactionCount] - indexPath.row - 1;
-	 [transactionView setTransactionIndex:([d getTransactionCount] - indexPath.row - 1)];
+	 [transactionView setTransactionIndex:([theDataModel getTransactionCount] - indexPath.row - 1)];
 
 	 // view を表示
 	 [self.navigationController pushViewController:transactionView animated:YES];
@@ -272,11 +268,10 @@
 // 削除処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	DataModel *d = [CashFlowAppDelegate theDataModel];
-	int transactionIndex = [d getTransactionCount] - indexPath.row - 1;
+	int transactionIndex = [theDataModel getTransactionCount] - indexPath.row - 1;
 	
 	if (style == UITableViewCellEditingStyleDelete) {
-		[d deleteTransactionAt:transactionIndex];
+		[theDataModel deleteTransactionAt:transactionIndex];
 	
 		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self updateBalance];

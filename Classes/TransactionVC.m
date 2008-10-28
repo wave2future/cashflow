@@ -135,7 +135,7 @@
 		trans = [[Transaction alloc] init];
 	} else {
 		// 変更
-		Transaction *t = [[CashFlowAppDelegate theDataModel] getTransactionAt:transactionIndex];
+		Transaction *t = [theDataModel getTransactionAt:transactionIndex];
 		trans = [t copy];
 	}
 }
@@ -295,7 +295,7 @@
 // 削除処理
 - (void)delButtonTapped
 {
-	[[CashFlowAppDelegate theDataModel] deleteTransactionAt:transactionIndex];
+	[theDataModel deleteTransactionAt:transactionIndex];
 	[trans release];
 	trans = nil;
 	
@@ -321,7 +321,7 @@
 		return; // cancelled;
 	}
 
-	DataModel *d = [CashFlowAppDelegate theDataModel];
+	DataModel *d = theDataModel;
 	Transaction *t = [d getTransactionAt:transactionIndex];
 	
 	NSDate *date = t.date;
@@ -336,7 +336,7 @@
 // 保存処理
 - (void)saveAction
 {
-	DataModel *dm = [CashFlowAppDelegate theDataModel];
+	DataModel *dm = theDataModel;
 	
 	if (transactionIndex < 0) {
 		[dm assignSerial:trans];

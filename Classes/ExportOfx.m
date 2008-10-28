@@ -88,20 +88,18 @@
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-	DataModel *dm = [CashFlowAppDelegate theDataModel];
-
-	int max = [dm getTransactionCount];
+	int max = [theDataModel getTransactionCount];
 
 	int firstIndex = 0;
 	if (firstDate != nil) {
-		firstIndex = [dm firstTransactionByDate:firstDate];
+		firstIndex = [theDataModel firstTransactionByDate:firstDate];
 		if (firstIndex < 0) {
 			return nil;
 		}
 	}
 	
-	Transaction *first = [dm getTransactionAt:firstIndex];
-	Transaction *last  = [dm getTransactionAt:max-1];
+	Transaction *first = [theDataModel getTransactionAt:firstIndex];
+	Transaction *last  = [theDataModel getTransactionAt:max-1];
 
 	[data appendString:@"OFXHEADER:100\n"];
 	[data appendString:@"DATA:OFXSGML\n"];
@@ -168,7 +166,7 @@
 	/* トランザクション */
 	int i;
 	for (i = firstIndex; i < max; i++) {
-		Transaction *t = [dm getTransactionAt:i];
+		Transaction *t = [theDataModel getTransactionAt:i];
 		
 		[data appendString:@"<STMTTRN>\n"];
 		[data appendFormat:@"<TRNTYPE>%@\n", [self transTypeString:t]];

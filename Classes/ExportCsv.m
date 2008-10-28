@@ -85,9 +85,8 @@
 - (NSMutableString *)generateBody
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
-	DataModel *dm = [CashFlowAppDelegate theDataModel];
 
-	int max = [dm getTransactionCount];
+	int max = [theDataModel getTransactionCount];
 
 	NSDateFormatter *datefmt = [[[NSDateFormatter alloc] init] autorelease];
 	[datefmt setDateStyle:NSDateFormatterMediumStyle];
@@ -96,13 +95,13 @@
 	/* トランザクション */
 	int i = 0;
 	if (firstDate != nil) {
-		i = [dm firstTransactionByDate:firstDate];
+		i = [theDataModel firstTransactionByDate:firstDate];
 		if (i < 0) {
 			return nil;
 		}
 	}
 	for (; i < max; i++) {
-		Transaction *t = [dm getTransactionAt:i];
+		Transaction *t = [theDataModel getTransactionAt:i];
 
 		if (firstDate != nil && [t.date compare:firstDate] == NSOrderedAscending) continue;
 		
