@@ -40,13 +40,20 @@
 
 @implementation DataModel
 
-@synthesize initialBalance, transactions, serialCounter;
+@synthesize transactions, serialCounter;
 
-sqlite3 *db;
+static sqlite3 *db = nil;
+static NSDateFormatter *dateFormatter;
 
+// Factory
 + (DataModel*)allocWithLoad;
 {
 	DataModel *dm = nil;
+
+	// misc initialization
+	dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+	[dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
 
 	// Load from DB
 	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
@@ -138,13 +145,11 @@ sqlite3 *db;
 {
 	sqlite3_stmt *stmt;
 
-	NSString *date = @""; // TBD
-
 	NSString *insert = 
 		[NSString stringWithFormat:
 				  @"INSERT INTO \"Transactions\" VALUES(%d, %@, %d, %f, %f, %@, %@);",
 				  t.serial, 					 
-				  date,
+				  [dateFormatter stringFromDate:t.date],
 				  t.type,
 				  t.value,
 				  t.balance,
@@ -186,7 +191,6 @@ sqlite3 *db;
 {
 	[super init];
 
-	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
 	serialCounter = 0;
 
@@ -249,10 +253,6 @@ sqlite3 *db;
 
 - (void)deleteTransactionAt:(int)n
 {
-	if (n == 0) {
-		Transaction *t = [transactions objectAtIndex:0];
-		initialBalance = t.balance;
-	}
 	[transactions removeObjectAtIndex:n];
 	[self recalcBalance];
 }
@@ -303,9 +303,12 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 	if (max == 0) return;
 
-	bal = self.initialBalance;
+	// Get initial balance from first transaction
+	t = [transactions objectAtindex:0];
+	bal = t.balance;
 
-	for (i = 0; i < max; i++) {
+	// Recalculate balances
+	for (i = 1; i < max; i++) {
 		t = [transactions objectAtIndex:i];
 
 		switch (t.type) {

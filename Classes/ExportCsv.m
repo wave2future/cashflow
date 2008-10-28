@@ -88,10 +88,6 @@
 
 	int max = [theDataModel getTransactionCount];
 
-	NSDateFormatter *datefmt = [[[NSDateFormatter alloc] init] autorelease];
-	[datefmt setDateStyle:NSDateFormatterMediumStyle];
-	[datefmt setTimeStyle:NSDateFormatterShortStyle];
-
 	/* トランザクション */
 	int i = 0;
 	if (firstDate != nil) {
@@ -107,7 +103,7 @@
 		
 		NSMutableString *d = [[NSMutableString alloc] init];
 		[d appendFormat:@"%d,", t.serial];
-		[d appendFormat:@"%@,", [datefmt stringFromDate:t.date]];
+		[d appendFormat:@"%@,", [theDateFormatter stringFromDate:t.date]];
 		[d appendFormat:@"%.2f,", t.value];
 		[d appendFormat:@"%.2f,", t.balance];
 		[d appendFormat:@"%@,", t.description];

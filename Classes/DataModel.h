@@ -38,13 +38,11 @@
 #define MAX_TRANSACTIONS	500
 
 @interface DataModel : NSObject <NSCoding> {
-	double initialBalance;
 	NSMutableArray *transactions;
 
 	int serialCounter;
 }
 
-@property(nonatomic,assign) double initialBalance;
 @property(nonatomic,retain) NSMutableArray *transactions;
 @property(nonatomic,assign) int serialCounter;
 

@@ -206,11 +206,7 @@
 	Transaction *t = [theDataModel getTransactionAt:[theDataModel getTransactionCount] - indexPath.row - 1];
 	
 	desc.text = t.description;
-	
-	NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-	[df setDateStyle:NSDateFormatterMediumStyle];
-	[df setTimeStyle:NSDateFormatterShortStyle];
-	date.text = [df stringFromDate:t.date];
+	date.text = [theDateFormatter stringFromDate:t.date];
 	
 	double v = t.value;
 	if (t.type == TYPE_OUTGO) {

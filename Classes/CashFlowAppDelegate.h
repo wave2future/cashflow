@@ -52,6 +52,7 @@
 
 // Global variables
 extern DataModel *theDataModel;
+extern DateFormatter *theDateFormatter;
 
 @end
 

@@ -46,7 +46,6 @@
 #define ROW_DESC  3
 #define ROW_MEMO  4
 
-
 - (void)viewDidLoad
 {
 	self.title = NSLocalizedString(@"Transaction", @"");
@@ -221,10 +220,7 @@
 	switch (indexPath.row) {
 		case ROW_DATE:
 			name.text = NSLocalizedString(@"Date", @"");
-			NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
-			[df setDateStyle:NSDateFormatterMediumStyle];
-			[df setTimeStyle:NSDateFormatterShortStyle];
-			value.text = [df stringFromDate:trans.date];
+			value.text = [theDateFormatter stringFromDate:trans.date];
 			break;
 
 		case ROW_TYPE:
