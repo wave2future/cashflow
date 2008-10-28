@@ -64,23 +64,7 @@ static DataModel *s_theDataModel = nil;
 	s_theDataModel = nil;
 
 	// データロード
-	NSString *path = [self pathOfDataFile];
-	NSData *data = [NSData dataWithContentsOfFile:path];
-	if (data != nil) {
-		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
-
-		s_theDataModel = [ar decodeObjectForKey:@"DataModel"];
-		if (s_theDataModel != nil) {
-			[s_theDataModel retain];
-			[ar finishDecoding];
-		
-			[s_theDataModel recalcBalance];
-		}
-	}
-	if (s_theDataModel == nil) {
-		// initial or some error...
-		s_theDataModel = [[DataModel alloc] init];
-	}
+	s_theDataModel = [DataModel allocWithLoad:[self pathOfDataFile]];
 
 	// Configure and show the window
 	[window addSubview:[navigationController view]];

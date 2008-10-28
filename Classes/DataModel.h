@@ -48,6 +48,8 @@
 @property(nonatomic,retain) NSMutableArray *transactions;
 @property(nonatomic,assign) int serialCounter;
 
++ (DataModel*)allocWithLoad;
+
 - (id)init;
 
 - (int)getTransactionCount;

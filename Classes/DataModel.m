@@ -39,6 +39,29 @@
 
 @synthesize initialBalance, transactions, serialCounter;
 
++ (DataModel*)allocWithLoad:(NSString)dataPath
+{
+	DataModel *dm = nil;
+
+	NSData *data = [NSData dataWithContentsOfFile:dataPath];
+	if (data != nil) {
+		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+
+		dm = [ar decodeObjectForKey:@"DataModel"];
+		if (dm != nil) {
+			[dm retain];
+			[ar finishDecoding];
+		
+			[dm recalcBalance];
+		}
+	}
+	if (dm == nil) {
+		// initial or some error...
+		dm = [[DataModel alloc] init];
+	}
+	return dm;
+}
+
 - (id)init
 {
 	[super init];
