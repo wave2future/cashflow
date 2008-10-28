@@ -87,7 +87,7 @@ static NSDateFormatter *dateFormatter;
 	// Ok, create new database
 	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
 	sqlite3_exec(db, "CREATE TABLE Transactions (key INTEGER PRIMARY KEY, date DATE, type INTEGER,\
-value DOUBLE, balance DOUBLE, description TEXT, memo TEXT);", 0, 0);
+value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 
 	[db rewriteToDB];
 	return dm;
@@ -125,21 +125,19 @@ value DOUBLE, balance DOUBLE, description TEXT, memo TEXT);", 0, 0);
 // private
 - (void)rewriteToDB
 {
-	sqlite3_stmt *stmt;
+	[self beginTransactionDB];
 
 	sqlite3_exec(db, "DELETE * FROM Transactions;", 0, 0);
 
 	int n = [transactions count];
 	int i;
 
-	sqlite3_exec(db, "BEGIN;", 0, 0);
-
 	for (i = 0; i < n; i++) {
 		Transaction *t = [transactions objectAtIndex:i];
 		[self insertTransactionDB:t];
 	}
 
-	sqlite3_exec(db, "COMMIT;", 0, 0);
+	[self commitTransactionDB];
 }
 
 - (void)insertTransactionDB:(Transaction*)t
@@ -163,6 +161,16 @@ value DOUBLE, balance DOUBLE, description TEXT, memo TEXT);", 0, 0);
 - (void)replaceDB:(Transaction*)t
 {
 	// TBD
+}
+
+- (void)beginTransactionDB
+{
+	sqlite3_exec(db, "BEGIN;", 0, 0);
+}
+
+- (void)commitTransactionDB
+{
+	sqlite3_exec(db, "COMMIT;", 0, 0);
 }
 
 - (BOOL)saveToStorage
@@ -229,13 +237,24 @@ value DOUBLE, balance DOUBLE, description TEXT, memo TEXT);", 0, 0);
 	if ([transactions count] > MAX_TRANSACTIONS) {
 		[self deleteTransactionAt:0];
 	}
+
+	[self insertTransactionDB:tr];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
-	char sql[1024];
+	// copy serial
+	Transaction *old = [transactions objectAtIndex:index];
+	t.serial = old.serial;
 
-	Transaction *old = [transaction objectAtIndex:index];
+	[transactions replaceObjectAtIndex:index withObject:t];
+
+	[self updateTransactionDB:t];
+}
+
+- (void)updateTransactionDB:(Transaction *)t
+{
+	char sql[1024];
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "UPDATE \"Transactions\" SET date=%Q, type=%d, value=%f, balance=%f, description=%Q, memo=%Q WHERE key = %d",
@@ -245,10 +264,8 @@ value DOUBLE, balance DOUBLE, description TEXT, memo TEXT);", 0, 0);
 					 t.balance,
 					 [t.description UTF8String],
 					 [t.memo UTF8String],
-					 old.serial);
+					 t.serial);
 	sqlite3_exec(db, sql, 0, 0);
-
-	[transactions replaceObjectAtIndex:index withObject:t];
 }
 
 - (void)deleteTransactionAt:(int)n
@@ -316,6 +333,8 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	t = [transactions objectAtindex:0];
 	bal = t.balance;
 
+	[self beginTransactionDB];
+
 	// Recalculate balances
 	for (i = 1; i < max; i++) {
 		t = [transactions objectAtIndex:i];
@@ -336,7 +355,11 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 			bal = t.balance;
 			break;
 		}
+
+		[updateTransactionDB:t];
 	}
+
+	[self commitTransactionDB];
 }
 
 - (double)lastBalance

@@ -140,6 +140,10 @@
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
+	// copy serial
+	Transaction *old = [transactions objectAtIndex:index];
+	t.serial = old.serial;
+
 	[transactions replaceObjectAtIndex:index withObject:t];
 }
 
