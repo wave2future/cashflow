@@ -86,8 +86,8 @@ static NSDateFormatter *dateFormatter;
 
 	// Ok, create new database
 	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
-	[self execSql:"CREATE TABLE Transactions (key integer primary key, date date, type int,\
-value double, balance double, description text, memo text);"];
+	sqlite3_exec(db, "CREATE TABLE Transactions (key INTEGER PRIMARY KEY, date DATE, type INTEGER,\
+value DOUBLE, balance DOUBLE, description TEXT, memo TEXT);", 0, 0);
 
 	[db rewriteToDB];
 	return dm;
@@ -127,65 +127,48 @@ value double, balance double, description text, memo text);"];
 {
 	sqlite3_stmt *stmt;
 
-	[self execSql:"DELETE * FROM Transactions;"];
+	sqlite3_exec(db, "DELETE * FROM Transactions;", 0, 0);
 
 	int n = [transactions count];
 	int i;
 
-	[self execSql:"BEGIN;"];
+	sqlite3_exec(db, "BEGIN;", 0, 0);
 
 	for (i = 0; i < n; i++) {
 		Transaction *t = [transactions objectAtIndex:i];
 		[self insertTransactionDB:t];
 	}
 
-	[self execSql:"COMMIT;"];
+	sqlite3_exec(db, "COMMIT;", 0, 0);
 }
 
 - (void)insertTransactionDB:(Transaction*)t
 {
-	sqlite3_stmt *stmt;
+	char sql[1024];
 
-	NSString *insert = 
-		[NSString stringWithFormat:
-				  @"INSERT INTO \"Transactions\" VALUES(%d, %@, %d, %f, %f, %@, %@);",
-				  t.serial, 					 
-				  [dateFormatter stringFromDate:t.date],
-				  t.type,
-				  t.value,
-				  t.balance,
-				  t.description,
-				  t.memo];
-	const char *q = [insert UTF8String];
-	[self execSql:q];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "INSERT INTO \"Transactions\" VALUES(NULL, %Q, %d, %f, %f, %Q, %Q);",
+					 [[dateFormatter stringFromDate:t.date] UTF8String],
+					 t.type,
+					 t.value,
+					 t.balance,
+					 [t.description UTF8String],
+					 [t.memo UTF8String]);
+	sqlite3_exec(db, sql, 0, 0, 0);
+
+	// get primary key
+	t.serial = sqlite3_last_insert_rowid(db);
 }
 
-// private
-- (void)execSql:(const char *)sql
+- (void)replaceDB:(Transaction*)t
 {
-	sqlite3_stmt *stmt;
-
-	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
-	sqlite3_step(stmt);
-	sqlite3_finalize(stmt);
+	// TBD
 }
 
 - (BOOL)saveToStorage
 {
-#if 0
-	// Save data if appropriate
-	NSString *path = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
-
-	NSMutableData *data = [NSMutableData data];
-	NSKeyedArchiver *ar = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-
-	[ar encodeObject:self forKey:@"DataModel"];
-	[ar finishEncoding];
-	[ar release];
-
-	BOOL result = [data writeToFile:path atomically:YES];
-#endif
-	return;
+	// do nothing
+	return YES;
 }
 
 - (id)init
@@ -202,6 +185,7 @@ value double, balance double, description text, memo text);"];
 {
 	[transactions release];
 	sqlite3_close(db);
+
 	[super dealloc];
 }
 
@@ -217,8 +201,8 @@ value double, balance double, description text, memo text);"];
 
 - (void)assignSerial:(Transaction*)tr
 {
-	tr.serial = serialCounter;
-	serialCounter++;
+	// do nothing
+	// primary key is assigned by SQLite
 }
 
 - (void)insertTransaction:(Transaction*)tr
@@ -249,11 +233,35 @@ value double, balance double, description text, memo text);"];
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
+	char sql[1024];
+
+	Transaction *old = [transaction objectAtIndex:index];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE \"Transactions\" SET date=%Q, type=%d, value=%f, balance=%f, description=%Q, memo=%Q WHERE key = %d",
+					 [[dateFormatter stringFromDate:t.date] UTF8String],
+					 t.type,
+					 t.value,
+					 t.balance,
+					 [t.description UTF8String],
+					 [t.memo UTF8String],
+					 old.serial);
+	sqlite3_exec(db, sql, 0, 0);
+
 	[transactions replaceObjectAtIndex:index withObject:t];
 }
 
 - (void)deleteTransactionAt:(int)n
 {
+	char sql[128];
+
+	Transaction *t = [transactions objectAtIndex:n];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE * FROM \"Transactions\" WHERE key = %d;", 
+					 t.serial);
+	sqlite3_exec(db, sql, 0, 0);
+
 	[transactions removeObjectAtIndex:n];
 	[self recalcBalance];
 }
@@ -335,7 +343,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
 	int max = [transactions count];
 	if (max == 0) {
-		return initialBalance;
+		return 0.0;
 	}
 	return [[transactions objectAtIndex:max - 1] balance];
 }
@@ -387,7 +395,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	self = [super init];
 	if (self) {
 		self.serialCounter = [decoder decodeIntForKey:@"serialCounter"];
-		self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
 		self.transactions = [decoder decodeObjectForKey:@"Transactions"];
 		[self recalcBalance];
 	}
@@ -397,7 +404,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 - (void)encodeWithCoder:(NSCoder *)coder
 {
 	[coder encodeInt:serialCounter forKey:@"serialCounter"];
-	[coder encodeDouble:initialBalance forKey:@"initialBalance"];
 	[coder encodeObject:transactions forKey:@"Transactions"];
 }
 
