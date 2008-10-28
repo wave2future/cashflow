@@ -55,6 +55,11 @@
 	}
 }
 
+- (void)execSql:(const char *)sql
+{
+	sqlite3_exec(db, sql, 0, 0);
+}
+
 // データベースを開く
 //   データベースがあったときは YES を返す。
 //   なかったときは新規作成して NO を返す
@@ -68,22 +73,25 @@
 
 	// Ok, create new database
 	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
-	sqlite3_exec(db, "CREATE TABLE Transactions ("
-				 "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER,"
-				 "value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
-	sqlite3_exec(db, "CREATE TABLE Assets ("
-				 "key INTEGER PRIMARY KEY, name TEXT, type INTEGER", 0, 0);
+	[self execSql:"CREATE TABLE Transactions ("
+		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER,"
+		  "value REAL, balance REAL, description TEXT, memo TEXT);"];
+
+	// 以下は将来使うため
+	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER);"];
+	[self execSql:"INSERT INTO Assets VALUES(0, 'Cash', 0);"];
+
 	return NO; // re-created
 }
 
 - (void)beginTransactionDB
 {
-	sqlite3_exec(db, "BEGIN;", 0, 0);
+	[self execSql:"BEGIN;"];
 }
 
 - (void)commitTransactionDB
 {
-	sqlite3_exec(db, "COMMIT;", 0, 0);
+	[self execSql:"COMMIT;"];
 }
 
 - (NSMutableArray *)loadFromDB:(int)asset
@@ -130,7 +138,7 @@
 	char sql[128];
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE * FROM Transactions WHERE asset = %d;", asset);
-	sqlite3_exec(db, sql, 0, 0);
+	[self execSql:sql];
 
 	int n = [transactions count];
 	int i;
@@ -156,7 +164,7 @@
 					 t.balance,
 					 [t.description UTF8String],
 					 [t.memo UTF8String]);
-	sqlite3_exec(db, sql, 0, 0, 0);
+	[self execSql:sql];
 
 	// get primary key
 	t.serial = sqlite3_last_insert_rowid(db);
@@ -175,7 +183,7 @@
 					 [t.description UTF8String],
 					 [t.memo UTF8String],
 					 t.serial);
-	sqlite3_exec(db, sql, 0, 0);
+	[self execSql:sql];
 }
 
 - (void)deleteTransaction:(Transaction *)t
@@ -184,7 +192,7 @@
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE * FROM \"Transactions\" WHERE key = %d;", 
 					 t.serial);
-	sqlite3_exec(db, sql, 0, 0);
+	[self execSql:sql];
 }
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
@@ -193,17 +201,17 @@
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE * FROM Transactions WHERE date < %Q",
 					 [[dateFormatter stringFromDate:t.date] UTF8String]);
-	sqlite3_exec(db, sql, 0, 0);
+	[self execSql:sql];
 }
 
 - (void)beginTransaction
 {
-	sqlite3_exec(db, "BEGIN;", 0, 0);
+	[self execSql:"BEGIN;"];
 }
 
 - (void)commitTransaction
 {
-	sqlite3_exec(db, "COMMIT;", 0, 0);
+	[self execSql:"COMMIT;"];
 }
 
 @end
