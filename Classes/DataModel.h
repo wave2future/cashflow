@@ -49,6 +49,7 @@
 @property(nonatomic,assign) int serialCounter;
 
 + (DataModel*)allocWithLoad;
+- (BOOL)saveToStorage;
 
 - (id)init;
 

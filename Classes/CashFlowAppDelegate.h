@@ -48,7 +48,7 @@
 - (IBAction)addTransaction:(id)sender;
 - (IBAction)showHelp:(id)sender;
 
-- (NSString*)pathOfDataFile;
++ (NSString*)pathOfDataFile;
 
 // Global variables
 extern DataModel *theDataModel;

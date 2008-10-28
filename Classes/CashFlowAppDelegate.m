@@ -57,7 +57,7 @@ ataModel *theDataModel = nil;
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	// データロード
-	theDataModel = [DataModel allocWithLoad:[self pathOfDataFile]];
+	theDataModel = [DataModel allocWithLoad];
 
 	// Configure and show the window
 	[window addSubview:[navigationController view]];
@@ -79,24 +79,13 @@ ataModel *theDataModel = nil;
 //
 // 終了処理 : データ保存
 //
-- (void)applicationWillTerminate:(UIApplication *)application {
-	// Save data if appropriate
-	NSString *path = [self pathOfDataFile];
-
-	NSMutableData *data = [NSMutableData data];
-	NSKeyedArchiver *ar = [[[NSKeyedArchiver alloc] initForWritingWithMutableData:data] autorelease];
-
-	[ar encodeObject:s_theDataModel forKey:@"DataModel"];
-	[ar finishEncoding];
-
-	BOOL result = [data writeToFile:path atomically:YES];
-	if (!result) {
-		// TBD
-	}	
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	[theDataModel saveToStorage];
 }
 
 // データファイルのパスを取得
-- (NSString*)pathOfDataFile
++ (NSString*)pathOfDataFile
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(
 		NSDocumentDirectory, NSUserDomainMask, YES);

@@ -39,9 +39,11 @@
 
 @synthesize initialBalance, transactions, serialCounter;
 
-+ (DataModel*)allocWithLoad:(NSString)dataPath
++ (DataModel*)allocWithLoad;
 {
 	DataModel *dm = nil;
+
+	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile];
 
 	NSData *data = [NSData dataWithContentsOfFile:dataPath];
 	if (data != nil) {
@@ -60,6 +62,22 @@
 		dm = [[DataModel alloc] init];
 	}
 	return dm;
+}
+
+- (BOOL)saveToStorage
+{
+	// Save data if appropriate
+	NSString *path = [CashFlowAppDelegate pathOfDataFile];
+
+	NSMutableData *data = [NSMutableData data];
+	NSKeyedArchiver *ar = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
+
+	[ar encodeObject:self forKey:@"DataModel"];
+	[ar finishEncoding];
+	[ar release];
+
+	BOOL result = [data writeToFile:path atomically:YES];
+	return;
 }
 
 - (id)init
