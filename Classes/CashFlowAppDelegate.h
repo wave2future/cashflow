@@ -52,7 +52,7 @@
 
 // Global variables
 extern DataModel *theDataModel;
-extern DateFormatter *theDateFormatter;
+extern NSDateFormatter *theDateFormatter;
 
 @end
 

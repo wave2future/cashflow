@@ -43,7 +43,7 @@
 @synthesize navigationController;
 
 DataModel *theDataModel = nil;
-DateFormatter *theDateFormatter = nil;
+NSDateFormatter *theDateFormatter = nil;
 
 - (id)init {
 	if (self = [super init]) {

@@ -65,7 +65,7 @@
 	[super viewWillAppear:animated];
 	textField.text = parent.trans.description;
 
-	descArray = [[CashFlowAppDelegate theDataModel] allocDescList];
+	descArray = [theDataModel allocDescList];
 	[descArray insertObject:@"" atIndex:0];  // dummy entry
 	[picker reloadAllComponents];
 
