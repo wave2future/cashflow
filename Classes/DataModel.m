@@ -32,12 +32,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
+#import "CashFlowAppDelegate.h"
 #import "DataModel.h"
 
 @implementation DataModel
 
-@synthesize transactions, serialCounter;
+@synthesize transactions, serialCounter, initialBalance;
 
 + (DataModel*)allocWithLoad
 {
@@ -77,13 +77,14 @@
 	[ar release];
 
 	BOOL result = [data writeToFile:path atomically:YES];
-	return;
+	return result;
 }
 
 - (id)init
 {
 	[super init];
 
+	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
 	serialCounter = 0;
 
@@ -145,10 +146,15 @@
 	t.serial = old.serial;
 
 	[transactions replaceObjectAtIndex:index withObject:t];
+	[self recalcBalance];
 }
 
 - (void)deleteTransactionAt:(int)n
 {
+	if (n == 0) {
+		Transaction *t = [transactions objectAtIndex:0];
+		initialBalance = t.balance;
+	}
 	[transactions removeObjectAtIndex:n];
 	[self recalcBalance];
 }
@@ -199,12 +205,10 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 	if (max == 0) return;
 
-	// Get initial balance from first transaction
-	t = [transactions objectAtindex:0];
-	bal = t.balance;
+	bal = initialBalance;
 
 	// Recalculate balances
-	for (i = 1; i < max; i++) {
+	for (i = 0; i < max; i++) {
 		t = [transactions objectAtIndex:i];
 
 		switch (t.type) {
@@ -230,7 +234,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
 	int max = [transactions count];
 	if (max == 0) {
-		return 0.0;
+		return initialBalance;
 	}
 	return [[transactions objectAtIndex:max - 1] balance];
 }
@@ -282,6 +286,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	self = [super init];
 	if (self) {
 		self.serialCounter = [decoder decodeIntForKey:@"serialCounter"];
+		self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
 		self.transactions = [decoder decodeObjectForKey:@"Transactions"];
 		[self recalcBalance];
 	}
@@ -291,6 +296,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 - (void)encodeWithCoder:(NSCoder *)coder
 {
 	[coder encodeInt:serialCounter forKey:@"serialCounter"];
+	[coder encodeDouble:initialBalance forKey:@"initialBalance"];
 	[coder encodeObject:transactions forKey:@"Transactions"];
 }
 

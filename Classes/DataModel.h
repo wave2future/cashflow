@@ -39,11 +39,13 @@
 
 @interface DataModel : NSObject <NSCoding> {
 	NSMutableArray *transactions;
+	double initialBalance;
 
 	int serialCounter;
 }
 
 @property(nonatomic,retain) NSMutableArray *transactions;
+@property(nonatomic,assign) double initialBalance;
 @property(nonatomic,assign) int serialCounter;
 
 + (DataModel*)allocWithLoad;
