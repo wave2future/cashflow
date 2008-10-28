@@ -39,7 +39,7 @@
 
 @synthesize transactions, serialCounter;
 
-+ (DataModel*)allocWithLoad;
++ (DataModel*)allocWithLoad
 {
 	DataModel *dm = nil;
 

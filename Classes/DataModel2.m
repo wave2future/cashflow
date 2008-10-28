@@ -35,31 +35,24 @@
 // SQLite データベース版
 // まだ試作中、、、
 
-#import "DataModel.h"
+#import "DataModel2.h"
 #import <sqlite3.h>
 
 @implementation DataModel
 
-@synthesize transactions, serialCounter;
-
-static sqlite3 *db = nil;
-static NSDateFormatter *dateFormatter;
+@synthesize transactions;
 
 // Factory
-+ (DataModel*)allocWithLoad;
++ (DataModel*)allocWithLoad
 {
 	DataModel *dm = nil;
 
-	// misc initialization
-	dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-	[dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
-
 	// Load from DB
-	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
-	if (sqlite3_open([dbPath UTF8String], &db) == 0) {
+	Database *db = [[Database alloc] init];
+	if ([db openDB]) {
 		dm = [[DataModel alloc] init];
-		[dm reloadFromDB];
+		dm.db = db;
+		[dm reload];
 
 		return dm;
 	}
@@ -84,93 +77,26 @@ static NSDateFormatter *dateFormatter;
 		dm = [[DataModel alloc] init];
 	}
 
-	// Ok, create new database
-	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
-	sqlite3_exec(db, "CREATE TABLE Transactions (key INTEGER PRIMARY KEY, date DATE, type INTEGER,\
-value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
+	// Ok, write database
+	dm.db = db;
+	[dm save];
 
-	[db rewriteToDB];
 	return dm;
 }
 
 // private
-- (void)reloadFromDB
+- (void)reload
 {
-	const char *q = "SELECT key, date, type, value, balance, description, memo\
- FROM Transactions ORDER BY date";
-		
-	sqlite3_stmt *stmt;
-	sqlite3_prepare_v2(db, q, strlen(q), &stmt, NULL);
-
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		Transaction *t = [[Transaction alloc] init];
-		t.serial = sqlite3_column_int(stmt, 0);
-		char *date = sqlite3_column_text(stmt, 1);
-		t.type = sqlite3_column_int(stmt, 2);
-		t.value = sqlite3_column_double(stmt, 3);
-		t.balance = sqlite3_column_double(stmt, 4);
-		char *desc = sqlite3_column_text(stmt, 5);
-		char *memo = sqlite3_column_text(stmt, 6);
-
-		t.date = [dateFormatter dateFromString:
-						[NSString stringWithCString:date encoding:NSUTF8StringEncoding]];
-		t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
-		t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
-
-		[self insertTransaction:t];
+	if (transactions) {
+		[transactions release];
 	}
-	sqlite3_finalize(stmt);
+	self.transactions = [db loadFromDB:0];
 }
 
 // private
-- (void)rewriteToDB
+- (void)save
 {
-	[self beginTransactionDB];
-
-	sqlite3_exec(db, "DELETE * FROM Transactions;", 0, 0);
-
-	int n = [transactions count];
-	int i;
-
-	for (i = 0; i < n; i++) {
-		Transaction *t = [transactions objectAtIndex:i];
-		[self insertTransactionDB:t];
-	}
-
-	[self commitTransactionDB];
-}
-
-- (void)insertTransactionDB:(Transaction*)t
-{
-	char sql[1024];
-
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO \"Transactions\" VALUES(NULL, %Q, %d, %f, %f, %Q, %Q);",
-					 [[dateFormatter stringFromDate:t.date] UTF8String],
-					 t.type,
-					 t.value,
-					 t.balance,
-					 [t.description UTF8String],
-					 [t.memo UTF8String]);
-	sqlite3_exec(db, sql, 0, 0, 0);
-
-	// get primary key
-	t.serial = sqlite3_last_insert_rowid(db);
-}
-
-- (void)replaceDB:(Transaction*)t
-{
-	// TBD
-}
-
-- (void)beginTransactionDB
-{
-	sqlite3_exec(db, "BEGIN;", 0, 0);
-}
-
-- (void)commitTransactionDB
-{
-	sqlite3_exec(db, "COMMIT;", 0, 0);
+	[db saveToDB:transactions asset:0];
 }
 
 - (BOOL)saveToStorage
@@ -192,7 +118,7 @@ value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 - (void)dealloc 
 {
 	[transactions release];
-	sqlite3_close(db);
+	[db release];
 
 	[super dealloc];
 }
@@ -238,7 +164,8 @@ value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 		[self deleteTransactionAt:0];
 	}
 
-	[self insertTransactionDB:tr];
+	// DB 追加
+	[db insertTransactionDB:tr];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
@@ -249,23 +176,8 @@ value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 
 	[transactions replaceObjectAtIndex:index withObject:t];
 
-	[self updateTransactionDB:t];
-}
-
-- (void)updateTransactionDB:(Transaction *)t
-{
-	char sql[1024];
-
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE \"Transactions\" SET date=%Q, type=%d, value=%f, balance=%f, description=%Q, memo=%Q WHERE key = %d",
-					 [[dateFormatter stringFromDate:t.date] UTF8String],
-					 t.type,
-					 t.value,
-					 t.balance,
-					 [t.description UTF8String],
-					 [t.memo UTF8String],
-					 t.serial);
-	sqlite3_exec(db, sql, 0, 0);
+	// update DB
+	[db updateTransaction:t];
 }
 
 - (void)deleteTransactionAt:(int)n
@@ -274,10 +186,7 @@ value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 
 	Transaction *t = [transactions objectAtIndex:n];
 
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE * FROM \"Transactions\" WHERE key = %d;", 
-					 t.serial);
-	sqlite3_exec(db, sql, 0, 0);
+	[db deleteTransaction:t];
 
 	[transactions removeObjectAtIndex:n];
 	[self recalcBalance];
@@ -285,14 +194,8 @@ value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
 {
-	while (transactions.count > 0) {
-		Transaction *t = [transactions objectAtIndex:0];
-		if ([t.date compare:date] != NSOrderedAscending) {
-			break;
-		}
-
-		[self deleteTransactionAt:0];
-	}
+	[db deleteOldTransactionsBefore:date];
+	[self reload];
 }
 
 - (int)firstTransactionByDate:(NSDate*)date
@@ -304,9 +207,7 @@ value REAL, balance REAL, description TEXT, memo TEXT);", 0, 0);
 		}
 	}
 	return -1;
-
 }
-
 
 // sort
 static int compareByDate(Transaction *t1, Transaction *t2, void *context)
@@ -333,7 +234,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	t = [transactions objectAtindex:0];
 	bal = t.balance;
 
-	[self beginTransactionDB];
+	[db beginTransaction];
 
 	// Recalculate balances
 	for (i = 1; i < max; i++) {
@@ -356,10 +257,10 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 			break;
 		}
 
-		[updateTransactionDB:t];
+		[db updateTransaction:t];
 	}
 
-	[self commitTransactionDB];
+	[db commitTransaction];
 }
 
 - (double)lastBalance
@@ -370,7 +271,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	}
 	return [[transactions objectAtIndex:max - 1] balance];
 }
-
 
 // Utility
 + (NSString*)currencyString:(double)x
@@ -424,10 +324,12 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	return self;
 }
 
+#if 0
 - (void)encodeWithCoder:(NSCoder *)coder
 {
 	[coder encodeInt:serialCounter forKey:@"serialCounter"];
 	[coder encodeObject:transactions forKey:@"Transactions"];
 }
+#endif
 
 @end
