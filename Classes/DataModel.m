@@ -155,8 +155,11 @@
 		Transaction *t = [transactions objectAtIndex:0];
 		initialBalance = t.balance;
 	}
+
 	[transactions removeObjectAtIndex:n];
-	[self recalcBalance];
+	if (n > 0) {
+		[self recalcBalance];
+	}
 }
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
@@ -196,6 +199,18 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	[self recalcBalance];
 }
 
+#if 0
+- (void)recalcInitialBalance
+{
+	if ([transactions count] > 0) {
+		Transaction *t = [transactions objectAtIndex:0];
+		initialBalance = [t prevBalance];
+	} else {
+		//initialBalance = 0.0; // keep original value
+	}
+}
+#endif
+
 - (void)recalcBalance
 {
 	Transaction *t;
@@ -210,23 +225,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	// Recalculate balances
 	for (i = 0; i < max; i++) {
 		t = [transactions objectAtIndex:i];
-
-		switch (t.type) {
-		case TYPE_INCOME:
-			bal += t.value;
-			t.balance = bal;
-			break;
-
-		case TYPE_OUTGO:
-			bal -= t.value;
-			t.balance = bal;
-			break;
-
-		case TYPE_ADJ:
-			t.value = t.balance - bal;
-			bal = t.balance;
-			break;
-		}
+		bal = [t fixBalance:bal];
 	}
 }
 
@@ -288,6 +287,8 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 		self.serialCounter = [decoder decodeIntForKey:@"serialCounter"];
 		self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
 		self.transactions = [decoder decodeObjectForKey:@"Transactions"];
+
+		//[self recalcInitialBalance];
 		[self recalcBalance];
 	}
 	return self;

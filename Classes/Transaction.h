@@ -57,6 +57,8 @@
 @property(nonatomic,assign) int serial;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
+- (double)fixBalance:(double)prevBalance;
+- (double)prevBalance;
 
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;

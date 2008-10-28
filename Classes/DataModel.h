@@ -64,6 +64,7 @@
 - (int)firstTransactionByDate:(NSDate*)date;
 - (void)sortByDate;
 
+- (void)recalcInitialBalance;
 - (void)recalcBalance;
 - (double)lastBalance;
 

@@ -72,6 +72,41 @@
 	return self;
 }
 
+- (double)fixBalance:(double)prevBalance
+{
+	switch (type) {
+		case TYPE_INCOME:
+			balance = prevBalance + value;
+			break;
+			
+		case TYPE_OUTGO:
+			balance = prevBalance - value;
+			break;
+			
+		case TYPE_ADJ:
+			value = balance - prevBalance;
+			break;
+	}
+	return balance;
+}
+
+- (double)prevBalance
+{
+	double prev;
+	
+	switch (type) {
+		case TYPE_INCOME:
+		case TYPE_ADJ:
+			prev = balance - value;
+			break;
+			
+		case TYPE_OUTGO:
+			prev = balance + value;
+			break;
+	}
+	return prev;
+}
+
 - (id)copyWithZone:(NSZone*)zone
 {
 	Transaction *n = [[Transaction alloc] init];
