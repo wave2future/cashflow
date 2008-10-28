@@ -43,7 +43,7 @@
 {
 	DataModel *dm = nil;
 
-	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile];
+	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
 
 	NSData *data = [NSData dataWithContentsOfFile:dataPath];
 	if (data != nil) {
@@ -67,7 +67,7 @@
 - (BOOL)saveToStorage
 {
 	// Save data if appropriate
-	NSString *path = [CashFlowAppDelegate pathOfDataFile];
+	NSString *path = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
 
 	NSMutableData *data = [NSMutableData data];
 	NSKeyedArchiver *ar = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];

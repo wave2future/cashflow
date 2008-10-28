@@ -85,14 +85,13 @@ ataModel *theDataModel = nil;
 }
 
 // データファイルのパスを取得
-+ (NSString*)pathOfDataFile
++ (NSString*)pathOfDataFile:(NSString*)filename
 {
 	NSArray *paths = NSSearchPathForDirectoriesInDomains(
 		NSDocumentDirectory, NSUserDomainMask, YES);
 
 	NSString *datapath = [paths objectAtIndex:0];
-	NSString *path = [datapath stringByAppendingPathComponent:@"Transactions.dat"];
-	//[paths release];
+	NSString *path = [datapath stringByAppendingPathComponent:filename];
 
 	return path;
 }
