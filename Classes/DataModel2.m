@@ -64,9 +64,6 @@ static NSDateFormatter *dateFormatter;
 		return dm;
 	}
 
-	// No DB. Create new one
-	// TBD...
-
 	// Backward compatibility
 	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
 
@@ -87,7 +84,11 @@ static NSDateFormatter *dateFormatter;
 		dm = [[DataModel alloc] init];
 	}
 
-	// TBD...
+	// Ok, create new database
+	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
+	[self execSql:"CREATE TABLE Transactions (key integer primary key, date date, type int,\
+value double, balance double, description text, memo text);"];
+
 	[db rewriteToDB];
 	return dm;
 }
