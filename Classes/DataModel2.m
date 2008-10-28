@@ -52,6 +52,8 @@
 	if ([db openDB]) {
 		dm = [[DataModel alloc] init];
 		dm.db = db;
+		[db release];
+
 		[dm reload];
 
 		return dm;
