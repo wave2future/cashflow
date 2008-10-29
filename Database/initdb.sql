@@ -5,14 +5,16 @@ CREATE TABLE Assets (
 
 CREATE TABLE Transactions (
         key INTEGER PRIMARY KEY,
-        asset INTEGER,  /* key of Assets */
         date DATE,
-        type INTEGER,   /* 0:Outgo, 1:Income, 2:Adjustment */
-        category INTEGER, /* key of category */
+        type INTEGER,   /* 0:Outgo, 1:Income, 2:Adjustment, 3:Move */
         value REAL,
         balance REAL,
         description TEXT,
-        memo TEXT);
+        memo TEXT,
+        asset INTEGER,  /* key of Assets */
+        asset_dest INTEGER,  /* key of Assets (destination for move) */
+        category INTEGER /* key of category */
+);
 
 CREATE TABLE Category (
         key INTEGER PRIMARY KEY,
