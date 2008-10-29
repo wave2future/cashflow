@@ -33,6 +33,8 @@
 */
 
 
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "TransactionVC.h"
 #import "EditValueVC.h"
 #import "CashFlowAppDelegate.h"
@@ -97,6 +99,12 @@
 -(void)doneAction
 {
 	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)onNumButtonDown:(id)sender
+{
+	// play keyboard click sound
+	AudioServicesPlaySystemSound(1105);
 }
 
 - (IBAction)onNumButtonPressed:(id)sender

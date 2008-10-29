@@ -61,6 +61,7 @@
 
 @property(nonatomic,assign) TransactionViewController *parent;
 
+- (IBAction)onNumButtonDown:(id)sender;
 - (IBAction)onNumButtonPressed:(id)sender;
 
 // private method
