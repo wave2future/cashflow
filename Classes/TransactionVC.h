@@ -43,7 +43,11 @@
 #import "EditTypeVC.h";
 #import "EditDateVC.h";
 
-@interface TransactionViewController : UITableViewController <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate> {
+@interface TransactionViewController : UITableViewController 
+	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
+	EditDateViewListener, EditTypeViewListener, EditValueViewListener, 
+	EditDescViewListener, EditMemoViewListener>
+{
 	int transactionIndex;
 	Transaction *trans;
 

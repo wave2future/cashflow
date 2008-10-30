@@ -39,8 +39,7 @@
 
 @implementation EditDateViewController
 
-@synthesize parent;
-@synthesize datePicker;
+@synthesize listener, date;
 
 - (void)viewDidLoad
 {
@@ -49,23 +48,32 @@
 											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 											   target:self
 											   action:@selector(doneAction)] autorelease];
+	date = nil;
+}
+
+- (void)dealloc
+{
+	[date release];
+	[listener release];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+	datePicker.date = self.date;
 	[super viewWillAppear:animated];
-	datePicker.date = parent.trans.date;
 }
 
 - (void)doneAction
 {
+	self.date = datePicker.date;
+	[listener editDateViewChanged:self];
+
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	parent.trans.date = datePicker.date;
 }
 
 @end

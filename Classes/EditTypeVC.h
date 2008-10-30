@@ -39,13 +39,18 @@
 
 @class TransactionViewController;
 
+@protocol EditTypeViewListener
+- (void)editTypeViewChanged:(EditTypeViewController*)vc;
+@end
+
 @interface EditTypeViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 	//IBOutlet UISegmentedControl *typeControl;
 
-	TransactionViewController *parent;
+	EditTypeViewListener *listener;
+	int type;
 }
 
-@property(nonatomic,assign) TransactionViewController *parent;
-//@property(nonatomic,retain) UISegmentedControl *typeControl;
+@property(nonatomic,retain) EditTypeViewListener *listener;
+@property(nonatomic,assign) int type;
 
 @end

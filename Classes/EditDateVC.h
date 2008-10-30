@@ -38,14 +38,19 @@
 
 @class TransactionViewController;
 
+@protocol EditDateViewListener
+- (void)editDateViewChanged:(EditDateViewController*)vc;
+@end
+
 @interface EditDateViewController : UIViewController {
 	IBOutlet UIDatePicker *datePicker;
 
-	TransactionViewController *parent;
+	EditDateViewListener *listener;
+	NSDate *date;
 }
 
-@property(nonatomic,assign) TransactionViewController *parent;
-@property(nonatomic,retain) UIDatePicker *datePicker;
+@property(nonatomic,retain) EditDateViewListener *listener;
+@property(nonatomic,retain) NSDate *date;
 
 - (void)doneAction;
 

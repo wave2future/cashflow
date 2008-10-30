@@ -38,14 +38,19 @@
 
 @class TransactionViewController;
 
+@protocol EditMemoViewListener
+- (void)editMemoViewChanged:(EditMemoViewController *)vc;
+@end
+
 @interface EditMemoViewController : UIViewController {
 	IBOutlet UITextField *textField;
 	
-	TransactionViewController *parent;
+	EditMemoViewListener *listener;
+	NSString *memo;
 }
 
-@property(nonatomic,assign) TransactionViewController *parent;
-@property(nonatomic,retain) UITextField *textField;
+@property(nonatomic,retain) EditMemoViewListener *listener;
+@property(nonatomic,retain) NSString *memo;
 
 - (void)doneAction;
 

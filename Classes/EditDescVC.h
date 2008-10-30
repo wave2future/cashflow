@@ -38,20 +38,26 @@
 
 @class TransactionViewController;
 
+@protocol EditDescViewListener
+- (void)editDescViewChanged:(EditDescViewController*)vc;
+@end
+
 @interface EditDescViewController : UIViewController
 	<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 {
 	IBOutlet UITextField *textField;
 	IBOutlet UIPickerView *picker;
 
-	TransactionViewController *parent;
-	
 	NSMutableArray *descArray;
+
+	EditDescViewListener *listener;
+	NSString *desc;
 }
 
-@property(nonatomic,assign) TransactionViewController *parent;
-@property(nonatomic,retain) UITextField *textField;
-@property(nonatomic,retain) UIPickerView *picker;
+//@property(nonatomic,retain) UITextField *textField;
+//@property(nonatomic,retain) UIPickerView *picker;
+@prpperty(nonatomic,retain) EditDescViewListener *listener;
+@property(nonatomic,retain)	NSString *desc;
 
 - (void)doneAction;
 

@@ -75,11 +75,11 @@
 				  initWithNibName:@"EditMemoView"
 				  bundle:[NSBundle mainBundle]];
 	
-	editDateVC.parent = self;
-	editTypeVC.parent = self;
-	editValueVC.parent = self;
-	editDescVC.parent = self;
-	editMemoVC.parent = self;
+	editDateVC.listener = self;
+	editTypeVC.listener = self;
+	editValueVC.listener = self;
+	editDescVC.listener = self;
+	editMemoVC.listener = self;
 	
 	// ボタン生成
 	UIButton *b;
@@ -167,6 +167,9 @@
 		[delPastButton removeFromSuperview];
 	}
 }
+
+/////////////////////////////////////////////////////////////////////////////////
+// TableView 表示処理
 
 // セクション数
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
@@ -261,33 +264,72 @@
 	return cell;
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+// 値変更処理
+
 // セルをクリックしたときの処理
  - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UINavigationController *nc = self.navigationController;
 
 	// view を表示
-	UIViewController *v;
+	UIViewController *vc;
 	switch (indexPath.row) {
 		case ROW_DATE:
-			v = editDateVC;
+			vc = editDateVC;
+			vc.date = trans.date;
 			break;
 		case ROW_TYPE:
-			v = editTypeVC;
+			vc = editTypeVC;
+			vc.type = trans.type;
 			break;
 		case ROW_VALUE:
-			v = editValueVC;
+			vc = editValueVC;
+			if (trans.type == TYPE_ADJ) {
+				vc.value = trans.balance;
+			} else {
+				vc.value = trans.value;
+			}
 			break;
 		case ROW_DESC:
-			v = editDescVC;
+			vc = editDescVC;
+			vc.desc = trans.desc;
 			break;
 		case ROW_MEMO:
-			v = editMemoVC;
+			vc = editMemoVC;
+			vc.memo = trans.memo;
 			break;
 	}
-	[nc pushViewController:v animated:YES];
+	[nc pushViewController:vc animated:YES];
 }
 
+// イベントリスナ (下位 ViewController からの変更通知)
+- (void)editDateViewChanged:(EditDateViewController *)vc
+{
+	trans.date = vc.date;
+}
+- (void)editTypeViewChanged:(EditTypeViewController *)vc
+{
+	trans.type = vc.type;
+}
+- (void)editValueViewChanged:(EditValueViewController *)vc
+{
+	if (trans.type == TYPE_ADJ) {
+		trans.balance = vc.value;
+	} else {
+		trans.value = vc.value;
+	}
+}
+- (void)editDescViewChanged:(EditDescViewController *)vc
+{
+	trans.desc = vc.desc;
+}
+- (void)editMemoViewChanged:(EditMemoViewController *)vc
+{
+	trans.memo = vc.memo;
+}
+
+////////////////////////////////////////////////////////////////////////////////
 // 削除処理
 - (void)delButtonTapped
 {
@@ -329,6 +371,7 @@
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
+////////////////////////////////////////////////////////////////////////////////
 // 保存処理
 - (void)saveAction
 {

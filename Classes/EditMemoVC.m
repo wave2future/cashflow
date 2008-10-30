@@ -38,23 +38,7 @@
 
 @implementation EditMemoViewController
 
-@synthesize parent, textField;
-
-/*
-// Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
-}
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically.
-- (void)loadView {
-}
-*/
+@synthesize listener, memo;
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad {
@@ -64,24 +48,27 @@
 											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 											   target:self
 											   action:@selector(doneAction)] autorelease];
+	memo = nil;
 }
 
 // 表示前の処理
 //  処理するトランザクションをロードしておく
 - (void)viewWillAppear:(BOOL)animated
 {
+	textField.text = memo;
 	[super viewWillAppear:animated];
-	textField.text = parent.trans.memo;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	parent.trans.memo = textField.text;
 }
 
 - (void)doneAction
 {
+	self.memo = textField.text;
+	[listener editMemoViewChanged:self];
+
 	[self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -96,6 +83,8 @@
 }
 
 - (void)dealloc {
+	[memo release];
+	[listener release];
     [super dealloc];
 }
 

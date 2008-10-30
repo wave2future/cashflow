@@ -39,9 +39,7 @@
 
 @implementation EditDescViewController
 
-@synthesize parent;
-@synthesize textField;
-@synthesize picker;
+@synthesize listener, desc;
 
 -(void)onTextChange:(id)sender {
 	// dummy func must exist for textFieldShouldReturn event to be called
@@ -56,14 +54,17 @@
 											   action:@selector(doneAction)] autorelease];
 
 	[textField addTarget:self action:@selector(onTextChange:) forControlEvents:UIControlEventEditingDidEndOnExit];
+
+	listener = nil;
+	desc = nil;
 }
 
 // 表示前の処理
 //  処理するトランザクションをロードしておく
 - (void)viewWillAppear:(BOOL)animated
 {
+	textField.text = self.desc;
 	[super viewWillAppear:animated];
-	textField.text = parent.trans.description;
 
 	descArray = [theDataModel allocDescList];
 	[descArray insertObject:@"" atIndex:0];  // dummy entry
@@ -76,12 +77,14 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	parent.trans.description = textField.text;
 	[descArray release];
 }
 
 - (void)doneAction
 {
+	self.desc = textField.text;
+	[listener editDescViewChanged:self];
+
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -52,11 +52,14 @@
 											   action:@selector(doneAction)] autorelease];
 
 	numstr = [[NSMutableString alloc] initWithCapacity:16];
+	listener = nil;
+	value = 0.0;
 }
 
 - (void)dealloc
 {
 	[numstr release];
+	[listener release];
 	[super dealloc];
 }
 
@@ -64,6 +67,7 @@
 {
 	[super viewWillAppear:animated];
 	
+#if 0
 	double value;
 	if (parent == nil) {
 		// Adhoc... Initial balance
@@ -73,6 +77,7 @@
 	} else {
 		value = parent.trans.value;
 	}
+#endif
 
 	NSString *n;
 	if (value == 0.0) {
@@ -90,19 +95,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
 	[super viewWillDisappear:animated];
-	double v = [numstr doubleValue];
-
-	if (parent == nil) {
-		theDataModel.initialBalance = v;
-	} else if (parent.trans.type == TYPE_ADJ) {
-		parent.trans.balance = v;
-	} else {
-		parent.trans.value = v;
-	}
 }
 
 -(void)doneAction
 {
+	value = [numstr doubleValue];
+	[listener editValueChanged:self];
+
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

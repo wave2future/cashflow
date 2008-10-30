@@ -39,6 +39,10 @@
 
 @class TransactionViewController;
 
+@protocol EditValueViewListener
+- (void)editValueViewChanged:(double)value;
+@end
+
 @interface EditValueViewController : UIViewController {
 	NSMutableString *numstr;
 	TransactionViewController *parent;
@@ -57,9 +61,13 @@
 	IBOutlet UIButton *button_7;
 	IBOutlet UIButton *button_8;
 	IBOutlet UIButton *button_9;
+
+	EditValueViewListener *listener;
+	double value;
 }
 
-@property(nonatomic,assign) TransactionViewController *parent;
+@property(nonatomic,retain) EditValueViewListener *listener;
+@property(nonatomic,assign) double value;
 
 - (IBAction)onNumButtonDown:(id)sender;
 - (IBAction)onNumButtonPressed:(id)sender;
