@@ -44,6 +44,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	self.title = NSLocalizedString(@"Memo", @"");
+	textField.placeholder = NSLocalizedString(@"Memo", @"");
+	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 											   target:self

@@ -125,14 +125,15 @@
 	}
 	else if (sender == button_inv) {
 		// 符号反転
-		if ([[numstr substringToIndex:1] isEqualToString:@"-"]) {
+		if ([numstr length] == 0) {
+			// do nothing
+		} else if ([[numstr substringToIndex:1] isEqualToString:@"-"]) {
 			[numstr deleteCharactersInRange:NSMakeRange(0, 1)];
 		} else {
 			[numstr insertString:@"-" atIndex:0];
 		}
 	}
 		
-
 	else if (sender == button_0) ch = @"0";
 	else if (sender == button_1) ch = @"1";
 	else if (sender == button_2) ch = @"2";
