@@ -40,7 +40,7 @@
 @class TransactionViewController;
 
 @protocol EditValueViewListener
-- (void)editValueViewChanged:(double)value;
+- (void)editValueViewChanged:(EditValueViewController *)vc
 @end
 
 @interface EditValueViewController : UIViewController {

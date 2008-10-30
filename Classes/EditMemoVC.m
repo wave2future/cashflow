@@ -49,6 +49,13 @@
 											   target:self
 											   action:@selector(doneAction)] autorelease];
 	memo = nil;
+	listener = nil;
+}
+
+- (void)dealloc {
+	[memo release];
+	[listener release];
+    [super dealloc];
 }
 
 // 表示前の処理
@@ -81,12 +88,5 @@
     [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
     // Release anything that's not essential, such as cached data
 }
-
-- (void)dealloc {
-	[memo release];
-	[listener release];
-    [super dealloc];
-}
-
 
 @end

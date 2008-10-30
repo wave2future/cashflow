@@ -47,6 +47,12 @@
 	self.title = NSLocalizedString(@"Type", @"Transaction type");
 }
 
+- (void)dealloc
+{
+	[listener release];
+	[super dealloc];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];

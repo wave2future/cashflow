@@ -59,6 +59,13 @@
 	desc = nil;
 }
 
+- (void)dealloc
+{
+	[release desc];
+	[release listener];
+	[super dealloc];
+}
+
 // 表示前の処理
 //  処理するトランザクションをロードしておく
 - (void)viewWillAppear:(BOOL)animated

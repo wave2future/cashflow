@@ -55,6 +55,7 @@
 {
 	[date release];
 	[listener release];
+	[super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
