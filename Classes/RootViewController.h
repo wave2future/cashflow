@@ -49,6 +49,10 @@
 //- (UITableView*)tableView;
 @property(nonatomic,retain) UITableView *tableView;
 
+- (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath;
+- (Transaction *)transactionWithIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)transactionCell:(Transaction*)t;
+- (UITableViewCell *)initialBalanceCell;
 - (void)updateBalance;
 - (void)addTransaction;
 - (IBAction)doAction:(id)sender;
