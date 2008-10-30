@@ -45,7 +45,6 @@
 
 @interface EditValueViewController : UIViewController {
 	NSMutableString *numstr;
-	TransactionViewController *parent;
 
 	IBOutlet UILabel *numLabel;
 	IBOutlet UIButton *button_Clear;

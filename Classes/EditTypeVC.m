@@ -39,12 +39,13 @@
 
 @implementation EditTypeViewController
 
-@synthesize parent;
-//@synthesize typeControl;
+@synthesize listener, type;
 
 - (void)viewDidLoad
 {
 	self.title = NSLocalizedString(@"Type", @"Transaction type");
+
+	listener = nil;
 }
 
 - (void)dealloc
@@ -76,7 +77,7 @@
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
 	}
-	if (indexPath.row == parent.trans.type) {
+	if (indexPath.row == self.type) {
 		cell.accessoryType = UITableViewCellAccessoryCheckmark;
 	} else {
 		cell.accessoryType = UITableViewCellAccessoryNone;
