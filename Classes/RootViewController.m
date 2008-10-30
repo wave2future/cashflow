@@ -47,26 +47,6 @@
 {
 	[super viewDidLoad];
 	
-#if 0
-	// table title 用の領域を作成
-	CGRect titleRect = CGRectMake(0, 0, 320, 30);
-    UILabel *tableTitle = [[UILabel alloc] initWithFrame:titleRect];
-    tableTitle.textColor = [UIColor whiteColor];
-	tableTitle.shadowColor = [UIColor blackColor];
-    tableTitle.backgroundColor = [UIColor grayColor];
-	tableTitle.highlighted = YES;
-    tableTitle.opaque = YES;
-    tableTitle.font = [UIFont boldSystemFontOfSize:14];
-    tableTitle.text = @"";
-	tableTitle.textAlignment = UITextAlignmentCenter;
-	tableView.tableHeaderView = tableTitle;
-	[tableTitle release];
-#endif	
-
-	//
-	// NavBar 設定
-	//
-	
 	// title 設定
 	self.title = NSLocalizedString(@"Transactions", @"");
 	
@@ -103,7 +83,7 @@
 	
 	[self updateBalance];
 	
-	[[self tableView] reloadData]; //### Reload data...
+	[self.tableView reloadData]; //### Reload data...
 }
 
 - (void)updateBalance
@@ -112,7 +92,7 @@
 	NSString *bstr = [DataModel currencyString:lastBalance];
 
 #if 0
-	UILabel *tableTitle = (UILabel *)[[self tableView] tableHeaderView];
+	UILabel *tableTitle = (UILabel *)[self.tableView tableHeaderView];
 	tableTitle.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
 #endif
 	
@@ -251,7 +231,7 @@
 	}
 	valueLabel.text = [DataModel currencyString:v];
 	balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), [DataModel currencyString:t.balance]];
-		
+	
 	return cell;
 }
 
@@ -265,10 +245,11 @@
 
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
 		descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
 		descLabel.font = [UIFont systemFontOfSize: 18.0];
-		descLabel.textColor = [UIColor grayColor];
+		descLabel.textColor = [UIColor blackColor];
 		descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		descLabel.text = NSLocalizedString(@"Initial Balance", @"");
 		[cell.contentView addSubview:descLabel];
@@ -284,7 +265,8 @@
 		balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
 	}
 
-	balanceLabel.text = [DataModel currencyString:theDataModel.initialBalance];
+	balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
+						 [DataModel currencyString:theDataModel.initialBalance]];
 
 	return cell;
 }
@@ -345,7 +327,7 @@
 	int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
 
 	if (transactionIndex < 0) {
-		// initial balance cell
+		// initial balance cell : do not delete!
 		return;
 	}
 	
@@ -354,6 +336,7 @@
 	
 		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self updateBalance];
+		[self.tableView reloadData];
 	}
 }
 
