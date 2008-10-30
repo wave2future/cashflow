@@ -64,18 +64,6 @@
 {
 	[super viewWillAppear:animated];
 	
-#if 0
-	double value;
-	if (parent == nil) {
-		// Adhoc... Initial balance
-		value = theDataModel.initialBalance;
-	} else if (parent.trans.type == TYPE_ADJ) {
-		value = parent.trans.balance;
-	} else {
-		value = parent.trans.value;
-	}
-#endif
-
 	NSString *n;
 	if (value == 0.0) {
 		n = @"";
@@ -124,6 +112,9 @@
 			if ([numstr isEqualToString:@"0"]) {
 				[numstr setString:@""];
 			}
+			if ([numstr isEqualToString:@"-"]) {
+				[numstr setString:@""];
+			}
 		}
 	}
 	else if (sender == button_Period) {
@@ -132,6 +123,15 @@
 			ch = @".";
 		}
 	}
+	else if (sender == button_inv) {
+		// 符号反転
+		if ([[numstr substringToIndex:1] isEqualToString:@"-"]) {
+			[numstr deleteCharactersInRange:NSMakeRange(0, 1)];
+		} else {
+			[numstr insertString:@"-" atIndex:0];
+		}
+	}
+		
 
 	else if (sender == button_0) ch = @"0";
 	else if (sender == button_1) ch = @"1";
@@ -170,7 +170,11 @@
 	}
 
 	NSMutableString *tmp = [numstr mutableCopy];
-
+	BOOL isMinus = NO;
+	if ([[tmp substringToIndex:1] isEqualToString:@"-"]) {
+		isMinus = YES;
+	}
+		
 	// ピリオドの位置を探す
 	NSRange range = [tmp rangeOfString:@"."];
 	int i;
@@ -182,9 +186,10 @@
 
 	// カンマを３桁ごとに挿入
 	for (i -= 3 ; i > 0; i -= 3) {
+		if (isMinus && i <= 1) break;
 		[tmp insertString:@"," atIndex:i];
 	}
-
+	
 	numLabel.text = tmp;
 	[tmp release];
 }

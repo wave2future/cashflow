@@ -50,6 +50,7 @@
 	IBOutlet UILabel *numLabel;
 	IBOutlet UIButton *button_Clear;
 	IBOutlet UIButton *button_BS;
+	IBOutlet UIButton *button_inv;
 	IBOutlet UIButton *button_Period;
 	IBOutlet UIButton *button_0;
 	IBOutlet UIButton *button_1;
