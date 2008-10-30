@@ -283,7 +283,7 @@
 		balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
 	}
 
-	valueLabel.text = [DataModel currencyString:initialBalance];
+	valueLabel.text = [DataModel currencyString:theDataModel.initialBalance];
 
 	return cell;
 }
@@ -297,7 +297,9 @@
 	if (idx < 0) {
 		// initial balance cell
 		EditValueVC *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
-		v.parent = nil;
+		v.listener = self;
+		v.value = theDataModel.initialBalance;
+
 		[self.navigationController pushViewController:v animated:YES];
 		[v release];
 	} else {
@@ -305,6 +307,13 @@
 		[transactionView setTransactionIndex:idx];
 		[self.navigationController pushViewController:transactionView animated:YES];
 	}
+}
+
+// 初期残高変更処理
+- (void)editValueViewChanged:(EditValueViewController *)vc
+{
+	theDataModel.initialBalance = vc.value;
+	[theDataModel recalcBalance];
 }
 
 // 新規トランザクション追加

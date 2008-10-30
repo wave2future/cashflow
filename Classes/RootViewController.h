@@ -37,8 +37,11 @@
 #import "TransactionVC.h"
 #import "ExportVC.h"
 #import "DataModel.h"
+#import "EditValueVC.h"
 
-@interface RootViewController : UIViewController <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate> {
+@interface RootViewController : UIViewController 
+	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
+{
 	IBOutlet UITableView *tableView;
 	IBOutlet UIBarButtonItem *balanceLabel;
 	
