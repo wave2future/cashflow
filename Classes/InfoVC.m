@@ -61,6 +61,8 @@
 
 #ifdef FREE_VERSION
 	[nameLabel setText:@"CashFlow Free"];
+#else
+	purchaseButton.hidden = YES;
 #endif
 	
 	NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
@@ -89,4 +91,9 @@
 	[[UIApplication sharedApplication] openURL:url];
 }
 
+- (IBAction)purchaseStandardVersion
+{
+	NSURL *url = [NSURL URLWithString:@"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=290776107&mt=8"];
+	[[UIApplication sharedApplication] openURL:url];
+}
 @end

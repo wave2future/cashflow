@@ -38,8 +38,10 @@
 @interface InfoVC : UIViewController {
 	IBOutlet UILabel *nameLabel;
 	IBOutlet UILabel *versionLabel;
+	IBOutlet UIButton *purchaseButton;
 }
 
 - (IBAction)webButtonTapped;
+- (IBAction)purchaseStandardVersion;
 
 @end
