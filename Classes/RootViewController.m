@@ -296,7 +296,10 @@
 	int idx = [self transactionIndexWithIndexPath:indexPath];
 	if (idx < 0) {
 		// initial balance cell
-		// TBD
+		EditValueVC *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
+		v.parent = nil;
+		[self.navigationController pushViewController:v animated:YES];
+		[v release];
 	} else {
 		// transaction view を表示
 		[transactionView setTransactionIndex:idx];

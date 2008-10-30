@@ -65,7 +65,10 @@
 	[super viewWillAppear:animated];
 	
 	double value;
-	if (parent.trans.type == TYPE_ADJ) {
+	if (parent == nil) {
+		// Adhoc... Initial balance
+		value = theDataModel.initialBalance;
+	} else if (parent.trans.type == TYPE_ADJ) {
 		value = parent.trans.balance;
 	} else {
 		value = parent.trans.value;
@@ -89,7 +92,9 @@
 	[super viewWillDisappear:animated];
 	double v = [numstr doubleValue];
 
-	if (parent.trans.type == TYPE_ADJ) {
+	if (parent == nil) {
+		theDataModel.initialBalance = v;
+	} else if (parent.trans.type == TYPE_ADJ) {
 		parent.trans.balance = v;
 	} else {
 		parent.trans.value = v;
