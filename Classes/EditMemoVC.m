@@ -48,8 +48,6 @@
 											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 											   target:self
 											   action:@selector(doneAction)] autorelease];
-	memo = nil;
-	listener = nil;
 }
 
 - (void)dealloc {

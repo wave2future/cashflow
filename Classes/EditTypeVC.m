@@ -44,8 +44,6 @@
 - (void)viewDidLoad
 {
 	self.title = NSLocalizedString(@"Type", @"Transaction type");
-
-	listener = nil;
 }
 
 - (void)dealloc

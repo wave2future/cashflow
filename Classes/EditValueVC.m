@@ -52,14 +52,11 @@
 											   action:@selector(doneAction)] autorelease];
 
 	numstr = [[NSMutableString alloc] initWithCapacity:16];
-	listener = nil;
-	value = 0.0;
 }
 
 - (void)dealloc
 {
 	[numstr release];
-	[listener release];
 	[super dealloc];
 }
 

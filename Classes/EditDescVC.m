@@ -54,9 +54,6 @@
 											   action:@selector(doneAction)] autorelease];
 
 	[textField addTarget:self action:@selector(onTextChange:) forControlEvents:UIControlEventEditingDidEndOnExit];
-
-	listener = nil;
-	description = nil;
 }
 
 - (void)dealloc
