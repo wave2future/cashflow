@@ -37,6 +37,7 @@
 #import "Transaction.h"
 
 @class TransactionViewController;
+@class EditDescViewController;
 
 @protocol EditDescViewListener
 - (void)editDescViewChanged:(EditDescViewController*)vc;
@@ -50,14 +51,12 @@
 
 	NSMutableArray *descArray;
 
-	EditDescViewListener *listener;
-	NSString *desc;
+	id<EditDescViewListener> listener;
+	NSString *description;
 }
 
-//@property(nonatomic,retain) UITextField *textField;
-//@property(nonatomic,retain) UIPickerView *picker;
-@prpperty(nonatomic,retain) EditDescViewListener *listener;
-@property(nonatomic,retain)	NSString *desc;
+@property(nonatomic,assign) id<EditDescViewListener> listener;
+@property(nonatomic,retain)	NSString *description;
 
 - (void)doneAction;
 

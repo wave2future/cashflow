@@ -276,28 +276,28 @@
 	UIViewController *vc;
 	switch (indexPath.row) {
 		case ROW_DATE:
+			editDateVC.date = trans.date;
 			vc = editDateVC;
-			vc.date = trans.date;
 			break;
 		case ROW_TYPE:
+			editTypeVC.type = trans.type;
 			vc = editTypeVC;
-			vc.type = trans.type;
 			break;
 		case ROW_VALUE:
-			vc = editValueVC;
 			if (trans.type == TYPE_ADJ) {
-				vc.value = trans.balance;
+				editValueVC.value = trans.balance;
 			} else {
-				vc.value = trans.value;
+				editValueVC.value = trans.value;
 			}
+			vc = editValueVC;
 			break;
 		case ROW_DESC:
+			editDescVC.description = trans.description;
 			vc = editDescVC;
-			vc.desc = trans.desc;
 			break;
 		case ROW_MEMO:
+			editMemoVC.memo = trans.memo;
 			vc = editMemoVC;
-			vc.memo = trans.memo;
 			break;
 	}
 	[nc pushViewController:vc animated:YES];
@@ -325,7 +325,7 @@
 }
 - (void)editDescViewChanged:(EditDescViewController *)vc
 {
-	trans.desc = vc.desc;
+	trans.description = vc.description;
 }
 - (void)editMemoViewChanged:(EditMemoViewController *)vc
 {

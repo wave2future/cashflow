@@ -41,7 +41,7 @@
 
 @implementation EditValueViewController
 
-@synthesize parent;
+@synthesize listener, value;
 
 - (void)viewDidLoad
 {

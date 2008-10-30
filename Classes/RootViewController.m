@@ -20,7 +20,7 @@
   without specific prior written permission. 
 
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
-  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  "AS IS" ANDY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
   CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
@@ -37,6 +37,7 @@
 #import "CashFlowAppDelegate.h"
 #import "Transaction.h"
 #import "InfoVC.h"
+#import "EditValueVC.h"
 
 @implementation RootViewController
 
@@ -115,7 +116,7 @@
 	tableTitle.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
 #endif
 	
-	balanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
+	barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -204,7 +205,7 @@
 		descLabel.font = [UIFont systemFontOfSize: 18.0];
 		descLabel.textColor = [UIColor blackColor];
 		descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:desc];
+		[cell.contentView addSubview:descLabel];
 		
 		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 24)] autorelease];
 		valueLabel.tag = TAG_VALUE;
@@ -212,14 +213,14 @@
 		valueLabel.textAlignment = UITextAlignmentRight;
 		valueLabel.textColor = [UIColor blueColor];
 		valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:value];
+		[cell.contentView addSubview:valueLabel];
 		
 		dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 24, 160, 20)] autorelease];
 		dateLabel.tag = TAG_DATE;
 		dateLabel.font = [UIFont systemFontOfSize: 14.0];
 		dateLabel.textColor = [UIColor grayColor];
 		dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:date];
+		[cell.contentView addSubview:dateLabel];
 		
 		balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
 		balanceLabel.tag = TAG_BALANCE;
@@ -227,7 +228,7 @@
 		balanceLabel.textAlignment = UITextAlignmentRight;
 		balanceLabel.textColor = [UIColor grayColor];
 		balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:balance];
+		[cell.contentView addSubview:balanceLabel];
 	} else {
 		descLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DESC];
 		dateLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DATE];
@@ -243,10 +244,10 @@
 		v = -v;
 	}
 	if (v >= 0) {
-		value.textColor = [UIColor blueColor];
+		valueLabel.textColor = [UIColor blueColor];
 	} else {
 		v = -v;
-		value.textColor = [UIColor redColor];
+		valueLabel.textColor = [UIColor redColor];
 	}
 	valueLabel.text = [DataModel currencyString:v];
 	balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), [DataModel currencyString:t.balance]];
@@ -259,7 +260,7 @@
 {
 	NSString *cellid = @"initialBalanceCell";
 
-	UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:cellid];
+	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
 	UILabel *descLabel, *balanceLabel;
 
 	if (cell == nil) {
@@ -269,8 +270,8 @@
 		descLabel.font = [UIFont systemFontOfSize: 18.0];
 		descLabel.textColor = [UIColor grayColor];
 		descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		descLabel.text = NSLocalizedString(@"Initial Balance");
-		[cell.contentView addSubview:desc];
+		descLabel.text = NSLocalizedString(@"Initial Balance", @"");
+		[cell.contentView addSubview:descLabel];
 
 		balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
 		balanceLabel.tag = TAG_BALANCE;
@@ -278,12 +279,12 @@
 		balanceLabel.textAlignment = UITextAlignmentRight;
 		balanceLabel.textColor = [UIColor grayColor];
 		balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:balance];
+		[cell.contentView addSubview:balanceLabel];
 	} else {
 		balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
 	}
 
-	valueLabel.text = [DataModel currencyString:theDataModel.initialBalance];
+	balanceLabel.text = [DataModel currencyString:theDataModel.initialBalance];
 
 	return cell;
 }
@@ -296,7 +297,7 @@
 	int idx = [self transactionIndexWithIndexPath:indexPath];
 	if (idx < 0) {
 		// initial balance cell
-		EditValueVC *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
+		EditValueViewController *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
 		v.listener = self;
 		v.value = theDataModel.initialBalance;
 

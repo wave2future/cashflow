@@ -38,6 +38,7 @@
 #import "Transaction.h"
 
 @class TransactionViewController;
+@class EditTypeViewController;
 
 @protocol EditTypeViewListener
 - (void)editTypeViewChanged:(EditTypeViewController*)vc;
@@ -46,11 +47,11 @@
 @interface EditTypeViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
 	//IBOutlet UISegmentedControl *typeControl;
 
-	EditTypeViewListener *listener;
+	id<EditTypeViewListener> listener;
 	int type;
 }
 
-@property(nonatomic,retain) EditTypeViewListener *listener;
+@property(nonatomic,assign) id<EditTypeViewListener> listener;
 @property(nonatomic,assign) int type;
 
 @end

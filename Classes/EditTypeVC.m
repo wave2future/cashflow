@@ -50,7 +50,6 @@
 
 - (void)dealloc
 {
-	[listener release];
 	[super dealloc];
 }
 

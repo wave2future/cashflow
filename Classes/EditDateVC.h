@@ -37,6 +37,7 @@
 #import "Transaction.h"
 
 @class TransactionViewController;
+@class EditDateViewController;
 
 @protocol EditDateViewListener
 - (void)editDateViewChanged:(EditDateViewController*)vc;
@@ -45,11 +46,11 @@
 @interface EditDateViewController : UIViewController {
 	IBOutlet UIDatePicker *datePicker;
 
-	EditDateViewListener *listener;
+	id<EditDateViewListener> listener;
 	NSDate *date;
 }
 
-@property(nonatomic,retain) EditDateViewListener *listener;
+@property(nonatomic,assign) id<EditDateViewListener> listener;
 @property(nonatomic,retain) NSDate *date;
 
 - (void)doneAction;

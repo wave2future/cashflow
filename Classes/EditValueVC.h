@@ -38,9 +38,10 @@
 #import "Transaction.h"
 
 @class TransactionViewController;
+@class EditValueViewController;
 
 @protocol EditValueViewListener
-- (void)editValueViewChanged:(EditValueViewController *)vc
+- (void)editValueViewChanged:(EditValueViewController *)vc;
 @end
 
 @interface EditValueViewController : UIViewController {
@@ -61,11 +62,11 @@
 	IBOutlet UIButton *button_8;
 	IBOutlet UIButton *button_9;
 
-	EditValueViewListener *listener;
+	id<EditValueViewListener> listener;
 	double value;
 }
 
-@property(nonatomic,retain) EditValueViewListener *listener;
+@property(nonatomic,assign) id<EditValueViewListener> listener;
 @property(nonatomic,assign) double value;
 
 - (IBAction)onNumButtonDown:(id)sender;

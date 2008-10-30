@@ -43,7 +43,7 @@
 	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
 {
 	IBOutlet UITableView *tableView;
-	IBOutlet UIBarButtonItem *balanceLabel;
+	IBOutlet UIBarButtonItem *barBalanceLabel;
 	
 	TransactionViewController *transactionView;
 	ExportVC *exportVC;

@@ -37,6 +37,7 @@
 #import "Transaction.h"
 
 @class TransactionViewController;
+@class EditMemoViewController;
 
 @protocol EditMemoViewListener
 - (void)editMemoViewChanged:(EditMemoViewController *)vc;
@@ -45,11 +46,11 @@
 @interface EditMemoViewController : UIViewController {
 	IBOutlet UITextField *textField;
 	
-	EditMemoViewListener *listener;
+	id<EditMemoViewListener> listener;
 	NSString *memo;
 }
 
-@property(nonatomic,retain) EditMemoViewListener *listener;
+@property(nonatomic,assign) id<EditMemoViewListener> listener;
 @property(nonatomic,retain) NSString *memo;
 
 - (void)doneAction;

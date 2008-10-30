@@ -54,7 +54,6 @@
 
 - (void)dealloc {
 	[memo release];
-	[listener release];
     [super dealloc];
 }
 

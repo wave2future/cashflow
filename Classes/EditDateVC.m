@@ -54,7 +54,6 @@
 - (void)dealloc
 {
 	[date release];
-	[listener release];
 	[super dealloc];
 }
 
