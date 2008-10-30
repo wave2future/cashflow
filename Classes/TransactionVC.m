@@ -311,6 +311,9 @@
 - (void)editTypeViewChanged:(EditTypeViewController *)vc
 {
 	trans.type = vc.type;
+	if (trans.type == TYPE_ADJ) {
+		trans.description = NSLocalizedString(@"Adjustment", @"");
+	}
 }
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {

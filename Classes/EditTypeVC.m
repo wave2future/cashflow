@@ -98,10 +98,9 @@
 
  - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	parent.trans.type = indexPath.row;
-	if (parent.trans.type == TYPE_ADJ) {
-		parent.trans.description = NSLocalizedString(@"Adjustment", @"");
-	}
+	self.type = indexPath.row;
+	[listener editTypeViewChanged:self];
+
 	[self.navigationController popViewControllerAnimated:YES];
 }
 

@@ -100,7 +100,7 @@
 -(void)doneAction
 {
 	value = [numstr doubleValue];
-	[listener editValueChanged:self];
+	[listener editValueViewChanged:self];
 
 	[self.navigationController popViewControllerAnimated:YES];
 }
