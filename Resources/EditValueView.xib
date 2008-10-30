@@ -346,6 +346,27 @@
 							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
 						</object>
 					</object>
+					<object class="IBUIButton" id="876986420">
+						<reference key="NSNextResponder" ref="191373211"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrame">{{120, 110}, {80, 48}}</string>
+						<reference key="NSSuperview" ref="191373211"/>
+						<bool key="IBUIOpaque">NO</bool>
+						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
+						<int key="IBUIContentHorizontalAlignment">0</int>
+						<int key="IBUIContentVerticalAlignment">0</int>
+						<reference key="IBUIFont" ref="713303730"/>
+						<int key="IBUIButtonType">1</int>
+						<string key="IBUIHighlightedTitle">+ / -</string>
+						<string key="IBUIDisabledTitle">+ / -</string>
+						<string key="IBUISelectedTitle">+ / -</string>
+						<string key="IBUINormalTitle">+ / -</string>
+						<reference key="IBUIHighlightedTitleColor" ref="786665285"/>
+						<object class="NSColor" key="IBUINormalTitleColor">
+							<int key="NSColorSpace">1</int>
+							<bytes key="NSRGB">MC4xOTYwNzg0MyAwLjMwOTgwMzkzIDAuNTIxNTY4NjYAA</bytes>
+						</object>
+					</object>
 					<object class="IBUILabel" id="163250123">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
@@ -740,6 +761,32 @@
 					</object>
 					<int key="connectionID">80</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">button_inv</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="876986420"/>
+					</object>
+					<int key="connectionID">82</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onNumButtonPressed:</string>
+						<reference key="source" ref="876986420"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">83</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">onNumButtonDown:</string>
+						<reference key="source" ref="876986420"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">1</int>
+					</object>
+					<int key="connectionID">84</int>
+				</object>
 			</object>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<object class="NSArray" key="orderedObjects">
@@ -773,6 +820,7 @@
 							<reference ref="106858369"/>
 							<reference ref="442176282"/>
 							<reference ref="1032687418"/>
+							<reference ref="876986420"/>
 						</object>
 						<reference key="parent" ref="360949347"/>
 					</object>
@@ -867,6 +915,11 @@
 						<reference key="object" ref="106858369"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">81</int>
+						<reference key="object" ref="876986420"/>
+						<reference key="parent" ref="191373211"/>
+					</object>
 				</object>
 			</object>
 			<object class="NSMutableDictionary" key="flattenedProperties">
@@ -892,6 +945,7 @@
 					<string>67.IBPluginDependency</string>
 					<string>7.IBPluginDependency</string>
 					<string>8.IBPluginDependency</string>
+					<string>81.IBPluginDependency</string>
 					<string>9.IBPluginDependency</string>
 				</object>
 				<object class="NSMutableArray" key="dict.values">
@@ -899,6 +953,7 @@
 					<string>EditValueViewController</string>
 					<string>UIResponder</string>
 					<string>{{354, 276}, {320, 480}}</string>
+					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -938,7 +993,7 @@
 				</object>
 			</object>
 			<nil key="sourceID"/>
-			<int key="maxID">80</int>
+			<int key="maxID">84</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<object class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -976,6 +1031,8 @@
 							<string>button_BS</string>
 							<string>button_Clear</string>
 							<string>button_Period</string>
+							<string>button_inv</string>
+							<string>listener</string>
 							<string>numLabel</string>
 						</object>
 						<object class="NSMutableArray" key="dict.values">
@@ -993,6 +1050,8 @@
 							<string>UIButton</string>
 							<string>UIButton</string>
 							<string>UIButton</string>
+							<string>UIButton</string>
+							<string>id</string>
 							<string>UILabel</string>
 						</object>
 					</object>
