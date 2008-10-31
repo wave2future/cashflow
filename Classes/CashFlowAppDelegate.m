@@ -33,7 +33,7 @@
 */
 
 #import "CashFlowAppDelegate.h"
-#import "RootViewController.h"
+#import "TransactionListViewController.h"
 #import "DataModel.h"
 #import "Transaction.h"
 
@@ -72,7 +72,7 @@ NSDateFormatter *theDateFormatter = nil;
 
 - (IBAction)addTransaction:(id)sender
 {
-	RootViewController *v = (RootViewController *)[navigationController topViewController];
+	TransactionListViewController *v = (TransactionListViewController *)[navigationController topViewController];
 	[v addTransaction];
 }
 

@@ -39,7 +39,7 @@
 #import "DataModel.h"
 #import "EditValueVC.h"
 
-@interface RootViewController : UIViewController 
+@interface TransactionListViewController : UIViewController 
 	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
 {
 	IBOutlet UITableView *tableView;

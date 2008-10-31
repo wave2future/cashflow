@@ -33,13 +33,13 @@
 */
 
 
-#import "RootViewController.h"
+#import "TransactionListViewController.h"
 #import "CashFlowAppDelegate.h"
 #import "Transaction.h"
 #import "InfoVC.h"
 #import "EditValueVC.h"
 
-@implementation RootViewController
+@implementation TransactionListViewController
 
 @synthesize tableView;
 
