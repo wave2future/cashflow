@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#improt "Report.h"
 
 @interface ReportViewController : UITableViewController
 {
+    Reports *reports;
+
+    NSDateFormatter *dateFormatter;
 }
 
 @end
