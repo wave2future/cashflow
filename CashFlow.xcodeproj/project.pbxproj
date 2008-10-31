@@ -33,6 +33,8 @@
 		3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E27113A0EAA208E00E57E51 /* ExportView.xib */; };
 		3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */; };
 		3E3EDEDF0EB61B9A00C35FBA /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */; };
+		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
 		3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A8D7E0EAE34B200118C3C /* Info-free.plist */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
@@ -40,6 +42,7 @@
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB540790E8E90F400608B77 /* MainWindow.xib */; };
 		3ECF38040EA9CF4900420060 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* WebServer.m */; };
+		3EDC72BB0EBB493100366F1E /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportViewController.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
 		3EDDADBE0E89280800268AED /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
@@ -89,6 +92,10 @@
 		3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditMemoView.xib; path = Resources/EditMemoView.xib; sourceTree = "<group>"; };
 		3E3EDEDD0EB61B9A00C35FBA /* EditMemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMemoVC.h; sourceTree = "<group>"; };
 		3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMemoVC.m; sourceTree = "<group>"; };
+		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Report.m; path = Classes/Report.m; sourceTree = "<group>"; };
+		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Report.h; path = Classes/Report.h; sourceTree = "<group>"; };
+		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
+		3E4D1D1B0EBB471E006050FE /* ReportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportVC.m; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3E5A8D7E0EAE34B200118C3C /* Info-free.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-free.plist"; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
@@ -97,6 +104,7 @@
 		3EB540790E8E90F400608B77 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
+		3EDC72BA0EBB493100366F1E /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportViewController.xib; path = Resources/ReportViewController.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redButton.png; path = images/redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoView.xib; path = Resources/InfoView.xib; sourceTree = "<group>"; };
 		3EDDADBC0E89280800268AED /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoVC.h; sourceTree = "<group>"; };
@@ -131,6 +139,8 @@
 				1D3623250D0F684500981E51 /* CashFlowAppDelegate.m */,
 				28C286DF0D94DF7D0034E888 /* TransactionListViewController.h */,
 				28C286E00D94DF7D0034E888 /* TransactionListViewController.m */,
+				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
+				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
 				3E0888110E6EAEEB00739AC9 /* TransactionVC.m */,
 				3E0887FA0E6EACEB00739AC9 /* EditDateVC.h */,
@@ -188,8 +198,9 @@
 			isa = PBXGroup;
 			children = (
 				3E07F7C50E72CC6100DFEB33 /* Localizable.strings */,
-				2899E55F0DE3E45000AC0155 /* TransactionListViewController.xib */,
 				3EB540790E8E90F400608B77 /* MainWindow.xib */,
+				2899E55F0DE3E45000AC0155 /* TransactionListViewController.xib */,
+				3EDC72BA0EBB493100366F1E /* ReportViewController.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */,
@@ -233,6 +244,8 @@
 				3E0519130E6A9D09008F1F65 /* Transaction.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
 				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
+				3E4D1CF20EBB45AB006050FE /* Report.h */,
+				3E4D1CF00EBB4599006050FE /* Report.m */,
 				3E27103F0EAA196A00E57E51 /* ExportBase.h */,
 				3E2710400EAA196A00E57E51 /* ExportBase.m */,
 				3E2710410EAA196A00E57E51 /* ExportCsv.h */,
@@ -313,6 +326,7 @@
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
 				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
 				3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */,
+				3EDC72BB0EBB493100366F1E /* ReportViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,6 +354,8 @@
 				3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */,
 				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,
 				3E3EDEDF0EB61B9A00C35FBA /* EditMemoVC.m in Sources */,
+				3E4D1CF10EBB4599006050FE /* Report.m in Sources */,
+				3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

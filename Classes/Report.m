@@ -56,7 +56,10 @@
 
 @end
 
+/////////////////////////////////////////////////////////////////////
+
 @implementation Reports
+@synthesize reports;
 
 - (id)init
 {
@@ -82,13 +85,13 @@
 	int trnum = [transactions count];
 	if (trnum == 0) return;
 
-	NSDate *firstDate = [transactions objectAtIndex:0].date;
+	NSDate *firstDate = [[transactions objectAtIndex:0] date];
 
 
 	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
 	// 最初の取引の月初を取得する
-	NSDateComponents *dc = [grep components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
+	NSDateComponents *dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
 	[dc setDay:1];
 
 	int n = 0;
@@ -111,7 +114,7 @@
 		}
 		[dc setMonth:month];
 		[dc setYear:year];
-		NSDate *nextMonth = [grep dateFromComponents:dc];
+		NSDate *nextMonth = [greg dateFromComponents:dc];
 
 		// 集計
 		for (; n < trnum; n++) {
@@ -133,9 +136,9 @@
 				break;
 			}
 			if (value >= 0) {
-				r.income += value;
+				r.totalIncome += value;
 			} else {
-				r.outgo += -value;
+				r.totalOutgo += -value;
 			}
 		}
 	}

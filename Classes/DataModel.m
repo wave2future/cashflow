@@ -286,7 +286,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 		int j;
 		BOOL match = NO;
 		for (j = 0; j < [ary count]; j++) {
-			if ([s isEqualToString:[ary objectAtindex:j]]) {
+			if ([s isEqualToString:[ary objectAtIndex:j]]) {
 				match = YES;
 				break;
 			}
