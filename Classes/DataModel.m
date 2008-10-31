@@ -256,7 +256,9 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	
 	NSMutableArray *ary = [[NSMutableArray alloc] init];
 	if (max == 0) return ary;
-	
+
+#if 0	
+	// Sort type
 	for (i = max - 1; i >= 0; i--) {
 		[ary addObject:[[transactions objectAtIndex:i] description]];
 	}
@@ -273,7 +275,31 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 			prev = [ary objectAtIndex:i];
 		}
 	}
-	
+#else
+
+	// LRU type
+#define MAX_LRU_SIZE 50
+
+	for (i = max - 1; i >= 0; i--) {
+		NSString *s = [[transactions objectAtIndex:i] description];
+		
+		int j;
+		BOOL match = NO;
+		for (j = 0; j < [ary count]; j++) {
+			if ([s isEqualToString:[ary objectAtindex:j]]) {
+				match = YES;
+				break;
+			}
+		}
+		if (!match) {
+			[ary addObject:s];
+			if ([ary count] > MAX_LRU_SIZE) {
+				break;
+			}
+		}
+	}
+#endif
+
 	return ary;
 }
 
