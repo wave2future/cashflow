@@ -91,7 +91,8 @@
 	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
 	// 最初の取引の月初を取得する
-	NSDateComponents *dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
+	NSDateComponents *dc;
+	dc = [bgreg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
 	[dc setDay:1];
 
 	int n = 0;

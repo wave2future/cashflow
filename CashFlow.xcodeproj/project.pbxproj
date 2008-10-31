@@ -12,7 +12,7 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		2899E5600DE3E45000AC0155 /* TransactionListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListViewController.xib */; };
+		2899E5600DE3E45000AC0155 /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
 		28C286E10D94DF7D0034E888 /* TransactionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* TransactionListViewController.m */; };
 		3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
 		3E07F7C70E72CC6600DFEB33 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E07F7C50E72CC6100DFEB33 /* Localizable.strings */; };
@@ -42,7 +42,7 @@
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3EB5407A0E8E90F400608B77 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB540790E8E90F400608B77 /* MainWindow.xib */; };
 		3ECF38040EA9CF4900420060 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* WebServer.m */; };
-		3EDC72BB0EBB493100366F1E /* ReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportViewController.xib */; };
+		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
 		3EDDADBE0E89280800268AED /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
@@ -57,7 +57,7 @@
 		1D6058910D05DD3D006BFB54 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		2899E55F0DE3E45000AC0155 /* TransactionListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionListViewController.xib; path = Resources/TransactionListViewController.xib; sourceTree = "<group>"; };
+		2899E55F0DE3E45000AC0155 /* TransactionListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionListView.xib; path = Resources/TransactionListView.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* CashFlow_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlow_Prefix.pch; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* TransactionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionListViewController.h; sourceTree = "<group>"; };
 		28C286E00D94DF7D0034E888 /* TransactionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListViewController.m; sourceTree = "<group>"; };
@@ -104,7 +104,7 @@
 		3EB540790E8E90F400608B77 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
-		3EDC72BA0EBB493100366F1E /* ReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportViewController.xib; path = Resources/ReportViewController.xib; sourceTree = "<group>"; };
+		3EDC72BA0EBB493100366F1E /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportView.xib; path = Resources/ReportView.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redButton.png; path = images/redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoView.xib; path = Resources/InfoView.xib; sourceTree = "<group>"; };
 		3EDDADBC0E89280800268AED /* InfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoVC.h; sourceTree = "<group>"; };
@@ -199,8 +199,8 @@
 			children = (
 				3E07F7C50E72CC6100DFEB33 /* Localizable.strings */,
 				3EB540790E8E90F400608B77 /* MainWindow.xib */,
-				2899E55F0DE3E45000AC0155 /* TransactionListViewController.xib */,
-				3EDC72BA0EBB493100366F1E /* ReportViewController.xib */,
+				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
+				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */,
@@ -309,7 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2899E5600DE3E45000AC0155 /* TransactionListViewController.xib in Resources */,
+				2899E5600DE3E45000AC0155 /* TransactionListView.xib in Resources */,
 				3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */,
 				3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */,
 				3E0887F30E6EAC7600739AC9 /* EditValueView.xib in Resources */,
@@ -326,7 +326,7 @@
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
 				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
 				3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */,
-				3EDC72BB0EBB493100366F1E /* ReportViewController.xib in Resources */,
+				3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

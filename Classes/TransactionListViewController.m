@@ -38,6 +38,7 @@
 #import "Transaction.h"
 #import "InfoVC.h"
 #import "EditValueVC.h"
+#import "ReportVC.h"
 
 @implementation TransactionListViewController
 
@@ -66,7 +67,6 @@
 	transactionView = [[TransactionViewController alloc]
 					   initWithNibName:@"TransactionView"
 					   bundle:[NSBundle mainBundle]];
-	
 	exportVC = [[ExportVC alloc] initWithNibName:@"ExportView" bundle:[NSBundle mainBundle]];	
 }
 
@@ -346,7 +346,8 @@
 	UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
 				cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
 				destructiveButtonTitle:nil otherButtonTitles:
-						 NSLocalizedString(@"Export", @""),
+						 NSLocalizedString(@"Monthly Report", @""),
+ 						 NSLocalizedString(@"Export", @""),
 						 //NSLocalizedString(@"Info", @""),
 						 //NSLocalizedString(@"Delete Transactions", @""),
 						 nil];
@@ -356,8 +357,15 @@
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+	ReportViewController *reportVC;
 	switch (buttonIndex) {
 		case 0:
+			reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+			[reportVC generateReport];
+			[self.navigationController pushViewController:reportVC animated:YES];
+			break;
+			
+		case 1:
 			[self.navigationController pushViewController:exportVC animated:YES];
 			break;
 	}

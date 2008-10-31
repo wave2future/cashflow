@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#improt "Report.h"
+#import "Report.h"
 
 @interface ReportViewController : UITableViewController
 {
@@ -15,5 +15,8 @@
 
     NSDateFormatter *dateFormatter;
 }
+
+- (void)generateReport;
+- (UITableViewCell *)reportCell:(Report*)report;
 
 @end

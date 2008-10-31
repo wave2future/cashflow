@@ -93,22 +93,22 @@
 
 		dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
 		dateLabel.tag = 0;
-		dateLabel.font = [UIFont systemFontOfSize: 18.0];
-		dateLabel.textColor = [UIColor blackColor];
+		dateLabel.font = [UIFont systemFontOfSize: 16.0];
+		dateLabel.textColor = [UIColor grayColor];
 		dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:dateLabel];
 
-		incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 22)] autorelease];
+		incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(25, 20, 130, 22)] autorelease];
 		incomeLabel.tag = 1;
-		incomeLabel.font = [UIFont systemFontOfSize: 17.0];
-		incomeLabel.textAlignment = UITextAlignmentRight;
+		incomeLabel.font = [UIFont systemFontOfSize: 16.0];
+		incomeLabel.textAlignment = UITextAlignmentLeft;
 		incomeLabel.textColor = [UIColor blueColor];
 		incomeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:incomeLabel];
 
-		outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 24, 130, 22)] autorelease];
+		outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 20, 130, 22)] autorelease];
 		outgoLabel.tag = 2;
-		outgoLabel.font = [UIFont systemFontOfSize: 17.0];
+		outgoLabel.font = [UIFont systemFontOfSize: 16.0];
 		outgoLabel.textAlignment = UITextAlignmentRight;
 		outgoLabel.textColor = [UIColor redColor];
 		outgoLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;

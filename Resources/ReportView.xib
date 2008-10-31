@@ -134,6 +134,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>-1.CustomClassName</string>
 					<string>-2.CustomClassName</string>
+					<string>1.CustomClassName</string>
 					<string>1.IBEditorWindowLastContentRect</string>
 					<string>1.IBPluginDependency</string>
 					<string>3.IBPluginDependency</string>
@@ -142,6 +143,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>ReportViewController</string>
 					<string>UIResponder</string>
+					<string>UITableView</string>
 					<string>{{307, 231}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>

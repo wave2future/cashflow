@@ -36,6 +36,9 @@
 #import "Transaction.h"
 #import "DataModel.h"
 
+#define REPORT_WEEKLY 0;
+#define REPORT_MONTHLY 1;
+
 @interface Report : NSObject {
 	NSDate *date;
 	double totalIncome;
@@ -49,9 +52,11 @@
 @end
 
 @interface Reports : NSObject {
+	int type;
 	NSMutableArray *reports;
 }
 
+@property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSMutableArray *reports;
 
 - (void)generate;

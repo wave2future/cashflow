@@ -26,6 +26,13 @@
 
 "Initial Balance" = "Initial Balance";
 
+"Income" = "Income";
+"Outgo" = "Outgo";
+
+"Report" = "Report";
+"Monthly Report" = "Monthly Report";
+"Weekly Report" = "Weekly Report";
+
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
 
 "Export" = "Export";

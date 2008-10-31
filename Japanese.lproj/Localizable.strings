@@ -26,6 +26,13 @@
 
 "Initial Balance" = "初期残高";
 
+"Income" = "入金";
+"Outgo" = "支払";
+
+"Report" = "レポート";
+"Monthly Report" = "月別レポート";
+"Weekly Report" = "週別レポート";
+
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help-j.html";
 
 "Export" = "エクスポート";
