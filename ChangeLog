@@ -1,16 +1,17 @@
-* 2008-11-1
+2008-11-1 :
 	摘要の候補を最新順(LRU)にした（従来は名前順）
+	月別/週別レポートを追加
 
-* 2008-10-30 : ver 1.2 (Subversion r77)
+2008-10-30 : ver 1.2 (Subversion r77)
 	Ver 1.2 (AppStore)
 	メモ欄追加
 	初期残高を表示するようにした
 	数値入力時にキーボード音を鳴らすようにした。
 	フォントサイズ変更
 	
-* 2008-10-23 : ver 1.1 (Subversion r33)
+2008-10-23 : ver 1.1 (Subversion r33)
 	Ver 1.1 (AppStore)
 
-* 2008-9-30 :
+2008-09-30 :
 	ver 1.1 alpha
 	sourceforge.net subversion に commit.
