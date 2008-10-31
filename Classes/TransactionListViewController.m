@@ -346,6 +346,7 @@
 	UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
 				cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
 				destructiveButtonTitle:nil otherButtonTitles:
+ 						 NSLocalizedString(@"Weekly Report", @""),
 						 NSLocalizedString(@"Monthly Report", @""),
  						 NSLocalizedString(@"Export", @""),
 						 //NSLocalizedString(@"Info", @""),
@@ -360,12 +361,17 @@
 	ReportViewController *reportVC;
 	switch (buttonIndex) {
 		case 0:
+		case 1:
 			reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
-			[reportVC generateReport];
+			if (buttonIndex == 0) {
+				[reportVC generateReport:REPORT_WEEKLY];
+			} else {
+				[reportVC generateReport:REPORT_MONTHLY];
+			}
 			[self.navigationController pushViewController:reportVC animated:YES];
 			break;
 			
-		case 1:
+		case 2:
 			[self.navigationController pushViewController:exportVC animated:YES];
 			break;
 	}

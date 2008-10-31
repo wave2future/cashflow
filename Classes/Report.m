@@ -59,11 +59,12 @@
 /////////////////////////////////////////////////////////////////////
 
 @implementation Reports
-@synthesize reports;
+@synthesize reports, type;
 
 - (id)init
 {
 	[super init];
+	type = REPORT_MONTHLY;
 	reports = nil;
 	return self;
 }
@@ -74,8 +75,10 @@
 	[super dealloc];
 }
 
-- (void)generate
+- (void)generate:(int)t
 {
+	self.type = t;
+	
 	if (reports != nil) {
 		[reports release];
 	}
@@ -86,15 +89,31 @@
 	if (trnum == 0) return;
 
 	NSDate *firstDate = [[transactions objectAtIndex:0] date];
-
-
 	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
-	// 最初の取引の月初を取得する
-	NSDateComponents *dc;
-	dc = [bgreg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
-	[dc setDay:1];
-
+	// レポート周期の開始時間および間隔を求める
+	NSDateComponents *dc, *steps;
+	NSDate *dd;
+	
+	steps = [[[NSDateComponents alloc] init] autorelease];
+	switch (type) {
+		case REPORT_MONTHLY:
+			dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
+			[dc setDay:1];
+			dd = [greg dateFromComponents:dc];
+			[steps setMonth:1];
+			break;
+			
+		case REPORT_WEEKLY:
+			dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+			dd = [greg dateFromComponents:dc];
+			int weekday = [dc weekday];
+			[steps setDay:-weekday+1];
+			dd = [greg dateByAddingComponents:steps toDate:dd options:0];
+			[steps setDay:7];
+			break;
+	}
+	
 	int n = 0;
 	while (n < trnum) {
 		// Report 生成
@@ -103,25 +122,16 @@
 		[r release];
 
 		// 日付設定
-		r.date = [greg dateFromComponents:dc];
-
-		// 次の月の最初の日付を得る
-		int month = [dc month];
-		int year = [dc year];
-		month++;
-		if (month > 12) {
-			month = 1;
-			year++;
-		}
-		[dc setMonth:month];
-		[dc setYear:year];
-		NSDate *nextMonth = [greg dateFromComponents:dc];
+		r.date = dd;
+		
+		// 次の期間開始時期を計算する
+		dd = [greg dateByAddingComponents:steps toDate:dd options:0];
 
 		// 集計
 		for (; n < trnum; n++) {
 			Transaction *t = [transactions objectAtIndex:n];
 			
-			if ([t.date compare:nextMonth] != NSOrderedAscending) {
+			if ([t.date compare:dd] != NSOrderedAscending) {
 				break;
 			}
 

@@ -40,9 +40,6 @@
 {
 	[super viewDidLoad];
     self.title = NSLocalizedString(@"Report", @"");
-
-	dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateFormat:@"yyyy/MM"];
 }
 
 - (void)dealloc
@@ -54,12 +51,25 @@
     [super dealloc];
 }
 
-- (void)generateReport
+- (void)generateReport:(int)type
 {
     if (reports == nil) {
         reports = [[Reports alloc] init];
     }
-    [reports generate];
+    [reports generate:type];
+	
+	if (dateFormatter == nil) {
+		dateFormatter = [[NSDateFormatter alloc] init];
+	}
+	
+	switch (type) {
+		case REPORT_WEEKLY:
+			[dateFormatter setDateFormat:@"yyyy/MM/dd"];
+			break;
+		case REPORT_MONTHLY:
+			[dateFormatter setDateFormat:@"yyyy/MM"];
+			break;
+	}
 }
 
 #pragma mark TableViewDataSource

@@ -36,8 +36,8 @@
 #import "Transaction.h"
 #import "DataModel.h"
 
-#define REPORT_WEEKLY 0;
-#define REPORT_MONTHLY 1;
+#define REPORT_WEEKLY 0
+#define REPORT_MONTHLY 1
 
 @interface Report : NSObject {
 	NSDate *date;
@@ -59,7 +59,7 @@
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSMutableArray *reports;
 
-- (void)generate;
+- (void)generate:(int)type;
 
 @end
 
