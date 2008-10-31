@@ -84,7 +84,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	Report *report = [reports.reports objectAtIndex:[reports.reports count] - indexPath.row - 1];
+	int count = [reports.reports count];
+	Report *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
 
 	UITableViewCell *cell = [self reportCell:report];
 	return cell;
@@ -102,14 +103,14 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
 		dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-		dateLabel.tag = 0;
+		dateLabel.tag = 1;
 		dateLabel.font = [UIFont systemFontOfSize: 16.0];
 		dateLabel.textColor = [UIColor grayColor];
 		dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:dateLabel];
 
 		incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(25, 20, 130, 22)] autorelease];
-		incomeLabel.tag = 1;
+		incomeLabel.tag = 2;
 		incomeLabel.font = [UIFont systemFontOfSize: 16.0];
 		incomeLabel.textAlignment = UITextAlignmentLeft;
 		incomeLabel.textColor = [UIColor blueColor];
@@ -117,16 +118,16 @@
 		[cell.contentView addSubview:incomeLabel];
 
 		outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 20, 130, 22)] autorelease];
-		outgoLabel.tag = 2;
+		outgoLabel.tag = 3;
 		outgoLabel.font = [UIFont systemFontOfSize: 16.0];
 		outgoLabel.textAlignment = UITextAlignmentRight;
 		outgoLabel.textColor = [UIColor redColor];
 		outgoLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:outgoLabel];
 	} else {
-		dateLabel = (UILabel *)[cell.contentView viewWithTag:0];
-		incomeLabel = (UILabel *)[cell.contentView viewWithTag:1];
-		outgoLabel = (UILabel *)[cell.contentView viewWithTag:2];
+		dateLabel = (UILabel *)[cell.contentView viewWithTag:1];
+		incomeLabel = (UILabel *)[cell.contentView viewWithTag:2];
+		outgoLabel = (UILabel *)[cell.contentView viewWithTag:3];
 	}
 
 	dateLabel.text = [dateFormatter stringFromDate:report.date];
