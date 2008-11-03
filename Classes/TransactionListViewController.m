@@ -274,9 +274,9 @@
 //
 // セルをクリックしたときの処理
 //
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+ - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+	[tv deselectRowAtIndexPath:indexPath animated:NO];
 
 	int idx = [self transactionIndexWithIndexPath:indexPath];
 	if (idx < 0) {
@@ -327,7 +327,7 @@
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
-	if (transationIndex < 0) {
+	if (transactionIndex < 0) {
 		return UITableViewCellEditingStyleNone;
 	} 
 	return UITableViewCellEditingStyleDelete;
