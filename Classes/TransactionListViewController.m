@@ -323,6 +323,16 @@
 	}
 }
 
+// 編集スタイルを返す
+- (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
+	if (transationIndex < 0) {
+		return UITableViewCellEditingStyleNone;
+	} 
+	return UITableViewCellEditingStyleDelete;
+}
+
 // 削除処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
