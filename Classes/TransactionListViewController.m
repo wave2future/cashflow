@@ -276,6 +276,8 @@
 //
  - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	[tableView deselectRowAtIndexPath:indexPath animated:NO];
+
 	int idx = [self transactionIndexWithIndexPath:indexPath];
 	if (idx < 0) {
 		// initial balance cell
