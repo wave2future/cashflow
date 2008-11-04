@@ -78,8 +78,8 @@
 		  "value REAL, description TEXT, memo TEXT);"];
 
 	// 以下は将来使うため
-	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER);"];
-	[self execSql:"INSERT INTO Assets VALUES(1, 'Cash', 0);"];
+	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL);"];
+	[self execSql:"INSERT INTO Assets VALUES(1, 'Cash', 0, 0.0);"];
 
 	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, order INTEGER);"];
 
@@ -96,16 +96,38 @@
 	[self execSql:"COMMIT;"];
 }
 
-- (NSMutableArray *)loadFromDB:(int)asset
+- (double)loadInitialBalance:(int)asset
+{
+	/* get initial balance */
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "SELECT initialBalance FROM Assets WHERE key = %d;", asset);
+	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
+	double initialBalance = sqlite3_column_int(stmt, 0);
+
+	return initialBalance;
+}
+
+- (void)saveInitialBalance:(double)initialBalance asset:(int)asset
 {
 	char sql[128];
 
+	/* get initial balance */
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE initialBalance SET initialBalance=%d WHERE key = %d;",
+					 initialBalance, asset);
+	[self execSql:sql];
+}
+
+- (NSMutableArray *)loadTransactions:(int)asset
+{
+	char sql[128];
+	sqlite3_stmt *stmt;
+
+	/* get transactions */
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT key, date, type, value, balance, description, memo"
 					 " FROM Transactions ORDER BY date WHERE asset = %d;", 
 					 asset);
-		
-	sqlite3_stmt *stmt;
 	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
 
 	NSMutableArray *transactions = [[NSMutableArray alloc] init];
@@ -133,7 +155,7 @@
 	return transactions;
 }
 
-- (void)saveToDB:(Transactions*)transactions asset:(int)asset
+- (void)saveTransactions:(Transactions*)transactions asset:(int)asset
 {
 	[self beginTransactionDB];
 

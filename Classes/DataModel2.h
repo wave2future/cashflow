@@ -39,6 +39,8 @@
 
 @interface DataModel2 : DataModel {
 	Database *db;
+
+	int asset;
 }
 
 @property(nonatomic,retain) Database *db;

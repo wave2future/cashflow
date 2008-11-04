@@ -78,13 +78,15 @@
 	if (transactions) {
 		[transactions release];
 	}
-	self.transactions = [db loadFromDB:0];
+	self.transactions = [db loadTransactions:asset];
+	self.initialBalance = [db loadInitialBalance:asset];
 }
 
 // private
 - (void)save
 {
-	[db saveToDB:transactions asset:0];
+	[db saveTransactions:transactions asset:asset];
+	[db saveInitialBalance:initialBalance asset:asset];
 }
 
 - (BOOL)saveToStorage
@@ -98,6 +100,7 @@
 	[super init];
 
 	db = nil;
+	asset = 1; // とりあえず cash に固定
 
 	return self;
 }

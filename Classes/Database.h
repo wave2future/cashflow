@@ -45,7 +45,13 @@
 - (void)dealloc;
 
 - (BOOL)openDB;
-- (NSMutableArray *)loadFromDB:(int)asset;
+
+- (double)loadInitialBalance:(int)asset;
+- (NSMutableArray *)loadTransactions:(int)asset;
+
+- (void)saveInitialBalance:(double)initialBalance asset:(int)asset;
+- (void)saveTransactions:(Transactions*)transactions asset:(int)asset;
+
 - (void)insertTransaction:(Transaction*)t asset:(int)asset;
 - (void)updateTransaction:(Transaction *)t;
 - (void)deleteTransaction:(Transaction *)t;
