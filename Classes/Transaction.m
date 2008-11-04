@@ -72,7 +72,7 @@
 	return self;
 }
 
-- (double)fixBalance:(double)prevBalance
+- (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial
 {
 	switch (type) {
 		case TYPE_INCOME:
@@ -84,7 +84,11 @@
 			break;
 			
 		case TYPE_ADJ:
-			value = balance - prevBalance;
+			if (isInitial) {
+				balance = prevBalance + value;
+			} else {
+				value = balance - prevBalance;
+			}
 			break;
 	}
 	return balance;
@@ -128,7 +132,7 @@
 		self.date = [decoder decodeObjectForKey:@"Date"];
 		self.type = [decoder decodeIntForKey:@"Type"];
 		self.value = [decoder decodeDoubleForKey:@"Value"];
-		self.balance = [decoder decodeDoubleForKey:@"Balance"];
+		//self.balance = [decoder decodeDoubleForKey:@"Balance"];
 		self.description = [decoder decodeObjectForKey:@"Description"];
 		self.memo = [decoder decodeObjectForKey:@"Memo"];
 		
@@ -146,7 +150,7 @@
 	[coder encodeObject:date forKey:@"Date"];
 	[coder encodeInt:type forKey:@"Type"];
 	[coder encodeDouble:value forKey:@"Value"];
-	[coder encodeDouble:balance forKey:@"Balance"];
+	//[coder encodeDouble:balance forKey:@"Balance"];
 	[coder encodeObject:description forKey:@"Description"];
 	[coder encodeObject:memo forKey:@"Memo"];
 }
