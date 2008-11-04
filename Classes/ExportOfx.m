@@ -199,7 +199,7 @@
 
 - (NSString*)transTypeString:(Transaction*)t
 {
-	if (t.type == TYPE_INCOME || (t.type == TYPE_ADJ && t.value >= 0)) {
+	if ([t svalue] >= 0) {
 		return @"DEP";
 	}
 	return @"PAYMENT";

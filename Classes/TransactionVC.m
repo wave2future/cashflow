@@ -243,11 +243,7 @@
 		
 		case ROW_VALUE:
 			name.text = NSLocalizedString(@"Amount", @"");
-			if (trans.type == TYPE_ADJ) {
-				value.text = [DataModel currencyString:trans.balance];
-			} else {
-				value.text = [DataModel currencyString:trans.value];
-			}
+			value.text = [DataModel currencyString:trans.evalue];
 			break;
 		
 		case ROW_DESC:
@@ -284,11 +280,7 @@
 			vc = editTypeVC;
 			break;
 		case ROW_VALUE:
-			if (trans.type == TYPE_ADJ) {
-				editValueVC.value = trans.balance;
-			} else {
-				editValueVC.value = trans.value;
-			}
+			editValueVC.value = trans.evalue;
 			vc = editValueVC;
 			break;
 		case ROW_DESC:
@@ -317,11 +309,7 @@
 }
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
-	if (trans.type == TYPE_ADJ) {
-		trans.balance = vc.value;
-	} else {
-		trans.value = vc.value;
-	}
+	trans.evalue = vc.value;
 }
 - (void)editDescViewChanged:(EditDescViewController *)vc
 {

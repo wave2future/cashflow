@@ -55,6 +55,7 @@
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int serial;
+@property(nonatomic,assign) double evalue;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 

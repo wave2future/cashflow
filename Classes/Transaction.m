@@ -82,6 +82,23 @@
 	return value;
 }
 
+// 編集値を返す
+- (double)evalue
+{
+	if (type == TYPE_ADJ) {
+		return balance;
+	}
+	return value;
+}
+- (void)setEvalue:(double)v
+{
+	if (type == TYPE_ADJ) {
+		balance = v;
+	} else {
+		value = v;
+	}
+}
+
 - (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial
 {
 	if (type == TYPE_ADJ && !isInitial) {
