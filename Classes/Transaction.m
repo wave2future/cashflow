@@ -88,8 +88,7 @@
 		ret = balance;
 		break;
 	}
-	return value;
-
+	return ret;
 }
 
 - (void)setEvalue:(double)v
