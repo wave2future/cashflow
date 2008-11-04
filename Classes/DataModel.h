@@ -51,6 +51,7 @@
 
 + (DataModel*)allocWithLoad;
 - (BOOL)saveToStorage;
+- (void)setMaxTransactions:(int)max;
 
 - (id)init;
 
@@ -65,8 +66,9 @@
 - (int)firstTransactionByDate:(NSDate*)date;
 - (void)sortByDate;
 
-//- (void)recalcInitialBalance;
+- (void)recalcBalanceInitial;
 - (void)recalcBalance;
+- (void)recalcBalanceSub:(BOOL)isInitial;
 - (double)lastBalance;
 
 + (NSString*)currencyString:(double)x;

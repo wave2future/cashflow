@@ -61,7 +61,15 @@
 		// initial or some error...
 		dm = [[DataModel alloc] init];
 	}
+	
+	[dm setMaxTransactions:MAX_TRANSACTIONS];
+	
 	return dm;
+}
+
+- (void)setMaxTransactions:(int)max
+{
+	maxTransactions = max;
 }
 
 - (BOOL)saveToStorage
@@ -87,8 +95,6 @@
 	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
 	serialCounter = 0;
-
-	maxTransactions = MAX_TRANSACTIONS;
 
 	return self;
 }
@@ -201,33 +207,28 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	[self recalcBalance];
 }
 
-#if 0
-- (void)recalcInitialBalance
+// balance 値がない状態で、balance を計算する
+- (void)recalcBalanceInitial
 {
-	if ([transactions count] > 0) {
-		Transaction *t = [transactions objectAtIndex:0];
-		initialBalance = [t prevBalance];
-	} else {
-		//initialBalance = 0.0; // keep original value
-	}
+	[self recalcBalanceSub:YES];
 }
-#endif
 
 - (void)recalcBalance
+{
+	[self recalcBalanceSub:NO];
+}
+
+- (void)recalcBalanceSub:(BOOL)isInitial
 {
 	Transaction *t;
 	double bal;
 	int max = [transactions count];
 	int i;
 
-	if (max == 0) return;
-
 	bal = initialBalance;
-
-	// Recalculate balances
 	for (i = 0; i < max; i++) {
 		t = [transactions objectAtIndex:i];
-		bal = [t fixBalance:bal];
+		bal = [t fixBalance:bal isInitial:isInitial];
 	}
 }
 
@@ -316,8 +317,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 		self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
 		self.transactions = [decoder decodeObjectForKey:@"Transactions"];
 
-		//[self recalcInitialBalance];
-		[self recalcBalance];
+		[self recalcBalanceInitial];
 	}
 	return self;
 }
