@@ -39,7 +39,7 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-    self.title = NSLocalizedString(@"Report", @"");
+    //self.title = NSLocalizedString(@"Report", @"");
 }
 
 - (void)dealloc
