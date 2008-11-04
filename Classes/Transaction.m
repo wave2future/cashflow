@@ -72,30 +72,38 @@
 	return self;
 }
 
-// 符号付きで value を返す
-- (double)svalue
-{
-	if (type == TYPE_OUTGO) {
-		return -value;
-	}
-
-	return value;
-}
-
 // 編集値を返す
 - (double)evalue
 {
-	if (type == TYPE_ADJ) {
-		return balance;
+	double ret;
+
+	switch (type) {
+	case TYPE_INCOME:
+		ret = value;
+		break;
+	case TYPE_OUTGO:
+		ret = -value;
+		break;
+	case TYPE_ADJ:
+		ret = balance;
+		break;
 	}
 	return value;
+
 }
+
 - (void)setEvalue:(double)v
 {
-	if (type == TYPE_ADJ) {
-		balance = v;
-	} else {
+	switch (type) {
+	case TYPE_INCOME:
 		value = v;
+		break;
+	case TYPE_OUTGO:
+		value = -v;
+		break;
+	case TYPE_ADJ:
+		balance = v;
+		break;
 	}
 }
 
@@ -105,14 +113,14 @@
 		// balance ではなく、value のほうを調整する
 		value = balance - prevBalance;
 	} else {
-		balance = prevBalance + [self svalue];
+		balance = prevBalance + value;
 	}
 	return balance;
 }
 
 - (double)prevBalance
 {
-	double prev = balance - [self svalue];
+	double prev = balance - value;
 	return prev;
 }
 
@@ -141,6 +149,11 @@
 		self.description = [decoder decodeObjectForKey:@"Description"];
 		self.memo = [decoder decodeObjectForKey:@"Memo"];
 		
+		/* backward compatibility */
+		if (self.type == TYPE_OUTGO) {
+			self.value = -self.value;
+		}
+
 		if (self.type < 0 || self.type > 2) {
 			self.type = 0; // for safety
 		}
@@ -154,7 +167,16 @@
 	[coder encodeInt:serial forKey:@"Serial"];
 	[coder encodeObject:date forKey:@"Date"];
 	[coder encodeInt:type forKey:@"Type"];
-	[coder encodeDouble:value forKey:@"Value"];
+
+	/* backward compatibility */
+	double v;
+	if (type == TYPE_OUTGO) {
+		v = -value;
+	} else {
+		v = value;
+	}
+	[coder encodeDouble:v forKey:@"Value"];
+
 	//[coder encodeDouble:balance forKey:@"Balance"];
 	[coder encodeObject:description forKey:@"Description"];
 	[coder encodeObject:memo forKey:@"Memo"];

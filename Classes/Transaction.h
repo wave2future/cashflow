@@ -59,8 +59,6 @@
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 
-- (double)svalue;
-
 - (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial;
 - (double)prevBalance;
 

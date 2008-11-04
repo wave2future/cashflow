@@ -219,7 +219,7 @@
 	descLabel.text = t.description;
 	dateLabel.text = [theDateFormatter stringFromDate:t.date];
 	
-	double v = [t svalue];
+	double v = t.value;
 	if (v >= 0) {
 		valueLabel.textColor = [UIColor blueColor];
 	} else {

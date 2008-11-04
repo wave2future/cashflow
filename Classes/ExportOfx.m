@@ -171,7 +171,7 @@
 		[data appendString:@"<STMTTRN>\n"];
 		[data appendFormat:@"<TRNTYPE>%@\n", [self transTypeString:t]];
 		[data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:t]];
-		[data appendFormat:@"<TRNAMT>%.2f\n", [t svalue]];
+		[data appendFormat:@"<TRNAMT>%.2f\n", t.value];
 
 		/* トランザクションの ID は日付と取引番号で生成 */
 		[data appendFormat:@"<FITID>%@\n", [self fitId:t]];
@@ -199,7 +199,7 @@
 
 - (NSString*)transTypeString:(Transaction*)t
 {
-	if ([t svalue] >= 0) {
+	if (t.value >= 0) {
 		return @"DEP";
 	}
 	return @"PAYMENT";

@@ -136,11 +136,10 @@
 			}
 
 			/* 金額加算 */
-			double value = [t svalue];
-			if (value >= 0) {
-				r.totalIncome += value;
+			if (t.value >= 0) {
+				r.totalIncome += t.value;
 			} else {
-				r.totalOutgo += -value;
+				r.totalOutgo += -t.value;
 			}
 		}
 	}
