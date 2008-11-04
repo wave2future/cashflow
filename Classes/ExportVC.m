@@ -34,6 +34,7 @@
 
 
 #import "ExportVC.h"
+#import "CashFlowAppDelegate.h"
 
 @implementation ExportVC
 
@@ -76,6 +77,8 @@
 
 - (IBAction)doExport
 {
+	[theDataModel saveToStorage]; // for safety...
+	
 	int range;
 	switch (rangeControl.selectedSegmentIndex) {
 		case 0:

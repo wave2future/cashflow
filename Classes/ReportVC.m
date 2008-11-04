@@ -64,7 +64,7 @@
 	
 	switch (type) {
 		case REPORT_WEEKLY:
-			[dateFormatter setDateFormat:@"yyyy/MM/dd"];
+			[dateFormatter setDateFormat:@"yyyy/MM/dd~"];
 			break;
 		case REPORT_MONTHLY:
 			[dateFormatter setDateFormat:@"yyyy/MM"];
