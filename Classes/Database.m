@@ -65,6 +65,8 @@
 //   なかったときは新規作成して NO を返す
 - (BOOL)openDB
 {
+	char sql[256];
+
 	// Load from DB
 	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
 	if (sqlite3_open([dbPath UTF8String], &db) == 0) {
@@ -73,14 +75,21 @@
 
 	// Ok, create new database
 	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
+
+	// テーブル作成＆初期データ作成
 	[self execSql:"CREATE TABLE Transactions ("
 		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER, category INTEGER,"
 		  "value REAL, description TEXT, memo TEXT);"];
 
-	// 以下は将来使うため
-	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL);"];
-	[self execSql:"INSERT INTO Assets VALUES(1, 'Cash', 0, 0.0);"];
+	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL, order INTEGER);"];
 
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
+					 [NSLocalizedString(@"Cash", @"") UTF8String]);
+	[self execSql:sql];
+
+
+	// 以下は将来使うため
 	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, order INTEGER);"];
 
 	return NO; // re-created
@@ -95,6 +104,38 @@
 {
 	[self execSql:"COMMIT;"];
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Asset 処理
+
+#if 0
+- (NSMutableArray*)loadAssets
+{
+}
+
+- (int)insertAsset:(Asset*)asset
+{
+	char sql[1024];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "INSERT INTO Assets VALUES(NULL, %Q, %d, 0.0, 9999);",
+					 [name UTF8String], type);
+	[self execSql:sql];
+
+	return sqlite3_last_insert_rowid(db);
+}
+
+- (void)updateAsset:(Asset*)asset
+{
+	// TBD
+}
+
+- (void)deleteAsset:(Asset*)asset
+{
+	// TBD
+}
+#endif
+
 
 - (double)loadInitialBalance:(int)asset
 {
@@ -117,6 +158,9 @@
 					 initialBalance, asset);
 	[self execSql:sql];
 }
+
+///////////////////////////////////////////////////////////////////////////////
+// Transaction 処理
 
 - (NSMutableArray *)loadTransactions:(int)asset
 {
@@ -157,13 +201,16 @@
 
 - (void)saveTransactions:(Transactions*)transactions asset:(int)asset
 {
+	char sql[128];
+
 	[self beginTransactionDB];
 
-	char sql[128];
+	// delete all transactions
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE * FROM Transactions WHERE asset = %d;", asset);
 	[self execSql:sql];
 
+	// write all transactions
 	int n = [transactions count];
 	int i;
 
@@ -180,12 +227,12 @@
 	char sql[1024];
 
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO \"Transactions\" VALUES(NULL, %d, %Q, %d, %f, %f, %Q, %Q);",
+					 "INSERT INTO Transactions VALUES(NULL, %d, %Q, %d, %d, %f, %Q, %Q);",
 					 asset,
 					 [[dateFormatter stringFromDate:t.date] UTF8String],
 					 t.type,
+					 0, /* category */
 					 t.value,
-					 t.balance,
 					 [t.description UTF8String],
 					 [t.memo UTF8String]);
 	[self execSql:sql];
@@ -199,11 +246,11 @@
 	char sql[1024];
 
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE \"Transactions\" SET date=%Q, type=%d, value=%f, balance=%f, description=%Q, memo=%Q WHERE key = %d;",
+					 "UPDATE Transactions SET date=%Q, type=%d, category=%d, value=%f, description=%Q, memo=%Q WHERE key = %d;",
 					 [[dateFormatter stringFromDate:t.date] UTF8String],
 					 t.type,
+					 0, /* category */
 					 t.value,
-					 t.balance,
 					 [t.description UTF8String],
 					 [t.memo UTF8String],
 					 t.serial);
@@ -214,17 +261,20 @@
 {
 	char sql[128];
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE * FROM \"Transactions\" WHERE key = %d;", 
+					 "DELETE FROM Transactions WHERE key = %d;", 
 					 t.serial);
 	[self execSql:sql];
 }
 
-- (void)deleteOldTransactionsBefore:(NSDate*)date
+- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset
 {
 	char sql[1024];
+
+	// TBD : date は比較不能(?)
+
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE * FROM Transactions WHERE date < %Q",
-					 [[dateFormatter stringFromDate:t.date] UTF8String]);
+					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
+					 [[dateFormatter stringFromDate:t.date] UTF8String], asset);
 	[self execSql:sql];
 }
 
