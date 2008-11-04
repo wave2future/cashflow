@@ -42,6 +42,7 @@
 	double initialBalance;
 
 	int serialCounter;
+	int maxTransactions;
 }
 
 @property(nonatomic,retain) NSMutableArray *transactions;

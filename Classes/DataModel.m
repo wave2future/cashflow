@@ -88,6 +88,8 @@
 	transactions = [[NSMutableArray alloc] init];
 	serialCounter = 0;
 
+	maxTransactions = MAX_TRANSACTIONS;
+
 	return self;
 }
 
@@ -134,7 +136,7 @@
 	[self recalcBalance];
 	
 	// 上限チェック
-	if ([transactions count] > MAX_TRANSACTIONS) {
+	if ([transactions count] > maxTransactions) {
 		[self deleteTransactionAt:0];
 	}
 }
