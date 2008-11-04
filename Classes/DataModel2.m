@@ -45,42 +45,28 @@
 // Factory : override
 + (DataModel*)allocWithLoad
 {
-	DataModel2 *dm = nil;
+	DataModel2 *dm = [[DataModel2 alloc] init];
 
 	// Load from DB
 	Database *db = [[Database alloc] init];
+	dm.db = db;
+
 	if ([db openDB]) {
-		dm = [[DataModel alloc] init];
-		dm.db = db;
 		[db release];
-
 		[dm reload];
-
 		return dm;
 	}
 
 	// Backward compatibility
-	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
-
-	NSData *data = [NSData dataWithContentsOfFile:dataPath];
-	if (data != nil) {
-		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
-
-		dm = [ar decodeObjectForKey:@"DataModel"];
-		if (dm != nil) {
-			[dm retain];
-			[ar finishDecoding];
-		
-			[dm recalcBalance];
-		}
+	DataModel *odm = [DataModel allocWithLoad];
+	if ([dm getTransactionCount] > 0) {
+		// TBD
+		dm.transactions = odm.transactions;
+		dm.initialBalance = odm.initialBalance;
 	}
-	if (dm == nil) {
-		// initial or some error...
-		dm = [[DataModel alloc] init];
-	}
+	[odm release];
 
 	// Ok, write database
-	dm.db = db;
 	[dm save];
 
 	return dm;
