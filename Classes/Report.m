@@ -136,16 +136,7 @@
 			}
 
 			/* 金額加算 */
-			double value;
-			switch (t.type) {
-			case TYPE_INCOME:
-			case TYPE_ADJ:
-				value = t.value;
-				break;
-			case TYPE_OUTGO:
-				value = -t.value;
-				break;
-			}
+			double value = [t svalue];
 			if (value >= 0) {
 				r.totalIncome += value;
 			} else {

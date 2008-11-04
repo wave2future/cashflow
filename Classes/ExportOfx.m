@@ -171,7 +171,7 @@
 		[data appendString:@"<STMTTRN>\n"];
 		[data appendFormat:@"<TRNTYPE>%@\n", [self transTypeString:t]];
 		[data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:t]];
-		[data appendFormat:@"<TRNAMT>%.2f\n", [self transValue:t]];
+		[data appendFormat:@"<TRNAMT>%.2f\n", [t svalue]];
 
 		/* トランザクションの ID は日付と取引番号で生成 */
 		[data appendFormat:@"<FITID>%@\n", [self fitId:t]];
@@ -203,14 +203,6 @@
 		return @"DEP";
 	}
 	return @"PAYMENT";
-}
-
-- (double)transValue:(Transaction*)t
-{
-	if (t.type == TYPE_OUTGO) {
-		return -t.value;
-	}
-	return t.value;
 }
 
 - (NSString*)dateStr:(Transaction*)t

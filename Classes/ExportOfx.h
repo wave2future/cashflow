@@ -48,7 +48,6 @@
 
 // private
 - (NSString*)transTypeString:(Transaction*)t;
-- (double)transValue:(Transaction*)t;
 - (NSString*)dateStr:(Transaction*)t;
 - (NSString*)fitId:(Transaction*)t;
 
