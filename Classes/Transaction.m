@@ -128,7 +128,7 @@
 		self.date = [decoder decodeObjectForKey:@"Date"];
 		self.type = [decoder decodeIntForKey:@"Type"];
 		self.value = [decoder decodeDoubleForKey:@"Value"];
-		self.balance = [decoder decodeDoubleForKey:@"Balance"];
+		//self.balance = [decoder decodeDoubleForKey:@"Balance"];
 		self.description = [decoder decodeObjectForKey:@"Description"];
 		self.memo = [decoder decodeObjectForKey:@"Memo"];
 		
@@ -146,7 +146,7 @@
 	[coder encodeObject:date forKey:@"Date"];
 	[coder encodeInt:type forKey:@"Type"];
 	[coder encodeDouble:value forKey:@"Value"];
-	[coder encodeDouble:balance forKey:@"Balance"];
+	//[coder encodeDouble:balance forKey:@"Balance"];
 	[coder encodeObject:description forKey:@"Description"];
 	[coder encodeObject:memo forKey:@"Memo"];
 }

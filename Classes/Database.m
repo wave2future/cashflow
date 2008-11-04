@@ -74,12 +74,14 @@
 	// Ok, create new database
 	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
 	[self execSql:"CREATE TABLE Transactions ("
-		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER,"
-		  "value REAL, balance REAL, description TEXT, memo TEXT);"];
+		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER, category INTEGER,"
+		  "value REAL, description TEXT, memo TEXT);"];
 
 	// 以下は将来使うため
 	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER);"];
-	[self execSql:"INSERT INTO Assets VALUES(0, 'Cash', 0);"];
+	[self execSql:"INSERT INTO Assets VALUES(1, 'Cash', 0);"];
+
+	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, order INTEGER);"];
 
 	return NO; // re-created
 }
