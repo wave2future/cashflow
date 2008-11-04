@@ -72,42 +72,30 @@
 	return self;
 }
 
+// 符号付きで value を返す
+- (double)svalue
+{
+	if (type == TYPE_OUTGO) {
+		return -value;
+	}
+
+	return value;
+}
+
 - (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial
 {
-	switch (type) {
-		case TYPE_INCOME:
-			balance = prevBalance + value;
-			break;
-			
-		case TYPE_OUTGO:
-			balance = prevBalance - value;
-			break;
-			
-		case TYPE_ADJ:
-			if (isInitial) {
-				balance = prevBalance + value;
-			} else {
-				value = balance - prevBalance;
-			}
-			break;
+	if (type == TYPE_ADJ && !isInitial) {
+		// balance ではなく、value のほうを調整する
+		value = balance - prevBalance;
+	} else {
+		balance = prevBalance + [self svalue];
 	}
 	return balance;
 }
 
 - (double)prevBalance
 {
-	double prev;
-	
-	switch (type) {
-		case TYPE_INCOME:
-		case TYPE_ADJ:
-			prev = balance - value;
-			break;
-			
-		case TYPE_OUTGO:
-			prev = balance + value;
-			break;
-	}
+	double prev = balance - [self svalue];
 	return prev;
 }
 
