@@ -50,9 +50,9 @@
 	// Load from DB
 	Database *db = [[Database alloc] init];
 	dm.db = db;
+	[db release];
 
-	if ([db openDB]) {
-		[db release];
+	if ([dm.db openDB]) {
 		[dm reload];
 		return dm;
 	}
