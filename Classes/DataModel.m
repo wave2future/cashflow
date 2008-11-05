@@ -53,8 +53,6 @@
 		if (dm != nil) {
 			[dm retain];
 			[ar finishDecoding];
-		
-			[dm recalcBalance];
 		}
 	}
 	if (dm == nil) {
