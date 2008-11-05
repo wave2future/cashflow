@@ -157,7 +157,8 @@ static char sql[4096];	// SQL buffer
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT initialBalance FROM Assets WHERE key = %d;", asset);
 	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
-	double initialBalance = sqlite3_column_int(stmt, 0);
+	sqlite3_step(stmt);
+	double initialBalance = sqlite3_column_double(stmt, 0);
 	sqlite3_finalize(stmt);
 
 	return initialBalance;
@@ -167,8 +168,7 @@ static char sql[4096];	// SQL buffer
 {
 	/* get initial balance */
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE initialBalance SET initialBalance=%d WHERE key = %d;",
-					 initialBalance, asset);
+					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;", initialBalance, asset);
 	[self execSql:sql];
 }
 
@@ -181,8 +181,8 @@ static char sql[4096];	// SQL buffer
 
 	/* get transactions */
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT key, date, type, value, balance, description, memo"
-					 " FROM Transactions ORDER BY date WHERE asset = %d;", 
+					 "SELECT key, date, type, value, description, memo"
+					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
 					 asset);
 	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
 
@@ -191,12 +191,11 @@ static char sql[4096];	// SQL buffer
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Transaction *t = [[Transaction alloc] init];
 		t.serial = sqlite3_column_int(stmt, 0);
-		char *date = sqlite3_column_text(stmt, 1);
+		const char *date = (const char*)sqlite3_column_text(stmt, 1);
 		t.type = sqlite3_column_int(stmt, 2);
 		t.value = sqlite3_column_double(stmt, 3);
-		t.balance = sqlite3_column_double(stmt, 4);
-		char *desc = sqlite3_column_text(stmt, 5);
-		char *memo = sqlite3_column_text(stmt, 6);
+		const char *desc = (const char*)sqlite3_column_text(stmt, 4);
+		const char *memo = (const char*)sqlite3_column_text(stmt, 5);
 
 		t.date = [dateFormatter dateFromString:
 						[NSString stringWithCString:date encoding:NSUTF8StringEncoding]];
