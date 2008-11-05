@@ -41,7 +41,7 @@
 	NSDateFormatter *dateFormatter;
 }
 
-- (void)init;
+- (id)init;
 - (void)dealloc;
 
 - (BOOL)openDB;
@@ -50,15 +50,15 @@
 - (NSMutableArray *)loadTransactions:(int)asset;
 
 - (void)saveInitialBalance:(double)initialBalance asset:(int)asset;
-- (void)saveTransactions:(Transactions*)transactions asset:(int)asset;
+- (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset;
 
-- (void)insertTransaction:(Transaction*)t asset:(int)asset;
+- (void)insertTransaction:(Transaction *)t asset:(int)asset;
 - (void)updateTransaction:(Transaction *)t;
 - (void)deleteTransaction:(Transaction *)t;
-- (void)deleteOldTransactionsBefore:(NSDate*)date;
+- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
 
 // private
-- (void)beginTransactionDB;
-- (void)commitTransactionDB;
+- (void)beginTransaction;
+- (void)commitTransaction;
 
 @end

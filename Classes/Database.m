@@ -36,18 +36,24 @@
 // まだ試作中、、、
 
 #import "Database.h"
+#import "CashFlowAppDelegate.h"
 
 @implementation Database
 
 static char sql[4096];	// SQL buffer
 
-- (void)init
+- (id)init
 {
-	db = 0;
+	self = [super init];
+	if (self != nil) {
+		db = 0;
 
-	dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-	[dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+		dateFormatter = [[NSDateFormatter alloc] init];
+		[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+		[dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+	}
+	
+	return self;
 }
 
 - (void)dealloc
@@ -55,11 +61,12 @@ static char sql[4096];	// SQL buffer
 	if (db != nil) {
 		sqlite3_close(db);
 	}
+	[super dealloc];
 }
 
 - (void)execSql:(const char *)sql
 {
-	sqlite3_exec(db, sql, 0, 0);
+	sqlite3_exec(db, sql, NULL, NULL, NULL);
 }
 
 // データベースを開く
@@ -74,7 +81,7 @@ static char sql[4096];	// SQL buffer
 	}
 
 	// Ok, create new database
-	sqlite3_open_v2([dbPath UTF8String], &db, SQLITE_OPEN_READWRITE|SQLITE_OPEN_CREATE, NULL);
+	sqlite3_open([dbPath UTF8String], &db);
 
 	// テーブル作成＆初期データ作成
 	[self execSql:"CREATE TABLE Transactions ("
@@ -137,11 +144,14 @@ static char sql[4096];	// SQL buffer
 
 - (double)loadInitialBalance:(int)asset
 {
+	sqlite3_stmt *stmt;
+	
 	/* get initial balance */
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT initialBalance FROM Assets WHERE key = %d;", asset);
 	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
 	double initialBalance = sqlite3_column_int(stmt, 0);
+	sqlite3_finalize(stmt);
 
 	return initialBalance;
 }
@@ -186,7 +196,7 @@ static char sql[4096];	// SQL buffer
 		t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
 		t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
 
-		[transactions insertObject:t];
+		[transactions addObject:t];
 		[t release];
 	}
 	sqlite3_finalize(stmt);
@@ -194,7 +204,7 @@ static char sql[4096];	// SQL buffer
 	return transactions;
 }
 
-- (void)saveTransactions:(Transactions*)transactions asset:(int)asset
+- (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset
 {
 	[self beginTransactionDB];
 
@@ -260,7 +270,7 @@ static char sql[4096];	// SQL buffer
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
-					 [[dateFormatter stringFromDate:t.date] UTF8String], asset);
+					 [[dateFormatter stringFromDate:date] UTF8String], asset);
 	[self execSql:sql];
 }
 

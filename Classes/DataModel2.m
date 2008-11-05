@@ -117,7 +117,7 @@
 	[super insertTransaction:tr];
 
 	// DB 追加
-	[db insertTransactionDB:tr];
+	[db insertTransaction:tr asset:asset];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
@@ -139,7 +139,7 @@
 - (void)deleteOldTransactionsBefore:(NSDate*)date
 {
 	// override
-	[db deleteOldTransactionsBefore:date];
+	[db deleteOldTransactionsBefore:date asset:asset];
 	[self reload];
 }
 
@@ -150,27 +150,20 @@
 	// rewrite???
 }
 
-- (void)recalcBalance
+- (void)recalcBalanceSub:(BOOL)isInitial
 {
-	// override
 	Transaction *t;
 	double bal;
 	int max = [transactions count];
 	int i;
-
-	if (max == 0) return;
-
-	bal = initialBalance;
-
+	
 	[db beginTransaction];
-
-	// Recalculate balances
+	bal = initialBalance;
 	for (i = 0; i < max; i++) {
 		t = [transactions objectAtIndex:i];
-		bal = [t fixBalance:bal];
+		bal = [t fixBalance:bal isInitial:isInitial];
 		[db updateTransaction:t];
 	}
-
 	[db commitTransaction];
 }
 

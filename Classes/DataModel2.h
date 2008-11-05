@@ -45,29 +45,12 @@
 
 @property(nonatomic,retain) Database *db;
 
-//+ (DataModel*)allocWithLoad;
-//- (BOOL)saveToStorage;
+- (void)reload;
+- (void)save;
 
-//- (id)init;
-
-//- (int)getTransactionCount;
-//- (Transaction*)getTransactionAt:(int)n;
-
-- (void)assignSerial:(Transaction*)tr;
 - (void)insertTransaction:(Transaction*)tr;
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;
 - (void)deleteOldTransactionsBefore:(NSDate*)date;
-- (int)firstTransactionByDate:(NSDate*)date;
-- (void)sortByDate;
-
-- (void)recalcBalance;
-- (double)lastBalance;
-
-+ (NSString*)currencyString:(double)x;
-- (NSMutableArray *)allocDescList;
-
-- (void)encodeWithCoder:(NSCoder*)encoder;
-- (id)initWithCoder:(NSCoder*)decoder;
 
 @end
