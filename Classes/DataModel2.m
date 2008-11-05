@@ -59,7 +59,7 @@
 
 	// Backward compatibility
 	DataModel *odm = [DataModel allocWithLoad];
-	if ([dm getTransactionCount] > 0) {
+	if ([odm getTransactionCount] > 0) {
 		// TBD
 		dm.transactions = odm.transactions;
 		dm.initialBalance = odm.initialBalance;

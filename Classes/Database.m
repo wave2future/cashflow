@@ -76,10 +76,17 @@ static char sql[4096];	// SQL buffer
 {
 	// Load from DB
 	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
-	if (sqlite3_open([dbPath UTF8String], &db) == 0) {
-		return YES; // OK
+	
+	NSFileManager *fileManager = [NSFileManager defaultManager];
+	BOOL isExistDb = [fileManager fileExistsAtPath:dbPath];
+	
+	if (sqlite3_open([dbPath UTF8String], &db) != 0) {
+		// ouch!
 	}
-
+	if (isExistDb) {
+		return YES;
+	}
+		
 	// Ok, create new database
 	sqlite3_open([dbPath UTF8String], &db);
 
@@ -88,7 +95,7 @@ static char sql[4096];	// SQL buffer
 		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER, category INTEGER,"
 		  "value REAL, description TEXT, memo TEXT);"];
 
-	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL, order INTEGER);"];
+	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL, sorder INTEGER);"];
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
