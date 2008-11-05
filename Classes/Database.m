@@ -39,6 +39,8 @@
 
 @implementation Database
 
+static char sql[4096];	// SQL buffer
+
 - (void)init
 {
 	db = 0;
@@ -65,8 +67,6 @@
 //   なかったときは新規作成して NO を返す
 - (BOOL)openDB
 {
-	char sql[256];
-
 	// Load from DB
 	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
 	if (sqlite3_open([dbPath UTF8String], &db) == 0) {
@@ -115,8 +115,6 @@
 
 - (int)insertAsset:(Asset*)asset
 {
-	char sql[1024];
-
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "INSERT INTO Assets VALUES(NULL, %Q, %d, 0.0, 9999);",
 					 [name UTF8String], type);
@@ -150,8 +148,6 @@
 
 - (void)saveInitialBalance:(double)initialBalance asset:(int)asset
 {
-	char sql[128];
-
 	/* get initial balance */
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "UPDATE initialBalance SET initialBalance=%d WHERE key = %d;",
@@ -164,7 +160,6 @@
 
 - (NSMutableArray *)loadTransactions:(int)asset
 {
-	char sql[128];
 	sqlite3_stmt *stmt;
 
 	/* get transactions */
@@ -201,8 +196,6 @@
 
 - (void)saveTransactions:(Transactions*)transactions asset:(int)asset
 {
-	char sql[128];
-
 	[self beginTransactionDB];
 
 	// delete all transactions
@@ -224,8 +217,6 @@
 
 - (void)insertTransaction:(Transaction*)t asset:(int)asset
 {
-	char sql[1024];
-
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "INSERT INTO Transactions VALUES(NULL, %d, %Q, %d, %d, %f, %Q, %Q);",
 					 asset,
@@ -243,8 +234,6 @@
 
 - (void)updateTransaction:(Transaction *)t
 {
-	char sql[1024];
-
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "UPDATE Transactions SET date=%Q, type=%d, category=%d, value=%f, description=%Q, memo=%Q WHERE key = %d;",
 					 [[dateFormatter stringFromDate:t.date] UTF8String],
@@ -259,7 +248,6 @@
 
 - (void)deleteTransaction:(Transaction *)t
 {
-	char sql[128];
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE FROM Transactions WHERE key = %d;", 
 					 t.serial);
@@ -268,8 +256,6 @@
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset
 {
-	char sql[1024];
-
 	// TBD : date は比較不能(?)
 
 	sqlite3_snprintf(sizeof(sql), sql,
