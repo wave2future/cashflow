@@ -52,5 +52,6 @@
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;
 - (void)deleteOldTransactionsBefore:(NSDate*)date;
+- (void)assignSerial:(Transaction*)t;
 
 @end

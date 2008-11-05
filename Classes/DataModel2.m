@@ -46,7 +46,7 @@
 + (DataModel*)allocWithLoad
 {
 	DataModel2 *dm = [[DataModel2 alloc] init];
-
+	
 	// Load from DB
 	Database *db = [[Database alloc] init];
 	dm.db = db;
@@ -68,18 +68,19 @@
 
 	// Ok, write database
 	[dm save];
-
+	
+	[dm recalcBalanceInitial];
+	
 	return dm;
 }
 
 // private
 - (void)reload
 {
-	if (transactions) {
-		[transactions release];
-	}
+	initialBalance = [db loadInitialBalance:asset]; // self.initialBalance にはしない(DB上書きするので）
 	self.transactions = [db loadTransactions:asset];
-	self.initialBalance = [db loadInitialBalance:asset];
+	
+	[self recalcBalanceInitial];
 }
 
 // private
@@ -101,7 +102,8 @@
 
 	db = nil;
 	asset = 1; // とりあえず cash に固定
-
+	maxTransactions = MAX_TRANSACTIONS;
+	
 	return self;
 }
 
@@ -143,28 +145,37 @@
 	[self reload];
 }
 
-// sort
-- (void)sortByDate
-{
-	[super sortByDate];
-	// rewrite???
-}
-
 - (void)recalcBalanceSub:(BOOL)isInitial
 {
-	Transaction *t;
-	double bal;
-	int max = [transactions count];
-	int i;
+	[super recalcBalanceSub:isInitial];
+
+	if (!isInitial) {
+		// 残高照会取引は金額がかわっている可能性があるため、DBを更新する
+		Transaction *t;
+		int i, max = [transactions count];
 	
-	[db beginTransaction];
-	bal = initialBalance;
-	for (i = 0; i < max; i++) {
-		t = [transactions objectAtIndex:i];
-		bal = [t fixBalance:bal isInitial:isInitial];
-		[db updateTransaction:t];
+		[db beginTransaction];
+		for (i = 0; i < max; i++) {
+			t = [transactions objectAtIndex:i];
+			if (t.type == TYPE_ADJ) {
+				[db updateTransaction:t];
+			}
+		}
+		[db commitTransaction];
 	}
-	[db commitTransaction];
+}
+
+- (void)assignSerial:(Transaction*)t
+{
+	// override
+	t.serial = -1;
+}
+
+// override initialBalance property
+- (void)setInitialBalance:(double)v
+{
+	[super setInitialBalance:v];
+	[db saveInitialBalance:v asset:asset];
 }
 
 @end
