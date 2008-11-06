@@ -32,76 +32,84 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "CashFlowAppDelegate.h"
-#import "DataModel.h"
+// DataModel V2
+// (SQLite ver)
 
-@implementation DataModel1
+#import "DataModel2.h"
+#import <sqlite3.h>
 
-@synthesize transactions, serialCounter, initialBalance;
+@implementation DataModel
 
-+ (DataModel*)allocWithLoad
-{
-	DataModel *dm = nil;
-
-	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
-
-	NSData *data = [NSData dataWithContentsOfFile:dataPath];
-	if (data != nil) {
-		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
-
-		dm = [ar decodeObjectForKey:@"DataModel"];
-		if (dm != nil) {
-			[dm retain];
-			[ar finishDecoding];
-		}
-	}
-	if (dm == nil) {
-		// initial or some error...
-		dm = [[DataModel alloc] init];
-	}
-	
-	[dm setMaxTransactions:MAX_TRANSACTIONS];
-	
-	return dm;
-}
-
-- (void)setMaxTransactions:(int)max
-{
-	maxTransactions = max;
-}
-
-- (BOOL)saveToStorage
-{
-	// Save data if appropriate
-	NSString *path = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
-
-	NSMutableData *data = [NSMutableData data];
-	NSKeyedArchiver *ar = [[NSKeyedArchiver alloc] initForWritingWithMutableData:data];
-
-	[ar encodeObject:self forKey:@"DataModel"];
-	[ar finishEncoding];
-	[ar release];
-
-	BOOL result = [data writeToFile:path atomically:YES];
-	return result;
-}
+@synthesize db, transactions, initialBalance, maxTransactions;
 
 - (id)init
 {
 	[super init];
 
+	db = nil;
+	asset = 1; // とりあえず cash に固定
+	maxTransactions = MAX_TRANSACTIONS;
+
 	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
-	serialCounter = 0;
-
+	
 	return self;
 }
 
 - (void)dealloc 
 {
+	[db release];
 	[transactions release];
+
 	[super dealloc];
 }
+
+- (void)loadDB
+{
+	// Load from DB
+	self.db = [[Database alloc] init];
+	[db release];
+
+	if ([db openDB]) {
+		[self reload];
+		return; // OK
+	}
+
+	// Backward compatibility
+	DataModel1 *dm1 = [DataModel1 allocWithLoad];
+	if ([dm1 transactionCount] > 0) {
+		// TBD
+		self.transactions = dm1.transactions;
+		self.initialBalance = dm1.initialBalance;
+	}
+	[dm1 release];
+
+	// Ok, write back database
+	[self save];
+	
+	[self recalcBalanceInitial];
+	
+	return dm;
+}
+
+// private
+- (void)reload
+{
+	initialBalance = [db loadInitialBalance:asset]; // self.initialBalance にはしない(DB上書きするので）
+	self.transactions = [db loadTransactions:asset];
+	
+	[self recalcBalanceInitial];
+}
+
+// private
+- (void)save
+{
+	[db saveTransactions:transactions asset:asset];
+	[db saveInitialBalance:initialBalance asset:asset];
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Transaction operations
 
 - (int)transactionCount
 {
@@ -111,12 +119,6 @@
 - (Transaction*)transactionAt:(int)n
 {
 	return [transactions objectAtIndex:n];
-}
-
-- (void)assignSerial:(Transaction*)tr
-{
-	tr.serial = serialCounter;
-	serialCounter++;
 }
 
 - (void)insertTransaction:(Transaction*)tr
@@ -143,6 +145,9 @@
 	if ([transactions count] > maxTransactions) {
 		[self deleteTransactionAt:0];
 	}
+
+	// DB 追加
+	[db insertTransaction:tr asset:asset];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
@@ -153,15 +158,24 @@
 
 	[transactions replaceObjectAtIndex:index withObject:t];
 	[self recalcBalance];
+
+	// update DB
+	[db updateTransaction:t];
 }
 
 - (void)deleteTransactionAt:(int)n
 {
+	// update DB
+	Transaction *t = [transactions objectAtIndex:n];
+	[db deleteTransaction:t];
+
+	// special handling for first transaction
 	if (n == 0) {
 		Transaction *t = [transactions objectAtIndex:0];
-		initialBalance = t.balance;
+		self.initialBalance = t.balance;  // update DB
 	}
-
+	
+	// remove
 	[transactions removeObjectAtIndex:n];
 	if (n > 0) {
 		[self recalcBalance];
@@ -170,6 +184,7 @@
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
 {
+	[db beginTransaction];
 	while (transactions.count > 0) {
 		Transaction *t = [transactions objectAtIndex:0];
 		if ([t.date compare:date] != NSOrderedAscending) {
@@ -178,6 +193,10 @@
 
 		[self deleteTransactionAt:0];
 	}
+	[db commitTransaction];
+
+	//[db deleteOldTransactionsBefore:date asset:asset];
+	//[self reload];
 }
 
 - (int)firstTransactionByDate:(NSDate*)date
@@ -192,7 +211,6 @@
 
 }
 
-
 // sort
 static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
@@ -204,6 +222,9 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	[transactions sortUsingFunction:compareByDate context:NULL];
 	[self recalcBalance];
 }
+
+////////////////////////////////////////////////////////////////////////////
+// Balance operations
 
 // balance 値がない状態で、balance を計算する
 - (void)recalcBalanceInitial
@@ -218,15 +239,21 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 - (void)recalcBalanceSub:(BOOL)isInitial
 {
-	Transaction *t;
-	double bal;
-	int max = [transactions count];
-	int i;
+	[super recalcBalanceSub:isInitial];
 
-	bal = initialBalance;
-	for (i = 0; i < max; i++) {
-		t = [transactions objectAtIndex:i];
-		bal = [t fixBalance:bal isInitial:isInitial];
+	if (!isInitial) {
+		// 残高照会取引は金額がかわっている可能性があるため、DBを更新する
+		Transaction *t;
+		int i, max = [transactions count];
+	
+		[db beginTransaction];
+		for (i = 0; i < max; i++) {
+			t = [transactions objectAtIndex:i];
+			if (t.type == TYPE_ADJ) {
+				[db updateTransaction:t];
+			}
+		}
+		[db commitTransaction];
 	}
 }
 
@@ -239,7 +266,14 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	return [[transactions objectAtIndex:max - 1] balance];
 }
 
+// override initialBalance property
+- (void)setInitialBalance:(double)v
+{
+	[super setInitialBalance:v];
+	[db saveInitialBalance:v asset:asset];
+}
 
+////////////////////////////////////////////////////////////////////////////
 // Utility
 + (NSString*)currencyString:(double)x
 {
@@ -303,28 +337,4 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 	return ary;
 }
-
-//
-// Archive / Unarchive
-//
-- (id)initWithCoder:(NSCoder *)decoder
-{
-	self = [super init];
-	if (self) {
-		self.serialCounter = [decoder decodeIntForKey:@"serialCounter"];
-		self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
-		self.transactions = [decoder decodeObjectForKey:@"Transactions"];
-
-		[self recalcBalanceInitial];
-	}
-	return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-	[coder encodeInt:serialCounter forKey:@"serialCounter"];
-	[coder encodeDouble:initialBalance forKey:@"initialBalance"];
-	[coder encodeObject:transactions forKey:@"Transactions"];
-}
-
 @end

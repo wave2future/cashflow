@@ -34,40 +34,31 @@
 
 #import <UIKit/UIKit.h>
 #import "Transaction.h"
-#import "DataModel.h"
-#import "Database.h"
 
-@interface DataModel : NSObject {
-	Database *db;
+#define MAX_TRANSACTIONS	500
 
-	// Asset
-	int asset;
-
-	// Transactions
+@interface DataModel1 : NSObject <NSCoding> {
 	NSMutableArray *transactions;
 	double initialBalance;
 
-	// constant
+	int serialCounter;
 	int maxTransactions;
 }
 
-@property(nonatomic,retain) Database *db;
 @property(nonatomic,retain) NSMutableArray *transactions;
 @property(nonatomic,assign) double initialBalance;
-@property(nonatomic,assign) int maxTransactions;
+@property(nonatomic,assign) int serialCounter;
 
-// initializer
 + (DataModel*)allocWithLoad;
+- (BOOL)saveToStorage;
+- (void)setMaxTransactions:(int)max;
+
 - (id)init;
 
-// load/save
-- (void)reload;
-- (void)save;
+- (int)transactionCount;
+- (Transaction*)transactionAt:(int)n;
 
-// transaction operation
-- (void)setMaxTransactions:(int)max;
-- (int)getTransactionCount;
-- (Transaction*)getTransactionAt:(int)n;
+- (void)assignSerial:(Transaction*)tr;
 - (void)insertTransaction:(Transaction*)tr;
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;
@@ -75,14 +66,15 @@
 - (int)firstTransactionByDate:(NSDate*)date;
 - (void)sortByDate;
 
-// balance operation
 - (void)recalcBalanceInitial;
 - (void)recalcBalance;
 - (void)recalcBalanceSub:(BOOL)isInitial;
 - (double)lastBalance;
 
-// utility operation
 + (NSString*)currencyString:(double)x;
 - (NSMutableArray *)allocDescList;
+
+- (void)encodeWithCoder:(NSCoder*)encoder;
+- (id)initWithCoder:(NSCoder*)decoder;
 
 @end
