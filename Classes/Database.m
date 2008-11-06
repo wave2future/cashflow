@@ -300,16 +300,18 @@ static char sql[4096];	// SQL buffer
 
 - (void)deleteTransaction:(Transaction *)t
 {
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE key = %d;", 
-					 t.pkey);
-	[self execSql:sql];
+	static sqlite3_stmt *stmt = NULL;
+	if (stmt == NULL) {
+		const char *s = "DELETE FROM Transactions WHERE key = ?;";
+		sqlite3_prepare_v2(db, s, strlen(s), &stmt, NULL);
+	}
+	sqlite3_bind_int(stmt, 1, t.pkey);
+	sqlite3_step(stmt);
+	sqlite3_reset(stmt);
 }
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset
 {
-	// TBD : date は比較不能(?)
-
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
 					 [[dateFormatter stringFromDate:date] UTF8String], asset);

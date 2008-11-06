@@ -34,7 +34,6 @@
 
 // Asset
 
-#import <sqlite3.h>
 #import "Asset.h"
 #import "DataModel.h"
 #import "DataModelV1.h"
