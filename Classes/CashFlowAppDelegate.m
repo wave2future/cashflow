@@ -34,7 +34,7 @@
 
 #import "CashFlowAppDelegate.h"
 #import "TransactionListViewController.h"
-#import "DataModel2.h"
+#import "DataModel.h"
 #import "Transaction.h"
 
 @implementation CashFlowAppDelegate
@@ -42,7 +42,7 @@
 @synthesize window;
 @synthesize navigationController;
 
-DataModel2 *theDataModel = nil;
+DataModel *theDataModel = nil;
 NSDateFormatter *theDateFormatter = nil;
 
 - (id)init {
@@ -58,8 +58,8 @@ NSDateFormatter *theDateFormatter = nil;
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	// データロード
-	theDataModel2 = [[DataModel alloc] init];
-	[theDataModel2 load];
+	theDataModel = [[DataModel alloc] init];
+	[theDataModel load];
 
 	// misc
 	theDateFormatter = [[NSDateFormatter alloc] init];
