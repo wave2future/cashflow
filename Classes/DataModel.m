@@ -47,12 +47,9 @@
 	[super init];
 
 	db = nil;
-	asset = 1; // とりあえず cash に固定
 
-	initialBalance = 0.0;
-	transactions = [[NSMutableArray alloc] init];
-	
-	maxTransactions = MAX_TRANSACTIONS;
+	asset = nil;
+	selAsset = nil;
 
 	return self;
 }
@@ -60,7 +57,7 @@
 - (void)dealloc 
 {
 	[db release];
-	[transactions release];
+	[asset release];
 
 	[super dealloc];
 }
@@ -74,39 +71,28 @@
 	self.db = [[Database alloc] init];
 	[db release];
 
+	// 現バージョンでは Asset は1個だけ
+	asset = [[Asset alloc] init];
+	selAsset = asset;
+
 	if ([db openDB]) {
 		// Okay database exists. load data.
-		[self reload];
-	}
-	else {
-		// Backward compatibility : try to load old format data
-		DataModel1 *dm1 = [DataModel1 allocWithLoad];
-		if (dm1 != nil) {
-			self.transactions = dm1.transactions;
-			self.initialBalance = dm1.initialBalance;
-			[dm1 release];
-		}
-
-		// Ok, write back database
-		[self save];
-		[self recalcBalanceInitial];
+		[asset reload];
+	} else {
+		[asset loadOldFormatData];
 	}
 }
 
 // private
 - (void)reload
 {
-	initialBalance = [db loadInitialBalance:asset]; // self.initialBalance にはしない(DB上書きするので）
-	self.transactions = [db loadTransactions:asset];
-	
-	[self recalcBalanceInitial];
+	[selAsset reload];
 }
 
 // private
 - (void)save
 {
-	[db saveTransactions:transactions asset:asset];
-	[db saveInitialBalance:initialBalance asset:asset];
+	[selAsset resave];
 }
 
 ////////////////////////////////////////////////////////////////////////////

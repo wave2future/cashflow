@@ -86,18 +86,19 @@
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-	int max = [theDataModel transactionCount];
+	Asset *asset = theDataModel.selAsset;
+	int max = [asset transactionCount];
 
 	/* トランザクション */
 	int i = 0;
 	if (firstDate != nil) {
-		i = [theDataModel firstTransactionByDate:firstDate];
+		i = [asset firstTransactionByDate:firstDate];
 		if (i < 0) {
 			return nil;
 		}
 	}
 	for (; i < max; i++) {
-		Transaction *t = [theDataModel transactionAt:i];
+		Transaction *t = [asset transactionAt:i];
 
 		if (firstDate != nil && [t.date compare:firstDate] == NSOrderedAscending) continue;
 		

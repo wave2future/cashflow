@@ -36,26 +36,18 @@
 #import "Transaction.h"
 #import "DataModel.h"
 #import "Database.h"
-
-#define MAX_TRANSACTIONS	500
+#import "Asset.h"
 
 @interface DataModel : NSObject {
 	Database *db;
 
 	// Asset
-	int asset;
-
-	// Transactions
-	NSMutableArray *transactions;
-	double initialBalance;
-
-	// constant
-	int maxTransactions;
+	Asset *asset; // とりあえず1個だけ
+	Asset *selAsset; // 選択中の Asset
 }
 
-@property(nonatomic,retain) Database *db;
-@property(nonatomic,assign) double initialBalance;
-@property(nonatomic,retain) NSMutableArray *transactions;
+@property(nonatomic,retain) Asset *asset;
+@property(nonatomic,assign) Asset *selAsset;
 
 // initializer
 - (id)init;
@@ -65,24 +57,7 @@
 - (void)reload;
 - (void)save;
 
-// transaction operation
-- (int)getTransactionCount;
-- (Transaction*)getTransactionAt:(int)n;
-- (void)insertTransaction:(Transaction*)tr;
-- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
-- (void)deleteTransactionAt:(int)n;
-- (void)deleteOldTransactionsBefore:(NSDate*)date;
-- (int)firstTransactionByDate:(NSDate*)date;
-- (void)sortByDate;
-
-// balance operation
-- (void)recalcBalanceInitial;
-- (void)recalcBalance;
-- (void)recalcBalanceSub:(BOOL)isInitial;
-- (double)lastBalance;
-
 // utility operation
 + (NSString*)currencyString:(double)x;
-- (NSMutableArray *)allocDescList;
 
 @end

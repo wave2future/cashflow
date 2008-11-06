@@ -71,7 +71,7 @@
 	textField.text = self.description;
 	[super viewWillAppear:animated];
 
-	descArray = [theDataModel allocDescList];
+	descArray = [theDataModel.selAsset allocDescList];
 	[descArray insertObject:@"" atIndex:0];  // dummy entry
 	[picker reloadAllComponents];
 

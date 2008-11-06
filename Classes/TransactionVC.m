@@ -134,7 +134,7 @@
 		trans = [[Transaction alloc] init];
 	} else {
 		// 変更
-		Transaction *t = [theDataModel transactionAt:transactionIndex];
+		Transaction *t = [theDataModel.selAsset transactionAt:transactionIndex];
 		trans = [t copy];
 	}
 }
@@ -324,7 +324,7 @@
 // 削除処理
 - (void)delButtonTapped
 {
-	[theDataModel deleteTransactionAt:transactionIndex];
+	[theDataModel.selAsset deleteTransactionAt:transactionIndex];
 	[trans release];
 	trans = nil;
 	
@@ -350,11 +350,11 @@
 		return; // cancelled;
 	}
 
-	DataModel *d = theDataModel;
-	Transaction *t = [d transactionAt:transactionIndex];
+	Asset *asset = theDataModel.selAsset;
+	Transaction *t = [asset transactionAt:transactionIndex];
 	
 	NSDate *date = t.date;
-	[d deleteOldTransactionsBefore:date];
+	[asset deleteOldTransactionsBefore:date];
 	
 	[trans release];
 	trans = nil;
@@ -366,14 +366,14 @@
 // 保存処理
 - (void)saveAction
 {
-	DataModel *dm = theDataModel;
+	Asset *asset = theDataModel.selAsset;
 	
 	if (transactionIndex < 0) {
 		//[dm assignSerial:trans];
-		[dm insertTransaction:trans];
+		[asset insertTransaction:trans];
 	} else {
-		[dm replaceTransactionAtIndex:transactionIndex withObject:trans];
-		[dm sortByDate];
+		[asset replaceTransactionAtIndex:transactionIndex withObject:trans];
+		[asset sortByDate];
 	}
 	[trans release];
 	trans = nil;

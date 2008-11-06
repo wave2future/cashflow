@@ -67,32 +67,23 @@
 ////////////////////////////////////////////////////////////////////////////
 // Load / Save DB
 
-- (void)load
+- (void)loadOldFormatData
 {
-	// Load from DB
-	self.db = [[Database alloc] init];
-	[db release];
+	// Backward compatibility : try to load old format data
+	DataModel1 *dm1 = [DataModel1 allocWithLoad];
+	if (dm1 != nil) {
+		initialBalance = dm1.initialBalance;
+		transactions = dm1.transactions;
+		[transactions retain];
 
-	if ([db openDB]) {
-		// Okay database exists. load data.
-		[self reload];
+		[dm1 release];
 	}
-	else {
-		// Backward compatibility : try to load old format data
-		DataModel1 *dm1 = [DataModel1 allocWithLoad];
-		if (dm1 != nil) {
-			self.transactions = dm1.transactions;
-			self.initialBalance = dm1.initialBalance;
-			[dm1 release];
-		}
 
-		// Ok, write back database
-		[self save];
-		[self recalcBalanceInitial];
-	}
+	// Ok, write back database
+	[self save];
+	[self recalcBalanceInitial];
 }
 
-// private
 - (void)reload
 {
 	initialBalance = [db loadInitialBalance:pkey]; // self.initialBalance にはしない(DB上書きするので）
@@ -101,8 +92,7 @@
 	[self recalcBalanceInitial];
 }
 
-// private
-- (void)save
+- (void)resave
 {
 	[db saveTransactions:transactions asset:pkey];
 	[db saveInitialBalance:initialBalance asset:pkey];

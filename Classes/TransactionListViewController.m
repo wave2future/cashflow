@@ -88,7 +88,7 @@
 
 - (void)updateBalance
 {
-	double lastBalance = [theDataModel lastBalance];
+	double lastBalance = [theDataModel.selAsset lastBalance];
 	NSString *bstr = [DataModel currencyString:lastBalance];
 
 #if 0
@@ -124,13 +124,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [theDataModel transactionCount] + 1;
+	return [theDataModel.selAsset transactionCount] + 1;
 }
 
 // 指定セル位置に該当する Transaction Index を返す
 - (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-	return [theDataModel transactionCount] - indexPath.row - 1;
+	return [theDataModel.selAsset transactionCount] - indexPath.row - 1;
 }
 
 // 指定セル位置の Transaction を返す
@@ -141,7 +141,7 @@
 	if (idx < 0) {
 		return nil;  // initial balance
 	} 
-	Transaction *t = [theDataModel transactionAt:idx];
+	Transaction *t = [theDataModel.selAsset transactionAt:idx];
 	return t;
 }
 
@@ -263,7 +263,7 @@
 	}
 
 	balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-						 [DataModel currencyString:theDataModel.initialBalance]];
+						 [DataModel currencyString:theDataModel.selAsset.initialBalance]];
 
 	return cell;
 }
@@ -280,7 +280,7 @@
 		// initial balance cell
 		EditValueViewController *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
 		v.listener = self;
-		v.value = theDataModel.initialBalance;
+		v.value = theDataModel.selAsset.initialBalance;
 
 		[self.navigationController pushViewController:v animated:YES];
 		[v release];
@@ -294,8 +294,8 @@
 // 初期残高変更処理
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
-	theDataModel.initialBalance = vc.value;
-	[theDataModel recalcBalance];
+	theDataModel.selAsset.initialBalance = vc.value;
+	[theDataModel.selAsset recalcBalance];
 }
 
 // 新規トランザクション追加
@@ -341,7 +341,7 @@
 	}
 	
 	if (style == UITableViewCellEditingStyleDelete) {
-		[theDataModel deleteTransactionAt:transactionIndex];
+		[theDataModel.selAsset deleteTransactionAt:transactionIndex];
 	
 		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self updateBalance];

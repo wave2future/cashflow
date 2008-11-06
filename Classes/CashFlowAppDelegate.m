@@ -88,7 +88,7 @@ NSDateFormatter *theDateFormatter = nil;
 //
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	[theDataModel saveToStorage];
+	//[theDataModel saveToStorage];
 }
 
 // データファイルのパスを取得

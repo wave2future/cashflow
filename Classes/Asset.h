@@ -39,6 +39,8 @@
 #define ASSET_BANK  1
 #define	ASSET_CARD  2
 
+#define MAX_TRANSACTIONS	500
+
 @interface Asset : NSObject {
 	Database *db;
 
@@ -63,6 +65,7 @@
 @property(nonatomic,assign) int initialBalance;
 @property(nonatomic,retain) NSMutableArray *transactions;
 
+- (void)loadOldFormatData;
 - (void)reload;
 - (void)resave;
 - (void)clear;
