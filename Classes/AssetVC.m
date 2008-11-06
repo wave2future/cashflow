@@ -52,33 +52,11 @@
 												  action:@selector(saveAction)] autorelease];
 
 	// 下位の ViewController を生成しておく
-#if 0
-	editDateVC = [[EditDateViewController alloc]
-				  initWithNibName:@"EditDateView"
-				  bundle:[NSBundle mainBundle]];
+	editAccountNameVC = [[EditAccountNameViewController alloc]
+						 initWithNibName:@"EditAccountNameView"
+						 bundle:[NSBundle mainBundle]];
 
-	editTypeVC = [[EditTypeViewController alloc]
-				  initWithNibName:@"EditTypeView"
-				  bundle:[NSBundle mainBundle]];
-
-	editValueVC = [[EditValueViewController alloc]
-				   initWithNibName:@"EditValueView"
-				   bundle:[NSBundle mainBundle]];
-
-	editDescVC = [[EditDescViewController alloc]
-				  initWithNibName:@"EditDescView"
-				  bundle:[NSBundle mainBundle]];
-	
-	editMemoVC = [[EditMemoViewController alloc]
-				  initWithNibName:@"EditMemoView"
-				  bundle:[NSBundle mainBundle]];
-	
-	editDateVC.listener = self;
-	editTypeVC.listener = self;
-	editValueVC.listener = self;
-	editDescVC.listener = self;
-	editMemoVC.listener = self;
-#endif
+	editAccountNameVC.listener = self;
 	
 	// ボタン生成
 	UIButton *b;
@@ -98,13 +76,7 @@
 
 - (void)dealloc
 {
-#if 0
-	[editDateVC release];
-	[editTypeVC release];
-	[editValueVC release];
-	[editDescVC release];
-	[editMemoVC release];
-#endif
+	[editAccountNameVC release];
 	
 	[delButton release];
 	
@@ -234,51 +206,33 @@
 // セルをクリックしたときの処理
  - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#if 0
 	UINavigationController *nc = self.navigationController;
 
 	// view を表示
-	UIViewController *vc;
+	UIViewController *vc = nil;
 	switch (indexPath.row) {
-	case ROW_NAME:
-		editDateVC.date = trans.date;
-		vc = editDateVC;
-		break;
-	case ROW_TYPE:
-		editTypeVC.type = trans.type;
-		vc = editTypeVC;
-		break;
-	}
-	[nc pushViewController:vc animated:YES];
+		case ROW_NAME:
+			editAccountNameVC.accountName = asset.name;
+			vc = editAccountNameVC;
+			break;
+#if 0
+		case ROW_TYPE:
+			editTypeVC.type = trans.type;
+			vc = editTypeVC;
+			break;
 #endif
+	}
+	
+	if (vc != nil) {
+		[nc pushViewController:vc animated:YES];
+	}
 }
 
 // イベントリスナ (下位 ViewController からの変更通知)
-#if 0
-- (void)editDateViewChanged:(EditDateViewController *)vc
+- (void)editAccountNameViewChanged:(EditAccountNameViewController *)vc
 {
-	trans.date = vc.date;
+	asset.name = vc.accountName;
 }
-- (void)editTypeViewChanged:(EditTypeViewController *)vc
-{
-	trans.type = vc.type;
-	if (trans.type == TYPE_ADJ) {
-		trans.description = NSLocalizedString(@"Adjustment", @"");
-	}
-}
-- (void)editValueViewChanged:(EditValueViewController *)vc
-{
-	trans.evalue = vc.value;
-}
-- (void)editDescViewChanged:(EditDescViewController *)vc
-{
-	trans.description = vc.description;
-}
-- (void)editMemoViewChanged:(EditMemoViewController *)vc
-{
-	trans.memo = vc.memo;
-}
-#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // 削除処理

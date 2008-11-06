@@ -32,29 +32,27 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 #import "Asset.h"
 
-#import "EditAccountNameVC.h"
+@class AssetViewController;
+@class EditAccountNameViewController;
 
-@interface AssetViewController : UITableViewController 
-	<EditAccountNameViewListener>
-{
-	int assetIndex;
-	Asset *asset;
+@protocol EditAccountNameViewListener
+- (void)editAccountNameViewChanged:(EditAccountNameViewController *)vc;
+@end
 
-	EditAccountNameViewController *editAccountNameVC;
-
-	UIButton *delButton;
+@interface EditAccountNameViewController : UIViewController {
+	IBOutlet UITextField *textField;
+	
+	id<EditAccountNameViewListener> listener;
+	NSString *accountName;
 }
 
-@property(nonatomic,assign) Asset *asset;
+@property(nonatomic,assign) id<EditAccountNameViewListener> listener;
+@property(nonatomic,retain) NSString *accountName;
 
-- (void)setAssetIndex:(int)n;
-- (void)saveAction;
-
-//- (void)delButtonTapped;
+- (void)doneAction;
 
 @end

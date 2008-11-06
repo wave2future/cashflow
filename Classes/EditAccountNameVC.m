@@ -32,29 +32,59 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
-#import <UIKit/UIKit.h>
-#import <Foundation/Foundation.h>
-#import "Asset.h"
-
+#import "TransactionVC.h"
 #import "EditAccountNameVC.h"
+#import "AppDelegate.h"
 
-@interface AssetViewController : UITableViewController 
-	<EditAccountNameViewListener>
-{
-	int assetIndex;
-	Asset *asset;
+@implementation EditAccountNameViewController
 
-	EditAccountNameViewController *editAccountNameVC;
+@synthesize listener, accountName;
 
-	UIButton *delButton;
+// Implement viewDidLoad to do additional setup after loading the view.
+- (void)viewDidLoad {
+	[super viewDidLoad];
+	self.title = NSLocalizedString(@"Account Name", @"");
+	textField.placeholder = NSLocalizedString(@"Account Name", @"");
+	
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+											   target:self
+											   action:@selector(doneAction)] autorelease];
 }
 
-@property(nonatomic,assign) Asset *asset;
+- (void)dealloc {
+	[accountName release];
+    [super dealloc];
+}
 
-- (void)setAssetIndex:(int)n;
-- (void)saveAction;
+// 表示前の処理
+- (void)viewWillAppear:(BOOL)animated
+{
+	textField.text = accountName;
+	[super viewWillAppear:animated];
+}
 
-//- (void)delButtonTapped;
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+}
+
+- (void)doneAction
+{
+	self.accountName = textField.text;
+	[listener editAccountNameViewChanged:self];
+
+	[self.navigationController popViewControllerAnimated:YES];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+    // Release anything that's not essential, such as cached data
+}
 
 @end
