@@ -35,7 +35,7 @@
 // DataModel V1 (for backward compatibility)
 
 #import "CashFlowAppDelegate.h"
-#import "DataModel1.h"
+#import "DataModelV1.h"
 
 @implementation DataModel1
 
