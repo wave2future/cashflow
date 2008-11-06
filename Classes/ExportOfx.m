@@ -225,7 +225,7 @@
 - (NSString*)fitId:(Transaction*)t
 {
 	NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:t.date];
-	NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], t.serial];
+	NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], t.pkey];
 	return f;
 }
 

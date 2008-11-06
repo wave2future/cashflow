@@ -48,11 +48,12 @@
 
 	db = nil;
 	asset = 1; // とりあえず cash に固定
-	maxTransactions = MAX_TRANSACTIONS;
 
 	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
 	
+	maxTransactions = MAX_TRANSACTIONS;
+
 	return self;
 }
 
@@ -64,7 +65,10 @@
 	[super dealloc];
 }
 
-- (void)loadDB
+////////////////////////////////////////////////////////////////////////////
+// Load / Save DB
+
+- (void)load
 {
 	// Load from DB
 	self.db = [[Database alloc] init];
@@ -152,9 +156,9 @@
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
-	// copy serial
+	// copy key
 	Transaction *old = [transactions objectAtIndex:index];
-	t.serial = old.serial;
+	t.pkey = old.pkey;
 
 	[transactions replaceObjectAtIndex:index withObject:t];
 	[self recalcBalance];

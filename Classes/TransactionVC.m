@@ -369,7 +369,7 @@
 	DataModel *dm = theDataModel;
 	
 	if (transactionIndex < 0) {
-		[dm assignSerial:trans];
+		//[dm assignSerial:trans];
 		[dm insertTransaction:trans];
 	} else {
 		[dm replaceTransactionAtIndex:transactionIndex withObject:trans];

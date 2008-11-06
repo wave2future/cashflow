@@ -39,22 +39,22 @@
 #define	TYPE_ADJ 2 // 残高調整
 
 @interface Transaction : NSObject <NSCoding, NSCopying> {
+	int pkey; // primary key
 	NSDate *date;
 	NSString *description;
 	NSString *memo;
 	double value; // plus - income, minus - outgo.
 	double balance;
 	int type;
-	int serial;
 }
 
+@property(nonatomic,assign) int pkey;
 @property(nonatomic,copy) NSDate *date;
 @property(nonatomic,copy) NSString *description;
 @property(nonatomic,copy) NSString *memo;
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) int type;
-@property(nonatomic,assign) int serial;
 @property(nonatomic,assign) double evalue;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;

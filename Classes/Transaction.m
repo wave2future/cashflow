@@ -37,7 +37,7 @@
 
 @implementation Transaction
 
-@synthesize date, description, memo, value, balance, type, serial;
+@synthesize pkey, date, description, memo, value, balance, type;
 
 - (id)init
 {
@@ -49,7 +49,7 @@
 	value = 0.0;
 	balance = 0.0;
 	type = 0;
-	serial = 0; // init
+	pkey = 0; // init
 	return self;
 }
 
@@ -68,7 +68,7 @@
 	self.memo = @"";
 	value = v;
 	balance = 0.0; // ###
-	serial = 0; // init
+	pkey = 0; // init
 	return self;
 }
 
@@ -126,7 +126,7 @@
 - (id)copyWithZone:(NSZone*)zone
 {
 	Transaction *n = [[Transaction alloc] init];
-	n.serial = self.serial;
+	n.pkey = self.pkey;
 	n.date = self.date;
 	n.description = self.description;
 	n.memo = self.memo;
@@ -136,11 +136,14 @@
 	return n;
 }
 
+
+// for backward compatibility
+
 - (id)initWithCoder:(NSCoder *)decoder
 {
 	self = [super init];
 	if (self) {
-		self.serial = [decoder decodeIntForKey:@"Serial"];
+		self.pkey = [decoder decodeIntForKey:@"Serial"];
 		self.date = [decoder decodeObjectForKey:@"Date"];
 		self.type = [decoder decodeIntForKey:@"Type"];
 		self.value = [decoder decodeDoubleForKey:@"Value"];
@@ -163,7 +166,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-	[coder encodeInt:serial forKey:@"Serial"];
+	[coder encodeInt:pkey forKey:@"Serial"];
 	[coder encodeObject:date forKey:@"Date"];
 	[coder encodeInt:type forKey:@"Type"];
 

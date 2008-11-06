@@ -61,6 +61,7 @@
 - (id)init;
 
 // load/save
+- (void)load;
 - (void)reload;
 - (void)save;
 

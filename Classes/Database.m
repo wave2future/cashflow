@@ -190,7 +190,7 @@ static char sql[4096];	// SQL buffer
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Transaction *t = [[Transaction alloc] init];
-		t.serial = sqlite3_column_int(stmt, 0);
+		t.pkey = sqlite3_column_int(stmt, 0);
 		const char *date = (const char*)sqlite3_column_text(stmt, 1);
 		t.type = sqlite3_column_int(stmt, 2);
 		t.value = sqlite3_column_double(stmt, 3);
@@ -245,7 +245,7 @@ static char sql[4096];	// SQL buffer
 	[self execSql:sql];
 
 	// get primary key
-	t.serial = sqlite3_last_insert_rowid(db);
+	t.pkey = sqlite3_last_insert_rowid(db);
 }
 
 - (void)updateTransaction:(Transaction *)t
@@ -258,7 +258,7 @@ static char sql[4096];	// SQL buffer
 					 t.value,
 					 [t.description UTF8String],
 					 [t.memo UTF8String],
-					 t.serial);
+					 t.pkey);
 	[self execSql:sql];
 }
 
@@ -266,7 +266,7 @@ static char sql[4096];	// SQL buffer
 {
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE FROM Transactions WHERE key = %d;", 
-					 t.serial);
+					 t.pkey);
 	[self execSql:sql];
 }
 
