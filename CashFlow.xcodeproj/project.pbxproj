@@ -36,11 +36,16 @@
 		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
+		3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
+		3E588D660EC34E6800D3853D /* EditAccountName.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D650EC34E6800D3853D /* EditAccountName.xib */; };
+		3E588D690EC34F6700D3853D /* EditAccountNameVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E588D680EC34F6700D3853D /* EditAccountNameVC.m */; };
 		3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A8D7E0EAE34B200118C3C /* Info-free.plist */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E9433760EC1E0750033D50A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E94339F0EC1E7650033D50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
+		3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3EB35B260EC302D30008FAF0 /* DataModelV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B250EC302D30008FAF0 /* DataModelV1.m */; };
 		3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
@@ -52,7 +57,6 @@
 		3EDDADBE0E89280800268AED /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
 		3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
 		3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
-		3EF1BE260EC33EC9000F2EF0 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1BE250EC33EC9000F2EF0 /* AssetListView.xib */; };
 		3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 /* End PBXBuildFile section */
 
@@ -103,12 +107,19 @@
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
 		3E4D1D1B0EBB471E006050FE /* ReportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportVC.m; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		3E588D450EC34CFE00D3853D /* AssetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AssetView.xib; path = Resources/AssetView.xib; sourceTree = "<group>"; };
+		3E588D650EC34E6800D3853D /* EditAccountName.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditAccountName.xib; path = Resources/EditAccountName.xib; sourceTree = "<group>"; };
+		3E588D670EC34F5600D3853D /* EditAccountNameVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditAccountNameVC.h; sourceTree = "<group>"; };
+		3E588D680EC34F6700D3853D /* EditAccountNameVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditAccountNameVC.m; sourceTree = "<group>"; };
 		3E5A8D7E0EAE34B200118C3C /* Info-free.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-free.plist"; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionView.xib; path = Resources/TransactionView.xib; sourceTree = "<group>"; };
 		3E9433750EC1E0750033D50A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Database.m; path = Classes/Database.m; sourceTree = "<group>"; };
 		3E9433770EC1E0800033D50A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Database.h; path = Classes/Database.h; sourceTree = "<group>"; };
 		3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		3EA011310EC344CC008CEEB7 /* AssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AssetListView.xib; path = Resources/AssetListView.xib; sourceTree = "<group>"; };
+		3EA0114C0EC3461A008CEEB7 /* AssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetVC.h; sourceTree = "<group>"; };
+		3EA0114D0EC34626008CEEB7 /* AssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetVC.m; sourceTree = "<group>"; };
 		3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rendered.png"; path = "images/icon-rendered.png"; sourceTree = "<group>"; };
 		3EB35B240EC302B40008FAF0 /* DataModelV1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModelV1.h; path = Classes/DataModelV1.h; sourceTree = "<group>"; };
 		3EB35B250EC302D30008FAF0 /* DataModelV1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModelV1.m; path = Classes/DataModelV1.m; sourceTree = "<group>"; };
@@ -127,7 +138,6 @@
 		3EDDAE7D0E8E468700268AED /* ExportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportVC.m; sourceTree = "<group>"; };
 		3EF1BE050EC33CF0000F2EF0 /* AssetListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListVC.h; sourceTree = "<group>"; };
 		3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVC.m; sourceTree = "<group>"; };
-		3EF1BE250EC33EC9000F2EF0 /* AssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetListView.xib; sourceTree = "<group>"; };
 		3EF914FD0E6C1F8300E31816 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModel.h; path = Classes/DataModel.h; sourceTree = "<group>"; };
 		3EF914FE0E6C1F8800E31816 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModel.m; path = Classes/DataModel.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -156,6 +166,10 @@
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				3EF1BE050EC33CF0000F2EF0 /* AssetListVC.h */,
 				3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */,
+				3EA0114C0EC3461A008CEEB7 /* AssetVC.h */,
+				3EA0114D0EC34626008CEEB7 /* AssetVC.m */,
+				3E588D670EC34F5600D3853D /* EditAccountNameVC.h */,
+				3E588D680EC34F6700D3853D /* EditAccountNameVC.m */,
 				28C286DF0D94DF7D0034E888 /* TransactionListVC.h */,
 				3E0A9E390EC33894005195A5 /* TransactionListVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
@@ -218,15 +232,17 @@
 			children = (
 				3E07F7C50E72CC6100DFEB33 /* Localizable.strings */,
 				3EB540790E8E90F400608B77 /* MainWindow.xib */,
-				3EF1BE250EC33EC9000F2EF0 /* AssetListView.xib */,
+				3EA011310EC344CC008CEEB7 /* AssetListView.xib */,
+				3E588D450EC34CFE00D3853D /* AssetView.xib */,
+				3E588D650EC34E6800D3853D /* EditAccountName.xib */,
 				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
-				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
 				3E0887F70E6EACA500739AC9 /* EditTypeView.xib */,
+				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
 				3E27113A0EAA208E00E57E51 /* ExportView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -354,7 +370,9 @@
 				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
 				3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */,
 				3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */,
-				3EF1BE260EC33EC9000F2EF0 /* AssetListView.xib in Resources */,
+				3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */,
+				3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */,
+				3E588D660EC34E6800D3853D /* EditAccountName.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,6 +406,8 @@
 				3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */,
 				3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */,
 				3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */,
+				3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */,
+				3E588D690EC34F6700D3853D /* EditAccountNameVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

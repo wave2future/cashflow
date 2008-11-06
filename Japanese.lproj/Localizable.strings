@@ -20,6 +20,8 @@
 
 "Account" = "口座";
 "Accounts" = "口座一覧";
+"Account Name" = "口座名";
+"Account Type" = "口座種別";
 
 "Transaction" = "取引";
 "Transactions" = "取引一覧";
@@ -53,3 +55,5 @@
 "Cancel" = "キャンセル";
 
 "Cash" = "現金";
+"Bank Account" = "銀行口座";
+"Credit Card" = "クレジットカード";

@@ -20,6 +20,8 @@
 
 "Account" = "Account";
 "Accounts" = "Accounts";
+"Account Name" = "Account Name";
+"Account Type" = "Account Type";
 
 "Transaction" = "Transaction";
 
@@ -53,4 +55,6 @@
 "Cancel" = "Cancel";
 
 "Cash" = "Cash";
+"Bank Account" = "Bank Account";
+"Credit Card" = "Credit Card";
 
