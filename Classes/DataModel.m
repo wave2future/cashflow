@@ -40,7 +40,7 @@
 
 @implementation DataModel
 
-@synthesize asset, selAsset;
+@synthesize assets, selAsset;
 
 - (id)init
 {
@@ -48,7 +48,7 @@
 
 	db = nil;
 
-	asset = nil;
+	assets = [[NSMutableArray alloc] init];
 	selAsset = nil;
 
 	return self;
@@ -57,7 +57,7 @@
 - (void)dealloc 
 {
 	[db release];
-	[asset release];
+	[assets release];
 
 	[super dealloc];
 }
@@ -72,8 +72,10 @@
 	[db release];
 
 	// 現バージョンでは Asset は1個だけ
-	asset = [[Asset alloc] init];
-	selAsset = asset;
+	Asset *asset = [[Asset alloc] init];
+	asset.pkey = 1;
+	[assets addObject:asset];
+	[asset release];
 
 	if ([db openDB]) {
 		// Okay database exists. load data.
@@ -93,6 +95,20 @@
 - (void)save
 {
 	[selAsset resave];
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Asset operation
+
+- (void)changeSelAsset:(Asset *)as
+{
+	if (selAsset != as) {
+		if (selAsset != nil) {
+			[selAsset clear];
+		}
+		selAsset = as;
+		[selAsset reload];
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////

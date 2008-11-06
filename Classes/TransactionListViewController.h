@@ -47,6 +47,8 @@
 	
 	TransactionViewController *transactionView;
 	ExportVC *exportVC;
+
+	Asset *asset;
 }
 
 //- (UITableView*)tableView;

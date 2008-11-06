@@ -42,11 +42,11 @@
 	Database *db;
 
 	// Asset
-	Asset *asset; // とりあえず1個だけ
+	NSMutableArray *assets;
 	Asset *selAsset; // 選択中の Asset
 }
 
-@property(nonatomic,retain) Asset *asset;
+@property(nonatomic,retain) NSMutableArray *assets;
 @property(nonatomic,assign) Asset *selAsset;
 
 // initializer
@@ -55,7 +55,9 @@
 // load/save
 - (void)load;
 - (void)reload;
-- (void)save;
+- (void)resave;
+
+- (void)changeSelAsset:(Asset *)as;
 
 // utility operation
 + (NSString*)currencyString:(double)x;
