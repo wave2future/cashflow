@@ -34,28 +34,52 @@
 
 #import <UIKit/UIKit.h>
 
+// asset types
 #define ASSET_CASH  0
 #define ASSET_BANK  1
 #define	ASSET_CARD  2
 
 @interface Asset : NSObject {
-    int key;
+	Database *db;
+
+    int pkey;
     int type;
     NSString *name;
+    int sorder;
+
+	// Transactions
     double initialBalance;
-    int order;
+	NSMutableArray *transactions;
+
+	int maxTransactions;
 }
 
-@property(nonatomic,assign) int key;
+@property(nonatomic,retain) Database *db;
+@property(nonatomic,assign) int pkey;
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSString *name;
+@property(nonatomic,assign) int stype;
+
 @property(nonatomic,assign) int initialBalance;
-@property(nonatomic,assign) int order;
+@property(nonatomic,retain) NSMutableArray *transactions;
 
-- (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
-- (double)fixBalance:(double)prevBalance;
-- (double)prevBalance;
+- (void)reload;
+- (void)resave;
+- (void)clear;
 
-- (id)initWithCoder:(NSCoder *)decoder;
-- (void)encodeWithCoder:(NSCoder *)coder;
+- (int)transactionCount;
+- (Transaction*)transactionAt:(int)n;
+- (void)insertTransaction:(Transaction*)tr;
+- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
+- (void)deleteTransactionAt:(int)n;
+- (void)deleteOldTransactionsBefore:(NSDate*)date;
+- (int)firstTransactionByDate:(NSDate*)date;
+- (void)sortByDate;
+
+- (void)recalcBalanceInitial;
+- (void)recalcBalance;
+- (void)recalcBalanceSub:(BOOL)isInitial;
+- (double)lastBalance;
+- (NSMutableArray *)allocDescList;
+
 @end
