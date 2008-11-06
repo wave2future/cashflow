@@ -33,8 +33,8 @@
 */
 
 
-#import "TransactionListViewController.h"
-#import "CashFlowAppDelegate.h"
+#import "TransactionListVC.h"
+#import "AppDelegate.h"
 #import "Transaction.h"
 #import "InfoVC.h"
 #import "EditValueVC.h"
