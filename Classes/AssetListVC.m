@@ -102,7 +102,8 @@
 
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 	}
 
 	Asset *asset = [theDataModel assetAtIndex:indexPath.row];
@@ -130,7 +131,16 @@
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
-// 新規トランザクション追加
+// アクセサリボタンをタップしたときの処理 : アセット変更
+- (void)tableView:(UITableView *)tv accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	AssetViewController *vc = [[[AssetViewController alloc]
+								initWithNibName:@"AssetView" bundle:[NSBundle mainBundle]] autorelease];
+	[vc setAssetIndex:indexPath.row];
+	[self.navigationController pushViewController:vc animated:YES];
+}
+
+// 新規アセット追加
 - (void)addAsset
 {
 	AssetViewController *vc = [[[AssetViewController alloc]
@@ -179,6 +189,17 @@
 		[self.tableView reloadData];
 	}
 #endif
+}
+
+// 並べ替え処理
+- (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return YES;
+}
+
+- (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
+{
+	[theDataModel reorderAsset:from.row to:to.row];
 }
 
 - (IBAction)showHelp:(id)sender

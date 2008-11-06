@@ -152,8 +152,8 @@
 	[data appendString:@"<BANKACCTFROM>\n"];
 	[data appendString:@"<BANKID>CashFlow\n"];
 	[data appendString:@"<BRANCHID>000\n"];
-	[data appendString:@"<ACCTID>0000000\n"];
-	[data appendString:@"<ACCTTYPE>SAVINGS\n"];
+	[data appendFormat:@"<ACCTID>%d\n", asset.pkey];
+	[data appendString:@"<ACCTTYPE>SAVINGS\n"]; // ### Use asset.type?
 	[data appendString:@"</BANKACCTFROM>\n"];
 
 	/* 明細情報開始(バンクトランザクションリスト) */

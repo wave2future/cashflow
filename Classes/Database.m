@@ -157,7 +157,7 @@ static char sql[4096];	// SQL buffer
 - (void)updateAsset:(Asset*)asset
 {
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Assets SET name=%Q type=%d initialBalance=%f sorder=%d WHERE key=%d;",
+					 "UPDATE Assets SET name=%Q, type=%d, initialBalance=%f, sorder=%d WHERE key=%d;",
 					 [asset.name UTF8String], asset.type, asset.initialBalance, asset.sorder,
 					 asset.pkey);
 	[self execSql:sql];

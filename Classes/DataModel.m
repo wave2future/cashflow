@@ -120,6 +120,22 @@
 	[db insertAsset:as];
 }
 
+- (void)reorderAsset:(int)from to:(int)to
+{
+	Asset *as = [[assets objectAtIndex:from] retain];
+	[assets removeObjectAtIndex:from];
+	[assets insertObject:as atIndex:to];
+	[as release];
+	
+	// renumbering sorder
+	for (int i = 0; i < [assets count]; i++) {
+		as = [assets objectAtIndex:i];
+		as.sorder = i;
+		[db updateAsset:as];
+	}
+}
+
+
 - (void)changeSelAsset:(Asset *)as
 {
 	if (selAsset != as) {
