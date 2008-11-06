@@ -42,54 +42,6 @@
 
 @synthesize db, transactions, initialBalance, maxTransactions;
 
-// Factory : override
-+ (DataModel*)allocWithLoad
-{
-	DataModel2 *dm = [[DataModel2 alloc] init];
-	
-	// Load from DB
-	Database *db = [[Database alloc] init];
-	dm.db = db;
-	[db release];
-
-	if ([dm.db openDB]) {
-		[dm reload];
-		return dm;
-	}
-
-	// Backward compatibility
-	DataModel1 *odm = [DataModel1 allocWithLoad];
-	if ([odm transactionCount] > 0) {
-		// TBD
-		dm.transactions = odm.transactions;
-		dm.initialBalance = odm.initialBalance;
-	}
-	[odm release];
-
-	// Ok, write database
-	[dm save];
-	
-	[dm recalcBalanceInitial];
-	
-	return dm;
-}
-
-// private
-- (void)reload
-{
-	initialBalance = [db loadInitialBalance:asset]; // self.initialBalance にはしない(DB上書きするので）
-	self.transactions = [db loadTransactions:asset];
-	
-	[self recalcBalanceInitial];
-}
-
-// private
-- (void)save
-{
-	[db saveTransactions:transactions asset:asset];
-	[db saveInitialBalance:initialBalance asset:asset];
-}
-
 - (id)init
 {
 	[super init];
@@ -112,6 +64,49 @@
 	[super dealloc];
 }
 
+- (void)loadDB
+{
+	// Load from DB
+	self.db = [[Database alloc] init];
+	[db release];
+
+	if ([db openDB]) {
+		[self reload];
+		return; // OK
+	}
+
+	// Backward compatibility
+	DataModel1 *dm1 = [DataModel1 allocWithLoad];
+	if ([dm1 transactionCount] > 0) {
+		// TBD
+		self.transactions = dm1.transactions;
+		self.initialBalance = dm1.initialBalance;
+	}
+	[dm1 release];
+
+	// Ok, write back database
+	[self save];
+	
+	[self recalcBalanceInitial];
+	
+	return dm;
+}
+
+// private
+- (void)reload
+{
+	initialBalance = [db loadInitialBalance:asset]; // self.initialBalance にはしない(DB上書きするので）
+	self.transactions = [db loadTransactions:asset];
+	
+	[self recalcBalanceInitial];
+}
+
+// private
+- (void)save
+{
+	[db saveTransactions:transactions asset:asset];
+	[db saveInitialBalance:initialBalance asset:asset];
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // Transaction operations

@@ -58,7 +58,8 @@ NSDateFormatter *theDateFormatter = nil;
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
 	// データロード
-	theDataModel2 = [DataModel allocWithLoad];
+	theDataModel2 = [[DataModel alloc] init];
+	[theDataModel2 load];
 
 	// misc
 	theDateFormatter = [[NSDateFormatter alloc] init];
