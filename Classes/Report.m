@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 #import "Report.h"
 
 @implementation Report

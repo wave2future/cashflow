@@ -34,7 +34,7 @@
 
 #import "TransactionVC.h"
 #import "EditMemoVC.h"
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation EditMemoViewController
 

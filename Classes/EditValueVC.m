@@ -37,7 +37,7 @@
 
 #import "TransactionVC.h"
 #import "EditValueVC.h"
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation EditValueViewController
 

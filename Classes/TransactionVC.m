@@ -34,7 +34,7 @@
 
 
 #import "TransactionVC.h"
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation TransactionViewController
 

@@ -34,7 +34,7 @@
 
 
 #import "ExportOfx.h"
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 #import "WebServer.h"
 
 @implementation ExportOfx
