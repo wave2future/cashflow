@@ -35,6 +35,7 @@
 
 #import "AssetVC.h"
 #import "AppDelegate.h"
+#import "GenEditTextVC.h"
 
 @implementation AssetViewController
 
@@ -51,13 +52,6 @@
 												  target:self
 												  action:@selector(saveAction)] autorelease];
 
-	// 下位の ViewController を生成しておく
-	editAccountNameVC = [[EditAccountNameViewController alloc]
-						 initWithNibName:@"EditAccountName"
-						 bundle:[NSBundle mainBundle]];
-
-	editAccountNameVC.listener = self;
-	
 	// ボタン生成
 	UIButton *b;
 	UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
@@ -76,8 +70,6 @@
 
 - (void)dealloc
 {
-	[editAccountNameVC release];
-	
 	[delButton release];
 	
 	[super dealloc];
@@ -210,10 +202,13 @@
 
 	// view を表示
 	UIViewController *vc = nil;
+	GenEditTextViewController *ge;
+	
 	switch (indexPath.row) {
 		case ROW_NAME:
-			editAccountNameVC.accountName = asset.name;
-			vc = editAccountNameVC;
+			ge = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Account Name", @"") identifier:0];
+			ge.text = asset.name;
+			vc = ge;
 			break;
 #if 0
 		case ROW_TYPE:
@@ -229,9 +224,9 @@
 }
 
 // イベントリスナ (下位 ViewController からの変更通知)
-- (void)editAccountNameViewChanged:(EditAccountNameViewController *)vc
+- (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)id
 {
-	asset.name = vc.accountName;
+	asset.name = vc.text;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

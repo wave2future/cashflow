@@ -37,15 +37,13 @@
 #import <Foundation/Foundation.h>
 #import "Asset.h"
 
-#import "EditAccountNameVC.h"
+#import "GenEditTextVC.h"
 
 @interface AssetViewController : UITableViewController 
-	<EditAccountNameViewListener>
+	<GenEditTextViewListener>
 {
 	int assetIndex;
 	Asset *asset;
-
-	EditAccountNameViewController *editAccountNameVC;
 
 	UIButton *delButton;
 }
