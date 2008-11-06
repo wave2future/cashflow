@@ -51,8 +51,6 @@
 	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
 	
-	maxTransactions = MAX_TRANSACTIONS;
-
 	return self;
 }
 
@@ -140,7 +138,7 @@
 	[self recalcBalance];
 	
 	// 上限チェック
-	if ([transactions count] > maxTransactions) {
+	if ([transactions count] > MAX_TRANSACTIONS) {
 		[self deleteTransactionAt:0];
 	}
 

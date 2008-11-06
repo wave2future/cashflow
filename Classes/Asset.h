@@ -45,16 +45,14 @@
 @interface Asset : NSObject {
 	Database *db;
 
-    int pkey;
-    int type;
-    NSString *name;
-    int sorder;
+	int pkey;
+	int type;
+	NSString *name;
+	int sorder;
 
 	// Transactions
-    double initialBalance;
+	double initialBalance;
 	NSMutableArray *transactions;
-
-	int maxTransactions;
 }
 
 @property(nonatomic,retain) Database *db;
