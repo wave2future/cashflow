@@ -32,59 +32,30 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "TransactionVC.h"
-#import "EditAccountNameVC.h"
-#import "AppDelegate.h"
 
-@implementation EditAccountNameViewController
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 
-@synthesize listener, accountName;
+@class GenEditTypeViewController;
 
-// Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	self.title = NSLocalizedString(@"Account Name", @"");
-	textField.placeholder = NSLocalizedString(@"Account Name", @"");
+@protocol GenEditTypeViewListener
+- (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id;
+@end
+
+@interface GenEditTypeViewController : UITableViewController
+{
+	id<GenEditTypeViewListener> listener;
+	int identifier;
 	
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-											   target:self
-											   action:@selector(doneAction)] autorelease];
+	NSArray *typeArray;
+	int type;
 }
 
-- (void)dealloc {
-	[accountName release];
-    [super dealloc];
-}
+@property(nonatomic,assign) id<GenEditTypeViewListener> listener;
+@property(nonatomic,assign) int identifier;
+@property(nonatomic,retain) NSArray *typeArray;
+@property(nonatomic,assign) int type;
 
-// 表示前の処理
-- (void)viewWillAppear:(BOOL)animated
-{
-	textField.text = accountName;
-	[super viewWillAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)doneAction
-{
-	self.accountName = textField.text;
-	[listener editAccountNameViewChanged:self];
-
-	[self.navigationController popViewControllerAnimated:YES];
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-    // Release anything that's not essential, such as cached data
-}
++ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
 
 @end
