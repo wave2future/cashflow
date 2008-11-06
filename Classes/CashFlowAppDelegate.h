@@ -45,9 +45,6 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navigationController;
 
-- (IBAction)addTransaction:(id)sender;
-- (IBAction)showHelp:(id)sender;
-
 + (NSString*)pathOfDataFile:(NSString*)filename;
 
 // Global variables

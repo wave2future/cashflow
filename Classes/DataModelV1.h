@@ -46,7 +46,7 @@
 @property(nonatomic,retain) NSMutableArray *transactions;
 @property(nonatomic,assign) double initialBalance;
 
-+ (DataModel*)allocWithLoad;
++ (DataModelV1*)allocWithLoad;
 - (id)init;
 - (void)dealloc;
 

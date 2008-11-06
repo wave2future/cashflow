@@ -60,9 +60,9 @@
 @property(nonatomic,assign) int pkey;
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSString *name;
-@property(nonatomic,assign) int stype;
+@property(nonatomic,assign) int sorder;
 
-@property(nonatomic,assign) int initialBalance;
+@property(nonatomic,assign) double initialBalance;
 
 - (void)loadOldFormatData;
 - (void)reload;

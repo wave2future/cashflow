@@ -40,7 +40,7 @@
 
 @implementation Asset
 
-@synthesize pkey, type, name, stype, transactions;
+@synthesize db, pkey, type, name, sorder;
 
 - (id)init
 {
@@ -80,7 +80,7 @@
 	}
 
 	// Ok, write back database
-	[self save];
+	[self resave];
 	[self recalcBalanceInitial];
 }
 

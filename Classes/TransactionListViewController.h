@@ -53,6 +53,7 @@
 
 //- (UITableView*)tableView;
 @property(nonatomic,retain) UITableView *tableView;
+//@property(nonatomic,assign) Asset *asset;
 
 - (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath;
 - (Transaction *)transactionWithIndexPath:(NSIndexPath *)indexPath;

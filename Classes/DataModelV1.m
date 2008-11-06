@@ -41,15 +41,16 @@
 
 @synthesize transactions, initialBalance;
 
-+ (DataModel*)allocWithLoad
++ (DataModelV1*)allocWithLoad
 {
-	DataModel *dm = nil;
+	DataModelV1 *dm = nil;
 
 	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
 
 	NSData *data = [NSData dataWithContentsOfFile:dataPath];
 	if (data != nil) {
 		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+		[ar setClass:[DataModelV1 class] forClassName:@"DataModel"]; // class name changed...
 
 		dm = [ar decodeObjectForKey:@"DataModel"];
 		if (dm != nil) {

@@ -67,11 +67,11 @@
 - (void)load
 {
 	// Load from DB
-	self.db = [[Database alloc] init];
-	[db release];
+	db = [[Database alloc] init];
 
 	// 現バージョンでは Asset は1個だけ
 	Asset *asset = [[Asset alloc] init];
+	asset.db = db;
 	asset.pkey = 1;
 	[assets addObject:asset];
 	[asset release];
@@ -79,9 +79,13 @@
 	if ([db openDB]) {
 		// Okay database exists. load data.
 		[asset reload];
+		//[asset loadOldFormatData]; // for testing
 	} else {
 		[asset loadOldFormatData];
 	}
+
+	// ad hoc...
+	selAsset = asset;
 }
 
 // private
@@ -91,7 +95,7 @@
 }
 
 // private
-- (void)save
+- (void)resave
 {
 	[selAsset resave];
 }

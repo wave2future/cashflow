@@ -156,7 +156,7 @@ static char sql[4096];	// SQL buffer
 	/* get initial balance */
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT initialBalance FROM Assets WHERE key = %d;", asset);
-	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
+	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
 	sqlite3_step(stmt);
 	double initialBalance = sqlite3_column_double(stmt, 0);
 	sqlite3_finalize(stmt);
@@ -184,7 +184,7 @@ static char sql[4096];	// SQL buffer
 					 "SELECT key, date, type, value, description, memo"
 					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
 					 asset);
-	sqlite3_prepare_v2(db, sql, strlen(sql), &stmt, NULL);
+	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
 
 	NSMutableArray *transactions = [[NSMutableArray alloc] init];
 
@@ -199,6 +199,11 @@ static char sql[4096];	// SQL buffer
 
 		t.date = [dateFormatter dateFromString:
 						[NSString stringWithCString:date encoding:NSUTF8StringEncoding]];
+		if (t.date == nil) {
+			// fail safe
+			[t release];
+			continue;
+		}
 		t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
 		t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
 
@@ -237,15 +242,15 @@ static char sql[4096];	// SQL buffer
 
 	if (stmt == NULL) {
 		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?);";
-		sqlite3_prepare_v2(db, s, strlen(s), &stmt, NULL);
+		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
 	}
 	sqlite3_bind_int(stmt, 1, asset);
-	sqlite3_bind_text(stmt, 2, [[dateFormatter stringFromDate:t.date] UTF8String]);
+	sqlite3_bind_text(stmt, 2, [[dateFormatter stringFromDate:t.date] UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_int(stmt, 3, t.type);
 	sqlite3_bind_int(stmt, 4, 0); // category
 	sqlite3_bind_double(stmt, 5, t.value);
-	sqlite3_bind_text(stmt, 6, [t.description UTF8String]);
-	sqlite3_bind_text(stmt, 7, [t.memo UTF8String]);
+	sqlite3_bind_text(stmt, 6, [t.description UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 7, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_step(stmt);
 	sqlite3_reset(stmt);
 
@@ -271,15 +276,15 @@ static char sql[4096];	// SQL buffer
 	static sqlite3_stmt *stmt = NULL;
 
 	if (stmt == NULL) {
-		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;",
-		sqlite3_prepare_v2(db, s, strlen(s), &stmt, NULL);
+		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
+		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
 	}
-	sqlite3_bind_text(stmt, 1, [[dateFormatter stringFromDate:t.date] UTF8String]);
+	sqlite3_bind_text(stmt, 1, [[dateFormatter stringFromDate:t.date] UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_int(stmt, 2, t.type);
 	sqlite3_bind_int(stmt, 3, 0); // category
 	sqlite3_bind_double(stmt, 4, t.value);
-	sqlite3_bind_text(stmt, 5, [t.description UTF8String]);
-	sqlite3_bind_text(stmt, 6, [t.memo UTF8String]);
+	sqlite3_bind_text(stmt, 5, [t.description UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 6, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_int(stmt, 7, t.pkey);
 	sqlite3_step(stmt);
 	sqlite3_reset(stmt);
@@ -303,7 +308,7 @@ static char sql[4096];	// SQL buffer
 	static sqlite3_stmt *stmt = NULL;
 	if (stmt == NULL) {
 		const char *s = "DELETE FROM Transactions WHERE key = ?;";
-		sqlite3_prepare_v2(db, s, strlen(s), &stmt, NULL);
+		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
 	}
 	sqlite3_bind_int(stmt, 1, t.pkey);
 	sqlite3_step(stmt);

@@ -71,18 +71,6 @@ NSDateFormatter *theDateFormatter = nil;
 	[window makeKeyAndVisible];
 }
 
-- (IBAction)addTransaction:(id)sender
-{
-	TransactionListViewController *v = (TransactionListViewController *)[navigationController topViewController];
-	[v addTransaction];
-}
-
-- (IBAction)showHelp:(id)sender
-{
-	NSURL *url = [NSURL URLWithString:NSLocalizedString(@"HelpURL", @"web help url")];
-	[[UIApplication sharedApplication] openURL:url];
-}
-
 //
 // 終了処理 : データ保存
 //

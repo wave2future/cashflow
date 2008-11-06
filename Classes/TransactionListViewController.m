@@ -43,6 +43,7 @@
 @implementation TransactionListViewController
 
 @synthesize tableView;
+//@synthesize asset;
 
 - (void)viewDidLoad
 {
@@ -81,7 +82,6 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
 
-	// set asset
 	asset = theDataModel.selAsset;
 	[self updateBalance];
 	
