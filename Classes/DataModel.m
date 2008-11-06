@@ -132,11 +132,12 @@ static NSNumberFormatter *currencyFormatter = nil;
 + (NSString*)currencyString:(double)x
 {
 	if (currencyFormatter == nil) {
-		currencyFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+		currencyFormatter = [[NSNumberFormatter alloc] init];
 		[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
 		[currencyFormatter setLocale:[NSLocale currentLocale]];
 	}
-	NSString *bstr = [currencyFormatter stringFromNumber:[NSNumber numberWithDouble:x]];
+	NSNumber *n = [NSNumber numberWithDouble:x];
+	NSString *bstr = [currencyFormatter stringFromNumber:n];
 
 	return bstr;
 }

@@ -104,7 +104,7 @@ static char sql[4096];	// SQL buffer
 
 
 	// 以下は将来使うため
-	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, order INTEGER);"];
+	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, sorder INTEGER);"];
 
 	return NO; // re-created
 }
