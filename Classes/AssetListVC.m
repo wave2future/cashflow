@@ -70,6 +70,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+	[tableView reloadData];
 	[super viewWillAppear:animated];
 }
 
@@ -118,6 +119,7 @@
 	[tv deselectRowAtIndexPath:indexPath animated:NO];
 
 	Asset *asset = [theDataModel assetAtIndex:indexPath.row];
+	[theDataModel changeSelAsset:asset];
 
 	// TransactionListView を表示
 	TransactionListViewController *vc = [[[TransactionListViewController alloc]

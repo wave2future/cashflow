@@ -46,7 +46,7 @@
 
 @property(nonatomic,readonly) Database *db;
 @property(nonatomic,retain) NSMutableArray *assets;
-@property(nonatomic,assign) Asset *selAsset;
+@property(nonatomic,readonly) Asset *selAsset;
 
 // initializer
 - (id)init;

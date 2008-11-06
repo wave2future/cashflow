@@ -53,7 +53,7 @@
 
 	// 下位の ViewController を生成しておく
 	editAccountNameVC = [[EditAccountNameViewController alloc]
-						 initWithNibName:@"EditAccountNameView"
+						 initWithNibName:@"EditAccountName"
 						 bundle:[NSBundle mainBundle]];
 
 	editAccountNameVC.listener = self;
