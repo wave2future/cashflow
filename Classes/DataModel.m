@@ -40,7 +40,7 @@
 
 @implementation DataModel
 
-@synthesize db, transactions, initialBalance, maxTransactions;
+@synthesize db, transactions;
 
 - (id)init
 {
@@ -75,25 +75,22 @@
 	[db release];
 
 	if ([db openDB]) {
+		// Okay database exists. load data.
 		[self reload];
-		return; // OK
 	}
+	else {
+		// Backward compatibility : try to load old format data
+		DataModel1 *dm1 = [DataModel1 allocWithLoad];
+		if (dm1 != nil) {
+			self.transactions = dm1.transactions;
+			self.initialBalance = dm1.initialBalance;
+			[dm1 release];
+		}
 
-	// Backward compatibility
-	DataModel1 *dm1 = [DataModel1 allocWithLoad];
-	if ([dm1 transactionCount] > 0) {
-		// TBD
-		self.transactions = dm1.transactions;
-		self.initialBalance = dm1.initialBalance;
+		// Ok, write back database
+		[self save];
+		[self recalcBalanceInitial];
 	}
-	[dm1 release];
-
-	// Ok, write back database
-	[self save];
-	
-	[self recalcBalanceInitial];
-	
-	return dm;
 }
 
 // private
@@ -243,22 +240,28 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 - (void)recalcBalanceSub:(BOOL)isInitial
 {
-	[super recalcBalanceSub:isInitial];
+	Transaction *t;
+	double bal;
+	int max = [transactions count];
+	int i;
 
-	if (!isInitial) {
-		// 残高照会取引は金額がかわっている可能性があるため、DBを更新する
-		Transaction *t;
-		int i, max = [transactions count];
-	
-		[db beginTransaction];
-		for (i = 0; i < max; i++) {
-			t = [transactions objectAtIndex:i];
-			if (t.type == TYPE_ADJ) {
-				[db updateTransaction:t];
-			}
+	[db beginTransaction];
+
+	bal = initialBalance;
+	for (i = 0; i < max; i++) {
+		double oldval;
+
+		t = [self transactionAt:i];
+		oldval = t.value;
+		bal = [t fixBalance:bal isInitial:isInitial];
+
+		if (t.value != oldval) {
+			// 金額が変更された場合(残高照会取引)、DB を更新
+			[db updateTransaction:t];
 		}
-		[db commitTransaction];
 	}
+
+	[db commitTransaction];
 }
 
 - (double)lastBalance
@@ -270,21 +273,32 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	return [[transactions objectAtIndex:max - 1] balance];
 }
 
-// override initialBalance property
+// initialBalance property
+- (double)initialBalance
+{
+	return initialBalance;
+}
+
 - (void)setInitialBalance:(double)v
 {
-	[super setInitialBalance:v];
+	initialBalance = v;
 	[db saveInitialBalance:v asset:asset];
 }
 
 ////////////////////////////////////////////////////////////////////////////
 // Utility
+
+static NSNumberFormatter *currencyFormatter = nil;
+
 + (NSString*)currencyString:(double)x
 {
-	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
-	[f setNumberStyle:NSNumberFormatterCurrencyStyle];
-	[f setLocale:[NSLocale currentLocale]];
-	NSString *bstr = [f stringFromNumber:[NSNumber numberWithDouble:x]];
+	if (currencyFormatter == nil) {
+		currencyFormatter = [[[NSNumberFormatter alloc] init] autorelease];
+		[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+		[currencyFormatter setLocale:[NSLocale currentLocale]];
+	}
+	NSString *bstr = [currencyFormatter stringFromNumber:[NSNumber numberWithDouble:x]];
+
 	return bstr;
 }
 
@@ -341,4 +355,5 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 	return ary;
 }
+
 @end

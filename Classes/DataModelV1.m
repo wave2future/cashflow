@@ -57,10 +57,6 @@
 			[ar finishDecoding];
 		}
 	}
-	if (dm == nil) {
-		// initial or some error...
-		dm = [[DataModel alloc] init];
-	}
 	
 	return dm;
 }

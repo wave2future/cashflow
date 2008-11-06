@@ -35,8 +35,6 @@
 #import <UIKit/UIKit.h>
 #import "Transaction.h"
 
-#define MAX_TRANSACTIONS	500
-
 @interface DataModel1 : NSObject <NSCoding> {
 	NSMutableArray *transactions;
 	double initialBalance;

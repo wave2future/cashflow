@@ -37,6 +37,8 @@
 #import "DataModel.h"
 #import "Database.h"
 
+#define MAX_TRANSACTIONS	500
+
 @interface DataModel : NSObject {
 	Database *db;
 
@@ -52,12 +54,10 @@
 }
 
 @property(nonatomic,retain) Database *db;
-@property(nonatomic,retain) NSMutableArray *transactions;
 @property(nonatomic,assign) double initialBalance;
-@property(nonatomic,assign) int maxTransactions;
+@property(nonatomic,retain) NSMutableArray *transactions;
 
 // initializer
-+ (DataModel*)allocWithLoad;
 - (id)init;
 
 // load/save
@@ -66,7 +66,6 @@
 - (void)save;
 
 // transaction operation
-- (void)setMaxTransactions:(int)max;
 - (int)getTransactionCount;
 - (Transaction*)getTransactionAt:(int)n;
 - (void)insertTransaction:(Transaction*)tr;
