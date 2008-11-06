@@ -50,7 +50,8 @@
 	[super viewDidLoad];
 	
 	// title 設定
-	self.title = NSLocalizedString(@"Transactions", @"");
+	//self.title = NSLocalizedString(@"Transactions", @"");
+	self.title = theDataModel.selAsset.name;
 	
 	// "+" ボタンを追加
 	UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
@@ -62,7 +63,8 @@
 	[plusButton release];
 	
 	// Edit ボタンを追加
-	self.navigationItem.leftBarButtonItem = [self editButtonItem];
+	// TBD
+	//self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	
 	// 下位 View を作っておく
 	transactionView = [[TransactionViewController alloc]

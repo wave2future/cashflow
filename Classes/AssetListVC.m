@@ -37,8 +37,11 @@
 #import "AssetListVC.h"
 #import "Asset.h"
 #import "TransactionListVC.h"
+#import "InfoVC.h"
 
 @implementation AssetListViewController
+
+@synthesize tableView;
 
 - (void)viewDidLoad
 {
@@ -170,6 +173,13 @@
 		[self.tableView reloadData];
 	}
 #endif
+}
+
+- (IBAction)showHelp:(id)sender
+{
+	InfoVC *v = [[InfoVC alloc] initWithNibName:@"InfoView" bundle:[NSBundle mainBundle]];
+	[self.navigationController pushViewController:v animated:YES];
+	[v release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

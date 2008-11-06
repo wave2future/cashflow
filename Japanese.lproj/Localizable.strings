@@ -18,8 +18,10 @@
 
 "Payment" = "支払";
 
-"Transaction" = "取引";
+"Account" = "口座";
+"Accounts" = "口座一覧";
 
+"Transaction" = "取引";
 "Transactions" = "取引一覧";
 
 "Type" = "種別";

@@ -37,8 +37,14 @@
 #import "DataModel.h"
 #import "TransactionListVC.h"
 
-@interface AssetListViewController : UITableViewController 
+@interface AssetListViewController : UIViewController
+	<UITableViewDelegate, UITableViewDataSource>
 {
+	IBOutlet UITableView *tableView;
 }
+
+@property(nonatomic,retain) UITableView *tableView;
+
+- (IBAction)showHelp:(id)sender;
 
 @end

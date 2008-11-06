@@ -51,6 +51,8 @@
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
 		3EDDADBE0E89280800268AED /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
 		3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
+		3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
+		3EF1BE260EC33EC9000F2EF0 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF1BE250EC33EC9000F2EF0 /* AssetListView.xib */; };
 		3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 /* End PBXBuildFile section */
 
@@ -123,6 +125,9 @@
 		3EDDAE780E8E467200268AED /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/ExportView.xib; sourceTree = "<group>"; };
 		3EDDAE7C0E8E468700268AED /* ExportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportVC.h; sourceTree = "<group>"; };
 		3EDDAE7D0E8E468700268AED /* ExportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportVC.m; sourceTree = "<group>"; };
+		3EF1BE050EC33CF0000F2EF0 /* AssetListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListVC.h; sourceTree = "<group>"; };
+		3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVC.m; sourceTree = "<group>"; };
+		3EF1BE250EC33EC9000F2EF0 /* AssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetListView.xib; sourceTree = "<group>"; };
 		3EF914FD0E6C1F8300E31816 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModel.h; path = Classes/DataModel.h; sourceTree = "<group>"; };
 		3EF914FE0E6C1F8800E31816 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModel.m; path = Classes/DataModel.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -149,6 +154,8 @@
 			children = (
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				3EF1BE050EC33CF0000F2EF0 /* AssetListVC.h */,
+				3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */,
 				28C286DF0D94DF7D0034E888 /* TransactionListVC.h */,
 				3E0A9E390EC33894005195A5 /* TransactionListVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
@@ -211,6 +218,7 @@
 			children = (
 				3E07F7C50E72CC6100DFEB33 /* Localizable.strings */,
 				3EB540790E8E90F400608B77 /* MainWindow.xib */,
+				3EF1BE250EC33EC9000F2EF0 /* AssetListView.xib */,
 				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
 				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
@@ -346,6 +354,7 @@
 				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
 				3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */,
 				3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */,
+				3EF1BE260EC33EC9000F2EF0 /* AssetListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,6 +387,7 @@
 				3EB35B260EC302D30008FAF0 /* DataModelV1.m in Sources */,
 				3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */,
 				3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */,
+				3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
