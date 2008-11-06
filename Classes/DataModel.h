@@ -33,17 +33,15 @@
 */
 
 #import <UIKit/UIKit.h>
-#import "Transaction.h"
-#import "DataModel.h"
-#import "Database.h"
 #import "Asset.h"
+#import "Database.h"
 
 @interface DataModel : NSObject {
 	Database *db;
 
 	// Asset
 	NSMutableArray *assets;
-	Asset *selAsset; // ÁªÂòÃæ¤Î Asset
+	Asset *selAsset; // é¸æŠä¸­ã® Asset
 }
 
 @property(nonatomic,retain) NSMutableArray *assets;

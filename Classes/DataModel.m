@@ -35,7 +35,6 @@
 // DataModel V2
 // (SQLite ver)
 
-#import <sqlite3.h>
 #import "DataModel.h"
 
 @implementation DataModel

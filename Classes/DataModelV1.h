@@ -35,7 +35,7 @@
 #import <UIKit/UIKit.h>
 #import "Transaction.h"
 
-@interface DataModel1 : NSObject <NSCoding> {
+@interface DataModelV1 : NSObject <NSCoding> {
 	NSMutableArray *transactions;
 	double initialBalance;
 
@@ -45,34 +45,12 @@
 
 @property(nonatomic,retain) NSMutableArray *transactions;
 @property(nonatomic,assign) double initialBalance;
-@property(nonatomic,assign) int serialCounter;
 
 + (DataModel*)allocWithLoad;
-- (BOOL)saveToStorage;
-- (void)setMaxTransactions:(int)max;
-
 - (id)init;
+- (void)dealloc;
 
 - (int)transactionCount;
 - (Transaction*)transactionAt:(int)n;
-
-- (void)assignSerial:(Transaction*)tr;
-- (void)insertTransaction:(Transaction*)tr;
-- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
-- (void)deleteTransactionAt:(int)n;
-- (void)deleteOldTransactionsBefore:(NSDate*)date;
-- (int)firstTransactionByDate:(NSDate*)date;
-- (void)sortByDate;
-
-- (void)recalcBalanceInitial;
-- (void)recalcBalance;
-- (void)recalcBalanceSub:(BOOL)isInitial;
-- (double)lastBalance;
-
-+ (NSString*)currencyString:(double)x;
-- (NSMutableArray *)allocDescList;
-
-- (void)encodeWithCoder:(NSCoder*)encoder;
-- (id)initWithCoder:(NSCoder*)decoder;
 
 @end

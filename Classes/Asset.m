@@ -37,6 +37,7 @@
 #import <sqlite3.h>
 #import "Asset.h"
 #import "DataModel.h"
+#import "DataModelV1.h"
 
 @implementation Asset
 
@@ -70,7 +71,7 @@
 - (void)loadOldFormatData
 {
 	// Backward compatibility : try to load old format data
-	DataModel1 *dm1 = [DataModel1 allocWithLoad];
+	DataModelV1 *dm1 = [DataModelV1 allocWithLoad];
 	if (dm1 != nil) {
 		initialBalance = dm1.initialBalance;
 		transactions = dm1.transactions;

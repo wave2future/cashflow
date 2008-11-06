@@ -33,6 +33,7 @@
 */
 
 #import <UIKit/UIKit.h>
+#import "Transaction.h"
 #import "Database.h"
 
 // asset types

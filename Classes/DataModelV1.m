@@ -37,7 +37,7 @@
 #import "CashFlowAppDelegate.h"
 #import "DataModelV1.h"
 
-@implementation DataModel1
+@implementation DataModelV1
 
 @synthesize transactions, initialBalance;
 
