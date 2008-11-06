@@ -39,7 +39,7 @@
 
 @implementation DataModel
 
-@synthesize assets, selAsset;
+@synthesize db, assets, selAsset;
 
 - (id)init
 {
@@ -112,6 +112,12 @@
 - (Asset*)assetAtIndex:(int)n
 {
 	return [assets objectAtIndex:n];
+}
+
+- (void)addAsset:(Asset *)as
+{
+	[assets addObject:as];
+	[db insertAsset:as];
 }
 
 - (void)changeSelAsset:(Asset *)as

@@ -32,37 +32,32 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
 #import "Asset.h"
-#import "Database.h"
 
-@interface DataModel : NSObject {
-	Database *db;
+@interface AssetViewController : UITableViewController 
+{
+	int assetIndex;
+	Asset *asset;
 
-	// Asset
-	NSMutableArray *assets;
-	Asset *selAsset; // 選択中の Asset
+#if 0
+	EditDateViewController *editDateVC;
+	EditTypeViewController *editTypeVC;
+	EditValueViewController *editValueVC;
+	EditDescViewController *editDescVC;
+	EditMemoViewController *editMemoVC;
+#endif	
+
+	UIButton *delButton;
 }
 
-@property(nonatomic,readonly) Database *db;
-@property(nonatomic,retain) NSMutableArray *assets;
-@property(nonatomic,assign) Asset *selAsset;
+@property(nonatomic,assign) Asset *asset;
 
-// initializer
-- (id)init;
+- (void)setAssetIndex:(int)n;
+- (void)saveAction;
 
-// load/save
-- (void)load;
-- (void)reload;
-- (void)resave;
-
-// asset operation
-- (int)assetCount;
-- (Asset *)assetAtIndex:(int)n;
-- (void)addAsset:(Asset *)as;
-- (void)changeSelAsset:(Asset *)as;
-
-// utility operation
-+ (NSString*)currencyString:(double)x;
+//- (void)delButtonTapped;
 
 @end

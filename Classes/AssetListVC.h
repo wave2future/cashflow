@@ -45,6 +45,7 @@
 
 @property(nonatomic,retain) UITableView *tableView;
 
+- (void)addAsset;
 - (IBAction)showHelp:(id)sender;
 
 @end

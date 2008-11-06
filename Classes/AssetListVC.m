@@ -36,6 +36,7 @@
 #import "AppDelegate.h"
 #import "AssetListVC.h"
 #import "Asset.h"
+#import "AssetVC.h"
 #import "TransactionListVC.h"
 #import "InfoVC.h"
 
@@ -128,9 +129,12 @@
 }
 
 // 新規トランザクション追加
-- (void)addAccount
+- (void)addAsset
 {
-	//[self.navigationController pushViewController:transactionView animated:YES];
+	AssetViewController *vc = [[[AssetViewController alloc]
+								initWithNibName:@"AssetView" bundle:[NSBundle mainBundle]] autorelease];
+	[vc setAssetIndex:-1];
+	[self.navigationController pushViewController:vc animated:YES];
 }
 
 // Editボタン処理
