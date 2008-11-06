@@ -33,6 +33,7 @@
 */
 
 #import <UIKit/UIKit.h>
+#import "Database.h"
 
 // asset types
 #define ASSET_CASH  0
