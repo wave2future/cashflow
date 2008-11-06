@@ -35,8 +35,7 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@class AssetViewController;
-@class EditAccountNameViewController;
+@class GenEditTextViewController;
 
 @protocol GenEditTextViewListener
 - (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)id;
@@ -50,7 +49,7 @@
 	int identifier;
 }
 
-@property(nonatomic,assign) id<GenEditTextListener> listener;
+@property(nonatomic,assign) id<GenEditTextViewListener> listener;
 @property(nonatomic,assign) int identifier;
 @property(nonatomic,retain) NSString *text;
 

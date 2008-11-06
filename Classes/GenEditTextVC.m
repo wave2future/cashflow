@@ -37,7 +37,7 @@
 
 @implementation GenEditTextViewController
 
-@synthesize text;
+@synthesize listener, identifier, text;
 
 + (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewListener>)listener title:(NSString*)title identifier:(int)id
 {
@@ -55,7 +55,7 @@
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
-	textField.placeholder = title;
+	textField.placeholder = self.title;
 	
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
