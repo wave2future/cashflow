@@ -84,11 +84,11 @@
 	}
 	reports = [[NSMutableArray alloc] init];
 
-	NSMutableArray *transactions = theDataModel.transactions;
-	int trnum = [transactions count];
+	Asset *asset = [theDataModel selAsset];
+	int trnum = [asset transactionCount];
 	if (trnum == 0) return;
 
-	NSDate *firstDate = [[transactions objectAtIndex:0] date];
+	NSDate *firstDate = [[asset transactionAt:0] date];
 	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
 	// レポート周期の開始時間および間隔を求める
@@ -129,7 +129,7 @@
 
 		// 集計
 		for (; n < trnum; n++) {
-			Transaction *t = [transactions objectAtIndex:n];
+			Transaction *t = [asset transactionAt:n];
 			
 			if ([t.date compare:dd] != NSOrderedAscending) {
 				break;

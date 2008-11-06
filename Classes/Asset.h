@@ -62,7 +62,6 @@
 @property(nonatomic,assign) int stype;
 
 @property(nonatomic,assign) int initialBalance;
-@property(nonatomic,retain) NSMutableArray *transactions;
 
 - (void)loadOldFormatData;
 - (void)reload;

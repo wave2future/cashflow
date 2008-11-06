@@ -57,7 +57,9 @@
 - (void)dealloc 
 {
 	[db release];
-	[transactions release];
+	if (transactions != nil) {
+		[transactions release];
+	}
 
 	[super dealloc];
 }
@@ -84,8 +86,10 @@
 
 - (void)reload
 {
+	[self clear];
+
 	initialBalance = [db loadInitialBalance:pkey]; // self.initialBalance にはしない(DB上書きするので）
-	self.transactions = [db loadTransactions:pkey];
+	transactions = [db loadTransactions:pkey];
 	
 	[self recalcBalanceInitial];
 }
@@ -99,8 +103,9 @@
 - (void)clear
 {
 	if (transactions != nil) {
-		self.transactions = nil;  // release
+		[transactions release];
 	}
+	transactions = nil;
 	initialBalance = 0.0;
 }
 
