@@ -43,7 +43,7 @@
 @implementation TransactionListViewController
 
 @synthesize tableView;
-//@synthesize asset;
+@synthesize asset;
 
 - (void)viewDidLoad
 {

@@ -34,34 +34,11 @@
 
 
 #import <UIKit/UIKit.h>
-#import "TransactionVC.h"
-#import "ExportVC.h"
 #import "DataModel.h"
-#import "EditValueVC.h"
+#import "TransactionListVC.h"
 
-@interface TransactionListViewController : UIViewController 
-	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
+@interface AssetListViewController : UITableViewController 
 {
-	IBOutlet UITableView *tableView;
-	IBOutlet UIBarButtonItem *barBalanceLabel;
-	
-	TransactionViewController *transactionView;
-	ExportVC *exportVC;
-
-	Asset *asset;
 }
-
-//- (UITableView*)tableView;
-@property(nonatomic,retain) UITableView *tableView;
-@property(nonatomic,assign) Asset *asset;
-
-- (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath;
-- (Transaction *)transactionWithIndexPath:(NSIndexPath *)indexPath;
-- (UITableViewCell *)transactionCell:(Transaction*)t;
-- (UITableViewCell *)initialBalanceCell;
-- (void)updateBalance;
-- (void)addTransaction;
-- (IBAction)doAction:(id)sender;
-- (IBAction)showHelp:(id)sender;
 
 @end
