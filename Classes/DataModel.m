@@ -99,6 +99,16 @@
 ////////////////////////////////////////////////////////////////////////////
 // Asset operation
 
+- (int)assetCount
+{
+	return [assets count];
+}
+
+- (Asset*)assetAtIndex:(int)n
+{
+	return [assets objectAtIndex:n];
+}
+
 - (void)changeSelAsset:(Asset *)as
 {
 	if (selAsset != as) {

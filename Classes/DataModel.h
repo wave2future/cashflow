@@ -55,6 +55,9 @@
 - (void)reload;
 - (void)resave;
 
+// asset operation
+- (int)assetCount;
+- (Asset *)assetAtIndex:(int)n;
 - (void)changeSelAsset:(Asset *)as;
 
 // utility operation
