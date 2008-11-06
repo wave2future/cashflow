@@ -32,12 +32,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 #import "TransactionListViewController.h"
 #import "DataModel.h"
 #import "Transaction.h"
 
-@implementation CashFlowAppDelegate
+@implementation AppDelegate
 
 @synthesize window;
 @synthesize navigationController;

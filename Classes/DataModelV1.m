@@ -34,7 +34,7 @@
 
 // DataModel V1 (for backward compatibility)
 
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 #import "DataModelV1.h"
 
 @implementation DataModelV1
@@ -45,7 +45,7 @@
 {
 	DataModelV1 *dm = nil;
 
-	NSString *dataPath = [CashFlowAppDelegate pathOfDataFile:@"Transactions.dat"];
+	NSString *dataPath = [AppDelegate pathOfDataFile:@"Transactions.dat"];
 
 	NSData *data = [NSData dataWithContentsOfFile:dataPath];
 	if (data != nil) {

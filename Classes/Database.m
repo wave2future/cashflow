@@ -36,7 +36,7 @@
 // まだ試作中、、、
 
 #import "Database.h"
-#import "CashFlowAppDelegate.h"
+#import "AppDelegate.h"
 
 @implementation Database
 
@@ -78,7 +78,7 @@ static char sql[4096];	// SQL buffer
 - (BOOL)openDB
 {
 	// Load from DB
-	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
+	NSString *dbPath = [AppDelegate pathOfDataFile:@"CashFlow.db"];
 	
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
