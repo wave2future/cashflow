@@ -36,6 +36,7 @@
 #import "AssetVC.h"
 #import "AppDelegate.h"
 #import "GenEditTextVC.h"
+#import "GenEditTypeVC.h"
 
 @implementation AssetViewController
 
@@ -180,10 +181,10 @@
 				value.text = NSLocalizedString(@"Cash", @"");
 				break;
 			case ASSET_BANK:
-				value.text = NSLocalizedString(@"Bank account", @"");
+				value.text = NSLocalizedString(@"Bank Account", @"");
 				break;
 			case ASSET_CARD:
-				value.text = NSLocalizedString(@"Credit card", @"");
+				value.text = NSLocalizedString(@"Credit Card", @"");
 				break;
 			}
 			break;
@@ -203,19 +204,29 @@
 	// view を表示
 	UIViewController *vc = nil;
 	GenEditTextViewController *ge;
-	
+	GenEditTypeViewController *gt;
+	NSArray *typeArray;
+
 	switch (indexPath.row) {
 		case ROW_NAME:
 			ge = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Account Name", @"") identifier:0];
 			ge.text = asset.name;
 			vc = ge;
 			break;
-#if 0
+
 		case ROW_TYPE:
-			editTypeVC.type = trans.type;
-			vc = editTypeVC;
+			typeArray = [[[NSArray alloc]initWithObjects:
+						  NSLocalizedString(@"Cash", @""),
+						  NSLocalizedString(@"Bank Account", @""),
+						  NSLocalizedString(@"Credit Card", @""),
+						  nil] autorelease];
+			gt = [GenEditTypeViewController genEditTypeViewController:self 
+																array:typeArray 
+																title:NSLocalizedString(@"Account Type", @"")
+														   identifier:0];
+			gt.type = asset.type;
+			vc = gt;
 			break;
-#endif
 	}
 	
 	if (vc != nil) {
@@ -228,6 +239,12 @@
 {
 	asset.name = vc.text;
 }
+
+- (void)genEditTypeViewChanged:(GenEditTypeViewController *)vc identifier:(int)id
+{
+	asset.type = vc.type;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // 削除処理
