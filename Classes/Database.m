@@ -81,15 +81,16 @@ static char sql[4096];	// SQL buffer
 	NSString *dbPath = [CashFlowAppDelegate pathOfDataFile:@"CashFlow.db"];
 	
 	NSFileManager *fileManager = [NSFileManager defaultManager];
-	BOOL isExistDb = [fileManager fileExistsAtPath:dbPath];
+	BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
 	
 	if (sqlite3_open([dbPath UTF8String], &db) != 0) {
 		// ouch!
 	}
-	if (isExistDb) {
-		return YES;
-	}
+	return isExistedDb;
+}
 
+- (void)initializeDB
+{
 	// テーブル作成＆初期データ作成
 	[self execSql:"CREATE TABLE Transactions ("
 		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER, category INTEGER,"
@@ -102,11 +103,8 @@ static char sql[4096];	// SQL buffer
 					 [NSLocalizedString(@"Cash", @"") UTF8String]);
 	[self execSql:sql];
 
-
 	// 以下は将来使うため
 	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, sorder INTEGER);"];
-
-	return NO; // re-created
 }
 
 - (void)beginTransactionDB
@@ -122,33 +120,66 @@ static char sql[4096];	// SQL buffer
 ///////////////////////////////////////////////////////////////////////////////
 // Asset 処理
 
-#if 0
 - (NSMutableArray*)loadAssets
 {
+	sqlite3_stmt *stmt;
+	NSMutableArray *assets = [[NSMutableArray alloc] init];
+
+	sqlite3_prepare_v2(db, "SELECT * FROM Assets ORDER BY sorder;", -1, &stmt, NULL);
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		Asset *as = [[Asset alloc] init];
+		as.pkey = sqlite3_column_int(stmt, 0);
+		const char *name = (const char *)sqlite3_column_text(stmt, 1);
+		as.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+		as.type = sqlite3_column_int(stmt, 2);
+		as.initialBalance = sqlite3_column_double(stmt, 3);
+		as.sorder = sqlite3_column_int(stmt, 4);
+
+		as.db = self; // back pointer
+		
+		[assets addObject:as];
+		[as release];
+	}
+	
+	return assets;
 }
 
-- (int)insertAsset:(Asset*)asset
+- (void)insertAsset:(Asset*)asset
 {
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Assets VALUES(NULL, %Q, %d, 0.0, 9999);",
-					 [name UTF8String], type);
+					 "INSERT INTO Assets VALUES(NULL, %Q, %d, %f, %d);",
+					 [asset.name UTF8String], asset.type, asset.initialBalance, asset.sorder);
 	[self execSql:sql];
 
-	return sqlite3_last_insert_rowid(db);
+	asset.pkey = sqlite3_last_insert_rowid(db);
 }
 
 - (void)updateAsset:(Asset*)asset
 {
-	// TBD
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE Assets SET name=%Q type=%d initialBalance=%f sorder=%d WHERE key=%d;",
+					 [asset.name UTF8String], asset.type, asset.initialBalance, asset.sorder,
+					 asset.pkey);
+	[self execSql:sql];
+}
+
+- (void)updateInitialBalance:(Asset*)asset
+{
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;",
+					 asset.initialBalance, asset.pkey);
+	[self execSql:sql];
 }
 
 - (void)deleteAsset:(Asset*)asset
 {
-	// TBD
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE Assets WHERE key=%d;",
+					 asset.pkey);
+	[self execSql:sql];
 }
-#endif
 
-
+#if 0
 - (double)loadInitialBalance:(int)asset
 {
 	sqlite3_stmt *stmt;
@@ -171,6 +202,7 @@ static char sql[4096];	// SQL buffer
 					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;", initialBalance, asset);
 	[self execSql:sql];
 }
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 // Transaction 処理
@@ -221,7 +253,7 @@ static char sql[4096];	// SQL buffer
 
 	// delete all transactions
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE * FROM Transactions WHERE asset = %d;", asset);
+					 "DELETE FROM Transactions WHERE asset = %d;", asset);
 	[self execSql:sql];
 
 	// write all transactions
@@ -254,19 +286,6 @@ static char sql[4096];	// SQL buffer
 	sqlite3_step(stmt);
 	sqlite3_reset(stmt);
 
-#if 0
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Transactions VALUES(NULL, %d, %Q, %d, %d, %f, %Q, %Q);",
-					 asset,
-					 [[dateFormatter stringFromDate:t.date] UTF8String],
-					 t.type,
-					 0, /* category */
-					 t.value,
-					 [t.description UTF8String],
-					 [t.memo UTF8String]);
-	[self execSql:sql];
-#endif
-
 	// get primary key
 	t.pkey = sqlite3_last_insert_rowid(db);
 }
@@ -288,19 +307,6 @@ static char sql[4096];	// SQL buffer
 	sqlite3_bind_int(stmt, 7, t.pkey);
 	sqlite3_step(stmt);
 	sqlite3_reset(stmt);
-
-#if 0
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Transactions SET date=%Q, type=%d, category=%d, value=%f, description=%Q, memo=%Q WHERE key = %d;",
-					 [[dateFormatter stringFromDate:t.date] UTF8String],
-					 t.type,
-					 0, /* category */
-					 t.value,
-					 [t.description UTF8String],
-					 [t.memo UTF8String],
-					 t.pkey);
-	[self execSql:sql];
-#endif
 }
 
 - (void)deleteTransaction:(Transaction *)t

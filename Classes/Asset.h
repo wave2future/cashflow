@@ -43,6 +43,8 @@
 
 #define MAX_TRANSACTIONS	500
 
+@class Database;
+
 @interface Asset : NSObject {
 	Database *db;
 
@@ -82,6 +84,8 @@
 - (void)recalcBalance;
 - (void)recalcBalanceSub:(BOOL)isInitial;
 - (double)lastBalance;
+- (void)updateInitialBalance;
+
 - (NSMutableArray *)allocDescList;
 
 @end

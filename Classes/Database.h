@@ -35,6 +35,9 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 #import "Transaction.h"
+#import "Asset.h"
+
+@class Asset;
 
 @interface Database : NSObject {
 	sqlite3 *db;
@@ -45,11 +48,18 @@
 - (void)dealloc;
 
 - (BOOL)openDB;
+- (void)initializeDB;
 
-- (double)loadInitialBalance:(int)asset;
+- (NSMutableArray *)loadAssets;
+- (void)insertAsset:(Asset*)asset;
+- (void)updateAsset:(Asset*)asset;
+- (void)updateInitialBalance:(Asset*)asset;
+- (void)deleteAsset:(Asset*)asset;
+
+//- (double)loadInitialBalance:(int)asset;
+//- (void)saveInitialBalance:(double)initialBalance asset:(int)asset;
+
 - (NSMutableArray *)loadTransactions:(int)asset;
-
-- (void)saveInitialBalance:(double)initialBalance asset:(int)asset;
 - (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset;
 
 - (void)insertTransaction:(Transaction *)t asset:(int)asset;

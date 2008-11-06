@@ -69,23 +69,24 @@
 	// Load from DB
 	db = [[Database alloc] init];
 
-	// 現バージョンでは Asset は1個だけ
-	Asset *asset = [[Asset alloc] init];
-	asset.db = db;
-	asset.pkey = 1;
-	[assets addObject:asset];
-	[asset release];
-
-	if ([db openDB]) {
-		// Okay database exists. load data.
-		[asset reload];
-		//[asset loadOldFormatData]; // for testing
-	} else {
-		[asset loadOldFormatData];
+	BOOL needLoadOldData = NO;
+	if (![db openDB]) {
+		[db initializeDB];
+		needLoadOldData = YES;
+	}
+	
+	self.assets = [db loadAssets];
+	if ([assets count] > 0) {
+		selAsset = [assets objectAtIndex:0];
 	}
 
-	// ad hoc...
-	selAsset = asset;
+	if (selAsset) {
+		if (needLoadOldData) {
+			[selAsset loadOldFormatData];
+		} else {
+			[selAsset reload];
+		}
+	}
 }
 
 // private

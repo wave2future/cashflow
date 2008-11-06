@@ -41,6 +41,7 @@
 @implementation Asset
 
 @synthesize db, pkey, type, name, sorder;
+@synthesize initialBalance;
 
 - (id)init
 {
@@ -87,8 +88,6 @@
 - (void)reload
 {
 	[self clear];
-
-	initialBalance = [db loadInitialBalance:pkey]; // self.initialBalance にはしない(DB上書きするので）
 	transactions = [db loadTransactions:pkey];
 	
 	[self recalcBalanceInitial];
@@ -96,8 +95,8 @@
 
 - (void)resave
 {
+	[self updateInitialBalance];
 	[db saveTransactions:transactions asset:pkey];
-	[db saveInitialBalance:initialBalance asset:pkey];
 }
 
 - (void)clear
@@ -106,7 +105,11 @@
 		[transactions release];
 	}
 	transactions = nil;
-	initialBalance = 0.0;
+}
+
+- (void)updateInitialBalance
+{
+	[db updateInitialBalance:self];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -173,7 +176,8 @@
 	// special handling for first transaction
 	if (n == 0) {
 		Transaction *t = [transactions objectAtIndex:0];
-		self.initialBalance = t.balance;  // update DB
+		initialBalance = t.balance;
+		[self updateInitialBalance];
 	}
 	
 	// remove
@@ -271,18 +275,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 		return initialBalance;
 	}
 	return [[transactions objectAtIndex:max - 1] balance];
-}
-
-// initialBalance property
-- (double)initialBalance
-{
-	return initialBalance;
-}
-
-- (void)setInitialBalance:(double)v
-{
-	initialBalance = v;
-	[db saveInitialBalance:v asset:pkey];
 }
 
 ////////////////////////////////////////////////////////////////////////////

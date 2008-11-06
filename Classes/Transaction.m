@@ -78,15 +78,19 @@
 	double ret;
 
 	switch (type) {
-	case TYPE_INCOME:
-		ret = value;
-		break;
-	case TYPE_OUTGO:
-		ret = -value;
-		break;
-	case TYPE_ADJ:
-		ret = balance;
-		break;
+		case TYPE_INCOME:
+			ret = value;
+			break;
+		case TYPE_OUTGO:
+			ret = -value;
+			break;
+		case TYPE_ADJ:
+			ret = balance;
+			break;
+	}
+	
+	if (ret == 0.0) {
+		ret = 0.0;	// avoid '-0'
 	}
 	return ret;
 }

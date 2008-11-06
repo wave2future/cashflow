@@ -297,6 +297,7 @@
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
 	asset.initialBalance = vc.value;
+	[asset updateInitialBalance];
 	[asset recalcBalance];
 }
 
