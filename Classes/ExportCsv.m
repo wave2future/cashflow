@@ -86,7 +86,7 @@
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-	int max = [theDataModel getTransactionCount];
+	int max = [theDataModel transactionCount];
 
 	/* トランザクション */
 	int i = 0;
@@ -97,7 +97,7 @@
 		}
 	}
 	for (; i < max; i++) {
-		Transaction *t = [theDataModel getTransactionAt:i];
+		Transaction *t = [theDataModel transactionAt:i];
 
 		if (firstDate != nil && [t.date compare:firstDate] == NSOrderedAscending) continue;
 		

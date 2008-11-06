@@ -33,25 +33,56 @@
 */
 
 #import <UIKit/UIKit.h>
-#import "DataModel.h"
 #import "Transaction.h"
+#import "DataModel.h"
 #import "Database.h"
 
-@interface DataModel2 : DataModel {
+@interface DataModel : NSObject {
 	Database *db;
 
+	// Asset
 	int asset;
+
+	// Transactions
+	NSMutableArray *transactions;
+	double initialBalance;
+
+	// constant
+	int maxTransactions;
 }
 
 @property(nonatomic,retain) Database *db;
+@property(nonatomic,retain) NSMutableArray *transactions;
+@property(nonatomic,assign) double initialBalance;
+@property(nonatomic,assign) int maxTransactions;
 
+// initializer
++ (DataModel*)allocWithLoad;
+- (id)init;
+
+// load/save
 - (void)reload;
 - (void)save;
 
+// transaction operation
+- (void)setMaxTransactions:(int)max;
+- (int)getTransactionCount;
+- (Transaction*)getTransactionAt:(int)n;
 - (void)insertTransaction:(Transaction*)tr;
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;
 - (void)deleteOldTransactionsBefore:(NSDate*)date;
-- (void)assignSerial:(Transaction*)t;
+- (int)firstTransactionByDate:(NSDate*)date;
+- (void)sortByDate;
+
+// balance operation
+- (void)recalcBalanceInitial;
+- (void)recalcBalance;
+- (void)recalcBalanceSub:(BOOL)isInitial;
+- (double)lastBalance;
+
+// utility operation
++ (NSString*)currencyString:(double)x;
+- (NSMutableArray *)allocDescList;
 
 @end

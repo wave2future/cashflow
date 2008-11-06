@@ -32,15 +32,15 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// SQLite データベース版
-// まだ試作中、、、
+// DataModel V2
+// (SQLite ver)
 
 #import "DataModel2.h"
 #import <sqlite3.h>
 
-@implementation DataModel2
+@implementation DataModel
 
-@synthesize db;
+@synthesize db, transactions, initialBalance, maxTransactions;
 
 // Factory : override
 + (DataModel*)allocWithLoad
@@ -58,8 +58,8 @@
 	}
 
 	// Backward compatibility
-	DataModel *odm = [DataModel allocWithLoad];
-	if ([odm getTransactionCount] > 0) {
+	DataModel1 *odm = [DataModel1 allocWithLoad];
+	if ([odm transactionCount] > 0) {
 		// TBD
 		dm.transactions = odm.transactions;
 		dm.initialBalance = odm.initialBalance;
@@ -90,12 +90,6 @@
 	[db saveInitialBalance:initialBalance asset:asset];
 }
 
-- (BOOL)saveToStorage
-{
-	// do nothing
-	return YES;
-}
-
 - (id)init
 {
 	[super init];
@@ -103,6 +97,9 @@
 	db = nil;
 	asset = 1; // とりあえず cash に固定
 	maxTransactions = MAX_TRANSACTIONS;
+
+	initialBalance = 0.0;
+	transactions = [[NSMutableArray alloc] init];
 	
 	return self;
 }
@@ -110,13 +107,49 @@
 - (void)dealloc 
 {
 	[db release];
+	[transactions release];
 
 	[super dealloc];
 }
 
+
+////////////////////////////////////////////////////////////////////////////
+// Transaction operations
+
+- (int)transactionCount
+{
+	return transactions.count;
+}
+
+- (Transaction*)transactionAt:(int)n
+{
+	return [transactions objectAtIndex:n];
+}
+
 - (void)insertTransaction:(Transaction*)tr
 {
-	[super insertTransaction:tr];
+	int i;
+	int max = [transactions count];
+	Transaction *t = nil;
+
+	// 挿入位置を探す
+	for (i = 0; i < max; i++) {
+		t = [transactions objectAtIndex:i];
+		if ([tr.date compare:t.date] == NSOrderedAscending) {
+			break;
+		}
+	}
+
+	// 挿入
+	[transactions insertObject:tr atIndex:i];
+
+	// 全残高再計算
+	[self recalcBalance];
+	
+	// 上限チェック
+	if ([transactions count] > maxTransactions) {
+		[self deleteTransactionAt:0];
+	}
 
 	// DB 追加
 	[db insertTransaction:tr asset:asset];
@@ -124,7 +157,12 @@
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
-	[super replaceTransactionAtIndex:index withObject:t];
+	// copy serial
+	Transaction *old = [transactions objectAtIndex:index];
+	t.serial = old.serial;
+
+	[transactions replaceObjectAtIndex:index withObject:t];
+	[self recalcBalance];
 
 	// update DB
 	[db updateTransaction:t];
@@ -132,17 +170,76 @@
 
 - (void)deleteTransactionAt:(int)n
 {
+	// update DB
 	Transaction *t = [transactions objectAtIndex:n];
 	[db deleteTransaction:t];
 
-	[super deleteTransactionAt:n];
+	// special handling for first transaction
+	if (n == 0) {
+		Transaction *t = [transactions objectAtIndex:0];
+		self.initialBalance = t.balance;  // update DB
+	}
+	
+	// remove
+	[transactions removeObjectAtIndex:n];
+	if (n > 0) {
+		[self recalcBalance];
+	}
 }
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
 {
-	// override
-	[db deleteOldTransactionsBefore:date asset:asset];
-	[self reload];
+	[db beginTransaction];
+	while (transactions.count > 0) {
+		Transaction *t = [transactions objectAtIndex:0];
+		if ([t.date compare:date] != NSOrderedAscending) {
+			break;
+		}
+
+		[self deleteTransactionAt:0];
+	}
+	[db commitTransaction];
+
+	//[db deleteOldTransactionsBefore:date asset:asset];
+	//[self reload];
+}
+
+- (int)firstTransactionByDate:(NSDate*)date
+{
+	for (int i = 0; i < transactions.count; i++) {
+		Transaction *t = [transactions objectAtIndex:i];
+		if ([t.date compare:date] != NSOrderedAscending) {
+			return i;
+		}
+	}
+	return -1;
+
+}
+
+// sort
+static int compareByDate(Transaction *t1, Transaction *t2, void *context)
+{
+	return [t1.date compare:t2.date];
+}
+
+- (void)sortByDate
+{
+	[transactions sortUsingFunction:compareByDate context:NULL];
+	[self recalcBalance];
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Balance operations
+
+// balance 値がない状態で、balance を計算する
+- (void)recalcBalanceInitial
+{
+	[self recalcBalanceSub:YES];
+}
+
+- (void)recalcBalance
+{
+	[self recalcBalanceSub:NO];
 }
 
 - (void)recalcBalanceSub:(BOOL)isInitial
@@ -165,10 +262,13 @@
 	}
 }
 
-- (void)assignSerial:(Transaction*)t
+- (double)lastBalance
 {
-	// override
-	t.serial = -1;
+	int max = [transactions count];
+	if (max == 0) {
+		return initialBalance;
+	}
+	return [[transactions objectAtIndex:max - 1] balance];
 }
 
 // override initialBalance property
@@ -178,4 +278,68 @@
 	[db saveInitialBalance:v asset:asset];
 }
 
+////////////////////////////////////////////////////////////////////////////
+// Utility
++ (NSString*)currencyString:(double)x
+{
+	NSNumberFormatter *f = [[[NSNumberFormatter alloc] init] autorelease];
+	[f setNumberStyle:NSNumberFormatterCurrencyStyle];
+	[f setLocale:[NSLocale currentLocale]];
+	NSString *bstr = [f stringFromNumber:[NSNumber numberWithDouble:x]];
+	return bstr;
+}
+
+- (NSMutableArray *)allocDescList
+{
+	int i, max;
+	max = [transactions count];
+	
+	NSMutableArray *ary = [[NSMutableArray alloc] init];
+	if (max == 0) return ary;
+
+#if 0	
+	// Sort type
+	for (i = max - 1; i >= 0; i--) {
+		[ary addObject:[[transactions objectAtIndex:i] description]];
+	}
+	
+	[ary sortUsingSelector:@selector(compare:)];
+	
+	// uniq
+	NSString *prev = [ary objectAtIndex:0];
+	for (i = 1; i < [ary count]; i++) {
+		if ([prev isEqualToString:[ary objectAtIndex:i]]) {
+			[ary removeObjectAtIndex:i];
+			i--;
+		} else {
+			prev = [ary objectAtIndex:i];
+		}
+	}
+#else
+
+	// LRU type
+#define MAX_LRU_SIZE 50
+
+	for (i = max - 1; i >= 0; i--) {
+		NSString *s = [[transactions objectAtIndex:i] description];
+		
+		int j;
+		BOOL match = NO;
+		for (j = 0; j < [ary count]; j++) {
+			if ([s isEqualToString:[ary objectAtIndex:j]]) {
+				match = YES;
+				break;
+			}
+		}
+		if (!match) {
+			[ary addObject:s];
+			if ([ary count] > MAX_LRU_SIZE) {
+				break;
+			}
+		}
+	}
+#endif
+
+	return ary;
+}
 @end

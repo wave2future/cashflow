@@ -37,7 +37,7 @@
 
 #define MAX_TRANSACTIONS	500
 
-@interface DataModel : NSObject <NSCoding> {
+@interface DataModel1 : NSObject <NSCoding> {
 	NSMutableArray *transactions;
 	double initialBalance;
 
@@ -55,8 +55,8 @@
 
 - (id)init;
 
-- (int)getTransactionCount;
-- (Transaction*)getTransactionAt:(int)n;
+- (int)transactionCount;
+- (Transaction*)transactionAt:(int)n;
 
 - (void)assignSerial:(Transaction*)tr;
 - (void)insertTransaction:(Transaction*)tr;

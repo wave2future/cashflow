@@ -134,7 +134,7 @@
 		trans = [[Transaction alloc] init];
 	} else {
 		// 変更
-		Transaction *t = [theDataModel getTransactionAt:transactionIndex];
+		Transaction *t = [theDataModel transactionAt:transactionIndex];
 		trans = [t copy];
 	}
 }
@@ -351,7 +351,7 @@
 	}
 
 	DataModel *d = theDataModel;
-	Transaction *t = [d getTransactionAt:transactionIndex];
+	Transaction *t = [d transactionAt:transactionIndex];
 	
 	NSDate *date = t.date;
 	[d deleteOldTransactionsBefore:date];

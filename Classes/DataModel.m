@@ -35,7 +35,7 @@
 #import "CashFlowAppDelegate.h"
 #import "DataModel.h"
 
-@implementation DataModel
+@implementation DataModel1
 
 @synthesize transactions, serialCounter, initialBalance;
 
@@ -103,12 +103,12 @@
 	[super dealloc];
 }
 
-- (int)getTransactionCount
+- (int)transactionCount
 {
 	return transactions.count;
 }
 
-- (Transaction*)getTransactionAt:(int)n
+- (Transaction*)transactionAt:(int)n
 {
 	return [transactions objectAtIndex:n];
 }

@@ -88,7 +88,7 @@
 {
 	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-	int max = [theDataModel getTransactionCount];
+	int max = [theDataModel transactionCount];
 
 	int firstIndex = 0;
 	if (firstDate != nil) {
@@ -98,8 +98,8 @@
 		}
 	}
 	
-	Transaction *first = [theDataModel getTransactionAt:firstIndex];
-	Transaction *last  = [theDataModel getTransactionAt:max-1];
+	Transaction *first = [theDataModel transactionAt:firstIndex];
+	Transaction *last  = [theDataModel transactionAt:max-1];
 
 	[data appendString:@"OFXHEADER:100\n"];
 	[data appendString:@"DATA:OFXSGML\n"];
@@ -166,7 +166,7 @@
 	/* トランザクション */
 	int i;
 	for (i = firstIndex; i < max; i++) {
-		Transaction *t = [theDataModel getTransactionAt:i];
+		Transaction *t = [theDataModel transactionAt:i];
 		
 		[data appendString:@"<STMTTRN>\n"];
 		[data appendFormat:@"<TRNTYPE>%@\n", [self transTypeString:t]];

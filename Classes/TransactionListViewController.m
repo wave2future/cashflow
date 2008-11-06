@@ -124,13 +124,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [theDataModel getTransactionCount] + 1;
+	return [theDataModel transactionCount] + 1;
 }
 
 // 指定セル位置に該当する Transaction Index を返す
 - (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-	return [theDataModel getTransactionCount] - indexPath.row - 1;
+	return [theDataModel transactionCount] - indexPath.row - 1;
 }
 
 // 指定セル位置の Transaction を返す
@@ -141,7 +141,7 @@
 	if (idx < 0) {
 		return nil;  // initial balance
 	} 
-	Transaction *t = [theDataModel getTransactionAt:idx];
+	Transaction *t = [theDataModel transactionAt:idx];
 	return t;
 }
 
