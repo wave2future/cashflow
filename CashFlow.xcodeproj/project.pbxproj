@@ -13,7 +13,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2899E5600DE3E45000AC0155 /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
-		28C286E10D94DF7D0034E888 /* TransactionListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* TransactionListViewController.m */; };
+		28C286E10D94DF7D0034E888 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 28C286E00D94DF7D0034E888 /* TransactionListVC.m */; };
 		3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
 		3E07F7C70E72CC6600DFEB33 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E07F7C50E72CC6100DFEB33 /* Localizable.strings */; };
 		3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
@@ -63,8 +63,8 @@
 		2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		2899E55F0DE3E45000AC0155 /* TransactionListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionListView.xib; path = Resources/TransactionListView.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* CashFlow_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlow_Prefix.pch; sourceTree = "<group>"; };
-		28C286DF0D94DF7D0034E888 /* TransactionListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionListViewController.h; sourceTree = "<group>"; };
-		28C286E00D94DF7D0034E888 /* TransactionListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListViewController.m; sourceTree = "<group>"; };
+		28C286DF0D94DF7D0034E888 /* TransactionListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionListVC.h; sourceTree = "<group>"; };
+		28C286E00D94DF7D0034E888 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TransactionListVC.m; path = ../../TransactionListVC.m; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		3E0519120E6A9D09008F1F65 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Transaction.h; path = Classes/Transaction.h; sourceTree = "<group>"; };
 		3E0519130E6A9D09008F1F65 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Transaction.m; path = Classes/Transaction.m; sourceTree = "<group>"; };
@@ -149,8 +149,8 @@
 			children = (
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				28C286DF0D94DF7D0034E888 /* TransactionListViewController.h */,
-				28C286E00D94DF7D0034E888 /* TransactionListViewController.m */,
+				28C286DF0D94DF7D0034E888 /* TransactionListVC.h */,
+				28C286E00D94DF7D0034E888 /* TransactionListVC.m */,
 				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
@@ -358,7 +358,7 @@
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
-				28C286E10D94DF7D0034E888 /* TransactionListViewController.m in Sources */,
+				28C286E10D94DF7D0034E888 /* TransactionListVC.m in Sources */,
 				3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */,
 				3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */,
 				3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */,
