@@ -50,7 +50,7 @@ static char sql[4096];	// SQL buffer
 
 		dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-		[dateFormatter setDateFormat: @"yyyy-MM-dd HH:mm:ss"];
+		[dateFormatter setDateFormat: @"yyyyMMddHHmm"];
 	}
 	
 	return self;
@@ -66,7 +66,10 @@ static char sql[4096];	// SQL buffer
 
 - (void)execSql:(const char *)sql
 {
-	sqlite3_exec(db, sql, NULL, NULL, NULL);
+	int result = sqlite3_exec(db, sql, NULL, NULL, NULL);
+	if (result != SQLITE_OK) {
+		NSLog(@"sqlite3: %s", sqlite3_errmsg(db));
+	}
 }
 
 // データベースを開く
@@ -86,9 +89,6 @@ static char sql[4096];	// SQL buffer
 	if (isExistDb) {
 		return YES;
 	}
-		
-	// Ok, create new database
-	sqlite3_open([dbPath UTF8String], &db);
 
 	// テーブル作成＆初期データ作成
 	[self execSql:"CREATE TABLE Transactions ("
@@ -233,6 +233,23 @@ static char sql[4096];	// SQL buffer
 
 - (void)insertTransaction:(Transaction*)t asset:(int)asset
 {
+	static sqlite3_stmt *stmt = NULL;
+
+	if (stmt == NULL) {
+		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?);";
+		sqlite3_prepare_v2(db, s, strlen(s), &stmt, NULL);
+	}
+	sqlite3_bind_int(stmt, 1, asset);
+	sqlite3_bind_text(stmt, 2, [[dateFormatter stringFromDate:t.date] UTF8String]);
+	sqlite3_bind_int(stmt, 3, t.type);
+	sqlite3_bind_int(stmt, 4, 0); // category
+	sqlite3_bind_double(stmt, 5, t.value);
+	sqlite3_bind_text(stmt, 6, [t.description UTF8String]);
+	sqlite3_bind_text(stmt, 7, [t.memo UTF8String]);
+	sqlite3_step(stmt);
+	sqlite3_reset(stmt);
+
+#if 0
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "INSERT INTO Transactions VALUES(NULL, %d, %Q, %d, %d, %f, %Q, %Q);",
 					 asset,
@@ -243,6 +260,7 @@ static char sql[4096];	// SQL buffer
 					 [t.description UTF8String],
 					 [t.memo UTF8String]);
 	[self execSql:sql];
+#endif
 
 	// get primary key
 	t.pkey = sqlite3_last_insert_rowid(db);
@@ -250,6 +268,23 @@ static char sql[4096];	// SQL buffer
 
 - (void)updateTransaction:(Transaction *)t
 {
+	static sqlite3_stmt *stmt = NULL;
+
+	if (stmt == NULL) {
+		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;",
+		sqlite3_prepare_v2(db, s, strlen(s), &stmt, NULL);
+	}
+	sqlite3_bind_text(stmt, 1, [[dateFormatter stringFromDate:t.date] UTF8String]);
+	sqlite3_bind_int(stmt, 2, t.type);
+	sqlite3_bind_int(stmt, 3, 0); // category
+	sqlite3_bind_double(stmt, 4, t.value);
+	sqlite3_bind_text(stmt, 5, [t.description UTF8String]);
+	sqlite3_bind_text(stmt, 6, [t.memo UTF8String]);
+	sqlite3_bind_int(stmt, 7, t.pkey);
+	sqlite3_step(stmt);
+	sqlite3_reset(stmt);
+
+#if 0
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "UPDATE Transactions SET date=%Q, type=%d, category=%d, value=%f, description=%Q, memo=%Q WHERE key = %d;",
 					 [[dateFormatter stringFromDate:t.date] UTF8String],
@@ -260,6 +295,7 @@ static char sql[4096];	// SQL buffer
 					 [t.memo UTF8String],
 					 t.pkey);
 	[self execSql:sql];
+#endif
 }
 
 - (void)deleteTransaction:(Transaction *)t
