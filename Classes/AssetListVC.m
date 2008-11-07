@@ -167,7 +167,7 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	return UITableViewCellEditingStyleDelete;
+	return UITableViewCellEditingStyleNone;
 }
 
 // 削除処理

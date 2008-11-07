@@ -88,6 +88,7 @@ static char sql[4096];	// SQL buffer
 	
 	if (sqlite3_open([dbPath UTF8String], &db) != 0) {
 		// ouch!
+		ASSERT(0);
 	}
 	return isExistedDb;
 }
@@ -186,31 +187,6 @@ static char sql[4096];	// SQL buffer
 					 asset.pkey);
 	[self execSql:sql];
 }
-
-#if 0
-- (double)loadInitialBalance:(int)asset
-{
-	sqlite3_stmt *stmt;
-	
-	/* get initial balance */
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT initialBalance FROM Assets WHERE key = %d;", asset);
-	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
-	sqlite3_step(stmt);
-	double initialBalance = sqlite3_column_double(stmt, 0);
-	sqlite3_finalize(stmt);
-
-	return initialBalance;
-}
-
-- (void)saveInitialBalance:(double)initialBalance asset:(int)asset
-{
-	/* get initial balance */
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;", initialBalance, asset);
-	[self execSql:sql];
-}
-#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 // Transaction 処理
