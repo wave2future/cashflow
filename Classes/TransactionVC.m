@@ -66,11 +66,11 @@
 				  bundle:[NSBundle mainBundle]];
 	editDateVC.listener = self;
 
-	editTypeVC = [GenEditTypeViewController
-					 genEditTypeViewController:self
-					 array:typeArray 
-					 title:NSLocalizedString(@"Type", @"")
-					 identifier:0];
+	editTypeVC = [[GenEditTypeViewController
+				   genEditTypeViewController:self
+				   array:typeArray 
+				   title:NSLocalizedString(@"Type", @"")
+				   identifier:0] retain];
 
 	editValueVC = [[EditValueViewController alloc]
 				   initWithNibName:@"EditValueView"
@@ -82,8 +82,10 @@
 				  bundle:[NSBundle mainBundle]];
 	editDescVC.listener = self;
 	
-	editMemoVC = [GenEditTextViewController genEditTextViewController:self
-				title:NSLocalizedString(@"Memo", @"") identifier:0];
+	editMemoVC = [[GenEditTextViewController
+				   genEditTextViewController:self
+				   title:NSLocalizedString(@"Memo", @"") 
+				   identifier:0] retain];
 	
 	// ボタン生成
 	UIButton *b;

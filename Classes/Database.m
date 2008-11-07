@@ -241,8 +241,12 @@ static char sql[4096];	// SQL buffer
 			[t release];
 			continue;
 		}
-		t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
-		t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
+		if (desc) {
+			t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
+		}
+		if (memo) {
+			t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
+		}
 
 		[transactions addObject:t];
 		[t release];

@@ -18,11 +18,9 @@
 		3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
 		3E0887F30E6EAC7600739AC9 /* EditValueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F20E6EAC7600739AC9 /* EditValueView.xib */; };
 		3E0887F60E6EAC8900739AC9 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
-		3E0887F80E6EACA500739AC9 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F70E6EACA500739AC9 /* EditTypeView.xib */; };
 		3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
 		3E0887FE0E6EACF400739AC9 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
 		3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
-		3E0888050E6EAD0B00739AC9 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888030E6EAD0B00739AC9 /* EditTypeVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
 		3E1F6EA90E76E74500CCDF57 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EA80E76E74500CCDF57 /* icon.png */; };
@@ -31,8 +29,6 @@
 		3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
 		3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
 		3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E27113A0EAA208E00E57E51 /* ExportView.xib */; };
-		3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */; };
-		3E3EDEDF0EB61B9A00C35FBA /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */; };
 		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
@@ -80,15 +76,12 @@
 		3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditDescView.xib; path = Resources/EditDescView.xib; sourceTree = "<group>"; };
 		3E0887F20E6EAC7600739AC9 /* EditValueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditValueView.xib; path = Resources/EditValueView.xib; sourceTree = "<group>"; };
 		3E0887F50E6EAC8900739AC9 /* EditDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditDateView.xib; path = Resources/EditDateView.xib; sourceTree = "<group>"; };
-		3E0887F70E6EACA500739AC9 /* EditTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditTypeView.xib; path = Resources/EditTypeView.xib; sourceTree = "<group>"; };
 		3E0887F90E6EACEB00739AC9 /* EditDateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDateVC.m; sourceTree = "<group>"; };
 		3E0887FA0E6EACEB00739AC9 /* EditDateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDateVC.h; sourceTree = "<group>"; };
 		3E0887FC0E6EACF400739AC9 /* EditDescVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVC.m; sourceTree = "<group>"; };
 		3E0887FD0E6EACF400739AC9 /* EditDescVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDescVC.h; sourceTree = "<group>"; };
-		3E0888000E6EAD0500739AC9 /* EditTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTypeVC.h; sourceTree = "<group>"; };
 		3E0888010E6EAD0B00739AC9 /* EditValueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditValueVC.m; sourceTree = "<group>"; };
 		3E0888020E6EAD0B00739AC9 /* EditValueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditValueVC.h; sourceTree = "<group>"; };
-		3E0888030E6EAD0B00739AC9 /* EditTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTypeVC.m; sourceTree = "<group>"; };
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
 		3E0A9E390EC33894005195A5 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
@@ -101,9 +94,6 @@
 		3E2710430EAA196A00E57E51 /* ExportOfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportOfx.h; path = Classes/ExportOfx.h; sourceTree = "<group>"; };
 		3E2710440EAA196A00E57E51 /* ExportOfx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportOfx.m; path = Classes/ExportOfx.m; sourceTree = "<group>"; };
 		3E27113C0EAA209500E57E51 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Japanese; path = Japanese.lproj/ExportView.xib; sourceTree = "<group>"; };
-		3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditMemoView.xib; path = Resources/EditMemoView.xib; sourceTree = "<group>"; };
-		3E3EDEDD0EB61B9A00C35FBA /* EditMemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMemoVC.h; sourceTree = "<group>"; };
-		3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMemoVC.m; sourceTree = "<group>"; };
 		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Report.m; path = Classes/Report.m; sourceTree = "<group>"; };
 		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Report.h; path = Classes/Report.h; sourceTree = "<group>"; };
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
@@ -167,10 +157,6 @@
 		080E96DDFE201D6D7F000001 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */,
-				3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */,
-				3EC0C8410EC35F0500149755 /* GenEditTypeVC.h */,
-				3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */,
 				1D3623240D0F684500981E51 /* AppDelegate.h */,
 				1D3623250D0F684500981E51 /* AppDelegate.m */,
 				3EF1BE050EC33CF0000F2EF0 /* AssetListVC.h */,
@@ -181,16 +167,16 @@
 				3E0A9E390EC33894005195A5 /* TransactionListVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
 				3E0888110E6EAEEB00739AC9 /* TransactionVC.m */,
+				3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */,
+				3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */,
+				3EC0C8410EC35F0500149755 /* GenEditTypeVC.h */,
+				3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */,
 				3E0887FA0E6EACEB00739AC9 /* EditDateVC.h */,
 				3E0887F90E6EACEB00739AC9 /* EditDateVC.m */,
-				3E0888000E6EAD0500739AC9 /* EditTypeVC.h */,
-				3E0888030E6EAD0B00739AC9 /* EditTypeVC.m */,
 				3E0888020E6EAD0B00739AC9 /* EditValueVC.h */,
 				3E0888010E6EAD0B00739AC9 /* EditValueVC.m */,
 				3E0887FD0E6EACF400739AC9 /* EditDescVC.h */,
 				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
-				3E3EDEDD0EB61B9A00C35FBA /* EditMemoVC.h */,
-				3E3EDEDE0EB61B9A00C35FBA /* EditMemoVC.m */,
 				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
 				3EDDADBC0E89280800268AED /* InfoVC.h */,
@@ -246,10 +232,8 @@
 				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
-				3E3EDED60EB61B5D00C35FBA /* EditMemoView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
-				3E0887F70E6EACA500739AC9 /* EditTypeView.xib */,
 				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
 				3E27113A0EAA208E00E57E51 /* ExportView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
@@ -365,7 +349,6 @@
 				3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */,
 				3E0887F30E6EAC7600739AC9 /* EditValueView.xib in Resources */,
 				3E0887F60E6EAC8900739AC9 /* EditDateView.xib in Resources */,
-				3E0887F80E6EACA500739AC9 /* EditTypeView.xib in Resources */,
 				3E07F7C70E72CC6600DFEB33 /* Localizable.strings in Resources */,
 				3E1F6EA90E76E74500CCDF57 /* icon.png in Resources */,
 				3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */,
@@ -375,7 +358,6 @@
 				3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */,
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
 				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
-				3E3EDED70EB61B5D00C35FBA /* EditMemoView.xib in Resources */,
 				3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */,
 				3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */,
 				3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */,
@@ -399,7 +381,6 @@
 				3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */,
 				3E0887FE0E6EACF400739AC9 /* EditDescVC.m in Sources */,
 				3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */,
-				3E0888050E6EAD0B00739AC9 /* EditTypeVC.m in Sources */,
 				3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */,
 				3EDDADBE0E89280800268AED /* InfoVC.m in Sources */,
 				3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */,
@@ -407,7 +388,6 @@
 				3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */,
 				3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */,
 				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,
-				3E3EDEDF0EB61B9A00C35FBA /* EditMemoVC.m in Sources */,
 				3E4D1CF10EBB4599006050FE /* Report.m in Sources */,
 				3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */,
 				3E9433760EC1E0750033D50A /* Database.m in Sources */,
