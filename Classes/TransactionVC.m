@@ -54,32 +54,36 @@
 											  target:self
 												  action:@selector(saveAction)] autorelease];
 
+	typeArray = [[NSArray alloc] initWithObjects:
+								  NSLocalizedString(@"Payment", @""),
+								  NSLocalizedString(@"Deposit", @""),
+								  NSLocalizedString(@"Adjustment", @"Balance adjustment"),
+								 nil];
+
 	// 下位の ViewController を生成しておく
 	editDateVC = [[EditDateViewController alloc]
 				  initWithNibName:@"EditDateView"
 				  bundle:[NSBundle mainBundle]];
+	editDateVC.listener = self;
 
-	editTypeVC = [[EditTypeViewController alloc]
-				  initWithNibName:@"EditTypeView"
-				  bundle:[NSBundle mainBundle]];
+	editTypeVC = [GenEditTypeViewController
+					 genEditTypeViewController:self
+					 array:typeArray 
+					 title:NSLocalizedString(@"Type", @"")
+					 identifier:0];
 
 	editValueVC = [[EditValueViewController alloc]
 				   initWithNibName:@"EditValueView"
 				   bundle:[NSBundle mainBundle]];
+	editValueVC.listener = self;
 
 	editDescVC = [[EditDescViewController alloc]
 				  initWithNibName:@"EditDescView"
 				  bundle:[NSBundle mainBundle]];
-	
-	editMemoVC = [[EditMemoViewController alloc]
-				  initWithNibName:@"EditMemoView"
-				  bundle:[NSBundle mainBundle]];
-	
-	editDateVC.listener = self;
-	editTypeVC.listener = self;
-	editValueVC.listener = self;
 	editDescVC.listener = self;
-	editMemoVC.listener = self;
+	
+	editMemoVC = [GenEditTextViewController genEditTextViewController:self
+				title:NSLocalizedString(@"Memo", @"") identifier:0];
 	
 	// ボタン生成
 	UIButton *b;
@@ -228,17 +232,7 @@
 
 		case ROW_TYPE:
 			name.text = NSLocalizedString(@"Type", @"Transaction type");
-			switch (trans.type) {
-				case TYPE_OUTGO:
-					value.text = NSLocalizedString(@"Payment", @"");
-					break;
-				case TYPE_INCOME:
-					value.text = NSLocalizedString(@"Deposit", @"");
-					break;
-				case TYPE_ADJ:
-					value.text = NSLocalizedString(@"Adjustment", @"Balance adjustment");
-					break;
-			}
+			value.text = [typeArray objectAtIndex:trans.type];
 			break;
 		
 		case ROW_VALUE:
@@ -288,7 +282,7 @@
 			vc = editDescVC;
 			break;
 		case ROW_MEMO:
-			editMemoVC.memo = trans.memo;
+			editMemoVC.text = trans.memo;
 			vc = editMemoVC;
 			break;
 	}
@@ -300,11 +294,11 @@
 {
 	trans.date = vc.date;
 }
-- (void)editTypeViewChanged:(EditTypeViewController *)vc
+- (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
 {
 	trans.type = vc.type;
 	if (trans.type == TYPE_ADJ) {
-		trans.description = NSLocalizedString(@"Adjustment", @"");
+		trans.description = [typeArray objectAtIndex:TYPE_ADJ];
 	}
 }
 - (void)editValueViewChanged:(EditValueViewController *)vc
@@ -315,9 +309,9 @@
 {
 	trans.description = vc.description;
 }
-- (void)editMemoViewChanged:(EditMemoViewController *)vc
+- (void)genEditTextViewChanged:(GenEditTextViewController*)vc identifier:(int)id
 {
-	trans.memo = vc.memo;
+	trans.memo = vc.text;
 }
 
 ////////////////////////////////////////////////////////////////////////////////

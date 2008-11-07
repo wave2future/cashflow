@@ -37,25 +37,28 @@
 #import <Foundation/Foundation.h>
 #import "Transaction.h"
 
+#import "GenEditTextVC.h"; // memo
+#import "GenEditTypeVC.h"; // type
 #import "EditDescVC.h";
-#import "EditMemoVC.h";
 #import "EditValueVC.h";
-#import "EditTypeVC.h";
 #import "EditDateVC.h";
 
 @interface TransactionViewController : UITableViewController 
 	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
-	EditDateViewListener, EditTypeViewListener, EditValueViewListener, 
-	EditDescViewListener, EditMemoViewListener>
+    GenEditTextViewListener, GenEditTypeViewListener,
+	EditDateViewListener, EditValueViewListener, 
+	EditDescViewListener>
 {
 	int transactionIndex;
 	Transaction *trans;
 
+	NSArray *typeArray;
+
 	EditDateViewController *editDateVC;
-	EditTypeViewController *editTypeVC;
+	GenEditTypeViewController *editTypeVC; // type
 	EditValueViewController *editValueVC;
 	EditDescViewController *editDescVC;
-	EditMemoViewController *editMemoVC;
+	GenEditTextViewController *editMemoVC; // memo
 	
 	UIButton *delButton;
 	UIButton *delPastButton;
