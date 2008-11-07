@@ -41,7 +41,7 @@
 #import "GenEditTypeVC.h"
 
 @interface AssetViewController : UITableViewController 
-	<GenEditTextViewListener, GenEditTypeViewListener>
+	<GenEditTextViewListener, GenEditTypeViewListener, UIActionSheetDelegate>
 {
 	int assetIndex;
 	Asset *asset;

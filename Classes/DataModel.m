@@ -78,9 +78,7 @@
 	self.assets = [db loadAssets];
 	if ([assets count] > 0) {
 		selAsset = [assets objectAtIndex:0];
-	}
 
-	if (selAsset) {
 		if (needLoadOldData) {
 			[selAsset loadOldFormatData];
 		} else {
@@ -118,6 +116,17 @@
 {
 	[assets addObject:as];
 	[db insertAsset:as];
+}
+
+- (void)deleteAsset:(Asset *)as
+{
+	if (selAsset == as) {
+		selAsset = nil;
+	}
+	[as clear];
+	
+	[db deleteAsset:as];
+	[assets removeObject:as];
 }
 
 - (void)reorderAsset:(int)from to:(int)to

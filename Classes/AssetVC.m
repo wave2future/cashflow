@@ -64,7 +64,7 @@
 	[b setBackgroundImage:bg forState:UIControlStateNormal];
 		
 	[b setFrame:CGRectMake(10, 280, 300, 44)];
-	[b setTitle:NSLocalizedString(@"Delete account", @"") forState:UIControlStateNormal];
+	[b setTitle:NSLocalizedString(@"Delete Account", @"") forState:UIControlStateNormal];
 	[b addTarget:self action:@selector(delButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 	delButton = [b retain];
 }
@@ -87,6 +87,7 @@
 	if (assetIndex < 0) {
 		// 新規
 		asset = [[Asset alloc] init];
+		asset.db = theDataModel.db;
 		asset.sorder = 99999;
 	} else {
 		// 変更
@@ -250,14 +251,27 @@
 // 削除処理
 - (void)delButtonTapped
 {
-#if 0
-	[theDataModel.selAsset deleteTransactionAt:transactionIndex];
-	[trans release];
-	trans = nil;
-#endif
+	UIActionSheet *as = [[UIActionSheet alloc]
+						 initWithTitle:NSLocalizedString(@"ReallyDeleteAccount", @"")
+						 delegate:self
+						 cancelButtonTitle:@"Cancel"
+						 destructiveButtonTitle:NSLocalizedString(@"Delete Account", @"")
+						 otherButtonTitles:nil];
+	as.actionSheetStyle = UIActionSheetStyleDefault;
+	[as showInView:self.view];
+	[as release];
+}
+
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	if (buttonIndex != 0) {
+		return; // cancelled;
+	}
 	
+	[theDataModel deleteAsset:asset];
 	[self.navigationController popViewControllerAnimated:YES];
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////
 // 保存処理

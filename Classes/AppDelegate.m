@@ -99,4 +99,15 @@ NSDateFormatter *theDateFormatter = nil;
 	[super dealloc];
 }
 
+void AssertFailed(const char *filename, int lineno)
+{
+	UIAlertView *v = [[UIAlertView alloc]
+					  initWithTitle:@"Assertion Failed"
+					  message:[NSString stringWithFormat:@"%@ line %d", 
+							   [NSString stringWithCString:filename], lineno]
+					  delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+	[v show];
+	[v release];
+}
+
 @end

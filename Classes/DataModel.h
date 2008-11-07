@@ -60,6 +60,7 @@
 - (int)assetCount;
 - (Asset *)assetAtIndex:(int)n;
 - (void)addAsset:(Asset *)as;
+- (void)deleteAsset:(Asset *)as;
 - (void)reorderAsset:(int)from to:(int)to;
 - (void)changeSelAsset:(Asset *)as;
 

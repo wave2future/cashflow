@@ -51,5 +51,13 @@
 extern DataModel *theDataModel;
 extern NSDateFormatter *theDateFormatter;
 
+// Utility
+#ifdef NDEBUG
+void AssertFailed(const char *filename, int lineno);
+#define ASSERT(x)  if (!(x)) AssertFailed(__FILE__, __LINE__)
+#else
+#define ASSERT(x) /**/
+#endif
+
 @end
 

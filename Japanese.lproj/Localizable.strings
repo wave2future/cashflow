@@ -48,6 +48,9 @@
 "No data" = "No data";
 "No data to be exported." = "エクスポートする対象データがありません";
 
+"Delete Account" = "口座を削除";
+"ReallyDeleteAccount" = "本当に口座を削除しますか？";
+
 "Delete transaction" = "取引を削除";
 "Delete with all past transactions" = "これ以前の取引を一括削除";
 

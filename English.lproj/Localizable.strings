@@ -49,6 +49,9 @@
 "No data" = "No data";
 "No data to be exported." = "No data to be exported.";
 
+"Delete Account" = "Delete Account";
+"ReallyDeleteAccount" = "Really delete this account?";
+
 "Delete Transactions" = "Delete Transactions";
 "Delete with all past transactions" = "Delete all older transactions";
 

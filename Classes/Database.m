@@ -66,9 +66,12 @@ static char sql[4096];	// SQL buffer
 
 - (void)execSql:(const char *)sql
 {
+	ASSERT(db != 0);
+	
 	int result = sqlite3_exec(db, sql, NULL, NULL, NULL);
 	if (result != SQLITE_OK) {
 		NSLog(@"sqlite3: %s", sqlite3_errmsg(db));
+		ASSERT(0);
 	}
 }
 
@@ -174,12 +177,12 @@ static char sql[4096];	// SQL buffer
 - (void)deleteAsset:(Asset*)asset
 {
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE Assets WHERE key=%d;",
+					 "DELETE FROM Assets WHERE key=%d;",
 					 asset.pkey);
 	[self execSql:sql];
 
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE Transactions WHERE asset=%d;",
+					 "DELETE FROM Transactions WHERE asset=%d;",
 					 asset.pkey);
 	[self execSql:sql];
 }
