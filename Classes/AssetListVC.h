@@ -41,6 +41,8 @@
 	<UITableViewDelegate, UITableViewDataSource>
 {
 	IBOutlet UITableView *tableView;
+	
+	NSArray *iconArray;
 }
 
 @property(nonatomic,retain) UITableView *tableView;

@@ -62,6 +62,20 @@
 	
 	// Edit ボタンを追加
 	self.navigationItem.leftBarButtonItem = [self editButtonItem];
+	
+	// icon image をロード
+	NSString *imagePath;
+
+	imagePath = [[NSBundle mainBundle] pathForResource:@"cash" ofType:@"png"];
+    UIImage *icon1 = [UIImage imageWithContentsOfFile:imagePath];
+	
+	imagePath = [[NSBundle mainBundle] pathForResource:@"bank" ofType:@"png"];
+    UIImage *icon2 = [UIImage imageWithContentsOfFile:imagePath];
+	
+	imagePath = [[NSBundle mainBundle] pathForResource:@"card" ofType:@"png"];
+    UIImage *icon3 = [UIImage imageWithContentsOfFile:imagePath];
+	
+	iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 }
 
 - (void)dealloc {
@@ -108,6 +122,7 @@
 
 	Asset *asset = [theDataModel assetAtIndex:indexPath.row];
 	cell.text = asset.name;
+	cell.image = [iconArray objectAtIndex:asset.type];
 	
 	return cell;
 }
