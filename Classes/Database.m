@@ -93,7 +93,7 @@ static char sql[4096];	// SQL buffer
 {
 	// テーブル作成＆初期データ作成
 	[self execSql:"CREATE TABLE Transactions ("
-		  "key INTEGER PRIMARY KEY, asset INTEGER, date DATE, type INTEGER, category INTEGER,"
+		  "key INTEGER PRIMARY KEY, asset INTEGER, dst_asset INTEGER, date DATE, type INTEGER, category INTEGER,"
 		  "value REAL, description TEXT, memo TEXT);"];
 
 	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL, sorder INTEGER);"];
@@ -175,6 +175,11 @@ static char sql[4096];	// SQL buffer
 {
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE Assets WHERE key=%d;",
+					 asset.pkey);
+	[self execSql:sql];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE Transactions WHERE asset=%d;",
 					 asset.pkey);
 	[self execSql:sql];
 }
@@ -273,7 +278,7 @@ static char sql[4096];	// SQL buffer
 	static sqlite3_stmt *stmt = NULL;
 
 	if (stmt == NULL) {
-		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?);";
+		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, -1, ?, ?, ?, ?, ?, ?);";
 		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
 	}
 	sqlite3_bind_int(stmt, 1, asset);
