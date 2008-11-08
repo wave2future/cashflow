@@ -89,7 +89,7 @@
 											  initWithNibName:@"TransactionListView"
 											  bundle:[NSBundle mainBundle]] autorelease];
 		vc.asset = asset;
-		[self.navigationController pushViewController:vc animated:YES];
+		[self.navigationController pushViewController:vc animated:NO];
 	}
 }
 
