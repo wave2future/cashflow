@@ -1,3 +1,7 @@
+2008-11-8 :
+	マルチアカウント対応を完了
+	選択状態(Export, Assetなど)を NSUserDefaults に保存
+
 2008-11-6 :
 	データ保存を SQLite データベースに変更
 	Asset を追加
