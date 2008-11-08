@@ -325,14 +325,16 @@ static char sql[4096];	// SQL buffer
 	if (asset < 0) {
 		sqlite3_prepare_v2(db, "SELECT MIN(date) FROM Transactions;", -1, &stmt, NULL);
 	} else {
-		sqlite3_prepare_v2(db, "SELECT MIN(date) FROM Transactions WHERE asset%?;", -1, &stmt, NULL);
+		sqlite3_prepare_v2(db, "SELECT MIN(date) FROM Transactions WHERE asset=?;", -1, &stmt, NULL);
 		sqlite3_bind_int(stmt, 1, asset);
 	}
 
 	NSDate *date = nil;
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		const char *ds = (const char *)sqlite3_column_text(stmt, 1);
-		date = [dateFormatter dateFromString:[NSString stringWithCString:ds encoding:NSUTF8StringEncoding]];
+		const char *ds = (const char *)sqlite3_column_text(stmt, 0);
+		if (ds) {
+			date = [dateFormatter dateFromString:[NSString stringWithCString:ds encoding:NSUTF8StringEncoding]];
+		}
 	}
 	sqlite3_finalize(stmt);
 	return date;
@@ -345,14 +347,16 @@ static char sql[4096];	// SQL buffer
 	if (asset < 0) {
 		sqlite3_prepare_v2(db, "SELECT MAX(date) FROM Transactions;", -1, &stmt, NULL);
 	} else {
-		sqlite3_prepare_v2(db, "SELECT MAX(date) FROM Transactions WHERE asset%?;", -1, &stmt, NULL);
+		sqlite3_prepare_v2(db, "SELECT MAX(date) FROM Transactions WHERE asset=?;", -1, &stmt, NULL);
 		sqlite3_bind_int(stmt, 1, asset);
 	}
 
 	NSDate *date = nil;
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		const char *ds = (const char *)sqlite3_column_text(stmt, 1);
-		date = [dateFormatter dateFromString:[NSString stringWithCString:ds encoding:NSUTF8StringEncoding]];
+		const char *ds = (const char *)sqlite3_column_text(stmt, 0);
+		if (ds) {
+			date = [dateFormatter dateFromString:[NSString stringWithCString:ds encoding:NSUTF8StringEncoding]];
+		}
 	}
 	sqlite3_finalize(stmt);
 	return date;
@@ -384,7 +388,7 @@ static char sql[4096];	// SQL buffer
 
 	double sum = 0.0;
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		sum = sqlite3_column_double(stmt, 1);
+		sum = sqlite3_column_double(stmt, 0);
 	} else {
 		ASSERT(0);
 	}

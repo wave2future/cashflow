@@ -34,6 +34,7 @@
 
 #import "AppDelegate.h"
 #import "Report.h"
+#import "Database.h"
 
 @implementation Report
 @synthesize date, totalIncome, totalOutgo;
@@ -77,6 +78,8 @@
 
 - (void)generate:(int)t asset:(Asset*)asset
 {
+	Database *db = theDataModel.db;
+	
 	self.type = t;
 	
 	if (reports != nil) {
@@ -84,12 +87,13 @@
 	}
 	reports = [[NSMutableArray alloc] init];
 
-	int trnum = [asset transactionCount];
-	if (trnum == 0) return;
-
-	NSDate *firstDate = [[asset transactionAt:0] date];
 	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
+	//	NSDate *firstDate = [[asset transactionAt:0] date];
+	NSDate *firstDate = [db firstDateOfAsset:asset.pkey];
+	if (firstDate == nil) return; // no data
+	NSDate *lastDate = [db lastDateOfAsset:asset.pkey];
+
 	// レポート周期の開始時間および間隔を求める
 	NSDateComponents *dc, *steps;
 	NSDate *dd;
@@ -113,8 +117,7 @@
 			break;
 	}
 	
-	int n = 0;
-	while (n < trnum) {
+	while ([dd compare:lastDate] != NSOrderedDescending) {
 		// Report 生成
 		Report *r = [[Report alloc] init];
 		[reports addObject:r];
@@ -127,20 +130,8 @@
 		dd = [greg dateByAddingComponents:steps toDate:dd options:0];
 
 		// 集計
-		for (; n < trnum; n++) {
-			Transaction *t = [asset transactionAt:n];
-			
-			if ([t.date compare:dd] != NSOrderedAscending) {
-				break;
-			}
-
-			/* 金額加算 */
-			if (t.value >= 0) {
-				r.totalIncome += t.value;
-			} else {
-				r.totalOutgo += -t.value;
-			}
-		}
+		r.totalIncome = [db calculateSumWithinRange:asset.pkey isOutgo:NO startDate:r.date endDate:dd];
+		r.totalOutgo = -[db calculateSumWithinRange:asset.pkey isOutgo:YES startDate:r.date endDate:dd];
 	}
 }
 
