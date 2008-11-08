@@ -76,6 +76,21 @@
     UIImage *icon3 = [UIImage imageWithContentsOfFile:imagePath];
 	
 	iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
+	
+	// load user defaults
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
+	if (firstShowAssetIndex >= 0 && [theDataModel assetCount] > firstShowAssetIndex) {
+		Asset *asset = [theDataModel assetAtIndex:firstShowAssetIndex];
+		[theDataModel changeSelAsset:asset];
+		
+		// TransactionListView を表示
+		TransactionListViewController *vc = [[[TransactionListViewController alloc]
+											  initWithNibName:@"TransactionListView"
+											  bundle:[NSBundle mainBundle]] autorelease];
+		vc.asset = asset;
+		[self.navigationController pushViewController:vc animated:YES];
+	}
 }
 
 - (void)dealloc {
@@ -84,6 +99,9 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
+	
 	[tableView reloadData];
 	[super viewWillAppear:animated];
 }
@@ -96,6 +114,8 @@
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults synchronize];
 }
 
 #pragma mark TableViewDataSource
@@ -134,6 +154,10 @@
 {
 	[tv deselectRowAtIndexPath:indexPath animated:NO];
 
+	// save preference
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setInteger:indexPath.row forKey:@"firstShowAssetIndex"];
+	
 	Asset *asset = [theDataModel assetAtIndex:indexPath.row];
 	[theDataModel changeSelAsset:asset];
 

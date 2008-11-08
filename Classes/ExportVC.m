@@ -73,6 +73,27 @@
 #endif
 
 	//noteTextView.font = [UIFont systemFontOfSize:12.0];
+
+	// load defaults
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	formatControl.selectedSegmentIndex = [defaults integerForKey:@"exportFormat"];
+	rangeControl.selectedSegmentIndex = [defaults integerForKey:@"exportRange"];
+	methodControl.selectedSegmentIndex = [defaults integerForKey:@"exportMethod"];	
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
+	[defaults setObject:[NSNumber numberWithInt:formatControl.selectedSegmentIndex] 
+			  forKey:@"exportFormat"];
+	[defaults setObject:[NSNumber numberWithInt:rangeControl.selectedSegmentIndex] 
+			  forKey:@"exportRange"];
+	[defaults setObject:[NSNumber numberWithInt:methodControl.selectedSegmentIndex] 
+			  forKey:@"exportMethod"];
+	[defaults synchronize];
 }
 
 - (IBAction)doExport
