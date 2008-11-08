@@ -38,6 +38,7 @@
 #import "Asset.h"
 #import "AssetVC.h"
 #import "TransactionListVC.h"
+#import "ReportVC.h"
 #import "InfoVC.h"
 
 @implementation AssetListViewController
@@ -239,6 +240,38 @@
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
 	[theDataModel reorderAsset:from.row to:to.row];
+}
+
+// action sheet
+- (void)doAction:(id)sender
+{
+	UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
+				cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+				destructiveButtonTitle:nil otherButtonTitles:
+ 						 NSLocalizedString(@"Weekly Report", @""),
+						 NSLocalizedString(@"Monthly Report", @""),
+						 nil];
+	[as showInView:[self view]];
+	[as release];
+}
+
+- (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+	ReportViewController *reportVC;
+	switch (buttonIndex) {
+		case 0:
+		case 1:
+			reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+			if (buttonIndex == 0) {
+				reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+				[reportVC generateReport:REPORT_WEEKLY asset:nil];
+			} else {
+				reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+				[reportVC generateReport:REPORT_MONTHLY asset:nil];
+			}
+			[self.navigationController pushViewController:reportVC animated:YES];
+			break;
+	}
 }
 
 - (IBAction)showHelp:(id)sender

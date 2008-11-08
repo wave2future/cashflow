@@ -38,16 +38,17 @@
 #import "TransactionListVC.h"
 
 @interface AssetListViewController : UIViewController
-	<UITableViewDelegate, UITableViewDataSource>
+<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 {
 	IBOutlet UITableView *tableView;
-	
+
 	NSArray *iconArray;
 }
 
 @property(nonatomic,retain) UITableView *tableView;
 
 - (void)addAsset;
+- (IBAction)doAction:(id)sender;
 - (IBAction)showHelp:(id)sender;
 
 @end

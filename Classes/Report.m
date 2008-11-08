@@ -90,9 +90,15 @@
 	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
 	//	NSDate *firstDate = [[asset transactionAt:0] date];
-	NSDate *firstDate = [db firstDateOfAsset:asset.pkey];
+	int assetKey;
+	if (asset == nil) {
+		assetKey = -1;
+	} else {
+		assetKey = asset.pkey;
+	}
+	NSDate *firstDate = [db firstDateOfAsset:assetKey];
 	if (firstDate == nil) return; // no data
-	NSDate *lastDate = [db lastDateOfAsset:asset.pkey];
+	NSDate *lastDate = [db lastDateOfAsset:assetKey];
 
 	// レポート周期の開始時間および間隔を求める
 	NSDateComponents *dc, *steps;
@@ -130,8 +136,8 @@
 		dd = [greg dateByAddingComponents:steps toDate:dd options:0];
 
 		// 集計
-		r.totalIncome = [db calculateSumWithinRange:asset.pkey isOutgo:NO startDate:r.date endDate:dd];
-		r.totalOutgo = -[db calculateSumWithinRange:asset.pkey isOutgo:YES startDate:r.date endDate:dd];
+		r.totalIncome = [db calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
+		r.totalOutgo = -[db calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
 	}
 }
 
