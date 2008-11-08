@@ -50,15 +50,14 @@
 - (BOOL)openDB;
 - (void)initializeDB;
 
+// Asset operation
 - (NSMutableArray *)loadAssets;
 - (void)insertAsset:(Asset*)asset;
 - (void)updateAsset:(Asset*)asset;
 - (void)updateInitialBalance:(Asset*)asset;
 - (void)deleteAsset:(Asset*)asset;
 
-//- (double)loadInitialBalance:(int)asset;
-//- (void)saveInitialBalance:(double)initialBalance asset:(int)asset;
-
+// Transaction operation
 - (NSMutableArray *)loadTransactions:(int)asset;
 - (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset;
 
@@ -66,6 +65,11 @@
 - (void)updateTransaction:(Transaction *)t;
 - (void)deleteTransaction:(Transaction *)t;
 - (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
+
+// Report operation
+- (NSDate*)firstDateOfAsset:(int)asset;
+- (NSDate*)lastDateOfAsset:(int)asset;
+- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
 
 // private
 - (void)beginTransaction;

@@ -317,6 +317,83 @@ static char sql[4096];	// SQL buffer
 	[self execSql:sql];
 }
 
+// Report 処理
+- (NSDate*)firstDateOfAsset:(int)asset
+{
+	sqlite3_stmt *stmt;
+
+	if (asset < 0) {
+		sqlite3_prepare_v2(db, "SELECT MIN(date) FROM Transactions;", -1, &stmt, NULL);
+	} else {
+		sqlite3_prepare_v2(db, "SELECT MIN(date) FROM Transactions WHERE asset%?;", -1, &stmt, NULL);
+		sqlite3_bind_int(stmt, 1, asset);
+	}
+
+	NSDate *date = nil;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		const char *ds = (const char *)sqlite3_column_text(stmt, 1);
+		date = [dateFormatter dateFromString:[NSString stringWithCString:ds encoding:NSUTF8StringEncoding]];
+	}
+	sqlite3_finalize(stmt);
+	return date;
+}
+
+- (NSDate*)lastDateOfAsset:(int)asset
+{
+	sqlite3_stmt *stmt;
+
+	if (asset < 0) {
+		sqlite3_prepare_v2(db, "SELECT MAX(date) FROM Transactions;", -1, &stmt, NULL);
+	} else {
+		sqlite3_prepare_v2(db, "SELECT MAX(date) FROM Transactions WHERE asset%?;", -1, &stmt, NULL);
+		sqlite3_bind_int(stmt, 1, asset);
+	}
+
+	NSDate *date = nil;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		const char *ds = (const char *)sqlite3_column_text(stmt, 1);
+		date = [dateFormatter dateFromString:[NSString stringWithCString:ds encoding:NSUTF8StringEncoding]];
+	}
+	sqlite3_finalize(stmt);
+	return date;
+}
+
+- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
+{
+	char sql[1024];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q",
+					 [[dateFormatter stringFromDate:start] UTF8String],
+					 [[dateFormatter stringFromDate:end] UTF8String]);
+	if (isOutgo) {
+		strcat(sql, " AND value < 0");
+	} else {
+		strcat(sql, " AND value >= 0");
+	}
+	if (asset >= 0) {
+		char tmp[128];
+		sprintf(tmp, " AND asset=%d;", asset);
+		strcat(sql, tmp);
+	} else {
+		strcat(sql, ";");
+	}
+
+	sqlite3_stmt *stmt;
+	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+
+	double sum = 0.0;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		sum = sqlite3_column_double(stmt, 1);
+	} else {
+		ASSERT(0);
+	}
+	sqlite3_finalize(stmt);
+
+	return sum;
+}
+
+
 - (void)beginTransaction
 {
 	[self execSql:"BEGIN;"];
