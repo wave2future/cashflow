@@ -18,10 +18,10 @@
 
 "Payment" = "Payment";
 
-"Account" = "Account";
-"Accounts" = "Accounts";
-"Account Name" = "Account Name";
-"Account Type" = "Account Type";
+"Asset" = "Asset";
+"Assets" = "Assets";
+"Asset Name" = "Asset Name";
+"Asset Type" = "Asset Type";
 
 "Transaction" = "Transaction";
 
@@ -49,8 +49,8 @@
 "No data" = "No data";
 "No data to be exported." = "No data to be exported.";
 
-"Delete Account" = "Delete Account";
-"ReallyDeleteAccount" = "Really delete this account?";
+"Delete Asset" = "Delete Asset";
+"ReallyDeleteAsset" = "Really delete this account?";
 
 "Delete Transactions" = "Delete Transactions";
 "Delete with all past transactions" = "Delete all older transactions";

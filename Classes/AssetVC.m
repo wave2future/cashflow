@@ -47,7 +47,7 @@
 
 - (void)viewDidLoad
 {
-	self.title = NSLocalizedString(@"Account", @"");
+	self.title = NSLocalizedString(@"Asset", @"");
 	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
 												  initWithBarButtonSystemItem:UIBarButtonSystemItemSave
 												  target:self
@@ -64,7 +64,7 @@
 	[b setBackgroundImage:bg forState:UIControlStateNormal];
 		
 	[b setFrame:CGRectMake(10, 280, 300, 44)];
-	[b setTitle:NSLocalizedString(@"Delete Account", @"") forState:UIControlStateNormal];
+	[b setTitle:NSLocalizedString(@"Delete Asset", @"") forState:UIControlStateNormal];
 	[b addTarget:self action:@selector(delButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 	delButton = [b retain];
 }
@@ -171,12 +171,12 @@
 		
 	switch (indexPath.row) {
 		case ROW_NAME:
-			name.text = NSLocalizedString(@"Account Name", @"");
+			name.text = NSLocalizedString(@"Asset Name", @"");
 			value.text = asset.name;
 			break;
 
 		case ROW_TYPE:
-			name.text = NSLocalizedString(@"Account Type", @"");
+			name.text = NSLocalizedString(@"Asset Type", @"");
 			switch (asset.type) {
 			case ASSET_CASH:
 				value.text = NSLocalizedString(@"Cash", @"");
@@ -210,7 +210,7 @@
 
 	switch (indexPath.row) {
 		case ROW_NAME:
-			ge = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Account Name", @"") identifier:0];
+			ge = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Asset Name", @"") identifier:0];
 			ge.text = asset.name;
 			vc = ge;
 			break;
@@ -223,7 +223,7 @@
 						  nil] autorelease];
 			gt = [GenEditTypeViewController genEditTypeViewController:self 
 																array:typeArray 
-																title:NSLocalizedString(@"Account Type", @"")
+																title:NSLocalizedString(@"Asset Type", @"")
 														   identifier:0];
 			gt.type = asset.type;
 			vc = gt;
@@ -252,10 +252,10 @@
 - (void)delButtonTapped
 {
 	UIActionSheet *as = [[UIActionSheet alloc]
-						 initWithTitle:NSLocalizedString(@"ReallyDeleteAccount", @"")
+						 initWithTitle:NSLocalizedString(@"ReallyDeleteAsset", @"")
 						 delegate:self
 						 cancelButtonTitle:@"Cancel"
-						 destructiveButtonTitle:NSLocalizedString(@"Delete Account", @"")
+						 destructiveButtonTitle:NSLocalizedString(@"Delete Asset", @"")
 						 otherButtonTitles:nil];
 	as.actionSheetStyle = UIActionSheetStyleDefault;
 	[as showInView:self.view];

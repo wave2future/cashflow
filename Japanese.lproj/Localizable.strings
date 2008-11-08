@@ -18,10 +18,10 @@
 
 "Payment" = "支払";
 
-"Account" = "口座";
-"Accounts" = "口座一覧";
-"Account Name" = "口座名";
-"Account Type" = "口座種別";
+"Asset" = "資産";
+"Assets" = "資産一覧";
+"Asset Name" = "資産名";
+"Asset Type" = "資産種別";
 
 "Transaction" = "取引";
 "Transactions" = "取引一覧";
@@ -48,8 +48,8 @@
 "No data" = "No data";
 "No data to be exported." = "エクスポートする対象データがありません";
 
-"Delete Account" = "口座を削除";
-"ReallyDeleteAccount" = "本当に口座を削除しますか？";
+"Delete Asset" = "口座を削除";
+"ReallyDeleteAsset" = "本当に口座を削除しますか？";
 
 "Delete transaction" = "取引を削除";
 "Delete with all past transactions" = "これ以前の取引を一括削除";

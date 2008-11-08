@@ -50,7 +50,7 @@
 	[super viewDidLoad];
 	
 	// title 設定
-	self.title = NSLocalizedString(@"Accounts", @"");
+	self.title = NSLocalizedString(@"Assets", @"");
 	
 	// "+" ボタンを追加
 	UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
