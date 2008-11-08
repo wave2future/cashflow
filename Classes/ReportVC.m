@@ -51,12 +51,12 @@
     [super dealloc];
 }
 
-- (void)generateReport:(int)type
+- (void)generateReport:(int)type asset:(Asset*)asset
 {
     if (reports == nil) {
         reports = [[Reports alloc] init];
     }
-    [reports generate:type];
+    [reports generate:type asset:asset];
 	
 	if (dateFormatter == nil) {
 		dateFormatter = [[NSDateFormatter alloc] init];

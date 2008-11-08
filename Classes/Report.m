@@ -75,7 +75,7 @@
 	[super dealloc];
 }
 
-- (void)generate:(int)t
+- (void)generate:(int)t asset:(Asset*)asset
 {
 	self.type = t;
 	
@@ -84,7 +84,6 @@
 	}
 	reports = [[NSMutableArray alloc] init];
 
-	Asset *asset = [theDataModel selAsset];
 	int trnum = [asset transactionCount];
 	if (trnum == 0) return;
 

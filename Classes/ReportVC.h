@@ -16,7 +16,7 @@
     NSDateFormatter *dateFormatter;
 }
 
-- (void)generateReport:(int)type;
+- (void)generateReport:(int)type asset:(Asset*)asset;
 - (UITableViewCell *)reportCell:(Report*)report;
 
 @end

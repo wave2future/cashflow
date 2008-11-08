@@ -59,7 +59,7 @@
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSMutableArray *reports;
 
-- (void)generate:(int)type;
+- (void)generate:(int)type asset:(Asset *)asset;
 
 @end
 

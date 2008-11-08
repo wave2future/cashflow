@@ -379,10 +379,10 @@
 			reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
 			if (buttonIndex == 0) {
 				reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-				[reportVC generateReport:REPORT_WEEKLY];
+				[reportVC generateReport:REPORT_WEEKLY asset:asset];
 			} else {
 				reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-				[reportVC generateReport:REPORT_MONTHLY];
+				[reportVC generateReport:REPORT_MONTHLY asset:asset];
 			}
 			[self.navigationController pushViewController:reportVC animated:YES];
 			break;
