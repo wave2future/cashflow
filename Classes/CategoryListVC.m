@@ -39,7 +39,7 @@
 
 @implementation CategoryListViewController
 
-//@synthesize tableView;
+@synthesize isSelectMode, selectedIndex;
 
 - (void)viewDidLoad
 {
@@ -47,18 +47,20 @@
 	
 	// title 設定
 	self.title = NSLocalizedString(@"Categories", @"");
+
+	if (!isSelectMode) {
+		// "+" ボタンを追加
+		UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
+										  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+										  target:self
+										  action:@selector(addCategory)];
 	
-	// "+" ボタンを追加
-	UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
-								   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-								   target:self
-								   action:@selector(addCategory)];
+		self.navigationItem.rightBarButtonItem = plusButton;
+		[plusButton release];
 	
-	self.navigationItem.rightBarButtonItem = plusButton;
-	[plusButton release];
-	
-	// Edit ボタンを追加
-	self.navigationItem.leftBarButtonItem = [self editButtonItem];
+		// Edit ボタンを追加
+		self.navigationItem.leftBarButtonItem = [self editButtonItem];
+	}
 }
 
 - (void)dealloc {
@@ -103,6 +105,12 @@
 
 	Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
 	cell.text = c.name;
+
+	if (isSelectMode &&indexPath.row == selectedIndex) {
+		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	} else {
+		cell.accessoryType = UITableViewCellAccessoryNone;
+	}
 	
 	return cell;
 }

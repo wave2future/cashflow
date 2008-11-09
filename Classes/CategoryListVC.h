@@ -39,10 +39,12 @@
 
 @interface CategoryListViewController : UITableViewController
 {
-	//IBOutlet UITableView *tableView;
+	BOOL isSelectMode;
+	int selectedIndex;
 }
 
-//@property(nonatomic,retain) UITableView *tableView;
+@property(nonatomic,assign) BOOL isSelectMode;
+@property(nonatomic,assign) int selectedIndex;
 
 - (void)addCategory;
 
