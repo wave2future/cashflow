@@ -197,7 +197,7 @@ static char sql[4096];	// SQL buffer
 
 	/* get transactions */
 	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT key, date, type, value, description, memo"
+					 "SELECT key, date, type, category, value, description, memo"
 					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
 					 asset);
 	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
@@ -209,9 +209,10 @@ static char sql[4096];	// SQL buffer
 		t.pkey = sqlite3_column_int(stmt, 0);
 		const char *date = (const char*)sqlite3_column_text(stmt, 1);
 		t.type = sqlite3_column_int(stmt, 2);
-		t.value = sqlite3_column_double(stmt, 3);
-		const char *desc = (const char*)sqlite3_column_text(stmt, 4);
-		const char *memo = (const char*)sqlite3_column_text(stmt, 5);
+		t.category = sqlite3_column_int(stmt, 3);
+		t.value = sqlite3_column_double(stmt, 4);
+		const char *desc = (const char*)sqlite3_column_text(stmt, 5);
+		const char *memo = (const char*)sqlite3_column_text(stmt, 6);
 
 		t.date = [dateFormatter dateFromString:
 						[NSString stringWithCString:date encoding:NSUTF8StringEncoding]];
@@ -267,7 +268,7 @@ static char sql[4096];	// SQL buffer
 	sqlite3_bind_int(stmt, 1, asset);
 	sqlite3_bind_text(stmt, 2, [[dateFormatter stringFromDate:t.date] UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_int(stmt, 3, t.type);
-	sqlite3_bind_int(stmt, 4, 0); // category
+	sqlite3_bind_int(stmt, 4, t.category);
 	sqlite3_bind_double(stmt, 5, t.value);
 	sqlite3_bind_text(stmt, 6, [t.description UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_text(stmt, 7, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
@@ -288,7 +289,7 @@ static char sql[4096];	// SQL buffer
 	}
 	sqlite3_bind_text(stmt, 1, [[dateFormatter stringFromDate:t.date] UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_int(stmt, 2, t.type);
-	sqlite3_bind_int(stmt, 3, 0); // category
+	sqlite3_bind_int(stmt, 3, t.category);
 	sqlite3_bind_double(stmt, 4, t.value);
 	sqlite3_bind_text(stmt, 5, [t.description UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_text(stmt, 6, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
