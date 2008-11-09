@@ -63,6 +63,7 @@
 - (NSString*)categoryStringWithKey:(int)key;
 
 -(Category*)addCategory:(NSString *)name;
+-(void)updateCategory:(Category*)category;
 -(void)deleteCategoryAtIndex:(int)index;
 -(void)reorderCategory:(int)from to:(int)to;
 -(void)renumber;

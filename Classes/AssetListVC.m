@@ -38,6 +38,7 @@
 #import "Asset.h"
 #import "AssetVC.h"
 #import "TransactionListVC.h"
+#import "CategoryListVC.h"
 #import "ReportVC.h"
 #import "InfoVC.h"
 
@@ -250,6 +251,7 @@
 				destructiveButtonTitle:nil otherButtonTitles:
  						 NSLocalizedString(@"Weekly Report", @""),
 						 NSLocalizedString(@"Monthly Report", @""),
+						 NSLocalizedString(@"Edit Categories", @""),
 						 nil];
 	[as showInView:[self view]];
 	[as release];
@@ -258,6 +260,8 @@
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	ReportViewController *reportVC;
+	CategoryListViewController *categoryVC;
+	
 	switch (buttonIndex) {
 		case 0:
 		case 1:
@@ -270,6 +274,14 @@
 				[reportVC generateReport:REPORT_MONTHLY asset:nil];
 			}
 			[self.navigationController pushViewController:reportVC animated:YES];
+			break;
+
+		case 2:
+			categoryVC = [[[CategoryListViewController alloc] 
+						   initWithNibName:@"CategoryListView" 
+						   bundle:[NSBundle mainBundle]] autorelease];
+			categoryVC.isSelectMode = NO;
+			[self.navigationController pushViewController:categoryVC animated:YES];
 			break;
 	}
 }

@@ -113,6 +113,11 @@
 	return c;
 }
 
+-(void)updateCategory:(Category*)category
+{
+	[db updateCategory:category];
+}
+
 -(void)deleteCategoryAtIndex:(int)index
 {
 	Category *c = [categories objectAtIndex:index];

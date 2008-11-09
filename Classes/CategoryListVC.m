@@ -36,6 +36,7 @@
 #import "AppDelegate.h"
 #import "CategoryListVC.h"
 #import "Category.h"
+#import "GenEditTextVC.h"
 
 @implementation CategoryListViewController
 
@@ -123,27 +124,35 @@
 	[tv deselectRowAtIndexPath:indexPath animated:NO];
 
 	Category *category = [theDataModel.categories categoryAtIndex:indexPath.row];
-
-#if 0
-	// TransactionListView を表示
-	TransactionListViewController *vc = [[[TransactionListViewController alloc]
-											 initWithNibName:@"TransactionListView"
-											 bundle:[NSBundle mainBundle]] autorelease];
-	vc.asset = asset;
-
+	if (isSelectMode) {
+		selectedIndex = indexPath.row;
+		[self.navigationController popViewControllerAnimated:YES];
+	}
+	
+	GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:@"Category" identifier:indexPath.row];
+	vc.text = category.name;
 	[self.navigationController pushViewController:vc animated:YES];
-#endif
 }
 
 // 新規カテゴリ追加
 - (void)addCategory
 {
-#if 0
-	CategoryViewController *vc = [[[CategoryViewController alloc]
-								initWithNibName:@"CategoryView" bundle:[NSBundle mainBundle]] autorelease];
-	[vc setCategoryIndex:-1];
+	GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:@"Category" identifier:-1];
 	[self.navigationController pushViewController:vc animated:YES];
-#endif
+}
+
+- (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)identifier
+{
+	if (identifier < 0) {
+		// 新規追加
+		[theDataModel.categories addCategory:vc.text];
+	} else {
+		// 変更
+		Category *c = [theDataModel.categories categoryAtIndex:identifier];
+		c.name = vc.text;
+		[theDataModel.categories updateCategory:c];
+	}
+	[self.tableView reloadData];
 }
 
 // Editボタン処理

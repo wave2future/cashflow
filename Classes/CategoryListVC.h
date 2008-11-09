@@ -36,8 +36,10 @@
 #import <UIKit/UIKit.h>
 #import "DataModel.h"
 #import "TransactionListVC.h"
+#import "GenEditTextVC.h"
 
 @interface CategoryListViewController : UITableViewController
+	<GenEditTextViewListener>
 {
 	BOOL isSelectMode;
 	int selectedIndex;
