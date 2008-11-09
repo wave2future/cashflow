@@ -87,7 +87,7 @@
 {
 	int count = [reports.reports count];
 	Report *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
-
+	
 	UITableViewCell *cell = [self reportCell:report];
 	return cell;
 }
@@ -146,7 +146,9 @@
 {
 	[tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-	Report *r = [reports.reports objectAtIndex:indexPath.row];
+	int count = [reports.reports count];
+	Report *r = [reports.reports objectAtIndex:count - indexPath.row - 1];
+
 	CatReportViewController *vc = [[[CatReportViewController alloc]
 									initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
 	vc.title = [dateFormatter stringFromDate:r.date];
