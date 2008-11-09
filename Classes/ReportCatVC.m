@@ -76,18 +76,18 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-		nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
+		nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 44)] autorelease];
 		nameLabel.tag = 1;
-		nameLabel.font = [UIFont systemFontOfSize: 16.0];
-		nameLabel.textColor = [UIColor grayColor];
+		nameLabel.font = [UIFont systemFontOfSize: 18.0];
+		nameLabel.textColor = [UIColor blackColor];
 		nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:nameLabel];
 
-		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 20, 130, 22)] autorelease];
+		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 44)] autorelease];
 		valueLabel.tag = 2;
-		valueLabel.font = [UIFont systemFontOfSize: 16.0];
+		valueLabel.font = [UIFont systemFontOfSize: 18.0];
 		valueLabel.textAlignment = UITextAlignmentRight;
-		valueLabel.textColor = [UIColor redColor];
+		valueLabel.textColor = [UIColor blackColor];
 		valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:valueLabel];
 	} else {
@@ -96,8 +96,17 @@
 	}
 
 	CatReport *cr = [report.catReports objectAtIndex:indexPath.row];
-	nameLabel.text = [theDataModel.categories categoryStringWithKey:cr.catkey];
+	if (cr.catkey >= 0) {
+		nameLabel.text = [theDataModel.categories categoryStringWithKey:cr.catkey];
+	} else {
+		nameLabel.text = NSLocalizedString(@"No category", @"");
+	}
 	valueLabel.text = [DataModel currencyString:cr.value];
+	if (cr.value >= 0) {
+		valueLabel.textColor = [UIColor blueColor];
+	} else {
+		valueLabel.textColor = [UIColor redColor];
+	}
 	return cell;
 }
 

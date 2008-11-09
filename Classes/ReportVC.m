@@ -33,6 +33,7 @@
 */
 
 #import "ReportVC.h"
+#import "ReportCatVC.h"
 
 @implementation ReportViewController
 
@@ -101,6 +102,7 @@
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
 		dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
 		dateLabel.tag = 1;
@@ -140,6 +142,16 @@
 	return cell;
 }
 
+ - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	[tv deselectRowAtIndexPath:indexPath animated:NO];
+	
+	Report *r = [reports.reports objectAtIndex:indexPath.row];
+	CatReportViewController *vc = [[[CatReportViewController alloc]
+									initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+	vc.report = r;
+	[self.navigationController pushViewController:vc animated:YES];
+}
 
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

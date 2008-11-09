@@ -47,6 +47,8 @@
 		3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
+		3EB2FCDE0EC7314100F356A3 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
+		3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
 		3EB35B260EC302D30008FAF0 /* DataModelV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B250EC302D30008FAF0 /* DataModelV1.m */; };
 		3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3EC0C8430EC35F0E00149755 /* GenEditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */; };
@@ -122,6 +124,9 @@
 		3EA0114C0EC3461A008CEEB7 /* AssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetVC.h; sourceTree = "<group>"; };
 		3EA0114D0EC34626008CEEB7 /* AssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetVC.m; sourceTree = "<group>"; };
 		3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "icon-rendered.png"; path = "images/icon-rendered.png"; sourceTree = "<group>"; };
+		3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryListView.xib; path = Resources/CategoryListView.xib; sourceTree = "<group>"; };
+		3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatVC.h; sourceTree = "<group>"; };
+		3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatVC.m; sourceTree = "<group>"; };
 		3EB35B240EC302B40008FAF0 /* DataModelV1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModelV1.h; path = Classes/DataModelV1.h; sourceTree = "<group>"; };
 		3EB35B250EC302D30008FAF0 /* DataModelV1.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModelV1.m; path = Classes/DataModelV1.m; sourceTree = "<group>"; };
 		3EB35B270EC302DD0008FAF0 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Asset.m; path = Classes/Asset.m; sourceTree = "<group>"; };
@@ -193,6 +198,8 @@
 				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
 				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
+				3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */,
+				3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */,
 				3EDDADBC0E89280800268AED /* InfoVC.h */,
 				3EDDADBD0E89280800268AED /* InfoVC.m */,
 				3EDDAE7C0E8E468700268AED /* ExportVC.h */,
@@ -245,6 +252,7 @@
 				3E588D450EC34CFE00D3853D /* AssetView.xib */,
 				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
+				3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
@@ -386,6 +394,7 @@
 				3E9A3B390EC47AA0005A4664 /* cash.png in Resources */,
 				3E9A3B3B0EC47AAB005A4664 /* bank.png in Resources */,
 				3E9A3B3D0EC47ABA005A4664 /* card.png in Resources */,
+				3EB2FCDE0EC7314100F356A3 /* CategoryListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -422,6 +431,7 @@
 				3EC0C8430EC35F0E00149755 /* GenEditTypeVC.m in Sources */,
 				3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */,
 				3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */,
+				3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
