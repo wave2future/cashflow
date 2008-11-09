@@ -184,14 +184,14 @@
 		cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
+		descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 220, 24)] autorelease];
 		descLabel.tag = TAG_DESC;
 		descLabel.font = [UIFont systemFontOfSize: 18.0];
 		descLabel.textColor = [UIColor blackColor];
 		descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		[cell.contentView addSubview:descLabel];
 		
-		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 24)] autorelease];
+		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(190, 0, 120, 24)] autorelease];
 		valueLabel.tag = TAG_VALUE;
 		valueLabel.font = [UIFont systemFontOfSize: 18.0];
 		valueLabel.textAlignment = UITextAlignmentRight;
