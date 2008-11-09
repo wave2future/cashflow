@@ -52,6 +52,7 @@
 		3EC0C8430EC35F0E00149755 /* GenEditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */; };
 		3EC0C8450EC35F2900149755 /* GenEditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0C8440EC35F2900149755 /* GenEditTypeView.xib */; };
 		3ECF38040EA9CF4900420060 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* WebServer.m */; };
+		3ED225370EC6881100BC5206 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED225360EC6881100BC5206 /* Category.m */; };
 		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
@@ -129,6 +130,7 @@
 		3EC0C8440EC35F2900149755 /* GenEditTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GenEditTypeView.xib; path = Resources/GenEditTypeView.xib; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
+		3ED225360EC6881100BC5206 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = Classes/Category.m; sourceTree = "<group>"; };
 		3EDC72BA0EBB493100366F1E /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportView.xib; path = Resources/ReportView.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redButton.png; path = images/redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoView.xib; path = Resources/InfoView.xib; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 				3EB35B270EC302DD0008FAF0 /* Asset.m */,
 				3E0519120E6A9D09008F1F65 /* Transaction.h */,
 				3E0519130E6A9D09008F1F65 /* Transaction.m */,
+				3ED225360EC6881100BC5206 /* Category.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
 				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
 				3EB35B240EC302B40008FAF0 /* DataModelV1.h */,
@@ -410,6 +413,7 @@
 				3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */,
 				3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */,
 				3EC0C8430EC35F0E00149755 /* GenEditTypeVC.m in Sources */,
+				3ED225370EC6881100BC5206 /* Category.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

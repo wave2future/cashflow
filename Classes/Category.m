@@ -32,55 +32,67 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <UIKit/UIKit.h>
-#import <sqlite3.h>
-#import "Transaction.h"
-#import "Asset.h"
 #import "Category.h"
+#import "AppDelegate.h"
 
-@class Asset;
-@class Category;
+@implementation Category
+@synthesize pkey, name, sorder;
+@end
 
-@interface Database : NSObject {
-	sqlite3 *db;
-	NSDateFormatter *dateFormatter;
+@implementation Categories
+
+@synthesize db;
+
+-(id)init
+{
+	[super init];
+	categories = nil;
+
+	return self;
 }
 
-- (id)init;
-- (void)dealloc;
+-(void)dealloc
+{
+	if (categories != nil) {
+		[categories release];
+	}
+	[super dealloc];
+}
 
-- (BOOL)openDB;
-- (void)initializeDB;
+-(void)reload
+{
+	ASSERT(db != nil);
+	if (categories != nil) {
+		[categories release];
+	}
+	categories = [db loadCategories];
+}
 
-// Asset operation
-- (NSMutableArray *)loadAssets;
-- (void)insertAsset:(Asset*)asset;
-- (void)updateAsset:(Asset*)asset;
-- (void)updateInitialBalance:(Asset*)asset;
-- (void)deleteAsset:(Asset*)asset;
+-(Category*)categoryAtIndex:(int)n
+{
+	ASSERT(categories != nil);
+	return [categories objectAtIndex:n];
+}
 
-// Transaction operation
-- (NSMutableArray *)loadTransactions:(int)asset;
-- (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset;
+-(Category*)categoryWithKey:(int)key
+{
+	int i, max = [categories count];
+	for (i = 0; i < max; i++) {
+		Category *c = [categories objectAtIndex:i];
+		if (c.pkey == key) {
+			return c;
+		}
+	}
+	return nil;
+}
 
-- (void)insertTransaction:(Transaction *)t asset:(int)asset;
-- (void)updateTransaction:(Transaction *)t;
-- (void)deleteTransaction:(Transaction *)t;
-- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
-
-// Category operation
-- (NSMutableArray *)loadCategories;
-- (void)insertCategory:(Category*)category;
-- (void)updateCategory:(Category*)category;
-- (void)deleteCategory:(Category*)category;
-
-// Report operation
-- (NSDate*)firstDateOfAsset:(int)asset;
-- (NSDate*)lastDateOfAsset:(int)asset;
-- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
-
-// private
-- (void)beginTransaction;
-- (void)commitTransaction;
+-(NSString*)categoryStringWithKey:(int)key
+{
+	Category *c = [self categoryWithKey:key];
+	if (c == nil) {
+		return nil;
+	}
+	return c.name;
+}
 
 @end

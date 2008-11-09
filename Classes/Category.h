@@ -33,54 +33,35 @@
 */
 
 #import <UIKit/UIKit.h>
-#import <sqlite3.h>
-#import "Transaction.h"
-#import "Asset.h"
-#import "Category.h"
+#import "Database.h"
 
-@class Asset;
-@class Category;
+@class Database;
 
-@interface Database : NSObject {
-	sqlite3 *db;
-	NSDateFormatter *dateFormatter;
+@interface Category : NSObject {
+	int pkey;
+	NSString *name;
+	int sorder;
 }
 
-- (id)init;
-- (void)dealloc;
-
-- (BOOL)openDB;
-- (void)initializeDB;
-
-// Asset operation
-- (NSMutableArray *)loadAssets;
-- (void)insertAsset:(Asset*)asset;
-- (void)updateAsset:(Asset*)asset;
-- (void)updateInitialBalance:(Asset*)asset;
-- (void)deleteAsset:(Asset*)asset;
-
-// Transaction operation
-- (NSMutableArray *)loadTransactions:(int)asset;
-- (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset;
-
-- (void)insertTransaction:(Transaction *)t asset:(int)asset;
-- (void)updateTransaction:(Transaction *)t;
-- (void)deleteTransaction:(Transaction *)t;
-- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
-
-// Category operation
-- (NSMutableArray *)loadCategories;
-- (void)insertCategory:(Category*)category;
-- (void)updateCategory:(Category*)category;
-- (void)deleteCategory:(Category*)category;
-
-// Report operation
-- (NSDate*)firstDateOfAsset:(int)asset;
-- (NSDate*)lastDateOfAsset:(int)asset;
-- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
-
-// private
-- (void)beginTransaction;
-- (void)commitTransaction;
+@property(nonatomic,assign) int pkey;
+@property(nonatomic,retain) NSString *name;
+@property(nonatomic,assign) int sorder;
 
 @end
+
+@interface Categories : NSObject {
+	Database *db;
+	NSMutableArray *categories;
+}
+
+@property(nonatomic,retain) Database *db;
+
+- (void)reload;
+- (Category*)categoryAtIndex:(int)n;
+
+- (Category*)categoryWithKey:(int)key;
+
+- (NSString*)categoryStringWithKey:(int)key;
+
+@end
+
