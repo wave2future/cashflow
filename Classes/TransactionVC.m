@@ -42,9 +42,9 @@
 
 #define ROW_DATE	0
 #define ROW_TYPE  1
-#define ROW_CATEGORY 2
-#define ROW_VALUE 3
-#define ROW_DESC  4
+#define ROW_VALUE 2
+#define ROW_DESC  3
+#define ROW_CATEGORY 4
 #define ROW_MEMO  5
 
 #define NUM_ROWS 6
