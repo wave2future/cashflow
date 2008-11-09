@@ -39,18 +39,35 @@
 #define REPORT_WEEKLY 0
 #define REPORT_MONTHLY 1
 
+// レポート(カテゴリ毎)
+@interface CatReport : NSObject {
+	int catkey; // カテゴリキー
+	double value; // 合計値
+}
+
+@property(nonatomic,assign) int catkey;
+@property(nonatomic,assign) double value;
+@end
+
+// レポート（１件分)
 @interface Report : NSObject {
 	NSDate *date;
+	NSDate *endDate;
 	double totalIncome;
 	double totalOutgo;
+
+	NSMutableArray *catReports;
 }
 
 @property(nonatomic,retain) NSDate *date;
+@property(nonatomic,retain) NSDate *endDate;
 @property(nonatomic,assign) double totalIncome;
 @property(nonatomic,assign) double totalOutgo;
+@property(nonatomic,retain) NSMutableArray *catReports;
 
 @end
 
+// レポート(集合)
 @interface Reports : NSObject {
 	int type;
 	NSMutableArray *reports;

@@ -78,6 +78,7 @@
 - (NSDate*)firstDateOfAsset:(int)asset;
 - (NSDate*)lastDateOfAsset:(int)asset;
 - (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
+- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category;
 
 // private
 - (void)beginTransaction;

@@ -449,6 +449,36 @@ static char sql[4096];	// SQL buffer
 	return sum;
 }
 
+- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category
+{
+	char sql[1024];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q AND category=%d",
+					 [[dateFormatter stringFromDate:start] UTF8String],
+					 [[dateFormatter stringFromDate:end] UTF8String],
+					 category);
+	if (asset >= 0) {
+		char tmp[128];
+		sprintf(tmp, " AND asset=%d;", asset);
+		strcat(sql, tmp);
+	} else {
+		strcat(sql, ";");
+	}
+
+	sqlite3_stmt *stmt;
+	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+
+	double sum = 0.0;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		sum = sqlite3_column_double(stmt, 0);
+	} else {
+		ASSERT(0);
+	}
+	sqlite3_finalize(stmt);
+
+	return sum;
+}
 
 - (void)beginTransaction
 {

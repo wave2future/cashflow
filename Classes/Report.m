@@ -36,8 +36,12 @@
 #import "Report.h"
 #import "Database.h"
 
+@implementation CatReport
+@synthesize catkey, value;
+@end
+
 @implementation Report
-@synthesize date, totalIncome, totalOutgo;
+@synthesize date, endDate, totalIncome, totalOutgo, catReports;
 
 - (id)init
 {
@@ -123,6 +127,8 @@
 			break;
 	}
 	
+	int numCategories = [theDataModel.categories categoryCount] + 1;
+	
 	while ([dd compare:lastDate] != NSOrderedDescending) {
 		// Report 生成
 		Report *r = [[Report alloc] init];
@@ -134,10 +140,33 @@
 		
 		// 次の期間開始時期を計算する
 		dd = [greg dateByAddingComponents:steps toDate:dd options:0];
+		r.endDate = dd;
 
 		// 集計
 		r.totalIncome = [db calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
 		r.totalOutgo = -[db calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
+
+		// カテゴリ毎の集計
+		int i;
+		r.catReports = [[NSMutableArray alloc] init];
+		double remain = r.totalIncome + r.totalOutgo;
+
+		for (i = 0; i < numCategories; i++) {
+			Category *c = [theDataModel.categories categoryAtIndex:i];
+			CatReport *cr = [[CatReport alloc] init];
+
+			cr.catkey = c.pkey;
+			cr.value = [db calculateSumWithinRangeCategory:assetKey startDate:r.date endDate:r.endDate category:cr.catkey];
+			remain -= cr.value;
+
+			[r.catReports addObject:cr];
+			[cr release];
+		}
+		CatReport *cr = [[CatReport alloc] init];
+		cr.catkey = -1;
+		cr.value = remain;
+		[r.catReports addObject:cr];
+		[cr release];
 	}
 }
 
