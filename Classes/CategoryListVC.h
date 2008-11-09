@@ -38,15 +38,25 @@
 #import "TransactionListVC.h"
 #import "GenEditTextVC.h"
 
+@class CategoryListViewController;
+
+@protocol CategoryListViewListener
+- (void)categoryListViewChanged:(CategoryListViewController *)vc;
+@end
+
 @interface CategoryListViewController : UITableViewController
 	<GenEditTextViewListener>
 {
 	BOOL isSelectMode;
+	BOOL isEditing;
 	int selectedIndex;
+	
+	id<CategoryListViewListener> listener;
 }
 
 @property(nonatomic,assign) BOOL isSelectMode;
 @property(nonatomic,assign) int selectedIndex;
+@property(nonatomic,assign) id<CategoryListViewListener> listener;
 
 - (void)addCategory;
 

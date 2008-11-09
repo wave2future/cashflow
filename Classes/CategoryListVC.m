@@ -40,11 +40,13 @@
 
 @implementation CategoryListViewController
 
-@synthesize isSelectMode, selectedIndex;
+@synthesize isSelectMode, selectedIndex, listener;
 
 - (void)viewDidLoad
 {
 	[super viewDidLoad];
+	
+	isEditing = NO;
 	
 	// title 設定
 	self.title = NSLocalizedString(@"Categories", @"");
@@ -91,7 +93,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [theDataModel.categories categoryCount];
+	int count = [theDataModel.categories categoryCount];
+	if (isEditing) {
+		count++;	// insert cell
+	}
+	return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -104,13 +110,17 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
 	}
 
-	Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
-	cell.text = c.name;
-
-	if (isSelectMode &&indexPath.row == selectedIndex) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
+	if (indexPath.row >= [theDataModel.categories categoryCount]) {
+		cell.text = NSLocalizedString(@"Add category", @"");
 	} else {
-		cell.accessoryType = UITableViewCellAccessoryNone;
+		Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
+		cell.text = c.name;
+
+		if (isSelectMode &&indexPath.row == selectedIndex) {
+			cell.accessoryType = UITableViewCellAccessoryCheckmark;
+		} else {
+			cell.accessoryType = UITableViewCellAccessoryNone;
+		}
 	}
 	
 	return cell;
@@ -126,10 +136,19 @@
 	Category *category = [theDataModel.categories categoryAtIndex:indexPath.row];
 	if (isSelectMode) {
 		selectedIndex = indexPath.row;
+		[listener categoryListViewChanged:self];
+		
 		[self.navigationController popViewControllerAnimated:YES];
 	}
 	
-	GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:@"Category" identifier:indexPath.row];
+	int idx = indexPath.row;
+	if (idx >= [theDataModel.categories categoryCount]) {
+		idx = -1; // insert row
+	}
+	GenEditTextViewController *vc = [GenEditTextViewController
+									 genEditTextViewController:self
+									 title:@"Category"
+									 identifier:idx];
 	vc.text = category.name;
 	[self.navigationController pushViewController:vc animated:YES];
 }
@@ -158,6 +177,9 @@
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+	isEditing = editing;
+	
+	[self.tableView reloadData];
 	[super setEditing:editing animated:animated];
 	
 	// tableView に通知
@@ -173,6 +195,9 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	if (indexPath.row >= [theDataModel.categories categoryCount]) {
+		return UITableViewCellEditingStyleInsert;
+	}
 	return UITableViewCellEditingStyleDelete;
 }
 
@@ -200,6 +225,9 @@
 // 並べ替え処理
 - (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	if (indexPath.row >= [theDataModel.categories categoryCount]) {
+		return NO;
+	}
 	return YES;
 }
 
