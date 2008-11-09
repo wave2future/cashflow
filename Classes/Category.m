@@ -91,11 +91,23 @@
 	return nil;
 }
 
+- (int)categoryIndexWithKey:(int)key
+{
+	int i, max = [categories count];
+	for (i = 0; i < max; i++) {
+		Category *c = [categories objectAtIndex:i];
+		if (c.pkey == key) {
+			return i;
+		}
+	}
+	return -1;
+}
+
 -(NSString*)categoryStringWithKey:(int)key
 {
 	Category *c = [self categoryWithKey:key];
 	if (c == nil) {
-		return nil;
+		return @"";
 	}
 	return c.name;
 }

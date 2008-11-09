@@ -49,10 +49,8 @@
 	// title 設定
 	self.title = NSLocalizedString(@"Categories", @"");
 
-	if (!isSelectMode) {
-		// Edit ボタンを追加
-		self.navigationItem.rightBarButtonItem = [self editButtonItem];
-	}
+	// Edit ボタンを追加
+	self.navigationItem.rightBarButtonItem = [self editButtonItem];
 }
 
 - (void)dealloc {
@@ -136,6 +134,7 @@
 		[tv deselectRowAtIndexPath:indexPath animated:NO];
 		
 		selectedIndex = indexPath.row;
+		ASSERT(listener);
 		[listener categoryListViewChanged:self];
 		
 		[self.navigationController popViewControllerAnimated:YES];

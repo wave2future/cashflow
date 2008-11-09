@@ -35,7 +35,6 @@
 
 #import <UIKit/UIKit.h>
 #import "DataModel.h"
-#import "TransactionListVC.h"
 #import "GenEditTextVC.h"
 
 @class CategoryListViewController;

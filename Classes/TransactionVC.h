@@ -42,12 +42,13 @@
 #import "EditDescVC.h";
 #import "EditValueVC.h";
 #import "EditDateVC.h";
+#import "CategoryListVC.h"
 
 @interface TransactionViewController : UITableViewController 
 	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
     GenEditTextViewListener, GenEditTypeViewListener,
 	EditDateViewListener, EditValueViewListener, 
-	EditDescViewListener>
+	EditDescViewListener, CategoryListViewListener>
 {
 	int transactionIndex;
 	Transaction *trans;
@@ -59,6 +60,7 @@
 	EditValueViewController *editValueVC;
 	EditDescViewController *editDescVC;
 	GenEditTextViewController *editMemoVC; // memo
+	CategoryListViewController *editCategoryVC;
 	
 	UIButton *delButton;
 	UIButton *delPastButton;

@@ -42,9 +42,12 @@
 
 #define ROW_DATE	0
 #define ROW_TYPE  1
-#define ROW_VALUE 2
-#define ROW_DESC  3
-#define ROW_MEMO  4
+#define ROW_CATEGORY 2
+#define ROW_VALUE 3
+#define ROW_DESC  4
+#define ROW_MEMO  5
+
+#define NUM_ROWS 6
 
 - (void)viewDidLoad
 {
@@ -87,6 +90,12 @@
 				   title:NSLocalizedString(@"Memo", @"") 
 				   identifier:0] retain];
 	
+	editCategoryVC = [[CategoryListViewController alloc]
+					  initWithNibName:@"CategoryListView" 
+					  bundle:[NSBundle mainBundle]];
+	editCategoryVC.isSelectMode = YES;
+	editCategoryVC.listener = self;
+	
 	// ボタン生成
 	UIButton *b;
 	UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
@@ -100,12 +109,12 @@
 		[b setBackgroundImage:bg forState:UIControlStateNormal];
 		
 		if (i == 0) {
-			[b setFrame:CGRectMake(10, 280, 300, 44)];
+			[b setFrame:CGRectMake(10, 310, 300, 40)];
 			[b setTitle:NSLocalizedString(@"Delete transaction", @"") forState:UIControlStateNormal];
 			[b addTarget:self action:@selector(delButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 			delButton = [b retain];
 		} else {
-			[b setFrame:CGRectMake(10, 340, 300, 44)];
+			[b setFrame:CGRectMake(10, 365, 300, 40)];
 			[b setTitle:NSLocalizedString(@"Delete with all past transactions", @"") forState:UIControlStateNormal];
 			[b addTarget:self action:@selector(delPastButtonTapped) forControlEvents:UIControlEventTouchUpInside];
 			delPastButton = [b retain];
@@ -186,7 +195,7 @@
 // 行数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	return 5; // details
+	return NUM_ROWS;
 }
 
 // 行の内容
@@ -247,6 +256,11 @@
 			value.text = trans.description;
 			break;
 			
+		case ROW_CATEGORY:
+			name.text = NSLocalizedString(@"Category", @"");
+			value.text = [theDataModel.categories categoryStringWithKey:trans.category];
+			break;
+			
 		case ROW_MEMO:
 			name.text = NSLocalizedString(@"Memo", @"");
 			value.text = trans.memo;
@@ -287,6 +301,10 @@
 			editMemoVC.text = trans.memo;
 			vc = editMemoVC;
 			break;
+		case ROW_CATEGORY:
+			editCategoryVC.selectedIndex = [theDataModel.categories categoryIndexWithKey:trans.category];
+			vc = editCategoryVC;
+			break;
 	}
 	[nc pushViewController:vc animated:YES];
 }
@@ -314,6 +332,15 @@
 - (void)genEditTextViewChanged:(GenEditTextViewController*)vc identifier:(int)id
 {
 	trans.memo = vc.text;
+}
+- (void)categoryListViewChanged:(CategoryListViewController*)vc;
+{
+	if (vc.selectedIndex < 0) {
+		trans.category = -1;
+	} else {
+		Category *c = [theDataModel.categories categoryAtIndex:vc.selectedIndex];
+		trans.category = c.pkey;
+	}
 }
 
 ////////////////////////////////////////////////////////////////////////////////
