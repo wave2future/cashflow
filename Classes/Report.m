@@ -80,6 +80,20 @@
 	[super dealloc];
 }
 
+static int compareCatReport(id x, id y, void *context)
+{
+	CatReport *xr = (CatReport *)x;
+	CatReport *yr = (CatReport *)y;
+	
+	if (xr.value == yr.value) {
+		return NSOrderedSame;
+	}
+	if (xr.value > yr.value) {
+		return NSOrderedDescending;
+	}
+	return NSOrderedAscending;
+}
+
 - (void)generate:(int)t asset:(Asset*)asset
 {
 	Database *db = theDataModel.db;
@@ -149,7 +163,7 @@
 		// カテゴリ毎の集計
 		int i;
 		r.catReports = [[NSMutableArray alloc] init];
-		double remain = r.totalIncome + r.totalOutgo;
+		double remain = r.totalIncome - r.totalOutgo;
 
 		for (i = 0; i < numCategories; i++) {
 			Category *c = [theDataModel.categories categoryAtIndex:i];
@@ -169,6 +183,9 @@
 		cr.value = remain;
 		[r.catReports addObject:cr];
 		[cr release];
+		
+		// ソート
+		[r.catReports sortUsingFunction:compareCatReport context:nil];
 	}
 }
 

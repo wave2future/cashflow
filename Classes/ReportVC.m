@@ -149,6 +149,7 @@
 	Report *r = [reports.reports objectAtIndex:indexPath.row];
 	CatReportViewController *vc = [[[CatReportViewController alloc]
 									initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+	vc.title = [dateFormatter stringFromDate:r.date];
 	vc.report = r;
 	[self.navigationController pushViewController:vc animated:YES];
 }

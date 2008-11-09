@@ -147,7 +147,7 @@
 	}
 	GenEditTextViewController *vc = [GenEditTextViewController
 									 genEditTextViewController:self
-									 title:@"Category"
+									 title:NSLocalizedString(@"Category", @"")
 									 identifier:idx];
 	if (idx >= 0) {
 		Category *category = [theDataModel.categories categoryAtIndex:idx];
@@ -210,7 +210,7 @@
 {
 	if (indexPath.row >= [theDataModel.categories categoryCount]) {
 		// add
-		GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:@"Category" identifier:-1];
+		GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Category", @"") identifier:-1];
 		[self.navigationController pushViewController:vc animated:YES];
 	}
 	
