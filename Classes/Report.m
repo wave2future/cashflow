@@ -127,7 +127,7 @@
 			break;
 	}
 	
-	int numCategories = [theDataModel.categories categoryCount] + 1;
+	int numCategories = [theDataModel.categories categoryCount];
 	
 	while ([dd compare:lastDate] != NSOrderedDescending) {
 		// Report 生成
@@ -162,6 +162,8 @@
 			[r.catReports addObject:cr];
 			[cr release];
 		}
+		
+		// 未分類項目
 		CatReport *cr = [[CatReport alloc] init];
 		cr.catkey = -1;
 		cr.value = remain;
