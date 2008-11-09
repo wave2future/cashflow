@@ -45,7 +45,8 @@
 	NSString *memo;
 	double value; // plus - income, minus - outgo.
 	double balance;
-	int type;
+	int type;  // TYPE_*
+	int category;
 }
 
 @property(nonatomic,assign) int pkey;
@@ -55,6 +56,7 @@
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) int type;
+@property(nonatomic,assign) int category;
 @property(nonatomic,assign) double evalue;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;

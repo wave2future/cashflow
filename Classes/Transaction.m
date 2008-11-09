@@ -37,7 +37,7 @@
 
 @implementation Transaction
 
-@synthesize pkey, date, description, memo, value, balance, type;
+@synthesize pkey, date, description, memo, value, balance, type, category;
 
 - (id)init
 {
@@ -49,6 +49,7 @@
 	value = 0.0;
 	balance = 0.0;
 	type = 0;
+	category = -1;
 	pkey = 0; // init
 	return self;
 }
@@ -68,6 +69,8 @@
 	self.memo = @"";
 	value = v;
 	balance = 0.0; // ###
+	type = 0;
+	category = -1;
 	pkey = 0; // init
 	return self;
 }
@@ -137,6 +140,7 @@
 	n.value = self.value;
 	n.balance = self.balance;
 	n.type = self.type;
+	n.category = self.category;
 	return n;
 }
 
@@ -154,7 +158,8 @@
 		//self.balance = [decoder decodeDoubleForKey:@"Balance"];
 		self.description = [decoder decodeObjectForKey:@"Description"];
 		self.memo = [decoder decodeObjectForKey:@"Memo"];
-		
+		//self.category = [decoder decodeIntForKey:@"Category"];
+
 		/* backward compatibility */
 		if (self.type == TYPE_OUTGO) {
 			self.value = -self.value;
@@ -186,6 +191,7 @@
 	//[coder encodeDouble:balance forKey:@"Balance"];
 	[coder encodeObject:description forKey:@"Description"];
 	[coder encodeObject:memo forKey:@"Memo"];
+	//[coder encodeInt:category forKey:@"Category"];
 }
 
 @end
