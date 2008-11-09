@@ -95,4 +95,48 @@
 	return c.name;
 }
 
+-(Category*)addCategory:(NSString *)name
+{
+	Category *c = [[Category alloc] init];
+	c.name = name;
+	[categories addObject:c];
+	[c release];
+
+	[self renumber];
+
+	[db insertCategory:c];
+	return c;
+}
+
+-(void)deleteCategoryAtIndex:(int)index
+{
+	Category *c = [categories objectAtIndex:index];
+	[db deleteCategory:c];
+	[categories removeObjectAtIndex:index];
+}
+
+- (void)reorderCategory:(int)from to:(int)to
+{
+	Category *c = [[categories objectAtIndex:from] retain];
+	[categories removeObjectAtIndex:from];
+	[categories insertObject:c atIndex:to];
+	[c release];
+	
+	[self renumber];
+}
+
+-(void)renumber
+{
+	int i, max = [categories count];
+
+	[db beginTransaction];
+	for (i = 0; i < max; i++) {
+		Category *c = [categories objectAtIndex:i];
+		c.sorder = i;
+		[db updateCategory:c];
+	}
+	[db commitTransaction];
+}
+
+
 @end

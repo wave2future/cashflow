@@ -58,10 +58,13 @@
 
 - (void)reload;
 - (Category*)categoryAtIndex:(int)n;
-
 - (Category*)categoryWithKey:(int)key;
-
 - (NSString*)categoryStringWithKey:(int)key;
+
+-(Category*)addCategory:(NSString *)name;
+-(void)deleteCategoryAtIndex:(int)index;
+-(void)reorderCategory:(int)from to:(int)to;
+-(void)renumber;
 
 @end
 
