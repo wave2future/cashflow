@@ -53,6 +53,8 @@
 		3EC0C8450EC35F2900149755 /* GenEditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0C8440EC35F2900149755 /* GenEditTypeView.xib */; };
 		3ECF38040EA9CF4900420060 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* WebServer.m */; };
 		3ED225370EC6881100BC5206 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED225360EC6881100BC5206 /* Category.m */; };
+		3ED2257E0EC68F3B00BC5206 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED2257D0EC68F3B00BC5206 /* CategoryListVC.m */; };
+		3ED225A20EC690A300BC5206 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED225A10EC690A300BC5206 /* CategoryListView.xib */; };
 		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
@@ -131,6 +133,9 @@
 		3ECF38030EA9CF4900420060 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
 		3ED225360EC6881100BC5206 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = Classes/Category.m; sourceTree = "<group>"; };
+		3ED2257C0EC68F3000BC5206 /* CategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListVC.h; sourceTree = "<group>"; };
+		3ED2257D0EC68F3B00BC5206 /* CategoryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListVC.m; sourceTree = "<group>"; };
+		3ED225A10EC690A300BC5206 /* CategoryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = CategoryListView.xib; path = Resources/CategoryListView.xib; sourceTree = "<group>"; };
 		3EDC72BA0EBB493100366F1E /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportView.xib; path = Resources/ReportView.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redButton.png; path = images/redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoView.xib; path = Resources/InfoView.xib; sourceTree = "<group>"; };
@@ -175,6 +180,8 @@
 				3E0A9E390EC33894005195A5 /* TransactionListVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
 				3E0888110E6EAEEB00739AC9 /* TransactionVC.m */,
+				3ED2257C0EC68F3000BC5206 /* CategoryListVC.h */,
+				3ED2257D0EC68F3B00BC5206 /* CategoryListVC.m */,
 				3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */,
 				3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */,
 				3EC0C8410EC35F0500149755 /* GenEditTypeVC.h */,
@@ -239,6 +246,7 @@
 				3E588D450EC34CFE00D3853D /* AssetView.xib */,
 				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
+				3ED225A10EC690A300BC5206 /* CategoryListView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
@@ -379,6 +387,7 @@
 				3E9A3B390EC47AA0005A4664 /* cash.png in Resources */,
 				3E9A3B3B0EC47AAB005A4664 /* bank.png in Resources */,
 				3E9A3B3D0EC47ABA005A4664 /* card.png in Resources */,
+				3ED225A20EC690A300BC5206 /* CategoryListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +423,7 @@
 				3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */,
 				3EC0C8430EC35F0E00149755 /* GenEditTypeVC.m in Sources */,
 				3ED225370EC6881100BC5206 /* Category.m in Sources */,
+				3ED2257E0EC68F3B00BC5206 /* CategoryListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

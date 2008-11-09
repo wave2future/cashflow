@@ -39,7 +39,7 @@
 
 @implementation DataModel
 
-@synthesize db, assets, selAsset;
+@synthesize db, assets, selAsset, categories;
 
 - (id)init
 {
@@ -50,6 +50,8 @@
 	assets = [[NSMutableArray alloc] init];
 	selAsset = nil;
 
+	categories = [[Categories alloc] init];
+	
 	return self;
 }
 
@@ -57,6 +59,7 @@
 {
 	[db release];
 	[assets release];
+	[categories release];
 
 	[super dealloc];
 }
@@ -85,6 +88,9 @@
 			[selAsset reload];
 		}
 	}
+
+	categories.db = db;
+	[categories reload];
 }
 
 // private

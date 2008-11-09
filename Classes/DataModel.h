@@ -34,6 +34,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Asset.h"
+#import "Category.h"
 #import "Database.h"
 
 @interface DataModel : NSObject {
@@ -42,11 +43,15 @@
 	// Asset
 	NSMutableArray *assets;
 	Asset *selAsset; // 選択中の Asset
+
+	// Category
+	Categories *categories;
 }
 
 @property(nonatomic,readonly) Database *db;
 @property(nonatomic,retain) NSMutableArray *assets;
 @property(nonatomic,readonly) Asset *selAsset;
+@property(nonatomic,retain) Categories *categories;
 
 // initializer
 - (id)init;

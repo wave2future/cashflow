@@ -32,40 +32,18 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+
 #import <UIKit/UIKit.h>
-#import "Database.h"
+#import "DataModel.h"
+#import "TransactionListVC.h"
 
-@class Database;
-
-@interface Category : NSObject {
-	int pkey;
-	NSString *name;
-	int sorder;
+@interface CategoryListViewController : UITableViewController
+{
+	//IBOutlet UITableView *tableView;
 }
 
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,retain) NSString *name;
-@property(nonatomic,assign) int sorder;
+//@property(nonatomic,retain) UITableView *tableView;
+
+- (void)addCategory;
 
 @end
-
-@interface Categories : NSObject {
-	Database *db;
-	NSMutableArray *categories;
-}
-
-@property(nonatomic,retain) Database *db;
-
-- (void)reload;
-- (int)categoryCount;
-- (Category*)categoryAtIndex:(int)n;
-- (Category*)categoryWithKey:(int)key;
-- (NSString*)categoryStringWithKey:(int)key;
-
--(Category*)addCategory:(NSString *)name;
--(void)deleteCategoryAtIndex:(int)index;
--(void)reorderCategory:(int)from to:(int)to;
--(void)renumber;
-
-@end
-

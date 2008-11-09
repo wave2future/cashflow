@@ -68,6 +68,11 @@
 	categories = [db loadCategories];
 }
 
+-(int)categoryCount
+{
+	return [categories count];
+}
+
 -(Category*)categoryAtIndex:(int)n
 {
 	ASSERT(categories != nil);
