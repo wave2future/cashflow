@@ -46,23 +46,12 @@
 {
 	[super viewDidLoad];
 	
-	isEditing = NO;
-	
 	// title 設定
 	self.title = NSLocalizedString(@"Categories", @"");
 
 	if (!isSelectMode) {
-		// "+" ボタンを追加
-		UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
-										  initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-										  target:self
-										  action:@selector(addCategory)];
-	
-		self.navigationItem.rightBarButtonItem = plusButton;
-		[plusButton release];
-	
 		// Edit ボタンを追加
-		self.navigationItem.leftBarButtonItem = [self editButtonItem];
+		self.navigationItem.rightBarButtonItem = [self editButtonItem];
 	}
 }
 
@@ -94,7 +83,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	int count = [theDataModel.categories categoryCount];
-	if (isEditing) {
+	if (self.editing) {
 		count++;	// insert cell
 	}
 	return count;
@@ -116,14 +105,26 @@
 		Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
 		cell.text = c.name;
 
-		if (isSelectMode &&indexPath.row == selectedIndex) {
-			cell.accessoryType = UITableViewCellAccessoryCheckmark;
-		} else {
-			cell.accessoryType = UITableViewCellAccessoryNone;
-		}
 	}
 	
 	return cell;
+}
+
+// アクセサリタイプを返す
+- (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCellAccessoryType type;
+	
+	if (isSelectMode && !self.editing) {
+		if (indexPath.row == selectedIndex) {
+			type = UITableViewCellAccessoryCheckmark;
+		} else {
+			type = UITableViewCellAccessoryNone;
+		}
+	} else {
+		type = UITableViewCellAccessoryDisclosureIndicator;
+	} 
+	return type;
 }
 
 //
@@ -131,16 +132,16 @@
 //
  - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tv deselectRowAtIndexPath:indexPath animated:NO];
-
-	Category *category = [theDataModel.categories categoryAtIndex:indexPath.row];
-	if (isSelectMode) {
+	if (isSelectMode && !self.editing) {
+		[tv deselectRowAtIndexPath:indexPath animated:NO];
+		
 		selectedIndex = indexPath.row;
 		[listener categoryListViewChanged:self];
 		
 		[self.navigationController popViewControllerAnimated:YES];
+		return;
 	}
-	
+
 	int idx = indexPath.row;
 	if (idx >= [theDataModel.categories categoryCount]) {
 		idx = -1; // insert row
@@ -149,14 +150,11 @@
 									 genEditTextViewController:self
 									 title:@"Category"
 									 identifier:idx];
-	vc.text = category.name;
-	[self.navigationController pushViewController:vc animated:YES];
-}
-
-// 新規カテゴリ追加
-- (void)addCategory
-{
-	GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:@"Category" identifier:-1];
+	if (idx >= 0) {
+		Category *category = [theDataModel.categories categoryAtIndex:idx];
+		vc.text = category.name;
+	}
+	
 	[self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -177,18 +175,25 @@
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-	isEditing = editing;
-	
-	[self.tableView reloadData];
 	[super setEditing:editing animated:animated];
 	
-	// tableView に通知
-	[self.tableView setEditing:editing animated:animated];
+	// Insert ボタン用の行
+	int insButtonIndex = [theDataModel.categories categoryCount];
+	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insButtonIndex inSection:0];
+	NSArray *iary = [NSArray arrayWithObject:indexPath];
 	
+	[self.tableView beginUpdates];
 	if (editing) {
-		self.navigationItem.rightBarButtonItem.enabled = NO;
+		[self.tableView insertRowsAtIndexPaths:iary withRowAnimation:UITableViewRowAnimationTop];
 	} else {
-		self.navigationItem.rightBarButtonItem.enabled = YES;
+		[self.tableView deleteRowsAtIndexPaths:iary withRowAnimation:UITableViewRowAnimationTop];
+	}
+	[self.tableView endUpdates];
+
+	if (editing) {
+		self.navigationItem.leftBarButtonItem.enabled = NO;
+	} else {
+		self.navigationItem.leftBarButtonItem.enabled = YES;
 	}
 }
 
@@ -201,25 +206,20 @@
 	return UITableViewCellEditingStyleDelete;
 }
 
-// 削除処理
+// 編集処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-#if 0
-	int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
-
-	if (transactionIndex < 0) {
-		// initial balance cell : do not delete!
-		return;
+	if (indexPath.row >= [theDataModel.categories categoryCount]) {
+		// add
+		GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:@"Category" identifier:-1];
+		[self.navigationController pushViewController:vc animated:YES];
 	}
 	
-	if (style == UITableViewCellEditingStyleDelete) {
-		[asset deleteTransactionAt:transactionIndex];
-	
+	else if (style == UITableViewCellEditingStyleDelete) {
+		[theDataModel.categories deleteCategoryAtIndex:indexPath.row];
 		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		[self updateBalance];
 		[self.tableView reloadData];
 	}
-#endif
 }
 
 // 並べ替え処理

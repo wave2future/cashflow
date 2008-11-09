@@ -48,7 +48,6 @@
 	<GenEditTextViewListener>
 {
 	BOOL isSelectMode;
-	BOOL isEditing;
 	int selectedIndex;
 	
 	id<CategoryListViewListener> listener;
@@ -57,7 +56,5 @@
 @property(nonatomic,assign) BOOL isSelectMode;
 @property(nonatomic,assign) int selectedIndex;
 @property(nonatomic,assign) id<CategoryListViewListener> listener;
-
-- (void)addCategory;
 
 @end
