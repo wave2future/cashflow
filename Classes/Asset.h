@@ -41,7 +41,7 @@
 #define ASSET_BANK  1
 #define	ASSET_CARD  2
 
-#define MAX_TRANSACTIONS	500
+#define MAX_TRANSACTIONS	5000
 
 @class Database;
 
