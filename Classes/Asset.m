@@ -401,12 +401,12 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 	while ([stmt step] == SQLITE_ROW) {
 		const char *cs = [stmt colCString:0];
 		if (*cs == '\0') continue;
-		NSString *s = [NSString stringWithCString:cs];
-
+		NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
+		if (s == nil) continue;
+		
 		BOOL match = NO;
 		NSString *ss;
 		int i, max = [descAry count];
-
 		for (i = 0; i < max; i++) {
 			ss = [descAry objectAtIndex:i];
 			if ([s isEqualToString:ss]) {
