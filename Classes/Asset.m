@@ -89,7 +89,45 @@
 - (void)reload
 {
 	[self clear];
-	transactions = [db loadTransactions:pkey];
+
+	sqlite3_stmt *stmt;
+
+	/* get transactions */
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "SELECT key, date, type, category, value, description, memo"
+					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
+					 pkey);
+	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+
+	transactions = [[NSMutableArray alloc] init];
+
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		Transaction *t = [[Transaction alloc] init];
+		t.pkey = sqlite3_column_int(stmt, 0);
+		const char *date = (const char*)sqlite3_column_text(stmt, 1);
+		t.type = sqlite3_column_int(stmt, 2);
+		t.category = sqlite3_column_int(stmt, 3);
+		t.value = sqlite3_column_double(stmt, 4);
+		const char *desc = (const char*)sqlite3_column_text(stmt, 5);
+		const char *memo = (const char*)sqlite3_column_text(stmt, 6);
+
+		t.date = [db dateFromCString:date];
+		if (t.date == nil) {
+			// fail safe
+			[t release];
+			continue;
+		}
+		if (desc) {
+			t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
+		}
+		if (memo) {
+			t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
+		}
+
+		[transactions addObject:t];
+		[t release];
+	}
+	sqlite3_finalize(stmt);
 	
 	[self recalcBalanceInitial];
 }
@@ -97,7 +135,24 @@
 - (void)resave
 {
 	[self updateInitialBalance];
-	[db saveTransactions:transactions asset:pkey];
+
+	[db beginTransactionDB];
+
+	// delete all transactions
+	char sql[256];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE FROM Transactions WHERE asset = %d;", asset);
+	[db execSql:sql];
+
+	// write all transactions
+	int n = [transactions count];
+	int i;
+	for (i = 0; i < n; i++) {
+		Transaction *t = [transactions objectAtIndex:i];
+		[self insertTransactionDb:t];
+	}
+
+	[db commitTransactionDB];
 }
 
 - (void)clear
@@ -156,7 +211,29 @@
 	}
 
 	// DB 追加
-	[db insertTransaction:tr asset:pkey];
+	[self insertTransactionDb:tr];
+}
+
+- (void)insertTransactionDb:(Transaction*)t
+{
+	static sqlite3_stmt *stmt = NULL;
+
+	if (stmt == NULL) {
+		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, -1, ?, ?, ?, ?, ?, ?);";
+		sqlite3_prepare_v2(db.db, s, -1, &stmt, NULL);
+	}
+	sqlite3_bind_int(stmt, 1, pkey/*asset*/);
+	sqlite3_bind_text(stmt, 2, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_int(stmt, 3, t.type);
+	sqlite3_bind_int(stmt, 4, t.category);
+	sqlite3_bind_double(stmt, 5, t.value);
+	sqlite3_bind_text(stmt, 6, [t.description UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 7, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_step(stmt);
+	sqlite3_reset(stmt);
+
+	// get primary key
+	t.pkey = sqlite3_last_insert_rowid(db.db);
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
@@ -169,14 +246,42 @@
 	[self recalcBalance];
 
 	// update DB
-	[db updateTransaction:t];
+	[self updateTransaction:t];
 }
+
+- (void)updateTransaction:(Transaction *)t
+{
+	static sqlite3_stmt *stmt = NULL;
+
+	if (stmt == NULL) {
+		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
+		sqlite3_prepare_v2(db.db, s, -1, &stmt, NULL);
+	}
+	sqlite3_bind_text(stmt, 1, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_int(stmt, 2, t.type);
+	sqlite3_bind_int(stmt, 3, t.category);
+	sqlite3_bind_double(stmt, 4, t.value);
+	sqlite3_bind_text(stmt, 5, [t.description UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 6, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_int(stmt, 7, t.pkey);
+	sqlite3_step(stmt);
+	sqlite3_reset(stmt);
+}
+
 
 - (void)deleteTransactionAt:(int)n
 {
 	// update DB
 	Transaction *t = [transactions objectAtIndex:n];
-	[db deleteTransaction:t];
+
+	static sqlite3_stmt *stmt = NULL;
+	if (stmt == NULL) {
+		const char *s = "DELETE FROM Transactions WHERE key = ?;";
+		sqlite3_prepare_v2(db.db, s, -1, &stmt, NULL);
+	}
+	sqlite3_bind_int(stmt, 1, t.pkey);
+	sqlite3_step(stmt);
+	sqlite3_reset(stmt);
 
 	// special handling for first transaction
 	if (n == 0) {
@@ -205,8 +310,14 @@
 	}
 	[db commitTransaction];
 
-	//[db deleteOldTransactionsBefore:date asset:pkey];
-	//[self reload];
+#if 0
+	char sql[1024];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
+					 [db cstringFromDate:date], asset);
+	[db execSql:sql];
+	[self reload];
+#endif
 }
 
 - (int)firstTransactionByDate:(NSDate*)date
@@ -266,7 +377,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 		if (t.value != oldval) {
 			// 金額が変更された場合(残高照会取引)、DB を更新
-			[db updateTransaction:t];
+			[self updateTransaction:t];
 		}
 	}
 

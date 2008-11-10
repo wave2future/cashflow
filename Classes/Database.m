@@ -66,6 +66,19 @@ static char sql[4096];	// SQL buffer
 	[super dealloc];
 }
 
+- (NSDate*)dateFromCString:(const char *)str
+{
+	NSDate *date = [dateFormatter dateFromString:
+		   [NSString stringWithCString:str encoding:NSUTF8StringEncoding]];
+	return date;
+}
+
+- (const char *)cstringFromDate:(NSDate*)date
+{
+	const char *s = [[dateFormatter stringFromDate:date] UTF8String];
+	return s;
+}
+
 - (void)execSql:(const char *)sql
 {
 	ASSERT(db != 0);
@@ -121,136 +134,6 @@ static char sql[4096];	// SQL buffer
 - (void)commitTransactionDB
 {
 	[self execSql:"COMMIT;"];
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// Transaction 処理
-
-- (NSMutableArray *)loadTransactions:(int)asset
-{
-	sqlite3_stmt *stmt;
-
-	/* get transactions */
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT key, date, type, category, value, description, memo"
-					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
-					 asset);
-	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
-
-	NSMutableArray *transactions = [[NSMutableArray alloc] init];
-
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		Transaction *t = [[Transaction alloc] init];
-		t.pkey = sqlite3_column_int(stmt, 0);
-		const char *date = (const char*)sqlite3_column_text(stmt, 1);
-		t.type = sqlite3_column_int(stmt, 2);
-		t.category = sqlite3_column_int(stmt, 3);
-		t.value = sqlite3_column_double(stmt, 4);
-		const char *desc = (const char*)sqlite3_column_text(stmt, 5);
-		const char *memo = (const char*)sqlite3_column_text(stmt, 6);
-
-		t.date = [dateFormatter dateFromString:
-						[NSString stringWithCString:date encoding:NSUTF8StringEncoding]];
-		if (t.date == nil) {
-			// fail safe
-			[t release];
-			continue;
-		}
-		if (desc) {
-			t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
-		}
-		if (memo) {
-			t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
-		}
-
-		[transactions addObject:t];
-		[t release];
-	}
-	sqlite3_finalize(stmt);
-
-	return transactions;
-}
-
-- (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset
-{
-	[self beginTransactionDB];
-
-	// delete all transactions
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE asset = %d;", asset);
-	[self execSql:sql];
-
-	// write all transactions
-	int n = [transactions count];
-	int i;
-
-	for (i = 0; i < n; i++) {
-		Transaction *t = [transactions objectAtIndex:i];
-		[self insertTransaction:t asset:asset];
-	}
-
-	[self commitTransactionDB];
-}
-
-- (void)insertTransaction:(Transaction*)t asset:(int)asset
-{
-	static sqlite3_stmt *stmt = NULL;
-
-	if (stmt == NULL) {
-		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, -1, ?, ?, ?, ?, ?, ?);";
-		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
-	}
-	sqlite3_bind_int(stmt, 1, asset);
-	sqlite3_bind_text(stmt, 2, [[dateFormatter stringFromDate:t.date] UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 3, t.type);
-	sqlite3_bind_int(stmt, 4, t.category);
-	sqlite3_bind_double(stmt, 5, t.value);
-	sqlite3_bind_text(stmt, 6, [t.description UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_text(stmt, 7, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_step(stmt);
-	sqlite3_reset(stmt);
-
-	// get primary key
-	t.pkey = sqlite3_last_insert_rowid(db);
-}
-
-- (void)updateTransaction:(Transaction *)t
-{
-	static sqlite3_stmt *stmt = NULL;
-
-	if (stmt == NULL) {
-		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
-		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
-	}
-	sqlite3_bind_text(stmt, 1, [[dateFormatter stringFromDate:t.date] UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 2, t.type);
-	sqlite3_bind_int(stmt, 3, t.category);
-	sqlite3_bind_double(stmt, 4, t.value);
-	sqlite3_bind_text(stmt, 5, [t.description UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_text(stmt, 6, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 7, t.pkey);
-	sqlite3_step(stmt);
-	sqlite3_reset(stmt);
-}
-
-- (void)deleteTransaction:(Transaction *)t
-{
-	static sqlite3_stmt *stmt = NULL;
-	if (stmt == NULL) {
-		const char *s = "DELETE FROM Transactions WHERE key = ?;";
-		sqlite3_prepare_v2(db, s, -1, &stmt, NULL);
-	}
-	sqlite3_bind_int(stmt, 1, t.pkey);
-	sqlite3_step(stmt);
-	sqlite3_reset(stmt);
-}
-
-- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
-					 [[dateFormatter stringFromDate:date] UTF8String], asset);
-	[self execSql:sql];
 }
 
 //////////////////////////////////////////////////////////////////////////////////

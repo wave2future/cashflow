@@ -54,14 +54,9 @@
 - (BOOL)openDB;
 - (void)initializeDB;
 
-// Transaction operation
-- (NSMutableArray *)loadTransactions:(int)asset;
-- (void)saveTransactions:(NSMutableArray*)transactions asset:(int)asset;
-
-- (void)insertTransaction:(Transaction *)t asset:(int)asset;
-- (void)updateTransaction:(Transaction *)t;
-- (void)deleteTransaction:(Transaction *)t;
-- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
+// Utilities
+- (NSDate*)dateFromCString:(const char *)str;
+- (const char *)cstringFromDate:(NSDate*)date;
 
 // Report operation
 - (NSDate*)firstDateOfAsset:(int)asset;
