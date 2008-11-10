@@ -405,9 +405,10 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 		BOOL match = NO;
 		NSString *ss;
-		NSEnumerator *e = [descAry objectEnumerator];
+		int i, max = [descAry count];
 
-		while ((ss = (NSString*)[e nextObject]) != nil) {
+		for (i = 0; i < max; i++) {
+			ss = [descAry objectAtIndex:i];
 			if ([s isEqualToString:ss]) {
 				match = YES;
 				break;

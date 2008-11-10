@@ -268,7 +268,7 @@ static int compareCatReport(id x, id y, void *context)
 {
 	char sql[256];
 
-	strcat(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
+	strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
 
 	if (category >= 0) {
 		strcat(sql, " AND category=?3");

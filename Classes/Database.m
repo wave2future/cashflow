@@ -178,7 +178,10 @@ static NSDateFormatter *dateFormatter = nil;
 {
 	sqlite3_stmt *stmt;
 	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
-	ASSERT(result == SQLITE_OK);
+	if (result != SQLITE_OK) {
+		NSLog(@"sqlite3: %s", sqlite3_errmsg(handle));
+		ASSERT(0);
+	}
 
 	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
 	return dbs;

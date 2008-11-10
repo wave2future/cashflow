@@ -66,7 +66,6 @@
 
 @interface Database : NSObject {
 	sqlite3 *handle;
-	NSDateFormatter *dateFormatter;
 }
 
 @property(nonatomic,readonly) sqlite3 *handle;
