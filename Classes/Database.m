@@ -251,7 +251,7 @@ static NSDateFormatter *dateFormatter = nil;
 	[self execSql:"CREATE TABLE Categories ("
 		  "key INTEGER PRIMARY KEY,"
 		  "name TEXT,"
-		  "order INTEGER);"];
+		  "sorder INTEGER);"];
 }
 
 //////////////////////////////////////////////////////////////////////////////////
