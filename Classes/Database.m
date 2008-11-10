@@ -39,13 +39,13 @@
 
 @implementation Database
 
-@synthesize db;
+@synthesize handle;
 
 - (id)init
 {
 	self = [super init];
 	if (self != nil) {
-		db = 0;
+		handle = 0;
 
 		dateFormatter = [[NSDateFormatter alloc] init];
 		[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -57,8 +57,8 @@
 
 - (void)dealloc
 {
-	if (db != nil) {
-		sqlite3_close(db);
+	if (handle != nil) {
+		sqlite3_close(handle);
 	}
 	[dateFormatter release];
 	[super dealloc];
@@ -66,11 +66,11 @@
 
 - (void)execSql:(const char *)sql
 {
-	ASSERT(db != 0);
+	ASSERT(handle != 0);
 	
-	int result = sqlite3_exec(db, sql, NULL, NULL, NULL);
+	int result = sqlite3_exec(handle, sql, NULL, NULL, NULL);
 	if (result != SQLITE_OK) {
-		NSLog(@"sqlite3: %s", sqlite3_errmsg(db));
+		NSLog(@"sqlite3: %s", sqlite3_errmsg(handle));
 		ASSERT(0);
 	}
 }
@@ -96,7 +96,7 @@
 	NSFileManager *fileManager = [NSFileManager defaultManager];
 	BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
 	
-	if (sqlite3_open([dbPath UTF8String], &db) != 0) {
+	if (sqlite3_open([dbPath UTF8String], &handle) != 0) {
 		// ouch!
 		ASSERT(0);
 	}

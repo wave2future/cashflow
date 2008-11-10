@@ -101,7 +101,7 @@
 	sqlite3_stmt *stmt;
 	assets = [[NSMutableArray alloc] init];
 
-	sqlite3_prepare_v2(db.db, "SELECT * FROM Assets ORDER BY sorder;", -1, &stmt, NULL);
+	sqlite3_prepare_v2(db.handle, "SELECT * FROM Assets ORDER BY sorder;", -1, &stmt, NULL);
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Asset *as = [[Asset alloc] init];
 		as.pkey = sqlite3_column_int(stmt, 0);
@@ -152,7 +152,7 @@
 					 [as.name UTF8String], as.type, as.initialBalance, as.sorder);
 	[db execSql:sql];
 
-	as.pkey = sqlite3_last_insert_rowid(db.db);
+	as.pkey = sqlite3_last_insert_rowid(db.handle);
 }
 
 - (void)deleteAsset:(Asset *)as

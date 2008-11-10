@@ -68,7 +68,7 @@
 	categories = [[NSMutableArray alloc] init];
 
 	sqlite3_stmt *stmt;
-	sqlite3_prepare_v2(db.db, "SELECT * FROM Categories ORDER BY sorder;", -1, &stmt, NULL);
+	sqlite3_prepare_v2(db.handle, "SELECT * FROM Categories ORDER BY sorder;", -1, &stmt, NULL);
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Category *c = [[Category alloc] init];
 		c.pkey = sqlite3_column_int(stmt, 0);
@@ -131,7 +131,7 @@
 					 [c.name UTF8String], c.sorder);
 	[db execSql:sql];
 
-	c.pkey = sqlite3_last_insert_rowid(db.db);
+	c.pkey = sqlite3_last_insert_rowid(db.handle);
 
 	return c;
 }

@@ -42,11 +42,11 @@
 @class Category;
 
 @interface Database : NSObject {
-	sqlite3 *db;
+	sqlite3 *handle;
 	NSDateFormatter *dateFormatter;
 }
 
-@property(nonatomic,readonly) sqlite3 *db;
+@property(nonatomic,readonly) sqlite3 *handle;
 
 - (id)init;
 - (void)dealloc;
