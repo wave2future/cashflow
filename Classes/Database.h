@@ -45,15 +45,15 @@
 	sqlite3_statement *stmt;
 }
 
-@property(nonatomic,assign) sqlite3_statement *stmt;
-
-- (void)bindInt:(int)idx val:(int)val;
-- (void)bindDouble:(int)idx val:(double)val;
-- (void)bindString:(int)idx val:(NSString*)val;
-
+- (id)initWithStatement:(sqlite3_statement *)st;
 - (int)step;
 - (void)reset;
 - (int)lastInsertRowId;
+
+- (void)bindInt:(int)idx val:(int)val;
+- (void)bindDouble:(int)idx val:(double)val;
+- (void)bindCString:(int)idx val:(const char *)val;
+- (void)bindString:(int)idx val:(NSString*)val;
 
 - (int)colInt:(int)idx;
 - (double)colDouble:(int)idx;

@@ -152,7 +152,7 @@
 					 [as.name UTF8String], as.type, as.initialBalance, as.sorder);
 	[db execSql:sql];
 
-	as.pkey = sqlite3_last_insert_rowid(db.handle);
+	as.pkey = [db lastInsertRowId];
 }
 
 - (void)deleteAsset:(Asset *)as

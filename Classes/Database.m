@@ -39,11 +39,11 @@
 
 @implementation DBStatement
 
-- (id)init
+- (id)initWithStatement:(sqlite3_statement *)st
 {
 	self = [super init];
 	if (self != nil) {
-		self.stmt = NULL;
+		self.stmt = st;
 	}
 	return self;
 }
@@ -54,6 +54,21 @@
 		sqlite3_finalize(stmt);
 	}
 	[super dealloc];
+}
+
+- (int)step
+{
+	return sqlite3_step(stmt);
+}
+
+- (void)reset
+{
+	sqlite3_reset(stmt);
+}
+
+- (int)lastInsertRowId
+{
+	return sqlite3_last_insert_rowid(handle);
 }
 
 - (void)bindInt:(int)idx val:(int)val
@@ -74,21 +89,6 @@
 - (void)bindString:(int)idx val:(NSString*)val
 {
 	sqlite3_bind_text(stmt, idx, [val UTF8String], -1, SQLITE_TRANSIENT);
-}
-
-- (int)step
-{
-	return sqlite3_step(stmt);
-}
-
-- (void)reset
-{
-	sqlite3_reset(stmt);
-}
-
-- (int)lastInsertRowId
-{
-	return sqlite3_last_insert_rowid(handle);
 }
 
 - (int)colInt:(int)idx
@@ -165,9 +165,7 @@
 	sqlite3_stmt *stmt;
 	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
 
-	DBStatement *dbs = [[DBStatement alloc] init];
-	dbs.stmt = stmt;
-
+	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
 	return dbs;
 }
 

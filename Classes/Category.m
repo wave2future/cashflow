@@ -130,7 +130,7 @@
 					 [c.name UTF8String], c.sorder);
 	[db execSql:sql];
 
-	c.pkey = sqlite3_last_insert_rowid(db.handle);
+	c.pkey = [db lastInsertRowId];
 
 	return c;
 }
