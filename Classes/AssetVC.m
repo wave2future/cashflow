@@ -281,7 +281,7 @@
 		[theDataModel addAsset:asset];
 		[asset release];
 	} else {
-		[theDataModel.db updateAsset:asset];
+		[theDataModel updateAsset:asset];
 	}
 	asset = nil;
 	

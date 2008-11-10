@@ -58,6 +58,7 @@
 
 // load/save
 - (void)load;
+- (void)loadAssets; // private
 - (void)reload;
 - (void)resave;
 
@@ -66,6 +67,7 @@
 - (Asset *)assetAtIndex:(int)n;
 - (void)addAsset:(Asset *)as;
 - (void)deleteAsset:(Asset *)as;
+- (void)updateAsset:(Asset*)asset;
 - (void)reorderAsset:(int)from to:(int)to;
 - (void)changeSelAsset:(Asset *)as;
 

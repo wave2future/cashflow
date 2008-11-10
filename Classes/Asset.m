@@ -43,8 +43,6 @@
 @synthesize db, pkey, type, name, sorder;
 @synthesize initialBalance;
 
-static char sql[4096];
-
 - (id)init
 {
 	[super init];
@@ -108,7 +106,7 @@ static char sql[4096];
 		t.type = [stmt colInt:2];
 		t.category = [stmt colInt:3];
 		t.value = [stmt colInt:4];
-		t.desc = [stmt colString:5];
+		t.description = [stmt colString:5];
 		t.memo = [stmt colString:6];
 
 		if (t.date == nil) {
@@ -134,7 +132,7 @@ static char sql[4096];
 
 	// delete all transactions
 	DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
-	[stmt bindInt:1 val:asset];
+	[stmt bindInt:1 val:pkey];
 	[stmt step];
 	[stmt release];
 
@@ -405,7 +403,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 		if (*cs == '\0') continue;
 		NSString *s = [NSString stringWithCString:cs];
 
-		int i;
 		BOOL match = NO;
 		NSString *ss;
 		NSEnumerator *e = [descAry objectEnumerator];

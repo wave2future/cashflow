@@ -39,11 +39,11 @@
 
 @implementation DBStatement
 
-- (id)initWithStatement:(sqlite3_statement *)st
+- (id)initWithStatement:(sqlite3_stmt *)st
 {
 	self = [super init];
 	if (self != nil) {
-		self.stmt = st;
+		stmt = st;
 	}
 	return self;
 }
@@ -64,11 +64,6 @@
 - (void)reset
 {
 	sqlite3_reset(stmt);
-}
-
-- (int)lastInsertRowId
-{
-	return sqlite3_last_insert_rowid(handle);
 }
 
 - (void)bindInt:(int)idx val:(int)val
@@ -93,7 +88,7 @@
 
 - (void)bindDate:(int)idx val:(NSDate*)date
 {
-	[self bindCString:idx val:[Database cstringFromDate:date];
+	[self bindCString:idx val:[Database cstringFromDate:date]];
 }
 
 - (int)colInt:(int)idx
@@ -118,7 +113,7 @@
 	if (!s) {
 		return @"";
 	}
-	NSString *ns = [NSString stringFromCString:s encoding:UTF8Encoding];
+	NSString *ns = [NSString stringWithCString:s encoding:NSUTF8StringEncoding];
 	return ns;
 }
 
@@ -127,7 +122,7 @@
 	NSDate *date = nil;
 	const char *ds = [self colCString:idx];
 	if (ds) {
-		date = [Database dateFromCString:date];
+		date = [Database dateFromCString:ds];
 	}
 	return date;
 }
@@ -183,9 +178,15 @@ static NSDateFormatter *dateFormatter = nil;
 {
 	sqlite3_stmt *stmt;
 	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
+	ASSERT(result == SQLITE_OK);
 
 	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
 	return dbs;
+}
+
+- (int)lastInsertRowId
+{
+	return sqlite3_last_insert_rowid(handle);
 }
 
 - (void)beginTransaction

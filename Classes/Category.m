@@ -94,7 +94,6 @@
 
 - (int)categoryIndexWithKey:(int)key
 {
-	Category *c = [self categoryWithKey:key];
 	int i, max = [categories count];
 	for (i = 0; i < max; i++) {
 		Category *c = [categories objectAtIndex:i];
@@ -140,9 +139,9 @@
 {
 	DBStatement *stmt;
 	stmt = [db prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
-	[stmt bindString:1 category.name];
-	[stmt bindInt:2 category.sorder];
-	[stmt bindInt:3 category.pkey];
+	[stmt bindString:1 val:category.name];
+	[stmt bindInt:2 val:category.sorder];
+	[stmt bindInt:3 val:category.pkey];
 	[stmt step];
 	[stmt release];
 }
@@ -178,7 +177,7 @@
 	for (i = 0; i < max; i++) {
 		Category *c = [categories objectAtIndex:i];
 		c.sorder = i;
-		[db updateCategory:c];
+		[self updateCategory:c];
 	}
 	[db commitTransaction];
 }

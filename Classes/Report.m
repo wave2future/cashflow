@@ -96,7 +96,7 @@ static int compareCatReport(id x, id y, void *context)
 
 - (void)generate:(int)t asset:(Asset*)asset
 {
-	self.db = theDataModel.db;
+	db = theDataModel.db;
 	
 	self.type = t;
 	

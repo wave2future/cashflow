@@ -43,13 +43,12 @@
 @class Database;
 
 @interface DBStatement : NSObject {
-	sqlite3_statement *stmt;
+	sqlite3_stmt *stmt;
 }
 
-- (id)initWithStatement:(sqlite3_statement *)st;
+- (id)initWithStatement:(sqlite3_stmt *)st;
 - (int)step;
 - (void)reset;
-- (int)lastInsertRowId;
 
 - (void)bindInt:(int)idx val:(int)val;
 - (void)bindDouble:(int)idx val:(double)val;
@@ -76,7 +75,9 @@
 - (void)dealloc;
 
 - (void)execSql:(const char *)sql;
-- (sqlite3_stmt*)prepare:(const char *)sql;
+- (DBStatement*)prepare:(const char *)sql;
+- (int)lastInsertRowId;
+
 - (void)beginTransaction;
 - (void)commitTransaction;
 

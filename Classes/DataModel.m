@@ -96,7 +96,7 @@
 }
 
 // private
-- (NSMutableArray*)loadAssets
+- (void)loadAssets
 {
 	DBStatement *stmt;
 	assets = [[NSMutableArray alloc] init];
@@ -147,10 +147,13 @@
 {
 	[assets addObject:as];
 
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Assets VALUES(NULL, %Q, %d, %f, %d);",
-					 [as.name UTF8String], as.type, as.initialBalance, as.sorder);
-	[db execSql:sql];
+	DBStatement *stmt = [db prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
+	[stmt bindString:1 val:as.name];
+	[stmt bindInt:2 val:as.type];
+	[stmt bindDouble:3 val:as.initialBalance];
+	[stmt bindInt:4 val:as.sorder];
+	[stmt step];
+	[stmt release];
 
 	as.pkey = [db lastInsertRowId];
 }
@@ -161,18 +164,31 @@
 		selAsset = nil;
 	}
 	[as clear];
-	
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Assets WHERE key=%d;",
-					 asset.pkey);
-	[db execSql:sql];
 
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE asset=%d;",
-					 asset.pkey);
-	[db execSql:sql];
+	DBStatement *stmt;
+	stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
+	[stmt bindInt:1 val:as.pkey];
+	[stmt step];
+	[stmt release];
+
+	stmt = [db prepare:"DELETE FROM Transactions WHERE key=?;"];
+	[stmt bindInt:1 val:as.pkey];
+	[stmt step];
+	[stmt release];
 
 	[assets removeObject:as];
+}
+
+- (void)updateAsset:(Asset*)asset
+{
+	DBStatement *stmt = [db prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
+	[stmt bindString:1 val:asset.name];
+	[stmt bindInt:2 val:asset.type];
+	[stmt bindDouble:3 val:asset.initialBalance];
+	[stmt bindInt:4 val:asset.sorder];
+	[stmt bindInt:5 val:asset.pkey];
+	[stmt step];
+	[stmt release];
 }
 
 - (void)reorderAsset:(int)from to:(int)to
@@ -184,17 +200,18 @@
 	
 	// renumbering sorder
 	[db beginTransaction];
+	DBStatement *stmt = [db prepare:"UPDATE Assets SET sorder=? WHERE key=?;"];
 	for (int i = 0; i < [assets count]; i++) {
 		as = [assets objectAtIndex:i];
 		as.sorder = i;
 
-		sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Assets SET name=%Q, type=%d, initialBalance=%f, sorder=%d WHERE key=%d;",
-					 [as.name UTF8String], as.type, as.initialBalance, as.sorder,
-					 as.pkey);
-		[db execSql:sql];
+		[stmt bindInt:1 val:as.sorder];
+		[stmt bindInt:2 val:as.pkey];
+		[stmt step];
+		[stmt reset];
 	}
-	[db endTransaction];
+	[stmt release];
+	[db commitTransaction];
 }
 
 
