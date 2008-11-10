@@ -43,6 +43,8 @@
 @synthesize db, pkey, type, name, sorder;
 @synthesize initialBalance;
 
+static char sql[4096];
+
 - (id)init
 {
 	[super init];
@@ -88,11 +90,11 @@
 
 - (void)reload
 {
-	[self clear];
-
 	sqlite3_stmt *stmt;
 
-	/* get transactions */
+	[self clear];
+
+	/* load transactions */
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT key, date, type, category, value, description, memo"
 					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
@@ -128,7 +130,8 @@
 		[t release];
 	}
 	sqlite3_finalize(stmt);
-	
+
+	// recalc balance
 	[self recalcBalanceInitial];
 }
 
@@ -139,7 +142,6 @@
 	[db beginTransactionDB];
 
 	// delete all transactions
-	char sql[256];
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE FROM Transactions WHERE asset = %d;", asset);
 	[db execSql:sql];
@@ -165,7 +167,6 @@
 
 - (void)updateInitialBalance
 {
-	char sql[256];
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;",
 					 initialBalance, pkey);
@@ -214,21 +215,23 @@
 	[self insertTransactionDb:tr];
 }
 
+// private
 - (void)insertTransactionDb:(Transaction*)t
 {
 	static sqlite3_stmt *stmt = NULL;
 
 	if (stmt == NULL) {
-		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, -1, ?, ?, ?, ?, ?, ?);";
+		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
 		sqlite3_prepare_v2(db.db, s, -1, &stmt, NULL);
 	}
-	sqlite3_bind_int(stmt, 1, pkey/*asset*/);
-	sqlite3_bind_text(stmt, 2, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 3, t.type);
-	sqlite3_bind_int(stmt, 4, t.category);
-	sqlite3_bind_double(stmt, 5, t.value);
-	sqlite3_bind_text(stmt, 6, [t.description UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_text(stmt, 7, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_int(stmt, 1, pkey/*asset key*/);
+	sqlite3_bind_int(stmt, 2, -1 /*dst asset*/);
+	sqlite3_bind_text(stmt, 3, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_int(stmt, 4, t.type);
+	sqlite3_bind_int(stmt, 5, t.category);
+	sqlite3_bind_double(stmt, 6, t.value);
+	sqlite3_bind_text(stmt, 7, [t.description UTF8String], -1, SQLITE_TRANSIENT);
+	sqlite3_bind_text(stmt, 8, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
 	sqlite3_step(stmt);
 	sqlite3_reset(stmt);
 
@@ -311,7 +314,6 @@
 	[db commitTransaction];
 
 #if 0
-	char sql[1024];
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
 					 [db cstringFromDate:date], asset);
@@ -329,7 +331,6 @@
 		}
 	}
 	return -1;
-
 }
 
 // sort

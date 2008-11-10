@@ -74,6 +74,7 @@
 - (int)transactionCount;
 - (Transaction*)transactionAt:(int)n;
 - (void)insertTransaction:(Transaction*)tr;
+- (void)insertTransactionDb:(Transaction*)t;
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;
 - (void)deleteOldTransactionsBefore:(NSDate*)date;
