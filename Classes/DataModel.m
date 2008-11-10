@@ -98,24 +98,24 @@
 // private
 - (NSMutableArray*)loadAssets
 {
-	sqlite3_stmt *stmt;
+	DBStatement *stmt;
 	assets = [[NSMutableArray alloc] init];
 
 	stmt = [db prepare:"SELECT * FROM Assets ORDER BY sorder;"];
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
+	while ([stmt step] == SQLITE_ROW) {
 		Asset *as = [[Asset alloc] init];
-		as.pkey = sqlite3_column_int(stmt, 0);
-		const char *name = (const char *)sqlite3_column_text(stmt, 1);
-		as.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
-		as.type = sqlite3_column_int(stmt, 2);
-		as.initialBalance = sqlite3_column_double(stmt, 3);
-		as.sorder = sqlite3_column_int(stmt, 4);
+		as.pkey = [stmt colInt:0];
+		as.name = [stmt colString:1];
+		as.type = [stmt colInt:2];
+		as.initialBalance = [stmt colDouble:3];
+		as.sorder = [stmt colInt:4];
 
 		as.db = db; // back pointer
 		
 		[assets addObject:as];
 		[as release];
 	}
+	[stmt release];
 }
 
 // private

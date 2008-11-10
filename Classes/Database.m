@@ -66,19 +66,29 @@
 	sqlite3_bind_double(stmt, idx, val);
 }
 
-- (void)bindString:(int)idx val:(NSString*)val
+- (void)bindCString:(int)idx val:(const char *)val
 {
-	sqlite3_bind_text(stmt, idx, [val UTF8String]);
+	sqlite3_bind_text(stmt, idx, val, -1, SQLITE_TRANSIENT);
 }
 
-- (void)step
+- (void)bindString:(int)idx val:(NSString*)val
 {
-	sqlite3_step(stmt);
+	sqlite3_bind_text(stmt, idx, [val UTF8String], -1, SQLITE_TRANSIENT);
+}
+
+- (int)step
+{
+	return sqlite3_step(stmt);
 }
 
 - (void)reset
 {
 	sqlite3_reset(stmt);
+}
+
+- (int)lastInsertRowId
+{
+	return sqlite3_last_insert_rowid(handle);
 }
 
 - (int)colInt:(int)idx
@@ -100,6 +110,9 @@
 - (NSString*)colString:(int)idx
 {
 	const char *s = (const char*)sqlite3_column_text(stmt, idx);
+	if (!s) {
+		return @"";
+	}
 	NSString *ns = [NSString stringFromCString:s encoding:UTF8Encoding];
 	return ns;
 }
@@ -147,12 +160,15 @@
 	}
 }
 
-- (sqlite3_stmt*)prepare:(const char *)sql
+- (DBStatement *)prepare:(const char *)sql
 {
 	sqlite3_stmt *stmt;
-
 	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
-	return stmt;
+
+	DBStatement *dbs = [[DBStatement alloc] init];
+	dbs.stmt = stmt;
+
+	return dbs;
 }
 
 - (void)beginTransaction

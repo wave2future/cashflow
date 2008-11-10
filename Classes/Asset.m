@@ -90,7 +90,7 @@ static char sql[4096];
 
 - (void)reload
 {
-	sqlite3_stmt *stmt;
+	DBStatement *stmt;
 
 	[self clear];
 
@@ -103,15 +103,15 @@ static char sql[4096];
 
 	transactions = [[NSMutableArray alloc] init];
 
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
+	while ([stmt step] == SQLITE_ROW) {
 		Transaction *t = [[Transaction alloc] init];
-		t.pkey = sqlite3_column_int(stmt, 0);
-		const char *date = (const char*)sqlite3_column_text(stmt, 1);
-		t.type = sqlite3_column_int(stmt, 2);
-		t.category = sqlite3_column_int(stmt, 3);
-		t.value = sqlite3_column_double(stmt, 4);
-		const char *desc = (const char*)sqlite3_column_text(stmt, 5);
-		const char *memo = (const char*)sqlite3_column_text(stmt, 6);
+		t.pkey = [stmt colInt:0];
+		const char *date = [stmt colCString:1];
+		t.type = [stmt colInt:2];
+		t.category = [stmt colInt:3];
+		t.value = [stmt colInt:4];
+		t.desc = [stmt colString:5];
+		t.memo = [stmt colString:6];
 
 		t.date = [db dateFromCString:date];
 		if (t.date == nil) {
@@ -119,17 +119,11 @@ static char sql[4096];
 			[t release];
 			continue;
 		}
-		if (desc) {
-			t.description = [NSString stringWithCString:desc encoding:NSUTF8StringEncoding];
-		}
-		if (memo) {
-			t.memo = [NSString stringWithCString:memo encoding:NSUTF8StringEncoding];
-		}
 
 		[transactions addObject:t];
 		[t release];
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
 
 	// recalc balance
 	[self recalcBalanceInitial];
@@ -218,25 +212,25 @@ static char sql[4096];
 // private
 - (void)insertTransactionDb:(Transaction*)t
 {
-	static sqlite3_stmt *stmt = NULL;
+	static DBStatement *stmt = nil;
 
-	if (stmt == NULL) {
+	if (stmt == nil) {
 		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
 		stmt = [db prepare:s];
 	}
-	sqlite3_bind_int(stmt, 1, pkey/*asset key*/);
-	sqlite3_bind_int(stmt, 2, -1 /*dst asset*/);
-	sqlite3_bind_text(stmt, 3, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 4, t.type);
-	sqlite3_bind_int(stmt, 5, t.category);
-	sqlite3_bind_double(stmt, 6, t.value);
-	sqlite3_bind_text(stmt, 7, [t.description UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_text(stmt, 8, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_step(stmt);
-	sqlite3_reset(stmt);
+	[stmt bindInt:1 val:pkey]; // asset key
+	[stmt bindInt:2 val:-1]; // dst asset
+	[stmt bindCString:3 val:[db cstringFromDate:t.date]];
+	[stmt bindInt:4 val:t.type];
+	[stmt bindInt:5 val:t.category];
+	[stmt bindDouble:6 val:t.value];
+	[stmt bindString:7 val:t.description];
+	[stmt bindString:8 val:t.memo];
+	[stmt step];
+	[stmt reset];
 
 	// get primary key
-	t.pkey = sqlite3_last_insert_rowid(db.handle);
+	t.pkey = [db lastInsertRowId];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
@@ -254,21 +248,21 @@ static char sql[4096];
 
 - (void)updateTransaction:(Transaction *)t
 {
-	static sqlite3_stmt *stmt = NULL;
+	static DBStatement *stmt = nil;
 
-	if (stmt == NULL) {
+	if (stmt == nil) {
 		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
 		stmt = [db prepare:s];
 	}
-	sqlite3_bind_text(stmt, 1, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 2, t.type);
-	sqlite3_bind_int(stmt, 3, t.category);
-	sqlite3_bind_double(stmt, 4, t.value);
-	sqlite3_bind_text(stmt, 5, [t.description UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_text(stmt, 6, [t.memo UTF8String], -1, SQLITE_TRANSIENT);
-	sqlite3_bind_int(stmt, 7, t.pkey);
-	sqlite3_step(stmt);
-	sqlite3_reset(stmt);
+	[stmt bindCString:1 val:[db cstringFromDate:t.date]];
+	[stmt bindInt:2 val:t.type];
+	[stmt bindInt:3 val:t.category];
+	[stmt bindDouble:4 val:t.value];
+	[stmt bindString:5 val:t.description];
+	[stmt bindString:6 val:t.memo];
+	[stmt bindInt:7 val:t.pkey];
+	[stmt step];
+	[stmt reset];
 }
 
 
@@ -277,14 +271,14 @@ static char sql[4096];
 	// update DB
 	Transaction *t = [transactions objectAtIndex:n];
 
-	static sqlite3_stmt *stmt = NULL;
-	if (stmt == NULL) {
+	static DBStatement *stmt = nil;
+	if (stmt == nil) {
 		const char *s = "DELETE FROM Transactions WHERE key = ?;";
 		stmt = [db prepare:s];
 	}
-	sqlite3_bind_int(stmt, 1, t.pkey);
-	sqlite3_step(stmt);
-	sqlite3_reset(stmt);
+	[stmt bindInt:1 val:t.pkey];
+	[stmt step];
+	[stmt reset];
 
 	// special handling for first transaction
 	if (n == 0) {
@@ -403,12 +397,12 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
 	NSMutableArray *descAry = [[NSMutableArray alloc] init];
 
-	sqlite3_stmt *stmt;
+	DBStatement *stmt;
 	const char *sql = "SELECT description FROM Transactions ORDER BY date DESC;";
 	stmt = [db prepare:sql];
 
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		const char *cs = (const char *)sqlite3_column_text(stmt, 0);
+	while ([stmt step] == SQLITE_ROW) {
+		const char *cs = [stmt colCString:0];
 		if (*cs == '\0') continue;
 		NSString *s = [NSString stringWithCString:cs];
 
@@ -430,7 +424,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 			}
 		}
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
 
 	return descAry;
 }

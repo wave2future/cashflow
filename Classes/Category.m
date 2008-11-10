@@ -67,19 +67,18 @@
 	}
 	categories = [[NSMutableArray alloc] init];
 
-	sqlite3_stmt *stmt;
+	DBStatement *stmt;
 	stmt = [db prepare:"SELECT * FROM Categories ORDER BY sorder;"];
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
+	while ([stmt step] == SQLITE_ROW) {
 		Category *c = [[Category alloc] init];
-		c.pkey = sqlite3_column_int(stmt, 0);
-		const char *name = (const char *)sqlite3_column_text(stmt, 1);
-		c.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
-		c.sorder = sqlite3_column_int(stmt, 2);
+		c.pkey = [stmt colInt:0];
+		c.name = [stmt colString:1];
+		c.sorder = [stmt colInt:2];
 		
 		[categories addObject:c];
 		[c release];
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
 }
 
 -(int)categoryCount

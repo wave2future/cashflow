@@ -194,45 +194,46 @@ static int compareCatReport(id x, id y, void *context)
 
 - (NSDate*)firstDateOfAsset:(int)asset
 {
-	sqlite3_stmt *stmt;
+	DBStatement *stmt;
 
 	if (asset < 0) {
 		stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
 	} else {
 		stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=?;"];
-		sqlite3_bind_int(stmt, 1, asset);
+		[stmt bindInt:1 val:asset];
 	}
 
 	NSDate *date = nil;
-	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		const char *ds = (const char *)sqlite3_column_text(stmt, 0);
+	if ([stmt step] == SQLITE_ROW) {
+		const char *ds = [stmt colCString:0];
 		if (ds) {
 			date = [db dateFromCString:ds];
 		}
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
 	return date;
 }
 
 - (NSDate*)lastDateOfAsset:(int)asset
 {
-	sqlite3_stmt *stmt;
+	DBStatement *stmt;
 
 	if (asset < 0) {
 		stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
 	} else {
 		stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=?;"];
-		sqlite3_bind_int(stmt, 1, asset);
+		[stmt bindInt:1 val:asset];
 	}
 
 	NSDate *date = nil;
-	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		const char *ds = (const char *)sqlite3_column_text(stmt, 0);
+	if ([stmt step] == SQLITE_ROW) {
+		const char *ds = [stmt colCString:0];
 		if (ds) {
 			date = [db dateFromCString:ds];
 		}
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
+
 	return date;
 }
 
@@ -257,15 +258,15 @@ static int compareCatReport(id x, id y, void *context)
 		strcat(sql, ";");
 	}
 
-	sqlite3_stmt *stmt = [db prepare:sql];
+	DBStatement *stmt = [db prepare:sql];
 
 	double sum = 0.0;
-	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		sum = sqlite3_column_double(stmt, 0);
+	if ([stmt step] == SQLITE_ROW) {
+		sum = [stmt colDouble:0];
 	} else {
 		ASSERT(0);
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
 
 	return sum;
 }
@@ -287,15 +288,15 @@ static int compareCatReport(id x, id y, void *context)
 		strcat(sql, ";");
 	}
 
-	sqlite3_stmt *stmt = [db prepare:sql];
+	DBStatement *stmt = [db prepare:sql];
 
 	double sum = 0.0;
-	if (sqlite3_step(stmt) == SQLITE_ROW) {
-		sum = sqlite3_column_double(stmt, 0);
+	if ([stmt step] == SQLITE_ROW) {
+		sum = [stmt colDouble:0];
 	} else {
 		ASSERT(0);
 	}
-	sqlite3_finalize(stmt);
+	[stmt release];
 
 	return sum;
 }

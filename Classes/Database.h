@@ -45,12 +45,15 @@
 	sqlite3_statement *stmt;
 }
 
+@property(nonatomic,assign) sqlite3_statement *stmt;
+
 - (void)bindInt:(int)idx val:(int)val;
 - (void)bindDouble:(int)idx val:(double)val;
 - (void)bindString:(int)idx val:(NSString*)val;
 
-- (void)step;
+- (int)step;
 - (void)reset;
+- (int)lastInsertRowId;
 
 - (int)colInt:(int)idx;
 - (double)colDouble:(int)idx;
