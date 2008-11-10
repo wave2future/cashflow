@@ -39,12 +39,11 @@
 
 @implementation DBStatement
 
-- (id)initWithStatement:(sqlite3_statement *)st db:(Database*)database
+- (id)initWithStatement:(sqlite3_statement *)st
 {
 	self = [super init];
 	if (self != nil) {
 		self.stmt = st;
-		self.db = database;
 	}
 	return self;
 }
@@ -94,7 +93,7 @@
 
 - (void)bindDate:(int)idx val:(NSDate*)date
 {
-	[self bindCString:idx val:[db cstringFromDate:date];
+	[self bindCString:idx val:[Database cstringFromDate:date];
 }
 
 - (int)colInt:(int)idx
@@ -128,7 +127,7 @@
 	NSDate *date = nil;
 	const char *ds = [self colCString:idx];
 	if (ds) {
-		date = [db dateFromCString:date];
+		date = [Database dateFromCString:date];
 	}
 	return date;
 }
@@ -142,15 +141,19 @@
 
 @synthesize handle;
 
+static NSDateFormatter *dateFormatter = nil;
+
 - (id)init
 {
 	self = [super init];
 	if (self != nil) {
 		handle = 0;
 
-		dateFormatter = [[NSDateFormatter alloc] init];
-		[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-		[dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+		if (dateFormatter == nil) {
+			dateFormatter = [[NSDateFormatter alloc] init];
+			[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+			[dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+		}
 	}
 	
 	return self;
@@ -181,7 +184,7 @@
 	sqlite3_stmt *stmt;
 	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
 
-	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt db:self];
+	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
 	return dbs;
 }
 
@@ -250,14 +253,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 // Utility
 
-- (NSDate*)dateFromCString:(const char *)str
++ (NSDate*)dateFromCString:(const char *)str
 {
 	NSDate *date = [dateFormatter dateFromString:
 		   [NSString stringWithCString:str encoding:NSUTF8StringEncoding]];
 	return date;
 }
 
-- (const char *)cstringFromDate:(NSDate*)date
++ (const char *)cstringFromDate:(NSDate*)date
 {
 	const char *s = [[dateFormatter stringFromDate:date] UTF8String];
 	return s;

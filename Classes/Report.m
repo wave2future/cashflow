@@ -237,8 +237,8 @@ static int compareCatReport(id x, id y, void *context)
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q",
-					 [self cstringFromDate:start],
-					 [self cstringFromDate:end]);
+					 [Database cstringFromDate:start],
+					 [Database cstringFromDate:end]);
 	if (isOutgo) {
 		strcat(sql, " AND value < 0");
 	} else {
@@ -271,8 +271,8 @@ static int compareCatReport(id x, id y, void *context)
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q AND category=%d",
-					 [self cstringFromDate:start],
-					 [self cstringFromDate:end],
+					 [Database cstringFromDate:start],
+					 [Database cstringFromDate:end],
 					 category);
 	if (asset >= 0) {
 		char tmp[128];

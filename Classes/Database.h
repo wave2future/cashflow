@@ -43,11 +43,10 @@
 @class Database;
 
 @interface DBStatement : NSObject {
-	Database *db;
 	sqlite3_statement *stmt;
 }
 
-- (id)initWithStatement:(sqlite3_statement *)st db:(Database*)database;
+- (id)initWithStatement:(sqlite3_statement *)st;
 - (int)step;
 - (void)reset;
 - (int)lastInsertRowId;
@@ -85,7 +84,7 @@
 - (void)initializeDB;
 
 // Utilities
-- (NSDate*)dateFromCString:(const char *)str;
-- (const char *)cstringFromDate:(NSDate*)date;
++ (NSDate*)dateFromCString:(const char *)str;
++ (const char *)cstringFromDate:(NSDate*)date;
 
 @end
