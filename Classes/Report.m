@@ -233,26 +233,25 @@ static int compareCatReport(id x, id y, void *context)
 
 - (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
 {
-	char sql[1024];
+	char sql[256];
 
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q",
-					 [Database cstringFromDate:start],
-					 [Database cstringFromDate:end]);
+	strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
 	if (isOutgo) {
 		strcat(sql, " AND value < 0");
 	} else {
 		strcat(sql, " AND value >= 0");
 	}
 	if (asset >= 0) {
-		char tmp[128];
-		sprintf(tmp, " AND asset=%d;", asset);
-		strcat(sql, tmp);
-	} else {
-		strcat(sql, ";");
+		strcat(sql, " AND asset=?");
 	}
+	strcat(sql, ";");
 
 	DBStatement *stmt = [db prepare:sql];
+	[stmt bindDate:1 val:start];
+	[stmt bindDate:2 val:end];
+	if (asset >= 0) {
+		[stmt bindInt:3 val:asset];
+	}
 
 	double sum = 0.0;
 	if ([stmt step] == SQLITE_ROW) {
@@ -267,22 +266,27 @@ static int compareCatReport(id x, id y, void *context)
 
 - (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category
 {
-	char sql[1024];
+	char sql[256];
 
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q AND category=%d",
-					 [Database cstringFromDate:start],
-					 [Database cstringFromDate:end],
-					 category);
-	if (asset >= 0) {
-		char tmp[128];
-		sprintf(tmp, " AND asset=%d;", asset);
-		strcat(sql, tmp);
-	} else {
-		strcat(sql, ";");
+	strcat(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
+
+	if (category >= 0) {
+		strcat(sql, " AND category=?3");
 	}
+	if (asset >= 0) {
+		strcat(sql, " AND asset=?4");
+	}
+	strcat(sql, ";");
 
 	DBStatement *stmt = [db prepare:sql];
+	[stmt bindDate:1 val:start];
+	[stmt bindDate:2 val:end];
+	if (category >= 0) {
+		[stmt bindInt:3 val:category];
+	}
+	if (asset >= 0) {
+		[stmt bindInt:4 val:asset];
+	}
 
 	double sum = 0.0;
 	if ([stmt step] == SQLITE_ROW) {
