@@ -66,19 +66,6 @@ static char sql[4096];	// SQL buffer
 	[super dealloc];
 }
 
-- (NSDate*)dateFromCString:(const char *)str
-{
-	NSDate *date = [dateFormatter dateFromString:
-		   [NSString stringWithCString:str encoding:NSUTF8StringEncoding]];
-	return date;
-}
-
-- (const char *)cstringFromDate:(NSDate*)date
-{
-	const char *s = [[dateFormatter stringFromDate:date] UTF8String];
-	return s;
-}
-
 - (void)execSql:(const char *)sql
 {
 	ASSERT(db != 0);
@@ -88,6 +75,16 @@ static char sql[4096];	// SQL buffer
 		NSLog(@"sqlite3: %s", sqlite3_errmsg(db));
 		ASSERT(0);
 	}
+}
+
+- (void)beginTransaction
+{
+	[self execSql:"BEGIN;"];
+}
+
+- (void)commitTransaction
+{
+	[self execSql:"COMMIT;"];
 }
 
 // データベースを開く
@@ -126,14 +123,21 @@ static char sql[4096];	// SQL buffer
 	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, sorder INTEGER);"];
 }
 
-- (void)beginTransactionDB
+
+//////////////////////////////////////////////////////////////////////////////////
+// Utility
+
+- (NSDate*)dateFromCString:(const char *)str
 {
-	[self execSql:"BEGIN;"];
+	NSDate *date = [dateFormatter dateFromString:
+		   [NSString stringWithCString:str encoding:NSUTF8StringEncoding]];
+	return date;
 }
 
-- (void)commitTransactionDB
+- (const char *)cstringFromDate:(NSDate*)date
 {
-	[self execSql:"COMMIT;"];
+	const char *s = [[dateFormatter stringFromDate:date] UTF8String];
+	return s;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -189,8 +193,8 @@ static char sql[4096];	// SQL buffer
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q",
-					 [[dateFormatter stringFromDate:start] UTF8String],
-					 [[dateFormatter stringFromDate:end] UTF8String]);
+					 [self cstringFromDate:start],
+					 [self cstringFromDate:end]);
 	if (isOutgo) {
 		strcat(sql, " AND value < 0");
 	} else {
@@ -224,8 +228,8 @@ static char sql[4096];	// SQL buffer
 
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q AND category=%d",
-					 [[dateFormatter stringFromDate:start] UTF8String],
-					 [[dateFormatter stringFromDate:end] UTF8String],
+					 [self cstringFromDate:start],
+					 [self cstringFromDate:end],
 					 category);
 	if (asset >= 0) {
 		char tmp[128];
@@ -247,16 +251,6 @@ static char sql[4096];	// SQL buffer
 	sqlite3_finalize(stmt);
 
 	return sum;
-}
-
-- (void)beginTransaction
-{
-	[self execSql:"BEGIN;"];
-}
-
-- (void)commitTransaction
-{
-	[self execSql:"COMMIT;"];
 }
 
 @end

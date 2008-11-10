@@ -139,7 +139,7 @@ static char sql[4096];
 {
 	[self updateInitialBalance];
 
-	[db beginTransactionDB];
+	[db beginTransaction];
 
 	// delete all transactions
 	sqlite3_snprintf(sizeof(sql), sql,
@@ -154,7 +154,7 @@ static char sql[4096];
 		[self insertTransactionDb:t];
 	}
 
-	[db commitTransactionDB];
+	[db commitTransaction];
 }
 
 - (void)clear

@@ -51,6 +51,10 @@
 - (id)init;
 - (void)dealloc;
 
+- (void)execSql:(const char *)sql;
+- (void)beginTransaction;
+- (void)commitTransaction;
+
 - (BOOL)openDB;
 - (void)initializeDB;
 
@@ -63,9 +67,5 @@
 - (NSDate*)lastDateOfAsset:(int)asset;
 - (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
 - (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category;
-
-// private
-- (void)beginTransaction;
-- (void)commitTransaction;
 
 @end

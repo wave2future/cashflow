@@ -183,7 +183,7 @@
 	[as release];
 	
 	// renumbering sorder
-	[db beginTransactionDB];
+	[db beginTransaction];
 	for (int i = 0; i < [assets count]; i++) {
 		as = [assets objectAtIndex:i];
 		as.sorder = i;
@@ -194,7 +194,7 @@
 					 as.pkey);
 		[db execSql:sql];
 	}
-	[db endTransactionDB];
+	[db endTransaction];
 }
 
 
