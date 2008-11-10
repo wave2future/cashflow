@@ -96,7 +96,7 @@ static int compareCatReport(id x, id y, void *context)
 
 - (void)generate:(int)t asset:(Asset*)asset
 {
-	Database *db = theDataModel.db;
+	self.db = theDataModel.db;
 	
 	self.type = t;
 	
@@ -114,9 +114,9 @@ static int compareCatReport(id x, id y, void *context)
 	} else {
 		assetKey = asset.pkey;
 	}
-	NSDate *firstDate = [db firstDateOfAsset:assetKey];
+	NSDate *firstDate = [self firstDateOfAsset:assetKey];
 	if (firstDate == nil) return; // no data
-	NSDate *lastDate = [db lastDateOfAsset:assetKey];
+	NSDate *lastDate = [self lastDateOfAsset:assetKey];
 
 	// レポート周期の開始時間および間隔を求める
 	NSDateComponents *dc, *steps;
@@ -157,8 +157,8 @@ static int compareCatReport(id x, id y, void *context)
 		r.endDate = dd;
 
 		// 集計
-		r.totalIncome = [db calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
-		r.totalOutgo = -[db calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
+		r.totalIncome = [self calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
+		r.totalOutgo = -[self calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
 
 		// カテゴリ毎の集計
 		int i;
@@ -170,7 +170,7 @@ static int compareCatReport(id x, id y, void *context)
 			CatReport *cr = [[CatReport alloc] init];
 
 			cr.catkey = c.pkey;
-			cr.value = [db calculateSumWithinRangeCategory:assetKey startDate:r.date endDate:r.endDate category:cr.catkey];
+			cr.value = [self calculateSumWithinRangeCategory:assetKey startDate:r.date endDate:r.endDate category:cr.catkey];
 			remain -= cr.value;
 
 			[r.catReports addObject:cr];
@@ -187,6 +187,119 @@ static int compareCatReport(id x, id y, void *context)
 		// ソート
 		[r.catReports sortUsingFunction:compareCatReport context:nil];
 	}
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+// Report 処理
+
+- (NSDate*)firstDateOfAsset:(int)asset
+{
+	sqlite3_stmt *stmt;
+
+	if (asset < 0) {
+		sqlite3_prepare_v2(db.db, "SELECT MIN(date) FROM Transactions;", -1, &stmt, NULL);
+	} else {
+		sqlite3_prepare_v2(db.db, "SELECT MIN(date) FROM Transactions WHERE asset=?;", -1, &stmt, NULL);
+		sqlite3_bind_int(stmt, 1, asset);
+	}
+
+	NSDate *date = nil;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		const char *ds = (const char *)sqlite3_column_text(stmt, 0);
+		if (ds) {
+			date = [db dateFromCString:ds];
+		}
+	}
+	sqlite3_finalize(stmt);
+	return date;
+}
+
+- (NSDate*)lastDateOfAsset:(int)asset
+{
+	sqlite3_stmt *stmt;
+
+	if (asset < 0) {
+		sqlite3_prepare_v2(db.db, "SELECT MAX(date) FROM Transactions;", -1, &stmt, NULL);
+	} else {
+		sqlite3_prepare_v2(db.db, "SELECT MAX(date) FROM Transactions WHERE asset=?;", -1, &stmt, NULL);
+		sqlite3_bind_int(stmt, 1, asset);
+	}
+
+	NSDate *date = nil;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		const char *ds = (const char *)sqlite3_column_text(stmt, 0);
+		if (ds) {
+			date = [db dateFromCString:ds];
+		}
+	}
+	sqlite3_finalize(stmt);
+	return date;
+}
+
+- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
+{
+	char sql[1024];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q",
+					 [self cstringFromDate:start],
+					 [self cstringFromDate:end]);
+	if (isOutgo) {
+		strcat(sql, " AND value < 0");
+	} else {
+		strcat(sql, " AND value >= 0");
+	}
+	if (asset >= 0) {
+		char tmp[128];
+		sprintf(tmp, " AND asset=%d;", asset);
+		strcat(sql, tmp);
+	} else {
+		strcat(sql, ";");
+	}
+
+	sqlite3_stmt *stmt;
+	sqlite3_prepare_v2(db.db, sql, -1, &stmt, NULL);
+
+	double sum = 0.0;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		sum = sqlite3_column_double(stmt, 0);
+	} else {
+		ASSERT(0);
+	}
+	sqlite3_finalize(stmt);
+
+	return sum;
+}
+
+- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category
+{
+	char sql[1024];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "SELECT SUM(value) FROM Transactions WHERE date>=%Q AND date<%Q AND category=%d",
+					 [self cstringFromDate:start],
+					 [self cstringFromDate:end],
+					 category);
+	if (asset >= 0) {
+		char tmp[128];
+		sprintf(tmp, " AND asset=%d;", asset);
+		strcat(sql, tmp);
+	} else {
+		strcat(sql, ";");
+	}
+
+	sqlite3_stmt *stmt;
+	sqlite3_prepare_v2(db.db, sql, -1, &stmt, NULL);
+
+	double sum = 0.0;
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
+		sum = sqlite3_column_double(stmt, 0);
+	} else {
+		ASSERT(0);
+	}
+	sqlite3_finalize(stmt);
+
+	return sum;
 }
 
 @end

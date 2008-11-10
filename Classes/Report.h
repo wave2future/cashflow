@@ -71,12 +71,20 @@
 @interface Reports : NSObject {
 	int type;
 	NSMutableArray *reports;
+
+	Database *db;
 }
 
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSMutableArray *reports;
 
 - (void)generate:(int)type asset:(Asset *)asset;
+
+// private
+- (NSDate*)firstDateOfAsset:(int)asset;
+- (NSDate*)lastDateOfAsset:(int)asset;
+- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
+- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category;
 
 @end
 

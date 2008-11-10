@@ -62,10 +62,4 @@
 - (NSDate*)dateFromCString:(const char *)str;
 - (const char *)cstringFromDate:(NSDate*)date;
 
-// Report operation
-- (NSDate*)firstDateOfAsset:(int)asset;
-- (NSDate*)lastDateOfAsset:(int)asset;
-- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
-- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category;
-
 @end
