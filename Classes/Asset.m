@@ -99,7 +99,7 @@ static char sql[4096];
 					 "SELECT key, date, type, category, value, description, memo"
 					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
 					 pkey);
-	sqlite3_prepare_v2(db.handle, sql, -1, &stmt, NULL);
+	stmt = [db prepare:sql];
 
 	transactions = [[NSMutableArray alloc] init];
 
@@ -222,7 +222,7 @@ static char sql[4096];
 
 	if (stmt == NULL) {
 		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
-		sqlite3_prepare_v2(db.handle, s, -1, &stmt, NULL);
+		stmt = [db prepare:s];
 	}
 	sqlite3_bind_int(stmt, 1, pkey/*asset key*/);
 	sqlite3_bind_int(stmt, 2, -1 /*dst asset*/);
@@ -258,7 +258,7 @@ static char sql[4096];
 
 	if (stmt == NULL) {
 		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
-		sqlite3_prepare_v2(db.handle, s, -1, &stmt, NULL);
+		stmt = [db prepare:s];
 	}
 	sqlite3_bind_text(stmt, 1, [db cstringFromDate:t.date], -1, SQLITE_TRANSIENT);
 	sqlite3_bind_int(stmt, 2, t.type);
@@ -280,7 +280,7 @@ static char sql[4096];
 	static sqlite3_stmt *stmt = NULL;
 	if (stmt == NULL) {
 		const char *s = "DELETE FROM Transactions WHERE key = ?;";
-		sqlite3_prepare_v2(db.handle, s, -1, &stmt, NULL);
+		stmt = [db prepare:s];
 	}
 	sqlite3_bind_int(stmt, 1, t.pkey);
 	sqlite3_step(stmt);
@@ -405,7 +405,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 	sqlite3_stmt *stmt;
 	const char *sql = "SELECT description FROM Transactions ORDER BY date DESC;";
-	sqlite3_prepare_v2(db.handle, sql, -1, &stmt, NULL);
+	stmt = [db prepare:sql];
 
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		const char *cs = (const char *)sqlite3_column_text(stmt, 0);

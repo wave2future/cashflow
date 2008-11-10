@@ -101,7 +101,7 @@
 	sqlite3_stmt *stmt;
 	assets = [[NSMutableArray alloc] init];
 
-	sqlite3_prepare_v2(db.handle, "SELECT * FROM Assets ORDER BY sorder;", -1, &stmt, NULL);
+	stmt = [db prepare:"SELECT * FROM Assets ORDER BY sorder;"];
 	while (sqlite3_step(stmt) == SQLITE_ROW) {
 		Asset *as = [[Asset alloc] init];
 		as.pkey = sqlite3_column_int(stmt, 0);

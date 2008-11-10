@@ -75,6 +75,14 @@
 	}
 }
 
+- (sqlite3_stmt*)prepare:(const char *)sql
+{
+	sqlite3_stmt *stmt;
+
+	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
+	return stmt;
+}
+
 - (void)beginTransaction
 {
 	[self execSql:"BEGIN;"];

@@ -52,6 +52,7 @@
 - (void)dealloc;
 
 - (void)execSql:(const char *)sql;
+- (sqlite3_stmt*)prepare:(const char *)sql;
 - (void)beginTransaction;
 - (void)commitTransaction;
 

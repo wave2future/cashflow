@@ -197,9 +197,9 @@ static int compareCatReport(id x, id y, void *context)
 	sqlite3_stmt *stmt;
 
 	if (asset < 0) {
-		sqlite3_prepare_v2(db.handle, "SELECT MIN(date) FROM Transactions;", -1, &stmt, NULL);
+		stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
 	} else {
-		sqlite3_prepare_v2(db.handle, "SELECT MIN(date) FROM Transactions WHERE asset=?;", -1, &stmt, NULL);
+		stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=?;"];
 		sqlite3_bind_int(stmt, 1, asset);
 	}
 
@@ -219,9 +219,9 @@ static int compareCatReport(id x, id y, void *context)
 	sqlite3_stmt *stmt;
 
 	if (asset < 0) {
-		sqlite3_prepare_v2(db.handle, "SELECT MAX(date) FROM Transactions;", -1, &stmt, NULL);
+		stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
 	} else {
-		sqlite3_prepare_v2(db.handle, "SELECT MAX(date) FROM Transactions WHERE asset=?;", -1, &stmt, NULL);
+		stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=?;"];
 		sqlite3_bind_int(stmt, 1, asset);
 	}
 
@@ -257,8 +257,7 @@ static int compareCatReport(id x, id y, void *context)
 		strcat(sql, ";");
 	}
 
-	sqlite3_stmt *stmt;
-	sqlite3_prepare_v2(db.handle, sql, -1, &stmt, NULL);
+	sqlite3_stmt *stmt = [db prepare:sql];
 
 	double sum = 0.0;
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
@@ -288,8 +287,7 @@ static int compareCatReport(id x, id y, void *context)
 		strcat(sql, ";");
 	}
 
-	sqlite3_stmt *stmt;
-	sqlite3_prepare_v2(db.handle, sql, -1, &stmt, NULL);
+	sqlite3_stmt *stmt = [db prepare:sql];
 
 	double sum = 0.0;
 	if (sqlite3_step(stmt) == SQLITE_ROW) {
