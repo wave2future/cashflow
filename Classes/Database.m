@@ -37,6 +37,78 @@
 #import "Database.h"
 #import "AppDelegate.h"
 
+@implementation DBStatement
+
+- (id)init
+{
+	self = [super init];
+	if (self != nil) {
+		self.stmt = NULL;
+	}
+	return self;
+}
+
+- (void)dealloc
+{
+	if (stmt) {
+		sqlite3_finalize(stmt);
+	}
+	[super dealloc];
+}
+
+- (void)bindInt:(int)idx val:(int)val
+{
+	sqlite3_bind_int(stmt, idx, val);
+}
+
+- (void)bindDouble:(int)idx val:(double)val
+{
+	sqlite3_bind_double(stmt, idx, val);
+}
+
+- (void)bindString:(int)idx val:(NSString*)val
+{
+	sqlite3_bind_text(stmt, idx, [val UTF8String]);
+}
+
+- (void)step
+{
+	sqlite3_step(stmt);
+}
+
+- (void)reset
+{
+	sqlite3_reset(stmt);
+}
+
+- (int)colInt:(int)idx
+{
+	return sqlite3_column_int(stmt, idx);
+}
+
+- (double)colDouble:(int)idx
+{
+	return sqlite3_column_double(stmt, idx);
+}
+
+- (const char *)colCString:(int)idx
+{
+	const char *s = (const char*)sqlite3_column_text(stmt, idx);
+	return s;
+}
+
+- (NSString*)colString:(int)idx
+{
+	const char *s = (const char*)sqlite3_column_text(stmt, idx);
+	NSString *ns = [NSString stringFromCString:s encoding:UTF8Encoding];
+	return ns;
+}
+
+@end
+
+
+/////////////////////////////////////////////////////////////////////////
+
 @implementation Database
 
 @synthesize handle;

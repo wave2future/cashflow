@@ -41,6 +41,24 @@
 @class Asset;
 @class Category;
 
+@interface DBStatement : NSObject {
+	sqlite3_statement *stmt;
+}
+
+- (void)bindInt:(int)idx val:(int)val;
+- (void)bindDouble:(int)idx val:(double)val;
+- (void)bindString:(int)idx val:(NSString*)val;
+
+- (void)step;
+- (void)reset;
+
+- (int)colInt:(int)idx;
+- (double)colDouble:(int)idx;
+- (const char*)colCString:(int)idx;
+- (NSString*)colString:(int)idx;
+@end
+
+
 @interface Database : NSObject {
 	sqlite3 *handle;
 	NSDateFormatter *dateFormatter;
