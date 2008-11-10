@@ -79,20 +79,9 @@
 	return [categories objectAtIndex:n];
 }
 
--(Category*)categoryWithKey:(int)key
-{
-	int i, max = [categories count];
-	for (i = 0; i < max; i++) {
-		Category *c = [categories objectAtIndex:i];
-		if (c.pkey == key) {
-			return c;
-		}
-	}
-	return nil;
-}
-
 - (int)categoryIndexWithKey:(int)key
 {
+	Category *c = [self categoryWithKey:key];
 	int i, max = [categories count];
 	for (i = 0; i < max; i++) {
 		Category *c = [categories objectAtIndex:i];
@@ -105,10 +94,11 @@
 
 -(NSString*)categoryStringWithKey:(int)key
 {
-	Category *c = [self categoryWithKey:key];
-	if (c == nil) {
+	int idx = [self categoryIndexWithKey:key];
+	if (idx < 0) {
 		return @"";
 	}
+	Category *c = [categories objectAtIndex:idx];
 	return c.name;
 }
 
@@ -159,6 +149,5 @@
 	}
 	[db commitTransaction];
 }
-
 
 @end
