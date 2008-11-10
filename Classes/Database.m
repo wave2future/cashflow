@@ -33,7 +33,6 @@
 */
 
 // SQLite データベース版
-// まだ試作中、、、
 
 #import "Database.h"
 #import "AppDelegate.h"
@@ -41,8 +40,6 @@
 @implementation Database
 
 @synthesize db;
-
-static char sql[4096];	// SQL buffer
 
 - (id)init
 {
@@ -63,6 +60,7 @@ static char sql[4096];	// SQL buffer
 	if (db != nil) {
 		sqlite3_close(db);
 	}
+	[dateFormatter release];
 	[super dealloc];
 }
 
@@ -109,20 +107,35 @@ static char sql[4096];	// SQL buffer
 {
 	// テーブル作成＆初期データ作成
 	[self execSql:"CREATE TABLE Transactions ("
-		  "key INTEGER PRIMARY KEY, asset INTEGER, dst_asset INTEGER, date DATE, type INTEGER, category INTEGER,"
-		  "value REAL, description TEXT, memo TEXT);"];
+		  "key INTEGER PRIMARY KEY,"
+		  "asset INTEGER,"
+		  "dst_asset INTEGER,"
+		  "date DATE,"
+		  "type INTEGER,"
+		  "category INTEGER,"
+		  "value REAL,"
+		  "description TEXT,"
+		  "memo TEXT);"];
 
-	[self execSql:"CREATE TABLE Assets (key INTEGER PRIMARY KEY, name TEXT, type INTEGER, initialBalance REAL, sorder INTEGER);"];
+	[self execSql:"CREATE TABLE Assets ("
+		  "key INTEGER PRIMARY KEY,"
+		  "name TEXT,"
+		  "type INTEGER,"
+		  "initialBalance REAL,"
+		  "sorder INTEGER);"];
 
+	char sql[256];
 	sqlite3_snprintf(sizeof(sql), sql,
 					 "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
 					 [NSLocalizedString(@"Cash", @"") UTF8String]);
 	[self execSql:sql];
 
-	// 以下は将来使うため
-	[self execSql:"CREATE TABLE Categories (key INTEGER PRIMARY KEY, name TEXT, sorder INTEGER);"];
+	// カテゴリテーブル追加
+	[self execSql:"CREATE TABLE Categories ("
+		  "key INTEGER PRIMARY KEY,"
+		  "name TEXT,"
+		  "order INTEGER);"];
 }
-
 
 //////////////////////////////////////////////////////////////////////////////////
 // Utility
