@@ -99,7 +99,7 @@ static char sql[4096];
 					 "SELECT key, date, type, category, value, description, memo"
 					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
 					 pkey);
-	sqlite3_prepare_v2(db, sql, -1, &stmt, NULL);
+	sqlite3_prepare_v2(db.db, sql, -1, &stmt, NULL);
 
 	transactions = [[NSMutableArray alloc] init];
 
@@ -397,58 +397,42 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 ////////////////////////////////////////////////////////////////////////////
 // Utility
 
-- (NSMutableArray *)allocDescList
-{
-	int i, max;
-	max = [transactions count];
-	
-	NSMutableArray *ary = [[NSMutableArray alloc] init];
-	if (max == 0) return ary;
-
-#if 0	
-	// Sort type
-	for (i = max - 1; i >= 0; i--) {
-		[ary addObject:[[transactions objectAtIndex:i] description]];
-	}
-	
-	[ary sortUsingSelector:@selector(compare:)];
-	
-	// uniq
-	NSString *prev = [ary objectAtIndex:0];
-	for (i = 1; i < [ary count]; i++) {
-		if ([prev isEqualToString:[ary objectAtIndex:i]]) {
-			[ary removeObjectAtIndex:i];
-			i--;
-		} else {
-			prev = [ary objectAtIndex:i];
-		}
-	}
-#else
-
-	// LRU type
 #define MAX_LRU_SIZE 50
 
-	for (i = max - 1; i >= 0; i--) {
-		NSString *s = [[transactions objectAtIndex:i] description];
-		
-		int j;
+- (NSMutableArray *)allocDescList
+{
+	NSMutableArray *descAry = [[NSMutableArray alloc] init];
+
+	sqlite3_stmt *stmt;
+	const char *sql = "SELECT description FROM Transactions ORDER BY date DESC;";
+	sqlite3_prepare_v2(db.db, sql, -1, &stmt, NULL);
+
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		const char *cs = (const char *)sqlite3_column_text(stmt, 0);
+		if (*cs == '\0') continue;
+		NSString *s = [NSString stringWithCString:cs];
+
+		int i;
 		BOOL match = NO;
-		for (j = 0; j < [ary count]; j++) {
-			if ([s isEqualToString:[ary objectAtIndex:j]]) {
+		NSString *ss;
+		NSEnumerator *e = [descAry objectEnumerator];
+
+		while ((ss = (NSString*)[e nextObject]) != nil) {
+			if ([s isEqualToString:ss]) {
 				match = YES;
 				break;
 			}
 		}
 		if (!match) {
-			[ary addObject:s];
-			if ([ary count] > MAX_LRU_SIZE) {
+			[descAry addObject:s];
+			if ([descAry count] > MAX_LRU_SIZE) {
 				break;
 			}
 		}
 	}
-#endif
+	sqlite3_finalize(stmt);
 
-	return ary;
+	return descAry;
 }
 
 @end
