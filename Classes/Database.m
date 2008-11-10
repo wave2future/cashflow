@@ -39,11 +39,12 @@
 
 @implementation DBStatement
 
-- (id)initWithStatement:(sqlite3_statement *)st
+- (id)initWithStatement:(sqlite3_statement *)st db:(Database*)database
 {
 	self = [super init];
 	if (self != nil) {
 		self.stmt = st;
+		self.db = database;
 	}
 	return self;
 }
@@ -91,6 +92,11 @@
 	sqlite3_bind_text(stmt, idx, [val UTF8String], -1, SQLITE_TRANSIENT);
 }
 
+- (void)bindDate:(int)idx val:(NSDate*)date
+{
+	[self bindCString:idx val:[db cstringFromDate:date];
+}
+
 - (int)colInt:(int)idx
 {
 	return sqlite3_column_int(stmt, idx);
@@ -115,6 +121,16 @@
 	}
 	NSString *ns = [NSString stringFromCString:s encoding:UTF8Encoding];
 	return ns;
+}
+
+- (NSDate*)colDate:(int)idx
+{
+	NSDate *date = nil;
+	const char *ds = [self colCString:idx];
+	if (ds) {
+		date = [db dateFromCString:date];
+	}
+	return date;
 }
 
 @end
@@ -165,7 +181,7 @@
 	sqlite3_stmt *stmt;
 	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
 
-	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
+	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt db:self];
 	return dbs;
 }
 

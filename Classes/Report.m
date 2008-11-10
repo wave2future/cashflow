@@ -205,10 +205,7 @@ static int compareCatReport(id x, id y, void *context)
 
 	NSDate *date = nil;
 	if ([stmt step] == SQLITE_ROW) {
-		const char *ds = [stmt colCString:0];
-		if (ds) {
-			date = [db dateFromCString:ds];
-		}
+		date = [stmt colDate:0];
 	}
 	[stmt release];
 	return date;
@@ -227,10 +224,7 @@ static int compareCatReport(id x, id y, void *context)
 
 	NSDate *date = nil;
 	if ([stmt step] == SQLITE_ROW) {
-		const char *ds = [stmt colCString:0];
-		if (ds) {
-			date = [db dateFromCString:ds];
-		}
+		date = [stmt colDate:0];
 	}
 	[stmt release];
 

@@ -95,25 +95,22 @@ static char sql[4096];
 	[self clear];
 
 	/* load transactions */
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "SELECT key, date, type, category, value, description, memo"
-					 " FROM Transactions WHERE asset = %d ORDER BY date;", 
-					 pkey);
-	stmt = [db prepare:sql];
+	stmt = [db prepare:"SELECT key, date, type, category, value, description, memo"
+			   " FROM Transactions WHERE asset = ? ORDER BY date;"];
+	[stmt bindInt:1 val:pkey];
 
 	transactions = [[NSMutableArray alloc] init];
 
 	while ([stmt step] == SQLITE_ROW) {
 		Transaction *t = [[Transaction alloc] init];
 		t.pkey = [stmt colInt:0];
-		const char *date = [stmt colCString:1];
+		t.date = [stmt colDate:1];
 		t.type = [stmt colInt:2];
 		t.category = [stmt colInt:3];
 		t.value = [stmt colInt:4];
 		t.desc = [stmt colString:5];
 		t.memo = [stmt colString:6];
 
-		t.date = [db dateFromCString:date];
 		if (t.date == nil) {
 			// fail safe
 			[t release];
@@ -136,9 +133,10 @@ static char sql[4096];
 	[db beginTransaction];
 
 	// delete all transactions
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE asset = %d;", asset);
-	[db execSql:sql];
+	DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
+	[stmt bindInt:1 val:asset];
+	[stmt step];
+	[stmt release];
 
 	// write all transactions
 	int n = [transactions count];
@@ -161,10 +159,11 @@ static char sql[4096];
 
 - (void)updateInitialBalance
 {
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;",
-					 initialBalance, pkey);
-	[db execSql:sql];
+	DBStatement *stmt = [db prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
+	[stmt bindDouble:1 val:initialBalance];
+	[stmt bindInt:2 val:pkey];
+	[stmt step];
+	[stmt release];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -220,7 +219,7 @@ static char sql[4096];
 	}
 	[stmt bindInt:1 val:pkey]; // asset key
 	[stmt bindInt:2 val:-1]; // dst asset
-	[stmt bindCString:3 val:[db cstringFromDate:t.date]];
+	[stmt bindDate:3 val:t.date];
 	[stmt bindInt:4 val:t.type];
 	[stmt bindInt:5 val:t.category];
 	[stmt bindDouble:6 val:t.value];
@@ -254,7 +253,7 @@ static char sql[4096];
 		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
 		stmt = [db prepare:s];
 	}
-	[stmt bindCString:1 val:[db cstringFromDate:t.date]];
+	[stmt bindDate:1 val:t.date];
 	[stmt bindInt:2 val:t.type];
 	[stmt bindInt:3 val:t.category];
 	[stmt bindDouble:4 val:t.value];

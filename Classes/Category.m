@@ -124,11 +124,12 @@
 
 	[self renumber];
 
-	char sql[1024];
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Categories VALUES(NULL, %Q, %d);",
-					 [c.name UTF8String], c.sorder);
-	[db execSql:sql];
+	DBStatement *stmt;
+	stmt = [db prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
+	[stmt bindString:1 val:c.name];
+	[stmt bindInt:2 val:c.sorder];
+	[stmt step];
+	[stmt release];
 
 	c.pkey = [db lastInsertRowId];
 
@@ -137,22 +138,24 @@
 
 -(void)updateCategory:(Category*)category
 {
-	char sql[1024];
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Categories SET name=%Q, sorder=%d WHERE key=%d;",
-					 [category.name UTF8String], category.sorder, category.pkey);
-	[db execSql:sql];
+	DBStatement *stmt;
+	stmt = [db prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
+	[stmt bindString:1 category.name];
+	[stmt bindInt:2 category.sorder];
+	[stmt bindInt:3 category.pkey];
+	[stmt step];
+	[stmt release];
 }
 
 -(void)deleteCategoryAtIndex:(int)index
 {
 	Category *c = [categories objectAtIndex:index];
 
-	char sql[1024];
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Categories WHERE key=%d;",
-					 c.pkey);
-	[db execSql:sql];
+	DBStatement *stmt;
+	stmt = [db prepare:"DELETE FROM Categories WHERE key=?;"];
+	[stmt bindInt:1 val:c.pkey];
+	[stmt step];
+	[stmt release];
 
 	[categories removeObjectAtIndex:index];
 }

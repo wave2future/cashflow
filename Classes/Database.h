@@ -40,8 +40,10 @@
 
 @class Asset;
 @class Category;
+@class Database;
 
 @interface DBStatement : NSObject {
+	Database *db;
 	sqlite3_statement *stmt;
 }
 
@@ -54,11 +56,13 @@
 - (void)bindDouble:(int)idx val:(double)val;
 - (void)bindCString:(int)idx val:(const char *)val;
 - (void)bindString:(int)idx val:(NSString*)val;
+- (void)bindDate:(int)idx val:(NSDate*)date;
 
 - (int)colInt:(int)idx;
 - (double)colDouble:(int)idx;
 - (const char*)colCString:(int)idx;
 - (NSString*)colString:(int)idx;
+- (NSDate*)colDate:(int)idx;
 @end
 
 
