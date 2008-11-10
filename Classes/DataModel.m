@@ -78,7 +78,8 @@
 		needLoadOldData = YES;
 	}
 	
-	self.assets = [db loadAssets];
+	// Load assets
+	[self loadAssets];
 	if ([assets count] > 0) {
 		selAsset = [assets objectAtIndex:0];
 
@@ -89,8 +90,32 @@
 		}
 	}
 
+	// Load categories
 	categories.db = db;
 	[categories reload];
+}
+
+// private
+- (NSMutableArray*)loadAssets
+{
+	sqlite3_stmt *stmt;
+	assets = [[NSMutableArray alloc] init];
+
+	sqlite3_prepare_v2(db.db, "SELECT * FROM Assets ORDER BY sorder;", -1, &stmt, NULL);
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		Asset *as = [[Asset alloc] init];
+		as.pkey = sqlite3_column_int(stmt, 0);
+		const char *name = (const char *)sqlite3_column_text(stmt, 1);
+		as.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+		as.type = sqlite3_column_int(stmt, 2);
+		as.initialBalance = sqlite3_column_double(stmt, 3);
+		as.sorder = sqlite3_column_int(stmt, 4);
+
+		as.db = db; // back pointer
+		
+		[assets addObject:as];
+		[as release];
+	}
 }
 
 // private
@@ -121,7 +146,13 @@
 - (void)addAsset:(Asset *)as
 {
 	[assets addObject:as];
-	[db insertAsset:as];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "INSERT INTO Assets VALUES(NULL, %Q, %d, %f, %d);",
+					 [as.name UTF8String], as.type, as.initialBalance, as.sorder);
+	[db execSql:sql];
+
+	as.pkey = sqlite3_last_insert_rowid(db.db);
 }
 
 - (void)deleteAsset:(Asset *)as
@@ -131,7 +162,16 @@
 	}
 	[as clear];
 	
-	[db deleteAsset:as];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE FROM Assets WHERE key=%d;",
+					 asset.pkey);
+	[db execSql:sql];
+
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE FROM Transactions WHERE asset=%d;",
+					 asset.pkey);
+	[db execSql:sql];
+
 	[assets removeObject:as];
 }
 
@@ -143,11 +183,18 @@
 	[as release];
 	
 	// renumbering sorder
+	[db beginTransactionDB];
 	for (int i = 0; i < [assets count]; i++) {
 		as = [assets objectAtIndex:i];
 		as.sorder = i;
-		[db updateAsset:as];
+
+		sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE Assets SET name=%Q, type=%d, initialBalance=%f, sorder=%d WHERE key=%d;",
+					 [as.name UTF8String], as.type, as.initialBalance, as.sorder,
+					 as.pkey);
+		[db execSql:sql];
 	}
+	[db endTransactionDB];
 }
 
 

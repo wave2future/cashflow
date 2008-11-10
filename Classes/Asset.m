@@ -110,7 +110,11 @@
 
 - (void)updateInitialBalance
 {
-	[db updateInitialBalance:self];
+	char sql[256];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;",
+					 initialBalance, pkey);
+	[db execSql:sql];
 }
 
 ////////////////////////////////////////////////////////////////////////////

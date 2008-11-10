@@ -46,18 +46,13 @@
 	NSDateFormatter *dateFormatter;
 }
 
+@property(nonatomic,readonly) sqlite3 *db;
+
 - (id)init;
 - (void)dealloc;
 
 - (BOOL)openDB;
 - (void)initializeDB;
-
-// Asset operation
-- (NSMutableArray *)loadAssets;
-- (void)insertAsset:(Asset*)asset;
-- (void)updateAsset:(Asset*)asset;
-- (void)updateInitialBalance:(Asset*)asset;
-- (void)deleteAsset:(Asset*)asset;
 
 // Transaction operation
 - (NSMutableArray *)loadTransactions:(int)asset;

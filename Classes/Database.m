@@ -40,6 +40,8 @@
 
 @implementation Database
 
+@synthesize db;
+
 static char sql[4096];	// SQL buffer
 
 - (id)init
@@ -119,73 +121,6 @@ static char sql[4096];	// SQL buffer
 - (void)commitTransactionDB
 {
 	[self execSql:"COMMIT;"];
-}
-
-///////////////////////////////////////////////////////////////////////////////
-// Asset 処理
-
-- (NSMutableArray*)loadAssets
-{
-	sqlite3_stmt *stmt;
-	NSMutableArray *assets = [[NSMutableArray alloc] init];
-
-	sqlite3_prepare_v2(db, "SELECT * FROM Assets ORDER BY sorder;", -1, &stmt, NULL);
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		Asset *as = [[Asset alloc] init];
-		as.pkey = sqlite3_column_int(stmt, 0);
-		const char *name = (const char *)sqlite3_column_text(stmt, 1);
-		as.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
-		as.type = sqlite3_column_int(stmt, 2);
-		as.initialBalance = sqlite3_column_double(stmt, 3);
-		as.sorder = sqlite3_column_int(stmt, 4);
-
-		as.db = self; // back pointer
-		
-		[assets addObject:as];
-		[as release];
-	}
-	
-	return assets;
-}
-
-- (void)insertAsset:(Asset*)asset
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Assets VALUES(NULL, %Q, %d, %f, %d);",
-					 [asset.name UTF8String], asset.type, asset.initialBalance, asset.sorder);
-	[self execSql:sql];
-
-	asset.pkey = sqlite3_last_insert_rowid(db);
-}
-
-- (void)updateAsset:(Asset*)asset
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Assets SET name=%Q, type=%d, initialBalance=%f, sorder=%d WHERE key=%d;",
-					 [asset.name UTF8String], asset.type, asset.initialBalance, asset.sorder,
-					 asset.pkey);
-	[self execSql:sql];
-}
-
-- (void)updateInitialBalance:(Asset*)asset
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Assets SET initialBalance=%f WHERE key=%d;",
-					 asset.initialBalance, asset.pkey);
-	[self execSql:sql];
-}
-
-- (void)deleteAsset:(Asset*)asset
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Assets WHERE key=%d;",
-					 asset.pkey);
-	[self execSql:sql];
-
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE asset=%d;",
-					 asset.pkey);
-	[self execSql:sql];
 }
 
 ///////////////////////////////////////////////////////////////////////////////
