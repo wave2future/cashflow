@@ -47,7 +47,7 @@
 	sqlite3_statement *stmt;
 }
 
-- (id)initWithStatement:(sqlite3_statement *)st;
+- (id)initWithStatement:(sqlite3_statement *)st db:(Database*)database;
 - (int)step;
 - (void)reset;
 - (int)lastInsertRowId;
