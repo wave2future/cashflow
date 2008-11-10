@@ -319,55 +319,6 @@ static char sql[4096];	// SQL buffer
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-// Category 処理
-
-- (NSMutableArray*)loadCategories
-{
-	sqlite3_stmt *stmt;
-	NSMutableArray *categories = [[NSMutableArray alloc] init];
-
-	sqlite3_prepare_v2(db, "SELECT * FROM Categories ORDER BY sorder;", -1, &stmt, NULL);
-	while (sqlite3_step(stmt) == SQLITE_ROW) {
-		Category *c = [[Category alloc] init];
-		c.pkey = sqlite3_column_int(stmt, 0);
-		const char *name = (const char *)sqlite3_column_text(stmt, 1);
-		c.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
-		c.sorder = sqlite3_column_int(stmt, 2);
-		
-		[categories addObject:c];
-		[c release];
-	}
-	
-	return categories;
-}
-
-- (void)insertCategory:(Category*)c
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Categories VALUES(NULL, %Q, %d);",
-					 [c.name UTF8String], c.sorder);
-	[self execSql:sql];
-
-	c.pkey = sqlite3_last_insert_rowid(db);
-}
-
-- (void)updateCategory:(Category*)c
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "UPDATE Categories SET name=%Q, sorder=%d WHERE key=%d;",
-					 [c.name UTF8String], c.sorder, c.pkey);
-	[self execSql:sql];
-}
-
-- (void)deleteCategory:(Category*)c
-{
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Categories WHERE key=%d;",
-					 c.pkey);
-	[self execSql:sql];
-}
-
-//////////////////////////////////////////////////////////////////////////////////
 // Report 処理
 
 - (NSDate*)firstDateOfAsset:(int)asset

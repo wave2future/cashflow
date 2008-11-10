@@ -65,7 +65,21 @@
 	if (categories != nil) {
 		[categories release];
 	}
-	categories = [db loadCategories];
+	categories = [[NSMutableArray alloc] init];
+
+	sqlite3_stmt *stmt;
+	sqlite3_prepare_v2(db.db, "SELECT * FROM Categories ORDER BY sorder;", -1, &stmt, NULL);
+	while (sqlite3_step(stmt) == SQLITE_ROW) {
+		Category *c = [[Category alloc] init];
+		c.pkey = sqlite3_column_int(stmt, 0);
+		const char *name = (const char *)sqlite3_column_text(stmt, 1);
+		c.name = [NSString stringWithCString:name encoding:NSUTF8StringEncoding];
+		c.sorder = sqlite3_column_int(stmt, 2);
+		
+		[categories addObject:c];
+		[c release];
+	}
+	sqlite3_finalize(stmt);
 }
 
 -(int)categoryCount
@@ -111,19 +125,36 @@
 
 	[self renumber];
 
-	[db insertCategory:c];
+	char sql[1024];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "INSERT INTO Categories VALUES(NULL, %Q, %d);",
+					 [c.name UTF8String], c.sorder);
+	[db execSql:sql];
+
+	c.pkey = sqlite3_last_insert_rowid(db);
+
 	return c;
 }
 
 -(void)updateCategory:(Category*)category
 {
-	[db updateCategory:category];
+	char sql[1024];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "UPDATE Categories SET name=%Q, sorder=%d WHERE key=%d;",
+					 [category.name UTF8String], category.sorder, category.pkey);
+	[db execSql:sql];
 }
 
 -(void)deleteCategoryAtIndex:(int)index
 {
 	Category *c = [categories objectAtIndex:index];
-	[db deleteCategory:c];
+
+	char sql[1024];
+	sqlite3_snprintf(sizeof(sql), sql,
+					 "DELETE FROM Categories WHERE key=%d;",
+					 c.pkey);
+	[db execSql:sql];
+
 	[categories removeObjectAtIndex:index];
 }
 

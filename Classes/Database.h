@@ -68,12 +68,6 @@
 - (void)deleteTransaction:(Transaction *)t;
 - (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
 
-// Category operation
-- (NSMutableArray *)loadCategories;
-- (void)insertCategory:(Category*)category;
-- (void)updateCategory:(Category*)category;
-- (void)deleteCategory:(Category*)category;
-
 // Report operation
 - (NSDate*)firstDateOfAsset:(int)asset;
 - (NSDate*)lastDateOfAsset:(int)asset;
