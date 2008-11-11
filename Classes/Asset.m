@@ -52,6 +52,7 @@
 	initialBalance = 0.0;
 	transactions = [[NSMutableArray alloc] init];
 	type = ASSET_CASH;
+	self.name = @"";
 	
 	return self;
 }
