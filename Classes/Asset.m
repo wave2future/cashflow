@@ -106,7 +106,7 @@
 		t.date = [stmt colDate:1];
 		t.type = [stmt colInt:2];
 		t.category = [stmt colInt:3];
-		t.value = [stmt colInt:4];
+		t.value = [stmt colDouble:4];
 		t.description = [stmt colString:5];
 		t.memo = [stmt colString:6];
 
