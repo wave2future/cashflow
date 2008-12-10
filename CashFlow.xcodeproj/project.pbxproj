@@ -35,7 +35,6 @@
 		3E5868240EEFFB6E00951C2F /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
 		3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
 		3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
-		3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A8D7E0EAE34B200118C3C /* Info-free.plist */; };
 		3E5B83A90EC359440035AF05 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
 		3E5B83AB0EC359590035AF05 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
 		3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
@@ -392,7 +391,6 @@
 				3E27113B0EAA208E00E57E51 /* ExportView.xib in Resources */,
 				3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */,
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
-				3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */,
 				3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */,
 				3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */,
 				3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */,
@@ -473,6 +471,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -480,6 +480,8 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
 		};
@@ -487,11 +489,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
 		};
@@ -499,7 +504,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -507,7 +512,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -516,11 +520,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
+				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
 		};
@@ -529,7 +536,7 @@
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -537,7 +544,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "1AC114EB-9434-4F33-940D-D35DC420DB1B";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";
@@ -554,6 +560,7 @@
 				INFOPLIST_FILE = Info.plist;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
+				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";
 		};
@@ -561,7 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -570,7 +577,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow Free";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2BF5AD22-6DFE-4EF1-8D57-0ECA9D27EA46";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Debug Free";
@@ -579,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -586,6 +593,8 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = "Info-free.plist";
 				PRODUCT_NAME = "CashFlow Free";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				SDKROOT = iphoneos2.0;
 			};
 			name = "Debug Free";
 		};
@@ -593,7 +602,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -604,7 +613,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow Free";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Distribution Free";
@@ -613,11 +621,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = "Info-free.plist";
 				PRODUCT_NAME = "CashFlow Free";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
+				SDKROOT = iphoneos2.0;
 			};
 			name = "Distribution Free";
 		};
@@ -625,7 +636,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -633,7 +644,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;
@@ -642,7 +652,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -650,7 +660,6 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2BF5AD22-6DFE-4EF1-8D57-0ECA9D27EA46";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
