@@ -623,7 +623,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2BF5AD22-6DFE-4EF1-8D57-0ECA9D27EA46";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;

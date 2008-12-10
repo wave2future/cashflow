@@ -76,11 +76,17 @@
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	NSLog(@"%d", tableView.rowHeight);
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [reports.reports count];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	return 62;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -108,23 +114,27 @@
 		dateLabel.tag = 1;
 		dateLabel.font = [UIFont systemFontOfSize: 16.0];
 		dateLabel.textColor = [UIColor grayColor];
-		dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[cell.contentView addSubview:dateLabel];
 
-		incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(25, 20, 130, 22)] autorelease];
+		incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 20, 130, 40)] autorelease];
 		incomeLabel.tag = 2;
 		incomeLabel.font = [UIFont systemFontOfSize: 16.0];
 		incomeLabel.textAlignment = UITextAlignmentLeft;
 		incomeLabel.textColor = [UIColor blueColor];
-		incomeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		incomeLabel.lineBreakMode = UILineBreakModeWordWrap;
+		incomeLabel.numberOfLines = 2;
+		incomeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[cell.contentView addSubview:incomeLabel];
 
-		outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 20, 130, 22)] autorelease];
+		outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 20, 130, 40)] autorelease];
 		outgoLabel.tag = 3;
 		outgoLabel.font = [UIFont systemFontOfSize: 16.0];
 		outgoLabel.textAlignment = UITextAlignmentRight;
 		outgoLabel.textColor = [UIColor redColor];
-		outgoLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+		outgoLabel.lineBreakMode = UILineBreakModeWordWrap;
+		outgoLabel.numberOfLines = 2;
+		outgoLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 		[cell.contentView addSubview:outgoLabel];
 	} else {
 		dateLabel = (UILabel *)[cell.contentView viewWithTag:1];
@@ -134,9 +144,9 @@
 
 	dateLabel.text = [dateFormatter stringFromDate:report.date];
 
-	incomeLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Income", @""), 
+	incomeLabel.text = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Income", @""), 
 								 [DataModel currencyString:report.totalIncome]];
-	outgoLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Outgo", @""), 
+	outgoLabel.text = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Outgo", @""), 
 								[DataModel currencyString:report.totalOutgo]];
 
 	return cell;

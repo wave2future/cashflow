@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.02">
+<archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.03">
 	<data>
 		<int key="IBDocument.SystemTarget">512</int>
 		<string key="IBDocument.SystemVersion">9F33</string>
-		<string key="IBDocument.InterfaceBuilderVersion">672</string>
+		<string key="IBDocument.InterfaceBuilderVersion">677</string>
 		<string key="IBDocument.AppKitVersion">949.34</string>
 		<string key="IBDocument.HIToolboxVersion">352.00</string>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
@@ -13,6 +13,15 @@
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+		</object>
+		<object class="NSMutableDictionary" key="IBDocument.Metadata">
+			<bool key="EncodedWithXMLCoder">YES</bool>
+			<object class="NSArray" key="dict.sortedKeys">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
+			<object class="NSMutableArray" key="dict.values">
+				<bool key="EncodedWithXMLCoder">YES</bool>
+			</object>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.RootObjects" id="1000">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -54,7 +63,7 @@
 						<bool key="IBUIEnabled">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<object class="NSFont" key="IBUIFont" id="713303730">
+						<object class="NSFont" key="IBUIFont">
 							<string key="NSName">Helvetica-Bold</string>
 							<double key="NSSize">1.500000e+01</double>
 							<int key="NSfFlags">16</int>
@@ -82,7 +91,11 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<object class="NSFont" key="IBUIFont" id="322037697">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">2.500000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">0</string>
 						<string key="IBUIDisabledTitle">0</string>
@@ -103,7 +116,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">1</string>
 						<string key="IBUIDisabledTitle">1</string>
@@ -124,7 +137,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">4</string>
 						<string key="IBUIDisabledTitle">4</string>
@@ -145,7 +158,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">7</string>
 						<string key="IBUIDisabledTitle">7</string>
@@ -166,7 +179,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">C</string>
 						<string key="IBUIDisabledTitle">C</string>
@@ -187,7 +200,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">2</string>
 						<string key="IBUIDisabledTitle">2</string>
@@ -208,7 +221,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">5</string>
 						<string key="IBUIDisabledTitle">5</string>
@@ -229,7 +242,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">8</string>
 						<string key="IBUIDisabledTitle">8</string>
@@ -250,7 +263,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">.</string>
 						<string key="IBUIDisabledTitle">.</string>
@@ -271,7 +284,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">3</string>
 						<string key="IBUIDisabledTitle">3</string>
@@ -292,7 +305,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">6</string>
 						<string key="IBUIDisabledTitle">6</string>
@@ -313,7 +326,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">9</string>
 						<string key="IBUIDisabledTitle">9</string>
@@ -334,12 +347,16 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<object class="NSFont" key="IBUIFont">
+							<string key="NSName">Helvetica-Bold</string>
+							<double key="NSSize">3.100000e+01</double>
+							<int key="NSfFlags">16</int>
+						</object>
 						<int key="IBUIButtonType">1</int>
-						<string key="IBUIHighlightedTitle">DEL</string>
-						<string key="IBUIDisabledTitle">DEL</string>
-						<string key="IBUISelectedTitle">DEL</string>
-						<string key="IBUINormalTitle">DEL</string>
+						<string type="base64-UTF8" key="IBUIHighlightedTitle">4oyrA</string>
+						<string type="base64-UTF8" key="IBUIDisabledTitle">4oyrA</string>
+						<string type="base64-UTF8" key="IBUISelectedTitle">4oyrA</string>
+						<string type="base64-UTF8" key="IBUINormalTitle">4oyrA</string>
 						<reference key="IBUIHighlightedTitleColor" ref="786665285"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -355,7 +372,7 @@
 						<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 						<int key="IBUIContentHorizontalAlignment">0</int>
 						<int key="IBUIContentVerticalAlignment">0</int>
-						<reference key="IBUIFont" ref="713303730"/>
+						<reference key="IBUIFont" ref="322037697"/>
 						<int key="IBUIButtonType">1</int>
 						<string key="IBUIHighlightedTitle">+ / -</string>
 						<string key="IBUIDisabledTitle">+ / -</string>
@@ -952,7 +969,7 @@
 					<bool key="EncodedWithXMLCoder">YES</bool>
 					<string>EditValueViewController</string>
 					<string>UIResponder</string>
-					<string>{{354, 276}, {320, 480}}</string>
+					<string>{{318, 276}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
