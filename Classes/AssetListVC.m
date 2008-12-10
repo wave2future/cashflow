@@ -140,10 +140,18 @@
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
 		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+		
+		cell.font = [UIFont systemFontOfSize:16.0];
 	}
 
 	Asset *asset = [theDataModel assetAtIndex:indexPath.row];
-	cell.text = asset.name;
+	double lastBalance = [asset lastBalance];
+	cell.text = [NSString stringWithFormat:@"%@ : %@", asset.name, [DataModel currencyString:lastBalance]];
+	if (lastBalance >= 0) {
+		cell.textColor = [UIColor blackColor];
+	} else {
+		cell.textColor = [UIColor redColor];
+	}
 	cell.image = [iconArray objectAtIndex:asset.type];
 	
 	return cell;
