@@ -32,6 +32,8 @@
 		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
+		3E5868240EEFFB6E00951C2F /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
+		3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
 		3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
 		3E5A8D7F0EAE34B200118C3C /* Info-free.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E5A8D7E0EAE34B200118C3C /* Info-free.plist */; };
 		3E5B83A90EC359440035AF05 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
@@ -106,6 +108,9 @@
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
 		3E4D1D1B0EBB471E006050FE /* ReportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportVC.m; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
+		3E5868230EEFFB6E00951C2F /* EditMemoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = EditMemoView.xib; path = Resources/EditMemoView.xib; sourceTree = "<group>"; };
+		3E5868270EEFFCAF00951C2F /* EditMemoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditMemoVC.h; sourceTree = "<group>"; };
+		3E5868280EEFFCAF00951C2F /* EditMemoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditMemoVC.m; sourceTree = "<group>"; };
 		3E588D450EC34CFE00D3853D /* AssetView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AssetView.xib; path = Resources/AssetView.xib; sourceTree = "<group>"; };
 		3E5A8D7E0EAE34B200118C3C /* Info-free.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Info-free.plist"; sourceTree = "<group>"; };
 		3E5B83A80EC359440035AF05 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = MainWindow.xib; path = Resources/MainWindow.xib; sourceTree = "<group>"; };
@@ -196,6 +201,8 @@
 				3E0888010E6EAD0B00739AC9 /* EditValueVC.m */,
 				3E0887FD0E6EACF400739AC9 /* EditDescVC.h */,
 				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
+				3E5868270EEFFCAF00951C2F /* EditMemoVC.h */,
+				3E5868280EEFFCAF00951C2F /* EditMemoVC.m */,
 				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
 				3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */,
@@ -256,6 +263,7 @@
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
+				3E5868230EEFFB6E00951C2F /* EditMemoView.xib */,
 				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
 				3E27113A0EAA208E00E57E51 /* ExportView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
@@ -395,6 +403,7 @@
 				3E9A3B3B0EC47AAB005A4664 /* bank.png in Resources */,
 				3E9A3B3D0EC47ABA005A4664 /* card.png in Resources */,
 				3EB2FCDE0EC7314100F356A3 /* CategoryListView.xib in Resources */,
+				3E5868240EEFFB6E00951C2F /* EditMemoView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +441,7 @@
 				3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */,
 				3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */,
 				3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */,
+				3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

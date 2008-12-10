@@ -85,8 +85,8 @@
 				  bundle:[NSBundle mainBundle]];
 	editDescVC.listener = self;
 	
-	editMemoVC = [[GenEditTextViewController
-				   genEditTextViewController:self
+	editMemoVC = [[EditMemoViewController
+				   editMemoViewController:self
 				   title:NSLocalizedString(@"Memo", @"") 
 				   identifier:0] retain];
 	
@@ -329,7 +329,7 @@
 {
 	trans.description = vc.description;
 }
-- (void)genEditTextViewChanged:(GenEditTextViewController*)vc identifier:(int)id
+- (void)editMemoViewChanged:(EditMemoViewController*)vc identifier:(int)id
 {
 	trans.memo = vc.text;
 }

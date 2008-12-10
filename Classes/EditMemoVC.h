@@ -32,53 +32,28 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "Transaction.h"
 
-//#import "GenEditTextVC.h"; // memo
-#import "GenEditTypeVC.h"; // type
-#import "EditDescVC.h";
-#import "EditValueVC.h";
-#import "EditDateVC.h";
-#import "EditMemoVC.h";
-#import "CategoryListVC.h"
+@class EditMemoViewController;
 
-@interface TransactionViewController : UITableViewController 
-	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
-    EditMemoViewListener, GenEditTypeViewListener,
-	EditDateViewListener, EditValueViewListener, 
-	EditDescViewListener, CategoryListViewListener>
-{
-	int transactionIndex;
-	Transaction *trans;
+@protocol EditMemoViewListener
+- (void)editMemoViewChanged:(EditMemoViewController *)vc identifier:(int)id;
+@end
 
-	NSArray *typeArray;
-
-	EditDateViewController *editDateVC;
-	GenEditTypeViewController *editTypeVC; // type
-	EditValueViewController *editValueVC;
-	EditDescViewController *editDescVC;
-	//GenEditTextViewController *editMemoVC; // memo
-	EditMemoViewController *editMemoVC; // memo
-	CategoryListViewController *editCategoryVC;
+@interface EditMemoViewController : UIViewController {
+	IBOutlet UITextView *textView;
 	
-	UIButton *delButton;
-	UIButton *delPastButton;
+	id<EditMemoViewListener> listener;
+	NSString *text;
+	int identifier;
 }
 
-@property(nonatomic,assign) Transaction *trans;
+@property(nonatomic,assign) id<EditMemoViewListener> listener;
+@property(nonatomic,assign) int identifier;
+@property(nonatomic,retain) NSString *text;
 
-- (void)setTransactionIndex:(int)n;
-- (void)saveAction;
-
-- (void)delButtonTapped;
-- (void)delPastButtonTapped;
-
-// private
-- (UITableViewCell *)getCellForField:(NSIndexPath*)indexPath tableView:(UITableView *)tableView;
-//- (UITableViewCell *)getCellForDelButton:(UITableView *)tableView isDeleteAll:(Boolean)flag;
-
++ (EditMemoViewController *)editMemoViewController:(id<EditMemoViewListener>)listener title:(NSString*)title identifier:(int)id;
+- (void)doneAction;
 
 @end
