@@ -85,9 +85,12 @@
 
         if (needLoadOldData) {
             [selAsset loadOldFormatData];
-        } else {
-            [selAsset reload];
         }
+    }
+
+    // Load all transactions
+    for (Asset *as in assets) {
+        [as reload];
     }
 
     // Load categories
@@ -116,18 +119,6 @@
         [as release];
     }
     [stmt release];
-}
-
-// private
-- (void)reload
-{
-    [selAsset reload];
-}
-
-// private
-- (void)resave
-{
-    [selAsset resave];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -217,6 +208,7 @@
 
 - (void)changeSelAsset:(Asset *)as
 {
+#if 0   // transaction はいちいち解放しないこととした
     if (selAsset != as) {
         if (selAsset != nil) {
             [selAsset clear];
@@ -224,6 +216,8 @@
         selAsset = as;
         [selAsset reload];
     }
+#endif
+    selAsset = as;
 }
 
 ////////////////////////////////////////////////////////////////////////////
