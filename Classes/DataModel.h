@@ -59,8 +59,6 @@
 // load/save
 - (void)load;
 - (void)loadAssets; // private
-- (void)reload;
-- (void)resave;
 
 // asset operation
 - (int)assetCount;
