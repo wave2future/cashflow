@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -63,75 +63,75 @@
         return NO;
     }
 	
-	socklen_t len = sizeof(serv_addr);
-	if (getsockname(listen_sock, (struct sockaddr *)&serv_addr, &len)  < 0) {
-		close(listen_sock);
-		return NO;
-	}
+    socklen_t len = sizeof(serv_addr);
+    if (getsockname(listen_sock, (struct sockaddr *)&serv_addr, &len)  < 0) {
+        close(listen_sock);
+        return NO;
+    }
 
     if (listen(listen_sock, 16) < 0) {
         close(listen_sock);
         return NO;
     }
 	
-	thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadMain:) object:nil];
-	[thread start];
+    thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadMain:) object:nil];
+    [thread start];
 	
-	return YES;
+    return YES;
 }
 
 - (void)stopServer
 {
-	if (listen_sock >= 0) {
-		close(listen_sock);
-	}
-	listen_sock = -1;
+    if (listen_sock >= 0) {
+        close(listen_sock);
+    }
+    listen_sock = -1;
 }
 
 - (NSString*)serverUrl
 {
-	// connect dummy UDP socket to get local IP address.
-	int s = socket(AF_INET, SOCK_DGRAM, 0);
-	struct sockaddr_in addr;
-	addr.sin_family = AF_INET;
-	addr.sin_addr.s_addr = htonl(0x01010101); // dummy address
-	addr.sin_port = htons(80);
+    // connect dummy UDP socket to get local IP address.
+    int s = socket(AF_INET, SOCK_DGRAM, 0);
+    struct sockaddr_in addr;
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = htonl(0x01010101); // dummy address
+    addr.sin_port = htons(80);
 	
-	if (connect(s, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
-		close(s);
-		return nil;
-	}
+    if (connect(s, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        close(s);
+        return nil;
+    }
 	
-	socklen_t len = sizeof(addr);
-	getsockname(s, (struct sockaddr*)&addr, &len);
-	close(s);
+    socklen_t len = sizeof(addr);
+    getsockname(s, (struct sockaddr*)&addr, &len);
+    close(s);
 
-	char addrstr[64];
-	inet_ntop(AF_INET, (void*)&addr.sin_addr.s_addr, addrstr, sizeof(addrstr));
+    char addrstr[64];
+    inet_ntop(AF_INET, (void*)&addr.sin_addr.s_addr, addrstr, sizeof(addrstr));
 
-	NSString *url;
-	if (PORT_NUMBER == 80) {
-		url = [NSString stringWithFormat:@"http://%s", addrstr];
-	} else {
-		url = [NSString stringWithFormat:@"http://%s:%d", addrstr, PORT_NUMBER];
-	}
-	return url;
+    NSString *url;
+    if (PORT_NUMBER == 80) {
+        url = [NSString stringWithFormat:@"http://%s", addrstr];
+    } else {
+        url = [NSString stringWithFormat:@"http://%s:%d", addrstr, PORT_NUMBER];
+    }
+    return url;
 }
 
 - (void)threadMain:(id)dummy
 {	
-	NSAutoreleasePool *pool;
-	pool = [[NSAutoreleasePool alloc] init];
+    NSAutoreleasePool *pool;
+    pool = [[NSAutoreleasePool alloc] init];
 	
-	int s;
-	socklen_t len;
-	struct sockaddr_in caddr;
+    int s;
+    socklen_t len;
+    struct sockaddr_in caddr;
 	
     for (;;) {
         len = sizeof(caddr);
         s = accept(listen_sock, (struct sockaddr *)&caddr, &len);
         if (s < 0) {
-			break;
+            break;
         }
 
         [self handleHttpRequest:s];
@@ -139,13 +139,13 @@
         close(s);
     }
 
-	if (listen_sock >= 0) {
-		close(listen_sock);
-	}
-	listen_sock = -1;
+    if (listen_sock >= 0) {
+        close(listen_sock);
+    }
+    listen_sock = -1;
 	
-	[pool release];
-	[NSThread exit];
+    [pool release];
+    [NSThread exit];
 }
 
 #define BUFSZ   4096
@@ -154,46 +154,44 @@
 {
     char buf[BUFSZ+1];
 
-	int len = read(s, buf, BUFSZ);
-	if (len < 0) {
-		return;
-	}
-	buf[len] = '\0'; // null terminate
+    int len = read(s, buf, BUFSZ);
+    if (len < 0) {
+        return;
+    }
+    buf[len] = '\0'; // null terminate
 	
-	// get request line
-	NSArray *reqs = [[NSString stringWithCString:buf] componentsSeparatedByString:@"\n"];
-	NSString *getreq = [[reqs objectAtIndex:0] substringFromIndex:4]; // GET .....
+    // get request line
+    NSArray *reqs = [[NSString stringWithCString:buf] componentsSeparatedByString:@"\n"];
+    NSString *getreq = [[reqs objectAtIndex:0] substringFromIndex:4]; // GET .....
 
-	// get requested file name
-	NSRange range = [getreq rangeOfString:@"HTTP/"];
-	if (range.location == NSNotFound) {
-		// GET request error ...
-		return;
-	}
-	NSString *filereq = [[getreq substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    // get requested file name
+    NSRange range = [getreq rangeOfString:@"HTTP/"];
+    if (range.location == NSNotFound) {
+        // GET request error ...
+        return;
+    }
+    NSString *filereq = [[getreq substringToIndex:range.location] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-	// Request to '/' url.
-	// Return redirect to target file name.
-	if ([filereq isEqualToString:@"/"])
-	{
-		NSString *outcontent = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"];
-		write(s, [outcontent UTF8String], [outcontent length]);
+    // Request to '/' url.
+    // Return redirect to target file name.
+    if ([filereq isEqualToString:@"/"])
+    {
+        NSString *outcontent = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"];
+        write(s, [outcontent UTF8String], [outcontent length]);
 		
-		outcontent = [NSString stringWithFormat:@"<html><head><meta http-equiv=\"refresh\" content=\"0;url=%@\"></head></html>", filename];
-		write(s, [outcontent UTF8String], [outcontent length]);
+        outcontent = [NSString stringWithFormat:@"<html><head><meta http-equiv=\"refresh\" content=\"0;url=%@\"></head></html>", filename];
+        write(s, [outcontent UTF8String], [outcontent length]);
 		
-		return;
-	}
+        return;
+    }
 		
-	// Ad hoc...
+    // Ad hoc...
     // No need to read request... Just send only one file!
     NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
     write(s, [content UTF8String], [content length]);
 	
-	const char *utf8 = [contentBody UTF8String];
+    const char *utf8 = [contentBody UTF8String];
     write(s, utf8, strlen(utf8));
 }
 
 @end
-
-        

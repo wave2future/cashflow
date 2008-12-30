@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -56,7 +56,8 @@
 
 
 // Implement viewDidLoad to do additional setup after loading the view.
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 	
 	[self setTitle:NSLocalizedString(@"Export", @"")];
@@ -147,24 +148,24 @@
 	ex.firstDate = date;
 	
 	switch (methodControl.selectedSegmentIndex) {
-		case 0:
-		default:
-			result = [ex sendMail];
-			break;
+        case 0:
+        default:
+            result = [ex sendMail];
+            break;
 #ifndef FREE_VERSION
-		case 1:
-			result = [ex sendWithWebServer];
-			break;
+        case 1:
+            result = [ex sendWithWebServer];
+            break;
 #endif
 	}
 	
 	if (!result) {
-		v = [[UIAlertView alloc] 
-						  initWithTitle:NSLocalizedString(@"No data", @"")
-						  message:NSLocalizedString(@"No data to be exported.", @"")
-						  delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-		[v show];
-		[v autorelease];
+            v = [[UIAlertView alloc] 
+                    initWithTitle:NSLocalizedString(@"No data", @"")
+                    message:NSLocalizedString(@"No data to be exported.", @"")
+                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+            [v show];
+            [v autorelease];
 	}
 }
 
@@ -183,6 +184,5 @@
 - (void)dealloc {
     [super dealloc];
 }
-
 
 @end

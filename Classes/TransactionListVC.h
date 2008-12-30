@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -40,15 +40,15 @@
 #import "EditValueVC.h"
 
 @interface TransactionListViewController : UIViewController 
-	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
+    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
 {
-	IBOutlet UITableView *tableView;
-	IBOutlet UIBarButtonItem *barBalanceLabel;
+    IBOutlet UITableView *tableView;
+    IBOutlet UIBarButtonItem *barBalanceLabel;
 	
-	TransactionViewController *transactionView;
-	ExportVC *exportVC;
+    TransactionViewController *transactionView;
+    ExportVC *exportVC;
 
-	Asset *asset;
+    Asset *asset;
 }
 
 //- (UITableView*)tableView;

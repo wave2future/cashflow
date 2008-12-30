@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -38,11 +38,11 @@
 #import "TransactionListVC.h"
 
 @interface AssetListViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+    <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
 {
-	IBOutlet UITableView *tableView;
+    IBOutlet UITableView *tableView;
 
-	NSArray *iconArray;
+    NSArray *iconArray;
 }
 
 @property(nonatomic,retain) UITableView *tableView;

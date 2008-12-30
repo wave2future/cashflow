@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -41,57 +41,57 @@
 
 + (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
-	GenEditTypeViewController *vc = [[[GenEditTypeViewController alloc]
-										 initWithNibName:@"GenEditTypeView"
-										 bundle:[NSBundle mainBundle]] autorelease];
-	vc.listener = listener;
-	vc.typeArray = ary;
-	vc.title = title;
-	vc.identifier = id;
+    GenEditTypeViewController *vc = [[[GenEditTypeViewController alloc]
+                                         initWithNibName:@"GenEditTypeView"
+                                         bundle:[NSBundle mainBundle]] autorelease];
+    vc.listener = listener;
+    vc.typeArray = ary;
+    vc.title = title;
+    vc.identifier = id;
 
-	return vc;
+    return vc;
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	[super viewWillAppear:animated];
-	[[self tableView] reloadData];
+    [super viewWillAppear:animated];
+    [[self tableView] reloadData];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView {
-	return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [typeArray count];
+    return [typeArray count];
 }
 
 // 行の内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-	static NSString *MyIdentifier = @"genEditTypeViewCells";
+    static NSString *MyIdentifier = @"genEditTypeViewCells";
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
-	}
-	if (indexPath.row == self.type) {
-		cell.accessoryType = UITableViewCellAccessoryCheckmark;
-	} else {
-		cell.accessoryType = UITableViewCellAccessoryNone;
-	}
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+    }
+    if (indexPath.row == self.type) {
+        cell.accessoryType = UITableViewCellAccessoryCheckmark;
+    } else {
+        cell.accessoryType = UITableViewCellAccessoryNone;
+    }
 		
-	cell.text = [typeArray objectAtIndex:indexPath.row];
+    cell.text = [typeArray objectAtIndex:indexPath.row];
 
-	return cell;
+    return cell;
 }
 
- - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	self.type = indexPath.row;
-	[listener genEditTypeViewChanged:self identifier:identifier];
+    self.type = indexPath.row;
+    [listener genEditTypeViewChanged:self identifier:identifier];
 
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

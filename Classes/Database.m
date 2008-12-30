@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -41,90 +41,90 @@
 
 - (id)initWithStatement:(sqlite3_stmt *)st
 {
-	self = [super init];
-	if (self != nil) {
-		stmt = st;
-	}
-	return self;
+    self = [super init];
+    if (self != nil) {
+        stmt = st;
+    }
+    return self;
 }
 
 - (void)dealloc
 {
-	if (stmt) {
-		sqlite3_finalize(stmt);
-	}
-	[super dealloc];
+    if (stmt) {
+        sqlite3_finalize(stmt);
+    }
+    [super dealloc];
 }
 
 - (int)step
 {
-	return sqlite3_step(stmt);
+    return sqlite3_step(stmt);
 }
 
 - (void)reset
 {
-	sqlite3_reset(stmt);
+    sqlite3_reset(stmt);
 }
 
 - (void)bindInt:(int)idx val:(int)val
 {
-	sqlite3_bind_int(stmt, idx, val);
+    sqlite3_bind_int(stmt, idx, val);
 }
 
 - (void)bindDouble:(int)idx val:(double)val
 {
-	sqlite3_bind_double(stmt, idx, val);
+    sqlite3_bind_double(stmt, idx, val);
 }
 
 - (void)bindCString:(int)idx val:(const char *)val
 {
-	sqlite3_bind_text(stmt, idx, val, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, idx, val, -1, SQLITE_TRANSIENT);
 }
 
 - (void)bindString:(int)idx val:(NSString*)val
 {
-	sqlite3_bind_text(stmt, idx, [val UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, idx, [val UTF8String], -1, SQLITE_TRANSIENT);
 }
 
 - (void)bindDate:(int)idx val:(NSDate*)date
 {
-	[self bindCString:idx val:[Database cstringFromDate:date]];
+    [self bindCString:idx val:[Database cstringFromDate:date]];
 }
 
 - (int)colInt:(int)idx
 {
-	return sqlite3_column_int(stmt, idx);
+    return sqlite3_column_int(stmt, idx);
 }
 
 - (double)colDouble:(int)idx
 {
-	return sqlite3_column_double(stmt, idx);
+    return sqlite3_column_double(stmt, idx);
 }
 
 - (const char *)colCString:(int)idx
 {
-	const char *s = (const char*)sqlite3_column_text(stmt, idx);
-	return s;
+    const char *s = (const char*)sqlite3_column_text(stmt, idx);
+    return s;
 }
 
 - (NSString*)colString:(int)idx
 {
-	const char *s = (const char*)sqlite3_column_text(stmt, idx);
-	if (!s) {
-		return @"";
-	}
-	NSString *ns = [NSString stringWithCString:s encoding:NSUTF8StringEncoding];
-	return ns;
+    const char *s = (const char*)sqlite3_column_text(stmt, idx);
+    if (!s) {
+        return @"";
+    }
+    NSString *ns = [NSString stringWithCString:s encoding:NSUTF8StringEncoding];
+    return ns;
 }
 
 - (NSDate*)colDate:(int)idx
 {
-	NSDate *date = nil;
-	const char *ds = [self colCString:idx];
-	if (ds) {
-		date = [Database dateFromCString:ds];
-	}
-	return date;
+    NSDate *date = nil;
+    const char *ds = [self colCString:idx];
+    if (ds) {
+        date = [Database dateFromCString:ds];
+    }
+    return date;
 }
 
 @end
@@ -140,66 +140,66 @@ static NSDateFormatter *dateFormatter = nil;
 
 - (id)init
 {
-	self = [super init];
-	if (self != nil) {
-		handle = 0;
+    self = [super init];
+    if (self != nil) {
+        handle = 0;
 
-		if (dateFormatter == nil) {
-			dateFormatter = [[NSDateFormatter alloc] init];
-			[dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-			[dateFormatter setDateFormat: @"yyyyMMddHHmm"];
-		}
-	}
+        if (dateFormatter == nil) {
+            dateFormatter = [[NSDateFormatter alloc] init];
+            [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+            [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+        }
+    }
 	
-	return self;
+    return self;
 }
 
 - (void)dealloc
 {
-	if (handle != nil) {
-		sqlite3_close(handle);
-	}
-	[dateFormatter release];
-	[super dealloc];
+    if (handle != nil) {
+        sqlite3_close(handle);
+    }
+    [dateFormatter release];
+    [super dealloc];
 }
 
 - (void)execSql:(const char *)sql
 {
-	ASSERT(handle != 0);
+    ASSERT(handle != 0);
 	
-	int result = sqlite3_exec(handle, sql, NULL, NULL, NULL);
-	if (result != SQLITE_OK) {
-		NSLog(@"sqlite3: %s", sqlite3_errmsg(handle));
-		ASSERT(0);
-	}
+    int result = sqlite3_exec(handle, sql, NULL, NULL, NULL);
+    if (result != SQLITE_OK) {
+        NSLog(@"sqlite3: %s", sqlite3_errmsg(handle));
+        ASSERT(0);
+    }
 }
 
 - (DBStatement *)prepare:(const char *)sql
 {
-	sqlite3_stmt *stmt;
-	int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
-	if (result != SQLITE_OK) {
-		NSLog(@"sqlite3: %s", sqlite3_errmsg(handle));
-		ASSERT(0);
-	}
+    sqlite3_stmt *stmt;
+    int result = sqlite3_prepare_v2(handle, sql, -1, &stmt, NULL);
+    if (result != SQLITE_OK) {
+        NSLog(@"sqlite3: %s", sqlite3_errmsg(handle));
+        ASSERT(0);
+    }
 
-	DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
-	return dbs;
+    DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
+    return dbs;
 }
 
 - (int)lastInsertRowId
 {
-	return sqlite3_last_insert_rowid(handle);
+    return sqlite3_last_insert_rowid(handle);
 }
 
 - (void)beginTransaction
 {
-	[self execSql:"BEGIN;"];
+    [self execSql:"BEGIN;"];
 }
 
 - (void)commitTransaction
 {
-	[self execSql:"COMMIT;"];
+    [self execSql:"COMMIT;"];
 }
 
 // データベースを開く
@@ -207,51 +207,51 @@ static NSDateFormatter *dateFormatter = nil;
 //   なかったときは新規作成して NO を返す
 - (BOOL)openDB
 {
-	// Load from DB
-	NSString *dbPath = [AppDelegate pathOfDataFile:@"CashFlow.db"];
+    // Load from DB
+    NSString *dbPath = [AppDelegate pathOfDataFile:@"CashFlow.db"];
 	
-	NSFileManager *fileManager = [NSFileManager defaultManager];
-	BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
 	
-	if (sqlite3_open([dbPath UTF8String], &handle) != 0) {
-		// ouch!
-		ASSERT(0);
-	}
-	return isExistedDb;
+    if (sqlite3_open([dbPath UTF8String], &handle) != 0) {
+        // ouch!
+        ASSERT(0);
+    }
+    return isExistedDb;
 }
 
 - (void)initializeDB
 {
-	// テーブル作成＆初期データ作成
-	[self execSql:"CREATE TABLE Transactions ("
-		  "key INTEGER PRIMARY KEY,"
-		  "asset INTEGER,"
-		  "dst_asset INTEGER,"
-		  "date DATE,"
-		  "type INTEGER,"
-		  "category INTEGER,"
-		  "value REAL,"
-		  "description TEXT,"
-		  "memo TEXT);"];
+    // テーブル作成＆初期データ作成
+    [self execSql:"CREATE TABLE Transactions ("
+          "key INTEGER PRIMARY KEY,"
+          "asset INTEGER,"
+          "dst_asset INTEGER,"
+          "date DATE,"
+          "type INTEGER,"
+          "category INTEGER,"
+          "value REAL,"
+          "description TEXT,"
+          "memo TEXT);"];
 
-	[self execSql:"CREATE TABLE Assets ("
-		  "key INTEGER PRIMARY KEY,"
-		  "name TEXT,"
-		  "type INTEGER,"
-		  "initialBalance REAL,"
-		  "sorder INTEGER);"];
+    [self execSql:"CREATE TABLE Assets ("
+          "key INTEGER PRIMARY KEY,"
+          "name TEXT,"
+          "type INTEGER,"
+          "initialBalance REAL,"
+          "sorder INTEGER);"];
 
-	char sql[256];
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
-					 [NSLocalizedString(@"Cash", @"") UTF8String]);
-	[self execSql:sql];
+    char sql[256];
+    sqlite3_snprintf(sizeof(sql), sql,
+                     "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
+                     [NSLocalizedString(@"Cash", @"") UTF8String]);
+    [self execSql:sql];
 
-	// カテゴリテーブル追加
-	[self execSql:"CREATE TABLE Categories ("
-		  "key INTEGER PRIMARY KEY,"
-		  "name TEXT,"
-		  "sorder INTEGER);"];
+    // カテゴリテーブル追加
+    [self execSql:"CREATE TABLE Categories ("
+          "key INTEGER PRIMARY KEY,"
+          "name TEXT,"
+          "sorder INTEGER);"];
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -259,16 +259,15 @@ static NSDateFormatter *dateFormatter = nil;
 
 + (NSDate*)dateFromCString:(const char *)str
 {
-	NSDate *date = [dateFormatter dateFromString:
-		   [NSString stringWithCString:str encoding:NSUTF8StringEncoding]];
-	return date;
+    NSDate *date = [dateFormatter dateFromString:
+                                      [NSString stringWithCString:str encoding:NSUTF8StringEncoding]];
+    return date;
 }
 
 + (const char *)cstringFromDate:(NSDate*)date
 {
-	const char *s = [[dateFormatter stringFromDate:date] UTF8String];
-	return s;
+    const char *s = [[dateFormatter stringFromDate:date] UTF8String];
+    return s;
 }
 
 @end
-

@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -47,64 +47,64 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
+    [super viewDidLoad];
 	
-	// title 設定
-	//self.title = NSLocalizedString(@"Transactions", @"");
-	self.title = theDataModel.selAsset.name;
+    // title 設定
+    //self.title = NSLocalizedString(@"Transactions", @"");
+    self.title = theDataModel.selAsset.name;
 	
-	// "+" ボタンを追加
-	UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
-								   initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-								   target:self
-								   action:@selector(addTransaction)];
+    // "+" ボタンを追加
+    UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
+                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+                                      target:self
+                                      action:@selector(addTransaction)];
 	
-	self.navigationItem.rightBarButtonItem = plusButton;
-	[plusButton release];
+    self.navigationItem.rightBarButtonItem = plusButton;
+    [plusButton release];
 	
-	// Edit ボタンを追加
-	// TBD
-	//self.navigationItem.leftBarButtonItem = [self editButtonItem];
+    // Edit ボタンを追加
+    // TBD
+    //self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	
-	// 下位 View を作っておく
-	transactionView = [[TransactionViewController alloc]
-					   initWithNibName:@"TransactionView"
-					   bundle:[NSBundle mainBundle]];
-	exportVC = [[ExportVC alloc] initWithNibName:@"ExportView" bundle:[NSBundle mainBundle]];	
+    // 下位 View を作っておく
+    transactionView = [[TransactionViewController alloc]
+                          initWithNibName:@"TransactionView"
+                          bundle:[NSBundle mainBundle]];
+    exportVC = [[ExportVC alloc] initWithNibName:@"ExportView" bundle:[NSBundle mainBundle]];	
 }
 
 - (void)dealloc {
-	[transactionView release];
-	[exportVC release];
+    [transactionView release];
+    [exportVC release];
 
-	[super dealloc];
+    [super dealloc];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+    [super viewWillAppear:animated];
 
-	asset = theDataModel.selAsset;
-	[self updateBalance];
+    asset = theDataModel.selAsset;
+    [self updateBalance];
 	
-	[self.tableView reloadData]; //### Reload data...
+    [self.tableView reloadData]; //### Reload data...
 }
 
 - (void)updateBalance
 {
-	double lastBalance = [asset lastBalance];
-	NSString *bstr = [DataModel currencyString:lastBalance];
+    double lastBalance = [asset lastBalance];
+    NSString *bstr = [DataModel currencyString:lastBalance];
 
 #if 0
-	UILabel *tableTitle = (UILabel *)[self.tableView tableHeaderView];
-	tableTitle.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
+    UILabel *tableTitle = (UILabel *)[self.tableView tableHeaderView];
+    tableTitle.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
 #endif
 	
-	barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
+    barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -115,38 +115,38 @@
 
 - (IBAction)showHelp:(id)sender
 {
-	InfoVC *v = [[InfoVC alloc] initWithNibName:@"InfoView" bundle:[NSBundle mainBundle]];
-	[self.navigationController pushViewController:v animated:YES];
-	[v release];
+    InfoVC *v = [[InfoVC alloc] initWithNibName:@"InfoView" bundle:[NSBundle mainBundle]];
+    [self.navigationController pushViewController:v animated:YES];
+    [v release];
 }
 
 
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [asset transactionCount] + 1;
+    return [asset transactionCount] + 1;
 }
 
 // 指定セル位置に該当する Transaction Index を返す
 - (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-	return [asset transactionCount] - indexPath.row - 1;
+    return [asset transactionCount] - indexPath.row - 1;
 }
 
 // 指定セル位置の Transaction を返す
 - (Transaction *)transactionWithIndexPath:(NSIndexPath *)indexPath
 {
-	int idx = [self transactionIndexWithIndexPath:indexPath];
+    int idx = [self transactionIndexWithIndexPath:indexPath];
 
-	if (idx < 0) {
-		return nil;  // initial balance
-	} 
-	Transaction *t = [asset transactionAt:idx];
-	return t;
+    if (idx < 0) {
+        return nil;  // initial balance
+    } 
+    Transaction *t = [asset transactionAt:idx];
+    return t;
 }
 
 //
@@ -159,248 +159,248 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell;
+    UITableViewCell *cell;
 	
-	Transaction *t = [self transactionWithIndexPath:indexPath];
-	if (t) {
-		cell = [self transactionCell:t];
-	} else {
-		cell = [self initialBalanceCell];
-	}
+    Transaction *t = [self transactionWithIndexPath:indexPath];
+    if (t) {
+        cell = [self transactionCell:t];
+    } else {
+        cell = [self initialBalanceCell];
+    }
 
-	return cell;
+    return cell;
 }
 
 // Transaction セルの生成 (private)
 - (UITableViewCell *)transactionCell:(Transaction*)t
 {
-	NSString *cellid = @"transactionCell";
+    NSString *cellid = @"transactionCell";
 
-	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-	UILabel *descLabel, *dateLabel, *valueLabel, *balanceLabel;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
+    UILabel *descLabel, *dateLabel, *valueLabel, *balanceLabel;
 
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		//cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-		descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 220, 24)] autorelease];
-		descLabel.tag = TAG_DESC;
-		descLabel.font = [UIFont systemFontOfSize: 18.0];
-		descLabel.textColor = [UIColor blackColor];
-		descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:descLabel];
+        descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 220, 24)] autorelease];
+        descLabel.tag = TAG_DESC;
+        descLabel.font = [UIFont systemFontOfSize: 18.0];
+        descLabel.textColor = [UIColor blackColor];
+        descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:descLabel];
 		
-		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(190, 0, 120, 24)] autorelease];
-		valueLabel.tag = TAG_VALUE;
-		valueLabel.font = [UIFont systemFontOfSize: 18.0];
-		valueLabel.textAlignment = UITextAlignmentRight;
-		valueLabel.textColor = [UIColor blueColor];
-		valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:valueLabel];
+        valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(190, 0, 120, 24)] autorelease];
+        valueLabel.tag = TAG_VALUE;
+        valueLabel.font = [UIFont systemFontOfSize: 18.0];
+        valueLabel.textAlignment = UITextAlignmentRight;
+        valueLabel.textColor = [UIColor blueColor];
+        valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:valueLabel];
 		
-		dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 24, 160, 20)] autorelease];
-		dateLabel.tag = TAG_DATE;
-		dateLabel.font = [UIFont systemFontOfSize: 14.0];
-		dateLabel.textColor = [UIColor grayColor];
-		dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:dateLabel];
+        dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 24, 160, 20)] autorelease];
+        dateLabel.tag = TAG_DATE;
+        dateLabel.font = [UIFont systemFontOfSize: 14.0];
+        dateLabel.textColor = [UIColor grayColor];
+        dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:dateLabel];
 		
-		balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
-		balanceLabel.tag = TAG_BALANCE;
-		balanceLabel.font = [UIFont systemFontOfSize: 14.0];
-		balanceLabel.textAlignment = UITextAlignmentRight;
-		balanceLabel.textColor = [UIColor grayColor];
-		balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:balanceLabel];
-	} else {
-		descLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DESC];
-		dateLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DATE];
-		valueLabel = (UILabel *)[cell.contentView viewWithTag:TAG_VALUE];
-		balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
-	}
+        balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
+        balanceLabel.tag = TAG_BALANCE;
+        balanceLabel.font = [UIFont systemFontOfSize: 14.0];
+        balanceLabel.textAlignment = UITextAlignmentRight;
+        balanceLabel.textColor = [UIColor grayColor];
+        balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:balanceLabel];
+    } else {
+        descLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DESC];
+        dateLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DATE];
+        valueLabel = (UILabel *)[cell.contentView viewWithTag:TAG_VALUE];
+        balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
+    }
 
-	descLabel.text = t.description;
-	dateLabel.text = [theDateFormatter stringFromDate:t.date];
+    descLabel.text = t.description;
+    dateLabel.text = [theDateFormatter stringFromDate:t.date];
 	
-	double v = t.value;
-	if (v >= 0) {
-		valueLabel.textColor = [UIColor blueColor];
-	} else {
-		v = -v;
-		valueLabel.textColor = [UIColor redColor];
-	}
-	valueLabel.text = [DataModel currencyString:v];
-	balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), [DataModel currencyString:t.balance]];
+    double v = t.value;
+    if (v >= 0) {
+        valueLabel.textColor = [UIColor blueColor];
+    } else {
+        v = -v;
+        valueLabel.textColor = [UIColor redColor];
+    }
+    valueLabel.text = [DataModel currencyString:v];
+    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), [DataModel currencyString:t.balance]];
 	
-	return cell;
+    return cell;
 }
 
 // 初期残高セルの生成 (private)
 - (UITableViewCell *)initialBalanceCell
 {
-	NSString *cellid = @"initialBalanceCell";
+    NSString *cellid = @"initialBalanceCell";
 
-	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-	UILabel *descLabel, *balanceLabel;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
+    UILabel *descLabel, *balanceLabel;
 
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
-		descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-		descLabel.font = [UIFont systemFontOfSize: 18.0];
-		descLabel.textColor = [UIColor blackColor];
-		descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		descLabel.text = NSLocalizedString(@"Initial Balance", @"");
-		[cell.contentView addSubview:descLabel];
+        descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
+        descLabel.font = [UIFont systemFontOfSize: 18.0];
+        descLabel.textColor = [UIColor blackColor];
+        descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        descLabel.text = NSLocalizedString(@"Initial Balance", @"");
+        [cell.contentView addSubview:descLabel];
 
-		balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
-		balanceLabel.tag = TAG_BALANCE;
-		balanceLabel.font = [UIFont systemFontOfSize: 14.0];
-		balanceLabel.textAlignment = UITextAlignmentRight;
-		balanceLabel.textColor = [UIColor grayColor];
-		balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:balanceLabel];
-	} else {
-		balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
-	}
+        balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
+        balanceLabel.tag = TAG_BALANCE;
+        balanceLabel.font = [UIFont systemFontOfSize: 14.0];
+        balanceLabel.textAlignment = UITextAlignmentRight;
+        balanceLabel.textColor = [UIColor grayColor];
+        balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:balanceLabel];
+    } else {
+        balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
+    }
 
-	balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-						 [DataModel currencyString:asset.initialBalance]];
+    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
+                                  [DataModel currencyString:asset.initialBalance]];
 
-	return cell;
+    return cell;
 }
 
 //
 // セルをクリックしたときの処理
 //
- - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	[tv deselectRowAtIndexPath:indexPath animated:NO];
+    [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-	int idx = [self transactionIndexWithIndexPath:indexPath];
-	if (idx < 0) {
-		// initial balance cell
-		EditValueViewController *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
-		v.listener = self;
-		v.value = asset.initialBalance;
+    int idx = [self transactionIndexWithIndexPath:indexPath];
+    if (idx < 0) {
+        // initial balance cell
+        EditValueViewController *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
+        v.listener = self;
+        v.value = asset.initialBalance;
 
-		[self.navigationController pushViewController:v animated:YES];
-		[v release];
-	} else {
-		// transaction view を表示
-		[transactionView setTransactionIndex:idx];
-		[self.navigationController pushViewController:transactionView animated:YES];
-	}
+        [self.navigationController pushViewController:v animated:YES];
+        [v release];
+    } else {
+        // transaction view を表示
+        [transactionView setTransactionIndex:idx];
+        [self.navigationController pushViewController:transactionView animated:YES];
+    }
 }
 
 // 初期残高変更処理
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
-	asset.initialBalance = vc.value;
-	[asset updateInitialBalance];
-	[asset recalcBalance];
+    asset.initialBalance = vc.value;
+    [asset updateInitialBalance];
+    [asset recalcBalance];
 }
 
 // 新規トランザクション追加
 - (void)addTransaction
 {
-	[transactionView setTransactionIndex:-1];
-	[self.navigationController pushViewController:transactionView animated:YES];
+    [transactionView setTransactionIndex:-1];
+    [self.navigationController pushViewController:transactionView animated:YES];
 }
 
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-	[super setEditing:editing animated:animated];
+    [super setEditing:editing animated:animated];
 	
-	// tableView に通知
-	[tableView setEditing:editing animated:animated];
+    // tableView に通知
+    [tableView setEditing:editing animated:animated];
 	
-	if (editing) {
-		self.navigationItem.rightBarButtonItem.enabled = NO;
-	} else {
-		self.navigationItem.rightBarButtonItem.enabled = YES;
-	}
+    if (editing) {
+        self.navigationItem.rightBarButtonItem.enabled = NO;
+    } else {
+        self.navigationItem.rightBarButtonItem.enabled = YES;
+    }
 }
 
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
-	if (transactionIndex < 0) {
-		return UITableViewCellEditingStyleNone;
-	} 
-	return UITableViewCellEditingStyleDelete;
+    int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
+    if (transactionIndex < 0) {
+        return UITableViewCellEditingStyleNone;
+    } 
+    return UITableViewCellEditingStyleDelete;
 }
 
 // 削除処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
+    int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
 
-	if (transactionIndex < 0) {
-		// initial balance cell : do not delete!
-		return;
-	}
+    if (transactionIndex < 0) {
+        // initial balance cell : do not delete!
+        return;
+    }
 	
-	if (style == UITableViewCellEditingStyleDelete) {
-		[asset deleteTransactionAt:transactionIndex];
+    if (style == UITableViewCellEditingStyleDelete) {
+        [asset deleteTransactionAt:transactionIndex];
 	
-		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		[self updateBalance];
-		[self.tableView reloadData];
-	}
+        [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self updateBalance];
+        [self.tableView reloadData];
+    }
 }
 
 // action sheet
 - (void)doAction:(id)sender
 {
-	UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
-				cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-				destructiveButtonTitle:nil otherButtonTitles:
- 						 NSLocalizedString(@"Weekly Report", @""),
-						 NSLocalizedString(@"Monthly Report", @""),
- 						 NSLocalizedString(@"Export", @""),
-						 //NSLocalizedString(@"Info", @""),
-						 //NSLocalizedString(@"Delete Transactions", @""),
-						 nil];
-	[as showInView:[self view]];
-	[as release];
+    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
+                                               cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+                                               destructiveButtonTitle:nil otherButtonTitles:
+                                                   NSLocalizedString(@"Weekly Report", @""),
+                                               NSLocalizedString(@"Monthly Report", @""),
+                                               NSLocalizedString(@"Export", @""),
+                                               //NSLocalizedString(@"Info", @""),
+                                               //NSLocalizedString(@"Delete Transactions", @""),
+                                               nil];
+    [as showInView:[self view]];
+    [as release];
 }
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	ReportViewController *reportVC;
-	switch (buttonIndex) {
-		case 0:
-		case 1:
-			reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
-			if (buttonIndex == 0) {
-				reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-				[reportVC generateReport:REPORT_WEEKLY asset:asset];
-			} else {
-				reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-				[reportVC generateReport:REPORT_MONTHLY asset:asset];
-			}
-			[self.navigationController pushViewController:reportVC animated:YES];
-			break;
+    ReportViewController *reportVC;
+    switch (buttonIndex) {
+    case 0:
+    case 1:
+        reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+        if (buttonIndex == 0) {
+            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+            [reportVC generateReport:REPORT_WEEKLY asset:asset];
+        } else {
+            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+            [reportVC generateReport:REPORT_MONTHLY asset:asset];
+        }
+        [self.navigationController pushViewController:reportVC animated:YES];
+        break;
 			
-		case 2:
-			[self.navigationController pushViewController:exportVC animated:YES];
-			break;
-	}
+    case 2:
+        [self.navigationController pushViewController:exportVC animated:YES];
+        break;
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
+    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+    // Release anything that's not essential, such as cached data
 }
 
 @end

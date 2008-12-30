@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -46,26 +46,26 @@
 #import "CategoryListVC.h"
 
 @interface TransactionViewController : UITableViewController 
-	<UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
+    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
     EditMemoViewListener, GenEditTypeViewListener,
-	EditDateViewListener, EditValueViewListener, 
-	EditDescViewListener, CategoryListViewListener>
+    EditDateViewListener, EditValueViewListener, 
+    EditDescViewListener, CategoryListViewListener>
 {
-	int transactionIndex;
-	Transaction *trans;
+    int transactionIndex;
+    Transaction *trans;
 
-	NSArray *typeArray;
+    NSArray *typeArray;
 
-	EditDateViewController *editDateVC;
-	GenEditTypeViewController *editTypeVC; // type
-	EditValueViewController *editValueVC;
-	EditDescViewController *editDescVC;
-	//GenEditTextViewController *editMemoVC; // memo
-	EditMemoViewController *editMemoVC; // memo
-	CategoryListViewController *editCategoryVC;
+    EditDateViewController *editDateVC;
+    GenEditTypeViewController *editTypeVC; // type
+    EditValueViewController *editValueVC;
+    EditDescViewController *editDescVC;
+    //GenEditTextViewController *editMemoVC; // memo
+    EditMemoViewController *editMemoVC; // memo
+    CategoryListViewController *editCategoryVC;
 	
-	UIButton *delButton;
-	UIButton *delPastButton;
+    UIButton *delButton;
+    UIButton *delPastButton;
 }
 
 @property(nonatomic,assign) Transaction *trans;

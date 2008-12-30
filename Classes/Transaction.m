@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -41,17 +41,17 @@
 
 - (id)init
 {
-	// 現在時刻で作成
-	NSDate *dt = [[[NSDate alloc] init] autorelease];
-	self.date = dt;
-	self.description = @"";
-	self.memo = @"";
-	value = 0.0;
-	balance = 0.0;
-	type = 0;
-	category = -1;
-	pkey = 0; // init
-	return self;
+    // 現在時刻で作成
+    NSDate *dt = [[[NSDate alloc] init] autorelease];
+    self.date = dt;
+    self.description = @"";
+    self.memo = @"";
+    value = 0.0;
+    balance = 0.0;
+    type = 0;
+    category = -1;
+    pkey = 0; // init
+    return self;
 }
 
 - (void)dealloc
@@ -166,7 +166,7 @@
 		}
 
 		if (self.type < 0 || self.type > 2) {
-			self.type = 0; // for safety
+                    self.type = 0; // for safety
 		}
 	}
 
@@ -175,23 +175,23 @@
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-	[coder encodeInt:pkey forKey:@"Serial"];
-	[coder encodeObject:date forKey:@"Date"];
-	[coder encodeInt:type forKey:@"Type"];
+    [coder encodeInt:pkey forKey:@"Serial"];
+    [coder encodeObject:date forKey:@"Date"];
+    [coder encodeInt:type forKey:@"Type"];
 
-	/* backward compatibility */
-	double v;
-	if (type == TYPE_OUTGO) {
-		v = -value;
-	} else {
-		v = value;
-	}
-	[coder encodeDouble:v forKey:@"Value"];
+    /* backward compatibility */
+    double v;
+    if (type == TYPE_OUTGO) {
+        v = -value;
+    } else {
+        v = value;
+    }
+    [coder encodeDouble:v forKey:@"Value"];
 
-	//[coder encodeDouble:balance forKey:@"Balance"];
-	[coder encodeObject:description forKey:@"Description"];
-	[coder encodeObject:memo forKey:@"Memo"];
-	//[coder encodeInt:category forKey:@"Category"];
+    //[coder encodeDouble:balance forKey:@"Balance"];
+    [coder encodeObject:description forKey:@"Description"];
+    [coder encodeObject:memo forKey:@"Memo"];
+    //[coder encodeInt:category forKey:@"Category"];
 }
 
 @end

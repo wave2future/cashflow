@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -40,80 +40,80 @@
 
 - (BOOL)sendMail
 {
-	NSMutableString *s = [self generateMailUrl];
-	if (s == nil) return NO;
+    NSMutableString *s = [self generateMailUrl];
+    if (s == nil) return NO;
 	
-	NSLog(@"%@", s);
+    NSLog(@"%@", s);
 
-	NSURL *url = [NSURL URLWithString:s];
+    NSURL *url = [NSURL URLWithString:s];
 
-	[[UIApplication sharedApplication] openURL:url];
+    [[UIApplication sharedApplication] openURL:url];
 	
-	// not reach here
-	return YES;
+    // not reach here
+    return YES;
 }
 
 - (NSMutableString *)generateMailUrl
 {
-	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
+    NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-	[data appendString:@"mailto:?Subject=CashFlow%20CSV%20Data&body="];
-	[data appendString:@"%20CashFlow%20generated%20CSV%20data%20%0D%0A"];
-	[data appendString:@"Serial,Date,Value,Balance,Description,Memo%0D%0A"];
+    [data appendString:@"mailto:?Subject=CashFlow%20CSV%20Data&body="];
+    [data appendString:@"%20CashFlow%20generated%20CSV%20data%20%0D%0A"];
+    [data appendString:@"Serial,Date,Value,Balance,Description,Memo%0D%0A"];
 
-	NSMutableString *body = [self generateBody];
-	if (body == nil) {
-		return nil; // no data
-	}
-	[self EncodeMailBody:body];
+    NSMutableString *body = [self generateBody];
+    if (body == nil) {
+        return nil; // no data
+    }
+    [self EncodeMailBody:body];
 
-	[data appendString:body];
-	return data;
+    [data appendString:body];
+    return data;
 }
 
 - (BOOL)sendWithWebServer
 {
-	NSMutableString *body = [self generateBody];
-	if (body == nil) {
-		return NO;
-	}
+    NSMutableString *body = [self generateBody];
+    if (body == nil) {
+        return NO;
+    }
 	
-	[self sendWithWebServer:body contentType:@"text/csv" filename:@"cashflow.csv"];
-	return YES;
+    [self sendWithWebServer:body contentType:@"text/csv" filename:@"cashflow.csv"];
+    return YES;
 }
 
 - (NSMutableString *)generateBody
 {
-	NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
+    NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-	Asset *asset = theDataModel.selAsset;
-	int max = [asset transactionCount];
+    Asset *asset = theDataModel.selAsset;
+    int max = [asset transactionCount];
 
-	/* トランザクション */
-	int i = 0;
-	if (firstDate != nil) {
-		i = [asset firstTransactionByDate:firstDate];
-		if (i < 0) {
-			return nil;
-		}
-	}
-	for (; i < max; i++) {
-		Transaction *t = [asset transactionAt:i];
+    /* トランザクション */
+    int i = 0;
+    if (firstDate != nil) {
+        i = [asset firstTransactionByDate:firstDate];
+        if (i < 0) {
+            return nil;
+        }
+    }
+    for (; i < max; i++) {
+        Transaction *t = [asset transactionAt:i];
 
-		if (firstDate != nil && [t.date compare:firstDate] == NSOrderedAscending) continue;
+        if (firstDate != nil && [t.date compare:firstDate] == NSOrderedAscending) continue;
 		
-		NSMutableString *d = [[NSMutableString alloc] init];
-		[d appendFormat:@"%d,", t.pkey];
-		[d appendFormat:@"%@,", [theDateFormatter stringFromDate:t.date]];
-		[d appendFormat:@"%.2f,", t.value];
-		[d appendFormat:@"%.2f,", t.balance];
-		[d appendFormat:@"%@,", t.description];
-		[d appendFormat:@"%@", t.memo];
-		[d appendString:@"\n"];
-		[data appendString:d];
-		[d release];
-	}
-	return data;
+        NSMutableString *d = [[NSMutableString alloc] init];
+        [d appendFormat:@"%d,", t.pkey];
+        [d appendFormat:@"%@,", [theDateFormatter stringFromDate:t.date]];
+        [d appendFormat:@"%.2f,", t.value];
+        [d appendFormat:@"%.2f,", t.balance];
+        [d appendFormat:@"%@,", t.description];
+        [d appendFormat:@"%@", t.memo];
+        [d appendString:@"\n"];
+        [data appendString:d];
+        [d release];
+    }
+    return data;
 }
 
 @end

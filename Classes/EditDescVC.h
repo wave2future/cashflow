@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -44,15 +44,15 @@
 @end
 
 @interface EditDescViewController : UIViewController
-	<UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+    <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 {
-	IBOutlet UITextField *textField;
-	IBOutlet UIPickerView *picker;
+    IBOutlet UITextField *textField;
+    IBOutlet UIPickerView *picker;
 
-	NSMutableArray *descArray;
+    NSMutableArray *descArray;
 
-	id<EditDescViewListener> listener;
-	NSString *description;
+    id<EditDescViewListener> listener;
+    NSString *description;
 }
 
 @property(nonatomic,assign) id<EditDescViewListener> listener;

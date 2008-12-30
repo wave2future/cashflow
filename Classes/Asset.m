@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -45,26 +45,26 @@
 
 - (id)init
 {
-	[super init];
+    [super init];
 
-	pkey = 1; // とりあえず
+    pkey = 1; // とりあえず
 
-	initialBalance = 0.0;
-	transactions = [[NSMutableArray alloc] init];
-	type = ASSET_CASH;
-	self.name = @"";
+    initialBalance = 0.0;
+    transactions = [[NSMutableArray alloc] init];
+    type = ASSET_CASH;
+    self.name = @"";
 	
-	return self;
+    return self;
 }
 
 - (void)dealloc 
 {
-	[db release];
-	if (transactions != nil) {
-		[transactions release];
-	}
+    [db release];
+    if (transactions != nil) {
+        [transactions release];
+    }
 
-	[super dealloc];
+    [super dealloc];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -72,97 +72,97 @@
 
 - (void)loadOldFormatData
 {
-	// Backward compatibility : try to load old format data
-	DataModelV1 *dm1 = [DataModelV1 allocWithLoad];
-	if (dm1 != nil) {
-		initialBalance = dm1.initialBalance;
-		transactions = dm1.transactions;
-		[transactions retain];
+    // Backward compatibility : try to load old format data
+    DataModelV1 *dm1 = [DataModelV1 allocWithLoad];
+    if (dm1 != nil) {
+        initialBalance = dm1.initialBalance;
+        transactions = dm1.transactions;
+        [transactions retain];
 
-		[dm1 release];
-	}
+        [dm1 release];
+    }
 
-	// Ok, write back database
-	[self resave];
-	[self recalcBalanceInitial];
+    // Ok, write back database
+    [self resave];
+    [self recalcBalanceInitial];
 }
 
 - (void)reload
 {
-	DBStatement *stmt;
+    DBStatement *stmt;
 
-	[self clear];
+    [self clear];
 
-	/* load transactions */
-	stmt = [db prepare:"SELECT key, date, type, category, value, description, memo"
-			   " FROM Transactions WHERE asset = ? ORDER BY date;"];
-	[stmt bindInt:1 val:pkey];
+    /* load transactions */
+    stmt = [db prepare:"SELECT key, date, type, category, value, description, memo"
+               " FROM Transactions WHERE asset = ? ORDER BY date;"];
+    [stmt bindInt:1 val:pkey];
 
-	transactions = [[NSMutableArray alloc] init];
+    transactions = [[NSMutableArray alloc] init];
 
-	while ([stmt step] == SQLITE_ROW) {
-		Transaction *t = [[Transaction alloc] init];
-		t.pkey = [stmt colInt:0];
-		t.date = [stmt colDate:1];
-		t.type = [stmt colInt:2];
-		t.category = [stmt colInt:3];
-		t.value = [stmt colDouble:4];
-		t.description = [stmt colString:5];
-		t.memo = [stmt colString:6];
+    while ([stmt step] == SQLITE_ROW) {
+        Transaction *t = [[Transaction alloc] init];
+        t.pkey = [stmt colInt:0];
+        t.date = [stmt colDate:1];
+        t.type = [stmt colInt:2];
+        t.category = [stmt colInt:3];
+        t.value = [stmt colDouble:4];
+        t.description = [stmt colString:5];
+        t.memo = [stmt colString:6];
 
-		if (t.date == nil) {
-			// fail safe
-			[t release];
-			continue;
-		}
+        if (t.date == nil) {
+            // fail safe
+            [t release];
+            continue;
+        }
 
-		[transactions addObject:t];
-		[t release];
-	}
-	[stmt release];
+        [transactions addObject:t];
+        [t release];
+    }
+    [stmt release];
 
-	// recalc balance
-	[self recalcBalanceInitial];
+    // recalc balance
+    [self recalcBalanceInitial];
 }
 
 - (void)resave
 {
-	[self updateInitialBalance];
+    [self updateInitialBalance];
 
-	[db beginTransaction];
+    [db beginTransaction];
 
-	// delete all transactions
-	DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
-	[stmt bindInt:1 val:pkey];
-	[stmt step];
-	[stmt release];
+    // delete all transactions
+    DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
+    [stmt bindInt:1 val:pkey];
+    [stmt step];
+    [stmt release];
 
-	// write all transactions
-	int n = [transactions count];
-	int i;
-	for (i = 0; i < n; i++) {
-		Transaction *t = [transactions objectAtIndex:i];
-		[self insertTransactionDb:t];
-	}
+    // write all transactions
+    int n = [transactions count];
+    int i;
+    for (i = 0; i < n; i++) {
+        Transaction *t = [transactions objectAtIndex:i];
+        [self insertTransactionDb:t];
+    }
 
-	[db commitTransaction];
+    [db commitTransaction];
 }
 
 - (void)clear
 {
-	if (transactions != nil) {
-		[transactions release];
-	}
-	transactions = nil;
+    if (transactions != nil) {
+        [transactions release];
+    }
+    transactions = nil;
 }
 
 - (void)updateInitialBalance
 {
-	DBStatement *stmt = [db prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
-	[stmt bindDouble:1 val:initialBalance];
-	[stmt bindInt:2 val:pkey];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt = [db prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
+    [stmt bindDouble:1 val:initialBalance];
+    [stmt bindInt:2 val:pkey];
+    [stmt step];
+    [stmt release];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -170,171 +170,171 @@
 
 - (int)transactionCount
 {
-	return transactions.count;
+    return transactions.count;
 }
 
 - (Transaction*)transactionAt:(int)n
 {
-	return [transactions objectAtIndex:n];
+    return [transactions objectAtIndex:n];
 }
 
 - (void)insertTransaction:(Transaction*)tr
 {
-	int i;
-	int max = [transactions count];
-	Transaction *t = nil;
+    int i;
+    int max = [transactions count];
+    Transaction *t = nil;
 
-	// 挿入位置を探す
-	for (i = 0; i < max; i++) {
-		t = [transactions objectAtIndex:i];
-		if ([tr.date compare:t.date] == NSOrderedAscending) {
-			break;
-		}
-	}
+    // 挿入位置を探す
+    for (i = 0; i < max; i++) {
+        t = [transactions objectAtIndex:i];
+        if ([tr.date compare:t.date] == NSOrderedAscending) {
+            break;
+        }
+    }
 
-	// 挿入
-	[transactions insertObject:tr atIndex:i];
+    // 挿入
+    [transactions insertObject:tr atIndex:i];
 
-	// 全残高再計算
-	[self recalcBalance];
+    // 全残高再計算
+    [self recalcBalance];
 	
-	// 上限チェック
-	if ([transactions count] > MAX_TRANSACTIONS) {
-		[self deleteTransactionAt:0];
-	}
+    // 上限チェック
+    if ([transactions count] > MAX_TRANSACTIONS) {
+        [self deleteTransactionAt:0];
+    }
 
-	// DB 追加
-	[self insertTransactionDb:tr];
+    // DB 追加
+    [self insertTransactionDb:tr];
 }
 
 // private
 - (void)insertTransactionDb:(Transaction*)t
 {
-	static DBStatement *stmt = nil;
+    static DBStatement *stmt = nil;
 
-	if (stmt == nil) {
-		const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
-		stmt = [db prepare:s];
-	}
-	[stmt bindInt:1 val:pkey]; // asset key
-	[stmt bindInt:2 val:-1]; // dst asset
-	[stmt bindDate:3 val:t.date];
-	[stmt bindInt:4 val:t.type];
-	[stmt bindInt:5 val:t.category];
-	[stmt bindDouble:6 val:t.value];
-	[stmt bindString:7 val:t.description];
-	[stmt bindString:8 val:t.memo];
-	[stmt step];
-	[stmt reset];
+    if (stmt == nil) {
+        const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
+        stmt = [db prepare:s];
+    }
+    [stmt bindInt:1 val:pkey]; // asset key
+    [stmt bindInt:2 val:-1]; // dst asset
+    [stmt bindDate:3 val:t.date];
+    [stmt bindInt:4 val:t.type];
+    [stmt bindInt:5 val:t.category];
+    [stmt bindDouble:6 val:t.value];
+    [stmt bindString:7 val:t.description];
+    [stmt bindString:8 val:t.memo];
+    [stmt step];
+    [stmt reset];
 
-	// get primary key
-	t.pkey = [db lastInsertRowId];
+    // get primary key
+    t.pkey = [db lastInsertRowId];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
-	// copy key
-	Transaction *old = [transactions objectAtIndex:index];
-	t.pkey = old.pkey;
+    // copy key
+    Transaction *old = [transactions objectAtIndex:index];
+    t.pkey = old.pkey;
 
-	[transactions replaceObjectAtIndex:index withObject:t];
-	[self recalcBalance];
+    [transactions replaceObjectAtIndex:index withObject:t];
+    [self recalcBalance];
 
-	// update DB
-	[self updateTransaction:t];
+    // update DB
+    [self updateTransaction:t];
 }
 
 - (void)updateTransaction:(Transaction *)t
 {
-	static DBStatement *stmt = nil;
+    static DBStatement *stmt = nil;
 
-	if (stmt == nil) {
-		const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
-		stmt = [db prepare:s];
-	}
-	[stmt bindDate:1 val:t.date];
-	[stmt bindInt:2 val:t.type];
-	[stmt bindInt:3 val:t.category];
-	[stmt bindDouble:4 val:t.value];
-	[stmt bindString:5 val:t.description];
-	[stmt bindString:6 val:t.memo];
-	[stmt bindInt:7 val:t.pkey];
-	[stmt step];
-	[stmt reset];
+    if (stmt == nil) {
+        const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
+        stmt = [db prepare:s];
+    }
+    [stmt bindDate:1 val:t.date];
+    [stmt bindInt:2 val:t.type];
+    [stmt bindInt:3 val:t.category];
+    [stmt bindDouble:4 val:t.value];
+    [stmt bindString:5 val:t.description];
+    [stmt bindString:6 val:t.memo];
+    [stmt bindInt:7 val:t.pkey];
+    [stmt step];
+    [stmt reset];
 }
 
 
 - (void)deleteTransactionAt:(int)n
 {
-	// update DB
-	Transaction *t = [transactions objectAtIndex:n];
+    // update DB
+    Transaction *t = [transactions objectAtIndex:n];
 
-	static DBStatement *stmt = nil;
-	if (stmt == nil) {
-		const char *s = "DELETE FROM Transactions WHERE key = ?;";
-		stmt = [db prepare:s];
-	}
-	[stmt bindInt:1 val:t.pkey];
-	[stmt step];
-	[stmt reset];
+    static DBStatement *stmt = nil;
+    if (stmt == nil) {
+        const char *s = "DELETE FROM Transactions WHERE key = ?;";
+        stmt = [db prepare:s];
+    }
+    [stmt bindInt:1 val:t.pkey];
+    [stmt step];
+    [stmt reset];
 
-	// special handling for first transaction
-	if (n == 0) {
-		Transaction *t = [transactions objectAtIndex:0];
-		initialBalance = t.balance;
-		[self updateInitialBalance];
-	}
+    // special handling for first transaction
+    if (n == 0) {
+        Transaction *t = [transactions objectAtIndex:0];
+        initialBalance = t.balance;
+        [self updateInitialBalance];
+    }
 	
-	// remove
-	[transactions removeObjectAtIndex:n];
-	if (n > 0) {
-		[self recalcBalance];
-	}
+    // remove
+    [transactions removeObjectAtIndex:n];
+    if (n > 0) {
+        [self recalcBalance];
+    }
 }
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
 {
-	[db beginTransaction];
-	while (transactions.count > 0) {
-		Transaction *t = [transactions objectAtIndex:0];
-		if ([t.date compare:date] != NSOrderedAscending) {
-			break;
-		}
+    [db beginTransaction];
+    while (transactions.count > 0) {
+        Transaction *t = [transactions objectAtIndex:0];
+        if ([t.date compare:date] != NSOrderedAscending) {
+            break;
+        }
 
-		[self deleteTransactionAt:0];
-	}
-	[db commitTransaction];
+        [self deleteTransactionAt:0];
+    }
+    [db commitTransaction];
 
 #if 0
-	sqlite3_snprintf(sizeof(sql), sql,
-					 "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
-					 [db cstringFromDate:date], asset);
-	[db execSql:sql];
-	[self reload];
+    sqlite3_snprintf(sizeof(sql), sql,
+                     "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
+                     [db cstringFromDate:date], asset);
+    [db execSql:sql];
+    [self reload];
 #endif
 }
 
 - (int)firstTransactionByDate:(NSDate*)date
 {
-	for (int i = 0; i < transactions.count; i++) {
-		Transaction *t = [transactions objectAtIndex:i];
-		if ([t.date compare:date] != NSOrderedAscending) {
-			return i;
-		}
-	}
-	return -1;
+    for (int i = 0; i < transactions.count; i++) {
+        Transaction *t = [transactions objectAtIndex:i];
+        if ([t.date compare:date] != NSOrderedAscending) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 // sort
 static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
-	return [t1.date compare:t2.date];
+    return [t1.date compare:t2.date];
 }
 
 - (void)sortByDate
 {
-	[transactions sortUsingFunction:compareByDate context:NULL];
-	[self recalcBalance];
+    [transactions sortUsingFunction:compareByDate context:NULL];
+    [self recalcBalance];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -343,47 +343,47 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 // balance 値がない状態で、balance を計算する
 - (void)recalcBalanceInitial
 {
-	[self recalcBalanceSub:YES];
+    [self recalcBalanceSub:YES];
 }
 
 - (void)recalcBalance
 {
-	[self recalcBalanceSub:NO];
+    [self recalcBalanceSub:NO];
 }
 
 - (void)recalcBalanceSub:(BOOL)isInitial
 {
-	Transaction *t;
-	double bal;
-	int max = [transactions count];
-	int i;
+    Transaction *t;
+    double bal;
+    int max = [transactions count];
+    int i;
 
-	[db beginTransaction];
+    [db beginTransaction];
 
-	bal = initialBalance;
-	for (i = 0; i < max; i++) {
-		double oldval;
+    bal = initialBalance;
+    for (i = 0; i < max; i++) {
+        double oldval;
 
-		t = [self transactionAt:i];
-		oldval = t.value;
-		bal = [t fixBalance:bal isInitial:isInitial];
+        t = [self transactionAt:i];
+        oldval = t.value;
+        bal = [t fixBalance:bal isInitial:isInitial];
 
-		if (t.value != oldval) {
-			// 金額が変更された場合(残高照会取引)、DB を更新
-			[self updateTransaction:t];
-		}
-	}
+        if (t.value != oldval) {
+            // 金額が変更された場合(残高照会取引)、DB を更新
+            [self updateTransaction:t];
+        }
+    }
 
-	[db commitTransaction];
+    [db commitTransaction];
 }
 
 - (double)lastBalance
 {
-	int max = [transactions count];
-	if (max == 0) {
-		return initialBalance;
-	}
-	return [[transactions objectAtIndex:max - 1] balance];
+    int max = [transactions count];
+    if (max == 0) {
+        return initialBalance;
+    }
+    return [[transactions objectAtIndex:max - 1] balance];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -393,38 +393,38 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 - (NSMutableArray *)allocDescList
 {
-	NSMutableArray *descAry = [[NSMutableArray alloc] init];
+    NSMutableArray *descAry = [[NSMutableArray alloc] init];
 
-	DBStatement *stmt;
-	const char *sql = "SELECT description FROM Transactions ORDER BY date DESC;";
-	stmt = [db prepare:sql];
+    DBStatement *stmt;
+    const char *sql = "SELECT description FROM Transactions ORDER BY date DESC;";
+    stmt = [db prepare:sql];
 
-	while ([stmt step] == SQLITE_ROW) {
-		const char *cs = [stmt colCString:0];
-		if (*cs == '\0') continue;
-		NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
-		if (s == nil) continue;
+    while ([stmt step] == SQLITE_ROW) {
+        const char *cs = [stmt colCString:0];
+        if (*cs == '\0') continue;
+        NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
+        if (s == nil) continue;
 		
-		BOOL match = NO;
-		NSString *ss;
-		int i, max = [descAry count];
-		for (i = 0; i < max; i++) {
-			ss = [descAry objectAtIndex:i];
-			if ([s isEqualToString:ss]) {
-				match = YES;
-				break;
-			}
-		}
-		if (!match) {
-			[descAry addObject:s];
-			if ([descAry count] > MAX_LRU_SIZE) {
-				break;
-			}
-		}
-	}
-	[stmt release];
+        BOOL match = NO;
+        NSString *ss;
+        int i, max = [descAry count];
+        for (i = 0; i < max; i++) {
+            ss = [descAry objectAtIndex:i];
+            if ([s isEqualToString:ss]) {
+                match = YES;
+                break;
+            }
+        }
+        if (!match) {
+            [descAry addObject:s];
+            if ([descAry count] > MAX_LRU_SIZE) {
+                break;
+            }
+        }
+    }
+    [stmt release];
 
-	return descAry;
+    return descAry;
 }
 
 @end

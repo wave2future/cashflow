@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -46,16 +46,16 @@
 @class Database;
 
 @interface Asset : NSObject {
-	Database *db;
+    Database *db;
 
-	int pkey;
-	int type;
-	NSString *name;
-	int sorder;
+    int pkey;
+    int type;
+    NSString *name;
+    int sorder;
 
-	// Transactions
-	double initialBalance;
-	NSMutableArray *transactions;
+    // Transactions
+    double initialBalance;
+    NSMutableArray *transactions;
 }
 
 @property(nonatomic,retain) Database *db;

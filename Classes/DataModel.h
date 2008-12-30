@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -38,14 +38,14 @@
 #import "Database.h"
 
 @interface DataModel : NSObject {
-	Database *db;
+    Database *db;
 
-	// Asset
-	NSMutableArray *assets;
-	Asset *selAsset; // 選択中の Asset
+    // Asset
+    NSMutableArray *assets;
+    Asset *selAsset; // 選択中の Asset
 
-	// Category
-	Categories *categories;
+    // Category
+    Categories *categories;
 }
 
 @property(nonatomic,readonly) Database *db;

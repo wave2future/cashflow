@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -43,25 +43,25 @@
 
 - (id)init
 {
-	[super init];
+    [super init];
 
-	db = nil;
+    db = nil;
 
-	assets = [[NSMutableArray alloc] init];
-	selAsset = nil;
+    assets = [[NSMutableArray alloc] init];
+    selAsset = nil;
 
-	categories = [[Categories alloc] init];
+    categories = [[Categories alloc] init];
 	
-	return self;
+    return self;
 }
 
 - (void)dealloc 
 {
-	[db release];
-	[assets release];
-	[categories release];
+    [db release];
+    [assets release];
+    [categories release];
 
-	[super dealloc];
+    [super dealloc];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -69,65 +69,65 @@
 
 - (void)load
 {
-	// Load from DB
-	db = [[Database alloc] init];
+    // Load from DB
+    db = [[Database alloc] init];
 
-	BOOL needLoadOldData = NO;
-	if (![db openDB]) {
-		[db initializeDB];
-		needLoadOldData = YES;
-	}
+    BOOL needLoadOldData = NO;
+    if (![db openDB]) {
+        [db initializeDB];
+        needLoadOldData = YES;
+    }
 	
-	// Load assets
-	[self loadAssets];
-	if ([assets count] > 0) {
-		selAsset = [assets objectAtIndex:0];
+    // Load assets
+    [self loadAssets];
+    if ([assets count] > 0) {
+        selAsset = [assets objectAtIndex:0];
 
-		if (needLoadOldData) {
-			[selAsset loadOldFormatData];
-		} else {
-			[selAsset reload];
-		}
-	}
+        if (needLoadOldData) {
+            [selAsset loadOldFormatData];
+        } else {
+            [selAsset reload];
+        }
+    }
 
-	// Load categories
-	categories.db = db;
-	[categories reload];
+    // Load categories
+    categories.db = db;
+    [categories reload];
 }
 
 // private
 - (void)loadAssets
 {
-	DBStatement *stmt;
-	assets = [[NSMutableArray alloc] init];
+    DBStatement *stmt;
+    assets = [[NSMutableArray alloc] init];
 
-	stmt = [db prepare:"SELECT * FROM Assets ORDER BY sorder;"];
-	while ([stmt step] == SQLITE_ROW) {
-		Asset *as = [[Asset alloc] init];
-		as.pkey = [stmt colInt:0];
-		as.name = [stmt colString:1];
-		as.type = [stmt colInt:2];
-		as.initialBalance = [stmt colDouble:3];
-		as.sorder = [stmt colInt:4];
+    stmt = [db prepare:"SELECT * FROM Assets ORDER BY sorder;"];
+    while ([stmt step] == SQLITE_ROW) {
+        Asset *as = [[Asset alloc] init];
+        as.pkey = [stmt colInt:0];
+        as.name = [stmt colString:1];
+        as.type = [stmt colInt:2];
+        as.initialBalance = [stmt colDouble:3];
+        as.sorder = [stmt colInt:4];
 
-		as.db = db; // back pointer
+        as.db = db; // back pointer
 		
-		[assets addObject:as];
-		[as release];
-	}
-	[stmt release];
+        [assets addObject:as];
+        [as release];
+    }
+    [stmt release];
 }
 
 // private
 - (void)reload
 {
-	[selAsset reload];
+    [selAsset reload];
 }
 
 // private
 - (void)resave
 {
-	[selAsset resave];
+    [selAsset resave];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -135,95 +135,95 @@
 
 - (int)assetCount
 {
-	return [assets count];
+    return [assets count];
 }
 
 - (Asset*)assetAtIndex:(int)n
 {
-	return [assets objectAtIndex:n];
+    return [assets objectAtIndex:n];
 }
 
 - (void)addAsset:(Asset *)as
 {
-	[assets addObject:as];
+    [assets addObject:as];
 
-	DBStatement *stmt = [db prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
-	[stmt bindString:1 val:as.name];
-	[stmt bindInt:2 val:as.type];
-	[stmt bindDouble:3 val:as.initialBalance];
-	[stmt bindInt:4 val:as.sorder];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt = [db prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
+    [stmt bindString:1 val:as.name];
+    [stmt bindInt:2 val:as.type];
+    [stmt bindDouble:3 val:as.initialBalance];
+    [stmt bindInt:4 val:as.sorder];
+    [stmt step];
+    [stmt release];
 
-	as.pkey = [db lastInsertRowId];
+    as.pkey = [db lastInsertRowId];
 }
 
 - (void)deleteAsset:(Asset *)as
 {
-	if (selAsset == as) {
-		selAsset = nil;
-	}
-	[as clear];
+    if (selAsset == as) {
+        selAsset = nil;
+    }
+    [as clear];
 
-	DBStatement *stmt;
-	stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
-	[stmt bindInt:1 val:as.pkey];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt;
+    stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
+    [stmt bindInt:1 val:as.pkey];
+    [stmt step];
+    [stmt release];
 
-	stmt = [db prepare:"DELETE FROM Transactions WHERE key=?;"];
-	[stmt bindInt:1 val:as.pkey];
-	[stmt step];
-	[stmt release];
+    stmt = [db prepare:"DELETE FROM Transactions WHERE key=?;"];
+    [stmt bindInt:1 val:as.pkey];
+    [stmt step];
+    [stmt release];
 
-	[assets removeObject:as];
+    [assets removeObject:as];
 }
 
 - (void)updateAsset:(Asset*)asset
 {
-	DBStatement *stmt = [db prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
-	[stmt bindString:1 val:asset.name];
-	[stmt bindInt:2 val:asset.type];
-	[stmt bindDouble:3 val:asset.initialBalance];
-	[stmt bindInt:4 val:asset.sorder];
-	[stmt bindInt:5 val:asset.pkey];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt = [db prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
+    [stmt bindString:1 val:asset.name];
+    [stmt bindInt:2 val:asset.type];
+    [stmt bindDouble:3 val:asset.initialBalance];
+    [stmt bindInt:4 val:asset.sorder];
+    [stmt bindInt:5 val:asset.pkey];
+    [stmt step];
+    [stmt release];
 }
 
 - (void)reorderAsset:(int)from to:(int)to
 {
-	Asset *as = [[assets objectAtIndex:from] retain];
-	[assets removeObjectAtIndex:from];
-	[assets insertObject:as atIndex:to];
-	[as release];
+    Asset *as = [[assets objectAtIndex:from] retain];
+    [assets removeObjectAtIndex:from];
+    [assets insertObject:as atIndex:to];
+    [as release];
 	
-	// renumbering sorder
-	[db beginTransaction];
-	DBStatement *stmt = [db prepare:"UPDATE Assets SET sorder=? WHERE key=?;"];
-	for (int i = 0; i < [assets count]; i++) {
-		as = [assets objectAtIndex:i];
-		as.sorder = i;
+    // renumbering sorder
+    [db beginTransaction];
+    DBStatement *stmt = [db prepare:"UPDATE Assets SET sorder=? WHERE key=?;"];
+    for (int i = 0; i < [assets count]; i++) {
+        as = [assets objectAtIndex:i];
+        as.sorder = i;
 
-		[stmt bindInt:1 val:as.sorder];
-		[stmt bindInt:2 val:as.pkey];
-		[stmt step];
-		[stmt reset];
-	}
-	[stmt release];
-	[db commitTransaction];
+        [stmt bindInt:1 val:as.sorder];
+        [stmt bindInt:2 val:as.pkey];
+        [stmt step];
+        [stmt reset];
+    }
+    [stmt release];
+    [db commitTransaction];
 }
 
 
 - (void)changeSelAsset:(Asset *)as
 {
-	if (selAsset != as) {
-		if (selAsset != nil) {
-			[selAsset clear];
-		}
-		selAsset = as;
-		[selAsset reload];
-	}
+    if (selAsset != as) {
+        if (selAsset != nil) {
+            [selAsset clear];
+        }
+        selAsset = as;
+        [selAsset reload];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -233,15 +233,15 @@ static NSNumberFormatter *currencyFormatter = nil;
 
 + (NSString*)currencyString:(double)x
 {
-	if (currencyFormatter == nil) {
-		currencyFormatter = [[NSNumberFormatter alloc] init];
-		[currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-		[currencyFormatter setLocale:[NSLocale currentLocale]];
-	}
-	NSNumber *n = [NSNumber numberWithDouble:x];
-	NSString *bstr = [currencyFormatter stringFromNumber:n];
+    if (currencyFormatter == nil) {
+        currencyFormatter = [[NSNumberFormatter alloc] init];
+        [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+        [currencyFormatter setLocale:[NSLocale currentLocale]];
+    }
+    NSNumber *n = [NSNumber numberWithDouble:x];
+    NSString *bstr = [currencyFormatter stringFromNumber:n];
 
-	return bstr;
+    return bstr;
 }
 
 @end

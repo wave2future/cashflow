@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -36,9 +36,9 @@
 
 
 @interface InfoVC : UIViewController {
-	IBOutlet UILabel *nameLabel;
-	IBOutlet UILabel *versionLabel;
-	IBOutlet UIButton *purchaseButton;
+    IBOutlet UILabel *nameLabel;
+    IBOutlet UILabel *versionLabel;
+    IBOutlet UIButton *purchaseButton;
 }
 
 - (IBAction)webButtonTapped;

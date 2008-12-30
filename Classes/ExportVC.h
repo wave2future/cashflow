@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -38,15 +38,15 @@
 #import "ExportOfx.h"
 
 @interface ExportVC : UIViewController {
-	IBOutlet UIButton *exportButton;
-	IBOutlet UISegmentedControl *formatControl;
-	IBOutlet UISegmentedControl *rangeControl;
-	IBOutlet UISegmentedControl *methodControl;
-	IBOutlet UILabel *formatLabel;
-	IBOutlet UILabel *methodLabel;
+    IBOutlet UIButton *exportButton;
+    IBOutlet UISegmentedControl *formatControl;
+    IBOutlet UISegmentedControl *rangeControl;
+    IBOutlet UISegmentedControl *methodControl;
+    IBOutlet UILabel *formatLabel;
+    IBOutlet UILabel *methodLabel;
 
-	ExportCsv *csv;
-	ExportOfx *ofx;
+    ExportCsv *csv;
+    ExportOfx *ofx;
 }
 
 - (IBAction)doExport;

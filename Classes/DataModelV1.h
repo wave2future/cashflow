@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -36,11 +36,11 @@
 #import "Transaction.h"
 
 @interface DataModelV1 : NSObject <NSCoding> {
-	NSMutableArray *transactions;
-	double initialBalance;
+    NSMutableArray *transactions;
+    double initialBalance;
 
-	int serialCounter;
-	int maxTransactions;
+    int serialCounter;
+    int maxTransactions;
 }
 
 @property(nonatomic,retain) NSMutableArray *transactions;

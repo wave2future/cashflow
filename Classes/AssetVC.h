@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -41,12 +41,12 @@
 #import "GenEditTypeVC.h"
 
 @interface AssetViewController : UITableViewController 
-	<GenEditTextViewListener, GenEditTypeViewListener, UIActionSheetDelegate>
+    <GenEditTextViewListener, GenEditTypeViewListener, UIActionSheetDelegate>
 {
-	int assetIndex;
-	Asset *asset;
+    int assetIndex;
+    Asset *asset;
 
-	UIButton *delButton;
+    UIButton *delButton;
 }
 
 @property(nonatomic,assign) Asset *asset;

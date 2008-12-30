@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -46,10 +46,10 @@ DataModel *theDataModel = nil;
 NSDateFormatter *theDateFormatter = nil;
 
 - (id)init {
-	if (self = [super init]) {
-		// 
-	}
-	return self;
+    if (self = [super init]) {
+        // 
+    }
+    return self;
 }
 
 //
@@ -57,18 +57,18 @@ NSDateFormatter *theDateFormatter = nil;
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-	// データロード
-	theDataModel = [[DataModel alloc] init];
-	[theDataModel load];
+    // データロード
+    theDataModel = [[DataModel alloc] init];
+    [theDataModel load];
 
-	// misc
-	theDateFormatter = [[NSDateFormatter alloc] init];
-	[theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	[theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    // misc
+    theDateFormatter = [[NSDateFormatter alloc] init];
+    [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
 
-	// Configure and show the window
-	[window addSubview:[navigationController view]];
-	[window makeKeyAndVisible];
+    // Configure and show the window
+    [window addSubview:[navigationController view]];
+    [window makeKeyAndVisible];
 }
 
 //
@@ -76,38 +76,38 @@ NSDateFormatter *theDateFormatter = nil;
 //
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-	//[theDataModel saveToStorage];
+    //[theDataModel saveToStorage];
 }
 
 // データファイルのパスを取得
 + (NSString*)pathOfDataFile:(NSString*)filename
 {
-	NSArray *paths = NSSearchPathForDirectoriesInDomains(
-		NSDocumentDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(
+        NSDocumentDirectory, NSUserDomainMask, YES);
 
-	NSString *datapath = [paths objectAtIndex:0];
-	NSString *path = [datapath stringByAppendingPathComponent:filename];
+    NSString *datapath = [paths objectAtIndex:0];
+    NSString *path = [datapath stringByAppendingPathComponent:filename];
 
-	return path;
+    return path;
 }
 
 - (void)dealloc {
-	[theDataModel release];
+    [theDataModel release];
 
-	[navigationController release];
-	[window release];
-	[super dealloc];
+    [navigationController release];
+    [window release];
+    [super dealloc];
 }
 
 void AssertFailed(const char *filename, int lineno)
 {
-	UIAlertView *v = [[UIAlertView alloc]
-					  initWithTitle:@"Assertion Failed"
-					  message:[NSString stringWithFormat:@"%@ line %d", 
-							   [NSString stringWithCString:filename], lineno]
-					  delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
-	[v show];
-	[v release];
+    UIAlertView *v = [[UIAlertView alloc]
+                         initWithTitle:@"Assertion Failed"
+                         message:[NSString stringWithFormat:@"%@ line %d", 
+                                           [NSString stringWithCString:filename], lineno]
+                         delegate:nil cancelButtonTitle:@"Close" otherButtonTitles:nil];
+    [v show];
+    [v release];
 }
 
 @end

@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -45,26 +45,26 @@
 @end
 
 @interface EditValueViewController : UIViewController {
-	NSMutableString *numstr;
+    NSMutableString *numstr;
 
-	IBOutlet UILabel *numLabel;
-	IBOutlet UIButton *button_Clear;
-	IBOutlet UIButton *button_BS;
-	IBOutlet UIButton *button_inv;
-	IBOutlet UIButton *button_Period;
-	IBOutlet UIButton *button_0;
-	IBOutlet UIButton *button_1;
-	IBOutlet UIButton *button_2;
-	IBOutlet UIButton *button_3;
-	IBOutlet UIButton *button_4;
-	IBOutlet UIButton *button_5;
-	IBOutlet UIButton *button_6;
-	IBOutlet UIButton *button_7;
-	IBOutlet UIButton *button_8;
-	IBOutlet UIButton *button_9;
+    IBOutlet UILabel *numLabel;
+    IBOutlet UIButton *button_Clear;
+    IBOutlet UIButton *button_BS;
+    IBOutlet UIButton *button_inv;
+    IBOutlet UIButton *button_Period;
+    IBOutlet UIButton *button_0;
+    IBOutlet UIButton *button_1;
+    IBOutlet UIButton *button_2;
+    IBOutlet UIButton *button_3;
+    IBOutlet UIButton *button_4;
+    IBOutlet UIButton *button_5;
+    IBOutlet UIButton *button_6;
+    IBOutlet UIButton *button_7;
+    IBOutlet UIButton *button_8;
+    IBOutlet UIButton *button_9;
 
-	id<EditValueViewListener> listener;
-	double value;
+    id<EditValueViewListener> listener;
+    double value;
 }
 
 @property(nonatomic,assign) id<EditValueViewListener> listener;

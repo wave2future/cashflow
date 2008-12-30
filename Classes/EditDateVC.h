@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -44,10 +44,10 @@
 @end
 
 @interface EditDateViewController : UIViewController {
-	IBOutlet UIDatePicker *datePicker;
+    IBOutlet UIDatePicker *datePicker;
 
-	id<EditDateViewListener> listener;
-	NSDate *date;
+    id<EditDateViewListener> listener;
+    NSDate *date;
 }
 
 @property(nonatomic,assign) id<EditDateViewListener> listener;

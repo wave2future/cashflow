@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -42,7 +42,7 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
+    [super viewDidLoad];
     //self.title = NSLocalizedString(@"Report", @"");
 }
 
@@ -51,7 +51,7 @@
     if (report) {
         [report release];
     }
-	//[dateFormatter release];
+    //[dateFormatter release];
     [super dealloc];
 }
 
@@ -62,52 +62,52 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [report.catReports count];
+    return [report.catReports count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *cellid = @"catReportCell";
+    NSString *cellid = @"catReportCell";
 
-	UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-	UILabel *nameLabel, *valueLabel;
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
+    UILabel *nameLabel, *valueLabel;
 
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-		nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 44)] autorelease];
-		nameLabel.tag = 1;
-		nameLabel.font = [UIFont systemFontOfSize: 18.0];
-		nameLabel.textColor = [UIColor blackColor];
-		nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:nameLabel];
+        nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 44)] autorelease];
+        nameLabel.tag = 1;
+        nameLabel.font = [UIFont systemFontOfSize: 18.0];
+        nameLabel.textColor = [UIColor blackColor];
+        nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:nameLabel];
 
-		valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 44)] autorelease];
-		valueLabel.tag = 2;
-		valueLabel.font = [UIFont systemFontOfSize: 18.0];
-		valueLabel.textAlignment = UITextAlignmentRight;
-		valueLabel.textColor = [UIColor blackColor];
-		valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-		[cell.contentView addSubview:valueLabel];
-	} else {
-		nameLabel = (UILabel *)[cell.contentView viewWithTag:1];
-		valueLabel = (UILabel *)[cell.contentView viewWithTag:2];
-	}
+        valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 44)] autorelease];
+        valueLabel.tag = 2;
+        valueLabel.font = [UIFont systemFontOfSize: 18.0];
+        valueLabel.textAlignment = UITextAlignmentRight;
+        valueLabel.textColor = [UIColor blackColor];
+        valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:valueLabel];
+    } else {
+        nameLabel = (UILabel *)[cell.contentView viewWithTag:1];
+        valueLabel = (UILabel *)[cell.contentView viewWithTag:2];
+    }
 
-	CatReport *cr = [report.catReports objectAtIndex:indexPath.row];
-	if (cr.catkey >= 0) {
-		nameLabel.text = [theDataModel.categories categoryStringWithKey:cr.catkey];
-	} else {
-		nameLabel.text = NSLocalizedString(@"No category", @"");
-	}
-	valueLabel.text = [DataModel currencyString:cr.value];
-	if (cr.value >= 0) {
-		valueLabel.textColor = [UIColor blueColor];
-	} else {
-		valueLabel.textColor = [UIColor redColor];
-	}
-	return cell;
+    CatReport *cr = [report.catReports objectAtIndex:indexPath.row];
+    if (cr.catkey >= 0) {
+        nameLabel.text = [theDataModel.categories categoryStringWithKey:cr.catkey];
+    } else {
+        nameLabel.text = NSLocalizedString(@"No category", @"");
+    }
+    valueLabel.text = [DataModel currencyString:cr.value];
+    if (cr.value >= 0) {
+        valueLabel.textColor = [UIColor blueColor];
+    } else {
+        valueLabel.textColor = [UIColor redColor];
+    }
+    return cell;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

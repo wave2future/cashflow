@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -41,52 +41,52 @@
 
 + (EditMemoViewController *)editMemoViewController:(id<EditMemoViewListener>)listener title:(NSString*)title identifier:(int)id
 {
-	EditMemoViewController *vc = [[[EditMemoViewController alloc]
-										 initWithNibName:@"EditMemoView"
-										 bundle:[NSBundle mainBundle]] autorelease];
-	vc.listener = listener;
-	vc.title = title;
-	vc.identifier = id;
+    EditMemoViewController *vc = [[[EditMemoViewController alloc]
+                                      initWithNibName:@"EditMemoView"
+                                      bundle:[NSBundle mainBundle]] autorelease];
+    vc.listener = listener;
+    vc.title = title;
+    vc.identifier = id;
 
-	return vc;
+    return vc;
 }
 
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
-	//textView.placeholder = self.title;
-	textView.backgroundColor = [UIColor whiteColor];
+    [super viewDidLoad];
+    //textView.placeholder = self.title;
+    textView.backgroundColor = [UIColor whiteColor];
 	
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-											   target:self
-											   action:@selector(doneAction)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self
+                                                  action:@selector(doneAction)] autorelease];
 }
 
 - (void)dealloc {
-	[text release];
+    [text release];
     [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	textView.text = text;
-	[textView becomeFirstResponder];
-	[super viewWillAppear:animated];
+    textView.text = text;
+    [textView becomeFirstResponder];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)doneAction
 {
-	self.text = textView.text;
-	[listener editMemoViewChanged:self identifier:identifier];
+    self.text = textView.text;
+    [listener editMemoViewChanged:self identifier:identifier];
 
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

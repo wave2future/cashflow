@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -45,18 +45,18 @@
 
 - (id)init
 {
-	[super init];
-	date = nil;
-	totalIncome = 0.0;
-	totalOutgo = 0.0;
+    [super init];
+    date = nil;
+    totalIncome = 0.0;
+    totalOutgo = 0.0;
 
-	return self;
+    return self;
 }
 
 - (void)dealloc 
 {
-	[date release];
-	[super dealloc];
+    [date release];
+    [super dealloc];
 }
 
 @end
@@ -68,125 +68,125 @@
 
 - (id)init
 {
-	[super init];
-	type = REPORT_MONTHLY;
-	reports = nil;
-	return self;
+    [super init];
+    type = REPORT_MONTHLY;
+    reports = nil;
+    return self;
 }
 
 - (void)dealloc
 {
-	[reports release];
-	[super dealloc];
+    [reports release];
+    [super dealloc];
 }
 
 static int compareCatReport(id x, id y, void *context)
 {
-	CatReport *xr = (CatReport *)x;
-	CatReport *yr = (CatReport *)y;
+    CatReport *xr = (CatReport *)x;
+    CatReport *yr = (CatReport *)y;
 	
-	if (xr.value == yr.value) {
-		return NSOrderedSame;
-	}
-	if (xr.value > yr.value) {
-		return NSOrderedDescending;
-	}
-	return NSOrderedAscending;
+    if (xr.value == yr.value) {
+        return NSOrderedSame;
+    }
+    if (xr.value > yr.value) {
+        return NSOrderedDescending;
+    }
+    return NSOrderedAscending;
 }
 
 - (void)generate:(int)t asset:(Asset*)asset
 {
-	db = theDataModel.db;
+    db = theDataModel.db;
 	
-	self.type = t;
+    self.type = t;
 	
-	if (reports != nil) {
-		[reports release];
-	}
-	reports = [[NSMutableArray alloc] init];
+    if (reports != nil) {
+        [reports release];
+    }
+    reports = [[NSMutableArray alloc] init];
 
-	NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+    NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
-	//	NSDate *firstDate = [[asset transactionAt:0] date];
-	int assetKey;
-	if (asset == nil) {
-		assetKey = -1;
-	} else {
-		assetKey = asset.pkey;
-	}
-	NSDate *firstDate = [self firstDateOfAsset:assetKey];
-	if (firstDate == nil) return; // no data
-	NSDate *lastDate = [self lastDateOfAsset:assetKey];
+    //	NSDate *firstDate = [[asset transactionAt:0] date];
+    int assetKey;
+    if (asset == nil) {
+        assetKey = -1;
+    } else {
+        assetKey = asset.pkey;
+    }
+    NSDate *firstDate = [self firstDateOfAsset:assetKey];
+    if (firstDate == nil) return; // no data
+    NSDate *lastDate = [self lastDateOfAsset:assetKey];
 
-	// レポート周期の開始時間および間隔を求める
-	NSDateComponents *dc, *steps;
-	NSDate *dd;
+    // レポート周期の開始時間および間隔を求める
+    NSDateComponents *dc, *steps;
+    NSDate *dd;
 	
-	steps = [[[NSDateComponents alloc] init] autorelease];
-	switch (type) {
-		case REPORT_MONTHLY:
-			dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
-			[dc setDay:1];
-			dd = [greg dateFromComponents:dc];
-			[steps setMonth:1];
-			break;
+    steps = [[[NSDateComponents alloc] init] autorelease];
+    switch (type) {
+    case REPORT_MONTHLY:
+        dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
+        [dc setDay:1];
+        dd = [greg dateFromComponents:dc];
+        [steps setMonth:1];
+        break;
 			
-		case REPORT_WEEKLY:
-			dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
-			dd = [greg dateFromComponents:dc];
-			int weekday = [dc weekday];
-			[steps setDay:-weekday+1];
-			dd = [greg dateByAddingComponents:steps toDate:dd options:0];
-			[steps setDay:7];
-			break;
-	}
+    case REPORT_WEEKLY:
+        dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+        dd = [greg dateFromComponents:dc];
+        int weekday = [dc weekday];
+        [steps setDay:-weekday+1];
+        dd = [greg dateByAddingComponents:steps toDate:dd options:0];
+        [steps setDay:7];
+        break;
+    }
 	
-	int numCategories = [theDataModel.categories categoryCount];
+    int numCategories = [theDataModel.categories categoryCount];
 	
-	while ([dd compare:lastDate] != NSOrderedDescending) {
-		// Report 生成
-		Report *r = [[Report alloc] init];
-		[reports addObject:r];
-		[r release];
+    while ([dd compare:lastDate] != NSOrderedDescending) {
+        // Report 生成
+        Report *r = [[Report alloc] init];
+        [reports addObject:r];
+        [r release];
 
-		// 日付設定
-		r.date = dd;
+        // 日付設定
+        r.date = dd;
 		
-		// 次の期間開始時期を計算する
-		dd = [greg dateByAddingComponents:steps toDate:dd options:0];
-		r.endDate = dd;
+        // 次の期間開始時期を計算する
+        dd = [greg dateByAddingComponents:steps toDate:dd options:0];
+        r.endDate = dd;
 
-		// 集計
-		r.totalIncome = [self calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
-		r.totalOutgo = -[self calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
+        // 集計
+        r.totalIncome = [self calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
+        r.totalOutgo = -[self calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
 
-		// カテゴリ毎の集計
-		int i;
-		r.catReports = [[NSMutableArray alloc] init];
-		double remain = r.totalIncome - r.totalOutgo;
+        // カテゴリ毎の集計
+        int i;
+        r.catReports = [[NSMutableArray alloc] init];
+        double remain = r.totalIncome - r.totalOutgo;
 
-		for (i = 0; i < numCategories; i++) {
-			Category *c = [theDataModel.categories categoryAtIndex:i];
-			CatReport *cr = [[CatReport alloc] init];
+        for (i = 0; i < numCategories; i++) {
+            Category *c = [theDataModel.categories categoryAtIndex:i];
+            CatReport *cr = [[CatReport alloc] init];
 
-			cr.catkey = c.pkey;
-			cr.value = [self calculateSumWithinRangeCategory:assetKey startDate:r.date endDate:r.endDate category:cr.catkey];
-			remain -= cr.value;
+            cr.catkey = c.pkey;
+            cr.value = [self calculateSumWithinRangeCategory:assetKey startDate:r.date endDate:r.endDate category:cr.catkey];
+            remain -= cr.value;
 
-			[r.catReports addObject:cr];
-			[cr release];
-		}
+            [r.catReports addObject:cr];
+            [cr release];
+        }
 		
-		// 未分類項目
-		CatReport *cr = [[CatReport alloc] init];
-		cr.catkey = -1;
-		cr.value = remain;
-		[r.catReports addObject:cr];
-		[cr release];
+        // 未分類項目
+        CatReport *cr = [[CatReport alloc] init];
+        cr.catkey = -1;
+        cr.value = remain;
+        [r.catReports addObject:cr];
+        [cr release];
 		
-		// ソート
-		[r.catReports sortUsingFunction:compareCatReport context:nil];
-	}
+        // ソート
+        [r.catReports sortUsingFunction:compareCatReport context:nil];
+    }
 }
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -194,109 +194,109 @@ static int compareCatReport(id x, id y, void *context)
 
 - (NSDate*)firstDateOfAsset:(int)asset
 {
-	DBStatement *stmt;
+    DBStatement *stmt;
 
-	if (asset < 0) {
-		stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
-	} else {
-		stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=?;"];
-		[stmt bindInt:1 val:asset];
-	}
+    if (asset < 0) {
+        stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
+    } else {
+        stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=?;"];
+        [stmt bindInt:1 val:asset];
+    }
 
-	NSDate *date = nil;
-	if ([stmt step] == SQLITE_ROW) {
-		date = [stmt colDate:0];
-	}
-	[stmt release];
-	return date;
+    NSDate *date = nil;
+    if ([stmt step] == SQLITE_ROW) {
+        date = [stmt colDate:0];
+    }
+    [stmt release];
+    return date;
 }
 
 - (NSDate*)lastDateOfAsset:(int)asset
 {
-	DBStatement *stmt;
+    DBStatement *stmt;
 
-	if (asset < 0) {
-		stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
-	} else {
-		stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=?;"];
-		[stmt bindInt:1 val:asset];
-	}
+    if (asset < 0) {
+        stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
+    } else {
+        stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=?;"];
+        [stmt bindInt:1 val:asset];
+    }
 
-	NSDate *date = nil;
-	if ([stmt step] == SQLITE_ROW) {
-		date = [stmt colDate:0];
-	}
-	[stmt release];
+    NSDate *date = nil;
+    if ([stmt step] == SQLITE_ROW) {
+        date = [stmt colDate:0];
+    }
+    [stmt release];
 
-	return date;
+    return date;
 }
 
 - (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
 {
-	char sql[256];
+    char sql[256];
 
-	strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
-	if (isOutgo) {
-		strcat(sql, " AND value < 0");
-	} else {
-		strcat(sql, " AND value >= 0");
-	}
-	if (asset >= 0) {
-		strcat(sql, " AND asset=?");
-	}
-	strcat(sql, ";");
+    strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
+    if (isOutgo) {
+        strcat(sql, " AND value < 0");
+    } else {
+        strcat(sql, " AND value >= 0");
+    }
+    if (asset >= 0) {
+        strcat(sql, " AND asset=?");
+    }
+    strcat(sql, ";");
 
-	DBStatement *stmt = [db prepare:sql];
-	[stmt bindDate:1 val:start];
-	[stmt bindDate:2 val:end];
-	if (asset >= 0) {
-		[stmt bindInt:3 val:asset];
-	}
+    DBStatement *stmt = [db prepare:sql];
+    [stmt bindDate:1 val:start];
+    [stmt bindDate:2 val:end];
+    if (asset >= 0) {
+        [stmt bindInt:3 val:asset];
+    }
 
-	double sum = 0.0;
-	if ([stmt step] == SQLITE_ROW) {
-		sum = [stmt colDouble:0];
-	} else {
-		ASSERT(0);
-	}
-	[stmt release];
+    double sum = 0.0;
+    if ([stmt step] == SQLITE_ROW) {
+        sum = [stmt colDouble:0];
+    } else {
+        ASSERT(0);
+    }
+    [stmt release];
 
-	return sum;
+    return sum;
 }
 
 - (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category
 {
-	char sql[256];
+    char sql[256];
 
-	strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
+    strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
 
-	if (category >= 0) {
-		strcat(sql, " AND category=?3");
-	}
-	if (asset >= 0) {
-		strcat(sql, " AND asset=?4");
-	}
-	strcat(sql, ";");
+    if (category >= 0) {
+        strcat(sql, " AND category=?3");
+    }
+    if (asset >= 0) {
+        strcat(sql, " AND asset=?4");
+    }
+    strcat(sql, ";");
 
-	DBStatement *stmt = [db prepare:sql];
-	[stmt bindDate:1 val:start];
-	[stmt bindDate:2 val:end];
-	if (category >= 0) {
-		[stmt bindInt:3 val:category];
-	}
-	if (asset >= 0) {
-		[stmt bindInt:4 val:asset];
-	}
+    DBStatement *stmt = [db prepare:sql];
+    [stmt bindDate:1 val:start];
+    [stmt bindDate:2 val:end];
+    if (category >= 0) {
+        [stmt bindInt:3 val:category];
+    }
+    if (asset >= 0) {
+        [stmt bindInt:4 val:asset];
+    }
 
-	double sum = 0.0;
-	if ([stmt step] == SQLITE_ROW) {
-		sum = [stmt colDouble:0];
-	} else {
-		ASSERT(0);
-	}
-	[stmt release];
+    double sum = 0.0;
+    if ([stmt step] == SQLITE_ROW) {
+        sum = [stmt colDouble:0];
+    } else {
+        ASSERT(0);
+    }
+    [stmt release];
 
-	return sum;
+    return sum;
 }
 
 @end

@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -43,49 +43,49 @@
 
 + (DataModelV1*)allocWithLoad
 {
-	DataModelV1 *dm = nil;
+    DataModelV1 *dm = nil;
 
-	NSString *dataPath = [AppDelegate pathOfDataFile:@"Transactions.dat"];
+    NSString *dataPath = [AppDelegate pathOfDataFile:@"Transactions.dat"];
 
-	NSData *data = [NSData dataWithContentsOfFile:dataPath];
-	if (data != nil) {
-		NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
-		[ar setClass:[DataModelV1 class] forClassName:@"DataModel"]; // class name changed...
+    NSData *data = [NSData dataWithContentsOfFile:dataPath];
+    if (data != nil) {
+        NSKeyedUnarchiver *ar = [[[NSKeyedUnarchiver alloc] initForReadingWithData:data] autorelease];
+        [ar setClass:[DataModelV1 class] forClassName:@"DataModel"]; // class name changed...
 
-		dm = [ar decodeObjectForKey:@"DataModel"];
-		if (dm != nil) {
-			[dm retain];
-			[ar finishDecoding];
-		}
-	}
+        dm = [ar decodeObjectForKey:@"DataModel"];
+        if (dm != nil) {
+            [dm retain];
+            [ar finishDecoding];
+        }
+    }
 	
-	return dm;
+    return dm;
 }
 
 - (id)init
 {
-	[super init];
+    [super init];
 
-	initialBalance = 0.0;
-	transactions = [[NSMutableArray alloc] init];
+    initialBalance = 0.0;
+    transactions = [[NSMutableArray alloc] init];
 
-	return self;
+    return self;
 }
 
 - (void)dealloc 
 {
-	[transactions release];
-	[super dealloc];
+    [transactions release];
+    [super dealloc];
 }
 
 - (int)transactionCount
 {
-	return transactions.count;
+    return transactions.count;
 }
 
 - (Transaction*)transactionAt:(int)n
 {
-	return [transactions objectAtIndex:n];
+    return [transactions objectAtIndex:n];
 }
 
 //
@@ -93,22 +93,22 @@
 //
 - (id)initWithCoder:(NSCoder *)decoder
 {
-	self = [super init];
-	if (self) {
-		//self.serialCounter = [decoder decodeIntForKey:@"serialCounter"];
-		self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
-		self.transactions = [decoder decodeObjectForKey:@"Transactions"];
+    self = [super init];
+    if (self) {
+        //self.serialCounter = [decoder decodeIntForKey:@"serialCounter"];
+        self.initialBalance = [decoder decodeDoubleForKey:@"initialBalance"];
+        self.transactions = [decoder decodeObjectForKey:@"Transactions"];
 
-		//[self recalcBalanceInitial];
-	}
-	return self;
+        //[self recalcBalanceInitial];
+    }
+    return self;
 }
 
 - (void)encodeWithCoder:(NSCoder *)coder
 {
-	//[coder encodeInt:serialCounter forKey:@"serialCounter"];
-	[coder encodeDouble:initialBalance forKey:@"initialBalance"];
-	[coder encodeObject:transactions forKey:@"Transactions"];
+    //[coder encodeInt:serialCounter forKey:@"serialCounter"];
+    [coder encodeDouble:initialBalance forKey:@"initialBalance"];
+    [coder encodeObject:transactions forKey:@"Transactions"];
 }
 
 @end

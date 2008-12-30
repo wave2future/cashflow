@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -42,83 +42,83 @@
 @synthesize listener, description;
 
 -(void)onTextChange:(id)sender {
-	// dummy func must exist for textFieldShouldReturn event to be called
+    // dummy func must exist for textFieldShouldReturn event to be called
 }
 
 - (void)viewDidLoad
 {
-	self.title = NSLocalizedString(@"Name", @"Description");
-	textField.placeholder = NSLocalizedString(@"Name", @"Description");
+    self.title = NSLocalizedString(@"Name", @"Description");
+    textField.placeholder = NSLocalizedString(@"Name", @"Description");
 	
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-											   target:self
-											   action:@selector(doneAction)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self
+                                                  action:@selector(doneAction)] autorelease];
 
-	[textField addTarget:self action:@selector(onTextChange:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    [textField addTarget:self action:@selector(onTextChange:) forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
 - (void)dealloc
 {
-	[description release];
-	[super dealloc];
+    [description release];
+    [super dealloc];
 }
 
 // 表示前の処理
 //  処理するトランザクションをロードしておく
 - (void)viewWillAppear:(BOOL)animated
 {
-	textField.text = self.description;
-	[super viewWillAppear:animated];
+    textField.text = self.description;
+    [super viewWillAppear:animated];
 
-	descArray = [theDataModel.selAsset allocDescList];
-	[descArray insertObject:@"" atIndex:0];  // dummy entry
-	[picker reloadAllComponents];
+    descArray = [theDataModel.selAsset allocDescList];
+    [descArray insertObject:@"" atIndex:0];  // dummy entry
+    [picker reloadAllComponents];
 
-	// キーボードを消す ###
-	[textField resignFirstResponder];
+    // キーボードを消す ###
+    [textField resignFirstResponder];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
-	[descArray release];
+    [super viewWillDisappear:animated];
+    [descArray release];
 }
 
 - (void)doneAction
 {
-	self.description = textField.text;
-	[listener editDescViewChanged:self];
+    self.description = textField.text;
+    [listener editDescViewChanged:self];
 
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 // キーボードを消すための処理
 - (BOOL)textFieldShouldReturn:(UITextField*)t
 {
-	[t resignFirstResponder];
-	return YES;
+    [t resignFirstResponder];
+    return YES;
 }
 
 // Picker
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)v
 {
-	return 1;
+    return 1;
 }
 
 - (NSInteger)pickerView:(UIPickerView *)v numberOfRowsInComponent:(NSInteger)c
 {
-	return [descArray count];
+    return [descArray count];
 }
 
 - (NSString *)pickerView:(UIPickerView *)v titleForRow:(NSInteger)row forComponent:(NSInteger)comp
 {
-	return [descArray objectAtIndex:row];
+    return [descArray objectAtIndex:row];
 }
 
 - (void)pickerView:(UIPickerView *)v didSelectRow:(NSInteger)row inComponent:(NSInteger)comp
 {
-	textField.text = [descArray objectAtIndex:row];
+    textField.text = [descArray objectAtIndex:row];
 }
 
 @end

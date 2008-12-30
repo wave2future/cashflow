@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -66,63 +66,63 @@
   [str replaceOccurrencesOfString: from withString: to \
   options:NSLiteralSearch range:NSMakeRange(0, [str length])]
 	
-	// convert to HTML
-	REPLACE(@"&", @"&amp;");
-	REPLACE(@"<", @"&lt;");
-	REPLACE(@">", @"&gt;");
-	REPLACE(@"\"", @"&quot;");
-	REPLACE(@" ", @"&nbsp;");
-	REPLACE(@"\n", @"<br>");
-	REPLACE(@"¥n", @"<br>");
+    // convert to HTML
+    REPLACE(@"&", @"&amp;");
+    REPLACE(@"<", @"&lt;");
+    REPLACE(@">", @"&gt;");
+    REPLACE(@"\"", @"&quot;");
+    REPLACE(@" ", @"&nbsp;");
+    REPLACE(@"\n", @"<br>");
+    REPLACE(@"¥n", @"<br>");
 
-	// URL encoding
-	NSString *tmp = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-	[str setString:tmp];
+    // URL encoding
+    NSString *tmp = [str stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    [str setString:tmp];
 	
-	// encode for mail body
-	REPLACE(@"&", @"%26");
+    // encode for mail body
+    REPLACE(@"&", @"%26");
 }
 
 
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
 {
-	BOOL result = NO;
+    BOOL result = NO;
 
-	if (webServer == nil) {
-		webServer = [[WebServer alloc] init];
-	}
-	webServer.contentBody = contentBody;
-	webServer.contentType = contentType;
-	webServer.filename = filename;
+    if (webServer == nil) {
+        webServer = [[WebServer alloc] init];
+    }
+    webServer.contentBody = contentBody;
+    webServer.contentType = contentType;
+    webServer.filename = filename;
 	
-	NSString *url = [webServer serverUrl];
-	if (url != nil) {
-		result = [webServer startServer];
-	}
+    NSString *url = [webServer serverUrl];
+    if (url != nil) {
+        result = [webServer startServer];
+    }
 
-	UIAlertView *v;
-	if (!result) {
-		// error!
-		v = [[UIAlertView alloc]
-				initWithTitle:@"Error"
-				message:NSLocalizedString(@"Cannot start web server.", @"")
-				delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
-	} else {
-		NSString *message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
+    UIAlertView *v;
+    if (!result) {
+        // error!
+        v = [[UIAlertView alloc]
+                initWithTitle:@"Error"
+                message:NSLocalizedString(@"Cannot start web server.", @"")
+                delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
+    } else {
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
 	
-		v = [[UIAlertView alloc] 
-				initWithTitle:NSLocalizedString(@"Export", @"")
-				message:message
-				delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
-	}
+        v = [[UIAlertView alloc] 
+                initWithTitle:NSLocalizedString(@"Export", @"")
+                message:message
+                delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
+    }
 
-	[v show];
-	[v release];
+    [v show];
+    [v release];
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-	[webServer stopServer];
+    [webServer stopServer];
 }
 
 @end

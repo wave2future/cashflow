@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -44,27 +44,27 @@
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
+    [super viewDidLoad];
 	
-	// title 設定
-	self.title = NSLocalizedString(@"Categories", @"");
+    // title 設定
+    self.title = NSLocalizedString(@"Categories", @"");
 
-	// Edit ボタンを追加
-	self.navigationItem.rightBarButtonItem = [self editButtonItem];
+    // Edit ボタンを追加
+    self.navigationItem.rightBarButtonItem = [self editButtonItem];
 }
 
 - (void)dealloc {
-	[super dealloc];
+    [super dealloc];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
-	[self.tableView reloadData];
-	[super viewWillAppear:animated];
+    [self.tableView reloadData];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
+    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -76,173 +76,173 @@
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	int count = [theDataModel.categories categoryCount];
-	if (self.editing) {
-		count++;	// insert cell
-	}
-	return count;
+    int count = [theDataModel.categories categoryCount];
+    if (self.editing) {
+        count++;	// insert cell
+    }
+    return count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	NSString *cellid = @"categoryCell";
+    NSString *cellid = @"categoryCell";
 
-	UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:cellid];
+    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:cellid];
 
-	if (cell == nil) {
-		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-	}
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+    }
 
-	if (indexPath.row >= [theDataModel.categories categoryCount]) {
-		cell.text = NSLocalizedString(@"Add category", @"");
-	} else {
-		Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
-		cell.text = c.name;
+    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+        cell.text = NSLocalizedString(@"Add category", @"");
+    } else {
+        Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
+        cell.text = c.name;
 
-	}
+    }
 	
-	return cell;
+    return cell;
 }
 
 // アクセサリタイプを返す
 - (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCellAccessoryType type;
+    UITableViewCellAccessoryType type;
 	
-	if (isSelectMode && !self.editing) {
-		if (indexPath.row == selectedIndex) {
-			type = UITableViewCellAccessoryCheckmark;
-		} else {
-			type = UITableViewCellAccessoryNone;
-		}
-	} else {
-		type = UITableViewCellAccessoryDisclosureIndicator;
-	} 
-	return type;
+    if (isSelectMode && !self.editing) {
+        if (indexPath.row == selectedIndex) {
+            type = UITableViewCellAccessoryCheckmark;
+        } else {
+            type = UITableViewCellAccessoryNone;
+        }
+    } else {
+        type = UITableViewCellAccessoryDisclosureIndicator;
+    } 
+    return type;
 }
 
 //
 // セルをクリックしたときの処理
 //
- - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (isSelectMode && !self.editing) {
-		[tv deselectRowAtIndexPath:indexPath animated:NO];
+    if (isSelectMode && !self.editing) {
+        [tv deselectRowAtIndexPath:indexPath animated:NO];
 		
-		selectedIndex = indexPath.row;
-		ASSERT(listener);
-		[listener categoryListViewChanged:self];
+        selectedIndex = indexPath.row;
+        ASSERT(listener);
+        [listener categoryListViewChanged:self];
 		
-		[self.navigationController popViewControllerAnimated:YES];
-		return;
-	}
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
 
-	int idx = indexPath.row;
-	if (idx >= [theDataModel.categories categoryCount]) {
-		idx = -1; // insert row
-	}
-	GenEditTextViewController *vc = [GenEditTextViewController
-									 genEditTextViewController:self
-									 title:NSLocalizedString(@"Category", @"")
-									 identifier:idx];
-	if (idx >= 0) {
-		Category *category = [theDataModel.categories categoryAtIndex:idx];
-		vc.text = category.name;
-	}
+    int idx = indexPath.row;
+    if (idx >= [theDataModel.categories categoryCount]) {
+        idx = -1; // insert row
+    }
+    GenEditTextViewController *vc = [GenEditTextViewController
+                                        genEditTextViewController:self
+                                        title:NSLocalizedString(@"Category", @"")
+                                        identifier:idx];
+    if (idx >= 0) {
+        Category *category = [theDataModel.categories categoryAtIndex:idx];
+        vc.text = category.name;
+    }
 	
-	[self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)identifier
 {
-	if (identifier < 0) {
-		// 新規追加
-		[theDataModel.categories addCategory:vc.text];
-	} else {
-		// 変更
-		Category *c = [theDataModel.categories categoryAtIndex:identifier];
-		c.name = vc.text;
-		[theDataModel.categories updateCategory:c];
-	}
-	[self.tableView reloadData];
+    if (identifier < 0) {
+        // 新規追加
+        [theDataModel.categories addCategory:vc.text];
+    } else {
+        // 変更
+        Category *c = [theDataModel.categories categoryAtIndex:identifier];
+        c.name = vc.text;
+        [theDataModel.categories updateCategory:c];
+    }
+    [self.tableView reloadData];
 }
 
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-	[super setEditing:editing animated:animated];
+    [super setEditing:editing animated:animated];
 	
-	// Insert ボタン用の行
-	int insButtonIndex = [theDataModel.categories categoryCount];
-	NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insButtonIndex inSection:0];
-	NSArray *iary = [NSArray arrayWithObject:indexPath];
+    // Insert ボタン用の行
+    int insButtonIndex = [theDataModel.categories categoryCount];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insButtonIndex inSection:0];
+    NSArray *iary = [NSArray arrayWithObject:indexPath];
 	
-	[self.tableView beginUpdates];
-	if (editing) {
-		[self.tableView insertRowsAtIndexPaths:iary withRowAnimation:UITableViewRowAnimationTop];
-	} else {
-		[self.tableView deleteRowsAtIndexPaths:iary withRowAnimation:UITableViewRowAnimationTop];
-	}
-	[self.tableView endUpdates];
+    [self.tableView beginUpdates];
+    if (editing) {
+        [self.tableView insertRowsAtIndexPaths:iary withRowAnimation:UITableViewRowAnimationTop];
+    } else {
+        [self.tableView deleteRowsAtIndexPaths:iary withRowAnimation:UITableViewRowAnimationTop];
+    }
+    [self.tableView endUpdates];
 
-	if (editing) {
-		self.navigationItem.leftBarButtonItem.enabled = NO;
-	} else {
-		self.navigationItem.leftBarButtonItem.enabled = YES;
-	}
+    if (editing) {
+        self.navigationItem.leftBarButtonItem.enabled = NO;
+    } else {
+        self.navigationItem.leftBarButtonItem.enabled = YES;
+    }
 }
 
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row >= [theDataModel.categories categoryCount]) {
-		return UITableViewCellEditingStyleInsert;
-	}
-	return UITableViewCellEditingStyleDelete;
+    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+        return UITableViewCellEditingStyleInsert;
+    }
+    return UITableViewCellEditingStyleDelete;
 }
 
 // 編集処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-	if (indexPath.row >= [theDataModel.categories categoryCount]) {
-		// add
-		GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Category", @"") identifier:-1];
-		[self.navigationController pushViewController:vc animated:YES];
-	}
+    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+        // add
+        GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Category", @"") identifier:-1];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 	
-	else if (style == UITableViewCellEditingStyleDelete) {
-		[theDataModel.categories deleteCategoryAtIndex:indexPath.row];
-		[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		[self.tableView reloadData];
-	}
+    else if (style == UITableViewCellEditingStyleDelete) {
+        [theDataModel.categories deleteCategoryAtIndex:indexPath.row];
+        [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView reloadData];
+    }
 }
 
 // 並べ替え処理
 - (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	if (indexPath.row >= [theDataModel.categories categoryCount]) {
-		return NO;
-	}
-	return YES;
+    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
-	[theDataModel.categories reorderCategory:from.row to:to.row];
+    [theDataModel.categories reorderCategory:from.row to:to.row];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-	// Return YES for supported orientations
-	return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    // Return YES for supported orientations
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 - (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
-	// Release anything that's not essential, such as cached data
+    [super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
+    // Release anything that's not essential, such as cached data
 }
 
 @end

@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -37,9 +37,8 @@
 #import "DataModel.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
-	
-	IBOutlet UIWindow *window;
-	IBOutlet UINavigationController *navigationController;
+    IBOutlet UIWindow *window;
+    IBOutlet UINavigationController *navigationController;
 }
 
 @property (nonatomic, retain) UIWindow *window;

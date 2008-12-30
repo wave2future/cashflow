@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -45,141 +45,141 @@
 
 -(id)init
 {
-	[super init];
-	categories = nil;
+    [super init];
+    categories = nil;
 
-	return self;
+    return self;
 }
 
 -(void)dealloc
 {
-	if (categories != nil) {
-		[categories release];
-	}
-	[super dealloc];
+    if (categories != nil) {
+        [categories release];
+    }
+    [super dealloc];
 }
 
 -(void)reload
 {
-	ASSERT(db != nil);
-	if (categories != nil) {
-		[categories release];
-	}
-	categories = [[NSMutableArray alloc] init];
+    ASSERT(db != nil);
+    if (categories != nil) {
+        [categories release];
+    }
+    categories = [[NSMutableArray alloc] init];
 
-	DBStatement *stmt;
-	stmt = [db prepare:"SELECT * FROM Categories ORDER BY sorder;"];
-	while ([stmt step] == SQLITE_ROW) {
-		Category *c = [[Category alloc] init];
-		c.pkey = [stmt colInt:0];
-		c.name = [stmt colString:1];
-		c.sorder = [stmt colInt:2];
+    DBStatement *stmt;
+    stmt = [db prepare:"SELECT * FROM Categories ORDER BY sorder;"];
+    while ([stmt step] == SQLITE_ROW) {
+        Category *c = [[Category alloc] init];
+        c.pkey = [stmt colInt:0];
+        c.name = [stmt colString:1];
+        c.sorder = [stmt colInt:2];
 		
-		[categories addObject:c];
-		[c release];
-	}
-	[stmt release];
+        [categories addObject:c];
+        [c release];
+    }
+    [stmt release];
 }
 
 -(int)categoryCount
 {
-	return [categories count];
+    return [categories count];
 }
 
 -(Category*)categoryAtIndex:(int)n
 {
-	ASSERT(categories != nil);
-	return [categories objectAtIndex:n];
+    ASSERT(categories != nil);
+    return [categories objectAtIndex:n];
 }
 
 - (int)categoryIndexWithKey:(int)key
 {
-	int i, max = [categories count];
-	for (i = 0; i < max; i++) {
-		Category *c = [categories objectAtIndex:i];
-		if (c.pkey == key) {
-			return i;
-		}
-	}
-	return -1;
+    int i, max = [categories count];
+    for (i = 0; i < max; i++) {
+        Category *c = [categories objectAtIndex:i];
+        if (c.pkey == key) {
+            return i;
+        }
+    }
+    return -1;
 }
 
 -(NSString*)categoryStringWithKey:(int)key
 {
-	int idx = [self categoryIndexWithKey:key];
-	if (idx < 0) {
-		return @"";
-	}
-	Category *c = [categories objectAtIndex:idx];
-	return c.name;
+    int idx = [self categoryIndexWithKey:key];
+    if (idx < 0) {
+        return @"";
+    }
+    Category *c = [categories objectAtIndex:idx];
+    return c.name;
 }
 
 -(Category*)addCategory:(NSString *)name
 {
-	Category *c = [[Category alloc] init];
-	c.name = name;
-	[categories addObject:c];
-	[c release];
+    Category *c = [[Category alloc] init];
+    c.name = name;
+    [categories addObject:c];
+    [c release];
 
-	[self renumber];
+    [self renumber];
 
-	DBStatement *stmt;
-	stmt = [db prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
-	[stmt bindString:1 val:c.name];
-	[stmt bindInt:2 val:c.sorder];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt;
+    stmt = [db prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
+    [stmt bindString:1 val:c.name];
+    [stmt bindInt:2 val:c.sorder];
+    [stmt step];
+    [stmt release];
 
-	c.pkey = [db lastInsertRowId];
+    c.pkey = [db lastInsertRowId];
 
-	return c;
+    return c;
 }
 
 -(void)updateCategory:(Category*)category
 {
-	DBStatement *stmt;
-	stmt = [db prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
-	[stmt bindString:1 val:category.name];
-	[stmt bindInt:2 val:category.sorder];
-	[stmt bindInt:3 val:category.pkey];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt;
+    stmt = [db prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
+    [stmt bindString:1 val:category.name];
+    [stmt bindInt:2 val:category.sorder];
+    [stmt bindInt:3 val:category.pkey];
+    [stmt step];
+    [stmt release];
 }
 
 -(void)deleteCategoryAtIndex:(int)index
 {
-	Category *c = [categories objectAtIndex:index];
+    Category *c = [categories objectAtIndex:index];
 
-	DBStatement *stmt;
-	stmt = [db prepare:"DELETE FROM Categories WHERE key=?;"];
-	[stmt bindInt:1 val:c.pkey];
-	[stmt step];
-	[stmt release];
+    DBStatement *stmt;
+    stmt = [db prepare:"DELETE FROM Categories WHERE key=?;"];
+    [stmt bindInt:1 val:c.pkey];
+    [stmt step];
+    [stmt release];
 
-	[categories removeObjectAtIndex:index];
+    [categories removeObjectAtIndex:index];
 }
 
 - (void)reorderCategory:(int)from to:(int)to
 {
-	Category *c = [[categories objectAtIndex:from] retain];
-	[categories removeObjectAtIndex:from];
-	[categories insertObject:c atIndex:to];
-	[c release];
+    Category *c = [[categories objectAtIndex:from] retain];
+    [categories removeObjectAtIndex:from];
+    [categories insertObject:c atIndex:to];
+    [c release];
 	
-	[self renumber];
+    [self renumber];
 }
 
 -(void)renumber
 {
-	int i, max = [categories count];
+    int i, max = [categories count];
 
-	[db beginTransaction];
-	for (i = 0; i < max; i++) {
-		Category *c = [categories objectAtIndex:i];
-		c.sorder = i;
-		[self updateCategory:c];
-	}
-	[db commitTransaction];
+    [db beginTransaction];
+    for (i = 0; i < max; i++) {
+        Category *c = [categories objectAtIndex:i];
+        c.sorder = i;
+        [self updateCategory:c];
+    }
+    [db commitTransaction];
 }
 
 @end

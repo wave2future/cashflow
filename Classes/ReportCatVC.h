@@ -1,9 +1,6 @@
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 //
-//  ReportViewController.h
-//  CashFlow
-//
-//  Created by 村上 卓弥 on 08/10/31.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  ReportCatVC.h
 //
 
 #import <UIKit/UIKit.h>

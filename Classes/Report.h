@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -41,8 +41,8 @@
 
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
-	int catkey; // カテゴリキー
-	double value; // 合計値
+    int catkey; // カテゴリキー
+    double value; // 合計値
 }
 
 @property(nonatomic,assign) int catkey;
@@ -51,12 +51,12 @@
 
 // レポート（１件分)
 @interface Report : NSObject {
-	NSDate *date;
-	NSDate *endDate;
-	double totalIncome;
-	double totalOutgo;
+    NSDate *date;
+    NSDate *endDate;
+    double totalIncome;
+    double totalOutgo;
 
-	NSMutableArray *catReports;
+    NSMutableArray *catReports;
 }
 
 @property(nonatomic,retain) NSDate *date;
@@ -69,10 +69,10 @@
 
 // レポート(集合)
 @interface Reports : NSObject {
-	int type;
-	NSMutableArray *reports;
+    int type;
+    NSMutableArray *reports;
 
-	Database *db;
+    Database *db;
 }
 
 @property(nonatomic,assign) int type;
@@ -87,5 +87,3 @@
 - (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category;
 
 @end
-
-

@@ -1,3 +1,4 @@
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 /*
   CashFlow for iPhone/iPod touch
@@ -41,50 +42,50 @@
 
 + (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewListener>)listener title:(NSString*)title identifier:(int)id
 {
-	GenEditTextViewController *vc = [[[GenEditTextViewController alloc]
-										 initWithNibName:@"GenEditTextView"
-										 bundle:[NSBundle mainBundle]] autorelease];
-	vc.listener = listener;
-	vc.title = title;
-	vc.identifier = id;
+    GenEditTextViewController *vc = [[[GenEditTextViewController alloc]
+                                         initWithNibName:@"GenEditTextView"
+                                         bundle:[NSBundle mainBundle]] autorelease];
+    vc.listener = listener;
+    vc.title = title;
+    vc.identifier = id;
 
-	return vc;
+    return vc;
 }
 
 
 - (void)viewDidLoad
 {
-	[super viewDidLoad];
-	textField.placeholder = self.title;
+    [super viewDidLoad];
+    textField.placeholder = self.title;
 	
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-											   target:self
-											   action:@selector(doneAction)] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self
+                                                  action:@selector(doneAction)] autorelease];
 }
 
 - (void)dealloc {
-	[text release];
+    [text release];
     [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	textField.text = text;
-	[super viewWillAppear:animated];
+    textField.text = text;
+    [super viewWillAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 - (void)doneAction
 {
-	self.text = textField.text;
-	[listener genEditTextViewChanged:self identifier:identifier];
+    self.text = textField.text;
+    [listener genEditTextViewChanged:self identifier:identifier];
 
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -43,36 +43,36 @@
 
 - (void)viewDidLoad
 {
-	self.title = NSLocalizedString(@"Date", @"");
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-											   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-											   target:self
-											   action:@selector(doneAction)] autorelease];
+    self.title = NSLocalizedString(@"Date", @"");
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                  target:self
+                                                  action:@selector(doneAction)] autorelease];
 }
 
 - (void)dealloc
 {
-	[date release];
-	[super dealloc];
+    [date release];
+    [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-	datePicker.date = self.date;
-	[super viewWillAppear:animated];
+    datePicker.date = self.date;
+    [super viewWillAppear:animated];
 }
 
 - (void)doneAction
 {
-	self.date = datePicker.date;
-	[listener editDateViewChanged:self];
+    self.date = datePicker.date;
+    [listener editDateViewChanged:self];
 
-	[self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 }
 
 @end

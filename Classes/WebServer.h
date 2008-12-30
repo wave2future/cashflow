@@ -1,4 +1,4 @@
-// -*-  Mode:ObjC; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
   CashFlow for iPhone/iPod touch
 
@@ -38,14 +38,14 @@
 
 @interface WebServer : NSObject
 {
-	int listen_sock;
-	struct sockaddr_in serv_addr;
+    int listen_sock;
+    struct sockaddr_in serv_addr;
 	
-	NSString *contentType;
-	NSString *contentBody;
-	NSString *filename;
+    NSString *contentType;
+    NSString *contentBody;
+    NSString *filename;
 	
-	NSThread *thread;
+    NSThread *thread;
 }
 
 @property(nonatomic,retain) NSString* contentType;
