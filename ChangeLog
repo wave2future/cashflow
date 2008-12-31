@@ -1,4 +1,4 @@
-2008-12-31 : Takuya Murakami
+2008-12-31 : Takuya Murakami (ver 1.7, r239)
 	* ソース修正 : tab -> space へ
 	* AssetListView で残高がおかしかった問題を修正。
 	  全トランザクションをロードしておくようにした。
