@@ -1,5 +1,5 @@
 2009-01-05 : Takuya Murakami
-	* zh_TW (Complicated Chinese) 追加
+	* zh_TW (Traditional Chinese) 追加
 	* ExportView.xib の localization を削除
 
 2008-12-31 : Takuya Murakami (ver 1.7, r239)
