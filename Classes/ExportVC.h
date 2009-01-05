@@ -43,6 +43,7 @@
     IBOutlet UISegmentedControl *rangeControl;
     IBOutlet UISegmentedControl *methodControl;
     IBOutlet UILabel *formatLabel;
+    IBOutlet UILabel *rangeLabel;
     IBOutlet UILabel *methodLabel;
 
     ExportCsv *csv;

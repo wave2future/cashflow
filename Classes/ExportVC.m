@@ -59,114 +59,127 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	[self setTitle:NSLocalizedString(@"Export", @"")];
 
-	UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
-	[exportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-	[exportButton setBackgroundImage:bg forState:UIControlStateNormal];
+    // Localization
+    [self setTitle:NSLocalizedString(@"Export", @"")];
+
+    formatLabel.text = NSLocalizedString(@"Data format", @"");
+    [formatControl setTitle:NSLocalizedString(@"OFX", @"") forSegmentAtIndex:1];
+
+    rangeLabel.text = NSLocalizedString(@"Export data within", @"");
+    [rangeControl setTitle:NSLocalizedString(@"7 days", @"") forSegmentAtIndex:0];
+    [rangeControl setTitle:NSLocalizedString(@"30 days", @"") forSegmentAtIndex:1];
+    [rangeControl setTitle:NSLocalizedString(@"90 days", @"") forSegmentAtIndex:2];
+    [rangeControl setTitle:NSLocalizedString(@"All", @"") forSegmentAtIndex:3];
+    
+    methodLabel.text = NSLocalizedString(@"Export method", @"");
+    [methodControl setTitle:NSLocalizedString(@"Mail", @"") forSegmentAtIndex:0];
+
+    UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
+    [exportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [exportButton setBackgroundImage:bg forState:UIControlStateNormal];
 	
 #ifdef FREE_VERSION
-	formatLabel.hidden = YES;
-	formatControl.hidden = YES;
-	methodLabel.hidden = YES;
-	methodControl.hidden = YES;
+    formatLabel.hidden = YES;
+    formatControl.hidden = YES;
+    methodLabel.hidden = YES;
+    methodControl.hidden = YES;
 #endif
 
-	//noteTextView.font = [UIFont systemFontOfSize:12.0];
+    //noteTextView.font = [UIFont systemFontOfSize:12.0];
 
-	// load defaults
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	formatControl.selectedSegmentIndex = [defaults integerForKey:@"exportFormat"];
-	rangeControl.selectedSegmentIndex = [defaults integerForKey:@"exportRange"];
-	methodControl.selectedSegmentIndex = [defaults integerForKey:@"exportMethod"];	
+    // load defaults
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    formatControl.selectedSegmentIndex = [defaults integerForKey:@"exportFormat"];
+    rangeControl.selectedSegmentIndex = [defaults integerForKey:@"exportRange"];
+    methodControl.selectedSegmentIndex = [defaults integerForKey:@"exportMethod"];	
 }
 
 - (void)viewWillDisappear:(BOOL)animated
 {
-	[super viewWillDisappear:animated];
+    [super viewWillDisappear:animated];
 
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-	[defaults setObject:[NSNumber numberWithInt:formatControl.selectedSegmentIndex] 
-			  forKey:@"exportFormat"];
-	[defaults setObject:[NSNumber numberWithInt:rangeControl.selectedSegmentIndex] 
-			  forKey:@"exportRange"];
-	[defaults setObject:[NSNumber numberWithInt:methodControl.selectedSegmentIndex] 
-			  forKey:@"exportMethod"];
-	[defaults synchronize];
+    [defaults setObject:[NSNumber numberWithInt:formatControl.selectedSegmentIndex] 
+              forKey:@"exportFormat"];
+    [defaults setObject:[NSNumber numberWithInt:rangeControl.selectedSegmentIndex] 
+              forKey:@"exportRange"];
+    [defaults setObject:[NSNumber numberWithInt:methodControl.selectedSegmentIndex] 
+              forKey:@"exportMethod"];
+    [defaults synchronize];
 }
 
 - (IBAction)doExport
 {
-	//[theDataModel saveToStorage]; // for safety...
+    //[theDataModel saveToStorage]; // for safety...
 	
-	int range;
-	switch (rangeControl.selectedSegmentIndex) {
-		case 0:
-			range = 7;
-			break;
-		case 1:
-			range = 30;
-			break;
-		case 2:
-			range = 90;
-			break;
-		default:
-			range = -1;
-			break;
-	}
+    int range;
+    switch (rangeControl.selectedSegmentIndex) {
+    case 0:
+        range = 7;
+        break;
+    case 1:
+        range = 30;
+        break;
+    case 2:
+        range = 90;
+        break;
+    default:
+        range = -1;
+        break;
+    }
 	
-	NSDate *date = nil;
-	if (range > 0) {
-		date = [[[NSDate alloc] init] autorelease];
-		date = [date addTimeInterval:(- range * 24.0 * 60 * 60)];
-	}
+    NSDate *date = nil;
+    if (range > 0) {
+        date = [[[NSDate alloc] init] autorelease];
+        date = [date addTimeInterval:(- range * 24.0 * 60 * 60)];
+    }
 	
-	BOOL result;
-	ExportBase *ex;
-	UIAlertView *v;
+    BOOL result;
+    ExportBase *ex;
+    UIAlertView *v;
 
-	switch (formatControl.selectedSegmentIndex) {
-		case 0:
-		default:
-			if (csv == nil) {
-				csv = [[ExportCsv alloc] init];
-			}
-			ex = csv;
-			break;
+    switch (formatControl.selectedSegmentIndex) {
+    case 0:
+    default:
+        if (csv == nil) {
+            csv = [[ExportCsv alloc] init];
+        }
+        ex = csv;
+        break;
 
 #ifndef FREE_VERSION
-		case 1:
-			if (ofx == nil) {
-				ofx = [[ExportOfx alloc] init];
-			}
-			ex = ofx;
-			break;
+    case 1:
+        if (ofx == nil) {
+            ofx = [[ExportOfx alloc] init];
+        }
+        ex = ofx;
+        break;
 #endif
-	}
-	ex.firstDate = date;
+    }
+    ex.firstDate = date;
 	
-	switch (methodControl.selectedSegmentIndex) {
-        case 0:
-        default:
-            result = [ex sendMail];
-            break;
+    switch (methodControl.selectedSegmentIndex) {
+    case 0:
+    default:
+        result = [ex sendMail];
+        break;
 #ifndef FREE_VERSION
-        case 1:
-            result = [ex sendWithWebServer];
-            break;
+    case 1:
+        result = [ex sendWithWebServer];
+        break;
 #endif
-	}
+    }
 	
-	if (!result) {
-            v = [[UIAlertView alloc] 
-                    initWithTitle:NSLocalizedString(@"No data", @"")
-                    message:NSLocalizedString(@"No data to be exported.", @"")
-                    delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-            [v show];
-            [v autorelease];
-	}
+    if (!result) {
+        v = [[UIAlertView alloc] 
+                initWithTitle:NSLocalizedString(@"No data", @"")
+                message:NSLocalizedString(@"No data to be exported.", @"")
+                delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [v show];
+        [v autorelease];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
