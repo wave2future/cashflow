@@ -74,6 +74,10 @@
     
     methodLabel.text = NSLocalizedString(@"Export method", @"");
     [methodControl setTitle:NSLocalizedString(@"Mail", @"") forSegmentAtIndex:0];
+    
+    NSString *exportString = NSLocalizedString(@"Export", @"");
+    [exportButton setTitle:exportString forState:UIControlStateNormal];
+    [exportButton setTitle:exportString forState:UIControlStateHighlighted];
 
     UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
     [exportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
