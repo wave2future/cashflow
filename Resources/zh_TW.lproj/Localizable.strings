@@ -65,3 +65,14 @@
 "Cash" = "現金";
 "Bank Account" = "銀行帳戶";
 "Credit Card" = "信用卡";
+
+/* export view */
+"Data format" = "Data format";
+"OFX" = "OFX";
+"Export data within" = "Export data within";
+"7 days" = "7 days";
+"30 days" = "30 days";
+"90 days" = "90 days";
+"All" = "All";
+"Export method" = "Export method";
+"Mail" = "Mail";

@@ -65,3 +65,14 @@
 "Cash" = "現金";
 "Bank Account" = "銀行口座";
 "Credit Card" = "クレジットカード";
+
+/* export view */
+"Data format" = "データフォーマット";
+"OFX" = "Money電子明細";
+"Export data within" = "エクスポート範囲";
+"7 days" = "7日";
+"30 days" = "30日";
+"90 days" = "90日";
+"All" = "すべて";
+"Export method" = "エクスポート方法";
+"Mail" = "メール";
