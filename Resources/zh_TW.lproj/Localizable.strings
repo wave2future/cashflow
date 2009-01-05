@@ -1,33 +1,29 @@
+/* Adjustment of amount */
 "Adjustment" = "餘額調整";
 
 "Amount" = "金額";
-
 "Balance" = "餘額";
-
 "Date" = "日期";
-
 "Delete Transaction" = "刪除此項交易";
-
 "Deposit" = "存入";
-
 "Info" = "資訊";
-
 "Name" = "摘要";
-
 "Memo" = "Memo";
-
 "Payment" = "支出";
 
 "Asset" = "資産";
+/* Asset list */
 "Assets" = "資産一覽";
 "Asset Name" = "資産名稱";
 "Asset Type" = "資産類型";
 
 "Transaction" = "交易";
+/* Transaction list */
 "Transactions" = "交易一覽";
 
 "Type" = "類型";
 "Category" = "分類";
+/* Category list */
 "Categories" = "分類";
 "No category" = "未分類";
 "Edit Categories" = "編輯分類";
@@ -62,6 +58,7 @@
 "Dismiss" = "關閉";
 "Cancel" = "取消";
 
+/* Asset types */
 "Cash" = "現金";
 "Bank Account" = "銀行帳戶";
 "Credit Card" = "信用卡";
