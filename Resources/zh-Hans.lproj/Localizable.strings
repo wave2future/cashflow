@@ -41,12 +41,10 @@
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
 
 "Export" = "汇出";
-"WebExportNotation" = "在PC上的浏览器中输入下列的网址：\n%@\n下载档桉后，点一下关闭按钮。"\
-;
+"WebExportNotation" = "在PC上的浏览器中输入下列的网址：\n%@\n下载档桉后，点一下关闭按钮。";
 "Cannot start web server." = "Web 伺服器无法启动。";
 
-"OFXHeadString" = "剪下并贴上从文字编辑器开头到结尾所有文字，另存成副档名为 .ofx 的 'UTF-8\
-' 文字档。";
+"OFXHeadString" = "剪下并贴上从文字编辑器开头到结尾所有文字，另存成副档名为 .ofx 的 'UTF-8' 文字档。";
 
 "No data" = "没有资料";
 "No data to be exported." = "没有资料可以汇出";
