@@ -1,0 +1,22 @@
+The CashFlow is a simple cash management software. You can manage your
+daily cash income/outgo, and can fix balance with simple
+operation. You can input description of transaction from history, much
+less keyboard operation.
+
+The transaction data can be exported with CSV or OFX format, so you
+can import it with any money management software on your PC. The data
+can be exported with e-mail, or downloaded with browser of your PC
+using internal web server of the CashFlow.
+
+----
+The CashFlow Free is a simple cash management software. You can manage
+your daily cash income/outgo, and can fix balance with simple
+operation. You can input description of transaction from history, much
+less keyboard operation.
+
+The transaction data can be exported with CSV format via e-mail.
+
+This is a free version of CashFlow. With paid-for version of CashFlow,
+you can export transactions with OFX format, and you can download it
+with browser of your PC using internal web server of the CashFlow.
+
