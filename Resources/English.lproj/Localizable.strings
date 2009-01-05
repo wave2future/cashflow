@@ -1,34 +1,29 @@
+/* Adjustment of amount */
 "Adjustment" = "Adjustment";
 
 "Amount" = "Amount";
-
 "Balance" = "Balance";
-
 "Date" = "Date";
-
 "Delete Transaction" = "Delete Transaction";
-
 "Deposit" = "Deposit";
-
 "Info" = "Info";
-
 "Name" = "Name";
-
 "Memo" = "Memo";
-
 "Payment" = "Payment";
 
 "Asset" = "Asset";
+/* Asset list */
 "Assets" = "Assets";
 "Asset Name" = "Asset Name";
 "Asset Type" = "Asset Type";
 
 "Transaction" = "Transaction";
-
+/* Transaction list */
 "Transactions" = "Transactions";
 
 "Type" = "Type";
 "Category" = "Category";
+/* Category list */
 "Categories" = "Categories";
 "No category" = "No category";
 "Edit Categories" = "Edit Categories";
@@ -62,6 +57,7 @@
 
 "Cancel" = "Cancel";
 
+/* Asset types */
 "Cash" = "Cash";
 "Bank Account" = "Bank Account";
 "Credit Card" = "Credit Card";
