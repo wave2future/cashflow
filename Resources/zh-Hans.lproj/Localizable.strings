@@ -1,0 +1,74 @@
+/* Adjustment of amount */
+"Adjustment" = "Adjustment";
+
+"Amount" = "Amount";
+"Balance" = "Balance";
+"Date" = "Date";
+"Delete Transaction" = "Delete Transaction";
+"Deposit" = "Deposit";
+"Info" = "Info";
+"Name" = "Name";
+"Memo" = "Memo";
+"Payment" = "Payment";
+
+"Asset" = "Asset";
+/* Asset list */
+"Assets" = "Assets";
+"Asset Name" = "Asset Name";
+"Asset Type" = "Asset Type";
+
+"Transaction" = "Transaction";
+/* Transaction list */
+"Transactions" = "Transactions";
+
+"Type" = "Type";
+"Category" = "Category";
+/* Category list */
+"Categories" = "Categories";
+"No category" = "No category";
+"Edit Categories" = "Edit Categories";
+"Add category" = "Add category";
+
+"Initial Balance" = "Initial Balance";
+
+"Income" = "Income";
+"Outgo" = "Outgo";
+
+"Report" = "Report";
+"Monthly Report" = "Monthly Report";
+"Weekly Report" = "Weekly Report";
+
+"HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
+
+"Export" = "Export";
+"WebExportNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
+"Cannot start web server." = "Cannot start web server.";
+
+"OFXHeadString" = "Cut & paste text between BEGIN and END lines with text editor, and save as UTF-8 text file with .ofx extension.";
+
+"No data" = "No data";
+"No data to be exported." = "No data to be exported.";
+
+"Delete Asset" = "Delete Asset";
+"ReallyDeleteAsset" = "Really delete this account?";
+
+"Delete Transactions" = "Delete Transactions";
+"Delete with all past transactions" = "Delete all older transactions";
+
+"Cancel" = "Cancel";
+
+/* Asset types */
+"Cash" = "Cash";
+"Bank Account" = "Bank Account";
+"Credit Card" = "Credit Card";
+
+/* export view */
+"Data format" = "Data format";
+"OFX" = "OFX";
+"Export data within" = "Export data within";
+"7 days" = "7 days";
+"30 days" = "30 days";
+"90 days" = "90 days";
+"All" = "All";
+"Export method" = "Export method";
+"Mail" = "Mail";
