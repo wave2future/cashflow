@@ -38,6 +38,7 @@
 "Monthly Report" = "Monthly Report";
 "Weekly Report" = "Weekly Report";
 
+/* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
 
 "Export" = "Export";
