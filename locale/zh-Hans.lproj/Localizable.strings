@@ -1,4 +1,4 @@
-/* Adjustment of amount */
+﻿/* Adjustment of amount */
 "Adjustment" = "馀额调整";
 
 "Amount" = "金额";
@@ -72,4 +72,4 @@
 "90 days" = "90日内";
 "All" = "全部";
 "Export method" = "输出方法";
-"Mail" = "邮寄";
+"Mail" = "电子邮件";
