@@ -105,6 +105,7 @@
         b = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [b setFont:[UIFont systemFontOfSize:14.0]];
 	
         [b setBackgroundImage:bg forState:UIControlStateNormal];
 		
