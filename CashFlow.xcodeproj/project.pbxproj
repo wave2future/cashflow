@@ -114,8 +114,8 @@
 		3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTextVC.h; sourceTree = "<group>"; };
 		3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTextVC.m; sourceTree = "<group>"; };
 		3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ExportView.xib; path = Resources/ExportView.xib; sourceTree = "<group>"; };
-		3E6B2EC00F1225AD0008AFB6 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/Localizable.strings; sourceTree = "<group>"; };
-		3E6B2EC40F1225C20008AFB6 /* Japanese */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Japanese; path = Resources/Japanese.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3E6B2EC00F1225AD0008AFB6 /* en */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = en; path = locale/en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3E6B2EC40F1225C20008AFB6 /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = locale/ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = TransactionView.xib; path = Resources/TransactionView.xib; sourceTree = "<group>"; };
 		3E9433750EC1E0750033D50A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Database.m; path = Classes/Database.m; sourceTree = "<group>"; };
@@ -454,8 +454,8 @@
 		3E6B2EC20F1225B30008AFB6 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				3E6B2EC00F1225AD0008AFB6 /* English */,
-				3E6B2EC40F1225C20008AFB6 /* Japanese */,
+				3E6B2EC00F1225AD0008AFB6 /* en */,
+				3E6B2EC40F1225C20008AFB6 /* ja */,
 				3EF1502F0F12482E00E1BCE6 /* zh-Hans */,
 				3EF150300F12483200E1BCE6 /* zh-Hant */,
 			);
