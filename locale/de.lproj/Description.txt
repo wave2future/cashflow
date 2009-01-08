@@ -1,0 +1,10 @@
+CashFlow ist eine einfache Geld-Management Software. Du kannst deine täglichen Ausgaben und Einnahmen managen. Du kannst Angaben von Transaktionen in wenigen Schritten bearbeiten.
+
+Die Transaktionsdaten können als CSV- oder OFX-Format exportieren, damit du es mit jeder Geld-Management Software auf deinem Computer abgleichen kannst. Die Daten können als E-Mail oder als Download über deinen PC-Browser auf deinen Computer exportiert werden. 
+
+--------------
+CashFlow ist eine einfache Geld-Management Software. Du kannst deine täglichen Ausgaben und Einnahmen managen. Du kannst Angaben von Transaktionen in wenigen Schritten bearbeiten.
+
+Die Transaktionsdaten können als CSV Format per E-Mail exportiert werden.
+
+Dies ist eine gratis Version von CashFlow. Mit der Kostenpflichtigen Version von CashFlow kannst du deine Transaktionen als OFX-Format exportieren. Außerdem kannst du sie über deinen Computer Browser aus dem internen CashFlow Server runterladen.
