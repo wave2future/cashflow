@@ -1,3 +1,6 @@
+2009-01-08 : Takuya Murakami
+	* de, fr, it, es, kr, zh-Hans, zh-Hant 追加
+	
 2009-01-05 : Takuya Murakami
 	* zh_TW (Traditional Chinese) 追加
 	* ExportView.xib の localization を削除
