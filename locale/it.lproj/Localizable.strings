@@ -1,0 +1,75 @@
+/* Adjustment of amount */
+"Adjustment" = "Regolazioni";
+
+"Amount" = "Somma";
+"Balance" = "Bilancio";
+"Date" = "Data";
+"Delete Transaction" = "Cancella transazione";
+"Deposit" = "Deposito";
+"Info" = "Info";
+"Name" = "None";
+"Memo" = "Memo";
+"Payment" = "Pagamenti";
+
+"Asset" = "Attivo";
+/* Asset list */
+"Assets" = "Attivi";
+"Asset Name" = "Nome Attivo";
+"Asset Type" = "Tipo Attivo";
+
+"Transaction" = "Transazione";
+/* Transaction list */
+"Transactions" = "Transazioni";
+
+"Type" = "Tipo";
+"Category" = "Categoria";
+/* Category list */
+"Categories" = "Categorie";
+"No category" = "No categoria";
+"Edit Categories" = "Modifica Categorie";
+"Add category" = "Aggiungi categoria";
+
+"Initial Balance" = "Bilancio Iniziale";
+
+"Income" = "Entrate";
+"Outgo" = "Uscite";
+
+"Report" = "Report";
+"Monthly Report" = "Rapporto Mensile";
+"Weekly Report" = "Rapporto Settimanale";
+
+/* No need to translate HelpURL */
+"HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
+
+"Export" = "Export";
+"WebExportNotation" = "Immetti il seguente URL sul tuo PC:\n%@\nDopo aver scaricato il file, clicka su escludi.";
+"Cannot start web server." = "Il browser non funziona.";
+
+"OFXHeadString" = "Copia e incolla il testo tra INIZIO e FINE con un editor di testo e salvalo come file di testo con estenzione .ofx.";
+
+"No data" = "Nessun dato";
+"No data to be exported." = "Nessun dato sarà esportato.";
+
+"Delete Asset" = "Cancella Assetto";
+"ReallyDeleteAsset" = "Vuoi cancellare l'account?";
+
+"Delete Transactions" = "Cancella transazioni";
+"Delete with all past transactions" = "Cancella le vecchie transazioni";
+
+"Cancel" = "Cancella";
+
+/* Asset types */
+"Cash" = "Contanti";
+"Bank Account" = "Account Banca";
+"Credit Card" = "Carta di Credito";
+
+/* export view */
+"Data format" = "Formato File";
+"OFX" = "OFX";
+"Export data within" = "Esporta dati di";
+"7 days" = "7 giorni";
+"30 days" = "30 giorni";
+"90 days" = "90 giorni";
+"All" = "Tutti";
+"Export method" = "Metodo esportazione";
+"Mail" = "E-Mail";
