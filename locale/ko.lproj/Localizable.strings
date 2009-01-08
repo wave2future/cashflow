@@ -42,7 +42,7 @@
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
 
 "Export" = "수출";
-"WebExportNotation" = "PC로 UPL과 브라우저로:\n%@\n파일 다운로드 후, 위쪽에 해산 버튼.";
+"WebExportNotation" = "PC로 URL과 브라우저로:\n%@\n파일 다운로드 후, 위쪽에 해산 버튼.";
 "Cannot start web server." = "웹서버를 시작할수 없음.";
 
 "OFXHeadString" = "시작과 끝라인 텍스트 사이에 자르기 &붙이기, 편집과함께 UTF-8텍스트 파일과 같이 저장한다 .ofx 확장파일도.";
