@@ -1,8 +1,8 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
-  ItemShelf for iPhone/iPod touch
-
-  Copyright (c) 2008, ItemShelf Development Team. All rights reserved.
+ CashFlow for iPhone/iPod touch
+ 
+ Copyright (c) 2008, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are

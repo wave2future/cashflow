@@ -58,6 +58,7 @@
 		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
 		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
@@ -154,6 +155,8 @@
 		3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListVC.m; sourceTree = "<group>"; };
 		3ED97C130F1A0D8D0063A578 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
 		3ED97C140F1A0D8D0063A578 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
+		3ED97C260F1A0E8E0063A578 /* BackupServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BackupServer.h; path = Classes/BackupServer.h; sourceTree = "<group>"; };
+		3ED97C270F1A0E8E0063A578 /* BackupServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BackupServer.m; path = Classes/BackupServer.m; sourceTree = "<group>"; };
 		3EDC72BA0EBB493100366F1E /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = ReportView.xib; path = Resources/ReportView.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = redButton.png; path = images/redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = InfoView.xib; path = Resources/InfoView.xib; sourceTree = "<group>"; };
@@ -342,6 +345,8 @@
 				3ED97C140F1A0D8D0063A578 /* WebServer.m */,
 				3ECF38080EA9CFB600420060 /* ExportServer.h */,
 				3ECF38030EA9CF4900420060 /* ExportServer.m */,
+				3ED97C260F1A0E8E0063A578 /* BackupServer.h */,
+				3ED97C270F1A0E8E0063A578 /* BackupServer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -469,6 +474,7 @@
 				3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */,
 				3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */,
 				3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */,
+				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

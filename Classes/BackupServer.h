@@ -32,32 +32,17 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <UIKit/UIKit.h>
-#import <sys/socket.h>
-#import <netinet/in.h>
+#import "WebServer.h"
 
 /**
-   Simple web server
+   Web server for backup and restore
 */
-@interface WebServer : NSObject
+@interface BackupServer : WebServer
 {
-    int listen_sock;
-    struct sockaddr_in serv_addr;
-	
-    NSThread *thread;
 }
 
-- (BOOL)startServer;
-- (void)stopServer;
-
-// private
-- (NSString*)serverUrl;
-- (void)threadMain:(id)dummy;
-
-- (BOOL)readLine:(int)s line:(char *)line size:(int)size;
-- (char *)readBody:(int)s contentLength:(int)contentLength;
-- (void)handleHttpRequest:(int)s;
-- (void)send:(int)s string:(NSString *)string;
-- (void)requestHandler:(int)s filereq:(NSString*)filereq body:(char *)body bodylen:(int)bodylen;
+- (void)sendIndexHtml:(int)s;
+- (void)sendBackup:(int)s;
+- (void)restore:(int)s body:(char*)body bodylen:(int)bodylen;
 
 @end
