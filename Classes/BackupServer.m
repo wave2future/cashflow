@@ -135,7 +135,7 @@
     // Check data format
     if (strncmp(start, "SQLite format 3", 15) != 0) {
         [self send:s string:@"HTTP/1.0 200 OK\r\nContent-Type:text/html\r\n\r\n"];
-        [self send:s string:@"This is not itemshelf database file. Try again."];
+        [self send:s string:@"This is not cashflow database file. Try again."];
         return;
     }
 

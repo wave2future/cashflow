@@ -42,6 +42,7 @@
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
 
 "Export" = "Export";
+"Backup" = "Backup";
 "WebExportNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
 "BackupNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
 "Cannot start web server." = "Cannot start web server.";
