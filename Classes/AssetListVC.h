@@ -36,13 +36,16 @@
 #import <UIKit/UIKit.h>
 #import "DataModel.h"
 #import "TransactionListVC.h"
+#import "BackupServer.h"
 
 @interface AssetListViewController : UIViewController
-    <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate>
+<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView *tableView;
 
     NSArray *iconArray;
+    
+    BackupServer *backupServer;
 }
 
 @property(nonatomic,retain) UITableView *tableView;
@@ -50,5 +53,6 @@
 - (void)addAsset;
 - (IBAction)doAction:(id)sender;
 - (IBAction)showHelp:(id)sender;
+- (void)doBackup;
 
 @end

@@ -41,6 +41,7 @@
 #import "CategoryListVC.h"
 #import "ReportVC.h"
 #import "InfoVC.h"
+#import "BackupServer.h"
 
 @implementation AssetListViewController
 
@@ -260,6 +261,7 @@
                                                    NSLocalizedString(@"Weekly Report", @""),
                                                NSLocalizedString(@"Monthly Report", @""),
                                                NSLocalizedString(@"Edit Categories", @""),
+                                               NSLocalizedString(@"Backup", @""),
                                                nil];
     [as showInView:[self view]];
     [as release];
@@ -291,6 +293,10 @@
         categoryVC.isSelectMode = NO;
         [self.navigationController pushViewController:categoryVC animated:YES];
         break;
+
+    case 3:
+        [self doBackup];
+        break;
     }
 }
 
@@ -299,6 +305,44 @@
     InfoVC *v = [[InfoVC alloc] initWithNibName:@"InfoView" bundle:[NSBundle mainBundle]];
     [self.navigationController pushViewController:v animated:YES];
     [v release];
+}
+
+- (void)doBackup
+{
+    BOOL result = NO;
+    
+    backupServer = [[BackupServer alloc] init];
+    NSString *url = [backupServer serverUrl];
+    if (url != nil) {
+        result = [backupServer startServer];
+    }
+    
+    UIAlertView *v;
+    if (!result) {
+        [backupServer release];
+        v = [[UIAlertView alloc]
+             initWithTitle:@"Error"
+             message:NSLocalizedString(@"Cannot start web server.", @"")
+             delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
+             otherButtonTitles:nil];
+    } else {
+        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"BackupNotation", @""), url];
+        
+        v = [[UIAlertView alloc]
+             initWithTitle:NSLocalizedString(@"Backup and restore", @"")
+             message:message
+             delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
+             otherButtonTitles:nil];
+    }
+    [v show];
+    [v release];
+}
+
+- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [backupServer stopServer];
+    [backupServer release];
+    backupServer = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
