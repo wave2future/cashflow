@@ -1,4 +1,8 @@
+2009-01-10 : Takuya Murakami
+	* WebServer を ExportServer に変更
+
 2009-01-08 : Takuya Murakami
+	* ver 1.8
 	* de, fr, it, es, kr, zh-Hans, zh-Hant 追加
 	
 2009-01-05 : Takuya Murakami

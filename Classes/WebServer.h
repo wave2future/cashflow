@@ -1,8 +1,8 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
-  CashFlow for iPhone/iPod touch
+  ItemShelf for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008, ItemShelf Development Team. All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -35,18 +35,29 @@
 #import <UIKit/UIKit.h>
 #import <sys/socket.h>
 #import <netinet/in.h>
-#import "WebServer.h"
 
-@interface ExportServer : WebServer
+/**
+   Simple web server
+*/
+@interface WebServer : NSObject
 {
-    NSString *contentType;
-    NSString *contentBody;
-    NSString *filename;
+    int listen_sock;
+    struct sockaddr_in serv_addr;
+	
+    NSThread *thread;
 }
 
-@property(nonatomic,retain) NSString* contentType;
-@property(nonatomic,retain) NSString* contentBody;
-@property(nonatomic,retain) NSString* filename;
+- (BOOL)startServer;
+- (void)stopServer;
 
+// private
+- (NSString*)serverUrl;
+- (void)threadMain:(id)dummy;
+
+- (BOOL)readLine:(int)s line:(char *)line size:(int)size;
+- (char *)readBody:(int)s contentLength:(int)contentLength;
+- (void)handleHttpRequest:(int)s;
+- (void)send:(int)s string:(NSString *)string;
 - (void)requestHandler:(int)s filereq:(NSString*)filereq body:(char *)body bodylen:(int)bodylen;
+
 @end
