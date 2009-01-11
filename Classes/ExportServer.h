@@ -36,7 +36,7 @@
 #import <sys/socket.h>
 #import <netinet/in.h>
 
-@interface WebServer : NSObject
+@interface ExportServer : NSObject
 {
     int listen_sock;
     struct sockaddr_in serv_addr;

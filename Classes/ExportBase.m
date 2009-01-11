@@ -89,7 +89,7 @@
     BOOL result = NO;
 
     if (webServer == nil) {
-        webServer = [[WebServer alloc] init];
+        webServer = [[ExportServer alloc] init];
     }
     webServer.contentBody = contentBody;
     webServer.contentType = contentType;

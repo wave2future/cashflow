@@ -54,7 +54,7 @@
 		3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3EC0C8430EC35F0E00149755 /* GenEditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */; };
 		3EC0C8450EC35F2900149755 /* GenEditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0C8440EC35F2900149755 /* GenEditTypeView.xib */; };
-		3ECF38040EA9CF4900420060 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* WebServer.m */; };
+		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
@@ -145,8 +145,8 @@
 		3EC0C8410EC35F0500149755 /* GenEditTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTypeVC.h; sourceTree = "<group>"; };
 		3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTypeVC.m; sourceTree = "<group>"; };
 		3EC0C8440EC35F2900149755 /* GenEditTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = GenEditTypeView.xib; path = Resources/GenEditTypeView.xib; sourceTree = "<group>"; };
-		3ECF38030EA9CF4900420060 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WebServer.m; path = Classes/WebServer.m; sourceTree = "<group>"; };
-		3ECF38080EA9CFB600420060 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WebServer.h; path = Classes/WebServer.h; sourceTree = "<group>"; };
+		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExportServer.m; path = Classes/ExportServer.m; sourceTree = "<group>"; };
+		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExportServer.h; path = Classes/ExportServer.h; sourceTree = "<group>"; };
 		3ED8D2F30EC72F9000BC723D /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Category.h; path = Classes/Category.h; sourceTree = "<group>"; };
 		3ED8D2F40EC72F9E00BC723D /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Category.m; path = Classes/Category.m; sourceTree = "<group>"; };
 		3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListVC.h; sourceTree = "<group>"; };
@@ -335,8 +335,8 @@
 				3E2710420EAA196A00E57E51 /* ExportCsv.m */,
 				3E2710430EAA196A00E57E51 /* ExportOfx.h */,
 				3E2710440EAA196A00E57E51 /* ExportOfx.m */,
-				3ECF38080EA9CFB600420060 /* WebServer.h */,
-				3ECF38030EA9CF4900420060 /* WebServer.m */,
+				3ECF38080EA9CFB600420060 /* ExportServer.h */,
+				3ECF38030EA9CF4900420060 /* ExportServer.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -445,7 +445,7 @@
 				3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */,
 				3EDDADBE0E89280800268AED /* InfoVC.m in Sources */,
 				3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */,
-				3ECF38040EA9CF4900420060 /* WebServer.m in Sources */,
+				3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */,
 				3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */,
 				3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */,
 				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,

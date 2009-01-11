@@ -36,7 +36,7 @@
 #import <UIKit/UIKit.h>
 #import "ExportBase.h"
 #import "Transaction.h"
-#import "WebServer.h"
+#import "ExportServer.h"
 
 @interface ExportOfx : ExportBase <UIAlertViewDelegate> {
     NSDateFormatter *df;

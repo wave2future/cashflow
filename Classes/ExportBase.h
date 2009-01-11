@@ -34,12 +34,12 @@
 
 
 #import <UIKit/UIKit.h>
-#import "WebServer.h"
+#import "ExportServer.h"
 
 @interface ExportBase : NSObject <UIAlertViewDelegate> {
     NSDate *firstDate;
 	
-    WebServer *webServer;
+    ExportServer *webServer;
 }
 
 @property(nonatomic,retain) NSDate *firstDate;

@@ -32,12 +32,12 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "WebServer.h"
+#import "ExportServer.h"
 #import <arpa/inet.h>
 
 #define PORT_NUMBER		8888
 
-@implementation WebServer
+@implementation ExportServer
 
 @synthesize contentBody, contentType, filename;
 
