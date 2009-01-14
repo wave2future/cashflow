@@ -38,35 +38,73 @@
 
 @implementation PinController
 
+#define FIRST_PIN_CHECK 0
+#define ENTER_CURRENT_PIN 1
+#define ENTER_NEW_PIN1 2
+#define ENTER_NEW_PIN2 3
+
+- (id)init
+{
+    self = [super init];
+    if (self) {
+        state = -1;
+        self.newPin = nil;
+        self.navigationController = nil;
+
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        self.pin = [defaults stringForKey:@"PinCode"];
+
+        if (pin && pin.length == 0) {
+            self.pin = nil;
+        }
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [pin release];
+    [newPin release];
+    [navigationController release];
+    [super dealloc];
+}
+    
+- (void)_allDone
+{
+    [navigationController dismissModalViewControllerAnimated:YES];
+    [self autorelease];
+}
+
 - (void)firstPinCheck:(UIViewController *)currentVc
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSString *pin = [defaults stringForKey:@"PinCode"];
-    if (pin == nil || pin.length == 0) return; // do nothing
+    ASSERT(state == -1);
+
+    if (pin == nil) return; // do nothing
+
+    [self retain];
 
     PinViewControlelr *vc = [self _getPinViewController];
 
     vc.title = NSLocalizedString(@"Enter PIN", @"");
     vc.enableCancel = NO;
-    vc.pin = pin;
     vc.delegate = self;
 
-    state = ENTER_FIRST_PIN;
+    state = FIRST_PIN_CHECK;
 
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
-    [currentVc presentModalViewController:nv animated:NO];
-    [nv release];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [currentVc presentModalViewController:navigationController animated:NO];
 }
 
 - (void)modifyPin:(UIViewController *)currentVc
 {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    self.pin = [defaults stringForKey:@"PinCode"];
+    ASSERT(state == -1);
+
+    [self retain];
 
     vc = [self _getPinViewController];
     vc.delegate = self;
 
-    if (pin != nil && pin.length > 0) {
+    if (pin != nil) {
         // check current pin
         state = ENTER_CURRENT_PIN;
         vc.title = NSLocalizedString(@"Enter PIN", @"");
@@ -77,37 +115,34 @@
         vc.title = NSLocalizedString(@"Enter new PIN", @"");
     }
         
-    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
+    navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     [currentVc presentModalViewController:nv animated:YES];
-    [nv release];
 }
 
-- (BOOL)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel
+- (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel
 {
+    if (isCancel) {
+        [self _allDone];
+        return;
+    }
+
     BOOL retry = NO;
-
-    if (isCancel) return result;
-
+    BOOL isBadPin = NO;
     PinViewController *newvc = nil;
 
     switch (state) {
-    case ENTER_FIRST_PIN:
-        if (![vc.value isEqualToString:self.pin]) {
-            // invalid pin
-            UIAlertView *v = [[UIAlertView alloc]
-                                 initWithTitle:@"Invalid PIN"
-                                 message:NSLocalizedString(@"PIN code does not match.", @"")
-                                 delegate:nil
-                                 cancelButtonTitle:@"Close"
-                                 otherButtonTitles:nil];
+    case FIRST_PIN_CHECK:
+    case ENTER_CURRENT_PIN:
+        ASSERT(pin != nil);
+        if (![vc.value isEqualToString:pin]) {
+            isBadPin = YES;
             retry = YES;
         }
-        break;
-
-    case ENTER_CURRENT_PIN:
-        state = ENTER_NEW_PIN1;
-        newvc = [self _getPinViewController];        
-        newvc.title = NSLocalizedString(@"Enter new PIN", @"");
+        else if (state == ENTER_CURRENT_PIN) {
+            state = ENTER_NEW_PIN1;
+            newvc = [self _getPinViewController];        
+            newvc.title = NSLocalizedString(@"Enter new PIN", @"");
+        }
         break;
 
     case ENTER_NEW_PIN1:
@@ -123,55 +158,40 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:newPin forKey:@"PinCode"];
         } else {
-            // invalid pin
-            UIAlertView *v = [[UIAlertView alloc]
-                                 initWithTitle:@"Invalid PIN"
-                                 message:NSLocalizedString(@"PIN code does not match.", @"")
-                                 delegate:nil
-                                 cancelButtonTitle:@"Close"
-                                 otherButtonTitles:nil];
+            isBadPin = YES;
         }
         break;
     }
 
+    // invalid pin
+    if (isBadPin) {
+        UIAlertView *v = [[UIAlertView alloc]
+                             initWithTitle:@"Invalid PIN"
+                             message:NSLocalizedString(@"PIN code does not match.", @"")
+                             delegate:nil
+                             cancelButtonTitle:@"Close"
+                             otherButtonTitles:nil];
+        [v show];
+        [v release];
+    }
     if (retry) {
         return;
     }
 
-    // close current view if needed
-    if ([vc.navigationController.rootViewController != vc]) {
-        [vc popViewControllerAnimated:NO];
-    }
-
-    // show new vc if needed
+    // Show new vc if needed, otherwise all done.
     if (newvc) {
         newvc.delegate = self;
-        [vc.navigationController pushViewController:newvc animated:YES];
+        [navigationController pushViewController:newvc animated:YES];
+    } else {
+        [self _allDone];
     }
-
-    // all done?
-    if (state == ENTER_FIRST_PIN || state == ENTER_NEW_PIN2) {
-        [vc.navigationController dismissModalViewControllerAnimated:YES];
-    }
-
-    return result;
 }
-
 
 - (PinViewController *)_getPinViewController
 {
     PinViewController *vc = [[PinViewController alloc] initWithNibName:@"PinView.xib" bundle:nil];
     [vc autorelease];
     return vc;
-}
-
-- (void)dismiss
-{
-    if (self.navigationController.rootViewController == self) {
-        [self.navigationController dismissModalViewControllerAnimated:NO];
-    } else {
-        [self.navigationController popViewControllerAnimated:NO];
-    }
 }
 
 @end
