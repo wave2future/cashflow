@@ -33,7 +33,6 @@
 */
 
 #import "Pin.h"
-#import "PinVC.h"
 #import "AppDelegate.h"
 
 @implementation PinController

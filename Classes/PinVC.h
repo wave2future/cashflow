@@ -40,7 +40,7 @@
 @class PinViewController;
 
 @interface PinViewDelegate
-- (BOOL)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel;
+- (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel;
 @end
 
 @interface PinViewController : UIViewController 
