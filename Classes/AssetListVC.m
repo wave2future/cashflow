@@ -42,6 +42,7 @@
 #import "ReportVC.h"
 #import "InfoVC.h"
 #import "BackupServer.h"
+#import "PinController.h"
 
 @implementation AssetListViewController
 
@@ -94,6 +95,11 @@
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
     }
+
+#ifndef FREE_VERSION
+    PinController *pinController = [[[PinController alloc] init] autorelease];
+    [pinController firstPinCheck:self];
+#endif
 }
 
 - (void)dealloc {
@@ -262,6 +268,9 @@
                                                NSLocalizedString(@"Monthly Report", @""),
                                                NSLocalizedString(@"Edit Categories", @""),
                                                NSLocalizedString(@"Backup", @""),
+#ifndef FREE_VERSION
+                                               NSLocalizedString(@"Set PIN Code", @""),
+#endif
                                                nil];
     [as showInView:[self view]];
     [as release];
@@ -297,6 +306,13 @@
     case 3:
         [self doBackup];
         break;
+
+#ifndef FREE_VERSION
+    case 4:
+        PinController *pinController = [[[PinController alloc] init] autorelease];
+        [pinController modifyPin:self];
+        break;
+#endif
     }
 }
 

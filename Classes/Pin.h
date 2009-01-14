@@ -49,8 +49,9 @@
 @property(nonatmoic,retain) NSString *newPin;
 @property(nonatomic,retain) UINavigationController *navigationController;
 
-- (void)firstPinCheck;
-- (void)modifyPin;
+- (void)firstPinCheck:(UIViewController *)currentVc;
+- (void)modifyPin:(UIViewController *)currentVc;
+
 - (PinViewController *)_getPinViewController;
 
 @end
