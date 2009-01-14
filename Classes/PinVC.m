@@ -32,6 +32,8 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import <AudioToolbox/AudioToolbox.h>
+
 #import "PinVC.h"
 #import "AppDelegate.h"
 
