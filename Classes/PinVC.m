@@ -113,20 +113,18 @@
 
 - (void)doneAction
 {
-    BOOL result = [delegate pinViewDelegate:self isCancel:NO];
-    if (result) {
-        // ok, done.
-        [self.navigationController popViewControllerAnimated:NO];
-    } else {
-        // something bad (invalid pin)
-        value.text = nil;
-    }
+    [delegate pinViewDelegate:self isCancel:NO];
+
+    [value setString:@""];
+    [valueLabel.text = @""];
 }
 
 - (void)cancelAction
 {
     [delegate pinViewDelegate:self isCancel:YES];
-    [self.navigationController popViewControllerAnimated:NO];
+
+    [value setString:@""];
+    [valueLabel.text = @""];
 }
 
 @end

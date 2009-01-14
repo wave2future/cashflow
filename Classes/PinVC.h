@@ -73,5 +73,6 @@
 - (IBAction)onNumButtonPressed:(id)sender;
 - (void)doneAction:(id)sender;
 - (void)cancelAction:(id)sender;
+- (void)_dismiss;
 
 @end
