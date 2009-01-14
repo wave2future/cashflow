@@ -36,6 +36,7 @@
 #import "AppDelegate.h"
 
 @implementation PinController
+@synthesize pin, newPin;
 
 #define FIRST_PIN_CHECK 0
 #define ENTER_CURRENT_PIN 1
@@ -48,7 +49,7 @@
     if (self) {
         state = -1;
         self.newPin = nil;
-        self.navigationController = nil;
+        navigationController = nil;
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.pin = [defaults stringForKey:@"PinCode"];
@@ -82,7 +83,7 @@
 
     [self retain];
 
-    PinViewControlelr *vc = [self _getPinViewController];
+    PinViewController *vc = [self _getPinViewController];
 
     vc.title = NSLocalizedString(@"Enter PIN", @"");
     vc.enableCancel = NO;
@@ -100,14 +101,13 @@
 
     [self retain];
 
-    vc = [self _getPinViewController];
+    PinViewController *vc = [self _getPinViewController];
     vc.delegate = self;
 
     if (pin != nil) {
         // check current pin
         state = ENTER_CURRENT_PIN;
         vc.title = NSLocalizedString(@"Enter PIN", @"");
-        vc.pin = pin;
     } else {
         // enter 1st pin
         state = ENTER_NEW_PIN1;
@@ -115,7 +115,7 @@
     }
         
     navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-    [currentVc presentModalViewController:nv animated:YES];
+    [currentVc presentModalViewController:navigationController animated:YES];
 }
 
 - (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel

@@ -39,7 +39,7 @@
 
 @class PinViewController;
 
-@interface PinViewDelegate
+@protocol PinViewDelegate
 - (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel;
 @end
 
@@ -65,7 +65,7 @@
     id<PinViewDelegate> delegate;
 }
 
-@property(nonatmoic,assign) id<PinViewDelegate> delegate;
+@property(nonatomic,assign) id<PinViewDelegate> delegate;
 @property(nonatomic,readonly) NSString *value;
 @property(nonatomic,assign) BOOL enableCancel;
 
@@ -73,6 +73,5 @@
 - (IBAction)onNumButtonPressed:(id)sender;
 - (void)doneAction:(id)sender;
 - (void)cancelAction:(id)sender;
-- (void)_dismiss;
 
 @end

@@ -36,6 +36,7 @@
 #import "AppDelegate.h"
 
 @implementation PinViewController
+@synthesize value, enableCancel, delegate;
 
 - (void)viewDidLoad
 {
@@ -48,7 +49,7 @@
              target:self
              action:@selector(doneAction:)] autorelease];
 
-    self.navigationItem.leftBarButtonitem = nil;
+    self.navigationItem.leftBarButtonItem = nil;
     if (enableCancel) {
         self.navigationItem.rightBarButtonItem = 
             [[[UIBarButtonItem alloc]
@@ -60,7 +61,6 @@
 
 - (void)dealloc
 {
-    [pin release];
     [value release];
     [super dealloc];
 }
@@ -111,20 +111,20 @@
     [p release];
 }
 
-- (void)doneAction
+- (void)doneAction:(id)sender
 {
-    [delegate pinViewDelegate:self isCancel:NO];
+    [delegate pinViewFinished:self isCancel:NO];
 
     [value setString:@""];
-    [valueLabel.text = @""];
+    valueLabel.text = @"";
 }
 
-- (void)cancelAction
+- (void)cancelAction:(id)sender
 {
-    [delegate pinViewDelegate:self isCancel:YES];
+    [delegate pinViewFinished:self isCancel:YES];
 
     [value setString:@""];
-    [valueLabel.text = @""];
+    valueLabel.text = @"";
 }
 
 @end

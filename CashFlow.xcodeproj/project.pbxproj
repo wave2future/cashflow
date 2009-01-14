@@ -45,6 +45,8 @@
 		3E9A3B390EC47AA0005A4664 /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
 		3E9A3B3B0EC47AAB005A4664 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
 		3E9A3B3D0EC47ABA005A4664 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
+		3E9B99810F1E0480000288CF /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
+		3E9B99820F1E0480000288CF /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
 		3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
@@ -133,6 +135,8 @@
 		3E9A3B380EC47AA0005A4664 /* cash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cash.png; path = images/cash.png; sourceTree = "<group>"; };
 		3E9A3B3A0EC47AAB005A4664 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bank.png; path = images/bank.png; sourceTree = "<group>"; };
 		3E9A3B3C0EC47ABA005A4664 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = card.png; path = images/card.png; sourceTree = "<group>"; };
+		3E9B997F0F1E0480000288CF /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
+		3E9B99800F1E0480000288CF /* PinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinVC.m; sourceTree = "<group>"; };
 		3EA011310EC344CC008CEEB7 /* AssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = AssetListView.xib; path = Resources/AssetListView.xib; sourceTree = "<group>"; };
 		3EA0114C0EC3461A008CEEB7 /* AssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetVC.h; sourceTree = "<group>"; };
 		3EA0114D0EC34626008CEEB7 /* AssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetVC.m; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 				3EDDADBD0E89280800268AED /* InfoVC.m */,
 				3EDDAE7C0E8E468700268AED /* ExportVC.h */,
 				3EDDAE7D0E8E468700268AED /* ExportVC.m */,
+				3E9B997F0F1E0480000288CF /* Pin.m */,
+				3E9B99800F1E0480000288CF /* PinVC.m */,
 			);
 			name = Controller;
 			path = Classes;
@@ -475,6 +481,8 @@
 				3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */,
 				3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */,
 				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
+				3E9B99810F1E0480000288CF /* Pin.m in Sources */,
+				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

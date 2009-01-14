@@ -42,7 +42,7 @@
 #import "ReportVC.h"
 #import "InfoVC.h"
 #import "BackupServer.h"
-#import "PinController.h"
+#import "Pin.h"
 
 @implementation AssetListViewController
 
@@ -280,7 +280,8 @@
 {
     ReportViewController *reportVC;
     CategoryListViewController *categoryVC;
-	
+    PinController *pinController;
+    
     switch (buttonIndex) {
     case 0:
     case 1:
@@ -309,7 +310,7 @@
 
 #ifndef FREE_VERSION
     case 4:
-        PinController *pinController = [[[PinController alloc] init] autorelease];
+        pinController = [[[PinController alloc] init] autorelease];
         [pinController modifyPin:self];
         break;
 #endif

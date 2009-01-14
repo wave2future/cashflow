@@ -40,14 +40,14 @@
 
 @interface PinController : NSObject <PinViewDelegate>
 {
+    int state;
     NSString *pin;
     NSString *newPin;
     UINavigationController *navigationController;
 }
 
-@property(nonatmoic,retain) NSString *pin;
-@property(nonatmoic,retain) NSString *newPin;
-@property(nonatomic,retain) UINavigationController *navigationController;
+@property(nonatomic,retain) NSString *pin;
+@property(nonatomic,retain) NSString *newPin;
 
 - (void)firstPinCheck:(UIViewController *)currentVc;
 - (void)modifyPin:(UIViewController *)currentVc;
