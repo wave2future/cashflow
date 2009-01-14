@@ -53,9 +53,9 @@
 
     self.navigationItem.leftBarButtonItem = nil;
     if (enableCancel) {
-        self.navigationItem.rightBarButtonItem = 
+        self.navigationItem.leftBarButtonItem = 
             [[[UIBarButtonItem alloc]
-                 initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                 initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                  target:self
                  action:@selector(cancelAction:)] autorelease];
     }

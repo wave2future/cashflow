@@ -87,7 +87,6 @@
 
     vc.title = NSLocalizedString(@"Enter PIN", @"");
     vc.enableCancel = NO;
-    vc.delegate = self;
 
     state = FIRST_PIN_CHECK;
 
@@ -102,8 +101,7 @@
     [self retain];
 
     PinViewController *vc = [self _getPinViewController];
-    vc.delegate = self;
-
+    
     if (pin != nil) {
         // check current pin
         state = ENTER_CURRENT_PIN;
@@ -145,13 +143,14 @@
         break;
 
     case ENTER_NEW_PIN1:
-        newPin = vc.value;
+        self.newPin = [NSString stringWithString:vc.value]; // TBD
         state = ENTER_NEW_PIN2;
         newvc = [self _getPinViewController];        
         newvc.title = NSLocalizedString(@"Retype new PIN", @"");
         break;
 
     case ENTER_NEW_PIN2:
+        NSLog(@"%@", newPin);
         if ([vc.value isEqualToString:newPin]) {
             // set new pin
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -179,7 +178,6 @@
 
     // Show new vc if needed, otherwise all done.
     if (newvc) {
-        newvc.delegate = self;
         [navigationController pushViewController:newvc animated:YES];
     } else {
         [self _allDone];
@@ -188,7 +186,9 @@
 
 - (PinViewController *)_getPinViewController
 {
-    PinViewController *vc = [[PinViewController alloc] initWithNibName:@"PinView.xib" bundle:nil];
+    PinViewController *vc = [[PinViewController alloc] initWithNibName:@"PinView" bundle:nil];
+    vc.enableCancel = YES;
+    vc.delegate = self;
     [vc autorelease];
     return vc;
 }
