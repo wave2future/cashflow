@@ -1,6 +1,7 @@
 2009-01-15 : Takuya Murakami
-	* AssetListView の ActionSheet を分割
-	
+	* AssetListView の ActionSheet を分割 (TBDツールバー変更)
+	* AssetListView	から資産を削除できるようにした　(TBD AssetView での削除を廃止)
+
 2009-01-14 : Takuya Murakami
 	* PIN コード設定追加
 
