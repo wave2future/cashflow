@@ -5,6 +5,9 @@
 2009-01-14 : Takuya Murakami
 	* PIN コード設定追加
 
+2009-01-11 : Takuya Murakami
+	* バックアップ機能追加
+
 2009-01-10 : Takuya Murakami
 	* WebServer を ExportServer に変更
 
