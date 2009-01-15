@@ -60,6 +60,14 @@
 
 "Cancel" = "Cancel";
 
+/* PIN */
+"Set PIN Code" = "Set PIN Code";
+"Enter PIN" = "Enter PIN";
+"Enter PIN" = "Enter new PIN";
+"Retype new PIN" = "Retype new PIN";
+"Invalid PIN" = "Invalid PIN";
+"PIN code does not match." = "PIN code does not match.";
+
 /* Asset types */
 "Cash" = "Cash";
 "Bank Account" = "Bank Account";
