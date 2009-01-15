@@ -258,20 +258,40 @@
     [theDataModel reorderAsset:from.row to:to.row];
 }
 
-// action sheet
+//////////////////////////////////////////////////////////////////////////////////////////
+// Action Sheet 処理
+
+static int actionSheetType;
+
 - (void)doAction:(id)sender
 {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
-                                               cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                               destructiveButtonTitle:nil otherButtonTitles:
-                                                   NSLocalizedString(@"Weekly Report", @""),
-                                               NSLocalizedString(@"Monthly Report", @""),
-                                               NSLocalizedString(@"Edit Categories", @""),
-                                               NSLocalizedString(@"Backup", @""),
+    actionSheetType = 0;
+    UIActionSheet *as =
+        [[UIActionSheet alloc]
+            initWithTitle:@"" delegate:self 
+            cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+            destructiveButtonTitle:nil
+            otherButtonTitles:NSLocalizedString(@"Weekly Report", @""),
+            NSLocalizedString(@"Monthly Report", @""),
+            nil];
+    [as showInView:[self view]];
+    [as release];
+}
+
+- (void)doConfig:(id)sender
+{
+    actionSheetType = 1;
+    UIActionSheet *as =
+        [[UIActionSheet alloc]
+            initWithTitle:@"" delegate:self 
+            cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+            destructiveButtonTitle:nil
+            otherButtonTitles:NSLocalizedString(@"Edit Categories", @""),
+            NSLocalizedString(@"Backup", @""),
 #ifndef FREE_VERSION
-                                               NSLocalizedString(@"Set PIN Code", @""),
+            NSLocalizedString(@"Set PIN Code", @""),
 #endif
-                                               nil];
+            nil];
     [as showInView:[self view]];
     [as release];
 }
@@ -282,38 +302,42 @@
     CategoryListViewController *categoryVC;
     PinController *pinController;
     
-    switch (buttonIndex) {
-    case 0:
-    case 1:
-        reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
-        if (buttonIndex == 0) {
-            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-            [reportVC generateReport:REPORT_WEEKLY asset:nil];
-        } else {
-            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-            [reportVC generateReport:REPORT_MONTHLY asset:nil];
+    if (actionSheetType = 0) {
+        switch (buttonIndex) {
+        case 0:
+        case 1:
+            reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+            if (buttonIndex == 0) {
+                reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+                [reportVC generateReport:REPORT_WEEKLY asset:nil];
+            } else {
+                reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+                [reportVC generateReport:REPORT_MONTHLY asset:nil];
+            }
+            [self.navigationController pushViewController:reportVC animated:YES];
+            break;
         }
-        [self.navigationController pushViewController:reportVC animated:YES];
-        break;
+    } else {
+        switch (buttonIndex) {
+        case 0:
+            categoryVC = [[[CategoryListViewController alloc] 
+                              initWithNibName:@"CategoryListView" 
+                              bundle:[NSBundle mainBundle]] autorelease];
+            categoryVC.isSelectMode = NO;
+            [self.navigationController pushViewController:categoryVC animated:YES];
+            break;
 
-    case 2:
-        categoryVC = [[[CategoryListViewController alloc] 
-                          initWithNibName:@"CategoryListView" 
-                          bundle:[NSBundle mainBundle]] autorelease];
-        categoryVC.isSelectMode = NO;
-        [self.navigationController pushViewController:categoryVC animated:YES];
-        break;
-
-    case 3:
-        [self doBackup];
-        break;
+        case 1:
+            [self doBackup];
+            break;
 
 #ifndef FREE_VERSION
-    case 4:
-        pinController = [[[PinController alloc] init] autorelease];
-        [pinController modifyPin:self];
-        break;
+        case 2:
+            pinController = [[[PinController alloc] init] autorelease];
+            [pinController modifyPin:self];
+            break;
 #endif
+        }
     }
 }
 
