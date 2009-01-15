@@ -292,7 +292,9 @@ static int actionSheetType;
 {
     ReportViewController *reportVC;
     CategoryListViewController *categoryVC;
+#ifndef FREE_VERSION
     PinController *pinController;
+#endif
     
     if (actionSheetType == 0) {
         switch (buttonIndex) {
