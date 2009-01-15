@@ -164,7 +164,7 @@
     // invalid pin
     if (isBadPin) {
         UIAlertView *v = [[UIAlertView alloc]
-                             initWithTitle:@"Invalid PIN"
+                             initWithTitle:NSLocalizedString(@"Invalid PIN", @"")
                              message:NSLocalizedString(@"PIN code does not match.", @"")
                              delegate:nil
                              cancelButtonTitle:@"Close"

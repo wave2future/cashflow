@@ -52,7 +52,7 @@
 
 - (void)addAsset;
 - (IBAction)doAction:(id)sender;
-- (IBAction)doConfig:(id)sender
+- (IBAction)doConfig:(id)sender;
 - (IBAction)showHelp:(id)sender;
 - (void)doBackup;
 

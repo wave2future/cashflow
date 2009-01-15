@@ -294,7 +294,7 @@ static int actionSheetType;
     CategoryListViewController *categoryVC;
     PinController *pinController;
     
-    if (actionSheetType = 0) {
+    if (actionSheetType == 0) {
         switch (buttonIndex) {
         case 0:
         case 1:

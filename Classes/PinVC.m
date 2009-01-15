@@ -107,7 +107,7 @@
     len = value.length;
     NSMutableString *p = [[NSMutableString alloc] initWithCapacity:len];
     for (int i = 0; i < len; i++) {
-        [p appendString:@"*"];
+        [p appendString:@"●"];
     }
     valueLabel.text = p;
     [p release];
