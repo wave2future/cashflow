@@ -223,28 +223,20 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return UITableViewCellEditingStyleNone;
+    // return UITableViewCellEditingStyleNone;
+    return UITableViewCellEditingStyleDelete;
 }
 
 // 削除処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-#if 0
-    int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
-
-    if (transactionIndex < 0) {
-        // initial balance cell : do not delete!
-        return;
-    }
-	
     if (style == UITableViewCellEditingStyleDelete) {
-        [asset deleteTransactionAt:transactionIndex];
+        Asset *asset = [theDataModel assetAtIndex:indexPath.row];
+        [theDataModel deleteAsset:asset];
 	
         [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        [self updateBalance];
-        [self.tableView reloadData];
+        //[self.tableView reloadData];
     }
-#endif
 }
 
 // 並べ替え処理
