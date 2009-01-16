@@ -1,5 +1,7 @@
-2009-01-16 : Takuya Murakami (ver 1.9, r299)
+2009-01-16 : Takuya Murakami (ver 1.9, r303)
 	* ver 1.9
+	* Copyright 表示変更
+	* 資産削除時の確認処理追加
 	
 2009-01-15 : Takuya Murakami
 	* AssetListView の ActionSheet を分割 (TBDツールバー変更)
