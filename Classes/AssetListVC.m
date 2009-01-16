@@ -280,14 +280,13 @@
             otherButtonTitles:NSLocalizedString(@"Weekly Report", @""),
             NSLocalizedString(@"Monthly Report", @""),
             nil];
-    [as showInView:[self view]];
-    [as release];
+    [asReport showInView:[self view]];
+    [asReport release];
 }
 
 - (void)_actionReport:(NSInteger)buttonIndex
 {
     ReportViewController *reportVC;
-    CategoryListViewController *categoryVC;
 
     switch (buttonIndex) {
     case 0:
@@ -318,12 +317,13 @@
             NSLocalizedString(@"Set PIN Code", @""),
 #endif
             nil];
-    [as showInView:[self view]];
-    [as release];
+    [asConfig showInView:[self view]];
+    [asConfig release];
 }
 
 - (void)_actionConfig:(NSInteger)buttonIndex
 {
+    CategoryListViewController *categoryVC;
 #ifndef FREE_VERSION
     PinController *pinController;
 #endif
@@ -354,12 +354,15 @@
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (as == asReport) {
+        asReport = nil;
         [self _actionReport:buttonIndex];
     }
     else if (as == asConfig) {
+        asConfig = nil;
         [self _actionConfig:buttonIndex];
     }
     else if (as == asDelete) {
+        asDelete = nil;
         [self _actionDelete:buttonIndex];
     }
     else {

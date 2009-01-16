@@ -53,6 +53,7 @@
                                                   action:@selector(saveAction)] autorelease];
 
     // ボタン生成
+#if 0
     UIButton *b;
     UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
 				
@@ -66,6 +67,7 @@
     [b setTitle:NSLocalizedString(@"Delete Asset", @"") forState:UIControlStateNormal];
     [b addTarget:self action:@selector(delButtonTapped) forControlEvents:UIControlEventTouchUpInside];
     delButton = [b retain];
+#endif
 }
 
 - (void)dealloc
@@ -248,6 +250,7 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // 削除処理
+#if 0
 - (void)delButtonTapped
 {
     UIActionSheet *as = [[UIActionSheet alloc]
@@ -270,7 +273,7 @@
     [theDataModel deleteAsset:asset];
     [self.navigationController popViewControllerAnimated:YES];
 }
-
+#endif
 
 ////////////////////////////////////////////////////////////////////////////////
 // 保存処理
