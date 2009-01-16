@@ -42,17 +42,28 @@
 <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView *tableView;
-
     NSArray *iconArray;
-    
     BackupServer *backupServer;
+
+    UIActionSheet *asReport;
+    UIActionSheet *asConfig;
+    UIActionSheet *asDelete;
+
+    Asset *assetToBeDelete;
 }
 
 @property(nonatomic,retain) UITableView *tableView;
 
 - (void)addAsset;
+
+- (void)_actionDelete:(NSInteger)buttonIndex;
+
 - (IBAction)doAction:(id)sender;
+- (void)_actionReport:(NSInteger)buttonIndex;
+
 - (IBAction)doConfig:(id)sender;
+- (void)_actionConfig:(NSInteger)buttonIndex;
+
 - (IBAction)showHelp:(id)sender;
 - (void)doBackup;
 

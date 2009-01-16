@@ -231,12 +231,29 @@
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (style == UITableViewCellEditingStyleDelete) {
-        Asset *asset = [theDataModel assetAtIndex:indexPath.row];
-        [theDataModel deleteAsset:asset];
-	
-        [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        //[self.tableView reloadData];
+        assetToBeDelete = [theDataModel assetAtIndex:indexPath.row];
+
+        asDelete =
+            [[UIActionSheet alloc]
+                initWithTitle:NSLocalizedString(@"ReallyDeleteAsset", @"")
+                delegate:self
+                cancelButtonTitle:@"Cancel"
+                destructiveButtonTitle:NSLocalizedString(@"Delete Asset", @"")
+                otherButtonTitles:nil];
+        asDelete.actionSheetStyle = UIActionSheetStyleDefault;
+        [asDelete showInView:self.view];
+        [asDelete release];
     }
+}
+
+- (void)_actionDelete:(NSInteger)buttonIndex
+{
+    if (buttonIndex != 0) {
+        return; // cancelled;
+    }
+	
+    [theDataModel deleteAsset:assetToBeDelete];
+    [self.tableView reloadData];
 }
 
 // 並べ替え処理
@@ -253,12 +270,9 @@
 //////////////////////////////////////////////////////////////////////////////////////////
 // Action Sheet 処理
 
-static int actionSheetType;
-
 - (void)doAction:(id)sender
 {
-    actionSheetType = 0;
-    UIActionSheet *as =
+    asReport = 
         [[UIActionSheet alloc]
             initWithTitle:@"" delegate:self 
             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
@@ -270,10 +284,30 @@ static int actionSheetType;
     [as release];
 }
 
+- (void)_actionReport:(NSInteger)buttonIndex
+{
+    ReportViewController *reportVC;
+    CategoryListViewController *categoryVC;
+
+    switch (buttonIndex) {
+    case 0:
+    case 1:
+        reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+        if (buttonIndex == 0) {
+            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+            [reportVC generateReport:REPORT_WEEKLY asset:nil];
+        } else {
+            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+            [reportVC generateReport:REPORT_MONTHLY asset:nil];
+        }
+        [self.navigationController pushViewController:reportVC animated:YES];
+        break;
+    }
+}
+
 - (void)doConfig:(id)sender
 {
-    actionSheetType = 1;
-    UIActionSheet *as =
+    asConfig = 
         [[UIActionSheet alloc]
             initWithTitle:@"" delegate:self 
             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
@@ -288,50 +322,48 @@ static int actionSheetType;
     [as release];
 }
 
-- (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)_actionConfig:(NSInteger)buttonIndex
 {
-    ReportViewController *reportVC;
-    CategoryListViewController *categoryVC;
 #ifndef FREE_VERSION
     PinController *pinController;
 #endif
-    
-    if (actionSheetType == 0) {
-        switch (buttonIndex) {
-        case 0:
-        case 1:
-            reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
-            if (buttonIndex == 0) {
-                reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-                [reportVC generateReport:REPORT_WEEKLY asset:nil];
-            } else {
-                reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-                [reportVC generateReport:REPORT_MONTHLY asset:nil];
-            }
-            [self.navigationController pushViewController:reportVC animated:YES];
-            break;
-        }
-    } else {
-        switch (buttonIndex) {
-        case 0:
-            categoryVC = [[[CategoryListViewController alloc] 
-                              initWithNibName:@"CategoryListView" 
-                              bundle:[NSBundle mainBundle]] autorelease];
-            categoryVC.isSelectMode = NO;
-            [self.navigationController pushViewController:categoryVC animated:YES];
-            break;
 
-        case 1:
-            [self doBackup];
-            break;
+    switch (buttonIndex) {
+    case 0:
+        categoryVC = [[[CategoryListViewController alloc] 
+                          initWithNibName:@"CategoryListView" 
+                          bundle:[NSBundle mainBundle]] autorelease];
+        categoryVC.isSelectMode = NO;
+        [self.navigationController pushViewController:categoryVC animated:YES];
+        break;
+
+    case 1:
+        [self doBackup];
+        break;
 
 #ifndef FREE_VERSION
-        case 2:
-            pinController = [[[PinController alloc] init] autorelease];
-            [pinController modifyPin:self];
-            break;
+    case 2:
+        pinController = [[[PinController alloc] init] autorelease];
+        [pinController modifyPin:self];
+        break;
 #endif
-        }
+    }
+}
+
+// actionSheet ハンドラ
+- (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (as == asReport) {
+        [self _actionReport:buttonIndex];
+    }
+    else if (as == asConfig) {
+        [self _actionConfig:buttonIndex];
+    }
+    else if (as == asDelete) {
+        [self _actionDelete:buttonIndex];
+    }
+    else {
+        ASSERT(NO);
     }
 }
 
