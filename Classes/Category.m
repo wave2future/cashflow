@@ -37,10 +37,16 @@
 
 @implementation Category
 @synthesize pkey, name, sorder;
+
+- (void)dealloc
+{
+    [name release];
+    [super dealloc];
+}
+
 @end
 
 @implementation Categories
-
 @synthesize db;
 
 -(id)init
@@ -53,9 +59,9 @@
 
 -(void)dealloc
 {
-    if (categories != nil) {
-        [categories release];
-    }
+    [categories release];
+    [db release];
+
     [super dealloc];
 }
 

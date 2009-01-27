@@ -39,6 +39,13 @@
 
 @implementation ExportOfx
 
+- (void)dealloc
+{
+    [df release];
+    [greg release];
+    [super dealloc];
+}
+
 - (BOOL)sendMail
 {
     NSMutableString *data = [[[NSMutableString alloc] init] autorelease];

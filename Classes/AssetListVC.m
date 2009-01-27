@@ -103,6 +103,7 @@
 }
 
 - (void)dealloc {
+    [tableView release];
     [super dealloc];
 }
 

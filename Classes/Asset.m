@@ -59,10 +59,9 @@
 
 - (void)dealloc 
 {
+    [transactions release];
     [db release];
-    if (transactions != nil) {
-        [transactions release];
-    }
+    [name release];
 
     [super dealloc];
 }

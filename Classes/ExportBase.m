@@ -42,6 +42,12 @@
 - (BOOL)sendWithWebServer { return NO; }
 - (NSMutableString*)generateBody {	return nil; }
 
+- (void)dealloc
+{
+    [firstDate release];
+    [webServer release];
+    [super dealloc];
+}
 
 /*
   変換規則:

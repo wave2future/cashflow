@@ -280,7 +280,7 @@
     UINavigationController *nc = self.navigationController;
 
     // view を表示
-    UIViewController *vc;
+    UIViewController *vc = nil;
     switch (indexPath.row) {
     case ROW_DATE:
         editDateVC.date = trans.date;

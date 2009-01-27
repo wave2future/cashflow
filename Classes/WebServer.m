@@ -41,6 +41,12 @@
 
 @implementation WebServer
 
+- (void)dealloc
+{
+    [self stopServer];
+    [super dealloc];
+}
+
 /**
    Start web server
 */
@@ -80,6 +86,7 @@
     [self retain];
     thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadMain:) object:nil];
     [thread start];
+    [thread release]; // ###
 	
     return YES;
 }
@@ -241,7 +248,7 @@
 
         if (lineno == 0) {
             // request line
-            char *p, *p2;
+            char *p, *p2 = NULL;
             p = strtok(line, " ");
             if (p) p2 = strtok(NULL, " ");
             if (p2) filereq = [NSString stringWithCString:p2];

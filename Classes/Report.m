@@ -56,6 +56,8 @@
 - (void)dealloc 
 {
     [date release];
+    [endDate release];
+    [catReports release];
     [super dealloc];
 }
 
@@ -120,7 +122,7 @@ static int compareCatReport(id x, id y, void *context)
 
     // レポート周期の開始時間および間隔を求める
     NSDateComponents *dc, *steps;
-    NSDate *dd;
+    NSDate *dd = nil;
 	
     steps = [[[NSDateComponents alloc] init] autorelease];
     switch (type) {

@@ -52,6 +52,12 @@
     return vc;
 }
 
+- (void)dealloc
+{
+    [typeArray release];
+    [super dealloc];
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

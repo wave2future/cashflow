@@ -76,6 +76,7 @@
 - (void)dealloc {
     [transactionView release];
     [exportVC release];
+    [tableView release];
 
     [super dealloc];
 }
