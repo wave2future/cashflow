@@ -118,7 +118,6 @@
         [assets addObject:as];
         [as release];
     }
-    [stmt release];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -144,7 +143,6 @@
     [stmt bindDouble:3 val:as.initialBalance];
     [stmt bindInt:4 val:as.sorder];
     [stmt step];
-    [stmt release];
 
     as.pkey = [db lastInsertRowId];
 }
@@ -160,12 +158,10 @@
     stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
     [stmt bindInt:1 val:as.pkey];
     [stmt step];
-    [stmt release];
 
     stmt = [db prepare:"DELETE FROM Transactions WHERE key=?;"];
     [stmt bindInt:1 val:as.pkey];
     [stmt step];
-    [stmt release];
 
     [assets removeObject:as];
 }
@@ -179,7 +175,6 @@
     [stmt bindInt:4 val:asset.sorder];
     [stmt bindInt:5 val:asset.pkey];
     [stmt step];
-    [stmt release];
 }
 
 - (void)reorderAsset:(int)from to:(int)to
@@ -201,7 +196,6 @@
         [stmt step];
         [stmt reset];
     }
-    [stmt release];
     [db commitTransaction];
 }
 

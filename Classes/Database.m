@@ -183,7 +183,7 @@ static NSDateFormatter *dateFormatter = nil;
         ASSERT(0);
     }
 
-    DBStatement *dbs = [[DBStatement alloc] initWithStatement:stmt];
+    DBStatement *dbs = [[[DBStatement alloc] initWithStatement:stmt] autorelease];
     return dbs;
 }
 

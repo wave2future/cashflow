@@ -207,7 +207,6 @@ static int compareCatReport(id x, id y, void *context)
     if ([stmt step] == SQLITE_ROW) {
         date = [stmt colDate:0];
     }
-    [stmt release];
     return date;
 }
 
@@ -226,7 +225,6 @@ static int compareCatReport(id x, id y, void *context)
     if ([stmt step] == SQLITE_ROW) {
         date = [stmt colDate:0];
     }
-    [stmt release];
 
     return date;
 }
@@ -259,7 +257,6 @@ static int compareCatReport(id x, id y, void *context)
     } else {
         ASSERT(0);
     }
-    [stmt release];
 
     return sum;
 }
@@ -294,7 +291,6 @@ static int compareCatReport(id x, id y, void *context)
     } else {
         ASSERT(0);
     }
-    [stmt release];
 
     return sum;
 }

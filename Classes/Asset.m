@@ -119,7 +119,6 @@
         [transactions addObject:t];
         [t release];
     }
-    [stmt release];
 
     // recalc balance
     [self recalcBalanceInitial];
@@ -135,7 +134,6 @@
     DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
     [stmt bindInt:1 val:pkey];
     [stmt step];
-    [stmt release];
 
     // write all transactions
     int n = [transactions count];
@@ -162,7 +160,6 @@
     [stmt bindDouble:1 val:initialBalance];
     [stmt bindInt:2 val:pkey];
     [stmt step];
-    [stmt release];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -215,6 +212,7 @@
     if (stmt == nil) {
         const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
         stmt = [db prepare:s];
+        [stmt retain];
     }
     [stmt bindInt:1 val:pkey]; // asset key
     [stmt bindInt:2 val:-1]; // dst asset
@@ -251,6 +249,7 @@
     if (stmt == nil) {
         const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
         stmt = [db prepare:s];
+        [stmt retain];
     }
     [stmt bindDate:1 val:t.date];
     [stmt bindInt:2 val:t.type];
@@ -273,6 +272,7 @@
     if (stmt == nil) {
         const char *s = "DELETE FROM Transactions WHERE key = ?;";
         stmt = [db prepare:s];
+        [stmt retain];
     }
     [stmt bindInt:1 val:t.pkey];
     [stmt step];
@@ -422,7 +422,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
             }
         }
     }
-    [stmt release];
 
     return descAry;
 }

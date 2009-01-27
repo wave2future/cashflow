@@ -78,7 +78,6 @@
         [categories addObject:c];
         [c release];
     }
-    [stmt release];
 }
 
 -(int)categoryCount
@@ -128,7 +127,6 @@
     [stmt bindString:1 val:c.name];
     [stmt bindInt:2 val:c.sorder];
     [stmt step];
-    [stmt release];
 
     c.pkey = [db lastInsertRowId];
 
@@ -143,7 +141,6 @@
     [stmt bindInt:2 val:category.sorder];
     [stmt bindInt:3 val:category.pkey];
     [stmt step];
-    [stmt release];
 }
 
 -(void)deleteCategoryAtIndex:(int)index
@@ -154,7 +151,6 @@
     stmt = [db prepare:"DELETE FROM Categories WHERE key=?;"];
     [stmt bindInt:1 val:c.pkey];
     [stmt step];
-    [stmt release];
 
     [categories removeObjectAtIndex:index];
 }
