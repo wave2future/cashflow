@@ -49,7 +49,7 @@
     }
 
     // download
-    else if ([filereq isEqualToString:@"/CashFlow.db"]) {
+    else if ([filereq hasPrefix:@"/CashFlow.db"]) {
         [self sendBackup:s];
     }
             
