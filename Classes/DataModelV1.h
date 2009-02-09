@@ -47,6 +47,8 @@
 @property(nonatomic,assign) double initialBalance;
 
 + (DataModelV1*)allocWithLoad;
++ (void)deleteDataFile;
+
 - (id)init;
 - (void)dealloc;
 

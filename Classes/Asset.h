@@ -68,7 +68,6 @@
 
 - (void)loadOldFormatData;
 - (void)reload;
-- (void)resave;
 - (void)clear;
 
 - (int)transactionCount;

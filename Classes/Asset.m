@@ -74,6 +74,8 @@
     // Backward compatibility : try to load old format data
     DataModelV1 *dm1 = [DataModelV1 allocWithLoad];
     if (dm1 != nil) {
+        [DataModelV1 deleteDataFile];
+
         initialBalance = dm1.initialBalance;
         transactions = dm1.transactions;
         [transactions retain];
@@ -82,8 +84,29 @@
     }
 
     // Ok, write back database
-    [self resave];
-    [self recalcBalanceInitial];
+    [self updateInitialBalance];
+
+    [db beginTransaction];
+
+#if 0
+    // delete all transactions
+    DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
+    [stmt bindInt:1 val:pkey];
+    [stmt step];
+#endif
+
+    // write all transactions
+    int n = [transactions count];
+    int i;
+    for (i = 0; i < n; i++) {
+        Transaction *t = [transactions objectAtIndex:i];
+        [self insertTransactionDb:t];
+    }
+
+    [db commitTransaction];
+
+    // reload
+    [self reload];
 }
 
 - (void)reload
@@ -125,24 +148,6 @@
 
 - (void)resave
 {
-    [self updateInitialBalance];
-
-    [db beginTransaction];
-
-    // delete all transactions
-    DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
-    [stmt bindInt:1 val:pkey];
-    [stmt step];
-
-    // write all transactions
-    int n = [transactions count];
-    int i;
-    for (i = 0; i < n; i++) {
-        Transaction *t = [transactions objectAtIndex:i];
-        [self insertTransactionDb:t];
-    }
-
-    [db commitTransaction];
 }
 
 - (void)clear

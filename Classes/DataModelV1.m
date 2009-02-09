@@ -62,6 +62,15 @@
     return dm;
 }
 
++ (void)deleteDataFile
+{
+    // データを削除
+    NSString *dataPath = [AppDelegate pathOfDataFile:@"Transactions.dat"];
+
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    [fileManger removeFileAtPath:dataPath handler:self];
+}
+
 - (id)init
 {
     [super init];
