@@ -130,12 +130,17 @@
 
 #pragma mark TableViewDataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tv {
+    if (tv.editing) 
+        return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [theDataModel assetCount] + 1;
+    if (section == 1) {
+        return 1;
+    }
+    return [theDataModel assetCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -147,7 +152,6 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
         //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
 		
         cell.font = [UIFont systemFontOfSize:16.0];
     }
@@ -156,11 +160,13 @@
     double value;
     NSString *label;
 
-    if (indexPath.row < [theDataModel assetCount]) {
+    if (indexPath.section == 0) {
         Asset *asset = [theDataModel assetAtIndex:indexPath.row];
     
         label = asset.name;
         value = [asset lastBalance];
+
+        cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         cell.image = [iconArray objectAtIndex:asset.type];
     }
     else {
@@ -171,6 +177,8 @@
             value += [[theDataModel assetAtIndex:i] lastBalance];
         }
         label = NSLocalizedString(@"Total", @"");
+
+        cell.accessoryType = UITableViewCellAccessoryNone;
         cell.image = nil;
     }
     
@@ -191,7 +199,8 @@
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
-
+    if (indexPath.section != 0) return;
+    
     // save preference
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:indexPath.row forKey:@"firstShowAssetIndex"];
@@ -232,7 +241,7 @@
     [super setEditing:editing animated:animated];
 	
     // tableView に通知
-    [self.tableView setEditing:editing animated:animated];
+    [self.tableView setEditing:editing animated:editing];
 	
     if (editing) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -241,10 +250,19 @@
     }
 }
 
+- (BOOL)tableView:(UITableView*)tv canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section != 0)
+        return NO;
+    return YES;
+}
+
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // return UITableViewCellEditingStyleNone;
+    if (indexPath.section != 0) {
+        return UITableViewCellEditingStyleNone;
+    }
     return UITableViewCellEditingStyleDelete;
 }
 
@@ -280,11 +298,14 @@
 // 並べ替え処理
 - (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section != 0)
+        return NO;
     return YES;
 }
 
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
+    if (from.section != 0 || to.section != 0) return;
     [theDataModel reorderAsset:from.row to:to.row];
 }
 
