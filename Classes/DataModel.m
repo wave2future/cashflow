@@ -57,9 +57,9 @@
 
 - (void)dealloc 
 {
-    [db release];
     [assets release];
     [categories release];
+    [db release];
 
     [super dealloc];
 }

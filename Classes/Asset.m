@@ -60,7 +60,6 @@
 - (void)dealloc 
 {
     [transactions release];
-    [db release];
     [name release];
 
     [super dealloc];

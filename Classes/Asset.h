@@ -58,7 +58,7 @@
     NSMutableArray *transactions;
 }
 
-@property(nonatomic,retain) Database *db;
+@property(nonatomic,assign) Database *db;
 @property(nonatomic,assign) int pkey;
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSString *name;

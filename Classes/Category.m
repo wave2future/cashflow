@@ -60,8 +60,6 @@
 -(void)dealloc
 {
     [categories release];
-    [db release];
-
     [super dealloc];
 }
 

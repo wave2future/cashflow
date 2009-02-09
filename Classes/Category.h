@@ -54,7 +54,7 @@
     NSMutableArray *categories;
 }
 
-@property(nonatomic,retain) Database *db;
+@property(nonatomic,assign) Database *db;
 
 - (void)reload;
 - (int)categoryCount;
