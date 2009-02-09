@@ -1,5 +1,6 @@
 2009-02-09: Takuya Murakami
 	* CSV にカテゴリ(費目)も出力するようにした
+	* 資産残高合計を表示
 
 2009-02-02: Takuya Murakami
 	* Safari でバックアップが取れないバグを修正

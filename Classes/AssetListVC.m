@@ -135,7 +135,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [theDataModel assetCount];
+    return [theDataModel assetCount] + 1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -152,15 +152,35 @@
         cell.font = [UIFont systemFontOfSize:16.0];
     }
 
-    Asset *asset = [theDataModel assetAtIndex:indexPath.row];
-    double lastBalance = [asset lastBalance];
-    cell.text = [NSString stringWithFormat:@"%@ : %@", asset.name, [DataModel currencyString:lastBalance]];
-    if (lastBalance >= 0) {
+    // 資産
+    double value;
+    NSString *label;
+
+    if (indexPath.row < [theDataModel assetCount]) {
+        Asset *asset = [theDataModel assetAtIndex:indexPath.row];
+    
+        label = asset.name;
+        value = [asset lastBalance];
+        cell.image = [iconArray objectAtIndex:asset.type];
+    }
+    else {
+        // 合計欄
+        value = 0.0;
+        int i;
+        for (i = 0; i < [theDataModel assetCount]; i++) {
+            value += [[theDataModel assetAtIndex:i] lastBalance];
+        }
+        label = NSLocalizedString(@"Total", @"");
+        cell.image = nil;
+    }
+    
+    cell.text = [NSString stringWithFormat:@"%@ : %@", label,
+                          [DataModel currencyString:value]];
+    if (value >= 0) {
         cell.textColor = [UIColor blackColor];
     } else {
         cell.textColor = [UIColor redColor];
     }
-    cell.image = [iconArray objectAtIndex:asset.type];
 	
     return cell;
 }
