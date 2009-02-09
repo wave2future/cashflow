@@ -68,7 +68,7 @@
     NSString *dataPath = [AppDelegate pathOfDataFile:@"Transactions.dat"];
 
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeFileAtPath:dataPath handler:self];
+    [fileManager removeItemAtPath:dataPath error:NULL];
 }
 
 - (id)init
