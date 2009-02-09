@@ -77,6 +77,7 @@ NSDateFormatter *theDateFormatter = nil;
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     [theDataModel release];
+    [Database shutdown];
 }
 
 // データファイルのパスを取得

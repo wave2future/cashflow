@@ -270,4 +270,9 @@ static NSDateFormatter *dateFormatter = nil;
     return s;
 }
 
++ (void)shutdown
+{
+    sqlite3_shutdown();
+}
+
 @end

@@ -87,4 +87,6 @@
 + (NSDate*)dateFromCString:(const char *)str;
 + (const char *)cstringFromDate:(NSDate*)date;
 
++ (void)shutdown;
+
 @end
