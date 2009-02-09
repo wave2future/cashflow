@@ -40,6 +40,69 @@
 		3E6B2EBF0F12259C0008AFB6 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
+		3E8B257A0F348C090007929E /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
+		3E8B257B0F348C090007929E /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
+		3E8B257C0F348C090007929E /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
+		3E8B257D0F348C090007929E /* EditValueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F20E6EAC7600739AC9 /* EditValueView.xib */; };
+		3E8B257E0F348C090007929E /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
+		3E8B257F0F348C090007929E /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EA80E76E74500CCDF57 /* icon.png */; };
+		3E8B25800F348C090007929E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
+		3E8B25810F348C090007929E /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
+		3E8B25820F348C090007929E /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
+		3E8B25830F348C090007929E /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
+		3E8B25840F348C090007929E /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
+		3E8B25850F348C090007929E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
+		3E8B25860F348C090007929E /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
+		3E8B25870F348C090007929E /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
+		3E8B25880F348C090007929E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
+		3E8B25890F348C090007929E /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
+		3E8B258A0F348C090007929E /* GenEditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EC0C8440EC35F2900149755 /* GenEditTypeView.xib */; };
+		3E8B258B0F348C090007929E /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
+		3E8B258C0F348C090007929E /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
+		3E8B258D0F348C090007929E /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
+		3E8B258E0F348C090007929E /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
+		3E8B258F0F348C090007929E /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
+		3E8B25900F348C090007929E /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
+		3E8B25910F348C090007929E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
+		3E8B25920F348C090007929E /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
+		3E8B25930F348C090007929E /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
+		3E8B25950F348C090007929E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		3E8B25960F348C090007929E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3E8B25970F348C090007929E /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
+		3E8B25980F348C090007929E /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3E8B25990F348C090007929E /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
+		3E8B259A0F348C090007929E /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
+		3E8B259B0F348C090007929E /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
+		3E8B259C0F348C090007929E /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
+		3E8B259D0F348C090007929E /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
+		3E8B259E0F348C090007929E /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
+		3E8B259F0F348C090007929E /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3E8B25A00F348C090007929E /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3E8B25A10F348C090007929E /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3E8B25A20F348C090007929E /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E8B25A30F348C090007929E /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3E8B25A40F348C090007929E /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
+		3E8B25A50F348C090007929E /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
+		3E8B25A60F348C090007929E /* DataModelV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B250EC302D30008FAF0 /* DataModelV1.m */; };
+		3E8B25A70F348C090007929E /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3E8B25A80F348C090007929E /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E8B25A90F348C090007929E /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
+		3E8B25AA0F348C090007929E /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
+		3E8B25AB0F348C090007929E /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
+		3E8B25AC0F348C090007929E /* GenEditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0C8420EC35F0E00149755 /* GenEditTypeVC.m */; };
+		3E8B25AD0F348C090007929E /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
+		3E8B25AE0F348C090007929E /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
+		3E8B25AF0F348C090007929E /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
+		3E8B25B00F348C090007929E /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
+		3E8B25B10F348C090007929E /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3E8B25B20F348C090007929E /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3E8B25B30F348C090007929E /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
+		3E8B25B40F348C090007929E /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
+		3E8B25B60F348C090007929E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3E8B25B70F348C090007929E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		3E8B25B80F348C090007929E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		3E8B25B90F348C090007929E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
+		3E8B25BA0F348C090007929E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3E8C36160F1E0D82004AFFCA /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
 		3E9433760EC1E0750033D50A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E94339F0EC1E7650033D50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
@@ -131,6 +194,7 @@
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
+		3E8B25C20F348C090007929E /* CashFlowFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlowFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8C35B30F1E074C004AFFCA /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
 		3E8C35B40F1E074C004AFFCA /* PinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinVC.h; sourceTree = "<group>"; };
 		3E8C36150F1E0D82004AFFCA /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
@@ -194,6 +258,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3E8B25B50F348C090007929E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8B25B60F348C090007929E /* Foundation.framework in Frameworks */,
+				3E8B25B70F348C090007929E /* UIKit.framework in Frameworks */,
+				3E8B25B80F348C090007929E /* CoreGraphics.framework in Frameworks */,
+				3E8B25B90F348C090007929E /* AudioToolbox.framework in Frameworks */,
+				3E8B25BA0F348C090007929E /* libsqlite3.0.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -245,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				1D6058910D05DD3D006BFB54 /* CashFlow.app */,
+				3E8B25C20F348C090007929E /* CashFlowFree.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -387,6 +464,23 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* CashFlow.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3E8B25780F348C090007929E /* CashFlowFree */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E8B25BB0F348C090007929E /* Build configuration list for PBXNativeTarget "CashFlowFree" */;
+			buildPhases = (
+				3E8B25790F348C090007929E /* Resources */,
+				3E8B25940F348C090007929E /* Sources */,
+				3E8B25B50F348C090007929E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CashFlowFree;
+			productName = CashFlow;
+			productReference = 3E8B25C20F348C090007929E /* CashFlowFree.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -418,6 +512,7 @@
 			projectRoot = "";
 			targets = (
 				1D6058900D05DD3D006BFB54 /* CashFlow */,
+				3E8B25780F348C090007929E /* CashFlowFree */,
 			);
 		};
 /* End PBXProject section */
@@ -453,6 +548,39 @@
 				3E2CBDA00F1615470025A682 /* Localizable.strings in Resources */,
 				3E8C36160F1E0D82004AFFCA /* PinView.xib in Resources */,
 				3EB8EA500F1F7919000A8276 /* config.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E8B25790F348C090007929E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8B257A0F348C090007929E /* TransactionListView.xib in Resources */,
+				3E8B257B0F348C090007929E /* TransactionView.xib in Resources */,
+				3E8B257C0F348C090007929E /* EditDescView.xib in Resources */,
+				3E8B257D0F348C090007929E /* EditValueView.xib in Resources */,
+				3E8B257E0F348C090007929E /* EditDateView.xib in Resources */,
+				3E8B257F0F348C090007929E /* icon.png in Resources */,
+				3E8B25800F348C090007929E /* Default.png in Resources */,
+				3E8B25810F348C090007929E /* redButton.png in Resources */,
+				3E8B25820F348C090007929E /* InfoView.xib in Resources */,
+				3E8B25830F348C090007929E /* icon-rendered.png in Resources */,
+				3E8B25840F348C090007929E /* Entitlements.plist in Resources */,
+				3E8B25850F348C090007929E /* ReportView.xib in Resources */,
+				3E8B25860F348C090007929E /* AssetListView.xib in Resources */,
+				3E8B25870F348C090007929E /* AssetView.xib in Resources */,
+				3E8B25880F348C090007929E /* MainWindow.xib in Resources */,
+				3E8B25890F348C090007929E /* GenEditTextView.xib in Resources */,
+				3E8B258A0F348C090007929E /* GenEditTypeView.xib in Resources */,
+				3E8B258B0F348C090007929E /* cash.png in Resources */,
+				3E8B258C0F348C090007929E /* bank.png in Resources */,
+				3E8B258D0F348C090007929E /* card.png in Resources */,
+				3E8B258E0F348C090007929E /* CategoryListView.xib in Resources */,
+				3E8B258F0F348C090007929E /* EditMemoView.xib in Resources */,
+				3E8B25900F348C090007929E /* ExportView.xib in Resources */,
+				3E8B25910F348C090007929E /* Localizable.strings in Resources */,
+				3E8B25920F348C090007929E /* PinView.xib in Resources */,
+				3E8B25930F348C090007929E /* config.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -495,6 +623,45 @@
 				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
 				3E9B99810F1E0480000288CF /* Pin.m in Sources */,
 				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E8B25940F348C090007929E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8B25950F348C090007929E /* main.m in Sources */,
+				3E8B25960F348C090007929E /* AppDelegate.m in Sources */,
+				3E8B25970F348C090007929E /* Transaction.m in Sources */,
+				3E8B25980F348C090007929E /* DataModel.m in Sources */,
+				3E8B25990F348C090007929E /* EditDateVC.m in Sources */,
+				3E8B259A0F348C090007929E /* EditDescVC.m in Sources */,
+				3E8B259B0F348C090007929E /* EditValueVC.m in Sources */,
+				3E8B259C0F348C090007929E /* TransactionVC.m in Sources */,
+				3E8B259D0F348C090007929E /* InfoVC.m in Sources */,
+				3E8B259E0F348C090007929E /* ExportVC.m in Sources */,
+				3E8B259F0F348C090007929E /* ExportServer.m in Sources */,
+				3E8B25A00F348C090007929E /* ExportBase.m in Sources */,
+				3E8B25A10F348C090007929E /* ExportCsv.m in Sources */,
+				3E8B25A20F348C090007929E /* ExportOfx.m in Sources */,
+				3E8B25A30F348C090007929E /* Report.m in Sources */,
+				3E8B25A40F348C090007929E /* ReportVC.m in Sources */,
+				3E8B25A50F348C090007929E /* Database.m in Sources */,
+				3E8B25A60F348C090007929E /* DataModelV1.m in Sources */,
+				3E8B25A70F348C090007929E /* Asset.m in Sources */,
+				3E8B25A80F348C090007929E /* TransactionListVC.m in Sources */,
+				3E8B25A90F348C090007929E /* AssetListVC.m in Sources */,
+				3E8B25AA0F348C090007929E /* AssetVC.m in Sources */,
+				3E8B25AB0F348C090007929E /* GenEditTextVC.m in Sources */,
+				3E8B25AC0F348C090007929E /* GenEditTypeVC.m in Sources */,
+				3E8B25AD0F348C090007929E /* Category.m in Sources */,
+				3E8B25AE0F348C090007929E /* CategoryListVC.m in Sources */,
+				3E8B25AF0F348C090007929E /* ReportCatVC.m in Sources */,
+				3E8B25B00F348C090007929E /* EditMemoVC.m in Sources */,
+				3E8B25B10F348C090007929E /* WebServer.m in Sources */,
+				3E8B25B20F348C090007929E /* BackupServer.m in Sources */,
+				3E8B25B30F348C090007929E /* Pin.m in Sources */,
+				3E8B25B40F348C090007929E /* PinVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,60 +784,45 @@
 			};
 			name = "Ad hoc distribution";
 		};
-		3EA482320EAE1CF60005B156 /* Debug Free */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				GCC_C_LANGUAGE_STANDARD = c99;
-				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 2.1;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				PRODUCT_NAME = "CashFlow Free";
-				SDKROOT = iphoneos2.0;
-			};
-			name = "Debug Free";
-		};
-		3EA482330EAE1CF60005B156 /* Debug Free */ = {
+		3E8B25BC0F348C090007929E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = "Info-free.plist";
-				PRODUCT_NAME = "CashFlow Free";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					FREE_VERSION,
+					DEBUG,
+				);
+				INFOPLIST_FILE = "/Users/tmurakam/dev-mac2/icashflow/Info-free.plist";
+				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
 				SDKROOT = iphoneos2.0;
 			};
-			name = "Debug Free";
+			name = Debug;
 		};
-		3EA482340EAE1D250005B156 /* Distribution Free */ = {
+		3E8B25BE0F348C090007929E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				GCC_C_LANGUAGE_STANDARD = c99;
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_FILE = "Info-free.plist";
-				INFOPLIST_PREPROCESSOR_DEFINITIONS = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 2.1;
-				ONLY_ACTIVE_ARCH = YES;
-				PREBINDING = NO;
-				PRODUCT_NAME = "CashFlow Free";
+				INFOPLIST_FILE = "/Users/tmurakam/dev-mac2/icashflow/Info-free.plist";
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
 				SDKROOT = iphoneos2.0;
 			};
-			name = "Distribution Free";
+			name = Release;
 		};
-		3EA482350EAE1D250005B156 /* Distribution Free */ = {
+		3E8B25BF0F348C090007929E /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -678,12 +830,30 @@
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = "Info-free.plist";
-				PRODUCT_NAME = "CashFlow Free";
+				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
+				INFOPLIST_FILE = "/Users/tmurakam/dev-mac2/icashflow/Info-free.plist";
+				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
 				SDKROOT = iphoneos2.0;
 			};
-			name = "Distribution Free";
+			name = Distribution;
+		};
+		3E8B25C10F348C090007929E /* Ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
+				INFOPLIST_FILE = "/Users/tmurakam/dev-mac2/icashflow/Info-free.plist";
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_NAME = CashFlow;
+				SDKROOT = iphoneos2.0;
+			};
+			name = "Ad hoc distribution";
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -724,11 +894,20 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1D6058940D05DD3E006BFB54 /* Debug */,
-				3EA482330EAE1CF60005B156 /* Debug Free */,
 				1D6058950D05DD3E006BFB54 /* Release */,
 				3E4181BF0E76CDC300F0B14C /* Distribution */,
-				3EA482350EAE1D250005B156 /* Distribution Free */,
 				3E4DA8AC0EAB6CAE001FBB70 /* Ad hoc distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E8B25BB0F348C090007929E /* Build configuration list for PBXNativeTarget "CashFlowFree" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E8B25BC0F348C090007929E /* Debug */,
+				3E8B25BE0F348C090007929E /* Release */,
+				3E8B25BF0F348C090007929E /* Distribution */,
+				3E8B25C10F348C090007929E /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -737,10 +916,8 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
-				3EA482320EAE1CF60005B156 /* Debug Free */,
 				C01FCF5008A954540054247B /* Release */,
 				3E4181BE0E76CDC300F0B14C /* Distribution */,
-				3EA482340EAE1D250005B156 /* Distribution Free */,
 				3E4DA8AB0EAB6CAE001FBB70 /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;

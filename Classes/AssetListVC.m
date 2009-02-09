@@ -176,7 +176,7 @@
         for (i = 0; i < [theDataModel assetCount]; i++) {
             value += [[theDataModel assetAtIndex:i] lastBalance];
         }
-        label = NSLocalizedString(@"Total", @"");
+        label = [NSString stringWithFormat:@"            %@", NSLocalizedString(@"Total", @"")];
 
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.image = nil;
