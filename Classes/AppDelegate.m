@@ -80,6 +80,12 @@ NSDateFormatter *theDateFormatter = nil;
     [Database shutdown];
 }
 
+- (void)dealloc {
+    [navigationController release];
+    [window release];
+    [super dealloc];
+}
+
 // データファイルのパスを取得
 + (NSString*)pathOfDataFile:(NSString*)filename
 {
@@ -90,14 +96,6 @@ NSDateFormatter *theDateFormatter = nil;
     NSString *path = [datapath stringByAppendingPathComponent:filename];
 
     return path;
-}
-
-- (void)dealloc {
-    [theDataModel release];
-
-    [navigationController release];
-    [window release];
-    [super dealloc];
 }
 
 void AssertFailed(const char *filename, int lineno)
