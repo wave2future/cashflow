@@ -67,10 +67,18 @@
     //self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	
     // 下位 View を作っておく
-    transactionView = [[TransactionViewController alloc]
-                          initWithNibName:@"TransactionView"
-                          bundle:[NSBundle mainBundle]];
-    exportVC = [[ExportVC alloc] initWithNibName:@"ExportView" bundle:[NSBundle mainBundle]];	
+    if (transactionView == nil) {
+        transactionView = [[TransactionViewController alloc]
+                              initWithNibName:@"TransactionView"
+                              bundle:[NSBundle mainBundle]];
+    }
+    if (exportVC == nil) {
+        exportVC = [[ExportVC alloc] initWithNibName:@"ExportView" bundle:[NSBundle mainBundle]];	
+    }
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 - (void)dealloc {
@@ -397,13 +405,6 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-
-    [transactionView release]; transactionView = nil;
-    [exportVC release]; exportVC = nil;
 }
 
 @end
