@@ -59,7 +59,6 @@
 
     [data appendString:@"mailto:?Subject=CashFlow%20CSV%20Data&body="];
     [data appendString:@"%20CashFlow%20generated%20CSV%20data%20%0D%0A"];
-    [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo%0D%0A"];
 
     NSMutableString *body = [self generateBody];
     if (body == nil) {
@@ -85,7 +84,8 @@
 - (NSMutableString *)generateBody
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
-
+    [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
+    
     Asset *asset = theDataModel.selAsset;
     int max = [asset transactionCount];
 
@@ -108,7 +108,7 @@
         [d appendFormat:@"%.2f,", t.value];
         [d appendFormat:@"%.2f,", t.balance];
         [d appendFormat:@"%@,", t.description];
-        [d appendFormat:@"%@,", t.category];
+        [d appendFormat:@"%@,", [theDataModel.categories categoryStringWithKey:t.category]];
         [d appendFormat:@"%@", t.memo];
         [d appendString:@"\n"];
         [data appendString:d];
