@@ -93,6 +93,7 @@
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
 {
     BOOL result = NO;
+    NSString *message = nil;
 
     if (webServer == nil) {
         webServer = [[ExportServer alloc] init];
@@ -104,17 +105,23 @@
     NSString *url = [webServer serverUrl];
     if (url != nil) {
         result = [webServer startServer];
+    } else {
+        message = NSLocalizedString(@"Network is unreachable.", @"");
     }
 
     UIAlertView *v;
     if (!result) {
+        if (message == nil) {
+            NSLocalizedString(@"Cannot start web server.", @"");
+        }
+
         // error!
         v = [[UIAlertView alloc]
                 initWithTitle:@"Error"
-                message:NSLocalizedString(@"Cannot start web server.", @"")
+                message:message
                 delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"") otherButtonTitles:nil];
     } else {
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
+        message = [NSString stringWithFormat:NSLocalizedString(@"WebExportNotation", @""), url];
 	
         v = [[UIAlertView alloc] 
                 initWithTitle:NSLocalizedString(@"Export", @"")

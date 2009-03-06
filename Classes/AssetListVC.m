@@ -426,23 +426,30 @@
 - (void)doBackup
 {
     BOOL result = NO;
-    
+    NSString *message = nil;
+
     backupServer = [[BackupServer alloc] init];
     NSString *url = [backupServer serverUrl];
     if (url != nil) {
         result = [backupServer startServer];
+    } else {
+        message = NSLocalizedString(@"Network is unreachable.", @"");
     }
     
     UIAlertView *v;
     if (!result) {
+        if (message == nil) {
+            message = NSLocalizedString(@"Cannot start web server.", @"");
+        }
+
         [backupServer release];
         v = [[UIAlertView alloc]
              initWithTitle:@"Error"
-             message:NSLocalizedString(@"Cannot start web server.", @"")
+             message:message
              delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
              otherButtonTitles:nil];
     } else {
-        NSString *message = [NSString stringWithFormat:NSLocalizedString(@"BackupNotation", @""), url];
+        message = [NSString stringWithFormat:NSLocalizedString(@"BackupNotation", @""), url];
         
         v = [[UIAlertView alloc]
              initWithTitle:NSLocalizedString(@"Backup and restore", @"")

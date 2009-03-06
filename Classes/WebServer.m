@@ -123,6 +123,10 @@
     getsockname(s, (struct sockaddr*)&addr, &len);
     close(s);
 
+    if (addr.sin_addr.s_addr == inet_addr("127.0.0.1")) {
+        return nil;
+    }
+    
     char addrstr[64];
     inet_ntop(AF_INET, (void*)&addr.sin_addr.s_addr, addrstr, sizeof(addrstr));
 
