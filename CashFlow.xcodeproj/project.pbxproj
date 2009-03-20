@@ -700,7 +700,7 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
@@ -715,7 +715,7 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
@@ -747,7 +747,7 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1F4F20-F073-48BF-8301-82D85D64466D";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -782,6 +782,7 @@
 				INFOPLIST_FILE = Info.plist;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7489E81F-18C8-4533-81BB-F264EAF876F0";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";
@@ -803,7 +804,7 @@
 				);
 				INFOPLIST_FILE = "Info-free.plist";
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
@@ -819,7 +820,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				INFOPLIST_FILE = "Info-free.plist";
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3F15AAC2-DA41-472A-87D2-C27373C65BC0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
@@ -835,7 +836,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				INFOPLIST_FILE = "Info-free.plist";
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "747B29F5-797B-4CE1-B1B6-F0EC248F3102";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1F4F20-F073-48BF-8301-82D85D64466D";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -853,6 +854,7 @@
 				INFOPLIST_FILE = "Info-free.plist";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7489E81F-18C8-4533-81BB-F264EAF876F0";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";
@@ -861,7 +863,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -870,6 +872,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D0A7D7DC-02C5-486D-8AD3-6184C64CC338";
 				SDKROOT = iphoneos2.1;
 			};
 			name = Debug;
