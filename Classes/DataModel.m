@@ -159,7 +159,7 @@
     [stmt bindInt:1 val:as.pkey];
     [stmt step];
 
-    stmt = [db prepare:"DELETE FROM Transactions WHERE key=?;"];
+    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=?;"];
     [stmt bindInt:1 val:as.pkey];
     [stmt step];
 
