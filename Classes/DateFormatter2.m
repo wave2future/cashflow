@@ -53,6 +53,7 @@
     NSRange range;
     BOOL needFix = NO;
 
+    //NSLog(@"Prev: %@", string);
     // "午前"はそのまま削除
     range = [string rangeOfString:@"午前"];
     if (range.location != NSNotFound) {
@@ -71,7 +72,7 @@
         NSRange hrange = range;
         hrange.location += range.length;
         hrange.length = 2;
-        int hour = [[string substringWithRange] intValue];
+        int hour = [[string substringWithRange:hrange] intValue];
 
         // 時刻を調整
         if (hour == 12) {
@@ -86,6 +87,7 @@
         string = [string stringByReplacingCharactersInRange:range withString:hstr];
     }
 
+    //NSLog(@"After: %@", string);
     return string;
 }
 

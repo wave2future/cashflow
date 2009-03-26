@@ -133,6 +133,7 @@
 
         if (t.date == nil) {
             // fail safe
+            NSLog(@"Invalid date: %@", [stmt colString:1]);
             [t release];
             continue;
         }
