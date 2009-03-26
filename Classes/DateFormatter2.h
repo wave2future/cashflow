@@ -36,4 +36,7 @@
 
 @interface DateFormatter2 :NSDateFormatter {
 }
+
+- (NSString *)fixDateString:(NSString *)string;
+
 @end

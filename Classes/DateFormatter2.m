@@ -69,7 +69,7 @@
     if (needFix) {
         // 時刻を取り出す
         NSRange hrange = range;
-        hrange.location += 2;
+        hrange.location += range.length;
         hrange.length = 2;
         int hour = [[string substringWithRange] intValue];
 
@@ -82,7 +82,7 @@
         NSString *hstr = [NSString stringWithFormat:@"%02d", hour];
 
         // 文字列を置換
-        range.length = 4;
+        range.length += 2;
         string = [string stringByReplacingCharactersInRange:range withString:hstr];
     }
 
