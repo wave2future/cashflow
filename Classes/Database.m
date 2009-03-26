@@ -36,6 +36,7 @@
 
 #import "Database.h"
 #import "AppDelegate.h"
+#import "DateFormatter2.h"
 
 @implementation DBStatement
 
@@ -136,7 +137,7 @@
 
 @synthesize handle;
 
-static NSDateFormatter *dateFormatter = nil;
+static DateFormatter2 *dateFormatter = nil;
 
 - (id)init
 {
@@ -145,7 +146,7 @@ static NSDateFormatter *dateFormatter = nil;
         handle = 0;
 
         if (dateFormatter == nil) {
-            dateFormatter = [[NSDateFormatter alloc] init];
+            dateFormatter = [[DateFormatter2 alloc] init];
             [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
             [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
         }
