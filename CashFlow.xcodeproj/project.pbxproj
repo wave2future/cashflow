@@ -22,6 +22,8 @@
 		3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
+		3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
 		3E1F6EA90E76E74500CCDF57 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EA80E76E74500CCDF57 /* icon.png */; };
 		3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
 		3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
@@ -160,6 +162,8 @@
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
 		3E0A9E390EC33894005195A5 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
+		3E1E63690F7B8A670037C34C /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
+		3E1E636A0F7B8A670037C34C /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
 		3E1F6EA80E76E74500CCDF57 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3E27103F0EAA196A00E57E51 /* ExportBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportBase.h; sourceTree = "<group>"; };
@@ -426,6 +430,8 @@
 				3EB35B250EC302D30008FAF0 /* DataModelV1.m */,
 				3E9433770EC1E0800033D50A /* Database.h */,
 				3E9433750EC1E0750033D50A /* Database.m */,
+				3E1E63690F7B8A670037C34C /* DateFormatter2.h */,
+				3E1E636A0F7B8A670037C34C /* DateFormatter2.m */,
 				3E4D1CF20EBB45AB006050FE /* Report.h */,
 				3E4D1CF00EBB4599006050FE /* Report.m */,
 				3E27103F0EAA196A00E57E51 /* ExportBase.h */,
@@ -623,6 +629,7 @@
 				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
 				3E9B99810F1E0480000288CF /* Pin.m in Sources */,
 				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
+				3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,6 +669,7 @@
 				3E8B25B20F348C090007929E /* BackupServer.m in Sources */,
 				3E8B25B30F348C090007929E /* Pin.m in Sources */,
 				3E8B25B40F348C090007929E /* PinVC.m in Sources */,
+				3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
