@@ -184,7 +184,9 @@
         /* トランザクションの ID は日付と取引番号で生成 */
         [data appendFormat:@"<FITID>%@\n", [self fitId:t]];
         [data appendFormat:@"<NAME>%@\n", t.description];
-        [data appendFormat:@"<MEMO>%@\n", t.memo];
+        if ([t.memo length] > 0) {
+            [data appendFormat:@"<MEMO>%@\n", t.memo];
+        }
         [data appendString:@"</STMTTRN>\n"];
     }
 
