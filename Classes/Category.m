@@ -128,8 +128,8 @@
 
     DBStatement *stmt;
     stmt = [db prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
-    [stmt bindString:1 val:c.name];
-    [stmt bindInt:2 val:c.sorder];
+    [stmt bindString:0 val:c.name];
+    [stmt bindInt:1 val:c.sorder];
     [stmt step];
 
     c.pkey = [db lastInsertRowId];
@@ -141,9 +141,9 @@
 {
     DBStatement *stmt;
     stmt = [db prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
-    [stmt bindString:1 val:category.name];
-    [stmt bindInt:2 val:category.sorder];
-    [stmt bindInt:3 val:category.pkey];
+    [stmt bindString:0 val:category.name];
+    [stmt bindInt:1 val:category.sorder];
+    [stmt bindInt:2 val:category.pkey];
     [stmt step];
 }
 
@@ -153,7 +153,7 @@
 
     DBStatement *stmt;
     stmt = [db prepare:"DELETE FROM Categories WHERE key=?;"];
-    [stmt bindInt:1 val:c.pkey];
+    [stmt bindInt:0 val:c.pkey];
     [stmt step];
 
     [categories removeObjectAtIndex:index];

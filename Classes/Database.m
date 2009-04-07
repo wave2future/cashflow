@@ -69,22 +69,22 @@
 
 - (void)bindInt:(int)idx val:(int)val
 {
-    sqlite3_bind_int(stmt, idx, val);
+    sqlite3_bind_int(stmt, idx+1, val);
 }
 
 - (void)bindDouble:(int)idx val:(double)val
 {
-    sqlite3_bind_double(stmt, idx, val);
+    sqlite3_bind_double(stmt, idx+1, val);
 }
 
 - (void)bindCString:(int)idx val:(const char *)val
 {
-    sqlite3_bind_text(stmt, idx, val, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, idx+1, val, -1, SQLITE_TRANSIENT);
 }
 
 - (void)bindString:(int)idx val:(NSString*)val
 {
-    sqlite3_bind_text(stmt, idx, [val UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(stmt, idx+1, [val UTF8String], -1, SQLITE_TRANSIENT);
 }
 
 - (void)bindDate:(int)idx val:(NSDate*)date

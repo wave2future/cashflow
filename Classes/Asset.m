@@ -90,7 +90,7 @@
 #if 0
     // delete all transactions
     DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
-    [stmt bindInt:1 val:pkey];
+    [stmt bindInt:0 val:pkey];
     [stmt step];
 #endif
 
@@ -117,7 +117,7 @@
     /* load transactions */
     stmt = [db prepare:"SELECT key, date, type, category, value, description, memo"
                " FROM Transactions WHERE asset = ? ORDER BY date;"];
-    [stmt bindInt:1 val:pkey];
+    [stmt bindInt:0 val:pkey];
 
     transactions = [[NSMutableArray alloc] init];
 
@@ -161,8 +161,8 @@
 - (void)updateInitialBalance
 {
     DBStatement *stmt = [db prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
-    [stmt bindDouble:1 val:initialBalance];
-    [stmt bindInt:2 val:pkey];
+    [stmt bindDouble:0 val:initialBalance];
+    [stmt bindInt:1 val:pkey];
     [stmt step];
 }
 
@@ -218,14 +218,14 @@
         stmt = [db prepare:s];
         [stmt retain];
     }
-    [stmt bindInt:1 val:pkey]; // asset key
-    [stmt bindInt:2 val:-1]; // dst asset
-    [stmt bindDate:3 val:t.date];
-    [stmt bindInt:4 val:t.type];
-    [stmt bindInt:5 val:t.category];
-    [stmt bindDouble:6 val:t.value];
-    [stmt bindString:7 val:t.description];
-    [stmt bindString:8 val:t.memo];
+    [stmt bindInt:0 val:pkey]; // asset key
+    [stmt bindInt:1 val:-1]; // dst asset
+    [stmt bindDate:2 val:t.date];
+    [stmt bindInt:3 val:t.type];
+    [stmt bindInt:4 val:t.category];
+    [stmt bindDouble:5 val:t.value];
+    [stmt bindString:6 val:t.description];
+    [stmt bindString:7 val:t.memo];
     [stmt step];
     [stmt reset];
 
@@ -255,13 +255,13 @@
         stmt = [db prepare:s];
         [stmt retain];
     }
-    [stmt bindDate:1 val:t.date];
-    [stmt bindInt:2 val:t.type];
-    [stmt bindInt:3 val:t.category];
-    [stmt bindDouble:4 val:t.value];
-    [stmt bindString:5 val:t.description];
-    [stmt bindString:6 val:t.memo];
-    [stmt bindInt:7 val:t.pkey];
+    [stmt bindDate:0 val:t.date];
+    [stmt bindInt:1 val:t.type];
+    [stmt bindInt:2 val:t.category];
+    [stmt bindDouble:3 val:t.value];
+    [stmt bindString:4 val:t.description];
+    [stmt bindString:5 val:t.memo];
+    [stmt bindInt:6 val:t.pkey];
     [stmt step];
     [stmt reset];
 }
@@ -278,7 +278,7 @@
         stmt = [db prepare:s];
         [stmt retain];
     }
-    [stmt bindInt:1 val:t.pkey];
+    [stmt bindInt:0 val:t.pkey];
     [stmt step];
     [stmt reset];
 

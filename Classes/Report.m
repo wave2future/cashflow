@@ -202,7 +202,7 @@ static int compareCatReport(id x, id y, void *context)
         stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
     } else {
         stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=?;"];
-        [stmt bindInt:1 val:asset];
+        [stmt bindInt:0 val:asset];
     }
 
     NSDate *date = nil;
@@ -220,7 +220,7 @@ static int compareCatReport(id x, id y, void *context)
         stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
     } else {
         stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=?;"];
-        [stmt bindInt:1 val:asset];
+        [stmt bindInt:0 val:asset];
     }
 
     NSDate *date = nil;
@@ -247,10 +247,10 @@ static int compareCatReport(id x, id y, void *context)
     strcat(sql, ";");
 
     DBStatement *stmt = [db prepare:sql];
-    [stmt bindDate:1 val:start];
-    [stmt bindDate:2 val:end];
+    [stmt bindDate:0 val:start];
+    [stmt bindDate:1 val:end];
     if (asset >= 0) {
-        [stmt bindInt:3 val:asset];
+        [stmt bindInt:2 val:asset];
     }
 
     double sum = 0.0;
@@ -278,13 +278,13 @@ static int compareCatReport(id x, id y, void *context)
     strcat(sql, ";");
 
     DBStatement *stmt = [db prepare:sql];
-    [stmt bindDate:1 val:start];
-    [stmt bindDate:2 val:end];
+    [stmt bindDate:0 val:start];
+    [stmt bindDate:1 val:end];
     if (category >= 0) {
-        [stmt bindInt:3 val:category];
+        [stmt bindInt:2 val:category];
     }
     if (asset >= 0) {
-        [stmt bindInt:4 val:asset];
+        [stmt bindInt:3 val:asset];
     }
 
     double sum = 0.0;

@@ -138,10 +138,10 @@
     [assets addObject:as];
 
     DBStatement *stmt = [db prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
-    [stmt bindString:1 val:as.name];
-    [stmt bindInt:2 val:as.type];
-    [stmt bindDouble:3 val:as.initialBalance];
-    [stmt bindInt:4 val:as.sorder];
+    [stmt bindString:0 val:as.name];
+    [stmt bindInt:1 val:as.type];
+    [stmt bindDouble:2 val:as.initialBalance];
+    [stmt bindInt:3 val:as.sorder];
     [stmt step];
 
     as.pkey = [db lastInsertRowId];
@@ -156,11 +156,11 @@
 
     DBStatement *stmt;
     stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
-    [stmt bindInt:1 val:as.pkey];
+    [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
     stmt = [db prepare:"DELETE FROM Transactions WHERE asset=?;"];
-    [stmt bindInt:1 val:as.pkey];
+    [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
     [assets removeObject:as];
@@ -169,11 +169,11 @@
 - (void)updateAsset:(Asset*)asset
 {
     DBStatement *stmt = [db prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
-    [stmt bindString:1 val:asset.name];
-    [stmt bindInt:2 val:asset.type];
-    [stmt bindDouble:3 val:asset.initialBalance];
-    [stmt bindInt:4 val:asset.sorder];
-    [stmt bindInt:5 val:asset.pkey];
+    [stmt bindString:0 val:asset.name];
+    [stmt bindInt:1 val:asset.type];
+    [stmt bindDouble:2 val:asset.initialBalance];
+    [stmt bindInt:3 val:asset.sorder];
+    [stmt bindInt:4 val:asset.pkey];
     [stmt step];
 }
 
@@ -191,8 +191,8 @@
         as = [assets objectAtIndex:i];
         as.sorder = i;
 
-        [stmt bindInt:1 val:as.sorder];
-        [stmt bindInt:2 val:as.pkey];
+        [stmt bindInt:0 val:as.sorder];
+        [stmt bindInt:1 val:as.pkey];
         [stmt step];
         [stmt reset];
     }
@@ -262,7 +262,7 @@ static NSNumberFormatter *currencyFormatter = nil;
         // カテゴリ指定検索
         stmt = [db prepare:"SELECT description FROM Transactions"
                    " WHERE category = ? ORDER BY date DESC;"];
-        [stmt bindInt:1 val:category];
+        [stmt bindInt:0 val:category];
     }
 
     // 摘要をリストに追加していく
@@ -304,7 +304,7 @@ static NSNumberFormatter *currencyFormatter = nil;
     int category = -1;
 
     stmt = [db prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESC;"];
-    [stmt bindString:1 val:desc];
+    [stmt bindString:0 val:desc];
 
     if ([stmt step] == SQLITE_ROW) {
         category = [stmt colInt:0];
