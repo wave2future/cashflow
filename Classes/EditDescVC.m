@@ -39,7 +39,14 @@
 
 @implementation EditDescViewController
 
-@synthesize listener, description;
+@synthesize listener, description, category;
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        category = -1;
+    }
+    return self;
+}
 
 -(void)onTextChange:(id)sender {
     // dummy func must exist for textFieldShouldReturn event to be called
@@ -71,7 +78,8 @@
     textField.text = self.description;
     [super viewWillAppear:animated];
 
-    descArray = [theDataModel.selAsset allocDescList];
+    descArray = [theDataModel.selAsset descLRUWithCategory:category];
+    [descArray retain];
     [descArray insertObject:@"" atIndex:0];  // dummy entry
     [picker reloadAllComponents];
 

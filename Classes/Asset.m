@@ -395,20 +395,46 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 #define MAX_LRU_SIZE 50
 
-- (NSMutableArray *)allocDescList
+//
+// 摘要のヒストリ(LRU)を取り出す
+//  category 指定がある場合は、こちらを優先する
+//
+- (NSMutableArray *)descLRUWithCategory:(NSString *)category
 {
-    NSMutableArray *descAry = [[NSMutableArray alloc] init];
+    NSMutableArray *descAry = [[[NSMutableArray alloc] init] autorelease];
 
+    if (category >= 0) {
+        [self _setDescHistoryList:descAry withCategory:category];
+    }
+    [self _setDescHistoryList:descAry withCategory:-1];
+
+    return descAry;
+}
+
+- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category
+{
+    char sql[256];
     DBStatement *stmt;
-    const char *sql = "SELECT description FROM Transactions ORDER BY date DESC;";
-    stmt = [db prepare:sql];
 
+    NSString *sql;
+    if (category < 0) {
+        // 全検索
+        stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC;"];
+    } else {
+        // カテゴリ指定検索
+        stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC"
+                   " WHERE category = ?;"];
+        [db bindInt:0 val:category];
+    }
+
+    // 摘要をリストに追加していく
     while ([stmt step] == SQLITE_ROW) {
         const char *cs = [stmt colCString:0];
         if (*cs == '\0') continue;
         NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
         if (s == nil) continue;
-		
+
+        // 重複チェック
         BOOL match = NO;
         NSString *ss;
         int i, max = [descAry count];
@@ -419,6 +445,8 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
                 break;
             }
         }
+
+        // 追加
         if (!match) {
             [descAry addObject:s];
             if ([descAry count] > MAX_LRU_SIZE) {
@@ -426,8 +454,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
             }
         }
     }
-
-    return descAry;
 }
+
 
 @end

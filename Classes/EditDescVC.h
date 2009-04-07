@@ -53,10 +53,12 @@
 
     id<EditDescViewListener> listener;
     NSString *description;
+    int category;
 }
 
 @property(nonatomic,assign) id<EditDescViewListener> listener;
 @property(nonatomic,retain)	NSString *description;
+@property(nonatomic,assign)	int category;
 
 - (void)doneAction;
 

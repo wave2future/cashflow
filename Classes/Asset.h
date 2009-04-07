@@ -87,6 +87,7 @@
 - (double)lastBalance;
 - (void)updateInitialBalance;
 
-- (NSMutableArray *)allocDescList;
+- (NSMutableArray *)descLRUWithCategory:(NSString *)category;
+- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category;
 
 @end

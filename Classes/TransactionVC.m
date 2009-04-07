@@ -296,6 +296,7 @@
         break;
     case ROW_DESC:
         editDescVC.description = trans.description;
+        editDescVC.category = [theDataModel.categories categoryIndexWithKey:trans.category];
         vc = editDescVC;
         break;
     case ROW_MEMO:
