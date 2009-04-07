@@ -260,9 +260,9 @@ static NSNumberFormatter *currencyFormatter = nil;
         stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC;"];
     } else {
         // カテゴリ指定検索
-        stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC"
-                   " WHERE category = ?;"];
-        [stmt bindInt:0 val:category];
+        stmt = [db prepare:"SELECT description FROM Transactions"
+                   " WHERE category = ? ORDER BY date DESC;"];
+        [stmt bindInt:1 val:category];
     }
 
     // 摘要をリストに追加していく
