@@ -72,4 +72,8 @@
 // utility operation
 + (NSString*)currencyString:(double)x;
 
+- (NSMutableArray *)descLRUWithCategory:(int)category;
+- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category;
+- (int)categoryWithDescription:(NSString *)desc;
+
 @end

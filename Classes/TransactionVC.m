@@ -335,7 +335,7 @@
 
     if (trans.category < 0) {
         // set category from description
-        trans.category = [theDataModel.selAsset categoryWithDescription:vc.description];
+        trans.category = [theDataModel categoryWithDescription:trans.description];
     }
 }
 

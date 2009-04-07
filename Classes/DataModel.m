@@ -232,4 +232,85 @@ static NSNumberFormatter *currencyFormatter = nil;
     return bstr;
 }
 
+// LRU
+#define MAX_LRU_SIZE 50
+
+//
+// 摘要のヒストリ(LRU)を取り出す
+//  category 指定がある場合は、こちらを優先する
+//
+- (NSMutableArray *)descLRUWithCategory:(NSString *)category
+{
+    NSMutableArray *descAry = [[[NSMutableArray alloc] init] autorelease];
+
+    if (category >= 0) {
+        [self _setDescHistoryList:descAry withCategory:category];
+    }
+    [self _setDescHistoryList:descAry withCategory:-1];
+
+    return descAry;
+}
+
+- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category
+{
+    DBStatement *stmt;
+
+    NSString *sql;
+    if (category < 0) {
+        // 全検索
+        stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC;"];
+    } else {
+        // カテゴリ指定検索
+        stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC"
+                   " WHERE category = ?;"];
+        [db bindInt:0 val:category];
+    }
+
+    // 摘要をリストに追加していく
+    while ([stmt step] == SQLITE_ROW) {
+        const char *cs = [stmt colCString:0];
+        if (*cs == '\0') continue;
+        NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
+        if (s == nil) continue;
+
+        // 重複チェック
+        BOOL match = NO;
+        NSString *ss;
+        int i, max = [descAry count];
+        for (i = 0; i < max; i++) {
+            ss = [descAry objectAtIndex:i];
+            if ([s isEqualToString:ss]) {
+                match = YES;
+                break;
+            }
+        }
+
+        // 追加
+        if (!match) {
+            [descAry addObject:s];
+            if ([descAry count] > MAX_LRU_SIZE) {
+                break;
+            }
+        }
+    }
+}
+
+// 摘要からカテゴリを推定する
+//
+// note: 本メソッドは Asset ではなく DataModel についているべき
+//
+- (int)categoryWithDescription:(NSString *)desc
+{
+    DBStatement *stmt;
+    int category = -1;
+
+    stmt = [db prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESCle;"];
+    [db bindString:0 val:desc];
+
+    if ([stmt step] == SQLITE_ROW) {
+        category = [stmt colInt:0];
+    }
+    return category;
+}
+
 @end
