@@ -296,7 +296,7 @@
         break;
     case ROW_DESC:
         editDescVC.description = trans.description;
-        editDescVC.category = [theDataModel.categories categoryIndexWithKey:trans.category];
+        editDescVC.category = trans.category;
         vc = editDescVC;
         break;
     case ROW_MEMO:
@@ -323,18 +323,27 @@
         trans.description = [typeArray objectAtIndex:TYPE_ADJ];
     }
 }
+
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
     trans.evalue = vc.value;
 }
+
 - (void)editDescViewChanged:(EditDescViewController *)vc
 {
     trans.description = vc.description;
+
+    if (trans.category < 0) {
+        // set category from description
+        trans.category = [theDataModel.selAsset categoryWithDescription:vc.description];
+    }
 }
+
 - (void)editMemoViewChanged:(EditMemoViewController*)vc identifier:(int)id
 {
     trans.memo = vc.text;
 }
+
 - (void)categoryListViewChanged:(CategoryListViewController*)vc;
 {
     if (vc.selectedIndex < 0) {

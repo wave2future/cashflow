@@ -413,7 +413,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 - (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category
 {
-    char sql[256];
     DBStatement *stmt;
 
     NSString *sql;
@@ -456,5 +455,22 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     }
 }
 
+// 摘要からカテゴリを推定する
+//
+// note: 本メソッドは Asset ではなく DataModel についているべき
+//
+- (int)categoryWithDescription:(NSString *)desc
+{
+    DBStatement *stmt;
+    int category = -1;
+
+    stmt = [db prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESCle;"];
+    [db bindString:0 val:desc];
+
+    if ([stmt step] == SQLITE_ROW) {
+        category = [stmt colInt:0];
+    }
+    return category;
+}
 
 @end
