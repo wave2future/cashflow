@@ -239,14 +239,14 @@ static NSNumberFormatter *currencyFormatter = nil;
 // 摘要のヒストリ(LRU)を取り出す
 //  category 指定がある場合は、こちらを優先する
 //
-- (NSMutableArray *)descLRUWithCategory:(NSString *)category
+- (NSMutableArray *)descLRUWithCategory:(int)category
 {
     NSMutableArray *descAry = [[[NSMutableArray alloc] init] autorelease];
 
     if (category >= 0) {
-        [self _setDescHistoryList:descAry withCategory:category];
+        [self _setDescLRU:descAry withCategory:category];
     }
-    [self _setDescHistoryList:descAry withCategory:-1];
+    [self _setDescLRU:descAry withCategory:-1];
 
     return descAry;
 }
@@ -255,7 +255,6 @@ static NSNumberFormatter *currencyFormatter = nil;
 {
     DBStatement *stmt;
 
-    NSString *sql;
     if (category < 0) {
         // 全検索
         stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC;"];
@@ -263,7 +262,7 @@ static NSNumberFormatter *currencyFormatter = nil;
         // カテゴリ指定検索
         stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC"
                    " WHERE category = ?;"];
-        [db bindInt:0 val:category];
+        [stmt bindInt:0 val:category];
     }
 
     // 摘要をリストに追加していく
@@ -304,8 +303,8 @@ static NSNumberFormatter *currencyFormatter = nil;
     DBStatement *stmt;
     int category = -1;
 
-    stmt = [db prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESCle;"];
-    [db bindString:0 val:desc];
+    stmt = [db prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESC;"];
+    [stmt bindString:1 val:desc];
 
     if ([stmt step] == SQLITE_ROW) {
         category = [stmt colInt:0];
