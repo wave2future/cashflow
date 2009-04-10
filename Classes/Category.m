@@ -47,7 +47,6 @@
 @end
 
 @implementation Categories
-@synthesize db;
 
 -(id)init
 {
@@ -65,14 +64,13 @@
 
 -(void)reload
 {
-    ASSERT(db != nil);
     if (categories != nil) {
         [categories release];
     }
     categories = [[NSMutableArray alloc] init];
 
     DBStatement *stmt;
-    stmt = [db prepare:"SELECT * FROM Categories ORDER BY sorder;"];
+    stmt = [[Database instance] prepare:"SELECT * FROM Categories ORDER BY sorder;"];
     while ([stmt step] == SQLITE_ROW) {
         Category *c = [[Category alloc] init];
         c.pkey = [stmt colInt:0];
@@ -127,12 +125,12 @@
     [self renumber];
 
     DBStatement *stmt;
-    stmt = [db prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
+    stmt = [[Database instance] prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
     [stmt bindString:0 val:c.name];
     [stmt bindInt:1 val:c.sorder];
     [stmt step];
 
-    c.pkey = [db lastInsertRowId];
+    c.pkey = [[Database instance] lastInsertRowId];
 
     return c;
 }
@@ -140,7 +138,7 @@
 -(void)updateCategory:(Category*)category
 {
     DBStatement *stmt;
-    stmt = [db prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
+    stmt = [[Database instance] prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
     [stmt bindString:0 val:category.name];
     [stmt bindInt:1 val:category.sorder];
     [stmt bindInt:2 val:category.pkey];
@@ -152,7 +150,7 @@
     Category *c = [categories objectAtIndex:index];
 
     DBStatement *stmt;
-    stmt = [db prepare:"DELETE FROM Categories WHERE key=?;"];
+    stmt = [[Database instance] prepare:"DELETE FROM Categories WHERE key=?;"];
     [stmt bindInt:0 val:c.pkey];
     [stmt step];
 
@@ -173,13 +171,13 @@
 {
     int i, max = [categories count];
 
-    [db beginTransaction];
+    [[Database instance] beginTransaction];
     for (i = 0; i < max; i++) {
         Category *c = [categories objectAtIndex:i];
         c.sorder = i;
         [self updateCategory:c];
     }
-    [db commitTransaction];
+    [[Database instance] commitTransaction];
 }
 
 @end

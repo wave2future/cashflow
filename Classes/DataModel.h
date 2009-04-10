@@ -38,8 +38,6 @@
 #import "Database.h"
 
 @interface DataModel : NSObject {
-    Database *db;
-
     // Asset
     NSMutableArray *assets;
     Asset *selAsset; // 選択中の Asset
@@ -48,7 +46,6 @@
     Categories *categories;
 }
 
-@property(nonatomic,readonly) Database *db;
 @property(nonatomic,retain) NSMutableArray *assets;
 @property(nonatomic,readonly) Asset *selAsset;
 @property(nonatomic,retain) Categories *categories;

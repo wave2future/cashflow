@@ -50,11 +50,8 @@
 @end
 
 @interface Categories : NSObject {
-    Database *db;
     NSMutableArray *categories;
 }
-
-@property(nonatomic,assign) Database *db;
 
 - (void)reload;
 - (int)categoryCount;

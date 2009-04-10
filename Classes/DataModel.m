@@ -39,13 +39,11 @@
 
 @implementation DataModel
 
-@synthesize db, assets, selAsset, categories;
+@synthesize assets, selAsset, categories;
 
 - (id)init
 {
     [super init];
-
-    db = [Database instance];
 
     assets = [[NSMutableArray alloc] init];
     selAsset = nil;
@@ -68,6 +66,8 @@
 
 - (void)load
 {
+    Database *db = [Database instacne];
+
     // Load from DB
     BOOL needLoadOldData = NO;
     if (![db openDB]) {
@@ -91,7 +91,6 @@
     }
 
     // Load categories
-    categories.db = db;
     [categories reload];
 }
 
@@ -101,7 +100,7 @@
     DBStatement *stmt;
     assets = [[NSMutableArray alloc] init];
 
-    stmt = [db prepare:"SELECT * FROM Assets ORDER BY sorder;"];
+    stmt = [[Database instance] prepare:"SELECT * FROM Assets ORDER BY sorder;"];
     while ([stmt step] == SQLITE_ROW) {
         Asset *as = [[Asset alloc] init];
         as.pkey = [stmt colInt:0];
@@ -132,14 +131,14 @@
 {
     [assets addObject:as];
 
-    DBStatement *stmt = [db prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
+    DBStatement *stmt = [[Database instance] prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
     [stmt bindString:0 val:as.name];
     [stmt bindInt:1 val:as.type];
     [stmt bindDouble:2 val:as.initialBalance];
     [stmt bindInt:3 val:as.sorder];
     [stmt step];
 
-    as.pkey = [db lastInsertRowId];
+    as.pkey = [[Database instance] lastInsertRowId];
 }
 
 - (void)deleteAsset:(Asset *)as
@@ -150,6 +149,7 @@
     [as clear];
 
     DBStatement *stmt;
+    Database *db = [Database instance];
     stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
     [stmt bindInt:0 val:as.pkey];
     [stmt step];
@@ -163,7 +163,7 @@
 
 - (void)updateAsset:(Asset*)asset
 {
-    DBStatement *stmt = [db prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
+    DBStatement *stmt = [[Database instance] prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
     [stmt bindString:0 val:asset.name];
     [stmt bindInt:1 val:asset.type];
     [stmt bindDouble:2 val:asset.initialBalance];
@@ -180,6 +180,7 @@
     [as release];
 	
     // renumbering sorder
+    Database *db = [Database instance];
     [db beginTransaction];
     DBStatement *stmt = [db prepare:"UPDATE Assets SET sorder=? WHERE key=?;"];
     for (int i = 0; i < [assets count]; i++) {
@@ -249,6 +250,7 @@ static NSNumberFormatter *currencyFormatter = nil;
 - (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category
 {
     DBStatement *stmt;
+    Database *db = [Database instance];
 
     if (category < 0) {
         // 全検索
@@ -298,7 +300,7 @@ static NSNumberFormatter *currencyFormatter = nil;
     DBStatement *stmt;
     int category = -1;
 
-    stmt = [db prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESC;"];
+    stmt = [[Database instance] prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESC;"];
     [stmt bindString:0 val:desc];
 
     if ([stmt step] == SQLITE_ROW) {
