@@ -41,6 +41,8 @@
 @interface Transaction : NSObject <NSCoding, NSCopying> {
     int pkey; // primary key
     NSDate *date;
+    int asset;
+    int dst_asset;
     NSString *description;
     NSString *memo;
     double value; // plus - income, minus - outgo.
@@ -50,6 +52,8 @@
 }
 
 @property(nonatomic,assign) int pkey;
+@property(nonatomic,assign) int asset;
+@property(nonatomic,assign) int dst_asset;
 @property(nonatomic,copy) NSDate *date;
 @property(nonatomic,copy) NSString *description;
 @property(nonatomic,copy) NSString *memo;
@@ -67,7 +71,7 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
-- (void)insertDb:(int)asset;
+- (void)insertDb;
 - (void)updateDb;
 - (void)deleteDb;
 

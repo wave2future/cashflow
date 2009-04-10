@@ -93,7 +93,8 @@
     int i;
     for (i = 0; i < n; i++) {
         Transaction *t = [transactions objectAtIndex:i];
-        [t insertDb:self.pkey];
+        t.asset = self.pkey;
+        [t insertDb];
     }
 
     [db commitTransaction];
@@ -117,6 +118,9 @@
 
     while ([stmt step] == SQLITE_ROW) {
         Transaction *t = [[Transaction alloc] init];
+        t.asset = pkey;
+        t.dst_asset = -1; // ###
+
         t.pkey = [stmt colInt:0];
         t.date = [stmt colDate:1];
         t.type = [stmt colInt:2];
@@ -199,7 +203,8 @@
     }
 
     // DB 追加
-    [tr insertDb:self.pkey];
+    tr.asset = self.pkey;
+    [tr insertDb];
 }
 
 // private
