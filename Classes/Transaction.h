@@ -66,4 +66,9 @@
 
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
+
+- (void)insertDb:(int)asset;
+- (void)updateDb;
+- (void)deleteDb;
+
 @end

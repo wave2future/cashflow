@@ -33,7 +33,7 @@
 */
 
 #import "Transaction.h"
-
+#import "Database.h"
 
 @implementation Transaction
 
@@ -193,5 +193,66 @@
     [coder encodeObject:memo forKey:@"Memo"];
     //[coder encodeInt:category forKey:@"Category"];
 }
+
+//
+// Database operations
+//
+- (void)insertDb:(int)asset
+{
+    static DBStatement *stmt = nil;
+
+    if (stmt == nil) {
+        const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
+        stmt = [[Database instance] prepare:s];
+        [stmt retain];
+    }
+    [stmt bindInt:0 val:asset]; // asset key
+    [stmt bindInt:1 val:-1]; // dst asset
+    [stmt bindDate:2 val:date];
+    [stmt bindInt:3 val:type];
+    [stmt bindInt:4 val:category];
+    [stmt bindDouble:5 val:value];
+    [stmt bindString:6 val:description];
+    [stmt bindString:7 val:memo];
+    [stmt step];
+    [stmt reset];
+
+    // get primary key
+    pkey = [[Database instance] lastInsertRowId];
+}
+
+- (void)updateDb
+{
+    static DBStatement *stmt = nil;
+
+    if (stmt == nil) {
+        const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
+        stmt = [[Database instance] prepare:s];
+        [stmt retain];
+    }
+    [stmt bindDate:0 val:date];
+    [stmt bindInt:1 val:type];
+    [stmt bindInt:2 val:category];
+    [stmt bindDouble:3 val:value];
+    [stmt bindString:4 val:description];
+    [stmt bindString:5 val:memo];
+    [stmt bindInt:6 val:pkey];
+    [stmt step];
+    [stmt reset];
+}
+
+- (void)deleteDb
+{
+    static DBStatement *stmt = nil;
+    if (stmt == nil) {
+        const char *s = "DELETE FROM Transactions WHERE key = ?;";
+        stmt = [[Database instance] prepare:s];
+        [stmt retain];
+    }
+    [stmt bindInt:0 val:pkey];
+    [stmt step];
+    [stmt reset];
+}
+
 
 @end

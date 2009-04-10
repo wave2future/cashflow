@@ -88,19 +88,12 @@
     Database *db = [Database instance];
     [db beginTransaction];
 
-#if 0
-    // delete all transactions
-    DBStatement *stmt = [db prepare:"DELETE FROM Transactions WHERE asset = ?;"];
-    [stmt bindInt:0 val:pkey];
-    [stmt step];
-#endif
-
     // write all transactions
     int n = [transactions count];
     int i;
     for (i = 0; i < n; i++) {
         Transaction *t = [transactions objectAtIndex:i];
-        [self insertTransactionDb:t];
+        [t insertDb:self.pkey];
     }
 
     [db commitTransaction];
@@ -206,34 +199,10 @@
     }
 
     // DB 追加
-    [self insertTransactionDb:tr];
+    [tr insertDb:self.pkey];
 }
 
 // private
-- (void)insertTransactionDb:(Transaction*)t
-{
-    static DBStatement *stmt = nil;
-
-    if (stmt == nil) {
-        const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
-        stmt = [[Database instance] prepare:s];
-        [stmt retain];
-    }
-    [stmt bindInt:0 val:pkey]; // asset key
-    [stmt bindInt:1 val:-1]; // dst asset
-    [stmt bindDate:2 val:t.date];
-    [stmt bindInt:3 val:t.type];
-    [stmt bindInt:4 val:t.category];
-    [stmt bindDouble:5 val:t.value];
-    [stmt bindString:6 val:t.description];
-    [stmt bindString:7 val:t.memo];
-    [stmt step];
-    [stmt reset];
-
-    // get primary key
-    t.pkey = [[Database instance] lastInsertRowId];
-}
-
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
     // copy key
@@ -244,44 +213,15 @@
     [self recalcBalance];
 
     // update DB
-    [self updateTransaction:t];
+    [t updateDb];
 }
-
-- (void)updateTransaction:(Transaction *)t
-{
-    static DBStatement *stmt = nil;
-
-    if (stmt == nil) {
-        const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
-        stmt = [[Database instance] prepare:s];
-        [stmt retain];
-    }
-    [stmt bindDate:0 val:t.date];
-    [stmt bindInt:1 val:t.type];
-    [stmt bindInt:2 val:t.category];
-    [stmt bindDouble:3 val:t.value];
-    [stmt bindString:4 val:t.description];
-    [stmt bindString:5 val:t.memo];
-    [stmt bindInt:6 val:t.pkey];
-    [stmt step];
-    [stmt reset];
-}
-
 
 - (void)deleteTransactionAt:(int)n
 {
     // update DB
     Transaction *t = [transactions objectAtIndex:n];
 
-    static DBStatement *stmt = nil;
-    if (stmt == nil) {
-        const char *s = "DELETE FROM Transactions WHERE key = ?;";
-        stmt = [[Database instance] prepare:s];
-        [stmt retain];
-    }
-    [stmt bindInt:0 val:t.pkey];
-    [stmt step];
-    [stmt reset];
+    [t deleteDb];
 
     // special handling for first transaction
     if (n == 0) {
@@ -311,14 +251,6 @@
         [self deleteTransactionAt:0];
     }
     [db commitTransaction];
-
-#if 0
-    sqlite3_snprintf(sizeof(sql), sql,
-                     "DELETE FROM Transactions WHERE date < %Q AND asset = %d;",
-                     [db cstringFromDate:date], asset);
-    [db execSql:sql];
-    [self reload];
-#endif
 }
 
 - (int)firstTransactionByDate:(NSDate*)date
@@ -378,7 +310,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
         if (t.value != oldval) {
             // 金額が変更された場合(残高照会取引)、DB を更新
-            [self updateTransaction:t];
+            [t updateDb];
         }
     }
 
