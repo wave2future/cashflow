@@ -40,7 +40,7 @@
 
 @implementation Asset
 
-@synthesize db, pkey, type, name, sorder;
+@synthesize pkey, type, name, sorder;
 @synthesize initialBalance;
 
 - (id)init
@@ -85,6 +85,7 @@
     // Ok, write back database
     [self updateInitialBalance];
 
+    Database *db = [Database instance];
     [db beginTransaction];
 
 #if 0
@@ -115,7 +116,7 @@
     [self clear];
 
     /* load transactions */
-    stmt = [db prepare:"SELECT key, date, type, category, value, description, memo"
+    stmt = [[Database instance] prepare:"SELECT key, date, type, category, value, description, memo"
                " FROM Transactions WHERE asset = ? ORDER BY date;"];
     [stmt bindInt:0 val:pkey];
 
@@ -160,7 +161,7 @@
 
 - (void)updateInitialBalance
 {
-    DBStatement *stmt = [db prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
+    DBStatement *stmt = [[Database instance] prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
     [stmt bindDouble:0 val:initialBalance];
     [stmt bindInt:1 val:pkey];
     [stmt step];
@@ -215,7 +216,7 @@
 
     if (stmt == nil) {
         const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
-        stmt = [db prepare:s];
+        stmt = [[Database instance] prepare:s];
         [stmt retain];
     }
     [stmt bindInt:0 val:pkey]; // asset key
@@ -230,7 +231,7 @@
     [stmt reset];
 
     // get primary key
-    t.pkey = [db lastInsertRowId];
+    t.pkey = [[Database instance] lastInsertRowId];
 }
 
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
@@ -252,7 +253,7 @@
 
     if (stmt == nil) {
         const char *s = "UPDATE Transactions SET date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
-        stmt = [db prepare:s];
+        stmt = [[Database instance] prepare:s];
         [stmt retain];
     }
     [stmt bindDate:0 val:t.date];
@@ -275,7 +276,7 @@
     static DBStatement *stmt = nil;
     if (stmt == nil) {
         const char *s = "DELETE FROM Transactions WHERE key = ?;";
-        stmt = [db prepare:s];
+        stmt = [[Database instance] prepare:s];
         [stmt retain];
     }
     [stmt bindInt:0 val:t.pkey];
@@ -298,6 +299,8 @@
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
 {
+    Database *db = [Database instance];
+
     [db beginTransaction];
     while (transactions.count > 0) {
         Transaction *t = [transactions objectAtIndex:0];
@@ -362,6 +365,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     int max = [transactions count];
     int i;
 
+    Database *db = [Database instance];
     [db beginTransaction];
 
     bal = initialBalance;

@@ -46,8 +46,6 @@
 @class Database;
 
 @interface Asset : NSObject {
-    Database *db;
-
     int pkey;
     int type;
     NSString *name;
@@ -58,7 +56,6 @@
     NSMutableArray *transactions;
 }
 
-@property(nonatomic,assign) Database *db;
 @property(nonatomic,assign) int pkey;
 @property(nonatomic,assign) int type;
 @property(nonatomic,retain) NSString *name;

@@ -110,8 +110,6 @@
         as.initialBalance = [stmt colDouble:3];
         as.sorder = [stmt colInt:4];
 
-        as.db = db; // back pointer
-		
         [assets addObject:as];
         [as release];
     }

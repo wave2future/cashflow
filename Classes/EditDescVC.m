@@ -82,6 +82,7 @@
     [descArray retain];
     [descArray insertObject:@"" atIndex:0];  // dummy entry
     [picker reloadAllComponents];
+    [picker selectRow:0 inComponent:0 animated:NO];
 
     // キーボードを消す ###
     [textField resignFirstResponder];
