@@ -201,6 +201,44 @@
 //
 // Database operations
 //
++ (NSMutableArray *)loadTransactions:(Asset *)as
+{
+    DBStatement *stmt;
+
+    /* load transactions */
+    stmt = [[Database instance] prepare:"SELECT key, date, type, category, value, description, memo"
+               " FROM Transactions WHERE asset = ? ORDER BY date;"];
+    [stmt bindInt:0 val:as.pkey];
+
+    NSMutableArray *ary = [[[NSMutableArray alloc] init] autorelease];
+
+    while ([stmt step] == SQLITE_ROW) {
+        Transaction *t = [[Transaction alloc] init];
+        t.asset = as.pkey;
+        t.dst_asset = -1; // ###
+
+        t.pkey = [stmt colInt:0];
+        t.date = [stmt colDate:1];
+        t.type = [stmt colInt:2];
+        t.category = [stmt colInt:3];
+        t.value = [stmt colDouble:4];
+        t.description = [stmt colString:5];
+        t.memo = [stmt colString:6];
+
+        if (t.date == nil) {
+            // fail safe
+            NSLog(@"Invalid date: %@", [stmt colString:1]);
+            [t release];
+            continue;
+        }
+
+        [ary addObject:t];
+        [t release];
+    }
+
+    return ary;
+}
+
 - (void)insertDb
 {
     static DBStatement *stmt = nil;

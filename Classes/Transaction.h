@@ -38,6 +38,8 @@
 #define TYPE_INCOME	1 // 入金
 #define	TYPE_ADJ 2 // 残高調整
 
+@class Asset;
+
 @interface Transaction : NSObject <NSCoding, NSCopying> {
     int pkey; // primary key
     NSDate *date;
@@ -71,6 +73,7 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
++ (NSMutableArray *)loadTransactions:(Asset *)as;
 - (void)insertDb;
 - (void)updateDb;
 - (void)deleteDb;
