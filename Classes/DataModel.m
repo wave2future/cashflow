@@ -45,7 +45,7 @@
 {
     [super init];
 
-    db = nil;
+    db = [Database instance];
 
     assets = [[NSMutableArray alloc] init];
     selAsset = nil;
@@ -59,7 +59,6 @@
 {
     [assets release];
     [categories release];
-    [db release];
 
     [super dealloc];
 }
@@ -70,8 +69,6 @@
 - (void)load
 {
     // Load from DB
-    db = [[Database alloc] init];
-
     BOOL needLoadOldData = NO;
     if (![db openDB]) {
         [db initializeDB];

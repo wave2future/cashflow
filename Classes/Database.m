@@ -138,6 +138,25 @@
 @synthesize handle;
 
 static DateFormatter2 *dateFormatter = nil;
+static Database *theDatabase = nil;
+
+// singleton
++ (Database *)instance
+{
+    if (theDatabase == nil) {
+        theDatabase = [[Database alloc] init];
+    }
+    return theDatabase;
+}
+
++ (void)shutdown
+{
+    if (theDatabase) {
+        [theDatabase release];
+        theDatabase = nil;
+    }
+    // sqlite3_shutdown
+}
 
 - (id)init
 {
@@ -269,11 +288,6 @@ static DateFormatter2 *dateFormatter = nil;
 {
     const char *s = [[dateFormatter stringFromDate:date] UTF8String];
     return s;
-}
-
-+ (void)shutdown
-{
-    //sqlite3_shutdown();
 }
 
 @end

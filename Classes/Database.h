@@ -70,6 +70,9 @@
 
 @property(nonatomic,readonly) sqlite3 *handle;
 
++ (Database *)instance;
++ (void)shutdown;
+
 - (id)init;
 - (void)dealloc;
 
