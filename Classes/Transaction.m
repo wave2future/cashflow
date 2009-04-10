@@ -201,6 +201,21 @@
 //
 // Database operations
 //
++ (void)createTable
+{
+    [[Database instance] 
+        execSql:"CREATE TABLE Transactions ("
+        "key INTEGER PRIMARY KEY,"
+        "asset INTEGER,"
+        "dst_asset INTEGER,"
+        "date DATE,"
+        "type INTEGER,"
+        "category INTEGER,"
+        "value REAL,"
+        "description TEXT,"
+        "memo TEXT);"];
+}
+
 + (NSMutableArray *)loadTransactions:(Asset *)as
 {
     DBStatement *stmt;

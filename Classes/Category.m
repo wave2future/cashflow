@@ -44,6 +44,18 @@
     [super dealloc];
 }
 
+//
+// Database operations
+//
++ (void)createTable
+{
+    [[Database instance]
+        execSql:"CREATE TABLE Categories ("
+        "key INTEGER PRIMARY KEY,"
+        "name TEXT,"
+        "sorder INTEGER);"];
+}
+
 @end
 
 @implementation Categories

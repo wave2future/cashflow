@@ -73,6 +73,7 @@
 - (id)initWithCoder:(NSCoder *)decoder;
 - (void)encodeWithCoder:(NSCoder *)coder;
 
++ (void)createTable;
 + (NSMutableArray *)loadTransactions:(Asset *)as;
 - (void)insertDb;
 - (void)updateDb;

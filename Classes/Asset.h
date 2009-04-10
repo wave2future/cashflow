@@ -82,4 +82,6 @@
 - (double)lastBalance;
 - (void)updateInitialBalance;
 
++ (void)createTable;
+
 @end

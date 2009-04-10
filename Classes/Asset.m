@@ -105,8 +105,6 @@
 
 - (void)reload
 {
-    DBStatement *stmt;
-
     [self clear];
 
     transactions = [Transaction loadTransactions:self];
@@ -301,6 +299,27 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
         return initialBalance;
     }
     return [[transactions objectAtIndex:max - 1] balance];
+}
+
+//
+// Database operations
+//
++ (void)createTable
+{
+    Database *db = [Database instance];
+
+    [db execSql:"CREATE TABLE Assets ("
+        "key INTEGER PRIMARY KEY,"
+        "name TEXT,"
+        "type INTEGER,"
+        "initialBalance REAL,"
+        "sorder INTEGER);"];
+
+    char sql[256];
+    sqlite3_snprintf(sizeof(sql), sql,
+                     "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
+                     [NSLocalizedString(@"Cash", @"") UTF8String]);
+    [db execSql:sql];
 }
 
 

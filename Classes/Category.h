@@ -47,6 +47,8 @@
 @property(nonatomic,retain) NSString *name;
 @property(nonatomic,assign) int sorder;
 
++ (void)createTable;
+
 @end
 
 @interface Categories : NSObject {
@@ -66,4 +68,3 @@
 -(void)renumber;
 
 @end
-
