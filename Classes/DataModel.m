@@ -66,7 +66,7 @@
 
 - (void)load
 {
-    Database *db = [Database instacne];
+    Database *db = [Database instance];
 
     // Load from DB
     BOOL needLoadOldData = NO;
