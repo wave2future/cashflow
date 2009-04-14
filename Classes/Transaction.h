@@ -44,7 +44,7 @@
     int pkey; // primary key
     NSDate *date;
     int asset;
-    int dst_asset;
+g    int dst_asset;
     NSString *description;
     NSString *memo;
     double value; // plus - income, minus - outgo.

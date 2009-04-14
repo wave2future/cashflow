@@ -154,8 +154,9 @@
     [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
-    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=?;"];
+    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
     [stmt bindInt:0 val:as.pkey];
+    [stmt bindInt:1 val:as.pkey];
     [stmt step];
 
     [assets removeObject:as];

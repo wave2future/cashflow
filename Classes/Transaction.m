@@ -221,24 +221,29 @@
     DBStatement *stmt;
 
     /* load transactions */
-    stmt = [[Database instance] prepare:"SELECT key, date, type, category, value, description, memo"
-               " FROM Transactions WHERE asset = ? ORDER BY date;"];
+    stmt = [[Database instance] prepare:"SELECT key, dst_asset, date, type, category, value, description, memo"
+               " FROM Transactions WHERE asset = ? OR dst_asset = ? ORDER BY date;"];
     [stmt bindInt:0 val:as.pkey];
+    [stmt bindInt:1 val:as.pkey];
 
     NSMutableArray *ary = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
         Transaction *t = [[Transaction alloc] init];
         t.asset = as.pkey;
-        t.dst_asset = -1; // ###
 
         t.pkey = [stmt colInt:0];
-        t.date = [stmt colDate:1];
-        t.type = [stmt colInt:2];
-        t.category = [stmt colInt:3];
-        t.value = [stmt colDouble:4];
-        t.description = [stmt colString:5];
-        t.memo = [stmt colString:6];
+        t.dst_asset = [stmt colInt:1];
+        t.date = [stmt colDate:2];
+        t.type = [stmt colInt:3];
+        t.category = [stmt colInt:4];
+        t.value = [stmt colDouble:5];
+        t.description = [stmt colString:6];
+        t.memo = [stmt colString:7];
+
+        if (t.type == TYPE_TRANSFER && t.dst_asset == pkey) {
+            t.value = -t.value;
+        }
 
         if (t.date == nil) {
             // fail safe
