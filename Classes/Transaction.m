@@ -86,6 +86,7 @@
 
     switch (type) {
     case TYPE_INCOME:
+    case TYPE_TRANSFER:
         ret = value;
         break;
     case TYPE_OUTGO:
@@ -106,6 +107,7 @@
 {
     switch (type) {
     case TYPE_INCOME:
+    case TYPE_TRANSFER:
         value = v;
         break;
     case TYPE_OUTGO:
@@ -138,6 +140,7 @@
 {
     Transaction *n = [[Transaction alloc] init];
     n.pkey = self.pkey;
+    n.dst_asset = self.dst_asset;
     n.date = self.date;
     n.description = self.description;
     n.memo = self.memo;
@@ -156,6 +159,7 @@
     self = [super init];
     if (self) {
         self.pkey = [decoder decodeIntForKey:@"Serial"];
+        self.dst_asset = -1;
         self.date = [decoder decodeObjectForKey:@"Date"];
         self.type = [decoder decodeIntForKey:@"Type"];
         self.value = [decoder decodeDoubleForKey:@"Value"];

@@ -34,9 +34,10 @@
 
 #import <UIKit/UIKit.h>
 
-#define TYPE_OUTGO 0 // 支払
-#define TYPE_INCOME	1 // 入金
-#define	TYPE_ADJ 2 // 残高調整
+#define TYPE_OUTGO      0       // 支払
+#define TYPE_INCOME	1       // 入金
+#define	TYPE_ADJ        2       // 残高調整
+#define TYPE_TRANSFER   3       // 資産間移動
 
 @class Asset;
 
@@ -44,7 +45,7 @@
     int pkey; // primary key
     NSDate *date;
     int asset;
-g    int dst_asset;
+    int dst_asset;
     NSString *description;
     NSString *memo;
     double value; // plus - income, minus - outgo.
