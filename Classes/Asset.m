@@ -48,6 +48,7 @@
     [super init];
 
     pkey = 1; // とりあえず
+    dirty = YES;
 
     initialBalance = 0.0;
     transactions = [[NSMutableArray alloc] init];
@@ -105,13 +106,22 @@
 
 - (void)reload
 {
-    [self clear];
+    if (dirty) {
+        [self clear];
 
-    transactions = [Transaction loadTransactions:self];
-    [transactions retain];
+        transactions = [Transaction loadTransactions:self];
+        [transactions retain];
 
-    // recalc balance
-    [self recalcBalanceInitial];
+        // recalc balance
+        [self recalcBalanceInitial];
+
+        dirty = NO;
+    }
+}
+
+- (void)setDirty
+{
+    dirty = YES;
 }
 
 - (void)resave

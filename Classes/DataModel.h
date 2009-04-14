@@ -58,8 +58,11 @@
 - (void)loadAssets; // private
 
 // asset operation
+- (void)reloadAssets;
 - (int)assetCount;
 - (Asset *)assetAtIndex:(int)n;
+- (Asset*)assetWithKey:(int)key;
+
 - (void)addAsset:(Asset *)as;
 - (void)deleteAsset:(Asset *)as;
 - (void)updateAsset:(Asset*)asset;

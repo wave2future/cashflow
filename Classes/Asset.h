@@ -54,6 +54,8 @@
     // Transactions
     double initialBalance;
     NSMutableArray *transactions;
+
+    BOOL dirty;
 }
 
 @property(nonatomic,assign) int pkey;

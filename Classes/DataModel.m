@@ -86,9 +86,7 @@
     }
 
     // Load all transactions
-    for (Asset *as in assets) {
-        [as reload];
-    }
+    [self reloadAssets];
 
     // Load categories
     [categories reload];
@@ -117,6 +115,13 @@
 ////////////////////////////////////////////////////////////////////////////
 // Asset operation
 
+- (void)reloadAssets
+{
+    for (Asset *as in assets) {
+        [as reload];
+    }
+}
+
 - (int)assetCount
 {
     return [assets count];
@@ -125,6 +130,14 @@
 - (Asset*)assetAtIndex:(int)n
 {
     return [assets objectAtIndex:n];
+}
+
+- (Asset*)assetWithKey:(int)pkey
+{
+    for (Asset *as in assets) {
+        if (as.pkey == pkey) return as;
+    }
+    return nil;
 }
 
 - (void)addAsset:(Asset *)as
