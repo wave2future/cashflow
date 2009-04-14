@@ -34,6 +34,7 @@
 
 // Asset
 
+#import "AppDelegate.h"
 #import "Asset.h"
 #import "DataModel.h"
 #import "DataModelV1.h"
@@ -158,7 +159,7 @@
 }
 
 // 資産間移動で変更される asset をマークする
-- (void)_markAssetForTransfer:(Transaction*tr)
+- (void)_markAssetForTransfer:(Transaction*)tr
 {
     if (tr.type == TYPE_TRANSFER &&
         tr.dst_asset != self.pkey) {

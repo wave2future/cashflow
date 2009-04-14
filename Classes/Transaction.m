@@ -245,7 +245,7 @@
         t.description = [stmt colString:6];
         t.memo = [stmt colString:7];
 
-        if (t.type == TYPE_TRANSFER && t.dst_asset == pkey) {
+        if (t.type == TYPE_TRANSFER && t.dst_asset == as.pkey) {
             t.value = -t.value;
         }
 

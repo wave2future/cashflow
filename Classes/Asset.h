@@ -71,6 +71,7 @@
 
 - (int)transactionCount;
 - (Transaction*)transactionAt:(int)n;
+- (void)_markAssetForTransfer:(Transaction*)tr;
 - (void)insertTransaction:(Transaction*)tr;
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;

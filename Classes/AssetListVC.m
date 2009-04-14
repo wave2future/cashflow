@@ -115,7 +115,9 @@
 - (void)viewWillAppear:(BOOL)animated {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
-	
+        
+    [theDataModel reloadAssets];
+
     [tableView reloadData];
     [super viewWillAppear:animated];
 }
