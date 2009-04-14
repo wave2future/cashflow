@@ -157,11 +157,25 @@
     return [transactions objectAtIndex:n];
 }
 
+// 資産間移動で変更される asset をマークする
+- (void)_markAssetForTransfer:(Transaction*tr)
+{
+    if (tr.type == TYPE_TRANSFER &&
+        tr.dst_asset != self.pkey) {
+        Asset *asset = [theDataModel assetWithKey:tr.dst_asset];
+        if (asset) {
+            [asset setDirty];
+        }
+    }
+}
+
 - (void)insertTransaction:(Transaction*)tr
 {
     int i;
     int max = [transactions count];
     Transaction *t = nil;
+
+    [self _markAssetForTransfer:tr];
 
     // 挿入位置を探す
     for (i = 0; i < max; i++) {
@@ -190,6 +204,8 @@
 // private
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
+    [self _markAssetForTransfer:t];
+
     // copy key
     Transaction *old = [transactions objectAtIndex:index];
     t.pkey = old.pkey;
@@ -205,6 +221,7 @@
 {
     // update DB
     Transaction *t = [transactions objectAtIndex:n];
+    [self _markAssetForTransfer:t];
 
     [t deleteDb];
 
