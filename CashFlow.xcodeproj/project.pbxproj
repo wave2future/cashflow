@@ -22,6 +22,30 @@
 		3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E1A3B970F963ACC0050ED45 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3E1A3B990F963ACC0050ED45 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
+		3E1A3B9B0F963ACC0050ED45 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
+		3E1A3B9D0F963ACC0050ED45 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3E1A3B9F0F963ACC0050ED45 /* DataModelV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B250EC302D30008FAF0 /* DataModelV1.m */; };
+		3E1A3BA10F963ACC0050ED45 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
+		3E1A3BA30F963ACC0050ED45 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
+		3E1A3BA50F963ACC0050ED45 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3E1A3BA70F963ACC0050ED45 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3E1A3BA90F963ACC0050ED45 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3E1A3BAB0F963ACC0050ED45 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E1A3BAD0F963ACC0050ED45 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3E1A3BAF0F963ACC0050ED45 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3E1A3BB10F963ACC0050ED45 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3E1A3C6C0F963B130050ED45 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3E1A3C6D0F963B130050ED45 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		3E1A3C6E0F963B130050ED45 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		3E1A3C6F0F963B130050ED45 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
+		3E1A3C700F963B130050ED45 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3E1A3C720F963B440050ED45 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3E1A3C880F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3C840F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.m */; };
+		3E1A3C890F963B9E0050ED45 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3C850F963B9E0050ED45 /* GTMIPhoneUnitTestMain.m */; };
+		3E1A3C8A0F963B9E0050ED45 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3C870F963B9E0050ED45 /* GTMSenTestCase.m */; };
+		3E1A3C8C0F963BAA0050ED45 /* DataModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1A3C8B0F963BAA0050ED45 /* DataModelTest.m */; };
 		3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
 		3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
 		3E1F6EA90E76E74500CCDF57 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EA80E76E74500CCDF57 /* icon.png */; };
@@ -116,9 +140,6 @@
 		3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
-		3EAC05750F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC05710F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.m */; };
-		3EAC05760F96395E00E29C91 /* GTMIPhoneUnitTestMain.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC05720F96395E00E29C91 /* GTMIPhoneUnitTestMain.m */; };
-		3EAC05770F96395E00E29C91 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAC05740F96395E00E29C91 /* GTMSenTestCase.m */; };
 		3EB2FCDE0EC7314100F356A3 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
 		3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
 		3EB35B260EC302D30008FAF0 /* DataModelV1.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B250EC302D30008FAF0 /* DataModelV1.m */; };
@@ -169,6 +190,12 @@
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
 		3E0A9E390EC33894005195A5 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
+		3E1A3C830F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMIPhoneUnitTestDelegate.h; sourceTree = "<group>"; };
+		3E1A3C840F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMIPhoneUnitTestDelegate.m; sourceTree = "<group>"; };
+		3E1A3C850F963B9E0050ED45 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMIPhoneUnitTestMain.m; sourceTree = "<group>"; };
+		3E1A3C860F963B9E0050ED45 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMSenTestCase.h; sourceTree = "<group>"; };
+		3E1A3C870F963B9E0050ED45 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMSenTestCase.m; sourceTree = "<group>"; };
+		3E1A3C8B0F963BAA0050ED45 /* DataModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTest.m; sourceTree = "<group>"; };
 		3E1E63690F7B8A670037C34C /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
 		3E1E636A0F7B8A670037C34C /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
 		3E1F6EA80E76E74500CCDF57 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
@@ -223,11 +250,6 @@
 		3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-rendered.png"; sourceTree = "<group>"; };
 		3EAC05660F9638B000E29C91 /* UnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UnitTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EAC05680F9638B000E29C91 /* UnitTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "UnitTest-Info.plist"; sourceTree = "<group>"; };
-		3EAC05700F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMIPhoneUnitTestDelegate.h; path = UnitTesting/GTMIPhoneUnitTestDelegate.h; sourceTree = "<group>"; };
-		3EAC05710F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestDelegate.m; path = UnitTesting/GTMIPhoneUnitTestDelegate.m; sourceTree = "<group>"; };
-		3EAC05720F96395E00E29C91 /* GTMIPhoneUnitTestMain.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMIPhoneUnitTestMain.m; path = UnitTesting/GTMIPhoneUnitTestMain.m; sourceTree = "<group>"; };
-		3EAC05730F96395E00E29C91 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GTMSenTestCase.h; path = UnitTesting/GTMSenTestCase.h; sourceTree = "<group>"; };
-		3EAC05740F96395E00E29C91 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GTMSenTestCase.m; path = UnitTesting/GTMSenTestCase.m; sourceTree = "<group>"; };
 		3EAC05780F96397D00E29C91 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListView.xib; sourceTree = "<group>"; };
 		3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatVC.h; sourceTree = "<group>"; };
@@ -296,6 +318,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1A3C6C0F963B130050ED45 /* Foundation.framework in Frameworks */,
+				3E1A3C6D0F963B130050ED45 /* UIKit.framework in Frameworks */,
+				3E1A3C6E0F963B130050ED45 /* CoreGraphics.framework in Frameworks */,
+				3E1A3C6F0F963B130050ED45 /* AudioToolbox.framework in Frameworks */,
+				3E1A3C700F963B130050ED45 /* libsqlite3.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,6 +450,18 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		3E1A3C820F963B670050ED45 /* UnitTesting */ = {
+			isa = PBXGroup;
+			children = (
+				3E1A3C830F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.h */,
+				3E1A3C840F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.m */,
+				3E1A3C850F963B9E0050ED45 /* GTMIPhoneUnitTestMain.m */,
+				3E1A3C860F963B9E0050ED45 /* GTMSenTestCase.h */,
+				3E1A3C870F963B9E0050ED45 /* GTMSenTestCase.m */,
+			);
+			path = UnitTesting;
+			sourceTree = "<group>";
+		};
 		3E2CBD9B0F1614E90025A682 /* locale */ = {
 			isa = PBXGroup;
 			children = (
@@ -434,12 +473,9 @@
 		3EAC056E0F96391D00E29C91 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				3E1A3C8B0F963BAA0050ED45 /* DataModelTest.m */,
+				3E1A3C820F963B670050ED45 /* UnitTesting */,
 				3EAC05780F96397D00E29C91 /* GTMDefines.h */,
-				3EAC05700F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.h */,
-				3EAC05710F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.m */,
-				3EAC05720F96395E00E29C91 /* GTMIPhoneUnitTestMain.m */,
-				3EAC05730F96395E00E29C91 /* GTMSenTestCase.h */,
-				3EAC05740F96395E00E29C91 /* GTMSenTestCase.m */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
@@ -686,7 +722,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */,
 				3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */,
 				3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */,
@@ -703,6 +738,7 @@
 				3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */,
 				3E9433760EC1E0750033D50A /* Database.m in Sources */,
 				3EB35B260EC302D30008FAF0 /* DataModelV1.m in Sources */,
+				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */,
 				3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */,
 				3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */,
@@ -767,9 +803,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EAC05750F96395E00E29C91 /* GTMIPhoneUnitTestDelegate.m in Sources */,
-				3EAC05760F96395E00E29C91 /* GTMIPhoneUnitTestMain.m in Sources */,
-				3EAC05770F96395E00E29C91 /* GTMSenTestCase.m in Sources */,
+				3E1A3C720F963B440050ED45 /* AppDelegate.m in Sources */,
+				3E1A3B970F963ACC0050ED45 /* Asset.m in Sources */,
+				3E1A3B990F963ACC0050ED45 /* Transaction.m in Sources */,
+				3E1A3B9B0F963ACC0050ED45 /* Category.m in Sources */,
+				3E1A3B9D0F963ACC0050ED45 /* DataModel.m in Sources */,
+				3E1A3B9F0F963ACC0050ED45 /* DataModelV1.m in Sources */,
+				3E1A3BA10F963ACC0050ED45 /* Database.m in Sources */,
+				3E1A3BA30F963ACC0050ED45 /* DateFormatter2.m in Sources */,
+				3E1A3BA50F963ACC0050ED45 /* Report.m in Sources */,
+				3E1A3BA70F963ACC0050ED45 /* ExportBase.m in Sources */,
+				3E1A3BA90F963ACC0050ED45 /* ExportCsv.m in Sources */,
+				3E1A3BAB0F963ACC0050ED45 /* ExportOfx.m in Sources */,
+				3E1A3BAD0F963ACC0050ED45 /* WebServer.m in Sources */,
+				3E1A3BAF0F963ACC0050ED45 /* ExportServer.m in Sources */,
+				3E1A3BB10F963ACC0050ED45 /* BackupServer.m in Sources */,
+				3E1A3C880F963B9E0050ED45 /* GTMIPhoneUnitTestDelegate.m in Sources */,
+				3E1A3C890F963B9E0050ED45 /* GTMIPhoneUnitTestMain.m in Sources */,
+				3E1A3C8A0F963B9E0050ED45 /* GTMSenTestCase.m in Sources */,
+				3E1A3C8C0F963BAA0050ED45 /* DataModelTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
