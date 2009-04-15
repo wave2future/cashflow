@@ -56,6 +56,8 @@ extern NSDateFormatter *theDateFormatter;
 
 // initializer
 + (void)initialize;
++ (void)finalize;
+
 - (id)init;
 
 // load/save

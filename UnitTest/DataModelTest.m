@@ -11,6 +11,7 @@
 
 - (void)setUp
 {
+    //[DataModel initialize];
     //    db = [Database instance];
     //	[TestUtility initializeTestDatabase];
     //    dm = [DataModel sharedDataModel];
@@ -21,9 +22,16 @@
     //	[dm release];
 }
 
+// データが
 - (void)testLoadDB
 {
-    STAssertEquals(0, 0, @"hoga");
+    [DataModel finalize];
+
+    // テストデータを読み込ませる
+    [DataModel initialize];
+
+    STAssertNotNil(theDataModel, nil);
+
 #if 0
     [dm loadDB];
 

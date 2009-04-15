@@ -43,10 +43,10 @@
 
 DataModel *theDataModel = nil;
 NSDateFormatter *theDateFormatter = nil;
+static BOOL initialized = NO;
 
 + (void)initialize
 {
-    static BOOL initialized = NO;
 
     if (!initialized) {
         initialized = YES;
@@ -59,6 +59,19 @@ NSDateFormatter *theDateFormatter = nil;
         theDateFormatter = [[NSDateFormatter alloc] init];
         [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
         [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+}
+
++ (void)finalize
+{
+    if (initialized) {
+        initialized = NO;
+
+        [theDataModel release];
+        theDataModel = nil;
+
+        [theDateFormatter release];
+        theDateFormatter = nil;
     }
 }
 
