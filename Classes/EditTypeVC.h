@@ -40,25 +40,19 @@
 @class EditTypeViewController;
 
 @protocol EditTypeViewListener
-- (void)editTypeViewChanged:(EditTypeViewController*)vc identifier:(int)id;
+- (void)editTypeViewChanged:(EditTypeViewController*)vc;
 @end
 
 @interface EditTypeViewController : UITableViewController <GenEditTypeViewListener>
 {
     id<EditTypeViewListener> listener;
-    int identifier;
 
     int type;
     int dst_asset;
-
-    NSArray *typeArray;
 }
 
 @property(nonatomic,assign) id<EditTypeViewListener> listener;
-@property(nonatomic,assign) int identifier;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int dst_asset;
-
-+ (EditTypeViewController *)editTypeViewController:(id<EditTypeViewListener>)listener identifier:(int)id;
 
 @end

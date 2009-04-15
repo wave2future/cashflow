@@ -38,19 +38,7 @@
 
 @implementation EditTypeViewController
 
-@synthesize listener, identifier, type, dst_asset;
-
-+ (EditTypeViewController *)editTypeViewController:(id<EditTypeViewListener>)listener identifier:(int)id
-{
-    EditTypeViewController *vc = [[[EditTypeViewController alloc]
-                                         initWithNibName:@"EditTypeView"
-                                         bundle:nil] autorelease];
-
-    vc.listener = listener;
-    vc.identifier = id;
-
-    return vc;
-}
+@synthesize listener, type, dst_asset;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
@@ -132,7 +120,7 @@
                                     title:NSLocalizedString(@"Asset", @"")
                                     identifier:0];
 
-    vc.type = dst_asset;
+    //vc.type = dst_asset;
 
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -140,9 +128,10 @@
 // 資産選択
 - (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
 {
-    dst_asset = vc.type;
+    Asset *as = [theDataModel assetAtIndex:vc.type];
+    dst_asset = as.pkey;
 
-    [listener editTypeViewChanged:self identifier:identifier];
+    [listener editTypeViewChanged:self];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
