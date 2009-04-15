@@ -32,30 +32,25 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import "AppDelegate.h"
+#import "EditTypeVC.h"
+#import "Transaction.h"
 
-#import "GenEditTypeVC.h"
+@implementation EditTypeViewController
 
-@implementation GenEditTypeViewController
+@synthesize listener, type, dst_asset;
 
-@synthesize listener, typeArray, identifier, type, autoPop;
-
-+ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
 {
-    GenEditTypeViewController *vc = [[[GenEditTypeViewController alloc]
-                                         initWithNibName:@"GenEditTypeView"
-                                         bundle:[NSBundle mainBundle]] autorelease];
-    vc.listener = listener;
-    vc.typeArray = ary;
-    vc.title = title;
-    vc.autoPop = YES;
-    vc.identifier = id;
-
-    return vc;
+    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+        self.title = NSLocalizedString(@"Type", @"");
+        dst_asset = -1;
+    }
+    return self;
 }
 
 - (void)dealloc
 {
-    [typeArray release];
     [super dealloc];
 }
 
@@ -70,13 +65,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [typeArray count];
+    return 4;
 }
 
 // 行の内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    static NSString *MyIdentifier = @"genEditTypeViewCells";
+    static NSString *MyIdentifier = @"editTypeViewCells";
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
@@ -88,7 +83,22 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 		
-    cell.text = [typeArray objectAtIndex:indexPath.row];
+    NSString *t;
+    switch (indexPath.row) {
+    case 0:
+        t = @"Payment";
+        break;
+    case 1:
+        t = @"Deposit";
+        break;
+    case 2:
+        t = @"Adjustment";
+        break;
+    case 3:
+        t = @"Transfer";
+        break;
+    }
+    cell.text = NSLocalizedString(t, @"");
 
     return cell;
 }
@@ -97,11 +107,40 @@
 {
     self.type = indexPath.row;
 
-    [listener genEditTypeViewChanged:self identifier:identifier];
-    
-    if (autoPop) {
-        [self.navigationController popViewControllerAnimated:YES];
+    if (self.type != TYPE_TRANSFER) {
+        // pop しない
+        [listener editTypeViewChanged:self];
+        return;
     }
+
+    // 資産間移動
+    int assetCount = [theDataModel assetCount];
+    NSMutableArray *assetNames = [[[NSMutableArray alloc] initWithCapacity:assetCount] autorelease];
+    for (int i = 0; i < assetCount; i++) {
+        Asset *asset = [theDataModel assetAtIndex:i];
+        [assetNames addObject:asset.name];
+    }
+    
+    GenEditTypeViewController *vc;
+    vc = [GenEditTypeViewController genEditTypeViewController:self
+                                    array:assetNames
+                                    title:NSLocalizedString(@"Asset", @"")
+                                    identifier:0];
+
+    vc.autoPop = NO;
+    vc.type = [theDataModel assetIndexWithKey:dst_asset];
+
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+// 資産選択
+- (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
+{
+    Asset *as = [theDataModel assetAtIndex:vc.type];
+    dst_asset = as.pkey;
+
+    // pop しない
+    [listener editTypeViewChanged:self];
 }
 
 @end

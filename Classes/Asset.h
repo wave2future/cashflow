@@ -54,6 +54,8 @@
     // Transactions
     double initialBalance;
     NSMutableArray *transactions;
+
+    BOOL dirty;
 }
 
 @property(nonatomic,assign) int pkey;
@@ -65,10 +67,12 @@
 
 - (void)loadOldFormatData;
 - (void)reload;
+- (void)setDirty;
 - (void)clear;
 
 - (int)transactionCount;
 - (Transaction*)transactionAt:(int)n;
+- (void)_markAssetForTransfer:(Transaction*)tr;
 - (void)insertTransaction:(Transaction*)tr;
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
 - (void)deleteTransactionAt:(int)n;

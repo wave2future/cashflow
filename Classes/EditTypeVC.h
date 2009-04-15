@@ -32,56 +32,27 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+
 #import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import "GenEditTypeVC.h"
 
-#define TYPE_OUTGO      0       // 支払
-#define TYPE_INCOME	1       // 入金
-#define	TYPE_ADJ        2       // 残高調整
-#define TYPE_TRANSFER   3       // 資産間移動
+@class EditTypeViewController;
 
-@class Asset;
+@protocol EditTypeViewListener
+- (void)editTypeViewChanged:(EditTypeViewController*)vc;
+@end
 
-@interface Transaction : NSObject <NSCoding, NSCopying> {
-    int pkey; // primary key
-    NSDate *date;
-    int asset;
+@interface EditTypeViewController : UITableViewController <GenEditTypeViewListener>
+{
+    id<EditTypeViewListener> listener;
+
+    int type;
     int dst_asset;
-    NSString *description;
-    NSString *memo;
-    double value; // plus - income, minus - outgo.
-    double balance;
-    int type;  // TYPE_*
-    int category;
-    BOOL isReverse;
 }
 
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,assign) int asset;
-@property(nonatomic,assign) int dst_asset;
-@property(nonatomic,copy) NSDate *date;
-@property(nonatomic,copy) NSString *description;
-@property(nonatomic,copy) NSString *memo;
-@property(nonatomic,assign) double value;
-@property(nonatomic,assign) double balance;
+@property(nonatomic,assign) id<EditTypeViewListener> listener;
 @property(nonatomic,assign) int type;
-@property(nonatomic,assign) int category;
-@property(nonatomic,assign) BOOL isReverse;
-
-- (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
-
-- (double)evalue:(Asset *)as;
-- (void)setEvalue:(double)v withAsset:(Asset *)as;
-
-- (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial;
-- (double)prevBalance;
-
-- (id)initWithCoder:(NSCoder *)decoder;
-- (void)encodeWithCoder:(NSCoder *)coder;
-
-+ (void)createTable;
-+ (NSMutableArray *)loadTransactions:(Asset *)as;
-- (void)insertDb;
-- (void)updateDb;
-- (void)deleteDb;
+@property(nonatomic,assign) int dst_asset;
 
 @end

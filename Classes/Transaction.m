@@ -37,7 +37,7 @@
 
 @implementation Transaction
 
-@synthesize pkey, asset, dst_asset, date, description, memo, value, balance, type, category;
+@synthesize pkey, asset, dst_asset, date, description, memo, value, balance, type, category, isReverse;
 
 - (id)init
 {
@@ -53,6 +53,7 @@
     type = 0;
     category = -1;
     pkey = 0; // init
+    isReverse = NO;
     return self;
 }
 
@@ -76,11 +77,12 @@
     type = 0;
     category = -1;
     pkey = 0; // init
+    isReverse = NO;
     return self;
 }
 
 // 編集値を返す
-- (double)evalue
+- (double)evalue:(Asset *)as
 {
     double ret;
 
@@ -94,6 +96,9 @@
     case TYPE_ADJ:
         ret = balance;
         break;
+    case TYPE_TRANSFER:
+        ret = value;
+        break;
     }
 	
     if (ret == 0.0) {
@@ -102,7 +107,7 @@
     return ret;
 }
 
-- (void)setEvalue:(double)v
+- (void)setEvalue:(double)v withAsset:(Asset *)as
 {
     switch (type) {
     case TYPE_INCOME:
@@ -113,6 +118,9 @@
         break;
     case TYPE_ADJ:
         balance = v;
+        break;
+    case TYPE_TRANSFER:
+        value = v;
         break;
     }
 }
@@ -138,6 +146,8 @@
 {
     Transaction *n = [[Transaction alloc] init];
     n.pkey = self.pkey;
+    n.asset = self.asset;
+    n.dst_asset = self.dst_asset;
     n.date = self.date;
     n.description = self.description;
     n.memo = self.memo;
@@ -145,6 +155,7 @@
     n.balance = self.balance;
     n.type = self.type;
     n.category = self.category;
+    n.isReverse = self.isReverse;
     return n;
 }
 
@@ -156,6 +167,8 @@
     self = [super init];
     if (self) {
         self.pkey = [decoder decodeIntForKey:@"Serial"];
+        self.asset = 0;
+        self.dst_asset = -1;
         self.date = [decoder decodeObjectForKey:@"Date"];
         self.type = [decoder decodeIntForKey:@"Type"];
         self.value = [decoder decodeDoubleForKey:@"Value"];
@@ -172,6 +185,8 @@
         if (self.type < 0 || self.type > 2) {
             self.type = 0; // for safety
         }
+
+        self.isReverse = NO;
     }
 
     return self;
@@ -221,25 +236,30 @@
     DBStatement *stmt;
 
     /* load transactions */
-    stmt = [[Database instance] prepare:"SELECT key, date, type, category, value, description, memo"
-               " FROM Transactions WHERE asset = ? ORDER BY date;"];
+    stmt = [[Database instance] prepare:"SELECT key, asset, dst_asset, date, type, category, value, description, memo"
+               " FROM Transactions WHERE asset = ? OR dst_asset = ? ORDER BY date;"];
     [stmt bindInt:0 val:as.pkey];
+    [stmt bindInt:1 val:as.pkey];
 
     NSMutableArray *ary = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
         Transaction *t = [[Transaction alloc] init];
-        t.asset = as.pkey;
-        t.dst_asset = -1; // ###
-
         t.pkey = [stmt colInt:0];
-        t.date = [stmt colDate:1];
-        t.type = [stmt colInt:2];
-        t.category = [stmt colInt:3];
-        t.value = [stmt colDouble:4];
-        t.description = [stmt colString:5];
-        t.memo = [stmt colString:6];
+        t.asset = [stmt colInt:1];
+        t.dst_asset = [stmt colInt:2];
+        t.date = [stmt colDate:3];
+        t.type = [stmt colInt:4];
+        t.category = [stmt colInt:5];
+        t.value = [stmt colDouble:6];
+        t.description = [stmt colString:7];
+        t.memo = [stmt colString:8];
 
+        if (t.type == TYPE_TRANSFER && t.dst_asset == as.pkey) {
+            t.value = -t.value;
+            t.isReverse = YES;
+        }
+        
         if (t.date == nil) {
             // fail safe
             NSLog(@"Invalid date: %@", [stmt colString:1]);
@@ -268,7 +288,7 @@
     [stmt bindDate:2 val:date];
     [stmt bindInt:3 val:type];
     [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
+    [stmt bindDouble:5 val:(isReverse ? -value : value)];
     [stmt bindString:6 val:description];
     [stmt bindString:7 val:memo];
     [stmt step];
@@ -292,7 +312,7 @@
     [stmt bindDate:2 val:date];
     [stmt bindInt:3 val:type];
     [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
+    [stmt bindDouble:5 val:(isReverse ? -value : value)];
     [stmt bindString:6 val:description];
     [stmt bindString:7 val:memo];
     [stmt bindInt:8 val:pkey];

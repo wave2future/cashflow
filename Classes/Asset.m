@@ -34,6 +34,7 @@
 
 // Asset
 
+#import "AppDelegate.h"
 #import "Asset.h"
 #import "DataModel.h"
 #import "DataModelV1.h"
@@ -48,6 +49,7 @@
     [super init];
 
     pkey = 1; // とりあえず
+    dirty = YES;
 
     initialBalance = 0.0;
     transactions = [[NSMutableArray alloc] init];
@@ -105,13 +107,22 @@
 
 - (void)reload
 {
-    [self clear];
+    if (dirty) {
+        [self clear];
 
-    transactions = [Transaction loadTransactions:self];
-    [transactions retain];
+        transactions = [Transaction loadTransactions:self];
+        [transactions retain];
 
-    // recalc balance
-    [self recalcBalanceInitial];
+        // recalc balance
+        [self recalcBalanceInitial];
+
+        dirty = NO;
+    }
+}
+
+- (void)setDirty
+{
+    dirty = YES;
 }
 
 - (void)resave
@@ -147,11 +158,34 @@
     return [transactions objectAtIndex:n];
 }
 
+// 資産間移動で変更される asset をマークする
+- (void)_markAssetForTransfer:(Transaction*)tr
+{
+    Asset *asset;
+
+    if (tr.type == TYPE_TRANSFER) {
+        if (tr.dst_asset != self.pkey) {
+            asset = [theDataModel assetWithKey:tr.dst_asset];
+            if (asset) {
+                [asset setDirty];
+            }
+        }
+        if (tr.asset != self.pkey) {
+            asset = [theDataModel assetWithKey:tr.asset];
+            if (asset) {
+                [asset setDirty];
+            }
+        }
+    }
+}
+
 - (void)insertTransaction:(Transaction*)tr
 {
     int i;
     int max = [transactions count];
     Transaction *t = nil;
+
+    [self _markAssetForTransfer:tr];
 
     // 挿入位置を探す
     for (i = 0; i < max; i++) {
@@ -180,6 +214,12 @@
 // private
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
+    if (t.type == TYPE_TRANSFER) {
+        // 異動元／先資産が変更されていることがあるので、
+        // 全資産をリロードするようにする
+        [theDataModel dirtyAllAssets];
+    }
+
     // copy key
     Transaction *old = [transactions objectAtIndex:index];
     t.pkey = old.pkey;
@@ -189,12 +229,14 @@
 
     // update DB
     [t updateDb];
+
 }
 
 - (void)deleteTransactionAt:(int)n
 {
     // update DB
     Transaction *t = [transactions objectAtIndex:n];
+    [self _markAssetForTransfer:t];
 
     [t deleteDb];
 

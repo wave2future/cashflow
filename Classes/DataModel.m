@@ -86,9 +86,7 @@
     }
 
     // Load all transactions
-    for (Asset *as in assets) {
-        [as reload];
-    }
+    [self reloadAssets];
 
     // Load categories
     [categories reload];
@@ -117,6 +115,20 @@
 ////////////////////////////////////////////////////////////////////////////
 // Asset operation
 
+- (void)reloadAssets
+{
+    for (Asset *as in assets) {
+        [as reload];
+    }
+}
+
+- (void)dirtyAllAssets
+{
+    for (Asset *as in assets) {
+        [as setDirty];
+    }
+}
+
 - (int)assetCount
 {
     return [assets count];
@@ -125,6 +137,24 @@
 - (Asset*)assetAtIndex:(int)n
 {
     return [assets objectAtIndex:n];
+}
+
+- (Asset*)assetWithKey:(int)pkey
+{
+    for (Asset *as in assets) {
+        if (as.pkey == pkey) return as;
+    }
+    return nil;
+}
+
+- (int)assetIndexWithKey:(int)pkey
+{
+    int i;
+    for (i = 0; i < [assets count]; i++) {
+        Asset *as = [assets objectAtIndex:i];
+        if (as.pkey == pkey) return i;
+    }
+    return -1;
 }
 
 - (void)addAsset:(Asset *)as
@@ -154,8 +184,9 @@
     [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
-    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=?;"];
+    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
     [stmt bindInt:0 val:as.pkey];
+    [stmt bindInt:1 val:as.pkey];
     [stmt step];
 
     [assets removeObject:as];

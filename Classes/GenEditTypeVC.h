@@ -49,12 +49,14 @@
 	
     NSArray *typeArray;
     int type;
+    BOOL autoPop;
 }
 
 @property(nonatomic,assign) id<GenEditTypeViewListener> listener;
 @property(nonatomic,assign) int identifier;
 @property(nonatomic,retain) NSArray *typeArray;
 @property(nonatomic,assign) int type;
+@property(nonatomic,assign) BOOL autoPop;
 
 + (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
 
