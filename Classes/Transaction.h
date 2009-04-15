@@ -52,6 +52,7 @@
     double balance;
     int type;  // TYPE_*
     int category;
+    BOOL isReverse;
 }
 
 @property(nonatomic,assign) int pkey;
@@ -64,6 +65,7 @@
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int category;
+@property(nonatomic,assign) BOOL isReverse;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 

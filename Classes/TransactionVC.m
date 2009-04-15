@@ -334,25 +334,21 @@
     [self.navigationController popToViewController:self animated:YES]; // ###
     
     if (vc.type == TYPE_TRANSFER) {
-        if (vc.dst_asset == -1) {
-            // ### TBD
-            return;
-        }
-        if (trans.dst_asset == theDataModel.selAsset.pkey) {
-            // 転送される側
-            if (vc.dst_asset == trans.dst_asset) {
-                // ### TBD
-                return;
-            }
-            trans.asset = vc.dst_asset;
-        }
-        else {
+        if (!trans.isReverse) {
             // 転送する側
             if (vc.dst_asset == trans.asset) {
                 // ### TBD
                 return;
             }
             trans.dst_asset = vc.dst_asset;
+        } 
+        else {
+            // 転送される側
+            if (vc.dst_asset == trans.dst_asset) {
+                // ### TBD
+                return;
+            }
+            trans.asset = vc.dst_asset;
         }
     }
 

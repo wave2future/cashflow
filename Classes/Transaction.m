@@ -37,7 +37,7 @@
 
 @implementation Transaction
 
-@synthesize pkey, asset, dst_asset, date, description, memo, value, balance, type, category;
+@synthesize pkey, asset, dst_asset, date, description, memo, value, balance, type, category, isReverse;
 
 - (id)init
 {
@@ -53,6 +53,7 @@
     type = 0;
     category = -1;
     pkey = 0; // init
+    isReverse = NO;
     return self;
 }
 
@@ -76,6 +77,7 @@
     type = 0;
     category = -1;
     pkey = 0; // init
+    isReverse = NO;
     return self;
 }
 
@@ -95,11 +97,8 @@
         ret = balance;
         break;
     case TYPE_TRANSFER:
-        if (self.asset == as.pkey) {
-            ret = value;
-        } else {
-            ret = -value;
-        }
+        ret = value;
+        break;
     }
 	
     if (ret == 0.0) {
@@ -121,11 +120,8 @@
         balance = v;
         break;
     case TYPE_TRANSFER:
-        if (self.asset == as.pkey) {
-            value = v;
-        } else {
-            value = -v;
-        }
+        value = v;
+        break;
     }
 }
 
@@ -159,6 +155,7 @@
     n.balance = self.balance;
     n.type = self.type;
     n.category = self.category;
+    n.isReverse = self.isReverse;
     return n;
 }
 
@@ -170,6 +167,7 @@
     self = [super init];
     if (self) {
         self.pkey = [decoder decodeIntForKey:@"Serial"];
+        self.asset = 0;
         self.dst_asset = -1;
         self.date = [decoder decodeObjectForKey:@"Date"];
         self.type = [decoder decodeIntForKey:@"Type"];
@@ -187,6 +185,8 @@
         if (self.type < 0 || self.type > 2) {
             self.type = 0; // for safety
         }
+
+        self.isReverse = NO;
     }
 
     return self;
@@ -257,8 +257,9 @@
 
         if (t.type == TYPE_TRANSFER && t.dst_asset == as.pkey) {
             t.value = -t.value;
+            t.isReverse = YES;
         }
-
+        
         if (t.date == nil) {
             // fail safe
             NSLog(@"Invalid date: %@", [stmt colString:1]);
@@ -287,7 +288,7 @@
     [stmt bindDate:2 val:date];
     [stmt bindInt:3 val:type];
     [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
+    [stmt bindDouble:5 val:(isReverse ? -value : value)];
     [stmt bindString:6 val:description];
     [stmt bindString:7 val:memo];
     [stmt step];
@@ -311,7 +312,7 @@
     [stmt bindDate:2 val:date];
     [stmt bindInt:3 val:type];
     [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
+    [stmt bindDouble:5 val:(isReverse ? -value : value)];
     [stmt bindString:6 val:description];
     [stmt bindString:7 val:memo];
     [stmt bindInt:8 val:pkey];
