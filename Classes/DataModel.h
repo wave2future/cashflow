@@ -62,6 +62,7 @@
 - (void)dirtyAllAssets;
 - (int)assetCount;
 - (Asset *)assetAtIndex:(int)n;
+- (int)assetIndexWithKey:(int)key;
 - (Asset*)assetWithKey:(int)key;
 
 - (void)addAsset:(Asset *)as;

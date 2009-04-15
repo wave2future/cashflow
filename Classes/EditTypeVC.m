@@ -128,7 +128,7 @@
                                     identifier:0];
 
     vc.autoPop = NO;
-    //vc.type = dst_asset;
+    vc.type = [theDataModel assetIndexWithKey:dst_asset];
 
     [self.navigationController pushViewController:vc animated:YES];
 }
