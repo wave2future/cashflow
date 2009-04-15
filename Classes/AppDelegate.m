@@ -42,9 +42,6 @@
 @synthesize window;
 @synthesize navigationController;
 
-DataModel *theDataModel = nil;
-NSDateFormatter *theDateFormatter = nil;
-
 - (id)init {
     if (self = [super init]) {
         // 
@@ -57,14 +54,7 @@ NSDateFormatter *theDateFormatter = nil;
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    // データロード
-    theDataModel = [[DataModel alloc] init];
-    [theDataModel load];
-
-    // misc
-    theDateFormatter = [[NSDateFormatter alloc] init];
-    [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-    [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    [DataModel initialize];
 
     // Configure and show the window
     [window addSubview:[navigationController view]];

@@ -41,6 +41,27 @@
 
 @synthesize assets, selAsset, categories;
 
+DataModel *theDataModel = nil;
+NSDateFormatter *theDateFormatter = nil;
+
++ (void)initialize
+{
+    static BOOL initialized = NO;
+
+    if (!initialized) {
+        initialized = YES;
+
+        // データロード
+        theDataModel = [[DataModel alloc] init];
+        [theDataModel load];
+
+        // misc
+        theDateFormatter = [[NSDateFormatter alloc] init];
+        [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+}
+
 - (id)init
 {
     [super init];

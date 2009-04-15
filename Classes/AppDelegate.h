@@ -46,10 +46,6 @@
 
 + (NSString*)pathOfDataFile:(NSString*)filename;
 
-// Global variables
-extern DataModel *theDataModel;
-extern NSDateFormatter *theDateFormatter;
-
 // Utility
 #ifdef NDEBUG
 void AssertFailed(const char *filename, int lineno);
