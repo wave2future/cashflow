@@ -64,9 +64,11 @@
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int category;
-@property(nonatomic,assign) double evalue;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
+
+- (double)evalue:(Asset *)as;
+- (void)setEvalue:(double)v withAsset:(Asset *)as;
 
 - (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial;
 - (double)prevBalance;

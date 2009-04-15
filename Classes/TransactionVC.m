@@ -249,7 +249,7 @@
 		
     case ROW_VALUE:
         name.text = NSLocalizedString(@"Amount", @"");
-        value.text = [DataModel currencyString:trans.evalue];
+        value.text = [DataModel currencyString:[trans evalue:theDataModel.selAsset]];
         break;
 		
     case ROW_DESC:
@@ -300,7 +300,7 @@
         break;
 
     case ROW_VALUE:
-        editValueVC.value = trans.evalue;
+            editValueVC.value = [trans evalue:theDataModel.selAsset];
         vc = editValueVC;
         break;
 
@@ -381,7 +381,7 @@
 
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
-    trans.evalue = vc.value;
+    [trans setEvalue:vc.value withAsset:theDataModel.selAsset];
 }
 
 - (void)editDescViewChanged:(EditDescViewController *)vc

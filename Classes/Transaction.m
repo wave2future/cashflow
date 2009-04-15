@@ -80,13 +80,12 @@
 }
 
 // 編集値を返す
-- (double)evalue
+- (double)evalue:(Asset *)as
 {
     double ret;
 
     switch (type) {
     case TYPE_INCOME:
-    case TYPE_TRANSFER:
         ret = value;
         break;
     case TYPE_OUTGO:
@@ -95,6 +94,12 @@
     case TYPE_ADJ:
         ret = balance;
         break;
+    case TYPE_TRANSFER:
+        if (self.asset == as.pkey) {
+            ret = value;
+        } else {
+            ret = -value;
+        }
     }
 	
     if (ret == 0.0) {
@@ -103,11 +108,10 @@
     return ret;
 }
 
-- (void)setEvalue:(double)v
+- (void)setEvalue:(double)v withAsset:(Asset *)as
 {
     switch (type) {
     case TYPE_INCOME:
-    case TYPE_TRANSFER:
         value = v;
         break;
     case TYPE_OUTGO:
@@ -116,6 +120,12 @@
     case TYPE_ADJ:
         balance = v;
         break;
+    case TYPE_TRANSFER:
+        if (self.asset == as.pkey) {
+            value = v;
+        } else {
+            value = -v;
+        }
     }
 }
 
@@ -226,7 +236,7 @@
     DBStatement *stmt;
 
     /* load transactions */
-    stmt = [[Database instance] prepare:"SELECT key, dst_asset, date, type, category, value, description, memo"
+    stmt = [[Database instance] prepare:"SELECT key, asset, dst_asset, date, type, category, value, description, memo"
                " FROM Transactions WHERE asset = ? OR dst_asset = ? ORDER BY date;"];
     [stmt bindInt:0 val:as.pkey];
     [stmt bindInt:1 val:as.pkey];
@@ -235,16 +245,15 @@
 
     while ([stmt step] == SQLITE_ROW) {
         Transaction *t = [[Transaction alloc] init];
-        t.asset = as.pkey;
-
         t.pkey = [stmt colInt:0];
-        t.dst_asset = [stmt colInt:1];
-        t.date = [stmt colDate:2];
-        t.type = [stmt colInt:3];
-        t.category = [stmt colInt:4];
-        t.value = [stmt colDouble:5];
-        t.description = [stmt colString:6];
-        t.memo = [stmt colString:7];
+        t.asset = [stmt colInt:1];
+        t.dst_asset = [stmt colInt:2];
+        t.date = [stmt colDate:3];
+        t.type = [stmt colInt:4];
+        t.category = [stmt colInt:5];
+        t.value = [stmt colDouble:6];
+        t.description = [stmt colString:7];
+        t.memo = [stmt colString:8];
 
         if (t.type == TYPE_TRANSFER && t.dst_asset == as.pkey) {
             t.value = -t.value;
