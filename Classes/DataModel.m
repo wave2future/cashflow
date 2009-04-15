@@ -122,6 +122,13 @@
     }
 }
 
+- (void)dirtyAllAssets
+{
+    for (Asset *as in assets) {
+        [as setDirty];
+    }
+}
+
 - (int)assetCount
 {
     return [assets count];

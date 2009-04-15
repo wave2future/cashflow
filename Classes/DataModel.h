@@ -59,6 +59,7 @@
 
 // asset operation
 - (void)reloadAssets;
+- (void)dirtyAllAssets;
 - (int)assetCount;
 - (Asset *)assetAtIndex:(int)n;
 - (Asset*)assetWithKey:(int)key;

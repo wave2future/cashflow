@@ -214,7 +214,11 @@
 // private
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
-    [self _markAssetForTransfer:t];
+    if (t.type == TYPE_TRANSFER) {
+        // 異動元／先資産が変更されていることがあるので、
+        // 全資産をリロードするようにする
+        [theDataModel dirtyAllAssets];
+    }
 
     // copy key
     Transaction *old = [transactions objectAtIndex:index];
@@ -225,6 +229,7 @@
 
     // update DB
     [t updateDb];
+
 }
 
 - (void)deleteTransactionAt:(int)n
