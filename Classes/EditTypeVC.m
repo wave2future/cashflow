@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
+#import "AppDelegate.h"
 #import "EditTypeVC.h"
 #import "Transaction.h"
 
@@ -44,13 +44,6 @@
 {
     if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
         self.title = NSLocalizedString(@"Type", @"");
-
-        typeArray = [[NSArray alloc] initWithObjects:
-                                         NSLocalizedString(@"Payment", @""),
-                                     NSLocalizedString(@"Deposit", @""),
-                                     NSLocalizedString(@"Adjustment", @"Balance adjustment"),
-                                     NSLocalizedString(@"Transfer", @"");
-                                     nil];
         dst_asset = -1;
     }
     return self;
@@ -58,7 +51,6 @@
 
 - (void)dealloc
 {
-    [typeArray release];
     [super dealloc];
 }
 
@@ -73,7 +65,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [typeArray count];
+    return 4;
 }
 
 // 行の内容
@@ -91,7 +83,22 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 		
-    cell.text = [typeArray objectAtIndex:indexPath.row];
+    NSString *t;
+    switch (indexPath.row) {
+    case 0:
+        t = @"Payment";
+        break;
+    case 1:
+        t = @"Deposit";
+        break;
+    case 2:
+        t = @"Adjustment";
+        break;
+    case 3:
+        t = @"Transfer";
+        break;
+    }
+    cell.text = NSLocalizedString(t, @"");
 
     return cell;
 }
@@ -101,7 +108,7 @@
     self.type = indexPath.row;
 
     if (self.type != TYPE_TRANSFER) {
-        [listener editTypeViewChanged:self identifier:identifier];
+        [listener editTypeViewChanged:self];
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }

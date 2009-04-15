@@ -135,6 +135,8 @@
 		3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
 		3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
 		3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3EFD000A0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
+		3EFD000B0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -246,6 +248,8 @@
 		3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVC.m; sourceTree = "<group>"; };
 		3EF914FD0E6C1F8300E31816 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		3EF914FE0E6C1F8800E31816 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		3EFD00080F95E17B00F4B4C4 /* EditTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTypeVC.h; sourceTree = "<group>"; };
+		3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTypeVC.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -292,6 +296,8 @@
 				3E0888110E6EAEEB00739AC9 /* TransactionVC.m */,
 				3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */,
 				3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */,
+				3EFD00080F95E17B00F4B4C4 /* EditTypeVC.h */,
+				3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */,
 				3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */,
 				3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */,
 				3EC0C8410EC35F0500149755 /* GenEditTypeVC.h */,
@@ -630,6 +636,7 @@
 				3E9B99810F1E0480000288CF /* Pin.m in Sources */,
 				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
 				3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */,
+				3EFD000A0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +677,7 @@
 				3E8B25B30F348C090007929E /* Pin.m in Sources */,
 				3E8B25B40F348C090007929E /* PinVC.m in Sources */,
 				3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */,
+				3EFD000B0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

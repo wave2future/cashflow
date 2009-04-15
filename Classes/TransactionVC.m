@@ -289,10 +289,10 @@
         editTypeVC.type = trans.type;
         if (trans.asset == theDataModel.selAsset.pkey) {
             // 転送する側
-            vc.dst_asset = trans.dst_asset;
+            editTypeVC.dst_asset = trans.dst_asset;
         } else {
             // 転送される側
-            vc.dst_asset = trans.asset;
+            editTypeVC.dst_asset = trans.asset;
         }
         vc = editTypeVC;
         break;
