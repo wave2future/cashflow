@@ -161,11 +161,20 @@
 // 資産間移動で変更される asset をマークする
 - (void)_markAssetForTransfer:(Transaction*)tr
 {
-    if (tr.type == TYPE_TRANSFER &&
-        tr.dst_asset != self.pkey) {
-        Asset *asset = [theDataModel assetWithKey:tr.dst_asset];
-        if (asset) {
-            [asset setDirty];
+    Asset *asset;
+
+    if (tr.type == TYPE_TRANSFER) {
+        if (tr.dst_asset != self.pkey) {
+            asset = [theDataModel assetWithKey:tr.dst_asset];
+            if (asset) {
+                [asset setDirty];
+            }
+        }
+        if (tr.asset != self.pkey) {
+            asset = [theDataModel assetWithKey:tr.asset];
+            if (asset) {
+                [asset setDirty];
+            }
         }
     }
 }

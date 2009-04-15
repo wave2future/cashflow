@@ -140,6 +140,7 @@
 {
     Transaction *n = [[Transaction alloc] init];
     n.pkey = self.pkey;
+    n.asset = self.asset;
     n.dst_asset = self.dst_asset;
     n.date = self.date;
     n.description = self.description;

@@ -108,8 +108,8 @@
     self.type = indexPath.row;
 
     if (self.type != TYPE_TRANSFER) {
+        // pop しない
         [listener editTypeViewChanged:self];
-        [self.navigationController popViewControllerAnimated:YES];
         return;
     }
 
@@ -127,6 +127,7 @@
                                     title:NSLocalizedString(@"Asset", @"")
                                     identifier:0];
 
+    vc.autoPop = NO;
     //vc.type = dst_asset;
 
     [self.navigationController pushViewController:vc animated:YES];
@@ -138,8 +139,8 @@
     Asset *as = [theDataModel assetAtIndex:vc.type];
     dst_asset = as.pkey;
 
+    // pop しない
     [listener editTypeViewChanged:self];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

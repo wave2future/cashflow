@@ -37,7 +37,7 @@
 
 @implementation GenEditTypeViewController
 
-@synthesize listener, typeArray, identifier, type;
+@synthesize listener, typeArray, identifier, type, autoPop;
 
 + (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
@@ -47,6 +47,7 @@
     vc.listener = listener;
     vc.typeArray = ary;
     vc.title = title;
+    vc.autoPop = YES;
     vc.identifier = id;
 
     return vc;
@@ -95,9 +96,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     self.type = indexPath.row;
-    [listener genEditTypeViewChanged:self identifier:identifier];
 
-    [self.navigationController popViewControllerAnimated:YES];
+    [listener genEditTypeViewChanged:self identifier:identifier];
+    
+    if (autoPop) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 @end
