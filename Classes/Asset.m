@@ -282,6 +282,11 @@
         transaction = [t retain];
     }
     
+    if (t == nil) {
+        transaction = [[Transaction alloc] init];
+        transaction.asset = asset;
+    }
+    
     if (asset == t.asset) {
         // normal
         value = t.value;
@@ -306,6 +311,50 @@
         transaction.value = -value;
     }
 }    
+
+// 編集値を返す
+- (double)evalue
+{
+    double ret;
+
+    switch (type) {
+    case TYPE_INCOME:
+        ret = value;
+        break;
+    case TYPE_OUTGO:
+        ret = -value;
+        break;
+    case TYPE_ADJ:
+        ret = balance;
+        break;
+    case TYPE_TRANSFER:
+        ret = value;
+        break;
+    }
+	
+    if (ret == 0.0) {
+        ret = 0.0;	// avoid '-0'
+    }
+    return ret;
+}
+
+- (void)setEvalue:(double)v
+{
+    switch (type) {
+    case TYPE_INCOME:
+        self.value = v;
+        break;
+    case TYPE_OUTGO:
+        self.value = -v;
+        break;
+    case TYPE_ADJ:
+        balance = v;
+        break;
+    case TYPE_TRANSFER:
+        self.value = v;
+        break;
+    }
+}
 
 - (id)copyWithZone:(NSZone *)zone
 {

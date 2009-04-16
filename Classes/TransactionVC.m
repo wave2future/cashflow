@@ -141,17 +141,17 @@
 {
     transactionIndex = n;
 
-    if (trans != nil) {
-        [trans release];
+    if (editingEntry != nil) {
+        [editingEntry release];
     }
     if (transactionIndex < 0) {
         // 新規トランザクション
-        trans = [[Transaction alloc] init];
-        trans.asset = [DataModel instance].selAsset.pkey;
+        editingEntry = [[AssetEntry alloc] init];
+        [editingEntry setAsset:[DataModel instance].selAsset transaction:nil];
     } else {
         // 変更
-        Transaction *t = [[DataModel instance].selAsset transactionAt:transactionIndex];
-        trans = [t copy];
+        AssetEntry *orig = [[DataModel instance].selAsset entryAt:transactionIndex];
+        editingEntry = [orig copy];
     }
 }
 
@@ -239,32 +239,32 @@
     switch (indexPath.row) {
     case ROW_DATE:
         name.text = NSLocalizedString(@"Date", @"");
-        value.text = [[DataModel dateFormatter] stringFromDate:trans.date];
+        value.text = [[DataModel dateFormatter] stringFromDate:editingEntry.transaction.date];
         break;
 
     case ROW_TYPE:
         name.text = NSLocalizedString(@"Type", @"Transaction type");
-        value.text = [typeArray objectAtIndex:trans.type];
+        value.text = [typeArray objectAtIndex:editingEntry.transaction.type];
         break;
 		
     case ROW_VALUE:
         name.text = NSLocalizedString(@"Amount", @"");
-        value.text = [DataModel currencyString:[trans evalue:[DataModel instance].selAsset]];
+        value.text = [DataModel currencyString:[editingEntry.evalue]];
         break;
 		
     case ROW_DESC:
         name.text = NSLocalizedString(@"Name", @"Description");
-        value.text = trans.description;
+        value.text = editingEntry.transaction.description;
         break;
 			
     case ROW_CATEGORY:
         name.text = NSLocalizedString(@"Category", @"");
-        value.text = [[DataModel instance].categories categoryStringWithKey:trans.category];
+        value.text = [[DataModel instance].categories categoryStringWithKey:editingEntry.transaction.category];
         break;
 			
     case ROW_MEMO:
         name.text = NSLocalizedString(@"Memo", @"");
-        value.text = trans.memo;
+        value.text = editingEntry.transaction.memo;
         break;
     }
 
@@ -283,40 +283,40 @@
     UIViewController *vc = nil;
     switch (indexPath.row) {
     case ROW_DATE:
-        editDateVC.date = trans.date;
+        editDateVC.date = editingEntry.transaction.date;
         vc = editDateVC;
         break;
 
     case ROW_TYPE:
-        editTypeVC.type = trans.type;
-        if (trans.asset == [DataModel instance].selAsset.pkey) {
+        editTypeVC.type = editingEntry.transaction.type;
+        if (editingEntry.transaction.asset == [DataModel instance].selAsset.pkey) {
             // 転送する側
-            editTypeVC.dst_asset = trans.dst_asset;
+            editTypeVC.dst_asset = editingEntry.transaction.dst_asset;
         } else {
             // 転送される側
-            editTypeVC.dst_asset = trans.asset;
+            editTypeVC.dst_asset = editingEntry.transaction.asset;
         }
         vc = editTypeVC;
         break;
 
     case ROW_VALUE:
-            editValueVC.value = [trans evalue:[DataModel instance].selAsset];
+        editValueVC.value = [editingEntry.evalue];
         vc = editValueVC;
         break;
 
     case ROW_DESC:
-        editDescVC.description = trans.description;
-        editDescVC.category = trans.category;
+        editDescVC.description = editingEntry.transaction.description;
+        editDescVC.category = editingEntry.transaction.category;
         vc = editDescVC;
         break;
 
     case ROW_MEMO:
-        editMemoVC.text = trans.memo;
+        editMemoVC.text = editingEntry.transaction.memo;
         vc = editMemoVC;
         break;
 
     case ROW_CATEGORY:
-        editCategoryVC.selectedIndex = [[DataModel instance].categories categoryIndexWithKey:trans.category];
+        editCategoryVC.selectedIndex = [[DataModel instance].categories categoryIndexWithKey:editingEntry.transaction.category];
         vc = editCategoryVC;
         break;
     }
@@ -326,7 +326,7 @@
 // イベントリスナ (下位 ViewController からの変更通知)
 - (void)editDateViewChanged:(EditDateViewController *)vc
 {
-    trans.date = vc.date;
+    editingEntry.transaction.date = vc.date;
 }
 
 - (void)editTypeViewChanged:(EditTypeViewController*)vc
@@ -334,38 +334,38 @@
     [self.navigationController popToViewController:self animated:YES]; // ###
     
     if (vc.type == TYPE_TRANSFER) {
-        if (!trans.isReverse) {
+        if (!editingEntry.transaction.isReverse) {
             // 転送する側
-            if (vc.dst_asset == trans.asset) {
+            if (vc.dst_asset == editingEntry.transaction.asset) {
                 // ### TBD
                 return;
             }
-            trans.dst_asset = vc.dst_asset;
+            editingEntry.transaction.dst_asset = vc.dst_asset;
         } 
         else {
             // 転送される側
-            if (vc.dst_asset == trans.dst_asset) {
+            if (vc.dst_asset == editingEntry.transaction.dst_asset) {
                 // ### TBD
                 return;
             }
-            trans.asset = vc.dst_asset;
+            editingEntry.transaction.asset = vc.dst_asset;
         }
     }
 
-    trans.type = vc.type;
+    editingEntry.transaction.type = vc.type;
 
-    switch (trans.type) {
+    switch (editingEntry.transaction.type) {
     case TYPE_ADJ:
-        trans.description = [typeArray objectAtIndex:trans.type];
+        editingEntry.transaction.description = [typeArray objectAtIndex:editingEntry.transaction.type];
         break;
 
     case TYPE_TRANSFER:
         {
             Asset *from, *to;
-            from = [[DataModel instance] assetWithKey:trans.asset];
-            to = [[DataModel instance] assetWithKey:trans.dst_asset];
+            from = [[DataModel instance] assetWithKey:editingEntry.transaction.asset];
+            to = [[DataModel instance] assetWithKey:editingEntry.transaction.dst_asset];
 
-            trans.description = 
+            editingEntry.transaction.description = 
                 [NSString stringWithFormat:@"%@/%@", from.name, to.name];
         }
         break;
@@ -377,31 +377,31 @@
 
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
-    [trans setEvalue:vc.value withAsset:[DataModel instance].selAsset];
+    [editingEntry setEvalue:vc.value];
 }
 
 - (void)editDescViewChanged:(EditDescViewController *)vc
 {
-    trans.description = vc.description;
+    editingEntry.transaction.description = vc.description;
 
-    if (trans.category < 0) {
+    if (editingEntry.transaction.category < 0) {
         // set category from description
-        trans.category = [[DataModel instance] categoryWithDescription:trans.description];
+        editingEntry.transaction.category = [[DataModel instance] categoryWithDescription:editingEntry.transaction.description];
     }
 }
 
 - (void)editMemoViewChanged:(EditMemoViewController*)vc identifier:(int)id
 {
-    trans.memo = vc.text;
+    editingEntry.transaction.memo = vc.text;
 }
 
 - (void)categoryListViewChanged:(CategoryListViewController*)vc;
 {
     if (vc.selectedIndex < 0) {
-        trans.category = -1;
+        editingEntry.transaction.category = -1;
     } else {
         Category *c = [[DataModel instance].categories categoryAtIndex:vc.selectedIndex];
-        trans.category = c.pkey;
+        editingEntry.transaction.category = c.pkey;
     }
 }
 
@@ -454,7 +454,7 @@
     Journal *journal = [DataModel instance].journal;
     Asset *asset = [DataModel instance].selAsset;
 
-    trans.asset = asset.pkey;
+    editingEntry.transaction.asset = asset.pkey;
 
     if (transactionIndex < 0) {
         [asset insertTransaction:trans];

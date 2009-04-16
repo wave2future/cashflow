@@ -52,7 +52,7 @@
     EditDescViewListener, CategoryListViewListener>
 {
     int transactionIndex;
-    Transaction *trans;
+    AssetEntry *editingEntry;
 
     NSArray *typeArray;
 

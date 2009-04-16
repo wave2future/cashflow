@@ -81,50 +81,6 @@
     return self;
 }
 
-// 編集値を返す
-- (double)evalue:(Asset *)as
-{
-    double ret;
-
-    switch (type) {
-    case TYPE_INCOME:
-        ret = value;
-        break;
-    case TYPE_OUTGO:
-        ret = -value;
-        break;
-    case TYPE_ADJ:
-        ret = balance;
-        break;
-    case TYPE_TRANSFER:
-        ret = value;
-        break;
-    }
-	
-    if (ret == 0.0) {
-        ret = 0.0;	// avoid '-0'
-    }
-    return ret;
-}
-
-- (void)setEvalue:(double)v withAsset:(Asset *)as
-{
-    switch (type) {
-    case TYPE_INCOME:
-        value = v;
-        break;
-    case TYPE_OUTGO:
-        value = -v;
-        break;
-    case TYPE_ADJ:
-        balance = v;
-        break;
-    case TYPE_TRANSFER:
-        value = v;
-        break;
-    }
-}
-
 - (id)copyWithZone:(NSZone*)zone
 {
     Transaction *n = [[Transaction alloc] init];

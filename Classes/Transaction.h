@@ -49,7 +49,6 @@
     NSString *description;
     NSString *memo;
     double value; // plus - income, minus - outgo.
-    double balance;
     int type;  // TYPE_*
     int category;
 }
@@ -61,7 +60,6 @@
 @property(nonatomic,copy) NSString *description;
 @property(nonatomic,copy) NSString *memo;
 @property(nonatomic,assign) double value;
-@property(nonatomic,assign) double balance;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int category;
 @property(nonatomic,assign) BOOL isReverse;
