@@ -50,4 +50,6 @@
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
 
+- (BOOL)isDstAsset;
+
 @end

@@ -68,17 +68,29 @@
     }
     
     if (t == nil) {
+        // 新規エントリ生成
         transaction = [[Transaction alloc] init];
         transaction.asset = asset;
     }
     else {
-        if (asset == t.asset) {
-            value = t.value;
-        } else {
-            // reverse
+        if ([self isDstAsset]) {
             value = -t.value;
+        } else {
+            value = t.value;
         }
     }
+}
+
+//
+// 資産間移動の移動先取引なら YES を返す
+//
+- (BOOL)isDstAsset
+{
+    if (transaction.type == TYPE_TRANSFER && asset == transaction.dst_asset) {
+        return YES;
+    }
+
+    return NO;
 }
 
 - (double)value
@@ -90,29 +102,33 @@
 {
     value = v;
 
-    if (asset == transaction.asset) {
-        // normal
-        transaction.value = value;
-    } else {
+    if ([self isDstAsset]) {
         transaction.value = -value;
+    } else {
+        transaction.value = value;
     }
 }    
 
-// 編集値を返す
+// TransactionViewController 用の値を返す
 - (double)evalue
 {
     double ret;
 
     switch (type) {
     case TYPE_INCOME:
-    case TYPE_TRANSFER:
-        ret = value;
         break;
     case TYPE_OUTGO:
         ret = -value;
         break;
     case TYPE_ADJ:
         ret = balance;
+        break;
+    case TYPE_TRANSFER:
+        if ([self isDstAsset]) {
+            ret = value;
+        } else {
+            ret = -value;
+        }
         break;
     }
 	
@@ -122,6 +138,7 @@
     return ret;
 }
 
+// 編集値をセット
 - (void)setEvalue:(double)v
 {
     switch (type) {
@@ -135,35 +152,41 @@
         balance = v;
         break;
     case TYPE_TRANSFER:
-        self.value = v;
+        if ([self isDstAsset]) {
+            self.value = v;
+        } else {
+            self.value = -v;
+        }
         break;
     }
 }
 
-// 転送先資産キーを返す
+// 転送先資産のキーを返す
 - (int)dstAsset
 {
     if (transaction.type != TYPE_TRANSFER) {
         return -1;
     }
 
-    if (transaction.asset == asset) {
-        return transaction.dst_asset;
+    if ([self isDstAsset]) {
+        return transaction.asset;
     }
-    return transaction.asset;
+
+    return transaction.dst_asset;
 }
 
-- (void)setDstAsset:as
+- (void)setDstAsset:(int)as
 {
     if (transaction.type != TYPE_TRANSFER) {
         // ###
         return;
     }
 
-    if (transaction.asset == asset) {
+    if ([self isDstAsset]) {
+        transaction.asset = as;
+    } else {
         transaction.dst_asset = as;
     }
-    transaction.asset = as;
 }
 
 - (id)copyWithZone:(NSZone *)zone
