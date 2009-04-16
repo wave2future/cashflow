@@ -54,14 +54,6 @@ static DataModel *theDataModel = nil;
 
 + (void)finalize
 {
-    if (theDataModel) {
-        [theDataModel release];
-        theDataModel = nil;
-    }
-}
-
-+ (void)finalize
-{
     if (initialized) {
         initialized = NO;
 
@@ -77,6 +69,8 @@ static DataModel *theDataModel = nil;
 {
     [super init];
 
+    journal = [[Journal alloc] init];
+
     assets = [[NSMutableArray alloc] init];
     selAsset = nil;
 
@@ -87,6 +81,7 @@ static DataModel *theDataModel = nil;
 
 - (void)dealloc 
 {
+    [journal release];
     [assets release];
     [categories release];
 
@@ -108,7 +103,11 @@ static DataModel *theDataModel = nil;
     return theDateFormatter;
 }
 
-
+// Journal
++ (Journal *)journal
+{
+    return [DataModel instance].journal;
+}
 
 ////////////////////////////////////////////////////////////////////////////
 // Load / Save DB
@@ -118,27 +117,24 @@ static DataModel *theDataModel = nil;
     Database *db = [Database instance];
 
     // Load from DB
-    BOOL needLoadOldData = NO;
     if (![db openDB]) {
         [db initializeDB];
-        needLoadOldData = YES;
     }
 	
     // Load assets
     [self loadAssets];
     if ([assets count] > 0) {
         selAsset = [assets objectAtIndex:0];
-
-        if (needLoadOldData) {
-            [selAsset loadOldFormatData];
-        }
     }
 
     // Load all transactions
-    [self reloadAssets];
+    [journal load];
 
     // Load categories
     [categories reload];
+
+    // Rebuile assets (transfer transactions)
+    [self rebuild];
 }
 
 // private
@@ -164,17 +160,10 @@ static DataModel *theDataModel = nil;
 ////////////////////////////////////////////////////////////////////////////
 // Asset operation
 
-- (void)reloadAssets
+- (void)rebuild
 {
     for (Asset *as in assets) {
-        [as reload];
-    }
-}
-
-- (void)dirtyAllAssets
-{
-    for (Asset *as in assets) {
-        [as setDirty];
+        [as rebuild];
     }
 }
 
@@ -233,10 +222,13 @@ static DataModel *theDataModel = nil;
     [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
+    [journal deleteTransactionsWithAsset:as];
+#if 0
     stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
     [stmt bindInt:0 val:as.pkey];
     [stmt bindInt:1 val:as.pkey];
     [stmt step];
+#endif
 
     [assets removeObject:as];
 }
@@ -273,21 +265,6 @@ static DataModel *theDataModel = nil;
         [stmt reset];
     }
     [db commitTransaction];
-}
-
-
-- (void)changeSelAsset:(Asset *)as
-{
-#if 0   // transaction はいちいち解放しないこととした
-    if (selAsset != as) {
-        if (selAsset != nil) {
-            [selAsset clear];
-        }
-        selAsset = as;
-        [selAsset reload];
-    }
-#endif
-    selAsset = as;
 }
 
 ////////////////////////////////////////////////////////////////////////////

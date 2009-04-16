@@ -33,11 +33,16 @@
 */
 
 #import <UIKit/UIKit.h>
+#import "Journal.h"
 #import "Asset.h"
 #import "Category.h"
 #import "Database.h"
 
-@interface DataModel : NSObject {
+@interface DataModel : NSObject
+{
+    // Journal
+    Journal *journal;
+
     // Asset
     NSMutableArray *assets;
     Asset *selAsset; // 選択中の Asset
@@ -46,13 +51,16 @@
     Categories *categories;
 }
 
+@property(nonatomic,retain) Journal *journal;
 @property(nonatomic,retain) NSMutableArray *assets;
 @property(nonatomic,readonly) Asset *selAsset;
 @property(nonatomic,retain) Categories *categories;
 
 + (DataModel *)instance;
 + (void)finalize;
+
 + (DateFormatter *)dateFormatter;
++ (Journal *)journal;
 
 // initializer
 - (id)init;

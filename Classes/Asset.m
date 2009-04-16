@@ -70,43 +70,6 @@
 ////////////////////////////////////////////////////////////////////////////
 // Load / Save DB
 
-#if 0
-- (void)loadOldFormatData
-{
-    // Backward compatibility : try to load old format data
-    DataModelV1 *dm1 = [DataModelV1 allocWithLoad];
-    if (dm1 != nil) {
-        [DataModelV1 deleteDataFile];
-
-        initialBalance = dm1.initialBalance;
-        transactions = dm1.transactions;
-        [transactions retain];
-
-        [dm1 release];
-    }
-
-    // Ok, write back database
-    [self updateInitialBalance];
-
-    Database *db = [Database instance];
-    [db beginTransaction];
-
-    // write all transactions
-    int n = [transactions count];
-    int i;
-    for (i = 0; i < n; i++) {
-        Transaction *t = [transactions objectAtIndex:i];
-        t.asset = self.pkey;
-        [t insertDb];
-    }
-
-    [db commitTransaction];
-
-    // reload
-    [self reload];
-}
-#endif
-
 
 //
 // 仕訳帳(Transaction)から転記しなおす
