@@ -101,7 +101,7 @@
 
     CatReport *cr = [report.catReports objectAtIndex:indexPath.row];
     if (cr.catkey >= 0) {
-        nameLabel.text = [theDataModel.categories categoryStringWithKey:cr.catkey];
+        nameLabel.text = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
     } else {
         nameLabel.text = NSLocalizedString(@"No category", @"");
     }

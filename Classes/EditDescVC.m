@@ -78,7 +78,7 @@
     textField.text = self.description;
     [super viewWillAppear:animated];
 
-    descArray = [theDataModel descLRUWithCategory:category];
+    descArray = [[DataModel instance] descLRUWithCategory:category];
     [descArray retain];
     [descArray insertObject:@"" atIndex:0];  // dummy entry
     [picker reloadAllComponents];

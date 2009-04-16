@@ -83,6 +83,7 @@
 - (void)beginTransaction;
 - (void)commitTransaction;
 
+- (NSString *)dataFilePath;
 - (BOOL)openDB;
 - (void)initializeDB;
 

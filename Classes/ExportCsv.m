@@ -86,7 +86,7 @@
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
     [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
     
-    Asset *asset = theDataModel.selAsset;
+    Asset *asset = [DataModel instance].selAsset;
     int max = [asset transactionCount];
 
     /* トランザクション */
@@ -104,11 +104,11 @@
 		
         NSMutableString *d = [[NSMutableString alloc] init];
         [d appendFormat:@"%d,", t.pkey];
-        [d appendFormat:@"%@,", [theDateFormatter stringFromDate:t.date]];
+        [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:t.date]];
         [d appendFormat:@"%.2f,", t.value];
         [d appendFormat:@"%.2f,", t.balance];
         [d appendFormat:@"%@,", t.description];
-        [d appendFormat:@"%@,", [theDataModel.categories categoryStringWithKey:t.category]];
+        [d appendFormat:@"%@,", [[DataModel instance].categories categoryStringWithKey:t.category]];
         [d appendFormat:@"%@", t.memo];
         [d appendString:@"\n"];
         [data appendString:d];

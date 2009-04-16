@@ -22,15 +22,15 @@
     //	[dm release];
 }
 
-// データが
+// データベースがないときに、初期化されること
 - (void)testLoadDB
 {
     [DataModel finalize];
 
     // テストデータを読み込ませる
-    [DataModel initialize];
+    DataModel *dm = [DataModel instance];
 
-    STAssertNotNil(theDataModel, nil);
+    STAssertNotNil(dm, nil);
 
 #if 0
     [dm loadDB];
@@ -41,5 +41,8 @@
     STAssertNotNil(shelf, nil);
 #endif
 }
+
+// データベースがあるときに、正常に読み込めること
+
 
 @end

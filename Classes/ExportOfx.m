@@ -95,7 +95,7 @@
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-    Asset *asset = theDataModel.selAsset;
+    Asset *asset = [DataModel instance].selAsset;
     int max = [asset transactionCount];
 
     int firstIndex = 0;

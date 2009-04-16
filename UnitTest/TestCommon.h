@@ -3,20 +3,14 @@
 #import "GTMSenTestCase.h"
 //#import "Database.h"
 //#import "DataModel.h"
-//#import "Shelf.h"
-//#import "Item.h"
 
-#if 0
-#define NUM_TEST_SHELF 10
-#define NUM_TEST_ITEM	100
-
-@interface TestUtility : NSObject {
+@interface TestCommon : NSObject
+{
 }
 
-+ (void)clearDatabase;
-+ (void)initializeTestDatabase;
-+ (Shelf *)createTestShelf:(int)id;
-+ (Item *)createTestItem:(int)id;
+
++ (void)deleteDatabase;
++ (void)installDatabase:(NSString *)sqlFileName;
 
 @end
-#endif
+

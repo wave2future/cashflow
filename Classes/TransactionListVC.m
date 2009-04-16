@@ -51,7 +51,7 @@
 	
     // title 設定
     //self.title = NSLocalizedString(@"Transactions", @"");
-    self.title = theDataModel.selAsset.name;
+    self.title = [DataModel instance].selAsset.name;
 	
     // "+" ボタンを追加
     UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
@@ -93,7 +93,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    asset = theDataModel.selAsset;
+    asset = [DataModel instance].selAsset;
     [self updateBalance];
 	
     [self.tableView reloadData]; //### Reload data...
@@ -230,7 +230,7 @@
     }
 
     descLabel.text = t.description;
-    dateLabel.text = [theDateFormatter stringFromDate:t.date];
+    dateLabel.text = [[DataModel dateFormatter] stringFromDate:t.date];
 	
     double v = t.value;
     if (v >= 0) {
