@@ -230,7 +230,7 @@
     }
 
     descLabel.text = t.description;
-    dateLabel.text = [theDateFormatter stringFromDate:t.date];
+    dateLabel.text = [[DataModel dateFormatter] stringFromDate:t.date];
 	
     double v = t.value;
     if (v >= 0) {

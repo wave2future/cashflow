@@ -239,7 +239,7 @@
     switch (indexPath.row) {
     case ROW_DATE:
         name.text = NSLocalizedString(@"Date", @"");
-        value.text = [theDateFormatter stringFromDate:trans.date];
+        value.text = [[DataModel dateFormatter] stringFromDate:trans.date];
         break;
 
     case ROW_TYPE:

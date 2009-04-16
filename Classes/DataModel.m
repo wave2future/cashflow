@@ -42,7 +42,6 @@
 @synthesize assets, selAsset, categories;
 
 static DataModel *theDataModel = nil;
-static NSDateFormatter *theDateFormatter = nil;
 
 + (DataModel *)instance
 {
@@ -86,6 +85,8 @@ static NSDateFormatter *theDateFormatter = nil;
 //
 + (DateFormatter *)dateFormatter
 {
+    static NSDateFormatter *theDateFormatter = nil;
+
     if (!theDateFormatter) {
         theDateFormatter = [[NSDateFormatter alloc] init];
         [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];

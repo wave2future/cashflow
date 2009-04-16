@@ -104,7 +104,7 @@
 		
         NSMutableString *d = [[NSMutableString alloc] init];
         [d appendFormat:@"%d,", t.pkey];
-        [d appendFormat:@"%@,", [theDateFormatter stringFromDate:t.date]];
+        [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:t.date]];
         [d appendFormat:@"%.2f,", t.value];
         [d appendFormat:@"%.2f,", t.balance];
         [d appendFormat:@"%@,", t.description];
