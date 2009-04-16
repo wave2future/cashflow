@@ -45,8 +45,8 @@
     double balance;
 }
 
-@property(nonatomic,readonly) int asset;
-@property(nonatomic,readonly) Transaction *transaction;
+@property(nonatomic,assign) int asset;
+@property(nonatomic,retain) Transaction *transaction;
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) double evalue;

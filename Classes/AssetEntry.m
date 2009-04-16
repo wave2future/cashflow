@@ -55,7 +55,7 @@
 
 - (void)dealloc
 {
-    [release transaction];
+    [transaction release];
     [super dealloc];
 }
 
@@ -114,7 +114,7 @@
 {
     double ret;
 
-    switch (type) {
+    switch (transaction.type) {
     case TYPE_INCOME:
         break;
     case TYPE_OUTGO:
@@ -141,7 +141,7 @@
 // 編集値をセット
 - (void)setEvalue:(double)v
 {
-    switch (type) {
+    switch (transaction.type) {
     case TYPE_INCOME:
         self.value = v;
         break;
@@ -195,7 +195,9 @@
     e.asset = self.asset;
     e.value = self.value;
     e.balance = self.balance;
-    e.transaction = [self.transaction copy];
+    e.transaction = [[self.transaction copy] autorelease];
+
+    return e;
 }
 
 @end
