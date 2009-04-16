@@ -161,11 +161,20 @@
 // 資産間移動で変更される asset をマークする
 - (void)_markAssetForTransfer:(Transaction*)tr
 {
-    if (tr.type == TYPE_TRANSFER &&
-        tr.dst_asset != self.pkey) {
-        Asset *asset = [theDataModel assetWithKey:tr.dst_asset];
-        if (asset) {
-            [asset setDirty];
+    Asset *asset;
+
+    if (tr.type == TYPE_TRANSFER) {
+        if (tr.dst_asset != self.pkey) {
+            asset = [theDataModel assetWithKey:tr.dst_asset];
+            if (asset) {
+                [asset setDirty];
+            }
+        }
+        if (tr.asset != self.pkey) {
+            asset = [theDataModel assetWithKey:tr.asset];
+            if (asset) {
+                [asset setDirty];
+            }
         }
     }
 }
@@ -205,7 +214,11 @@
 // private
 - (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
 {
-    [self _markAssetForTransfer:t];
+    if (t.type == TYPE_TRANSFER) {
+        // 異動元／先資産が変更されていることがあるので、
+        // 全資産をリロードするようにする
+        [theDataModel dirtyAllAssets];
+    }
 
     // copy key
     Transaction *old = [transactions objectAtIndex:index];
@@ -216,6 +229,7 @@
 
     // update DB
     [t updateDb];
+
 }
 
 - (void)deleteTransactionAt:(int)n

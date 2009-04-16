@@ -122,6 +122,13 @@
     }
 }
 
+- (void)dirtyAllAssets
+{
+    for (Asset *as in assets) {
+        [as setDirty];
+    }
+}
+
 - (int)assetCount
 {
     return [assets count];
@@ -138,6 +145,16 @@
         if (as.pkey == pkey) return as;
     }
     return nil;
+}
+
+- (int)assetIndexWithKey:(int)pkey
+{
+    int i;
+    for (i = 0; i < [assets count]; i++) {
+        Asset *as = [assets objectAtIndex:i];
+        if (as.pkey == pkey) return i;
+    }
+    return -1;
 }
 
 - (void)addAsset:(Asset *)as

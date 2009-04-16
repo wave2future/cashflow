@@ -38,7 +38,7 @@
 #import "Transaction.h"
 
 //#import "GenEditTextVC.h"; // memo
-#import "GenEditTypeVC.h"; // type
+#import "EditTypeVC.h"; // type
 #import "EditDescVC.h";
 #import "EditValueVC.h";
 #import "EditDateVC.h";
@@ -47,7 +47,7 @@
 
 @interface TransactionViewController : UITableViewController 
     <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
-    EditMemoViewListener, GenEditTypeViewListener,
+    EditMemoViewListener, EditTypeViewListener,
     EditDateViewListener, EditValueViewListener, 
     EditDescViewListener, CategoryListViewListener>
 {
@@ -57,7 +57,7 @@
     NSArray *typeArray;
 
     EditDateViewController *editDateVC;
-    GenEditTypeViewController *editTypeVC; // type
+    EditTypeViewController *editTypeVC; // type
     EditValueViewController *editValueVC;
     EditDescViewController *editDescVC;
     //GenEditTextViewController *editMemoVC; // memo

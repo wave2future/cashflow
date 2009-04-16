@@ -61,28 +61,27 @@
                                      NSLocalizedString(@"Payment", @""),
                                  NSLocalizedString(@"Deposit", @""),
                                  NSLocalizedString(@"Adjustment", @"Balance adjustment"),
+                                 NSLocalizedString(@"Transfer", @""),
                                  nil];
 
     // 下位の ViewController を生成しておく
     editDateVC = [[EditDateViewController alloc]
                      initWithNibName:@"EditDateView"
-                     bundle:[NSBundle mainBundle]];
+                     bundle:nil];
     editDateVC.listener = self;
 
-    editTypeVC = [[GenEditTypeViewController
-                      genEditTypeViewController:self
-                      array:typeArray 
-                      title:NSLocalizedString(@"Type", @"")
-                      identifier:0] retain];
+    editTypeVC = [[EditTypeViewController alloc]
+                     initWithNibName:@"EditTypeView" bundle:nil];
+    editTypeVC.listener = self;
 
     editValueVC = [[EditValueViewController alloc]
                       initWithNibName:@"EditValueView"
-                      bundle:[NSBundle mainBundle]];
+                      bundle:nil];
     editValueVC.listener = self;
 
     editDescVC = [[EditDescViewController alloc]
                      initWithNibName:@"EditDescView"
-                     bundle:[NSBundle mainBundle]];
+                     bundle:nil];
     editDescVC.listener = self;
 	
     editMemoVC = [[EditMemoViewController
@@ -148,6 +147,7 @@
     if (transactionIndex < 0) {
         // 新規トランザクション
         trans = [[Transaction alloc] init];
+        trans.asset = theDataModel.selAsset.pkey;
     } else {
         // 変更
         Transaction *t = [theDataModel.selAsset transactionAt:transactionIndex];
@@ -249,7 +249,7 @@
 		
     case ROW_VALUE:
         name.text = NSLocalizedString(@"Amount", @"");
-        value.text = [DataModel currencyString:trans.evalue];
+        value.text = [DataModel currencyString:[trans evalue:theDataModel.selAsset]];
         break;
 		
     case ROW_DESC:
@@ -286,23 +286,35 @@
         editDateVC.date = trans.date;
         vc = editDateVC;
         break;
+
     case ROW_TYPE:
         editTypeVC.type = trans.type;
+        if (trans.asset == theDataModel.selAsset.pkey) {
+            // 転送する側
+            editTypeVC.dst_asset = trans.dst_asset;
+        } else {
+            // 転送される側
+            editTypeVC.dst_asset = trans.asset;
+        }
         vc = editTypeVC;
         break;
+
     case ROW_VALUE:
-        editValueVC.value = trans.evalue;
+            editValueVC.value = [trans evalue:theDataModel.selAsset];
         vc = editValueVC;
         break;
+
     case ROW_DESC:
         editDescVC.description = trans.description;
         editDescVC.category = trans.category;
         vc = editDescVC;
         break;
+
     case ROW_MEMO:
         editMemoVC.text = trans.memo;
         vc = editMemoVC;
         break;
+
     case ROW_CATEGORY:
         editCategoryVC.selectedIndex = [theDataModel.categories categoryIndexWithKey:trans.category];
         vc = editCategoryVC;
@@ -316,17 +328,56 @@
 {
     trans.date = vc.date;
 }
-- (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
+
+- (void)editTypeViewChanged:(EditTypeViewController*)vc
 {
+    [self.navigationController popToViewController:self animated:YES]; // ###
+    
+    if (vc.type == TYPE_TRANSFER) {
+        if (!trans.isReverse) {
+            // 転送する側
+            if (vc.dst_asset == trans.asset) {
+                // ### TBD
+                return;
+            }
+            trans.dst_asset = vc.dst_asset;
+        } 
+        else {
+            // 転送される側
+            if (vc.dst_asset == trans.dst_asset) {
+                // ### TBD
+                return;
+            }
+            trans.asset = vc.dst_asset;
+        }
+    }
+
     trans.type = vc.type;
-    if (trans.type == TYPE_ADJ) {
-        trans.description = [typeArray objectAtIndex:TYPE_ADJ];
+
+    switch (trans.type) {
+    case TYPE_ADJ:
+        trans.description = [typeArray objectAtIndex:trans.type];
+        break;
+
+    case TYPE_TRANSFER:
+        {
+            Asset *from, *to;
+            from = [theDataModel assetWithKey:trans.asset];
+            to = [theDataModel assetWithKey:trans.dst_asset];
+
+            trans.description = 
+                [NSString stringWithFormat:@"%@/%@", from.name, to.name];
+        }
+        break;
+
+    default:
+        break;
     }
 }
 
 - (void)editValueViewChanged:(EditValueViewController *)vc
 {
-    trans.evalue = vc.value;
+    [trans setEvalue:vc.value withAsset:theDataModel.selAsset];
 }
 
 - (void)editDescViewChanged:(EditDescViewController *)vc
