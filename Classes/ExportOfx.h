@@ -37,6 +37,7 @@
 #import "ExportBase.h"
 #import "Transaction.h"
 #import "ExportServer.h"
+#import "Asset.h"
 
 @interface ExportOfx : ExportBase <UIAlertViewDelegate> {
     NSDateFormatter *df;
@@ -47,7 +48,7 @@
 - (BOOL)sendWithWebServer;
 
 // private
-- (NSString*)transTypeString:(AssetEntry*)t;
+- (NSString*)typeString:(AssetEntry*)t;
 - (NSString*)dateStr:(AssetEntry*)t;
 - (NSString*)fitId:(AssetEntry*)t;
 

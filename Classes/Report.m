@@ -36,6 +36,9 @@
 #import "Report.h"
 #import "Database.h"
 
+static void init_filter(Filter *filter);
+
+
 @implementation CatReport
 @synthesize catkey, value;
 @end
@@ -168,18 +171,17 @@ static int compareCatReport(id x, id y, void *context)
 
         filter.isIncome = YES;
         filter.isOutgo = NO;
-        r.totalIncome = [self calculateSum:filter];
+        r.totalIncome = [self calculateSum:&filter];
 
         filter.isIncome = NO;
         filter.isOutgo = YES;
-        r.totalOutgo = [self calculateSum:filter];
+        r.totalOutgo = [self calculateSum:&filter];
 
         // カテゴリ毎の集計
         int i;
         r.catReports = [[NSMutableArray alloc] init];
         double remain = r.totalIncome - r.totalOutgo;
 
-        Filter filter;
         init_filter(&filter);
         filter.asset = assetKey;
 
@@ -259,7 +261,6 @@ static void init_filter(Filter *filter)
     filter->start = NULL;
     filter->end = NULL;
     filter->asset = -1;
-    filter->dst_asset = -1;
     filter->isOutgo = NO;
     filter->isIncome = NO;
     filter->category = -1;
@@ -274,17 +275,17 @@ static void init_filter(Filter *filter)
 
     for (t in [DataModel journal]) {
         // match filter
-        if (filter.start && [t.date compare:filter.start] == NSOrderedAscending) {
+        if (filter->start && [t.date compare:filter->start] == NSOrderedAscending) {
             continue;
         }
-        if (filter.end && [t.date compare:filter.end] == NSOrderedDescending) {
+        if (filter->end && [t.date compare:filter->end] == NSOrderedDescending) {
             continue;
         }
-        if (filter.category >= 0 && t.category != filter.category) {
+        if (filter->category >= 0 && t.category != filter->category) {
             continue;
         }
 
-        if (filter.asset < 0) {
+        if (filter->asset < 0) {
             // 資産指定なしの資産間移動は計上しない
             if (t.type == TYPE_TRANSFER) {
                 continue;
@@ -292,10 +293,10 @@ static void init_filter(Filter *filter)
             value = t.value;
         }
         else {
-            if (t.asset == filter.asset) {
+            if (t.asset == filter->asset) {
                 value = t.value;
             }
-            else if (t.dst_asset == filter.asset) {
+            else if (t.dst_asset == filter->asset) {
                 value = -t.value;
             }
             else {
@@ -303,10 +304,10 @@ static void init_filter(Filter *filter)
             }
         }
             
-        if (filter.isOutgo && value >= 0) {
+        if (filter->isOutgo && value >= 0) {
             continue;
         }
-        if (filter.isIncome && value <= 0) {
+        if (filter->isIncome && value <= 0) {
             continue;
         }
         sum += value;

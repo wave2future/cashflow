@@ -393,7 +393,7 @@
 // 削除処理
 - (void)delButtonTapped
 {
-    [[DataModel ledger].selAsset deleteTransactionAt:transactionIndex];
+    [[DataModel ledger].selAsset deleteEntryAt:transactionIndex];
     self.editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
@@ -422,7 +422,7 @@
     AssetEntry *e = [asset entryAt:transactionIndex];
 	
     NSDate *date = e.transaction.date;
-    [asset deleteOldTransactionsBefore:date];
+    [asset deleteOldEntriesBefore:date];
 	
     self.editingEntry = nil;
 	
@@ -433,7 +433,6 @@
 // 保存処理
 - (void)saveAction
 {
-    Journal *journal = [DataModel journal];
     Asset *asset = [DataModel ledger].selAsset;
 
     //editingEntry.transaction.asset = asset.pkey;

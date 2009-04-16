@@ -39,7 +39,7 @@
 #define REPORT_WEEKLY 0
 #define REPORT_MONTHLY 1
 
-typedef struct 
+typedef struct _filter
 {
     NSDate *start;
     NSDate *end;

@@ -98,7 +98,7 @@
         }
     }
     for (; i < max; i++) {
-        AssetEntry *t = [asset entryAt:i];
+        AssetEntry *e = [asset entryAt:i];
 
         if (firstDate != nil && [e.transaction.date compare:firstDate] == NSOrderedAscending) continue;
 		
