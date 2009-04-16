@@ -454,16 +454,17 @@
     Journal *journal = [DataModel instance].journal;
     Asset *asset = [DataModel instance].selAsset;
 
-    editingEntry.transaction.asset = asset.pkey;
+    //editingEntry.transaction.asset = asset.pkey;
 
     if (transactionIndex < 0) {
-        [asset insertTransaction:trans];
+        [asset insertEntry:editingEntry];
     } else {
-        [asset replaceTransactionAtIndex:transactionIndex withObject:trans];
-        [asset sortByDate];
+        [asset replaceEntryAtIndex:transactionIndex withObject:editingEntry];
+        //[asset sortByDate];
     }
-    [trans release];
-    trans = nil;
+
+    [editingEntry release];
+    editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
 }
