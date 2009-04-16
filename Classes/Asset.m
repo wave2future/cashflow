@@ -129,6 +129,8 @@
     [[DataModel ledger] rebuild];
 }
 
+// エントリ削除
+// 注：entries からは削除されない。journal から削除されるだけ
 - (void)_deleteEntryAt:(int)index
 {
     // 初期残高変更
@@ -159,6 +161,7 @@
         }
 
         [self _deleteEntryAt:0];
+        [entries removeObjectAtIndex:0];
     }
     [db commitTransaction];
 
