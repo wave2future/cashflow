@@ -70,6 +70,7 @@
 ////////////////////////////////////////////////////////////////////////////
 // Load / Save DB
 
+#if 0
 - (void)loadOldFormatData
 {
     // Backward compatibility : try to load old format data
@@ -104,37 +105,36 @@
     // reload
     [self reload];
 }
+#endif
 
-- (void)reload
+
+//
+// 仕訳帳(Transaction)から転記しなおす
+//
+- (void)rebuild
 {
-    if (dirty) {
-        [self clear];
-
-        transactions = [Transaction loadTransactions:self];
-        [transactions retain];
-
-        // recalc balance
-        [self recalcBalanceInitial];
-
-        dirty = NO;
+    if (entries != nil) {
+        [entries release];
     }
-}
 
-- (void)setDirty
-{
-    dirty = YES;
-}
+    entries = [[NSMutableArray alloc] init];
 
-- (void)resave
-{
-}
-
-- (void)clear
-{
-    if (transactions != nil) {
-        [transactions release];
+    AssetEntry *e;
+    for (Transaction *t in [DataModel instance].transactions) {
+        if (t.asset == self.pkey) {
+            e = [[AssetEntry alloc] init];
+            e.transaction = t;
+            e.value = t.value;
+            [e release];
+        }
+        else if (t.dst_asset == self.pkey) {
+            e = [[AssetEntry alloc] init];
+            e.transaction = t;
+            e.value = -t.value;
+            [e release];
+        }
     }
-    transactions = nil;
+    [self recalcBalanceInitial];
 }
 
 - (void)updateInitialBalance
@@ -146,38 +146,16 @@
 }
 
 ////////////////////////////////////////////////////////////////////////////
-// Transaction operations
+// AssetEntry operations
 
-- (int)transactionCount
+- (int)entryCount
 {
-    return transactions.count;
+    return entries.count;
 }
 
-- (Transaction*)transactionAt:(int)n
+- (AssetEntry*)entryAt:(int)n
 {
-    return [transactions objectAtIndex:n];
-}
-
-// 資産間移動で変更される asset をマークする
-- (void)_markAssetForTransfer:(Transaction*)tr
-{
-    Asset *asset;
-    DataModel *dm = [DataModel instance];
-
-    if (tr.type == TYPE_TRANSFER) {
-        if (tr.dst_asset != self.pkey) {
-            asset = [dm assetWithKey:tr.dst_asset];
-            if (asset) {
-                [asset setDirty];
-            }
-        }
-        if (tr.asset != self.pkey) {
-            asset = [dm assetWithKey:tr.asset];
-            if (asset) {
-                [asset setDirty];
-            }
-        }
-    }
+    return [entries objectAtIndex:n];
 }
 
 - (void)insertTransaction:(Transaction*)tr
@@ -310,25 +288,24 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
 - (void)recalcBalanceSub:(BOOL)isInitial
 {
-    Transaction *t;
     double bal;
-    int max = [transactions count];
-    int i;
 
     Database *db = [Database instance];
     [db beginTransaction];
-
     bal = initialBalance;
-    for (i = 0; i < max; i++) {
-        double oldval;
 
-        t = [self transactionAt:i];
-        oldval = t.value;
-        bal = [t fixBalance:bal isInitial:isInitial];
+    for (AssetEntry *e in entries) {
+        if (e.transaction.type == TYPE_ADJ && !isInitial) {
+            // 残高調整取引: 金額のほうを変更する
+            e.value = e.balance - bal;
+            e.transaction.value = e.value;
 
-        if (t.value != oldval) {
-            // 金額が変更された場合(残高照会取引)、DB を更新
-            [t updateDb];
+            // DB を更新
+            [e.transaction updateDb];
+        } 
+        else {
+            bal = bal + e.value;
+            e.balance = bal;
         }
     }
 

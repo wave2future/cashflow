@@ -45,15 +45,33 @@
 
 @class Database;
 
+
+//
+// 各資産（勘定）のエントリ
+//
+@interface AssetEntry : NSObject {
+    Transaction *transaction;
+    double value;
+    double balance;
+}
+
+@property(nonatomic,assign) Transaction *transaction;
+@property(nonatomic,assign) double value;
+@property(nonatomic,assign) double balance;
+
+@end
+
+//
+// 資産 (総勘定元帳の勘定に相当)
+// 
 @interface Asset : NSObject {
     int pkey;
     int type;
     NSString *name;
     int sorder;
 
-    // Transactions
     double initialBalance;
-    NSMutableArray *transactions;
+    NSMutableArray *entries; // AssetEntry の配列
 
     BOOL dirty;
 }
@@ -66,9 +84,7 @@
 @property(nonatomic,assign) double initialBalance;
 
 - (void)loadOldFormatData;
-- (void)reload;
-- (void)setDirty;
-- (void)clear;
+- (void)rebuild;
 
 - (int)transactionCount;
 - (Transaction*)transactionAt:(int)n;

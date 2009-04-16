@@ -125,23 +125,6 @@
     }
 }
 
-- (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial
-{
-    if (type == TYPE_ADJ && !isInitial) {
-        // balance ではなく、value のほうを調整する
-        value = balance - prevBalance;
-    } else {
-        balance = prevBalance + value;
-    }
-    return balance;
-}
-
-- (double)prevBalance
-{
-    double prev = balance - value;
-    return prev;
-}
-
 - (id)copyWithZone:(NSZone*)zone
 {
     Transaction *n = [[Transaction alloc] init];
@@ -231,15 +214,13 @@
         "memo TEXT);"];
 }
 
-+ (NSMutableArray *)loadTransactions:(Asset *)as
++ (NSMutableArray *)loadTransactions
 {
     DBStatement *stmt;
 
     /* load transactions */
     stmt = [[Database instance] prepare:"SELECT key, asset, dst_asset, date, type, category, value, description, memo"
-               " FROM Transactions WHERE asset = ? OR dst_asset = ? ORDER BY date;"];
-    [stmt bindInt:0 val:as.pkey];
-    [stmt bindInt:1 val:as.pkey];
+               " FROM Transactions ORDER BY date;"];
 
     NSMutableArray *ary = [[[NSMutableArray alloc] init] autorelease];
 
@@ -255,11 +236,6 @@
         t.description = [stmt colString:7];
         t.memo = [stmt colString:8];
 
-        if (t.type == TYPE_TRANSFER && t.dst_asset == as.pkey) {
-            t.value = -t.value;
-            t.isReverse = YES;
-        }
-        
         if (t.date == nil) {
             // fail safe
             NSLog(@"Invalid date: %@", [stmt colString:1]);

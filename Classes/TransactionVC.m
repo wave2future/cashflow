@@ -451,10 +451,12 @@
 // 保存処理
 - (void)saveAction
 {
+    Journal *journal = [DataModel instance].journal;
     Asset *asset = [DataModel instance].selAsset;
-	
+
+    trans.asset = asset.pkey;
+
     if (transactionIndex < 0) {
-        //[dm assignSerial:trans];
         [asset insertTransaction:trans];
     } else {
         [asset replaceTransactionAtIndex:transactionIndex withObject:trans];

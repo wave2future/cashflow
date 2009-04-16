@@ -32,55 +32,36 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+//
+// Journal : 仕訳帳
+//
+
 #import <UIKit/UIKit.h>
+#import "Transaction.h"
+#import "Database.h"
 
-#define TYPE_OUTGO      0       // 支払
-#define TYPE_INCOME	1       // 入金
-#define	TYPE_ADJ        2       // 残高調整
-#define TYPE_TRANSFER   3       // 資産間移動
+@class Database;
 
-@class Asset;
-
-@interface Transaction : NSObject <NSCoding, NSCopying> {
-    int pkey; // primary key
-    NSDate *date;
-    int asset;
-    int dst_asset;
-    NSString *description;
-    NSString *memo;
-    double value; // plus - income, minus - outgo.
-    double balance;
-    int type;  // TYPE_*
-    int category;
+//
+// 仕訳帳
+// 
+@interface Journal : NSObject {
+    NSMutableArray *entries;
 }
 
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,assign) int asset;
-@property(nonatomic,assign) int dst_asset;
-@property(nonatomic,copy) NSDate *date;
-@property(nonatomic,copy) NSString *description;
-@property(nonatomic,copy) NSString *memo;
-@property(nonatomic,assign) double value;
-@property(nonatomic,assign) double balance;
-@property(nonatomic,assign) int type;
-@property(nonatomic,assign) int category;
-@property(nonatomic,assign) BOOL isReverse;
+@property(nonatomic,retain) NSMutableArray *entries;
 
-- (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
+- (void)loadOldFormatData;
+- (void)load;
 
-- (double)evalue:(Asset *)as;
-- (void)setEvalue:(double)v withAsset:(Asset *)as;
+- (int)transactionCount;
+- (Transaction*)transactionAt:(int)n;
 
-- (double)fixBalance:(double)prevBalance isInitial:(BOOL)isInitial;
-- (double)prevBalance;
-
-- (id)initWithCoder:(NSCoder *)decoder;
-- (void)encodeWithCoder:(NSCoder *)coder;
-
-+ (void)createTable;
-+ (NSMutableArray *)loadTransactions;
-- (void)insertDb;
-- (void)updateDb;
-- (void)deleteDb;
+- (void)insertTransaction:(Transaction*)tr;
+- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
+- (void)deleteTransactionAt:(int)n;
+- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
+//- (int)firstTransactionByDate:(NSDate*)date;
+- (void)sortByDate;
 
 @end
