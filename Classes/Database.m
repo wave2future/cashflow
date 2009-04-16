@@ -222,13 +222,19 @@ static Database *theDatabase = nil;
     [self execSql:"COMMIT;"];
 }
 
+- (NSString *)dataFilePath
+{
+    NSString *dbPath = [AppDelegate pathOfDataFile:@"CashFlow.db"];
+    return dbPath;
+}
+
 // データベースを開く
 //   データベースがあったときは YES を返す。
 //   なかったときは新規作成して NO を返す
 - (BOOL)openDB
 {
     // Load from DB
-    NSString *dbPath = [AppDelegate pathOfDataFile:@"CashFlow.db"];
+    NSString *dbPath = [self dataFilePath];
 	
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];

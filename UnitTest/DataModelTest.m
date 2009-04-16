@@ -21,6 +21,7 @@
     //	[dm release];
 }
 
+// データベースがないときに、初期化されること
 - (void)testLoadDB
 {
     STAssertEquals(0, 0, @"hoga");
@@ -33,5 +34,8 @@
     STAssertNotNil(shelf, nil);
 #endif
 }
+
+// データベースがあるときに、正常に読み込めること
+
 
 @end
