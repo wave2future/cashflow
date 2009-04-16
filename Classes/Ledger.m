@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// Ledger
+// Ledger : 総勘定元帳
 
 #import "Ledger.h"
 
