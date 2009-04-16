@@ -34,6 +34,7 @@
 
 // Ledger : 総勘定元帳
 
+#import "DataModel.h"
 #import "Ledger.h"
 
 @implementation Ledger
@@ -122,8 +123,7 @@
     if (selAsset == as) {
         selAsset = nil;
     }
-    [as clear];
-
+    
     DBStatement *stmt;
     Database *db = [Database instance];
     stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
@@ -140,7 +140,7 @@
 
     [assets removeObject:as];
 
-    [DataModel rebuild];
+    [self rebuild];
 }
 
 - (void)updateAsset:(Asset*)asset
