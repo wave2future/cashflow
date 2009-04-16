@@ -137,25 +137,25 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [asset transactionCount] + 1;
+    return [asset entryCount] + 1;
 }
 
-// 指定セル位置に該当する Transaction Index を返す
-- (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath
+// 指定セル位置に該当する entry Index を返す
+- (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-    return [asset transactionCount] - indexPath.row - 1;
+    return [asset entryCount] - indexPath.row - 1;
 }
 
-// 指定セル位置の Transaction を返す
-- (Transaction *)transactionWithIndexPath:(NSIndexPath *)indexPath
+// 指定セル位置の Entry を返す
+- (AssetEntry *)entryWithIndexPath:(NSIndexPath *)indexPath
 {
-    int idx = [self transactionIndexWithIndexPath:indexPath];
+    int idx = [self entryIndexWithIndexPath:indexPath];
 
     if (idx < 0) {
         return nil;  // initial balance
     } 
-    Transaction *t = [asset transactionAt:idx];
-    return t;
+    AssetEntry *e = [asset entryAt:idx];
+    return e;
 }
 
 //
@@ -170,9 +170,9 @@
 {
     UITableViewCell *cell;
 	
-    Transaction *t = [self transactionWithIndexPath:indexPath];
-    if (t) {
-        cell = [self transactionCell:t];
+    AssetEntry *e = [self entryWithIndexPath:indexPath];
+    if (e) {
+        cell = [self entryCell:e];
     } else {
         cell = [self initialBalanceCell];
     }
@@ -180,8 +180,8 @@
     return cell;
 }
 
-// Transaction セルの生成 (private)
-- (UITableViewCell *)transactionCell:(Transaction*)t
+// Entry セルの生成 (private)
+- (UITableViewCell *)entryCell:(AssetEntry *)e
 {
     NSString *cellid = @"transactionCell";
 
@@ -229,10 +229,10 @@
         balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
     }
 
-    descLabel.text = t.description;
-    dateLabel.text = [[DataModel dateFormatter] stringFromDate:t.date];
+    descLabel.text = e.transaction.description;
+    dateLabel.text = [[DataModel dateFormatter] stringFromDate:e.transaction.date];
 	
-    double v = t.value;
+    double v = e.value;
     if (v >= 0) {
         valueLabel.textColor = [UIColor blueColor];
     } else {
@@ -240,7 +240,7 @@
         valueLabel.textColor = [UIColor redColor];
     }
     valueLabel.text = [DataModel currencyString:v];
-    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), [DataModel currencyString:t.balance]];
+    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), [DataModel currencyString:e.balance]];
 	
     return cell;
 }
@@ -288,7 +288,7 @@
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-    int idx = [self transactionIndexWithIndexPath:indexPath];
+    int idx = [self entryIndexWithIndexPath:indexPath];
     if (idx < 0) {
         // initial balance cell
         EditValueViewController *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
@@ -337,8 +337,8 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
-    if (transactionIndex < 0) {
+    int entryIndex = [self entryIndexWithIndexPath:indexPath];
+    if (entryIndex < 0) {
         return UITableViewCellEditingStyleNone;
     } 
     return UITableViewCellEditingStyleDelete;
@@ -347,15 +347,15 @@
 // 削除処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    int transactionIndex = [self transactionIndexWithIndexPath:indexPath];
+    int entryIndex = [self entryIndexWithIndexPath:indexPath];
 
-    if (transactionIndex < 0) {
+    if (entryIndex < 0) {
         // initial balance cell : do not delete!
         return;
     }
 	
     if (style == UITableViewCellEditingStyleDelete) {
-        [asset deleteTransactionAt:transactionIndex];
+        [asset deleteEntryAt:entryIndex];
 	
         [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self updateBalance];
