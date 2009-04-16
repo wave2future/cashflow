@@ -50,12 +50,14 @@
 // 各資産（勘定）のエントリ
 //
 @interface AssetEntry : NSObject {
+    int asset;
     Transaction *transaction;
     double value;
     double balance;
 }
 
-@property(nonatomic,assign) Transaction *transaction;
+@property(nonatomic,readonly) int asset;
+@property(nonatomic,readonly) Transaction *transaction;
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
 

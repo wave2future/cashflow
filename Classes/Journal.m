@@ -106,8 +106,6 @@
 
     // DB 追加
     [tr insertDb];
-
-    [DataModel rebuild];
 }
 
 - (void)replaceTransaction:(Transaction *)from withObject:(Transaction*)to
@@ -120,16 +118,12 @@
 
     // update DB
     [to updateDb];
-
-    [DataModel rebuild];
 }
 
 - (void)deleteTransaction:(Transaction *)t
 {
     [t deleteDb];
     [entries removeObject:t];
-
-    [DataModel rebuild];
 }
 
 // sort

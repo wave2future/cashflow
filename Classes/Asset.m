@@ -84,16 +84,11 @@
 
     AssetEntry *e;
     for (Transaction *t in [DataModel instance].transactions) {
-        if (t.asset == self.pkey) {
+        if (t.asset == self.pkey || t.dst_asset == self.pkey) {
             e = [[AssetEntry alloc] init];
-            e.transaction = t;
-            e.value = t.value;
-            [e release];
-        }
-        else if (t.dst_asset == self.pkey) {
-            e = [[AssetEntry alloc] init];
-            e.transaction = t;
-            e.value = -t.value;
+            [e setAsset:self transaction:t];
+
+            [entries addObject:e];
             [e release];
         }
     }
@@ -121,79 +116,36 @@
     return [entries objectAtIndex:n];
 }
 
-- (void)insertTransaction:(Transaction*)tr
+- (void)insertEntry:(AssetEntry *)e
 {
-    int i;
-    int max = [transactions count];
-    Transaction *t = nil;
-
-    [self _markAssetForTransfer:tr];
-
-    // 挿入位置を探す
-    for (i = 0; i < max; i++) {
-        t = [transactions objectAtIndex:i];
-        if ([tr.date compare:t.date] == NSOrderedAscending) {
-            break;
-        }
-    }
-
-    // 挿入
-    [transactions insertObject:tr atIndex:i];
-
-    // 全残高再計算
-    [self recalcBalance];
-	
-    // 上限チェック
-    if ([transactions count] > MAX_TRANSACTIONS) {
-        [self deleteTransactionAt:0];
-    }
-
-    // DB 追加
-    tr.asset = self.pkey;
-    [tr insertDb];
+    [[DataModel journal] insertTransaction:e.transaction];
+    [DataModel rebuild];
 }
 
-// private
-- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t
+- (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)e
 {
-    if (t.type == TYPE_TRANSFER) {
-        // 異動元／先資産が変更されていることがあるので、
-        // 全資産をリロードするようにする
-        [[DataModel instance] dirtyAllAssets];
-    }
+    AssetEntry *orig = [self entryAt:index];
 
-    // copy key
-    Transaction *old = [transactions objectAtIndex:index];
-    t.pkey = old.pkey;
-
-    [transactions replaceObjectAtIndex:index withObject:t];
-    [self recalcBalance];
-
-    // update DB
-    [t updateDb];
-
+    [[DataModel journal] replaceTransaction:orig.transaction withObject:e.transaction];
+    [DataModel rebuild];
 }
 
-- (void)deleteTransactionAt:(int)n
+- (void)_deleteEntryAt:(int)index
 {
-    // update DB
-    Transaction *t = [transactions objectAtIndex:n];
-    [self _markAssetForTransfer:t];
-
-    [t deleteDb];
-
-    // special handling for first transaction
-    if (n == 0) {
-        Transaction *t = [transactions objectAtIndex:0];
-        initialBalance = t.balance;
+    // 初期残高変更
+    if (index == 0) {
+        initialBalance = [[self entryAt:0] balance];
         [self updateInitialBalance];
     }
-	
-    // remove
-    [transactions removeObjectAtIndex:n];
-    if (n > 0) {
-        [self recalcBalance];
-    }
+
+    AssetEntry *e = [self entryAt:index];
+    [[DataModel journal] deleteTransaction:e.transaction];
+}
+
+- (void)deleteEntryAt:(int)index
+{
+    [self _deleteEntryAt:index];
+    [DataModel rebuild];
 }
 
 - (void)deleteOldTransactionsBefore:(NSDate*)date
@@ -201,38 +153,27 @@
     Database *db = [Database instance];
 
     [db beginTransaction];
-    while (transactions.count > 0) {
-        Transaction *t = [transactions objectAtIndex:0];
-        if ([t.date compare:date] != NSOrderedAscending) {
+    while (entries.count > 0) {
+        AssetEntry *e = [entries objectAtIndex:0];
+        if ([e.transaction.date compare:date] != NSOrderedAscending) {
             break;
         }
 
-        [self deleteTransactionAt:0];
+        [self _deleteEntryAt:0];
     }
     [db commitTransaction];
+    [DataModel rebuild];
 }
 
-- (int)firstTransactionByDate:(NSDate*)date
+- (int)firstEntryByDate:(NSDate*)date
 {
-    for (int i = 0; i < transactions.count; i++) {
-        Transaction *t = [transactions objectAtIndex:i];
-        if ([t.date compare:date] != NSOrderedAscending) {
+    for (int i = 0; i < entries.count; i++) {
+        AssetEntry *e = [entries objectAtIndex:i];
+        if ([e.transaction.date compare:date] != NSOrderedAscending) {
             return i;
         }
     }
     return -1;
-}
-
-// sort
-static int compareByDate(Transaction *t1, Transaction *t2, void *context)
-{
-    return [t1.date compare:t2.date];
-}
-
-- (void)sortByDate
-{
-    [transactions sortUsingFunction:compareByDate context:NULL];
-    [self recalcBalance];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -305,5 +246,74 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     [db execSql:sql];
 }
 
+
+@end
+
+////////////////////////////////////////////////////////////////////////////
+// AssetEntry
+
+@implementation AssetEntry
+
+@synthesize asset, transaction, balance;
+
+- (id)init
+{
+    self = [super init];
+
+    transaction = nil;
+    asset = -1;
+    value = 0.0;
+    balance = 0.0;
+
+    return self;
+}
+
+- (void)dealloc
+{
+    [release transaction];
+    [super dealloc];
+}
+
+- (void)setAsset:(Asset *)asset transaction:(Transaction *)t
+{
+    asset = asset.pkey;
+    if (t != transaction) {
+        [transaction release];
+        transaction = [t retain];
+    }
+    
+    if (asset == t.asset) {
+        // normal
+        value = t.value;
+    } else {
+        value = -t.value;
+    }
+}
+
+- (double)value
+{
+    return value;
+}
+
+- (void)setValue:(double)v
+{
+    value = v;
+
+    if (asset == transaction.asset) {
+        // normal
+        transaction.value = value;
+    } else {
+        transaction.value = -value;
+    }
+}    
+
+- (id)copyWithZone:(NSZone *)zone
+{
+    AssetEntry *e = [[AssetEntry alloc] init];
+    e.asset = self.asset;
+    e.value = self.value;
+    e.balance = self.balance;
+    e.transaction = [self.transaction copy];
+}
 
 @end
