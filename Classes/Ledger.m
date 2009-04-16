@@ -98,6 +98,11 @@
     return -1;
 }
 
+- (void)changeSelAsset:(Asset *)as
+{
+    selAsset = as;
+}
+
 - (void)addAsset:(Asset *)as
 {
     [assets addObject:as];
@@ -125,8 +130,8 @@
     [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
-    [journal deleteTransactionsWithAsset:as];
-#if 0
+    [[DataModel journal] deleteTransactionsWithAsset:as];
+#if 0 // ###
     stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
     [stmt bindInt:0 val:as.pkey];
     [stmt bindInt:1 val:as.pkey];

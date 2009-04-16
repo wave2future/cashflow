@@ -52,12 +52,11 @@
 
 // asset operation
 - (void)load;
-- (void)reloadAssets;
-- (void)dirtyAllAssets;
+- (void)rebuild;
 - (int)assetCount;
 - (Asset *)assetAtIndex:(int)n;
-- (int)assetIndexWithKey:(int)key;
 - (Asset*)assetWithKey:(int)key;
+- (int)assetIndexWithKey:(int)key;
 
 - (void)addAsset:(Asset *)as;
 - (void)deleteAsset:(Asset *)as;
