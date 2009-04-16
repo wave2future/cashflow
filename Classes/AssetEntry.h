@@ -50,6 +50,9 @@
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
 
+// proxy
+@property(nonatomic,readonly)
+
 - (BOOL)isDstAsset;
 
 @end

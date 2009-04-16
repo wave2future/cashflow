@@ -39,6 +39,17 @@
 #define REPORT_WEEKLY 0
 #define REPORT_MONTHLY 1
 
+typedef struct 
+{
+    NSDate *start;
+    NSDate *end;
+    int asset;
+    int dst_asset;
+    int category;
+    BOOL isOutgo;
+    BOOL isIncome;
+} Filter;
+
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
     int catkey; // カテゴリキー

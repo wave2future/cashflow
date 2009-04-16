@@ -49,6 +49,8 @@
     NSMutableArray *entries;
 }
 
+@property(nonatomi,readonly) entries;
+
 - (void)reload;
 
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len;

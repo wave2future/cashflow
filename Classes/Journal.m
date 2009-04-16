@@ -41,6 +41,8 @@
 
 @implementation Journal
 
+@synthesize entries;
+
 - (id)init
 {
     self = [super init];

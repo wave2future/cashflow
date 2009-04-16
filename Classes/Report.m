@@ -201,8 +201,9 @@ static int compareCatReport(id x, id y, void *context)
     if (asset < 0) {
         stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
     } else {
-        stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=?;"];
+        stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=? OR dst_asset=?;"];
         [stmt bindInt:0 val:asset];
+        [stmt bindInt:1 val:asset];
     }
 
     NSDate *date = nil;
@@ -219,8 +220,9 @@ static int compareCatReport(id x, id y, void *context)
     if (asset < 0) {
         stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
     } else {
-        stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=?;"];
+        stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=? OR dst_asset=?;"];
         [stmt bindInt:0 val:asset];
+        [stmt bindInt:1 val:asset];
     }
 
     NSDate *date = nil;
@@ -231,68 +233,92 @@ static int compareCatReport(id x, id y, void *context)
     return date;
 }
 
-- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
+static void init_filter(Filter *filter)
 {
-    char sql[256];
+    filter->start = NULL;
+    filter->end = NULL;
+    filter->asset = -1;
+    filter->dst_asset = -1;
+    filter->isOutgo = NO;
+    filter->isIncome = NO;
+    filter->category = -1;
+}
 
-    strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
-    if (isOutgo) {
-        strcat(sql, " AND value < 0");
-    } else {
-        strcat(sql, " AND value >= 0");
-    }
-    if (asset >= 0) {
-        strcat(sql, " AND asset=?");
-    }
-    strcat(sql, ";");
-
-    DBStatement *stmt = [db prepare:sql];
-    [stmt bindDate:0 val:start];
-    [stmt bindDate:1 val:end];
-    if (asset >= 0) {
-        [stmt bindInt:2 val:asset];
-    }
+- (double)calculateSum:(Filter *)filter
+{
+    Transaction *t;
 
     double sum = 0.0;
-    if ([stmt step] == SQLITE_ROW) {
-        sum = [stmt colDouble:0];
-    } else {
-        ASSERT(0);
+    for (t in [DataModel journal]) {
+        // match filter
+        if (filter.start && [t.date compare:filter.start] == NSOrderedAscending) {
+            continue;
+        }
+        if (filter.end && [t.date compare:filter.end] == NSOrderedDescending) {
+            continue;
+        }
+        if (filter.asset >= 0 && t.asset != filter.asset) {
+            continue;
+        }
+        if (filter.dst_asset >= 0 && t.dst_asset != filter.dst_asset) {
+            continue;
+        }
+        if (filter.category >= 0 && t.category != filter.category) {
+            continue;
+        }
+        if (filter.isOutgo && t.value >= 0) {
+            continue;
+        }
+        if (filter.isIncome && t.value <= 0) {
+            continue;
+        }
+        sum += t.value;
     }
+    return sum;
+}
+
+
+- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
+{
+    double sum = 0.0;
+    Filter filter;
+    init_filter(&filter);
+
+    filter.asset = asset;
+    filter.isOutgo = isOutgo;
+    filter.isIncome = !isOutgo;
+    filter.start = start;
+    filter.end = end;
+
+    sum = [self calculateSum:&filter];
+
+    filter.asset = -1;
+    filter.dst_asset = asset;
+    filter.isOutgo = !isOutgo;
+    filter.isIncome = isOutgo;
+
+    sum -= [self calculateSum:&filter];
 
     return sum;
 }
 
 - (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category
 {
-    char sql[256];
-
-    strcpy(sql, "SELECT SUM(value) FROM Transactions WHERE date>=? AND date<?");
-
-    if (category >= 0) {
-        strcat(sql, " AND category=?3");
-    }
-    if (asset >= 0) {
-        strcat(sql, " AND asset=?4");
-    }
-    strcat(sql, ";");
-
-    DBStatement *stmt = [db prepare:sql];
-    [stmt bindDate:0 val:start];
-    [stmt bindDate:1 val:end];
-    if (category >= 0) {
-        [stmt bindInt:2 val:category];
-    }
-    if (asset >= 0) {
-        [stmt bindInt:3 val:asset];
-    }
-
     double sum = 0.0;
-    if ([stmt step] == SQLITE_ROW) {
-        sum = [stmt colDouble:0];
-    } else {
-        ASSERT(0);
-    }
+    Filter filter;
+    init_filter(&filter);
+
+    filter.asset = asset;
+    filter.start = start;
+    filter.end = end;
+    filter.category = category;
+
+    sum = [self calculateSum:&filter];
+
+    filter.asset = -1;
+    filter.dst_asset = asset;
+
+    sum -= [self calculateSum:&filter];
 
     return sum;
 }
