@@ -92,60 +92,6 @@
     return n;
 }
 
-
-// for backward compatibility
-
-- (id)initWithCoder:(NSCoder *)decoder
-{
-    self = [super init];
-    if (self) {
-        self.pkey = [decoder decodeIntForKey:@"Serial"];
-        self.asset = 0;
-        self.dst_asset = -1;
-        self.date = [decoder decodeObjectForKey:@"Date"];
-        self.type = [decoder decodeIntForKey:@"Type"];
-        self.value = [decoder decodeDoubleForKey:@"Value"];
-        //self.balance = [decoder decodeDoubleForKey:@"Balance"];
-        self.description = [decoder decodeObjectForKey:@"Description"];
-        self.memo = [decoder decodeObjectForKey:@"Memo"];
-        //self.category = [decoder decodeIntForKey:@"Category"];
-
-        /* backward compatibility */
-        if (self.type == TYPE_OUTGO) {
-            self.value = -self.value;
-        }
-
-        if (self.type < 0 || self.type > 2) {
-            self.type = 0; // for safety
-        }
-
-        self.isReverse = NO;
-    }
-
-    return self;
-}
-
-- (void)encodeWithCoder:(NSCoder *)coder
-{
-    [coder encodeInt:pkey forKey:@"Serial"];
-    [coder encodeObject:date forKey:@"Date"];
-    [coder encodeInt:type forKey:@"Type"];
-
-    /* backward compatibility */
-    double v;
-    if (type == TYPE_OUTGO) {
-        v = -value;
-    } else {
-        v = value;
-    }
-    [coder encodeDouble:v forKey:@"Value"];
-
-    //[coder encodeDouble:balance forKey:@"Balance"];
-    [coder encodeObject:description forKey:@"Description"];
-    [coder encodeObject:memo forKey:@"Memo"];
-    //[coder encodeInt:category forKey:@"Category"];
-}
-
 //
 // Database operations
 //
