@@ -172,7 +172,7 @@
 	
     AssetEntry *e = [self entryWithIndexPath:indexPath];
     if (e) {
-        cell = [self entryCell:e];
+        cell = [self _entryCell:e];
     } else {
         cell = [self initialBalanceCell];
     }
@@ -181,7 +181,7 @@
 }
 
 // Entry セルの生成 (private)
-- (UITableViewCell *)entryCell:(AssetEntry *)e
+- (UITableViewCell *)_entryCell:(AssetEntry *)e
 {
     NSString *cellid = @"transactionCell";
 

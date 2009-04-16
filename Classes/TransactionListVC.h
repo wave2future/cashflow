@@ -55,13 +55,14 @@
 @property(nonatomic,retain) UITableView *tableView;
 @property(nonatomic,assign) Asset *asset;
 
-- (int)transactionIndexWithIndexPath:(NSIndexPath *)indexPath;
-- (Transaction *)transactionWithIndexPath:(NSIndexPath *)indexPath;
-- (UITableViewCell *)transactionCell:(Transaction*)t;
+- (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath;
+- (AssetEntry *)entryWithIndexPath:(NSIndexPath *)indexPath;
 - (UITableViewCell *)initialBalanceCell;
 - (void)updateBalance;
 - (void)addTransaction;
 - (IBAction)doAction:(id)sender;
 - (IBAction)showHelp:(id)sender;
+
+- (UITableViewCell *)_entryCell:(AssetEntry *)e;
 
 @end
