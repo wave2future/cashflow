@@ -62,6 +62,7 @@
         [entries release];
     }
     entries = [Transaction loadTransactions];
+    [entries retain];
 }
 
 /**
