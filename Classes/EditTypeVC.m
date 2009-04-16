@@ -114,10 +114,10 @@
     }
 
     // 資産間移動
-    int assetCount = [theDataModel assetCount];
+    int assetCount = [[DataModel instance] assetCount];
     NSMutableArray *assetNames = [[[NSMutableArray alloc] initWithCapacity:assetCount] autorelease];
     for (int i = 0; i < assetCount; i++) {
-        Asset *asset = [theDataModel assetAtIndex:i];
+        Asset *asset = [[DataModel instance] assetAtIndex:i];
         [assetNames addObject:asset.name];
     }
     
@@ -128,7 +128,7 @@
                                     identifier:0];
 
     vc.autoPop = NO;
-    vc.type = [theDataModel assetIndexWithKey:dst_asset];
+    vc.type = [[DataModel instance] assetIndexWithKey:dst_asset];
 
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -136,7 +136,7 @@
 // 資産選択
 - (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
 {
-    Asset *as = [theDataModel assetAtIndex:vc.type];
+    Asset *as = [[DataModel instance] assetAtIndex:vc.type];
     dst_asset = as.pkey;
 
     // pop しない

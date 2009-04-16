@@ -124,7 +124,7 @@
 
 - (IBAction)doExport
 {
-    //[theDataModel saveToStorage]; // for safety...
+    //[[DataModel instance] saveToStorage]; // for safety...
 	
     int range;
     switch (rangeControl.selectedSegmentIndex) {

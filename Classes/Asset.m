@@ -162,16 +162,17 @@
 - (void)_markAssetForTransfer:(Transaction*)tr
 {
     Asset *asset;
+    DataModel *dm = [DataModel instance];
 
     if (tr.type == TYPE_TRANSFER) {
         if (tr.dst_asset != self.pkey) {
-            asset = [theDataModel assetWithKey:tr.dst_asset];
+            asset = [dm assetWithKey:tr.dst_asset];
             if (asset) {
                 [asset setDirty];
             }
         }
         if (tr.asset != self.pkey) {
-            asset = [theDataModel assetWithKey:tr.asset];
+            asset = [dm assetWithKey:tr.asset];
             if (asset) {
                 [asset setDirty];
             }
@@ -217,7 +218,7 @@
     if (t.type == TYPE_TRANSFER) {
         // 異動元／先資産が変更されていることがあるので、
         // 全資産をリロードするようにする
-        [theDataModel dirtyAllAssets];
+        [[DataModel instance] dirtyAllAssets];
     }
 
     // copy key

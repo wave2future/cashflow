@@ -91,7 +91,7 @@
         asset.sorder = 99999;
     } else {
         // 変更
-        asset = [theDataModel assetAtIndex:assetIndex];
+        asset = [[DataModel instance] assetAtIndex:assetIndex];
     }
 }
 
@@ -269,7 +269,7 @@
         return; // cancelled;
     }
 	
-    [theDataModel deleteAsset:asset];
+    [[DataModel instance] deleteAsset:asset];
     [self.navigationController popViewControllerAnimated:YES];
 }
 #endif
@@ -279,10 +279,10 @@
 - (void)saveAction
 {
     if (assetIndex < 0) {
-        [theDataModel addAsset:asset];
+        [[DataModel instance] addAsset:asset];
         [asset release];
     } else {
-        [theDataModel updateAsset:asset];
+        [[DataModel instance] updateAsset:asset];
     }
     asset = nil;
 	

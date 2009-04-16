@@ -84,7 +84,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int count = [theDataModel.categories categoryCount];
+    int count = [[DataModel instance].categories categoryCount];
     if (self.editing) {
         count++;	// insert cell
     }
@@ -101,10 +101,10 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
     }
 
-    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
         cell.text = NSLocalizedString(@"Add category", @"");
     } else {
-        Category *c = [theDataModel.categories categoryAtIndex:indexPath.row];
+        Category *c = [[DataModel instance].categories categoryAtIndex:indexPath.row];
         cell.text = c.name;
 
     }
@@ -146,7 +146,7 @@
     }
 
     int idx = indexPath.row;
-    if (idx >= [theDataModel.categories categoryCount]) {
+    if (idx >= [[DataModel instance].categories categoryCount]) {
         idx = -1; // insert row
     }
     GenEditTextViewController *vc = [GenEditTextViewController
@@ -154,7 +154,7 @@
                                         title:NSLocalizedString(@"Category", @"")
                                         identifier:idx];
     if (idx >= 0) {
-        Category *category = [theDataModel.categories categoryAtIndex:idx];
+        Category *category = [[DataModel instance].categories categoryAtIndex:idx];
         vc.text = category.name;
     }
 	
@@ -165,12 +165,12 @@
 {
     if (identifier < 0) {
         // 新規追加
-        [theDataModel.categories addCategory:vc.text];
+        [[DataModel instance].categories addCategory:vc.text];
     } else {
         // 変更
-        Category *c = [theDataModel.categories categoryAtIndex:identifier];
+        Category *c = [[DataModel instance].categories categoryAtIndex:identifier];
         c.name = vc.text;
-        [theDataModel.categories updateCategory:c];
+        [[DataModel instance].categories updateCategory:c];
     }
     [self.tableView reloadData];
 }
@@ -181,7 +181,7 @@
     [super setEditing:editing animated:animated];
 	
     // Insert ボタン用の行
-    int insButtonIndex = [theDataModel.categories categoryCount];
+    int insButtonIndex = [[DataModel instance].categories categoryCount];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insButtonIndex inSection:0];
     NSArray *iary = [NSArray arrayWithObject:indexPath];
 	
@@ -203,7 +203,7 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
         return UITableViewCellEditingStyleInsert;
     }
     return UITableViewCellEditingStyleDelete;
@@ -212,14 +212,14 @@
 // 編集処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
         // add
         GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Category", @"") identifier:-1];
         [self.navigationController pushViewController:vc animated:YES];
     }
 	
     else if (style == UITableViewCellEditingStyleDelete) {
-        [theDataModel.categories deleteCategoryAtIndex:indexPath.row];
+        [[DataModel instance].categories deleteCategoryAtIndex:indexPath.row];
         [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self.tableView reloadData];
     }
@@ -228,7 +228,7 @@
 // 並べ替え処理
 - (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [theDataModel.categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
         return NO;
     }
     return YES;
@@ -236,7 +236,7 @@
 
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
-    [theDataModel.categories reorderCategory:from.row to:to.row];
+    [[DataModel instance].categories reorderCategory:from.row to:to.row];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

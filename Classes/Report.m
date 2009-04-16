@@ -143,7 +143,7 @@ static int compareCatReport(id x, id y, void *context)
         break;
     }
 	
-    int numCategories = [theDataModel.categories categoryCount];
+    int numCategories = [[DataModel instance].categories categoryCount];
 	
     while ([dd compare:lastDate] != NSOrderedDescending) {
         // Report 生成
@@ -168,7 +168,7 @@ static int compareCatReport(id x, id y, void *context)
         double remain = r.totalIncome - r.totalOutgo;
 
         for (i = 0; i < numCategories; i++) {
-            Category *c = [theDataModel.categories categoryAtIndex:i];
+            Category *c = [[DataModel instance].categories categoryAtIndex:i];
             CatReport *cr = [[CatReport alloc] init];
 
             cr.catkey = c.pkey;
