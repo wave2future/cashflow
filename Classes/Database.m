@@ -222,7 +222,7 @@ static Database *theDatabase = nil;
     [self execSql:"COMMIT;"];
 }
 
-- (NSString *)dataFilePath
++ (NSString *)dataFilePath
 {
     NSString *dbPath = [AppDelegate pathOfDataFile:@"CashFlow.db"];
     return dbPath;
@@ -234,7 +234,7 @@ static Database *theDatabase = nil;
 - (BOOL)openDB
 {
     // Load from DB
-    NSString *dbPath = [self dataFilePath];
+    NSString *dbPath = [Database dataFilePath];
 	
     NSFileManager *fileManager = [NSFileManager defaultManager];
     BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];

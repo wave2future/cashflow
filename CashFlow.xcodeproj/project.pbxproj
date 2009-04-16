@@ -71,6 +71,8 @@
 		3E5B83A90EC359440035AF05 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
 		3E5B83AB0EC359590035AF05 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
 		3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
+		3E6427670F977B00001D175C /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6427660F977B00001D175C /* AssetEntry.m */; };
+		3E64276A0F977B0E001D175C /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6427690F977B0E001D175C /* TestCommon.m */; };
 		3E6B2EBF0F12259C0008AFB6 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
@@ -240,6 +242,9 @@
 		3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenEditTextView.xib; sourceTree = "<group>"; };
 		3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTextVC.h; sourceTree = "<group>"; };
 		3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTextVC.m; sourceTree = "<group>"; };
+		3E6427660F977B00001D175C /* AssetEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntry.m; sourceTree = "<group>"; };
+		3E6427680F977B0E001D175C /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
+		3E6427690F977B0E001D175C /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
 		3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportView.xib; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
@@ -483,6 +488,9 @@
 		3EAC056E0F96391D00E29C91 /* UnitTest */ = {
 			isa = PBXGroup;
 			children = (
+				3E6427680F977B0E001D175C /* TestCommon.h */,
+				3E6427690F977B0E001D175C /* TestCommon.m */,
+				3E6427660F977B00001D175C /* AssetEntry.m */,
 				3E1A3C8B0F963BAA0050ED45 /* DataModelTest.m */,
 				3EAC05780F96397D00E29C91 /* GTMDefines.h */,
 				3E1A3C820F963B670050ED45 /* UnitTesting */,
@@ -821,11 +829,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1A3B9D0F963ACC0050ED45 /* DataModel.m in Sources */,
 				3E1A3C720F963B440050ED45 /* AppDelegate.m in Sources */,
 				3E1A3B970F963ACC0050ED45 /* Asset.m in Sources */,
 				3E1A3B990F963ACC0050ED45 /* Transaction.m in Sources */,
 				3E1A3B9B0F963ACC0050ED45 /* Category.m in Sources */,
-				3E1A3B9D0F963ACC0050ED45 /* DataModel.m in Sources */,
 				3E1A3BA10F963ACC0050ED45 /* Database.m in Sources */,
 				3E1A3BA30F963ACC0050ED45 /* DateFormatter2.m in Sources */,
 				3E1A3BA50F963ACC0050ED45 /* Report.m in Sources */,
@@ -842,6 +850,8 @@
 				3E1AE0BB0F97416F00AAB4AC /* AssetEntry.m in Sources */,
 				3E1AE0BC0F97416F00AAB4AC /* Journal.m in Sources */,
 				3E1AE0BD0F97416F00AAB4AC /* Ledger.m in Sources */,
+				3E6427670F977B00001D175C /* AssetEntry.m in Sources */,
+				3E64276A0F977B0E001D175C /* TestCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
