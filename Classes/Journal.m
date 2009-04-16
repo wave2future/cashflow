@@ -41,8 +41,6 @@
 
 @implementation Journal
 
-@synthesize entries;
-
 - (id)init
 {
     self = [super init];
@@ -64,6 +62,14 @@
         [entries release];
     }
     entries = [Transaction loadTransactions];
+}
+
+/**
+   NSFastEnumeration protocol
+*/
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len
+{
+    return [entries countByEnumeratingWithState:state objects:stackbuf count:len];
 }
 
 - (void)insertTransaction:(Transaction*)tr

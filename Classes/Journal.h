@@ -45,22 +45,16 @@
 //
 // 仕訳帳
 // 
-@interface Journal : NSObject {
+@interface Journal : NSObject <NSFastEnumeration> {
     NSMutableArray *entries;
 }
 
-@property(nonatomic,retain) NSMutableArray *entries;
-
 - (void)reload;
 
-- (int)transactionCount;
-- (Transaction*)transactionAt:(int)n;
+- (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len;
 
 - (void)insertTransaction:(Transaction*)tr;
-- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
-- (void)deleteTransactionAt:(int)n;
-- (void)deleteOldTransactionsBefore:(NSDate*)date asset:(int)asset;
-//- (int)firstTransactionByDate:(NSDate*)date;
-- (void)sortByDate;
+- (void)replaceTransaction:(Transaction *)from withObject:(Transaction*)to;
+- (void)deleteTransaction:(Transaction *)tr;
 
 @end

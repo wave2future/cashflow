@@ -72,7 +72,7 @@
 
 
 //
-// 仕訳帳(Transaction)から転記しなおす
+// 仕訳帳(journal)から転記しなおす
 //
 - (void)rebuild
 {
@@ -83,7 +83,7 @@
     entries = [[NSMutableArray alloc] init];
 
     AssetEntry *e;
-    for (Transaction *t in [DataModel instance].entries) {
+    for (Transaction *t in [DataModel journal]) {
         if (t.asset == self.pkey || t.dst_asset == self.pkey) {
             e = [[AssetEntry alloc] init];
             [e setAsset:self transaction:t];
