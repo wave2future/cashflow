@@ -47,8 +47,8 @@
 - (BOOL)sendWithWebServer;
 
 // private
-- (NSString*)transTypeString:(Transaction*)t;
-- (NSString*)dateStr:(Transaction*)t;
-- (NSString*)fitId:(Transaction*)t;
+- (NSString*)transTypeString:(AssetEntry*)t;
+- (NSString*)dateStr:(AssetEntry*)t;
+- (NSString*)fitId:(AssetEntry*)t;
 
 @end

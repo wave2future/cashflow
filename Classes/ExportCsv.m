@@ -87,29 +87,29 @@
     [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
     
     Asset *asset = [DataModel instance].selAsset;
-    int max = [asset transactionCount];
+    int max = [asset entryCount];
 
     /* トランザクション */
     int i = 0;
     if (firstDate != nil) {
-        i = [asset firstTransactionByDate:firstDate];
+        i = [asset firstEntryByDate:firstDate];
         if (i < 0) {
             return nil;
         }
     }
     for (; i < max; i++) {
-        Transaction *t = [asset transactionAt:i];
+        AssetEntry *t = [asset entryAt:i];
 
-        if (firstDate != nil && [t.date compare:firstDate] == NSOrderedAscending) continue;
+        if (firstDate != nil && [e.transaction.date compare:firstDate] == NSOrderedAscending) continue;
 		
         NSMutableString *d = [[NSMutableString alloc] init];
-        [d appendFormat:@"%d,", t.pkey];
-        [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:t.date]];
-        [d appendFormat:@"%.2f,", t.value];
-        [d appendFormat:@"%.2f,", t.balance];
-        [d appendFormat:@"%@,", t.description];
-        [d appendFormat:@"%@,", [[DataModel instance].categories categoryStringWithKey:t.category]];
-        [d appendFormat:@"%@", t.memo];
+        [d appendFormat:@"%d,", e.transaction.pkey];
+        [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:e.transaction.date]];
+        [d appendFormat:@"%.2f,", e.value];
+        [d appendFormat:@"%.2f,", e.balance];
+        [d appendFormat:@"%@,", e.transaction.description];
+        [d appendFormat:@"%@,", [[DataModel instance].categories categoryStringWithKey:e.transaction.category]];
+        [d appendFormat:@"%@", e.transaction.memo];
         [d appendString:@"\n"];
         [data appendString:d];
         [d release];

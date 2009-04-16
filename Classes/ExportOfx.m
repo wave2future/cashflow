@@ -96,18 +96,18 @@
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
     Asset *asset = [DataModel instance].selAsset;
-    int max = [asset transactionCount];
+    int max = [asset entryCount];
 
     int firstIndex = 0;
     if (firstDate != nil) {
-        firstIndex = [asset firstTransactionByDate:firstDate];
+        firstIndex = [asset firstEntryByDate:firstDate];
         if (firstIndex < 0) {
             return nil;
         }
     }
 	
-    Transaction *first = [asset transactionAt:firstIndex];
-    Transaction *last  = [asset transactionAt:max-1];
+    AssetEntry *first = [asset entryAt:firstIndex];
+    AssetEntry *last  = [asset entryAt:max-1];
 
     [data appendString:@"OFXHEADER:100\n"];
     [data appendString:@"DATA:OFXSGML\n"];
@@ -174,18 +174,18 @@
     /* トランザクション */
     int i;
     for (i = firstIndex; i < max; i++) {
-        Transaction *t = [asset transactionAt:i];
+        AssetEntry *e = [asset entryAt:i];
 		
         [data appendString:@"<STMTTRN>\n"];
-        [data appendFormat:@"<TRNTYPE>%@\n", [self transTypeString:t]];
-        [data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:t]];
-        [data appendFormat:@"<TRNAMT>%.2f\n", t.value];
+        [data appendFormat:@"<TRNTYPE>%@\n", [self typeString:e]];
+        [data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:e]];
+        [data appendFormat:@"<TRNAMT>%.2f\n", e.value];
 
         /* トランザクションの ID は日付と取引番号で生成 */
         [data appendFormat:@"<FITID>%@\n", [self fitId:t]];
-        [data appendFormat:@"<NAME>%@\n", t.description];
-        if ([t.memo length] > 0) {
-            [data appendFormat:@"<MEMO>%@\n", t.memo];
+        [data appendFormat:@"<NAME>%@\n", e.transaction.description];
+        if ([e.transaction.memo length] > 0) {
+            [data appendFormat:@"<MEMO>%@\n", e.transaction.memo];
         }
         [data appendString:@"</STMTTRN>\n"];
     }
@@ -207,15 +207,15 @@
     return data;
 }
 
-- (NSString*)transTypeString:(Transaction*)t
+- (NSString*)typeString:(AssetEntry*)e
 {
-    if (t.value >= 0) {
+    if (e.value >= 0) {
         return @"DEP";
     }
     return @"PAYMENT";
 }
 
-- (NSString*)dateStr:(Transaction*)t
+- (NSString*)dateStr:(AssetEntry *)e
 {
     if (greg == nil) {
         greg = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -225,16 +225,16 @@
 			  
     NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit 
                                             | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)
-                                fromDate:t.date];
+                                fromDate:e.transaction.date];
 
     NSString *d = [NSString stringWithFormat:@"%04d%02d%02d%02d%02d%02d[%+d:%@]",
                             [c year], [c month], [c day], [c hour], [c minute], [c second], [tz secondsFromGMT]/3600, [tz abbreviation]];
     return d;
 }
 
-- (NSString*)fitId:(Transaction*)t
+- (NSString*)fitId:(AssetEntry*)e
 {
-    NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:t.date];
+    NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:e.transaction.date];
     NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], t.pkey];
     return f;
 }
