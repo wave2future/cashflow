@@ -34,53 +34,20 @@
 
 #import <UIKit/UIKit.h>
 #import "Transaction.h"
-#import "Database.h"
-#import "AssetEntry.h"
-
-// asset types
-#define ASSET_CASH  0
-#define ASSET_BANK  1
-#define	ASSET_CARD  2
-
-#define MAX_TRANSACTIONS	5000
-
-@class Database;
 
 //
-// 資産 (総勘定元帳の勘定に相当)
-// 
-@interface Asset : NSObject {
-    int pkey;
-    int type;
-    NSString *name;
-    int sorder;
-
-    double initialBalance;
-    NSMutableArray *entries; // AssetEntry の配列
+// 各資産（勘定）のエントリ
+//
+@interface AssetEntry : NSObject {
+    int asset;
+    Transaction *transaction;
+    double value;
+    double balance;
 }
 
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,assign) int type;
-@property(nonatomic,retain) NSString *name;
-@property(nonatomic,assign) int sorder;
-
-@property(nonatomic,assign) double initialBalance;
-
-- (void)rebuild;
-
-- (int)entryCount;
-- (AssetEntry *)entryAt:(int)n;
-- (void)insertEntry:(AssetEntry *)tr;
-- (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)t;
-- (void)_deleteEntryAt:(int)n;
-- (void)deleteEntryAt:(int)n;
-- (void)deleteOldEntrysBefore:(NSDate*)date;
-- (int)firstEntryByDate:(NSDate*)date;
-- (void)sortByDate;
-
-- (double)lastBalance;
-- (void)updateInitialBalance;
-
-+ (void)createTable;
+@property(nonatomic,readonly) int asset;
+@property(nonatomic,readonly) Transaction *transaction;
+@property(nonatomic,assign) double value;
+@property(nonatomic,assign) double balance;
 
 @end
