@@ -236,7 +236,8 @@
         name  = (UILabel *)[cell.contentView viewWithTag:1];
         value = (UILabel *)[cell.contentView viewWithTag:2];
     }
-		
+
+    double evalue;
     switch (indexPath.row) {
     case ROW_DATE:
         name.text = NSLocalizedString(@"Date", @"");
@@ -250,7 +251,8 @@
 		
     case ROW_VALUE:
         name.text = NSLocalizedString(@"Amount", @"");
-        value.text = [DataModel currencyString:editingEntry.evalue];
+        evalue = editingEntry.evalue;
+        value.text = [DataModel currencyString:evalue];
         break;
 		
     case ROW_DESC:
