@@ -42,6 +42,9 @@
 <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView *tableView;
+
+    Ledger *ledger;
+
     NSArray *iconArray;
     BackupServer *backupServer;
 

@@ -91,7 +91,7 @@
         asset.sorder = 99999;
     } else {
         // 変更
-        asset = [[DataModel instance] assetAtIndex:assetIndex];
+        asset = [[DataModel ledger] assetAtIndex:assetIndex];
     }
 }
 
@@ -269,7 +269,7 @@
         return; // cancelled;
     }
 	
-    [[DataModel instance] deleteAsset:asset];
+    [[DataModel ledger] deleteAsset:asset];
     [self.navigationController popViewControllerAnimated:YES];
 }
 #endif
@@ -278,11 +278,13 @@
 // 保存処理
 - (void)saveAction
 {
+    Ledger *ledger = [DataModel ledger];
+
     if (assetIndex < 0) {
-        [[DataModel instance] addAsset:asset];
+        [ledger addAsset:asset];
         [asset release];
     } else {
-        [[DataModel instance] updateAsset:asset];
+        [ledger updateAsset:asset];
     }
     asset = nil;
 	

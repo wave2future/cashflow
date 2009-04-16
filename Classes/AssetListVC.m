@@ -51,6 +51,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    ledger = [DataModel ledger];
 	
     // title 設定
     self.title = NSLocalizedString(@"Assets", @"");
@@ -84,9 +86,9 @@
     // load user defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
-    if (firstShowAssetIndex >= 0 && [[DataModel instance] assetCount] > firstShowAssetIndex) {
-        Asset *asset = [[DataModel instance] assetAtIndex:firstShowAssetIndex];
-        [[DataModel instance] changeSelAsset:asset];
+    if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
+        Asset *asset = [ledger assetAtIndex:firstShowAssetIndex];
+        [ledger changeSelAsset:asset];
 		
         // TransactionListView を表示
         TransactionListViewController *vc = [[[TransactionListViewController alloc]
@@ -116,7 +118,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
         
-    [[DataModel instance] reloadAssets];
+    [ledger rebuild]; // ### 必要？？？
 
     [tableView reloadData];
     [super viewWillAppear:animated];
@@ -146,7 +148,7 @@
     if (section == 1) {
         return 1;
     }
-    return [[DataModel instance] assetCount];
+    return [ledger assetCount];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -167,7 +169,7 @@
     NSString *label;
 
     if (indexPath.section == 0) {
-        Asset *asset = [[DataModel instance] assetAtIndex:indexPath.row];
+        Asset *asset = [ledger assetAtIndex:indexPath.row];
     
         label = asset.name;
         value = [asset lastBalance];
@@ -179,8 +181,8 @@
         // 合計欄
         value = 0.0;
         int i;
-        for (i = 0; i < [[DataModel instance] assetCount]; i++) {
-            value += [[[DataModel instance] assetAtIndex:i] lastBalance];
+        for (i = 0; i < [ledger assetCount]; i++) {
+            value += [[ledger assetAtIndex:i] lastBalance];
         }
         label = [NSString stringWithFormat:@"            %@", NSLocalizedString(@"Total", @"")];
 
@@ -211,8 +213,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:indexPath.row forKey:@"firstShowAssetIndex"];
 	
-    Asset *asset = [[DataModel instance] assetAtIndex:indexPath.row];
-    [[DataModel instance] changeSelAsset:asset];
+    Asset *asset = [ledger assetAtIndex:indexPath.row];
+    [ledger changeSelAsset:asset];
 
     // TransactionListView を表示
     TransactionListViewController *vc = [[[TransactionListViewController alloc]
@@ -276,7 +278,7 @@
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (style == UITableViewCellEditingStyleDelete) {
-        assetToBeDelete = [[DataModel instance] assetAtIndex:indexPath.row];
+        assetToBeDelete = [ledger assetAtIndex:indexPath.row];
 
         asDelete =
             [[UIActionSheet alloc]
@@ -297,7 +299,7 @@
         return; // cancelled;
     }
 	
-    [[DataModel instance] deleteAsset:assetToBeDelete];
+    [ledger deleteAsset:assetToBeDelete];
     [self.tableView reloadData];
 }
 

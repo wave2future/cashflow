@@ -114,10 +114,11 @@
     }
 
     // 資産間移動
-    int assetCount = [[DataModel instance] assetCount];
+    Ledger *ledger = [DataModel ledger];
+    int assetCount = [ledger assetCount];
     NSMutableArray *assetNames = [[[NSMutableArray alloc] initWithCapacity:assetCount] autorelease];
     for (int i = 0; i < assetCount; i++) {
-        Asset *asset = [[DataModel instance] assetAtIndex:i];
+        Asset *asset = [ledger assetAtIndex:i];
         [assetNames addObject:asset.name];
     }
     
@@ -128,7 +129,7 @@
                                     identifier:0];
 
     vc.autoPop = NO;
-    vc.type = [[DataModel instance] assetIndexWithKey:dst_asset];
+    vc.type = [ledger assetIndexWithKey:dst_asset];
 
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -136,7 +137,7 @@
 // 資産選択
 - (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
 {
-    Asset *as = [[DataModel instance] assetAtIndex:vc.type];
+    Asset *as = [[DataModel ledger] assetAtIndex:vc.type];
     dst_asset = as.pkey;
 
     // pop しない
