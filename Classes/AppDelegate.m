@@ -54,8 +54,6 @@
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
-    [DataModel initialize];
-
     // Configure and show the window
     [window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
@@ -66,7 +64,7 @@
 //
 - (void)applicationWillTerminate:(UIApplication *)application
 {
-    [theDataModel release];
+    [DataModel finalize];
     [Database shutdown];
 }
 

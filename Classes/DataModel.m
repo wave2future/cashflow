@@ -41,24 +41,23 @@
 
 @synthesize assets, selAsset, categories;
 
-DataModel *theDataModel = nil;
-NSDateFormatter *theDateFormatter = nil;
+static DataModel *theDataModel = nil;
+static NSDateFormatter *theDateFormatter = nil;
 
-+ (void)initialize
++ (DataModel *)instance
 {
-    static BOOL initialized = NO;
-
-    if (!initialized) {
-        initialized = YES;
-
-        // データロード
+    if (!theDataModel) {
         theDataModel = [[DataModel alloc] init];
         [theDataModel load];
+    }
+    return theDataModel;
+}
 
-        // misc
-        theDateFormatter = [[NSDateFormatter alloc] init];
-        [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
++ (void)finalize
+{
+    if (theDataModel) {
+        [theDataModel release];
+        theDataModel = nil;
     }
 }
 
@@ -81,6 +80,21 @@ NSDateFormatter *theDateFormatter = nil;
 
     [super dealloc];
 }
+
+//
+// DateFormatter
+//
++ (DateFormatter *)dateFormatter
+{
+    if (!theDateFormatter) {
+        theDateFormatter = [[NSDateFormatter alloc] init];
+        [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+        [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    }
+    return theDateFormatter;
+}
+
+
 
 ////////////////////////////////////////////////////////////////////////////
 // Load / Save DB

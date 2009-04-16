@@ -50,12 +50,11 @@
 @property(nonatomic,readonly) Asset *selAsset;
 @property(nonatomic,retain) Categories *categories;
 
-// Global variables
-extern DataModel *theDataModel;
-extern NSDateFormatter *theDateFormatter;
++ (DataModel *)instance;
++ (void)finalize;
++ (DateFormatter *)dateFormatter;
 
 // initializer
-+ (void)initialize;
 - (id)init;
 
 // load/save
