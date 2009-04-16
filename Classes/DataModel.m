@@ -80,7 +80,6 @@ static DataModel *theDataModel = nil;
     [super dealloc];
 }
 
-// Journal
 + (Journal *)journal
 {
     return [DataModel instance].journal;
@@ -89,6 +88,11 @@ static DataModel *theDataModel = nil;
 + (Ledger *)ledger
 {
     return [DataModel instance].ledger;
+}
+
++ (Ledger *)categories
+{
+    return [DataModel instance].categories;
 }
 
 - (void)load

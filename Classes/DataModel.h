@@ -57,8 +57,12 @@
 + (DataModel *)instance;
 + (void)finalize;
 
-+ (DateFormatter *)dateFormatter;
 + (Journal *)journal;
++ (Ledger *)ledger;
++ (Categories *)categories;
+
++ (DateFormatter *)dateFormatter;
+
 
 // initializer
 - (id)init;

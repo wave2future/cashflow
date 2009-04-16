@@ -51,7 +51,7 @@
 	
     // title 設定
     //self.title = NSLocalizedString(@"Transactions", @"");
-    self.title = [DataModel instance].selAsset.name;
+    self.title = [DataModel ledger].selAsset.name;
 	
     // "+" ボタンを追加
     UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
@@ -93,7 +93,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
 
-    asset = [DataModel instance].selAsset;
+    asset = [DataModel ledger].selAsset;
     [self updateBalance];
 	
     [self.tableView reloadData]; //### Reload data...

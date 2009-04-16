@@ -147,10 +147,10 @@
     if (transactionIndex < 0) {
         // 新規トランザクション
         editingEntry = [[AssetEntry alloc] init];
-        [editingEntry setAsset:[DataModel instance].selAsset transaction:nil];
+        [editingEntry setAsset:[DataModel ledger].selAsset transaction:nil];
     } else {
         // 変更
-        AssetEntry *orig = [[DataModel instance].selAsset entryAt:transactionIndex];
+        AssetEntry *orig = [[DataModel ledger].selAsset entryAt:transactionIndex];
         editingEntry = [orig copy];
     }
 }
@@ -259,7 +259,7 @@
 			
     case ROW_CATEGORY:
         name.text = NSLocalizedString(@"Category", @"");
-        value.text = [[DataModel instance].categories categoryStringWithKey:editingEntry.transaction.category];
+        value.text = [[DataModel categories] categoryStringWithKey:editingEntry.transaction.category];
         break;
 			
     case ROW_MEMO:
@@ -310,7 +310,7 @@
         break;
 
     case ROW_CATEGORY:
-        editCategoryVC.selectedIndex = [[DataModel instance].categories categoryIndexWithKey:editingEntry.transaction.category];
+        editCategoryVC.selectedIndex = [[DataModel categories] categoryIndexWithKey:editingEntry.transaction.category];
         vc = editCategoryVC;
         break;
     }
@@ -346,8 +346,9 @@
     case TYPE_TRANSFER:
         {
             Asset *from, *to;
-            from = [[DataModel instance] assetWithKey:editingEntry.transaction.asset];
-            to = [[DataModel instance] assetWithKey:editingEntry.transaction.dst_asset];
+            Ledger *ledger = [DataModel ledger];
+            from = [ledger assetWithKey:editingEntry.transaction.asset];
+            to = [ledger assetWithKey:editingEntry.transaction.dst_asset];
 
             editingEntry.transaction.description = 
                 [NSString stringWithFormat:@"%@/%@", from.name, to.name];
@@ -384,7 +385,7 @@
     if (vc.selectedIndex < 0) {
         editingEntry.transaction.category = -1;
     } else {
-        Category *c = [[DataModel instance].categories categoryAtIndex:vc.selectedIndex];
+        Category *c = [[DataModel categories] categoryAtIndex:vc.selectedIndex];
         editingEntry.transaction.category = c.pkey;
     }
 }
@@ -393,7 +394,7 @@
 // 削除処理
 - (void)delButtonTapped
 {
-    [[DataModel instance].selAsset deleteTransactionAt:transactionIndex];
+    [[DataModel ledger].selAsset deleteTransactionAt:transactionIndex];
     [trans release];
     trans = nil;
 	
@@ -419,7 +420,7 @@
         return; // cancelled;
     }
 
-    Asset *asset = [DataModel instance].selAsset;
+    Asset *asset = [DataModel ledger].selAsset;
     Transaction *t = [asset transactionAt:transactionIndex];
 	
     NSDate *date = t.date;
@@ -435,8 +436,8 @@
 // 保存処理
 - (void)saveAction
 {
-    Journal *journal = [DataModel instance].journal;
-    Asset *asset = [DataModel instance].selAsset;
+    Journal *journal = [DataModel journal];
+    Asset *asset = [DataModel ledger].selAsset;
 
     //editingEntry.transaction.asset = asset.pkey;
 
