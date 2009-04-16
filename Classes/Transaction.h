@@ -52,7 +52,7 @@
     double balance;
     int type;  // TYPE_*
     int category;
-    BOOL isReverse;
+    BOOL isReverse; // 逆取引 (資産間移動の、移動した先の取引)
 }
 
 @property(nonatomic,assign) int pkey;
