@@ -336,10 +336,12 @@
             // ### TBD
             return;
         }
-        [editingEntry setDstAsset:vc.dst_asset];
-    }
 
-    editingEntry.transaction.type = vc.type;
+        editingEntry.transaction.type = TYPE_TRANSFER;
+        [editingEntry setDstAsset:vc.dst_asset];
+    } else {
+        editingEntry.transaction.type = vc.type;
+    }
 
     switch (editingEntry.transaction.type) {
     case TYPE_ADJ:
