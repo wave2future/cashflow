@@ -205,5 +205,14 @@
     [stmt reset];
 }
 
++ (void)deleteDbWithAsset:(int)assetKey
+{
+    DBStatement *stmt;
+    Database *db = [Database instance];
+    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
+    [stmt bindInt:0 val:assetKey];
+    [stmt bindInt:1 val:assetKey];
+    [stmt step];
+}
 
 @end

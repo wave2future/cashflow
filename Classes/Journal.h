@@ -55,5 +55,6 @@
 - (void)insertTransaction:(Transaction*)tr;
 - (void)replaceTransaction:(Transaction *)from withObject:(Transaction*)to;
 - (void)deleteTransaction:(Transaction *)tr;
+- (void)deleteTransactionsWithAsset:(Asset *)asset;
 
 @end

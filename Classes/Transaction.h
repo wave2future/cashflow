@@ -71,5 +71,6 @@
 - (void)insertDb;
 - (void)updateDb;
 - (void)deleteDb;
++ (void)deleteDbWithAsset:(int)assetKey;
 
 @end

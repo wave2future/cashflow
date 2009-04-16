@@ -118,4 +118,12 @@
     [entries removeObject:t];
 }
 
+- (void)deleteTransactionsWithAsset:(Asset *)asset
+{
+    [Transaction deleteDbWithAsset:asset.pkey];
+    [self reload];
+
+    // rebuild が必要!
+}
+
 @end

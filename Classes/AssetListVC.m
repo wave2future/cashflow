@@ -314,7 +314,7 @@
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
     if (from.section != 0 || to.section != 0) return;
-    [[DataModel instance] reorderAsset:from.row to:to.row];
+    [[DataModel ledger] reorderAsset:from.row to:to.row];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
