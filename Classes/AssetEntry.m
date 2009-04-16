@@ -116,6 +116,7 @@
 
     switch (transaction.type) {
     case TYPE_INCOME:
+        ret = value;
         break;
     case TYPE_OUTGO:
         ret = -value;

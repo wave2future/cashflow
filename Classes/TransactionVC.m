@@ -340,7 +340,12 @@
         editingEntry.transaction.type = TYPE_TRANSFER;
         [editingEntry setDstAsset:vc.dst_asset];
     } else {
+        // 資産間移動でない取引に変更した場合、強制的にこの資産の取引に変更する
+        double evalue = editingEntry.evalue;
         editingEntry.transaction.type = vc.type;
+        editingEntry.transaction.asset = editingEntry.asset;
+        editingEntry.transaction.dst_asset = -1;
+        editingEntry.evalue = evalue;
     }
 
     switch (editingEntry.transaction.type) {
@@ -356,7 +361,7 @@
             to = [ledger assetWithKey:editingEntry.transaction.dst_asset];
 
             editingEntry.transaction.description = 
-                [NSString stringWithFormat:@"%@/%@", from.name, to.name];
+                [NSString stringWithFormat:@"%@>%@", from.name, to.name];
         }
         break;
 

@@ -143,12 +143,16 @@
     [[DataModel journal] deleteTransaction:e.transaction];
 }
 
+// エントリ削除
 - (void)deleteEntryAt:(int)index
 {
     [self _deleteEntryAt:index];
+    
+    // 転記し直す
     [[DataModel ledger] rebuild];
 }
 
+// 指定日以前の取引を削除
 - (void)deleteOldEntriesBefore:(NSDate*)date
 {
     Database *db = [Database instance];
