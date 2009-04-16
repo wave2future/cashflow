@@ -289,13 +289,7 @@
 
     case ROW_TYPE:
         editTypeVC.type = editingEntry.transaction.type;
-        if (editingEntry.transaction.asset == [DataModel instance].selAsset.pkey) {
-            // 転送する側
-            editTypeVC.dst_asset = editingEntry.transaction.dst_asset;
-        } else {
-            // 転送される側
-            editTypeVC.dst_asset = editingEntry.transaction.asset;
-        }
+        editTypeVC.dst_asset = [editingEntry dstAsset];
         vc = editTypeVC;
         break;
 
@@ -334,22 +328,12 @@
     [self.navigationController popToViewController:self animated:YES]; // ###
     
     if (vc.type == TYPE_TRANSFER) {
-        if (!editingEntry.transaction.isReverse) {
-            // 転送する側
-            if (vc.dst_asset == editingEntry.transaction.asset) {
-                // ### TBD
-                return;
-            }
-            editingEntry.transaction.dst_asset = vc.dst_asset;
-        } 
-        else {
-            // 転送される側
-            if (vc.dst_asset == editingEntry.transaction.dst_asset) {
-                // ### TBD
-                return;
-            }
-            editingEntry.transaction.asset = vc.dst_asset;
+        if (vc.dst_asset == editingEntry.asset) {
+            // 自分あて転送は許可しない
+            // ### TBD
+            return;
         }
+        [editingEntry setDstAsset:vc.dst_asset];
     }
 
     editingEntry.transaction.type = vc.type;

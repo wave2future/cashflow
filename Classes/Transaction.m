@@ -37,7 +37,7 @@
 
 @implementation Transaction
 
-@synthesize pkey, asset, dst_asset, date, description, memo, value, balance, type, category, isReverse;
+@synthesize pkey, asset, dst_asset, date, description, memo, value, type, category;
 
 - (id)init
 {
@@ -49,11 +49,9 @@
     self.description = @"";
     self.memo = @"";
     value = 0.0;
-    balance = 0.0;
     type = 0;
     category = -1;
     pkey = 0; // init
-    isReverse = NO;
     return self;
 }
 
@@ -73,11 +71,9 @@
     self.description = desc;
     self.memo = @"";
     value = v;
-    balance = 0.0; // ###
     type = 0;
     category = -1;
     pkey = 0; // init
-    isReverse = NO;
     return self;
 }
 
@@ -91,10 +87,8 @@
     n.description = self.description;
     n.memo = self.memo;
     n.value = self.value;
-    n.balance = self.balance;
     n.type = self.type;
     n.category = self.category;
-    n.isReverse = self.isReverse;
     return n;
 }
 

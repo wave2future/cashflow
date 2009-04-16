@@ -356,6 +356,32 @@
     }
 }
 
+// 転送先資産キーを返す
+- (int)dstAsset
+{
+    if (transaction.type != TYPE_TRANSFER) {
+        return -1;
+    }
+
+    if (transaction.asset == asset) {
+        return transaction.dst_asset;
+    }
+    return transaction.asset;
+}
+
+- (void)setDstAsset:as
+{
+    if (transaction.type != TYPE_TRANSFER) {
+        // ###
+        return;
+    }
+
+    if (transaction.asset == asset) {
+        transaction.dst_asset = as;
+    }
+    transaction.asset = as;
+}
+
 - (id)copyWithZone:(NSZone *)zone
 {
     AssetEntry *e = [[AssetEntry alloc] init];
