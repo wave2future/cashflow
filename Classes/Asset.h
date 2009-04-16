@@ -74,9 +74,8 @@
 - (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)t;
 - (void)_deleteEntryAt:(int)n;
 - (void)deleteEntryAt:(int)n;
-- (void)deleteOldEntrysBefore:(NSDate*)date;
+- (void)deleteOldEntriesBefore:(NSDate*)date;
 - (int)firstEntryByDate:(NSDate*)date;
-- (void)sortByDate;
 
 - (double)lastBalance;
 - (void)updateInitialBalance;

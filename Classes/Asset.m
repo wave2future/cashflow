@@ -118,7 +118,7 @@
 - (void)insertEntry:(AssetEntry *)e
 {
     [[DataModel journal] insertTransaction:e.transaction];
-    [DataModel rebuild];
+    [[DataModel ledger] rebuild];
 }
 
 - (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)e
@@ -126,7 +126,7 @@
     AssetEntry *orig = [self entryAt:index];
 
     [[DataModel journal] replaceTransaction:orig.transaction withObject:e.transaction];
-    [DataModel rebuild];
+    [[DataModel ledger] rebuild];
 }
 
 - (void)_deleteEntryAt:(int)index
@@ -144,10 +144,10 @@
 - (void)deleteEntryAt:(int)index
 {
     [self _deleteEntryAt:index];
-    [DataModel rebuild];
+    [[DataModel ledger] rebuild];
 }
 
-- (void)deleteOldTransactionsBefore:(NSDate*)date
+- (void)deleteOldEntriesBefore:(NSDate*)date
 {
     Database *db = [Database instance];
 
@@ -161,7 +161,8 @@
         [self _deleteEntryAt:0];
     }
     [db commitTransaction];
-    [DataModel rebuild];
+
+    [[DataModel ledger] rebuild];
 }
 
 - (int)firstEntryByDate:(NSDate*)date
