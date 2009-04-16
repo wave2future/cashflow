@@ -124,6 +124,8 @@
 
 - (void)dealloc
 {
+    self.editingEntry = nil;
+
     [editDateVC release];
     [editTypeVC release];
     [editValueVC release];
