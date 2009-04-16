@@ -159,20 +159,41 @@ static int compareCatReport(id x, id y, void *context)
         r.endDate = dd;
 
         // 集計
-        r.totalIncome = [self calculateSumWithinRange:assetKey isOutgo:NO startDate:r.date endDate:dd];
-        r.totalOutgo = -[self calculateSumWithinRange:assetKey isOutgo:YES startDate:r.date endDate:dd];
+        Filter filter;
+        init_filter(&filter);
+
+        filter.asset = assetKey;
+        filter.start = r.date;
+        filter.end = dd;
+
+        filter.isIncome = YES;
+        filter.isOutgo = NO;
+        r.totalIncome = [self calculateSum:filter];
+
+        filter.isIncome = NO;
+        filter.isOutgo = YES;
+        r.totalOutgo = [self calculateSum:filter];
 
         // カテゴリ毎の集計
         int i;
         r.catReports = [[NSMutableArray alloc] init];
         double remain = r.totalIncome - r.totalOutgo;
 
+        Filter filter;
+        init_filter(&filter);
+        filter.asset = assetKey;
+
         for (i = 0; i < numCategories; i++) {
             Category *c = [[DataModel instance].categories categoryAtIndex:i];
             CatReport *cr = [[CatReport alloc] init];
 
             cr.catkey = c.pkey;
-            cr.value = [self calculateSumWithinRangeCategory:assetKey startDate:r.date endDate:r.endDate category:cr.catkey];
+
+            filter.category = c.pkey;
+            filter.start = r.date;
+            filter.end = r.endDate;
+            cr.value = [self calculateSum:&filter];
+
             remain -= cr.value;
 
             [r.catReports addObject:cr];
@@ -249,6 +270,8 @@ static void init_filter(Filter *filter)
     Transaction *t;
 
     double sum = 0.0;
+    double value;
+
     for (t in [DataModel journal]) {
         // match filter
         if (filter.start && [t.date compare:filter.start] == NSOrderedAscending) {
@@ -257,69 +280,37 @@ static void init_filter(Filter *filter)
         if (filter.end && [t.date compare:filter.end] == NSOrderedDescending) {
             continue;
         }
-        if (filter.asset >= 0 && t.asset != filter.asset) {
-            continue;
-        }
-        if (filter.dst_asset >= 0 && t.dst_asset != filter.dst_asset) {
-            continue;
-        }
         if (filter.category >= 0 && t.category != filter.category) {
             continue;
         }
-        if (filter.isOutgo && t.value >= 0) {
+
+        if (filter.asset < 0) {
+            // 資産指定なしの資産間移動は計上しない
+            if (t.type == TYPE_TRANSFER) {
+                continue;
+            }
+            value = t.value;
+        }
+        else {
+            if (t.asset == filter.asset) {
+                value = t.value;
+            }
+            else if (t.dst_asset == filter.asset) {
+                value = -t.value;
+            }
+            else {
+                continue;
+            }
+        }
+            
+        if (filter.isOutgo && value >= 0) {
             continue;
         }
-        if (filter.isIncome && t.value <= 0) {
+        if (filter.isIncome && value <= 0) {
             continue;
         }
-        sum += t.value;
+        sum += value;
     }
-    return sum;
-}
-
-
-- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end
-{
-    double sum = 0.0;
-    Filter filter;
-    init_filter(&filter);
-
-    filter.asset = asset;
-    filter.isOutgo = isOutgo;
-    filter.isIncome = !isOutgo;
-    filter.start = start;
-    filter.end = end;
-
-    sum = [self calculateSum:&filter];
-
-    filter.asset = -1;
-    filter.dst_asset = asset;
-    filter.isOutgo = !isOutgo;
-    filter.isIncome = isOutgo;
-
-    sum -= [self calculateSum:&filter];
-
-    return sum;
-}
-
-- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category
-{
-    double sum = 0.0;
-    Filter filter;
-    init_filter(&filter);
-
-    filter.asset = asset;
-    filter.start = start;
-    filter.end = end;
-    filter.category = category;
-
-    sum = [self calculateSum:&filter];
-
-    filter.asset = -1;
-    filter.dst_asset = asset;
-
-    sum -= [self calculateSum:&filter];
-
     return sum;
 }
 

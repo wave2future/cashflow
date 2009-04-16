@@ -44,7 +44,6 @@ typedef struct
     NSDate *start;
     NSDate *end;
     int asset;
-    int dst_asset;
     int category;
     BOOL isOutgo;
     BOOL isIncome;
@@ -94,7 +93,6 @@ typedef struct
 // private
 - (NSDate*)firstDateOfAsset:(int)asset;
 - (NSDate*)lastDateOfAsset:(int)asset;
-- (double)calculateSumWithinRange:(int)asset isOutgo:(BOOL)isOutgo startDate:(NSDate*)start endDate:(NSDate*)end;
-- (double)calculateSumWithinRangeCategory:(int)asset startDate:(NSDate*)start endDate:(NSDate*)end category:(int)category;
+- (double)calculateSum:(Filter *)filter;
 
 @end
