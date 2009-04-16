@@ -38,9 +38,6 @@
 
 #import <UIKit/UIKit.h>
 #import "Transaction.h"
-#import "Database.h"
-
-@class Database;
 
 //
 // 仕訳帳

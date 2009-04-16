@@ -36,7 +36,6 @@
 
 #import "AppDelegate.h"
 #import "DataModel.h"
-#import "DataModelV1.h"
 #import "Journal.h"
 
 @implementation Journal
@@ -45,10 +44,9 @@
 
 - (id)init
 {
-    self = [super init];
-
-    entries = nil;
-	
+    if (self = [super init]) {
+        entries = nil;
+    }
     return self;
 }
 
@@ -115,18 +113,5 @@
     [t deleteDb];
     [entries removeObject:t];
 }
-
-// sort
-#if 0
-static int compareByDate(Transaction *t1, Transaction *t2, void *context)
-{
-    return [t1.date compare:t2.date];
-}
-
-- (void)sortByDate
-{
-    [entries sortUsingFunction:compareByDate context:NULL];
-}
-#endif
 
 @end

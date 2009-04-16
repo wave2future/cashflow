@@ -37,7 +37,6 @@
 #import "AppDelegate.h"
 #import "Asset.h"
 #import "DataModel.h"
-#import "DataModelV1.h"
 
 @implementation Asset
 

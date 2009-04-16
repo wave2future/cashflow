@@ -39,7 +39,7 @@
 
 @implementation DataModel
 
-@synthesize journal, assets, selAsset, categories;
+@synthesize journal, ledger, categories;
 
 static DataModel *theDataModel = nil;
 
@@ -65,10 +65,7 @@ static DataModel *theDataModel = nil;
     [super init];
 
     journal = [[Journal alloc] init];
-
-    assets = nil;
-    selAsset = nil;
-
+    ledger = [[Ledger alloc] init];
     categories = [[Categories alloc] init];
 	
     return self;
@@ -77,11 +74,45 @@ static DataModel *theDataModel = nil;
 - (void)dealloc 
 {
     [journal release];
-    [assets release];
+    [ledger release];
     [categories release];
 
     [super dealloc];
 }
+
+// Journal
++ (Journal *)journal
+{
+    return [DataModel instance].journal;
+}
+
++ (Ledger *)ledger
+{
+    return [DataModel instance].ledger;
+}
+
+- (void)load
+{
+    Database *db = [Database instance];
+
+    // Load from DB
+    if (![db openDB]) {
+        [db initializeDB];
+    }
+	
+    // Load all transactions
+    [journal reload];
+
+    // Load ledger
+    [ledger load];
+    [ledger rebuild];
+
+    // Load categories
+    [categories reload];
+}
+
+////////////////////////////////////////////////////////////////////////////
+// Utility
 
 //
 // DateFormatter
@@ -97,175 +128,6 @@ static DataModel *theDataModel = nil;
     }
     return theDateFormatter;
 }
-
-// Journal
-+ (Journal *)journal
-{
-    return [DataModel instance].journal;
-}
-
-////////////////////////////////////////////////////////////////////////////
-// Load / Save DB
-
-- (void)load
-{
-    Database *db = [Database instance];
-
-    // Load from DB
-    if (![db openDB]) {
-        [db initializeDB];
-    }
-	
-    // Load assets
-    [self loadAssets];
-    if ([assets count] > 0) {
-        selAsset = [assets objectAtIndex:0];
-    }
-
-    // Load all transactions
-    [journal reload];
-
-    // Load categories
-    [categories reload];
-
-    // Rebuile assets (transfer transactions)
-    [self rebuild];
-}
-
-// private
-- (void)loadAssets
-{
-    DBStatement *stmt;
-    self.assets = [[[NSMutableArray alloc] init] autorelease];
-
-    stmt = [[Database instance] prepare:"SELECT * FROM Assets ORDER BY sorder;"];
-    while ([stmt step] == SQLITE_ROW) {
-        Asset *as = [[Asset alloc] init];
-        as.pkey = [stmt colInt:0];
-        as.name = [stmt colString:1];
-        as.type = [stmt colInt:2];
-        as.initialBalance = [stmt colDouble:3];
-        as.sorder = [stmt colInt:4];
-
-        [assets addObject:as];
-        [as release];
-    }
-}
-
-////////////////////////////////////////////////////////////////////////////
-// Asset operation
-
-- (void)rebuild
-{
-    for (Asset *as in assets) {
-        [as rebuild];
-    }
-}
-
-- (int)assetCount
-{
-    return [assets count];
-}
-
-- (Asset*)assetAtIndex:(int)n
-{
-    return [assets objectAtIndex:n];
-}
-
-- (Asset*)assetWithKey:(int)pkey
-{
-    for (Asset *as in assets) {
-        if (as.pkey == pkey) return as;
-    }
-    return nil;
-}
-
-- (int)assetIndexWithKey:(int)pkey
-{
-    int i;
-    for (i = 0; i < [assets count]; i++) {
-        Asset *as = [assets objectAtIndex:i];
-        if (as.pkey == pkey) return i;
-    }
-    return -1;
-}
-
-- (void)addAsset:(Asset *)as
-{
-    [assets addObject:as];
-
-    DBStatement *stmt = [[Database instance] prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
-    [stmt bindString:0 val:as.name];
-    [stmt bindInt:1 val:as.type];
-    [stmt bindDouble:2 val:as.initialBalance];
-    [stmt bindInt:3 val:as.sorder];
-    [stmt step];
-
-    as.pkey = [[Database instance] lastInsertRowId];
-}
-
-- (void)deleteAsset:(Asset *)as
-{
-    if (selAsset == as) {
-        selAsset = nil;
-    }
-    [as clear];
-
-    DBStatement *stmt;
-    Database *db = [Database instance];
-    stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
-    [stmt bindInt:0 val:as.pkey];
-    [stmt step];
-
-    [journal deleteTransactionsWithAsset:as];
-#if 0
-    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
-    [stmt bindInt:0 val:as.pkey];
-    [stmt bindInt:1 val:as.pkey];
-    [stmt step];
-#endif
-
-    [assets removeObject:as];
-
-    [DataModel rebuild];
-}
-
-- (void)updateAsset:(Asset*)asset
-{
-    DBStatement *stmt = [[Database instance] prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
-    [stmt bindString:0 val:asset.name];
-    [stmt bindInt:1 val:asset.type];
-    [stmt bindDouble:2 val:asset.initialBalance];
-    [stmt bindInt:3 val:asset.sorder];
-    [stmt bindInt:4 val:asset.pkey];
-    [stmt step];
-}
-
-- (void)reorderAsset:(int)from to:(int)to
-{
-    Asset *as = [[assets objectAtIndex:from] retain];
-    [assets removeObjectAtIndex:from];
-    [assets insertObject:as atIndex:to];
-    [as release];
-	
-    // renumbering sorder
-    Database *db = [Database instance];
-    [db beginTransaction];
-    DBStatement *stmt = [db prepare:"UPDATE Assets SET sorder=? WHERE key=?;"];
-    for (int i = 0; i < [assets count]; i++) {
-        as = [assets objectAtIndex:i];
-        as.sorder = i;
-
-        [stmt bindInt:0 val:as.sorder];
-        [stmt bindInt:1 val:as.pkey];
-        [stmt step];
-        [stmt reset];
-    }
-    [db commitTransaction];
-}
-
-////////////////////////////////////////////////////////////////////////////
-// Utility
 
 static NSNumberFormatter *currencyFormatter = nil;
 

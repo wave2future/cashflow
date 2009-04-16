@@ -32,45 +32,37 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+// 総勘定元帳
+
 #import <UIKit/UIKit.h>
 #import "Journal.h"
-#import "Ledger.h"
+#import "Asset.h"
 #import "Category.h"
 #import "Database.h"
 
-@interface DataModel : NSObject
+@interface Ledger : NSObject
 {
-    // Journal
-    Journal *journal;
-
-    // Ledger
-    Ledger *ledger;
-
-    // Category
-    Categories *categories;
+    // Asset
+    NSMutableArray *assets;
+    Asset *selAsset; // 選択中の Asset
 }
 
-@property(nonatomic,retain) Journal *journal;
-@property(nonatomic,retain) Ledger *ledger;
-@property(nonatomic,retain) Categories *categories;
+@property(nonatomic,retain) NSMutableArray *assets;
+@property(nonatomic,readonly) Asset *selAsset;
 
-+ (DataModel *)instance;
-+ (void)finalize;
-
-+ (DateFormatter *)dateFormatter;
-+ (Journal *)journal;
-
-// initializer
-- (id)init;
-
-// load/save
+// asset operation
 - (void)load;
+- (void)reloadAssets;
+- (void)dirtyAllAssets;
+- (int)assetCount;
+- (Asset *)assetAtIndex:(int)n;
+- (int)assetIndexWithKey:(int)key;
+- (Asset*)assetWithKey:(int)key;
 
-// utility operation
-+ (NSString*)currencyString:(double)x;
-
-- (NSMutableArray *)descLRUWithCategory:(int)category;
-- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category;
-- (int)categoryWithDescription:(NSString *)desc;
+- (void)addAsset:(Asset *)as;
+- (void)deleteAsset:(Asset *)as;
+- (void)updateAsset:(Asset*)asset;
+- (void)reorderAsset:(int)from to:(int)to;
+- (void)changeSelAsset:(Asset *)as;
 
 @end
