@@ -41,7 +41,7 @@
 
 @class Asset;
 
-@interface Transaction : NSObject <NSCoding, NSCopying> {
+@interface Transaction : NSObject <NSCopying> {
     int pkey; // primary key
     NSDate *date;
     int asset;
@@ -62,7 +62,6 @@
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int category;
-@property(nonatomic,assign) BOOL isReverse;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 

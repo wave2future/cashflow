@@ -46,7 +46,7 @@
     NSMutableArray *entries;
 }
 
-@property(nonatomi,readonly) entries;
+@property(nonatomic,readonly) NSMutableArray *entries;
 
 - (void)reload;
 

@@ -90,7 +90,7 @@ static DataModel *theDataModel = nil;
     return [DataModel instance].ledger;
 }
 
-+ (Ledger *)categories
++ (Categories *)categories
 {
     return [DataModel instance].categories;
 }
@@ -121,7 +121,7 @@ static DataModel *theDataModel = nil;
 //
 // DateFormatter
 //
-+ (DateFormatter *)dateFormatter
++ (NSDateFormatter *)dateFormatter
 {
     static NSDateFormatter *theDateFormatter = nil;
 

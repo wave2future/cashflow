@@ -38,7 +38,7 @@
 
 @implementation TransactionViewController
 
-@synthesize trans;
+@synthesize editingEntry;
 
 #define ROW_DATE  0
 #define ROW_TYPE  1
@@ -141,17 +141,16 @@
 {
     transactionIndex = n;
 
-    if (editingEntry != nil) {
-        [editingEntry release];
-    }
+    self.editingEntry = nil;
+
     if (transactionIndex < 0) {
         // 新規トランザクション
-        editingEntry = [[AssetEntry alloc] init];
+        self.editingEntry = [[[AssetEntry alloc] init] autorelease];
         [editingEntry setAsset:[DataModel ledger].selAsset transaction:nil];
     } else {
         // 変更
         AssetEntry *orig = [[DataModel ledger].selAsset entryAt:transactionIndex];
-        editingEntry = [orig copy];
+        self.editingEntry = [[orig copy] autorelease];
     }
 }
 
@@ -249,7 +248,7 @@
 		
     case ROW_VALUE:
         name.text = NSLocalizedString(@"Amount", @"");
-        value.text = [DataModel currencyString:[editingEntry.evalue]];
+        value.text = [DataModel currencyString:editingEntry.evalue];
         break;
 		
     case ROW_DESC:
@@ -294,7 +293,7 @@
         break;
 
     case ROW_VALUE:
-        editValueVC.value = [editingEntry.evalue];
+        editValueVC.value = editingEntry.evalue;
         vc = editValueVC;
         break;
 
@@ -395,8 +394,7 @@
 - (void)delButtonTapped
 {
     [[DataModel ledger].selAsset deleteTransactionAt:transactionIndex];
-    [trans release];
-    trans = nil;
+    self.editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -421,13 +419,12 @@
     }
 
     Asset *asset = [DataModel ledger].selAsset;
-    Transaction *t = [asset transactionAt:transactionIndex];
+    AssetEntry *e = [asset entryAt:transactionIndex];
 	
-    NSDate *date = t.date;
+    NSDate *date = e.transaction.date;
     [asset deleteOldTransactionsBefore:date];
 	
-    [trans release];
-    trans = nil;
+    self.editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -448,8 +445,7 @@
         //[asset sortByDate];
     }
 
-    [editingEntry release];
-    editingEntry = nil;
+    self.editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
 }

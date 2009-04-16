@@ -160,7 +160,7 @@
     [stmt bindDate:2 val:date];
     [stmt bindInt:3 val:type];
     [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:(isReverse ? -value : value)];
+    [stmt bindDouble:5 val:value];
     [stmt bindString:6 val:description];
     [stmt bindString:7 val:memo];
     [stmt step];
@@ -184,7 +184,7 @@
     [stmt bindDate:2 val:date];
     [stmt bindInt:3 val:type];
     [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:(isReverse ? -value : value)];
+    [stmt bindDouble:5 val:value];
     [stmt bindString:6 val:description];
     [stmt bindString:7 val:memo];
     [stmt bindInt:8 val:pkey];

@@ -49,10 +49,11 @@
 @property(nonatomic,readonly) Transaction *transaction;
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
+@property(nonatomic,assign) double evalue;
 
-// proxy
-@property(nonatomic,readonly)
-
+- (void)setAsset:(Asset *)as transaction:(Transaction *)t;
+- (int)dstAsset;
+- (void)setDstAsset:(int)as;
 - (BOOL)isDstAsset;
 
 @end

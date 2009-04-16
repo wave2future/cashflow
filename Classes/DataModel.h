@@ -61,8 +61,7 @@
 + (Ledger *)ledger;
 + (Categories *)categories;
 
-+ (DateFormatter *)dateFormatter;
-
++ (NSDateFormatter *)dateFormatter;
 
 // initializer
 - (id)init;
