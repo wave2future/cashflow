@@ -484,8 +484,8 @@
 			isa = PBXGroup;
 			children = (
 				3E1A3C8B0F963BAA0050ED45 /* DataModelTest.m */,
-				3E1A3C820F963B670050ED45 /* UnitTesting */,
 				3EAC05780F96397D00E29C91 /* GTMDefines.h */,
+				3E1A3C820F963B670050ED45 /* UnitTesting */,
 			);
 			path = UnitTest;
 			sourceTree = "<group>";
