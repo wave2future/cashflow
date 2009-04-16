@@ -83,7 +83,7 @@
     entries = [[NSMutableArray alloc] init];
 
     AssetEntry *e;
-    for (Transaction *t in [DataModel instance].transactions) {
+    for (Transaction *t in [DataModel instance].entries) {
         if (t.asset == self.pkey || t.dst_asset == self.pkey) {
             e = [[AssetEntry alloc] init];
             [e setAsset:self transaction:t];

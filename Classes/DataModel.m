@@ -39,7 +39,7 @@
 
 @implementation DataModel
 
-@synthesize assets, selAsset, categories;
+@synthesize journal, assets, selAsset, categories;
 
 static DataModel *theDataModel = nil;
 
@@ -54,14 +54,9 @@ static DataModel *theDataModel = nil;
 
 + (void)finalize
 {
-    if (initialized) {
-        initialized = NO;
-
+    if (theDataModel) {
         [theDataModel release];
         theDataModel = nil;
-
-        [theDateFormatter release];
-        theDateFormatter = nil;
     }
 }
 
@@ -71,7 +66,7 @@ static DataModel *theDataModel = nil;
 
     journal = [[Journal alloc] init];
 
-    assets = [[NSMutableArray alloc] init];
+    assets = nil;
     selAsset = nil;
 
     categories = [[Categories alloc] init];
@@ -128,7 +123,7 @@ static DataModel *theDataModel = nil;
     }
 
     // Load all transactions
-    [journal load];
+    [journal reload];
 
     // Load categories
     [categories reload];
@@ -141,7 +136,7 @@ static DataModel *theDataModel = nil;
 - (void)loadAssets
 {
     DBStatement *stmt;
-    assets = [[NSMutableArray alloc] init];
+    self.assets = [[[NSMutableArray alloc] init] autorelease];
 
     stmt = [[Database instance] prepare:"SELECT * FROM Assets ORDER BY sorder;"];
     while ([stmt step] == SQLITE_ROW) {
@@ -231,6 +226,8 @@ static DataModel *theDataModel = nil;
 #endif
 
     [assets removeObject:as];
+
+    [DataModel rebuild];
 }
 
 - (void)updateAsset:(Asset*)asset

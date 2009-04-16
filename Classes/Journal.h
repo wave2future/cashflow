@@ -51,8 +51,7 @@
 
 @property(nonatomic,retain) NSMutableArray *entries;
 
-- (void)loadOldFormatData;
-- (void)load;
+- (void)reload;
 
 - (int)transactionCount;
 - (Transaction*)transactionAt:(int)n;

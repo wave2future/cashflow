@@ -58,28 +58,12 @@
     [super dealloc];
 }
 
-////////////////////////////////////////////////////////////////////////////
-// Load / Save DB
-
-//
-// ロード
-//
-- (void)load
+- (void)reload
 {
     if (entries) {
         [entries release];
     }
     entries = [Transaction loadTransactions];
-}
-
-- (int)transactionCount
-{
-    return entries.count;
-}
-
-- (Transaction *)transactionAt:(int)n
-{
-    return [entries objectAtIndex:n];
 }
 
 - (void)insertTransaction:(Transaction*)tr
@@ -98,14 +82,12 @@
 
     // 挿入
     [entries insertObject:tr atIndex:i];
+    [tr insertDb];
 
     // 上限チェック
     if ([entries count] > MAX_TRANSACTIONS) {
         [self deleteTransactionAt:0];
     }
-
-    // DB 追加
-    [tr insertDb];
 }
 
 - (void)replaceTransaction:(Transaction *)from withObject:(Transaction*)to
@@ -113,11 +95,11 @@
     // copy key
     to.pkey = from.pkey;
 
-    int idx = [entries indexOfObject:from];
-    [entries replaceObjectAtIndex:idx withObject:to];
-
     // update DB
     [to updateDb];
+
+    int idx = [entries indexOfObject:from];
+    [entries replaceObjectAtIndex:idx withObject:to];
 }
 
 - (void)deleteTransaction:(Transaction *)t
@@ -127,6 +109,7 @@
 }
 
 // sort
+#if 0
 static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
     return [t1.date compare:t2.date];
@@ -136,5 +119,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
     [entries sortUsingFunction:compareByDate context:NULL];
 }
+#endif
 
 @end
