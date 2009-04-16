@@ -49,10 +49,9 @@
     [super init];
 
     pkey = 1; // とりあえず
-    dirty = YES;
 
     initialBalance = 0.0;
-    transactions = [[NSMutableArray alloc] init];
+    entries = [[NSMutableArray alloc] init];
     type = ASSET_CASH;
     self.name = @"";
 	
@@ -61,15 +60,11 @@
 
 - (void)dealloc 
 {
-    [transactions release];
+    [entries release];
     [name release];
 
     [super dealloc];
 }
-
-////////////////////////////////////////////////////////////////////////////
-// Load / Save DB
-
 
 //
 // 仕訳帳(journal)から転記しなおす
@@ -82,17 +77,22 @@
 
     entries = [[NSMutableArray alloc] init];
 
+    double balance = initialBalance;
+
     AssetEntry *e;
     for (Transaction *t in [DataModel journal]) {
         if (t.asset == self.pkey || t.dst_asset == self.pkey) {
             e = [[AssetEntry alloc] init];
             [e setAsset:self transaction:t];
 
+            // 残高計算
+            balance = balance + e.value;
+            e.balance = balance;
+
             [entries addObject:e];
             [e release];
         }
     }
-    [self recalcBalanceInitial];
 }
 
 - (void)updateInitialBalance
@@ -179,50 +179,13 @@
 ////////////////////////////////////////////////////////////////////////////
 // Balance operations
 
-// balance 値がない状態で、balance を計算する
-- (void)recalcBalanceInitial
-{
-    [self recalcBalanceSub:YES];
-}
-
-- (void)recalcBalance
-{
-    [self recalcBalanceSub:NO];
-}
-
-- (void)recalcBalanceSub:(BOOL)isInitial
-{
-    double bal;
-
-    Database *db = [Database instance];
-    [db beginTransaction];
-    bal = initialBalance;
-
-    for (AssetEntry *e in entries) {
-        if (e.transaction.type == TYPE_ADJ && !isInitial) {
-            // 残高調整取引: 金額のほうを変更する
-            e.value = e.balance - bal;
-            e.transaction.value = e.value;
-
-            // DB を更新
-            [e.transaction updateDb];
-        } 
-        else {
-            bal = bal + e.value;
-            e.balance = bal;
-        }
-    }
-
-    [db commitTransaction];
-}
-
 - (double)lastBalance
 {
-    int max = [transactions count];
+    int max = [entries count];
     if (max == 0) {
         return initialBalance;
     }
-    return [[transactions objectAtIndex:max - 1] balance];
+    return [[entries objectAtIndex:max - 1] balance];
 }
 
 //
@@ -274,9 +237,9 @@
     [super dealloc];
 }
 
-- (void)setAsset:(Asset *)asset transaction:(Transaction *)t
+- (void)setAsset:(Asset *)as transaction:(Transaction *)t
 {
-    asset = asset.pkey;
+    asset = as.pkey;
     if (t != transaction) {
         [transaction release];
         transaction = [t retain];
@@ -286,12 +249,13 @@
         transaction = [[Transaction alloc] init];
         transaction.asset = asset;
     }
-    
-    if (asset == t.asset) {
-        // normal
-        value = t.value;
-    } else {
-        value = -t.value;
+    else {
+        if (asset == t.asset) {
+            value = t.value;
+        } else {
+            // reverse
+            value = -t.value;
+        }
     }
 }
 
@@ -319,6 +283,7 @@
 
     switch (type) {
     case TYPE_INCOME:
+    case TYPE_TRANSFER:
         ret = value;
         break;
     case TYPE_OUTGO:
@@ -326,9 +291,6 @@
         break;
     case TYPE_ADJ:
         ret = balance;
-        break;
-    case TYPE_TRANSFER:
-        ret = value;
         break;
     }
 	

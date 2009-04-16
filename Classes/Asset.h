@@ -74,8 +74,6 @@
 
     double initialBalance;
     NSMutableArray *entries; // AssetEntry の配列
-
-    BOOL dirty;
 }
 
 @property(nonatomic,assign) int pkey;
@@ -85,22 +83,18 @@
 
 @property(nonatomic,assign) double initialBalance;
 
-- (void)loadOldFormatData;
 - (void)rebuild;
 
-- (int)transactionCount;
-- (Transaction*)transactionAt:(int)n;
-- (void)_markAssetForTransfer:(Transaction*)tr;
-- (void)insertTransaction:(Transaction*)tr;
-- (void)replaceTransactionAtIndex:(int)index withObject:(Transaction*)t;
-- (void)deleteTransactionAt:(int)n;
-- (void)deleteOldTransactionsBefore:(NSDate*)date;
-- (int)firstTransactionByDate:(NSDate*)date;
+- (int)entryCount;
+- (AssetEntry *)entryAt:(int)n;
+- (void)insertEntry:(AssetEntry *)tr;
+- (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)t;
+- (void)_deleteEntryAt:(int)n;
+- (void)deleteEntryAt:(int)n;
+- (void)deleteOldEntrysBefore:(NSDate*)date;
+- (int)firstEntryByDate:(NSDate*)date;
 - (void)sortByDate;
 
-- (void)recalcBalanceInitial;
-- (void)recalcBalance;
-- (void)recalcBalanceSub:(BOOL)isInitial;
 - (double)lastBalance;
 - (void)updateInitialBalance;
 

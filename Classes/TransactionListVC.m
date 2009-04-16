@@ -309,7 +309,7 @@
 {
     asset.initialBalance = vc.value;
     [asset updateInitialBalance];
-    [asset recalcBalance];
+    [asset rebuild];
 }
 
 // 新規トランザクション追加
