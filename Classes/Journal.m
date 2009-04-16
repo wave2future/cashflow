@@ -92,7 +92,11 @@
 
     // 上限チェック
     if ([entries count] > MAX_TRANSACTIONS) {
-        [self deleteTransactionAt:0];
+        // 最も古い取引を削除する
+        // Note: 初期残高を調整するため、Asset 側で削除させる
+        Transaction *t = [entries objectAtIndex:0];
+        Asset *asset = [[DataModel ledger] assetWithKey:t.asset];
+        [asset deleteEntryAt:0];
     }
 }
 
