@@ -179,7 +179,10 @@ static Database *theDatabase = nil;
     if (handle != nil) {
         sqlite3_close(handle);
     }
-    [dateFormatter release];
+    if (dateFormatter != nil) {
+        [dateFormatter release];
+        dateFormatter = nil;
+    }
     [super dealloc];
 }
 

@@ -6,10 +6,10 @@
 //  Copyright 2009 ITO SOFT DESIGN Inc. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "TestAppDelegate.h"
 
 
-@implementation AppDelegate
+@implementation TestAppDelegate
 
 @synthesize window, viewController;
 

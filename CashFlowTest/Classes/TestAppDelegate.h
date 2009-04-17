@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AppDelegate : NSObject  <UIApplicationDelegate> {
+@interface TestAppDelegate : NSObject  <UIApplicationDelegate> {
     UIWindow *window;
     UIViewController *viewController;
 }
