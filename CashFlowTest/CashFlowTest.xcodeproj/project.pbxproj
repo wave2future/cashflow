@@ -23,7 +23,7 @@
 		3E448B080F98A50B001F97B5 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AFD0F98A50B001F97B5 /* Report.m */; };
 		3E448B090F98A50B001F97B5 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AFF0F98A50B001F97B5 /* Transaction.m */; };
 		3E448B5B0F98A584001F97B5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */; };
-		3E448B630F98A5C8001F97B5 /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448B620F98A5C8001F97B5 /* AssetEntryTest.m */; };
+		3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */; };
 		460633950F55AC9000A33C8B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 460633940F55AC9000A33C8B /* Settings.bundle */; };
 		460633A20F55B5F900A33C8B /* isd_logo_60x40_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 460633A10F55B5F900A33C8B /* isd_logo_60x40_w.png */; };
 		4608BDE00F56FA430011302D /* IUTPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608BDDF0F56FA430011302D /* IUTPreference.m */; };
@@ -76,7 +76,8 @@
 		3E448AFE0F98A50B001F97B5 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		3E448AFF0F98A50B001F97B5 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
-		3E448B620F98A5C8001F97B5 /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
+		3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntryTest.h; sourceTree = "<group>"; };
+		3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
 		460633940F55AC9000A33C8B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		460633A10F55B5F900A33C8B /* isd_logo_60x40_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40_w.png; sourceTree = "<group>"; };
 		4608BDDE0F56FA430011302D /* IUTPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTPreference.h; sourceTree = "<group>"; };
@@ -221,7 +222,8 @@
 		46C20FD60F256E610053F9B9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				3E448B620F98A5C8001F97B5 /* AssetEntryTest.m */,
+				3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */,
+				3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -371,7 +373,7 @@
 				3E448B070F98A50B001F97B5 /* Ledger.m in Sources */,
 				3E448B080F98A50B001F97B5 /* Report.m in Sources */,
 				3E448B090F98A50B001F97B5 /* Transaction.m in Sources */,
-				3E448B630F98A5C8001F97B5 /* AssetEntryTest.m in Sources */,
+				3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
