@@ -37,6 +37,12 @@
 
 @implementation ReportViewController
 
+- (id)init
+{
+    self = [super initWithNibName:@"ReportView" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

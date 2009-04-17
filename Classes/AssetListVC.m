@@ -335,7 +335,7 @@
     switch (buttonIndex) {
     case 0:
     case 1:
-        reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+        reportVC = [[[ReportViewController alloc] init] autorelease];
         if (buttonIndex == 0) {
             reportVC.title = NSLocalizedString(@"Weekly Report", @"");
             [reportVC generateReport:REPORT_WEEKLY asset:nil];
@@ -374,9 +374,7 @@
 
     switch (buttonIndex) {
     case 0:
-        categoryVC = [[[CategoryListViewController alloc] 
-                          initWithNibName:@"CategoryListView" 
-                          bundle:[NSBundle mainBundle]] autorelease];
+        categoryVC = [[[CategoryListViewController alloc] init] autorelease];
         categoryVC.isSelectMode = NO;
         [self.navigationController pushViewController:categoryVC animated:YES];
         break;
@@ -416,9 +414,8 @@
 
 - (IBAction)showHelp:(id)sender
 {
-    InfoVC *v = [[InfoVC alloc] initWithNibName:@"InfoView" bundle:[NSBundle mainBundle]];
+    InfoVC *v = [[[InfoVC alloc] init] autorelease];
     [self.navigationController pushViewController:v animated:YES];
-    [v release];
 }
 
 - (void)doBackup
