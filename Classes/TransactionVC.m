@@ -49,6 +49,12 @@
 
 #define NUM_ROWS 6
 
+- (id)init
+{
+    self = [super initWithNibName:@"TransactionView" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     self.title = NSLocalizedString(@"Transaction", @"");

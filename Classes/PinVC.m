@@ -40,6 +40,12 @@
 @implementation PinViewController
 @synthesize value, enableCancel, delegate;
 
+- (id)init
+{
+    self = [super initWithNibName:@"PinView" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     value = [[NSMutableString alloc] init];

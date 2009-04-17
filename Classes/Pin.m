@@ -186,10 +186,9 @@
 
 - (PinViewController *)_getPinViewController
 {
-    PinViewController *vc = [[PinViewController alloc] initWithNibName:@"PinView" bundle:nil];
+    PinViewController *vc = [[[PinViewController alloc] init] autorelease];
     vc.enableCancel = YES;
     vc.delegate = self;
-    [vc autorelease];
     return vc;
 }
 

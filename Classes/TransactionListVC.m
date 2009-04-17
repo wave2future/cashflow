@@ -74,9 +74,7 @@
 	
     // 下位 View を作っておく
     if (transactionView == nil) {
-        transactionView = [[TransactionViewController alloc]
-                              initWithNibName:@"TransactionView"
-                              bundle:[NSBundle mainBundle]];
+        transactionView = [[TransactionViewController alloc] init];
     }
     transactionView.asset = asset;
 }
@@ -127,9 +125,8 @@
 
 - (IBAction)showHelp:(id)sender
 {
-    InfoVC *v = [[InfoVC alloc] initWithNibName:@"InfoView" bundle:[NSBundle mainBundle]];
+    InfoVC *v = [[[InfoVC alloc] init] autorelease];
     [self.navigationController pushViewController:v animated:YES];
-    [v release];
 }
 
 
@@ -294,12 +291,11 @@
     int idx = [self entryIndexWithIndexPath:indexPath];
     if (idx < 0) {
         // initial balance cell
-        EditValueViewController *v = [[EditValueViewController alloc] initWithNibName:@"EditValueView" bundle:[NSBundle mainBundle]];
+        EditValueViewController *v = [[[EditValueViewController alloc] init] autorelease];
         v.listener = self;
         v.value = asset.initialBalance;
 
         [self.navigationController pushViewController:v animated:YES];
-        [v release];
     } else {
         // transaction view を表示
         [transactionView setTransactionIndex:idx];
@@ -390,7 +386,7 @@
     switch (buttonIndex) {
     case 0:
     case 1:
-        reportVC = [[[ReportViewController alloc] initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+        reportVC = [[[ReportViewController alloc] init] autorelease];
         if (buttonIndex == 0) {
             reportVC.title = NSLocalizedString(@"Weekly Report", @"");
             [reportVC generateReport:REPORT_WEEKLY asset:asset];
