@@ -1,0 +1,54 @@
+// -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+
+#import "TestCommon.h"
+#import "DataModel.h"
+
+@interface JournalTest : SenTestCase {
+    Journal *journal;
+}
+@end
+
+@implementation JournalTest
+
+- (void)setUp
+{
+    [TestCommon deleteDatabase];
+    journal = [DataModel journal];
+}
+
+- (void)tearDown
+{
+}
+
+// Journal 上限数チェック
+- (void)testJournalInsertUpperLimit
+{
+    TEST([journal.entries count] == 0);
+
+    Transaction *t;
+    int i;
+
+    for (i = 0; i < MAX_TRANSACTIONS; i++) {
+        t = [[Transaction alloc] init];
+        t.asset = 1; // cash
+        [journal insertTransaction:t];
+        [t release];
+
+        TEST([journal.entries count] == i + 1);
+    }
+
+    Ledger *ledger = [DataModel ledger];
+    [ledger rebuild];
+    Asset *asset = [DataModel ledger].assetAtIndex:0;
+    TEST([asset entryCount] == MAX_TRANSACTIONS);
+    
+    // 上限数＋１個目
+    t = [[Transaction alloc] init];
+    t.asset = 1; // cash
+    [journal insertTransaction:t];
+    [t release];
+
+    TEST([journal.entries count] == MAX_TRANSACTIONS);
+}
+
+@end
