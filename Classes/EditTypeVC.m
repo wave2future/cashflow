@@ -40,9 +40,10 @@
 
 @synthesize listener, type, dst_asset;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil 
+- (id)init
 {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+    self = [super initWithNibName:@"EditTypeView" bundle:nil];
+    if (self) {
         self.title = NSLocalizedString(@"Type", @"");
         dst_asset = -1;
     }

@@ -41,6 +41,12 @@
 
 @synthesize listener, date;
 
+- (id)init
+{
+    self = [super initWithNibName:@"EditDateView" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     self.title = NSLocalizedString(@"Date", @"");

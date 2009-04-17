@@ -42,6 +42,14 @@
 
 @synthesize isSelectMode, selectedIndex, listener;
 
+- (id)init
+{
+    self = [super initWithNibName:@"CategoryListView" bundle:nil];
+    if (self) {
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];

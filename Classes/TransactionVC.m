@@ -65,23 +65,16 @@
                                  nil];
 
     // 下位の ViewController を生成しておく
-    editDateVC = [[EditDateViewController alloc]
-                     initWithNibName:@"EditDateView"
-                     bundle:nil];
+    editDateVC = [[EditDateViewController alloc] init];
     editDateVC.listener = self;
 
-    editTypeVC = [[EditTypeViewController alloc]
-                     initWithNibName:@"EditTypeView" bundle:nil];
+    editTypeVC = [[EditTypeViewController alloc] init];
     editTypeVC.listener = self;
 
-    editValueVC = [[EditValueViewController alloc]
-                      initWithNibName:@"EditValueView"
-                      bundle:nil];
+    editValueVC = [[EditValueViewController alloc] init];
     editValueVC.listener = self;
 
-    editDescVC = [[EditDescViewController alloc]
-                     initWithNibName:@"EditDescView"
-                     bundle:nil];
+    editDescVC = [[EditDescViewController alloc] init];
     editDescVC.listener = self;
 	
     editMemoVC = [[EditMemoViewController
@@ -89,9 +82,7 @@
                       title:NSLocalizedString(@"Memo", @"") 
                       identifier:0] retain];
 	
-    editCategoryVC = [[CategoryListViewController alloc]
-                         initWithNibName:@"CategoryListView" 
-                         bundle:[NSBundle mainBundle]];
+    editCategoryVC = [[CategoryListViewController alloc] init];
     editCategoryVC.isSelectMode = YES;
     editCategoryVC.listener = self;
 	

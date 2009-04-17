@@ -41,8 +41,10 @@
 
 @synthesize listener, description, category;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
+- (id)init
+{
+    self = [super initWithNibName:@"EditDescView" bundle:nil];
+    if (self) {
         category = -1;
     }
     return self;

@@ -43,6 +43,14 @@
 
 @synthesize listener, value;
 
+- (id)init
+{
+    self = [super initWithNibName:@"EditValueView" bundle:nil];
+    if (self) {
+    }
+    return self;
+}
+
 - (void)viewDidLoad
 {
     self.title = NSLocalizedString(@"Amount", @"金額");
