@@ -52,6 +52,8 @@
     Asset *asset;
 }
 
+@property(nonatomic,assign) Asset *asset;
+
 - (IBAction)doExport;
 
 - (id)initWithAsset:(Asset *)asset;

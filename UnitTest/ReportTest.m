@@ -2,6 +2,7 @@
 
 #import "TestCommon.h"
 #import "DataModel.h"
+#import "Report.h"
 
 @interface ReportTest : SenTestCase {
     Report *report;

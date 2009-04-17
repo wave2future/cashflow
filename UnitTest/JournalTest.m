@@ -39,7 +39,7 @@
 
     Ledger *ledger = [DataModel ledger];
     [ledger rebuild];
-    Asset *asset = [DataModel ledger].assetAtIndex:0;
+    Asset *asset = [ledger assetAtIndex:0];
     TEST([asset entryCount] == MAX_TRANSACTIONS);
     
     // 上限数＋１個目

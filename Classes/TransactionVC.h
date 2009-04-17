@@ -69,7 +69,7 @@
     UIButton *delPastButton;
 }
 
-@property(nonatmoic,assign) Asset *asset;
+@property(nonatomic,assign) Asset *asset;
 @property(nonatomic,retain) AssetEntry *editingEntry;
 
 - (void)setTransactionIndex:(int)n;

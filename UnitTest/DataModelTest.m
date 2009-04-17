@@ -38,7 +38,7 @@
     dm = [DataModel instance];
 
     TEST([dm.journal.entries count] == 6);
-    TEST([dm.ledger.entris count] == 3);
+    TEST([dm.ledger.assets count] == 3);
     TEST([dm.categories categoryCount] == 3);
 }
 

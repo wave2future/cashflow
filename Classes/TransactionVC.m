@@ -38,7 +38,7 @@
 
 @implementation TransactionViewController
 
-@synthesize editingEntry;
+@synthesize editingEntry, asset;
 
 #define ROW_DATE  0
 #define ROW_TYPE  1
