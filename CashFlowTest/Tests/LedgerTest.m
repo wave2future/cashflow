@@ -3,7 +3,7 @@
 #import "TestCommon.h"
 #import "DataModel.h"
 
-@interface LedgerTest : SenTestCase {
+@interface LedgerTest : IUTTest {
     Ledger *ledger;
 }
 @end
@@ -12,12 +12,14 @@
 
 - (void)setUp
 {
+    [super setUp];
     [TestCommon deleteDatabase];
     ledger = [DataModel ledger];
 }
 
 - (void)tearDown
 {
+    [super tearDown];
 }
 
 - (void)testInitial

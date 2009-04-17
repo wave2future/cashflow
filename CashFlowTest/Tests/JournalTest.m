@@ -3,7 +3,7 @@
 #import "TestCommon.h"
 #import "DataModel.h"
 
-@interface JournalTest : SenTestCase {
+@interface JournalTest : IUTTest {
     Journal *journal;
 }
 @end
@@ -12,15 +12,18 @@
 
 - (void)setUp
 {
+    [super setUp];
     [TestCommon deleteDatabase];
     journal = [DataModel journal];
 }
 
 - (void)tearDown
 {
+    [super tearDown];
 }
 
 // Journal 上限数チェック
+#if 0
 - (void)testJournalInsertUpperLimit
 {
     TEST([journal.entries count] == 0);
@@ -50,5 +53,6 @@
 
     TEST([journal.entries count] == MAX_TRANSACTIONS);
 }
+#endif
 
 @end

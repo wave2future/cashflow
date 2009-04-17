@@ -3,7 +3,7 @@
 #import "TestCommon.h"
 #import "DataModel.h"
 
-@interface TransactionTest : SenTestCase {
+@interface TransactionTest : IUTTest {
     Transaction *transaction;
 }
 @end
@@ -12,10 +12,12 @@
 
 - (void)setUp
 {
+    [super setUp];
 }
 
 - (void)tearDown
 {
+    [super tearDown];
 }
 
 @end

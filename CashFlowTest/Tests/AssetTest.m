@@ -3,7 +3,7 @@
 #import "TestCommon.h"
 #import "DataModel.h"
 
-@interface AssetTest : SenTestCase {
+@interface AssetTest : IUTTest {
     Asset *asset;
 }
 @end
@@ -12,11 +12,13 @@
 
 - (void)setUp
 {
+    [super setUp];
     [TestCommon deleteDatabase];
 }
 
 - (void)tearDown
 {
+    [super tearDown];
 }
 
 @end

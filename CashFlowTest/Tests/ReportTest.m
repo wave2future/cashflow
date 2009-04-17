@@ -4,7 +4,7 @@
 #import "DataModel.h"
 #import "Report.h"
 
-@interface ReportTest : SenTestCase {
+@interface ReportTest : IUTTest {
     Report *report;
 }
 @end
@@ -13,11 +13,13 @@
 
 - (void)setUp
 {
+    [super setUp];
     [TestCommon deleteDatabase];
 }
 
 - (void)tearDown
 {
+    [super tearDown];
 }
 
 @end
