@@ -4,6 +4,7 @@
 #import "DataModel.h"
 
 @interface DataModelTest : SenTestCase {
+    DataModel *dm;
 }
 @end
 
@@ -11,10 +12,8 @@
 
 - (void)setUp
 {
-    //[DataModel initialize];
-    //    db = [Database instance];
-    //	[TestUtility initializeTestDatabase];
-    //    dm = [DataModel sharedDataModel];
+    [TestCommon deleteDatabase];
+    dm = [DataModel instance];
 }
 
 - (void)tearDown
@@ -23,26 +22,24 @@
 }
 
 // データベースがないときに、初期化されること
-- (void)testLoadDB
+- (void)testInitial
 {
-    [DataModel finalize];
-
-    // テストデータを読み込ませる
-    DataModel *dm = [DataModel instance];
-
-    STAssertNotNil(dm, nil);
-
-#if 0
-    [dm loadDB];
-
-    // 先頭に All Shelf があることを確認する
-    STAssertTrue([dm shelvesCount] >= 1, nil); // TBD
-    Shelf *shelf = [dm shelfAtIndex:0];
-    STAssertNotNil(shelf, nil);
-#endif
+    // 初期データチェック
+    TEST(dm != nil);
+    TEST(dm.journal != nil);
+    TEST(dm.ledger != nil);
+    TEST(dm.categories != nil);
 }
 
 // データベースがあるときに、正常に読み込めること
+- (void)testNotInitial
+{
+    [TestCommon installDatabase:@"testdata1"];
+    dm = [DataModel instance];
 
+    TEST([dm.journal.entries count] == 6);
+    TEST([dm.ledger.entris count] == 3);
+    TEST([dm.categories categoryCount] == 3);
+}
 
 @end
