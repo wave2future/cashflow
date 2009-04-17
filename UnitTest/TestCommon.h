@@ -4,6 +4,9 @@
 #import "Database.h"
 #import "DataModel.h"
 
+#define TEST(x) STAssertTrue(x, NULL)
+
+
 @interface TestCommon : NSObject
 {
 }

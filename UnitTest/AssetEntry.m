@@ -31,15 +31,15 @@
 
     [e setAsset:a transaction:nil];
 
-    STAssertTrue(e.asset == 999, nil);
-    STAssertTrue(e.value == 0.0, nil);
-    STAssertTrue(e.balance == 0.0, nil);
-    STAssertTrue(e.transaction.asset == 999, nil);
-    STAssertTrue(![e isDstAsset], nil);
+    TEST(e.asset == 999);
+    TEST(e.value == 0.0);
+    TEST(e.balance == 0.0);
+    TEST(e.transaction.asset == 999);
+    TEST(![e isDstAsset]);
 
     // 値設定
     e.value = 200.0;
-    STAssertTrue(e.transaction.value == 200.0, nil);
+    TEST(e.transaction.value == 200.0);
 }
 
 // transaction 指定あり、通常
@@ -56,15 +56,15 @@
 
     [e setAsset:a transaction:t];
 
-    STAssertTrue(e.asset == 111, nil);
-    STAssertTrue(e.value == 10000.0, nil);
-    STAssertTrue(e.balance == 0.0, nil);
-    STAssertTrue(e.transaction.asset == 111, nil);
-    STAssertTrue(![e isDstAsset], nil);
+    TEST(e.asset == 111);
+    TEST(e.value == 10000.0);
+    TEST(e.balance == 0.0);
+    TEST(e.transaction.asset == 111);
+    TEST(![e isDstAsset]);
 
     // 値設定
     e.value = 200.0;
-    STAssertTrue(e.transaction.value == 200.0, nil);
+    TEST(e.transaction.value == 200.0);
 }
 
 // transaction 指定あり、逆
@@ -81,15 +81,15 @@
 
     [e setAsset:a transaction:t];
 
-    STAssertTrue(e.asset == 111, nil);
-    STAssertTrue(e.value == -10000.0, nil);
-    STAssertTrue(e.balance == 0.0, nil);
-    STAssertTrue(e.transaction.asset == 222, nil);
-    STAssertTrue([e isDstAsset], nil);
+    TEST(e.asset == 111);
+    TEST(e.value == -10000.0);
+    TEST(e.balance == 0.0);
+    TEST(e.transaction.asset == 222);
+    TEST([e isDstAsset]);
 
     // 値設定
     e.value = 200.0;
-    STAssertTrue(e.transaction.value == -200.0, nil);
+    TEST(e.transaction.value == -200.0);
 }
 
 - (void)testEvalueNormal
@@ -105,27 +105,27 @@
 
     t.type = TYPE_INCOME;
     e.value = 10000;
-    STAssertTrue(e.evalue == 10000, nil);
+    TEST(e.evalue == 10000);
     e.evalue = 20000;
-    STAssertTrue(t.value == 20000, nil);    
+    TEST(t.value == 20000);    
 
     t.type = TYPE_OUTGO;
     e.value = 10000;
-    STAssertTrue(e.evalue == -10000, nil);
+    TEST(e.evalue == -10000);
     e.evalue = 20000;
-    STAssertTrue(t.value = -20000, nil);
+    TEST(t.value = -20000);
 
     t.type = TYPE_ADJ;
     e.balance = 99999;
-    STAssertTrue([e evalue] == 99999, nil);
+    TEST([e evalue] == 99999);
     e.evalue = 88888;
-    STAssertTrue(e.balance == 88888, nil);
+    TEST(e.balance == 88888);
 
     t.type = TYPE_TRANSFER;
     e.value = 10000;
-    STAssertTrue([e evalue] == -10000, nil);
+    TEST([e evalue] == -10000);
     e.evalue = 20000;
-    STAssertTrue(t.value == -20000, nil);
+    TEST(t.value == -20000);
 
 }
 
