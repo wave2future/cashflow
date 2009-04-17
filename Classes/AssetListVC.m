@@ -91,9 +91,8 @@
         [ledger changeSelAsset:asset];
 		
         // TransactionListView を表示
-        TransactionListViewController *vc = [[[TransactionListViewController alloc]
-                                                 initWithNibName:@"TransactionListView"
-                                                 bundle:[NSBundle mainBundle]] autorelease];
+        TransactionListViewController *vc = 
+            [[[TransactionListViewController alloc] init] autorelease];
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
     }
@@ -217,9 +216,8 @@
     [ledger changeSelAsset:asset];
 
     // TransactionListView を表示
-    TransactionListViewController *vc = [[[TransactionListViewController alloc]
-                                             initWithNibName:@"TransactionListView"
-                                             bundle:[NSBundle mainBundle]] autorelease];
+    TransactionListViewController *vc = 
+        [[[TransactionListViewController alloc] init] autorelease];
     vc.asset = asset;
 
     [self.navigationController pushViewController:vc animated:YES];

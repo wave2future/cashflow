@@ -45,13 +45,19 @@
 @synthesize tableView;
 @synthesize asset;
 
+- (id)init
+{
+    self = [super initWithNibName:@"TransactionListView" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	
     // title 設定
     //self.title = NSLocalizedString(@"Transactions", @"");
-    self.title = [DataModel ledger].selAsset.name;
+    self.title = asset.name;
 	
     // "+" ボタンを追加
     UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
@@ -90,10 +96,10 @@
 }
 
 
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     [super viewWillAppear:animated];
 
-    asset = [DataModel ledger].selAsset;
     [self updateBalance];
 	
     [self.tableView reloadData]; //### Reload data...
