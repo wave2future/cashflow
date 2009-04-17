@@ -88,7 +88,6 @@
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
         Asset *asset = [ledger assetAtIndex:firstShowAssetIndex];
-        [ledger changeSelAsset:asset];
 		
         // TransactionListView を表示
         TransactionListViewController *vc = 
@@ -213,7 +212,6 @@
     [defaults setInteger:indexPath.row forKey:@"firstShowAssetIndex"];
 	
     Asset *asset = [ledger assetAtIndex:indexPath.row];
-    [ledger changeSelAsset:asset];
 
     // TransactionListView を表示
     TransactionListViewController *vc = 

@@ -39,7 +39,7 @@
 
 @implementation Ledger
 
-@synthesize assets, selAsset;
+@synthesize assets;
 
 - (void)load
 {
@@ -57,10 +57,6 @@
 
         [assets addObject:as];
         [as release];
-    }
-
-    if ([assets count] > 0) {
-        selAsset = [assets objectAtIndex:0];
     }
 }
 
@@ -99,11 +95,6 @@
     return -1;
 }
 
-- (void)changeSelAsset:(Asset *)as
-{
-    selAsset = as;
-}
-
 - (void)addAsset:(Asset *)as
 {
     [assets addObject:as];
@@ -120,10 +111,6 @@
 
 - (void)deleteAsset:(Asset *)as
 {
-    if (selAsset == as) {
-        selAsset = nil;
-    }
-    
     DBStatement *stmt;
     Database *db = [Database instance];
     stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];

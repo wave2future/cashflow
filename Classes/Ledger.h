@@ -44,11 +44,9 @@
 {
     // Asset
     NSMutableArray *assets;
-    Asset *selAsset; // 選択中の Asset
 }
 
 @property(nonatomic,retain) NSMutableArray *assets;
-@property(nonatomic,readonly) Asset *selAsset;
 
 // asset operation
 - (void)load;
@@ -62,6 +60,5 @@
 - (void)deleteAsset:(Asset *)as;
 - (void)updateAsset:(Asset*)asset;
 - (void)reorderAsset:(int)from to:(int)to;
-- (void)changeSelAsset:(Asset *)as;
 
 @end
