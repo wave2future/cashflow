@@ -148,10 +148,10 @@
     if (transactionIndex < 0) {
         // 新規トランザクション
         self.editingEntry = [[[AssetEntry alloc] init] autorelease];
-        [editingEntry setAsset:[DataModel ledger].selAsset transaction:nil];
+        [editingEntry setAsset:asset transaction:nil];
     } else {
         // 変更
-        AssetEntry *orig = [[DataModel ledger].selAsset entryAt:transactionIndex];
+        AssetEntry *orig = [asset entryAt:transactionIndex];
         self.editingEntry = [[orig copy] autorelease];
     }
 }
@@ -404,7 +404,7 @@
 // 削除処理
 - (void)delButtonTapped
 {
-    [[DataModel ledger].selAsset deleteEntryAt:transactionIndex];
+    [asset deleteEntryAt:transactionIndex];
     self.editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
@@ -429,7 +429,6 @@
         return; // cancelled;
     }
 
-    Asset *asset = [DataModel ledger].selAsset;
     AssetEntry *e = [asset entryAt:transactionIndex];
 	
     NSDate *date = e.transaction.date;
@@ -444,8 +443,6 @@
 // 保存処理
 - (void)saveAction
 {
-    Asset *asset = [DataModel ledger].selAsset;
-
     //editingEntry.transaction.asset = asset.pkey;
 
     if (transactionIndex < 0) {

@@ -53,6 +53,7 @@
 {
     int transactionIndex;
     AssetEntry *editingEntry;
+    Asset *asset;
 
     NSArray *typeArray;
 
@@ -68,6 +69,7 @@
     UIButton *delPastButton;
 }
 
+@property(nonatmoic,assign) Asset *asset;
 @property(nonatomic,retain) AssetEntry *editingEntry;
 
 - (void)setTransactionIndex:(int)n;

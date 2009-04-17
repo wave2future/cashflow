@@ -78,6 +78,7 @@
                               initWithNibName:@"TransactionView"
                               bundle:[NSBundle mainBundle]];
     }
+    transactionView.asset = asset;
 }
 
 - (void)didReceiveMemoryWarning {
