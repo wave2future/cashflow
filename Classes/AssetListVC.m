@@ -224,8 +224,7 @@
 // アクセサリボタンをタップしたときの処理 : アセット変更
 - (void)tableView:(UITableView *)tv accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    AssetViewController *vc = [[[AssetViewController alloc]
-                                   initWithNibName:@"AssetView" bundle:[NSBundle mainBundle]] autorelease];
+    AssetViewController *vc = [[[AssetViewController alloc] init] autorelease];
     [vc setAssetIndex:indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -233,8 +232,7 @@
 // 新規アセット追加
 - (void)addAsset
 {
-    AssetViewController *vc = [[[AssetViewController alloc]
-                                   initWithNibName:@"AssetView" bundle:[NSBundle mainBundle]] autorelease];
+    AssetViewController *vc = [[[AssetViewController alloc] init] autorelease];
     [vc setAssetIndex:-1];
     [self.navigationController pushViewController:vc animated:YES];
 }
