@@ -46,7 +46,6 @@
     IBOutlet UIBarButtonItem *barBalanceLabel;
 	
     TransactionViewController *transactionView;
-    ExportVC *exportVC;
 
     Asset *asset;
 }

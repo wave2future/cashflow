@@ -78,9 +78,6 @@
                               initWithNibName:@"TransactionView"
                               bundle:[NSBundle mainBundle]];
     }
-    if (exportVC == nil) {
-        exportVC = [[ExportVC alloc] initWithNibName:@"ExportView" bundle:[NSBundle mainBundle]];	
-    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -89,7 +86,6 @@
 
 - (void)dealloc {
     [transactionView release];
-    [exportVC release];
     [tableView release];
 
     [super dealloc];
@@ -388,6 +384,8 @@
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     ReportViewController *reportVC;
+    ExportVC *exportVC;
+
     switch (buttonIndex) {
     case 0:
     case 1:
@@ -403,6 +401,7 @@
         break;
 			
     case 2:
+        exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
         [self.navigationController pushViewController:exportVC animated:YES];
         break;
     }

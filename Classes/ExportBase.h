@@ -35,14 +35,17 @@
 
 #import <UIKit/UIKit.h>
 #import "ExportServer.h"
+#import "Asset.h"
 
 @interface ExportBase : NSObject <UIAlertViewDelegate> {
     NSDate *firstDate;
-	
+    Asset *asset;
+
     ExportServer *webServer;
 }
 
 @property(nonatomic,retain) NSDate *firstDate;
+@property(nonatomic,assign) Asset *asset;
 
 - (NSMutableString*)generateBody;
 - (BOOL)sendMail;

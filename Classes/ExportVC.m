@@ -38,22 +38,14 @@
 
 @implementation ExportVC
 
-/*
-// Override initWithNibName:bundle: to load the view using a nib file then perform additional customization that is not appropriate for viewDidLoad.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
+@synthesize asset;
+
+- (id)initWithAsset:(Asset *)as
+{
+    self = [super initWithNibName:@"ExportView" bundle:nil];
+    self.asset = as;
     return self;
 }
-*/
-
-/*
-// Implement loadView to create a view hierarchy programmatically.
-- (void)loadView {
-}
-*/
-
 
 // Implement viewDidLoad to do additional setup after loading the view.
 - (void)viewDidLoad
@@ -158,6 +150,7 @@
         if (csv == nil) {
             csv = [[ExportCsv alloc] init];
         }
+        csv.asset = asset;
         ex = csv;
         break;
 
@@ -166,6 +159,7 @@
         if (ofx == nil) {
             ofx = [[ExportOfx alloc] init];
         }
+        ofx.asset = asset;
         ex = ofx;
         break;
 #endif

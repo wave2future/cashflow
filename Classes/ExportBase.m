@@ -36,7 +36,7 @@
 
 @implementation ExportBase
 
-@synthesize firstDate;
+@synthesize firstDate, asset;
 
 - (BOOL)sendMail { return NO; }
 - (BOOL)sendWithWebServer { return NO; }

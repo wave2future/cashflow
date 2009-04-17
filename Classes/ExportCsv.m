@@ -86,7 +86,6 @@
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
     [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
     
-    Asset *asset = [DataModel ledger].selAsset;
     int max = [asset entryCount];
 
     /* トランザクション */

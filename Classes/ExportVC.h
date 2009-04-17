@@ -48,8 +48,12 @@
 
     ExportCsv *csv;
     ExportOfx *ofx;
+
+    Asset *asset;
 }
 
 - (IBAction)doExport;
+
+- (id)initWithAsset:(Asset *)asset;
 
 @end
