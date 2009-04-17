@@ -169,8 +169,7 @@
     int count = [reports.reports count];
     Report *r = [reports.reports objectAtIndex:count - indexPath.row - 1];
 
-    CatReportViewController *vc = [[[CatReportViewController alloc]
-                                       initWithNibName:@"ReportView" bundle:[NSBundle mainBundle]] autorelease];
+    CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
     vc.title = [dateFormatter stringFromDate:r.date];
     vc.report = r;
     [self.navigationController pushViewController:vc animated:YES];
