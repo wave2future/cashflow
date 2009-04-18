@@ -5,6 +5,17 @@
 
 @implementation TestCommon
 
++ (NSDate *)dateWithString:(NSString *)s
+{
+    static DateFormatter2 *dateFormatter;
+    if (dateFormatter == nil) {
+        dateFormatter = [[DateFormatter2 alloc] init];
+        [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+    }
+    return [dateFormatter dateFromString:s];
+}
+
 // データベースを削除する
 + (void)deleteDatabase
 {

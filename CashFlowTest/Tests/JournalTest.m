@@ -25,17 +25,48 @@
 
 - (void)testReload
 {
-    NOTYET;
+    ASSERT_EQUAL_INT(0, [journal.entries count]);
+    [journal reload];
+    ASSERT_EQUAL_INT(0, [journal.entries count]);
+    
+    [TestCommon installDatabase:@"testdata1"];
+    journal = [DataModel journal];
+    ASSERT_EQUAL_INT(6, [journal.entries count]);
+
+    [journal reload];
+    ASSERT_EQUAL_INT(6, [journal.entries count]);
 }
 
 - (void)testFastEnumeration
 {
-    NOTYET;
+    [TestCommon installDatabase:@"testdata1"];
+    journal = [DataModel journal];
+    
+    int i = 1;
+    for (Transaction *t in journal) {
+        ASSERT_EQUAL_INT(i, t.pkey);
+        i++;
+    }
 }
 
 - (void)testInsertTransaction
 {
-    NOTYET;
+    [TestCommon installDatabase:@"testdata1"];
+    journal = [DataModel journal];
+
+    // 途中に挿入する
+    Transaction *t = [[[Transaction alloc] init] autorelease];
+    t.pkey = 7;
+    t.asset = 1;
+    t.type = 0;
+    t.value = 100;
+    t.date = [TestCommon dateWithString:@"200901030000"];
+    
+    [journal insertTransaction:t];
+    ASSERT_EQUAL_INT(7, [journal.entries count]);
+    Transaction *tt = [journal.entries objectAtIndex:2];
+    ASSERT_EQUAL(t, tt);
+    ASSERT_EQUAL_INT(t.pkey, tt.pkey);
 }
 
 - (void)testReplaceTransaction

@@ -4,6 +4,7 @@
 #import "IUTTest.h"
 #import "Database.h"
 #import "DataModel.h"
+#import "DateFormatter2.h"
 
 #define NOTYET ASSERT_FAIL(@"not yet")
 
@@ -11,7 +12,7 @@
 {
 }
 
-
++ (NSDate *)dateWithString:(NSString *)s;
 + (void)deleteDatabase;
 + (void)installDatabase:(NSString *)sqlFileName;
 
