@@ -5,15 +5,25 @@
 
 @implementation TestCommon
 
++ (DateFormatter2 *)dateFormatter
+{
+    static DateFormatter2 *df = nil;
+    if (df == nil) {
+        df = [[DateFormatter2 alloc] init];
+        [df setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [df setDateFormat: @"yyyyMMddHHmm"];
+    }
+    return df;
+}
+
 + (NSDate *)dateWithString:(NSString *)s
 {
-    static DateFormatter2 *dateFormatter;
-    if (dateFormatter == nil) {
-        dateFormatter = [[DateFormatter2 alloc] init];
-        [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
-    }
-    return [dateFormatter dateFromString:s];
+    return [[TestCommon dateFormatter] dateFromString:s];
+}
+
++ (NSString *)stringWithDate:(NSDate *)date
+{
+    return [[TestCommon dateFormatter] stringFromDate:date];
 }
 
 // データベースを削除する

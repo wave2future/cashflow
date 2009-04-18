@@ -13,6 +13,8 @@
 }
 
 + (NSDate *)dateWithString:(NSString *)s;
++ (NSString *)stringWithDate:(NSDate *)date;
+
 + (void)deleteDatabase;
 + (void)installDatabase:(NSString *)sqlFileName;
 
