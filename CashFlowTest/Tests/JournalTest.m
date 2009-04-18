@@ -71,7 +71,29 @@
 
 - (void)testReplaceTransaction
 {
-    NOTYET;
+    [TestCommon installDatabase:@"testdata1"];
+    journal = [DataModel journal];
+
+    // 途中に挿入する
+    Transaction *t = [[[Transaction alloc] init] autorelease];
+    t.pkey = 999;
+    t.asset = 3;
+    t.type = 0;
+    t.value = 100;
+    t.date = [TestCommon dateWithString:@"200902010000"]; // last
+    
+    Transaction *orig = [journal.entries objectAtIndex:3];
+    [orig retain];
+    ASSERT_EQUAL_INT(4, orig.pkey);
+
+    [journal replaceTransaction:orig withObject:t];
+
+    ASSERT_EQUAL_INT(6, [journal.entries count]); // 数は変更なし
+    Transaction *tt = [journal.entries objectAtIndex:5];
+    //ASSERT_EQUAL(t, tt);
+    ASSERT_EQUAL_INT(t.pkey, tt.pkey);
+
+    [orig release];
 }
 
 - (void)testDeleteTransaction

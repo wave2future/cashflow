@@ -111,8 +111,20 @@
 
     int idx = [entries indexOfObject:from];
     [entries replaceObjectAtIndex:idx withObject:to];
+    [self _sortByDate];
 }
 
+// sort
+static int compareByDate(Transaction *t1, Transaction *t2, void *context)
+{
+    return [t1.date compare:t2.date];
+}
+    
+- (void)_sortByDate
+{
+    [entries sortUsingFunction:compareByDate context:NULL];
+}
+    
 - (void)deleteTransaction:(Transaction *)t
 {
     [t deleteDb];

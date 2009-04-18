@@ -57,4 +57,6 @@
 - (void)deleteTransaction:(Transaction *)tr;
 - (void)deleteTransactionsWithAsset:(Asset *)asset;
 
+- (void)_sortByDate;
+
 @end
