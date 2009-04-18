@@ -5,7 +5,7 @@
 #import "Database.h"
 #import "DataModel.h"
 
-#define TEST(x) ASSERT(x)
+#define NOTYET ASSERT_FAIL(@"not yet")
 
 @interface TestCommon : NSObject
 {

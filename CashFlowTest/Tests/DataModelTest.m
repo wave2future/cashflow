@@ -27,10 +27,10 @@
 - (void)testInitial
 {
     // 初期データチェック
-    TEST(dm != nil);
-    TEST(dm.journal != nil);
-    TEST(dm.ledger != nil);
-    TEST(dm.categories != nil);
+    ASSERT(dm != nil);
+    ASSERT(dm.journal != nil);
+    ASSERT(dm.ledger != nil);
+    ASSERT(dm.categories != nil);
 }
 
 // データベースがあるときに、正常に読み込めること
@@ -39,9 +39,9 @@
     [TestCommon installDatabase:@"testdata1"];
     dm = [DataModel instance];
 
-    TEST([dm.journal.entries count] == 6);
-    TEST([dm.ledger.assets count] == 3);
-    TEST([dm.categories categoryCount] == 3);
+    ASSERT([dm.journal.entries count] == 6);
+    ASSERT([dm.ledger.assets count] == 3);
+    ASSERT([dm.categories categoryCount] == 3);
 }
 
 @end

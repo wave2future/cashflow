@@ -25,7 +25,7 @@
 - (void)testInitial
 {
     // 現金のみがあるはず
-    TEST([ledger.assets count] == 1);
+    ASSERT([ledger.assets count] == 1);
 }
 
 @end
