@@ -98,7 +98,17 @@
 
 - (void)testDeleteTransaction
 {
-    NOTYET;
+    [TestCommon installDatabase:@"testdata1"];
+    journal = [DataModel journal];
+
+    Transaction *t = [journal.entries objectAtIndex:3];
+    [journal deleteTransaction:t];
+
+    ASSERT_EQUAL_INT(5, [journal.entries count]);
+    t = [journal.entries objectAtIndex:2];
+    ASSERT_EQUAL_INT(3, t.pkey);
+    t = [journal.entries objectAtIndex:3];
+    ASSERT_EQUAL_INT(5, t.pkey);
 }
 
 - (void)testADeleteTransactionWithAsset
