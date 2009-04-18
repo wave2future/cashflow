@@ -77,4 +77,61 @@
     ASSERT_EQUAL_DOUBLE(-12100, e.balance);
 }
 
+- (void)testDeleteEntryAt
+{
+    [TestCommon installDatabase:@"testdata1"];
+    Ledger *ledger = [DataModel ledger];
+
+    asset = [ledger assetAtIndex:0];
+    ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
+
+    [asset deleteEntryAt:3]; // 資産間移動取引を削除する
+
+    ASSERT_EQUAL_INT(3, [asset entryCount]);
+    ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
+
+    // 別資産の取引数が減っていることを確認
+    ASSERT_EQUAL_INT(1, [[ledger assetAtIndex:1] entryCount]);
+
+    // データベースが更新されていることを確認する
+    [DataModel load];
+    ASSERT_EQUAL_INT(3, [asset entryCount]);
+    ASSERT_EQUAL_INT(1, [[ledger assetAtIndex:1] entryCount]);
+}
+
+
+- (void)testDeleteOldEntriesBefore
+{
+    [TestCommon installDatabase:@"testdata1"];
+    Ledger *ledger = [DataModel ledger];
+    AssetEntry *e;
+    NSDate *date;
+
+    asset = [ledger assetAtIndex:0];
+    ASSERT_EQUAL_INT(4, [asset entryCount]);
+
+    // 最初よりも早い日付の場合に何も削除されないこと
+    date = [TestCommon dateWithString:@"200812310000"];
+    [asset deleteOldEntriesBefore:date];
+    ASSERT_EQUAL_INT(4, [asset entryCount]);    
+
+    // 途中削除
+    e = [asset entryAt:2];
+    [asset deleteOldEntriesBefore:e.transaction.date];
+    ASSERT_EQUAL_INT(2, [asset entryCount]);    
+
+    // 最後の日付の後で削除
+    date = [TestCommon dateWithString:@"200902010000"];
+    [asset deleteOldEntriesBefore:date];
+    ASSERT_EQUAL_INT(0, [asset entryCount]);
+
+    // 残高チェック
+    ASSERT_EQUAL_DOUBLE(9000, asset.initialBalance);
+
+    // データベースが更新されていることを確認する
+    [DataModel load];
+    ASSERT_EQUAL_INT(0, [asset entryCount]);
+    ASSERT_EQUAL_DOUBLE(9000, asset.initialBalance);
+}
+
 @end
