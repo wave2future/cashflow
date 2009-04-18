@@ -1,3 +1,7 @@
+2009-04-18: Takuya Murakami
+	* データ構造を作り直した (Journal, Ledger などの追加)
+	* iUnitTest 単体テストを追加
+	
 2009-04-15: Takuya Murakami
 	* 資産間移動を実装
 
