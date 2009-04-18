@@ -134,4 +134,11 @@
     ASSERT_EQUAL_DOUBLE(9000, asset.initialBalance);
 }
 
+// replace : 日付変更、種別変更なし
+// replace : 通常から資産間移動に変更
+// replace : 資産間移動のままだけど相手資産変更
+// replace : 資産間移動のままだけど相手資産変更(dstAsset側)
+// replace : 資産間移動から通常に変更
+// replace : 資産間移動から通常に変更(dstAsset側)
+
 @end
