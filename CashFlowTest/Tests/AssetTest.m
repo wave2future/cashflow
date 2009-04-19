@@ -99,6 +99,33 @@
     ASSERT_EQUAL_DOUBLE(10000, [asset lastBalance]);
 }
 
+// 初期残高変更処理
+- (void)testChangeInitialBalance
+{
+    [TestCommon installDatabase:@"testdata1"];
+    Ledger *ledger = [DataModel ledger];
+    asset = [ledger assetAtIndex:0];
+
+    ASSERT_EQUAL_DOUBLE(5000, [asset initialBalance]);
+    ASSERT_EQUAL_DOUBLE(9000, [asset lastBalance]);
+    
+    asset.initialBalance = 0.0;
+    [asset rebuild];
+    ASSERT_EQUAL_DOUBLE(0, [asset initialBalance]);
+
+    AssetEntry *e;
+    e = [asset entryAt:0];
+    ASSERT_EQUAL_DOUBLE(e.balance, -100);
+    e = [asset entryAt:1];
+    ASSERT_EQUAL_DOUBLE(e.balance, -900);    
+    e = [asset entryAt:2];
+    ASSERT_EQUAL_DOUBLE(e.balance, 4000);    // 残高調整のため、balance 変化なし
+    ASSERT_EQUAL_DOUBLE(e.value, 4900);
+    
+    ASSERT_EQUAL_DOUBLE(9000, [asset lastBalance]);
+}
+
+
 - (void)testDeleteEntryAt
 {
     [TestCommon installDatabase:@"testdata1"];
