@@ -77,11 +77,34 @@
     ASSERT_EQUAL_DOUBLE(-12100, e.balance);
 }
 
+// 残高調整の追加
+- (void)testInsertAdjestment
+{
+    [TestCommon installDatabase:@"testdata1"];
+    Ledger *ledger = [DataModel ledger];
+    asset = [ledger assetAtIndex:0];
+    
+    ASSERT_EQUAL_DOUBLE(9000, [asset lastBalance]);
+
+    // 新規エントリ
+    AssetEntry *ae = [[[AssetEntry alloc] init] autorelease];
+    [ae setAsset:asset transaction:nil];
+
+    ae.asset = asset.pkey;
+    ae.value = 0.0;
+    ae.balance = 10000.0;
+    ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
+    ae.transaction.type = TYPE_ADJ;
+
+    [asset insertEntry:ae];
+    ASSERT_EQUAL_DOUBLE(10000, [asset lastBalance]);
+}
+
 - (void)testDeleteEntryAt
 {
     [TestCommon installDatabase:@"testdata1"];
     Ledger *ledger = [DataModel ledger];
-
+    
     asset = [ledger assetAtIndex:0];
     ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
 

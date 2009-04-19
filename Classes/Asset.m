@@ -116,7 +116,7 @@
 }
 
 - (void)insertEntry:(AssetEntry *)e
-{
+{    
     [[DataModel journal] insertTransaction:e.transaction];
     [[DataModel ledger] rebuild];
 }
