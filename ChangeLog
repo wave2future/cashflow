@@ -1,3 +1,6 @@
+2009-04-19: Takuya Murakami
+	* OFX で ><& をエスケープするように修正
+
 2009-04-18: Takuya Murakami
 	* データ構造を作り直した (Journal, Ledger などの追加)
 	* iUnitTest 単体テストを追加
