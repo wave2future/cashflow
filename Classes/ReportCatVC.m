@@ -42,7 +42,7 @@
 
 - (id)init
 {
-    self = [super initWithNibName:@"CatReportView" bundle:nil];
+    self = [super initWithNibName:@"ReportView" bundle:nil];
     return self;
 }
 
