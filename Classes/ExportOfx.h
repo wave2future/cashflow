@@ -51,5 +51,5 @@
 - (NSString*)typeString:(AssetEntry*)t;
 - (NSString*)dateStr:(AssetEntry*)t;
 - (NSString*)fitId:(AssetEntry*)t;
-
+- (NSString*)encodeString:(NSString *)s;
 @end

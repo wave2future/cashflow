@@ -182,9 +182,9 @@
 
         /* トランザクションの ID は日付と取引番号で生成 */
         [data appendFormat:@"<FITID>%@\n", [self fitId:e]];
-        [data appendFormat:@"<NAME>%@\n", e.transaction.description];
+        [data appendFormat:@"<NAME>%@\n", [self encodeString:e.transaction.description]];
         if ([e.transaction.memo length] > 0) {
-            [data appendFormat:@"<MEMO>%@\n", e.transaction.memo];
+            [data appendFormat:@"<MEMO>%@\n", [self encodeString:e.transaction.memo]];
         }
         [data appendString:@"</STMTTRN>\n"];
     }
@@ -236,6 +236,11 @@
     NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:e.transaction.date];
     NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], e.transaction.pkey];
     return f;
+}
+
+- (NSString *)encodeString:(NSString *)s
+{
+    return [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
 }
 
 @end
