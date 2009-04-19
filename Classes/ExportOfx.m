@@ -240,7 +240,12 @@
 
 - (NSString *)encodeString:(NSString *)s
 {
-    return [s stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSMutableString *str = [[[NSMutableString alloc] init] autorelease];
+    [str setString:s];
+    REPLACE(@"&", @"&amp;");
+    REPLACE(@"<", @"&lt;");
+    REPLACE(@">", @"&gt;");
+    return str;
 }
 
 @end

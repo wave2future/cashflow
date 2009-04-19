@@ -68,10 +68,6 @@
 
 - (void)EncodeMailBody:(NSMutableString*)str
 {
-#define REPLACE(from, to) \
-  [str replaceOccurrencesOfString: from withString: to \
-  options:NSLiteralSearch range:NSMakeRange(0, [str length])]
-	
     // convert to HTML
     REPLACE(@"&", @"&amp;");
     REPLACE(@"<", @"&lt;");

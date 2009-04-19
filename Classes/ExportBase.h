@@ -37,6 +37,10 @@
 #import "ExportServer.h"
 #import "Asset.h"
 
+#define REPLACE(from, to) \
+  [str replaceOccurrencesOfString: from withString: to \
+  options:NSLiteralSearch range:NSMakeRange(0, [str length])]
+	
 @interface ExportBase : NSObject <UIAlertViewDelegate> {
     NSDate *firstDate;
     Asset *asset;
