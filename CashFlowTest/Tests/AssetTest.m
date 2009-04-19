@@ -91,10 +91,9 @@
     [ae setAsset:asset transaction:nil];
 
     ae.asset = asset.pkey;
-    ae.value = 0.0;
-    ae.balance = 10000.0;
-    ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
     ae.transaction.type = TYPE_ADJ;
+    [ae setEvalue:10000.0];
+    ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
 
     [asset insertEntry:ae];
     ASSERT_EQUAL_DOUBLE(10000, [asset lastBalance]);

@@ -85,8 +85,28 @@
             [e setAsset:self transaction:t];
 
             // 残高計算
-            balance = balance + e.value;
-            e.balance = balance;
+            if (t.type == TYPE_ADJ && t.hasBalance) {
+                // 残高から金額を逆算
+                double oldval = t.value;
+                t.value = t.balance - balance;
+                if (t.value != oldval) {
+                    // 金額が変更された場合、DBを更新
+                    [t updateDb];
+                }
+                balance = t.balance;
+
+                e.value = t.value;
+                e.balance = balance;
+            }
+            else {
+                balance = balance + e.value;
+                e.balance = balance;
+
+                if (t.type == TYPE_ADJ) {
+                    t.balance = balance;
+                    t.hasBalance = YES;
+                }
+            }
 
             [entries addObject:e];
             [e release];
@@ -117,12 +137,19 @@
 
 - (void)insertEntry:(AssetEntry *)e
 {    
+    if (e.transaction.type == TYPE_ADJ) {
+        e.transaction.hasBalance = YES;
+    }
     [[DataModel journal] insertTransaction:e.transaction];
     [[DataModel ledger] rebuild];
 }
 
 - (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)e
 {
+    if (e.transaction.type == TYPE_ADJ) {
+        e.transaction.hasBalance = YES;
+    }
+
     AssetEntry *orig = [self entryAt:index];
 
     [[DataModel journal] replaceTransaction:orig.transaction withObject:e.transaction];

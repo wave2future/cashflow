@@ -51,6 +51,10 @@
     double value; // plus - income, minus - outgo.
     int type;  // TYPE_*
     int category;
+
+    // for balance adjustment
+    BOOL hasBalance;
+    double balance;
 }
 
 @property(nonatomic,assign) int pkey;
@@ -62,6 +66,8 @@
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int category;
+@property(nonatomic,assign) BOOL hasBalance;
+@property(nonatomic,assign) double balance;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 

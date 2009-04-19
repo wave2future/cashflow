@@ -38,6 +38,7 @@
 @implementation Transaction
 
 @synthesize pkey, asset, dst_asset, date, description, memo, value, type, category;
+@synthesize hasBalance, balance;
 
 - (id)init
 {
@@ -52,6 +53,7 @@
     type = 0;
     category = -1;
     pkey = 0; // init
+    hasBalance = NO;
     return self;
 }
 
@@ -74,6 +76,7 @@
     type = 0;
     category = -1;
     pkey = 0; // init
+    hasBalance = NO;
     return self;
 }
 
@@ -89,6 +92,8 @@
     n.value = self.value;
     n.type = self.type;
     n.category = self.category;
+    n.hasBalance = self.hasBalance;
+    n.balance = self.balance;
     return n;
 }
 

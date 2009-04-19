@@ -151,6 +151,7 @@
         break;
     case TYPE_ADJ:
         balance = v;
+        transaction.balance = v;
         break;
     case TYPE_TRANSFER:
         if ([self isDstAsset]) {
