@@ -34,7 +34,7 @@
     Asset *a = [[[Asset alloc] init] autorelease];
     a.pkey = 999;
 
-    [e setAsset:a transaction:nil];
+    [e setTransaction:nil withAsset:a];
 
     ASSERT(e.asset == 999);
     ASSERT(e.value == 0.0);
@@ -44,6 +44,7 @@
 
     // 値設定
     e.value = 200.0;
+    //[e setupTransaction];
     ASSERT(e.transaction.value == 200.0);
 }
 
@@ -59,7 +60,7 @@
     t.dst_asset = 222;
     t.value = 10000.0;
 
-    [e setAsset:a transaction:t];
+    [e setTransaction:t withAsset:a];
 
     ASSERT(e.asset == 111);
     ASSERT(e.value == 10000.0);
@@ -69,6 +70,7 @@
 
     // 値設定
     e.value = 200.0;
+    //[e setupTransaction];
     ASSERT(e.transaction.value == 200.0);
 }
 
@@ -84,7 +86,7 @@
     t.dst_asset = 111;
     t.value = 10000.0;
 
-    [e setAsset:a transaction:t];
+    [e setTransaction:t withAsset:a];
 
     ASSERT(e.asset == 111);
     ASSERT(e.value == -10000.0);
@@ -94,6 +96,7 @@
 
     // 値設定
     e.value = 200.0;
+    //[e setupTransaction];
     ASSERT(e.transaction.value == -200.0);
 }
 
@@ -106,19 +109,19 @@
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.asset = 111;
     t.dst_asset = -1;
-    [e setAsset:a transaction:t];
+    [e setTransaction:t withAsset:a];
 
     t.type = TYPE_INCOME;
     e.value = 10000;
     ASSERT(e.evalue == 10000);
     e.evalue = 20000;
-    ASSERT(t.value == 20000);    
+    ASSERT(e.transaction.value == 20000);    
 
     t.type = TYPE_OUTGO;
     e.value = 10000;
     ASSERT(e.evalue == -10000);
     e.evalue = 20000;
-    ASSERT(t.value = -20000);
+    ASSERT(e.transaction.value = -20000);
 
     t.type = TYPE_ADJ;
     e.balance = 99999;
@@ -130,8 +133,7 @@
     e.value = 10000;
     ASSERT([e evalue] == -10000);
     e.evalue = 20000;
-    ASSERT(t.value == -20000);
-
+    ASSERT(e.transaction.value == -20000);
 }
 
 @end

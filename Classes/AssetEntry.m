@@ -39,7 +39,7 @@
 
 @implementation AssetEntry
 
-@synthesize asset, transaction, balance;
+@synthesize asset, transaction, value, balance;
 
 - (id)init
 {
@@ -59,7 +59,7 @@
     [super dealloc];
 }
 
-- (void)setAsset:(Asset *)as transaction:(Transaction *)t
+- (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
 {
     asset = as.pkey;
     if (t != transaction) {
@@ -93,21 +93,27 @@
     return NO;
 }
 
-- (double)value
+- (Transaction *)transaction
 {
-    return value;
+    [self _setupTransaction];
+    return transaction;
 }
 
-- (void)setValue:(double)v
+// 値を Transaction に書き戻す
+- (void)_setupTransaction
 {
-    value = v;
-
-    if ([self isDstAsset]) {
-        transaction.value = -value;
+    if (transaction.type == TYPE_ADJ) {
+        transaction.balance = balance;
+        transaction.hasBalance = YES;
     } else {
-        transaction.value = value;
+        transaction.hasBalance = NO;
+        if ([self isDstAsset]) {
+            transaction.value = -value;
+        } else {
+            transaction.value = value;
+        }
     }
-}    
+}
 
 // TransactionViewController 用の値を返す
 - (double)evalue
@@ -144,20 +150,19 @@
 {
     switch (transaction.type) {
     case TYPE_INCOME:
-        self.value = v;
+        value = v;
         break;
     case TYPE_OUTGO:
-        self.value = -v;
+        value = -v;
         break;
     case TYPE_ADJ:
         balance = v;
-        transaction.balance = v;
         break;
     case TYPE_TRANSFER:
         if ([self isDstAsset]) {
-            self.value = v;
+            value = v;
         } else {
-            self.value = -v;
+            value = -v;
         }
         break;
     }

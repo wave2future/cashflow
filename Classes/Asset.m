@@ -82,7 +82,7 @@
     for (Transaction *t in [DataModel journal]) {
         if (t.asset == self.pkey || t.dst_asset == self.pkey) {
             e = [[AssetEntry alloc] init];
-            [e setAsset:self transaction:t];
+            [e setTransaction:t withAsset:self];
 
             // 残高計算
             if (t.type == TYPE_ADJ && t.hasBalance) {
@@ -137,19 +137,12 @@
 
 - (void)insertEntry:(AssetEntry *)e
 {    
-    if (e.transaction.type == TYPE_ADJ) {
-        e.transaction.hasBalance = YES;
-    }
     [[DataModel journal] insertTransaction:e.transaction];
     [[DataModel ledger] rebuild];
 }
 
 - (void)replaceEntryAtIndex:(int)index withObject:(AssetEntry *)e
 {
-    if (e.transaction.type == TYPE_ADJ) {
-        e.transaction.hasBalance = YES;
-    }
-
     AssetEntry *orig = [self entryAt:index];
 
     [[DataModel journal] replaceTransaction:orig.transaction withObject:e.transaction];

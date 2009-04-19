@@ -145,7 +145,7 @@
     if (transactionIndex < 0) {
         // 新規トランザクション
         self.editingEntry = [[[AssetEntry alloc] init] autorelease];
-        [editingEntry setAsset:asset transaction:nil];
+        [editingEntry setTransaction:nil withAsset:asset];
     } else {
         // 変更
         AssetEntry *orig = [asset entryAt:transactionIndex];

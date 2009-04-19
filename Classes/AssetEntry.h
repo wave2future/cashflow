@@ -51,7 +51,8 @@
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) double evalue;
 
-- (void)setAsset:(Asset *)as transaction:(Transaction *)t;
+- (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
+- (void)_setupTransaction;
 - (int)dstAsset;
 - (void)setDstAsset:(int)as;
 - (BOOL)isDstAsset;

@@ -88,7 +88,7 @@
 
     // 新規エントリ
     AssetEntry *ae = [[[AssetEntry alloc] init] autorelease];
-    [ae setAsset:asset transaction:nil];
+    [ae setTransaction:nil withAsset:asset];
 
     ae.asset = asset.pkey;
     ae.transaction.type = TYPE_ADJ;
