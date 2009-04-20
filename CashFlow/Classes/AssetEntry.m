@@ -198,6 +198,7 @@
 - (int)dstAsset
 {
     if (transaction.type != TYPE_TRANSFER) {
+        ASSERT(NO);
         return -1;
     }
 
@@ -211,7 +212,7 @@
 - (void)setDstAsset:(int)as
 {
     if (transaction.type != TYPE_TRANSFER) {
-        // ###
+        ASSERT(NO);
         return;
     }
 
