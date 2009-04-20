@@ -11,7 +11,7 @@ INSERT INTO "Assets" VALUES(3,'Card',2,-10000,2);
 INSERT INTO "Assets" VALUES(1,'Cash',0,  5000,0);
 INSERT INTO "Assets" VALUES(2,'Bank',1,100000,1);
 CREATE TABLE Categories (key INTEGER PRIMARY KEY,name TEXT,sorder INTEGER);
-INSERT INTO "Categories" VALUES(1,'food',0);
 INSERT INTO "Categories" VALUES(2,'transport',0);
+INSERT INTO "Categories" VALUES(1,'food',0);
 INSERT INTO "Categories" VALUES(3,'medical',0);
 COMMIT;
