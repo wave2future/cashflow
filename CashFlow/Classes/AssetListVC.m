@@ -74,13 +74,16 @@
 
     imagePath = [[NSBundle mainBundle] pathForResource:@"cash" ofType:@"png"];
     UIImage *icon1 = [UIImage imageWithContentsOfFile:imagePath];
+    ASSERT(icon1 != nil);
 	
     imagePath = [[NSBundle mainBundle] pathForResource:@"bank" ofType:@"png"];
     UIImage *icon2 = [UIImage imageWithContentsOfFile:imagePath];
-	
+    ASSERT(icon2 != nil);
+    
     imagePath = [[NSBundle mainBundle] pathForResource:@"card" ofType:@"png"];
     UIImage *icon3 = [UIImage imageWithContentsOfFile:imagePath];
-	
+    ASSERT(icon3 != nil);
+    
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 	
     // load user defaults
@@ -108,6 +111,7 @@
 
 - (void)dealloc {
     [tableView release];
+    [iconArray release];
     [super dealloc];
 }
 
