@@ -219,41 +219,41 @@ static int compareCatReport(id x, id y, void *context)
 
 - (NSDate*)firstDateOfAsset:(int)asset
 {
-    DBStatement *stmt;
+    NSMutableArray *entries = [DataModel journal].entries;
+    Transaction *t = nil;
 
-    if (asset < 0) {
-        stmt = [db prepare:"SELECT MIN(date) FROM Transactions;"];
-    } else {
-        stmt = [db prepare:"SELECT MIN(date) FROM Transactions WHERE asset=? OR dst_asset=?;"];
-        [stmt bindInt:0 val:asset];
-        [stmt bindInt:1 val:asset];
+    for (t in entries) {
+        if (asset < 0) break;
+        if (t.asset == asset || t.dst_asset == asset) break;
     }
+    if (t == nil) {
+        return nil;
+    }
+    return t.date;
 
-    NSDate *date = nil;
-    if ([stmt step] == SQLITE_ROW) {
-        date = [stmt colDate:0];
+    Transaction *t;
+
+    for (t in [DataModel journal]) {
+        if (asset < 0) break;
+        if (t.asset == asset || t.dst_asset == asset) break;
     }
-    return date;
+    if (t == nil) return nil;
+    return t.date;
 }
 
 - (NSDate*)lastDateOfAsset:(int)asset
 {
-    DBStatement *stmt;
+    NSMutableArray *entries = [DataModel journal].entries;
+    Transaction *t = nil;
+    int i;
 
-    if (asset < 0) {
-        stmt = [db prepare:"SELECT MAX(date) FROM Transactions;"];
-    } else {
-        stmt = [db prepare:"SELECT MAX(date) FROM Transactions WHERE asset=? OR dst_asset=?;"];
-        [stmt bindInt:0 val:asset];
-        [stmt bindInt:1 val:asset];
+    for (i = [entries count] - 1; i >= 0; i--) {
+        t = [entries objectAtIndex:i];
+        if (asset < 0) break;
+        if (t.asset == asset || t.dst_asset == asset) break;
     }
-
-    NSDate *date = nil;
-    if ([stmt step] == SQLITE_ROW) {
-        date = [stmt colDate:0];
-    }
-
-    return date;
+    if (i < 0) return nil;
+    return t.date;
 }
 
 static void init_filter(Filter *filter)
