@@ -36,7 +36,7 @@
 
     [e setTransaction:nil withAsset:a];
 
-    ASSERT(e.asset == 999);
+    ASSERT(e.assetKey == 999);
     ASSERT(e.value == 0.0);
     ASSERT(e.balance == 0.0);
     ASSERT(e.transaction.asset == 999);
@@ -62,7 +62,7 @@
 
     [e setTransaction:t withAsset:a];
 
-    ASSERT(e.asset == 111);
+    ASSERT(e.assetKey == 111);
     ASSERT(e.value == 10000.0);
     ASSERT(e.balance == 0.0);
     ASSERT(e.transaction.asset == 111);
@@ -88,7 +88,7 @@
 
     [e setTransaction:t withAsset:a];
 
-    ASSERT(e.asset == 111);
+    ASSERT(e.assetKey == 111);
     ASSERT(e.value == -10000.0);
     ASSERT(e.balance == 0.0);
     ASSERT(e.transaction.asset == 222);

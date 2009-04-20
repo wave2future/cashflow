@@ -230,15 +230,6 @@ static int compareCatReport(id x, id y, void *context)
         return nil;
     }
     return t.date;
-
-    Transaction *t;
-
-    for (t in [DataModel journal]) {
-        if (asset < 0) break;
-        if (t.asset == asset || t.dst_asset == asset) break;
-    }
-    if (t == nil) return nil;
-    return t.date;
 }
 
 - (NSDate*)lastDateOfAsset:(int)asset

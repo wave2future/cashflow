@@ -327,7 +327,7 @@
 {
     [self.navigationController popToViewController:self animated:YES]; // ###
 
-    if (![editingEntry changeType:vc.type asset:asset dstAsset:vc.dst_asset]) {
+    if (![editingEntry changeType:vc.type assetKey:asset.pkey dstAssetKey:vc.dst_asset]) {
         return;
     }
 
@@ -344,7 +344,7 @@
             to = [ledger assetWithKey:editingEntry.transaction.dst_asset];
 
             editingEntry.transaction.description = 
-                [NSString stringWithFormat:@"%@>%@", from.name, to.name];
+                [NSString stringWithFormat:@"%@/%@", from.name, to.name];
         }
         break;
 

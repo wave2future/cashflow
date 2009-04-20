@@ -39,14 +39,14 @@
 
 @implementation AssetEntry
 
-@synthesize asset, transaction, value, balance;
+@synthesize assetKey, transaction, value, balance;
 
 - (id)init
 {
     self = [super init];
 
     transaction = nil;
-    asset = -1;
+    assetKey = -1;
     value = 0.0;
     balance = 0.0;
 
@@ -61,7 +61,7 @@
 
 - (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
 {
-    asset = as.pkey;
+    assetKey = as.pkey;
     if (t != transaction) {
         [transaction release];
         transaction = [t retain];
@@ -70,7 +70,7 @@
     if (t == nil) {
         // 新規エントリ生成
         transaction = [[Transaction alloc] init];
-        transaction.asset = asset;
+        transaction.asset = assetKey;
     }
     else {
         if ([self isDstAsset]) {
@@ -86,7 +86,7 @@
 //
 - (BOOL)isDstAsset
 {
-    if (transaction.type == TYPE_TRANSFER && asset == transaction.dst_asset) {
+    if (transaction.type == TYPE_TRANSFER && assetKey == transaction.dst_asset) {
         return YES;
     }
 
@@ -170,17 +170,17 @@
 
 // 種別変更
 //   type のほか、transaction の dst_asset, asset, value も調整する
-- (BOOL)changeType:(int)type asset:(int)as dstAsset:(int)das
+- (BOOL)changeType:(int)type assetKey:(int)as dstAssetKey:(int)das
 {
     if (type == TYPE_TRANSFER) {
-        if (das == self.asset) {
+        if (das == self.assetKey) {
             // 自分あて転送は許可しない
             // ### TBD
             return NO;
         }
 
         transaction.type = TYPE_TRANSFER;
-        [self setDstAsset:dstAsset];
+        [self setDstAsset:das];
     } else {
         // 資産間移動でない取引に変更した場合、強制的に指定資産の取引に変更する
         double ev = self.evalue;
@@ -223,7 +223,7 @@
 - (id)copyWithZone:(NSZone *)zone
 {
     AssetEntry *e = [[AssetEntry alloc] init];
-    e.asset = self.asset;
+    e.assetKey = self.assetKey;
     e.value = self.value;
     e.balance = self.balance;
     e.transaction = [[self.transaction copy] autorelease];

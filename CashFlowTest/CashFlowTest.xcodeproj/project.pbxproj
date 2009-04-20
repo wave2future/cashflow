@@ -249,7 +249,7 @@
 				3E448AFF0F98A50B001F97B5 /* Transaction.m */,
 			);
 			name = Classes;
-			path = ../../CashFlow/Classes;
+			path = ../CashFlow/Classes;
 			sourceTree = "<group>";
 		};
 		46C20FD60F256E610053F9B9 /* Tests */ = {

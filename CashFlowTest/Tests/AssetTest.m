@@ -102,7 +102,7 @@
     AssetEntry *ae = [[[AssetEntry alloc] init] autorelease];
     [ae setTransaction:nil withAsset:asset];
 
-    ae.asset = asset.pkey;
+    ae.assetKey = asset.pkey;
     ae.transaction.type = TYPE_ADJ;
     [ae setEvalue:10000.0];
     ae.transaction.date = [TestCommon dateWithString:@"200902010000"];

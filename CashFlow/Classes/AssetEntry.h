@@ -39,13 +39,13 @@
 // 各資産（勘定）のエントリ
 //
 @interface AssetEntry : NSObject {
-    int asset;
+    int assetKey;
     Transaction *transaction;
     double value;
     double balance;
 }
 
-@property(nonatomic,assign) int asset;
+@property(nonatomic,assign) int assetKey;
 @property(nonatomic,retain) Transaction *transaction;
 @property(nonatomic,assign) double value;
 @property(nonatomic,assign) double balance;
@@ -53,7 +53,7 @@
 
 - (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
 - (void)_setupTransaction;
-- (BOOL)changeType:(int)type asset:(int)as dstAsset:(int)das;
+- (BOOL)changeType:(int)type assetKey:(int)as dstAssetKey:(int)das;
 - (int)dstAsset;
 - (void)setDstAsset:(int)as;
 - (BOOL)isDstAsset;
