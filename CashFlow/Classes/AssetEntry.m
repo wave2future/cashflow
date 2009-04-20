@@ -41,6 +41,12 @@
 
 @synthesize assetKey, transaction, value, balance;
 
+- (void)dealloc
+{
+    [transaction release];
+    [super dealloc];
+}
+
 - (id)init
 {
     self = [super init];
@@ -53,32 +59,28 @@
     return self;
 }
 
-- (void)dealloc
+- (id)initWithTransaction:(Transaction *)t withAsset:(Asset *)asset
 {
-    [transaction release];
-    [super dealloc];
-}
+    self = [self init];
 
-- (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
-{
-    assetKey = as.pkey;
-    if (t != transaction) {
-        [transaction release];
-        transaction = [t retain];
-    }
+    self.assetKey = asset.pkey;
     
     if (t == nil) {
         // 新規エントリ生成
-        transaction = [[Transaction alloc] init];
-        transaction.asset = assetKey;
+        self.transaction = [[[Transaction alloc] init] autorelease];
+        transaction.asset = self.assetKey;
     }
     else {
+        self.transaction = t;
+
         if ([self isDstAsset]) {
-            value = -t.value;
+            self.value = -t.value;
         } else {
-            value = t.value;
+            self.value = t.value;
         }
     }
+
+    return self;
 }
 
 //

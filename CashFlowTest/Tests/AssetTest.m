@@ -99,8 +99,7 @@
     ASSERT_EQUAL_DOUBLE(9000, [asset lastBalance]);
 
     // 新規エントリ
-    AssetEntry *ae = [[[AssetEntry alloc] init] autorelease];
-    [ae setTransaction:nil withAsset:asset];
+    AssetEntry *ae = [[[AssetEntry alloc] initWithTransaction:nil withAsset:asset] autorelease];
 
     ae.assetKey = asset.pkey;
     ae.transaction.type = TYPE_ADJ;

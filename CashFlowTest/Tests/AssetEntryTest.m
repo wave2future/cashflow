@@ -30,11 +30,11 @@
 // transaction 指定なし
 - (void)testAllocNew
 {
-    AssetEntry *e = [[[AssetEntry alloc] init] autorelease];
+    AssetEntry *e;
     Asset *a = [[[Asset alloc] init] autorelease];
     a.pkey = 999;
 
-    [e setTransaction:nil withAsset:a];
+    e = [[[AssetEntry alloc] initWithTransaction:nil withAsset:a] autorelease];
 
     ASSERT(e.assetKey == 999);
     ASSERT(e.value == 0.0);
@@ -51,7 +51,6 @@
 // transaction 指定あり、通常
 - (void)testAllocExisting
 {
-    AssetEntry *e = [[[AssetEntry alloc] init] autorelease];
     Asset *a = [[[Asset alloc] init] autorelease];
     a.pkey = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
@@ -60,7 +59,7 @@
     t.dst_asset = 222;
     t.value = 10000.0;
 
-    [e setTransaction:t withAsset:a];
+    AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
 
     ASSERT(e.assetKey == 111);
     ASSERT(e.value == 10000.0);
@@ -77,7 +76,6 @@
 // transaction 指定あり、逆
 - (void)testAllocExistingReverse
 {
-    AssetEntry *e = [[[AssetEntry alloc] init] autorelease];
     Asset *a = [[[Asset alloc] init] autorelease];
     a.pkey = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
@@ -86,7 +84,7 @@
     t.dst_asset = 111;
     t.value = 10000.0;
 
-    [e setTransaction:t withAsset:a];
+    AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
 
     ASSERT(e.assetKey == 111);
     ASSERT(e.value == -10000.0);
@@ -102,14 +100,14 @@
 
 - (void)testEvalueNormal
 {
-    AssetEntry *e = [[[AssetEntry alloc] init] autorelease];
-    e.balance = 99999.0;
     Asset *a = [[[Asset alloc] init] autorelease];
     a.pkey = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.asset = 111;
     t.dst_asset = -1;
-    [e setTransaction:t withAsset:a];
+
+    AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
+    e.balance = 99999.0;
 
     t.type = TYPE_INCOME;
     e.value = 10000;

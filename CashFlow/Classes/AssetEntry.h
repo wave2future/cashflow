@@ -40,9 +40,10 @@
 //
 @interface AssetEntry : NSObject {
     int assetKey;
-    Transaction *transaction;
     double value;
     double balance;
+
+    Transaction *transaction;
 }
 
 @property(nonatomic,assign) int assetKey;
@@ -51,7 +52,7 @@
 @property(nonatomic,assign) double balance;
 @property(nonatomic,assign) double evalue;
 
-- (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
+- (id)initWithTransaction:(Transaction *)t withAsset:(Asset *)asset;
 - (void)_setupTransaction;
 - (BOOL)changeType:(int)type assetKey:(int)as dstAssetKey:(int)das;
 - (int)dstAsset;
