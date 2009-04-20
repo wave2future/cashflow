@@ -2,6 +2,7 @@
 
 #import <Foundation/Foundation.h>
 #import "IUTTest.h"
+#import "UINavigationBarBasedTest.h"
 #import "Database.h"
 #import "DataModel.h"
 #import "DateFormatter2.h"
