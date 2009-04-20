@@ -168,6 +168,30 @@
     }
 }
 
+// 種別変更
+//   type のほか、transaction の dst_asset, asset, value も調整する
+- (BOOL)changeType:(int)type asset:(int)as dstAsset:(int)das
+{
+    if (type == TYPE_TRANSFER) {
+        if (das == self.asset) {
+            // 自分あて転送は許可しない
+            // ### TBD
+            return NO;
+        }
+
+        transaction.type = TYPE_TRANSFER;
+        [self setDstAsset:dstAsset];
+    } else {
+        // 資産間移動でない取引に変更した場合、強制的に指定資産の取引に変更する
+        double ev = self.evalue;
+        transaction.type = type;
+        transaction.asset = as;
+        transaction.dst_asset = -1;
+        self.evalue = ev;
+    }
+    return YES;
+}
+
 // 転送先資産のキーを返す
 - (int)dstAsset
 {

@@ -53,6 +53,7 @@
 
 - (void)setTransaction:(Transaction *)t withAsset:(Asset *)as;
 - (void)_setupTransaction;
+- (BOOL)changeType:(int)type asset:(int)as dstAsset:(int)das;
 - (int)dstAsset;
 - (void)setDstAsset:(int)as;
 - (BOOL)isDstAsset;

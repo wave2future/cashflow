@@ -326,23 +326,9 @@
 - (void)editTypeViewChanged:(EditTypeViewController*)vc
 {
     [self.navigationController popToViewController:self animated:YES]; // ###
-    
-    if (vc.type == TYPE_TRANSFER) {
-        if (vc.dst_asset == editingEntry.asset) {
-            // 自分あて転送は許可しない
-            // ### TBD
-            return;
-        }
 
-        editingEntry.transaction.type = TYPE_TRANSFER;
-        [editingEntry setDstAsset:vc.dst_asset];
-    } else {
-        // 資産間移動でない取引に変更した場合、強制的にこの資産の取引に変更する
-        double evalue = editingEntry.evalue;
-        editingEntry.transaction.type = vc.type;
-        editingEntry.transaction.asset = editingEntry.asset;
-        editingEntry.transaction.dst_asset = -1;
-        editingEntry.evalue = evalue;
+    if (![editingEntry changeType:vc.type asset:asset dstAsset:vc.dst_asset]) {
+        return;
     }
 
     switch (editingEntry.transaction.type) {
