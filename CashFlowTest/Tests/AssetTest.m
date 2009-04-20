@@ -77,8 +77,20 @@
     ASSERT_EQUAL_DOUBLE(-12100, e.balance);
 }
 
+// 支払い取引の追加
+- (void)testInsertOutgo
+{
+    // not yet
+}
+
+// 入金取引の追加
+- (void)testInsertIncome
+{
+    // not yet
+}
+
 // 残高調整の追加
-- (void)testInsertAdjestment
+- (void)testInsertAdjustment
 {
     [TestCommon installDatabase:@"testdata1"];
     Ledger *ledger = [DataModel ledger];
@@ -97,6 +109,12 @@
 
     [asset insertEntry:ae];
     ASSERT_EQUAL_DOUBLE(10000, [asset lastBalance]);
+}
+
+// 資産間移動の追加
+- (void)testInsertTransfer
+{
+    // not yet
 }
 
 // 初期残高変更処理
@@ -125,7 +143,7 @@
     ASSERT_EQUAL_DOUBLE(9000, [asset lastBalance]);
 }
 
-
+// 取引削除
 - (void)testDeleteEntryAt
 {
     [TestCommon installDatabase:@"testdata1"];
@@ -148,7 +166,13 @@
     ASSERT_EQUAL_INT(1, [[ledger assetAtIndex:1] entryCount]);
 }
 
+// 先頭取引削除
+-(void)testDeleteFirstEntry
+{
+    // not yet
+}
 
+// 古い取引削除
 - (void)testDeleteOldEntriesBefore
 {
     [TestCommon installDatabase:@"testdata1"];
