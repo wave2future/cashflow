@@ -39,7 +39,7 @@
 
 @synthesize delegate, typeArray, identifier, type, autoPop;
 
-+ (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id
++ (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate items:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
     GenSelectListViewController *vc = [[[GenSelectListViewController alloc]
                                          initWithNibName:@"GenSelectListView"

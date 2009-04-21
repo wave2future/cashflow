@@ -58,6 +58,6 @@
 @property(nonatomic,assign) int selectedIndex;
 @property(nonatomic,assign) BOOL autoPop;
 
-+ (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
++ (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate items:(NSArray*)ary title:(NSString*)title identifier:(int)id;
 
 @end

@@ -228,7 +228,7 @@
                                      NSLocalizedString(@"Credit Card", @""),
                                      nil] autorelease];
         gt = [GenSelectListViewController genSelectListViewController:self 
-                                        array:typeArray 
+                                        items:typeArray 
                                         title:NSLocalizedString(@"Asset Type", @"")
                                         identifier:0];
         gt.selectedIndex = asset.type;

@@ -129,7 +129,7 @@
     
     GenSelectListViewController *vc;
     vc = [GenSelectListViewController genSelectListViewController:self
-                                    array:assetNames
+                                    items:assetNames
                                     title:NSLocalizedString(@"Asset", @"")
                                     identifier:0];
 
