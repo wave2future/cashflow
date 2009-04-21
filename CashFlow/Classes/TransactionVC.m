@@ -320,7 +320,8 @@
 
 - (void)editTypeViewChanged:(EditTypeViewController*)vc
 {
-    [self.navigationController popToViewController:self animated:YES]; // ###
+    // autoPop == NO なので、自分で pop する
+    [self.navigationController popToViewController:self animated:YES];
 
     if (![editingEntry changeType:vc.type assetKey:asset.pkey dstAssetKey:vc.dst_asset]) {
         return;

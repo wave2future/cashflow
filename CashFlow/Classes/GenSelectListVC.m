@@ -37,7 +37,7 @@
 
 @implementation GenSelectListViewController
 
-@synthesize delegate, typeArray, identifier, type, autoPop;
+@synthesize delegate, typeArray, identifier, type;
 
 + (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate items:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
@@ -97,9 +97,7 @@
 {
     self.selectedIndex = indexPath.row;
 
-    [delegate genSelectListViewChanged:self identifier:identifier];
-    
-    if (autoPop) {
+    if ([delegate genSelectListViewChanged:self identifier:identifier]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

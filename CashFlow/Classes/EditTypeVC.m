@@ -32,6 +32,14 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+/**
+   取引種類指定 View
+
+   Note: 本Viewは、自動で popViewController しない
+   理由は、別の View を上に乗せており、利用する側のクラスで
+   popToViewController するため。
+*/
+
 #import "AppDelegate.h"
 #import "EditTypeVC.h"
 #import "Transaction.h"
@@ -132,21 +140,20 @@
                                     items:assetNames
                                     title:NSLocalizedString(@"Asset", @"")
                                     identifier:0];
-
-    vc.autoPop = NO;
     vc.type = [ledger assetIndexWithKey:dst_asset];
 
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 // 資産選択
-- (void)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id
+- (BOOL)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id
 {
     Asset *as = [[DataModel ledger] assetAtIndex:vc.selectedIndex];
     dst_asset = as.pkey;
 
-    // pop しない
     [delegate editTypeViewChanged:self];
+
+    return NO; // pop しない
 }
 
 @end

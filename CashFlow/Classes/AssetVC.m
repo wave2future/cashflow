@@ -247,9 +247,10 @@
     asset.name = vc.text;
 }
 
-- (void)genSelectListViewChanged:(GenSelectListViewController *)vc identifier:(int)id
+- (BOOL)genSelectListViewChanged:(GenSelectListViewController *)vc identifier:(int)id
 {
     asset.type = vc.selectedIndex;
+    return YES;
 }
 
 

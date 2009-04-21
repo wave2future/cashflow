@@ -39,7 +39,7 @@
 @class GenSelectListViewController;
 
 @protocol GenSelectListViewDelegate
-- (void)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id;
+- (BOOL)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id;
 @end
 
 @interface GenSelectListViewController : UITableViewController
@@ -49,14 +49,12 @@
 	
     NSArray *items;
     int selectedIndex;
-    BOOL autoPop;
 }
 
 @property(nonatomic,assign) id<GenSelectListViewDelegate> delegate;
 @property(nonatomic,assign) int identifier;
 @property(nonatomic,retain) NSArray *items;
 @property(nonatomic,assign) int selectedIndex;
-@property(nonatomic,assign) BOOL autoPop;
 
 + (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate items:(NSArray*)ary title:(NSString*)title identifier:(int)id;
 
