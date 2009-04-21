@@ -47,8 +47,8 @@
     id<GenSelectListViewDelegate> delegate;
     int identifier;
 	
-    NSArray *typeArray;
-    int type;
+    NSArray *items;
+    int selectedIndex;
     BOOL autoPop;
 }
 
