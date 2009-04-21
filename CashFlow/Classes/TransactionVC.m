@@ -312,7 +312,7 @@
     [nc pushViewController:vc animated:YES];
 }
 
-// イベントリスナ (下位 ViewController からの変更通知)
+// delegate : 下位 ViewController からの変更通知
 - (void)editDateViewChanged:(EditDateViewController *)vc
 {
     editingEntry.transaction.date = vc.date;

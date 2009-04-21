@@ -241,7 +241,7 @@
     }
 }
 
-// イベントリスナ (下位 ViewController からの変更通知)
+// delegate : 下位 ViewController からの変更通知
 - (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)id
 {
     asset.name = vc.text;
