@@ -36,15 +36,15 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@class GenEditTypeViewController;
+@class GenSelectListViewController;
 
-@protocol GenEditTypeViewDelegate
-- (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id;
+@protocol GenSelectListViewDelegate
+- (void)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id;
 @end
 
-@interface GenEditTypeViewController : UITableViewController
+@interface GenSelectListViewController : UITableViewController
 {
-    id<GenEditTypeViewDelegate> delegate;
+    id<GenSelectListViewDelegate> delegate;
     int identifier;
 	
     NSArray *typeArray;
@@ -52,12 +52,12 @@
     BOOL autoPop;
 }
 
-@property(nonatomic,assign) id<GenEditTypeViewDelegate> delegate;
+@property(nonatomic,assign) id<GenSelectListViewDelegate> delegate;
 @property(nonatomic,assign) int identifier;
-@property(nonatomic,retain) NSArray *typeArray;
-@property(nonatomic,assign) int type;
+@property(nonatomic,retain) NSArray *items;
+@property(nonatomic,assign) int selectedIndex;
 @property(nonatomic,assign) BOOL autoPop;
 
-+ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
++ (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
 
 @end

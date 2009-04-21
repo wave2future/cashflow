@@ -35,7 +35,7 @@
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
-#import "GenEditTypeVC.h"
+#import "GenSelectListVC.h"
 
 @class EditTypeViewController;
 
@@ -43,7 +43,7 @@
 - (void)editTypeViewChanged:(EditTypeViewController*)vc;
 @end
 
-@interface EditTypeViewController : UITableViewController <GenEditTypeViewDelegate>
+@interface EditTypeViewController : UITableViewController <GenSelectListViewDelegate>
 {
     id<EditTypeViewDelegate> delegate;
 

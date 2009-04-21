@@ -33,19 +33,19 @@
 */
 
 
-#import "GenEditTypeVC.h"
+#import "GenSelectListVC.h"
 
-@implementation GenEditTypeViewController
+@implementation GenSelectListViewController
 
 @synthesize delegate, typeArray, identifier, type, autoPop;
 
-+ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id
++ (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
-    GenEditTypeViewController *vc = [[[GenEditTypeViewController alloc]
-                                         initWithNibName:@"GenEditTypeView"
+    GenSelectListViewController *vc = [[[GenSelectListViewController alloc]
+                                         initWithNibName:@"GenSelectListView"
                                          bundle:[NSBundle mainBundle]] autorelease];
     vc.delegate = delegate;
-    vc.typeArray = ary;
+    vc.items = ary;
     vc.title = title;
     vc.autoPop = YES;
     vc.identifier = id;
@@ -55,7 +55,7 @@
 
 - (void)dealloc
 {
-    [typeArray release];
+    [items release];
     [super dealloc];
 }
 
@@ -70,34 +70,34 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [typeArray count];
+    return [items count];
 }
 
 // 行の内容
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath 
 {
-    static NSString *MyIdentifier = @"genEditTypeViewCells";
+    static NSString *MyIdentifier = @"genSelectListViewCells";
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
     }
-    if (indexPath.row == self.type) {
+    if (indexPath.row == self.selectedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 		
-    cell.text = [typeArray objectAtIndex:indexPath.row];
+    cell.text = [items objectAtIndex:indexPath.row];
 
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    self.type = indexPath.row;
+    self.selectedIndex = indexPath.row;
 
-    [delegate genEditTypeViewChanged:self identifier:identifier];
+    [delegate genSelectListViewChanged:self identifier:identifier];
     
     if (autoPop) {
         [self.navigationController popViewControllerAnimated:YES];

@@ -127,8 +127,8 @@
         [assetNames addObject:asset.name];
     }
     
-    GenEditTypeViewController *vc;
-    vc = [GenEditTypeViewController genEditTypeViewController:self
+    GenSelectListViewController *vc;
+    vc = [GenSelectListViewController genSelectListViewController:self
                                     array:assetNames
                                     title:NSLocalizedString(@"Asset", @"")
                                     identifier:0];
@@ -140,9 +140,9 @@
 }
 
 // 資産選択
-- (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id
+- (void)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id
 {
-    Asset *as = [[DataModel ledger] assetAtIndex:vc.type];
+    Asset *as = [[DataModel ledger] assetAtIndex:vc.selectedIndex];
     dst_asset = as.pkey;
 
     // pop しない

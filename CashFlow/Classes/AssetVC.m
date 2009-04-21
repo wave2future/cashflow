@@ -35,7 +35,7 @@
 #import "AssetVC.h"
 #import "AppDelegate.h"
 #import "GenEditTextVC.h"
-#import "GenEditTypeVC.h"
+#import "GenSelectListVC.h"
 
 @implementation AssetViewController
 
@@ -211,7 +211,7 @@
     // view を表示
     UIViewController *vc = nil;
     GenEditTextViewController *ge;
-    GenEditTypeViewController *gt;
+    GenSelectListViewController *gt;
     NSArray *typeArray;
 
     switch (indexPath.row) {
@@ -227,11 +227,11 @@
                                      NSLocalizedString(@"Bank Account", @""),
                                      NSLocalizedString(@"Credit Card", @""),
                                      nil] autorelease];
-        gt = [GenEditTypeViewController genEditTypeViewController:self 
+        gt = [GenSelectListViewController genSelectListViewController:self 
                                         array:typeArray 
                                         title:NSLocalizedString(@"Asset Type", @"")
                                         identifier:0];
-        gt.type = asset.type;
+        gt.selectedIndex = asset.type;
         vc = gt;
         break;
     }
@@ -247,9 +247,9 @@
     asset.name = vc.text;
 }
 
-- (void)genEditTypeViewChanged:(GenEditTypeViewController *)vc identifier:(int)id
+- (void)genSelectListViewChanged:(GenSelectListViewController *)vc identifier:(int)id
 {
-    asset.type = vc.type;
+    asset.type = vc.selectedIndex;
 }
 
 

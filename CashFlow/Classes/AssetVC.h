@@ -38,10 +38,10 @@
 #import "Asset.h"
 
 #import "GenEditTextVC.h"
-#import "GenEditTypeVC.h"
+#import "GenSelectListVC.h"
 
 @interface AssetViewController : UITableViewController 
-    <GenEditTextViewDelegate, GenEditTypeViewDelegate, UIActionSheetDelegate>
+    <GenEditTextViewDelegate, GenSelectListViewDelegate, UIActionSheetDelegate>
 {
     int assetIndex;
     Asset *asset;
