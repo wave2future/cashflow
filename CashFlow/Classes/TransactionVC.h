@@ -56,14 +56,6 @@
     Asset *asset;
 
     NSArray *typeArray;
-
-    EditDateViewController *editDateVC;
-    EditTypeViewController *editTypeVC; // type
-    EditValueViewController *editValueVC;
-    EditDescViewController *editDescVC;
-    //GenEditTextViewController *editMemoVC; // memo
-    EditMemoViewController *editMemoVC; // memo
-    CategoryListViewController *editCategoryVC;
 	
     UIButton *delButton;
     UIButton *delPastButton;

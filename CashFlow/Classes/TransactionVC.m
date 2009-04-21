@@ -69,28 +69,6 @@
                                  NSLocalizedString(@"Adjustment", @"Balance adjustment"),
                                  NSLocalizedString(@"Transfer", @""),
                                  nil];
-
-    // 下位の ViewController を生成しておく
-    editDateVC = [[EditDateViewController alloc] init];
-    editDateVC.listener = self;
-
-    editTypeVC = [[EditTypeViewController alloc] init];
-    editTypeVC.listener = self;
-
-    editValueVC = [[EditValueViewController alloc] init];
-    editValueVC.listener = self;
-
-    editDescVC = [[EditDescViewController alloc] init];
-    editDescVC.listener = self;
-	
-    editMemoVC = [[EditMemoViewController
-                      editMemoViewController:self
-                      title:NSLocalizedString(@"Memo", @"") 
-                      identifier:0] retain];
-	
-    editCategoryVC = [[CategoryListViewController alloc] init];
-    editCategoryVC.isSelectMode = YES;
-    editCategoryVC.listener = self;
 	
     // ボタン生成
     UIButton *b;
@@ -122,12 +100,6 @@
 - (void)dealloc
 {
     self.editingEntry = nil;
-
-    [editDateVC release];
-    [editTypeVC release];
-    [editValueVC release];
-    [editDescVC release];
-    [editMemoVC release];
 	
     [delButton release];
     [delPastButton release];
@@ -278,37 +250,61 @@
 {
     UINavigationController *nc = self.navigationController;
 
-    // view を表示
     UIViewController *vc = nil;
+    EditDateViewController *editDateVC;
+    EditTypeViewController *editTypeVC; // type
+    EditValueViewController *editValueVC;
+    EditDescViewController *editDescVC;
+    //GenEditTextViewController *editMemoVC; // memo
+    EditMemoViewController *editMemoVC; // memo
+    CategoryListViewController *editCategoryVC;
+
+    // view を表示
+
     switch (indexPath.row) {
     case ROW_DATE:
+        editDateVC = [[[EditDateViewController alloc] init] autorelease];
+        editDateVC.listener = self;
         editDateVC.date = editingEntry.transaction.date;
         vc = editDateVC;
         break;
 
     case ROW_TYPE:
+        editTypeVC = [[[EditTypeViewController alloc] init] autorelease];
+        editTypeVC.listener = self;
         editTypeVC.type = editingEntry.transaction.type;
         editTypeVC.dst_asset = [editingEntry dstAsset];
         vc = editTypeVC;
         break;
 
     case ROW_VALUE:
+        editValueVC = [[[EditValueViewController alloc] init] autorelease];
+        editValueVC.listener = self;
         editValueVC.value = editingEntry.evalue;
         vc = editValueVC;
         break;
 
     case ROW_DESC:
+        editDescVC = [[[EditDescViewController alloc] init] autorelease];
+        editDescVC.listener = self;
         editDescVC.description = editingEntry.transaction.description;
         editDescVC.category = editingEntry.transaction.category;
         vc = editDescVC;
         break;
 
     case ROW_MEMO:
+        editMemoVC = [EditMemoViewController
+                         editMemoViewController:self
+                         title:NSLocalizedString(@"Memo", @"") 
+                         identifier:0];
         editMemoVC.text = editingEntry.transaction.memo;
         vc = editMemoVC;
         break;
 
     case ROW_CATEGORY:
+        editCategoryVC = [[[CategoryListViewController alloc] init] autorelease];
+        editCategoryVC.isSelectMode = YES;
+        editCategoryVC.listener = self;
         editCategoryVC.selectedIndex = [[DataModel categories] categoryIndexWithKey:editingEntry.transaction.category];
         vc = editCategoryVC;
         break;
