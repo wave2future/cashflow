@@ -40,7 +40,7 @@
 @class TransactionViewController;
 @class EditValueViewController;
 
-@protocol EditValueViewListener
+@protocol EditValueViewDelegate
 - (void)editValueViewChanged:(EditValueViewController *)vc;
 @end
 
@@ -63,11 +63,11 @@
     IBOutlet UIButton *button_8;
     IBOutlet UIButton *button_9;
 
-    id<EditValueViewListener> listener;
+    id<EditValueViewDelegate> delegate;
     double value;
 }
 
-@property(nonatomic,assign) id<EditValueViewListener> listener;
+@property(nonatomic,assign) id<EditValueViewDelegate> delegate;
 @property(nonatomic,assign) double value;
 
 - (IBAction)onNumButtonDown:(id)sender;

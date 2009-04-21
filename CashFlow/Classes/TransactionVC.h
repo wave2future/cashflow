@@ -47,9 +47,9 @@
 
 @interface TransactionViewController : UITableViewController 
     <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
-    EditMemoViewListener, EditTypeViewListener,
-    EditDateViewListener, EditValueViewListener, 
-    EditDescViewListener, CategoryListViewListener>
+    EditMemoViewDelegate, EditTypeViewDelegate,
+    EditDateViewDelegate, EditValueViewDelegate, 
+    EditDescViewDelegate, CategoryListViewDelegate>
 {
     int transactionIndex;
     AssetEntry *editingEntry;

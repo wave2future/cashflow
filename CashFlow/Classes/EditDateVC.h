@@ -39,18 +39,18 @@
 @class TransactionViewController;
 @class EditDateViewController;
 
-@protocol EditDateViewListener
+@protocol EditDateViewDelegate
 - (void)editDateViewChanged:(EditDateViewController*)vc;
 @end
 
 @interface EditDateViewController : UIViewController {
     IBOutlet UIDatePicker *datePicker;
 
-    id<EditDateViewListener> listener;
+    id<EditDateViewDelegate> delegate;
     NSDate *date;
 }
 
-@property(nonatomic,assign) id<EditDateViewListener> listener;
+@property(nonatomic,assign) id<EditDateViewDelegate> delegate;
 @property(nonatomic,retain) NSDate *date;
 
 - (void)doneAction;

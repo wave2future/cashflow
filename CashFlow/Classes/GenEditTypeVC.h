@@ -38,13 +38,13 @@
 
 @class GenEditTypeViewController;
 
-@protocol GenEditTypeViewListener
+@protocol GenEditTypeViewDelegate
 - (void)genEditTypeViewChanged:(GenEditTypeViewController*)vc identifier:(int)id;
 @end
 
 @interface GenEditTypeViewController : UITableViewController
 {
-    id<GenEditTypeViewListener> listener;
+    id<GenEditTypeViewDelegate> delegate;
     int identifier;
 	
     NSArray *typeArray;
@@ -52,12 +52,12 @@
     BOOL autoPop;
 }
 
-@property(nonatomic,assign) id<GenEditTypeViewListener> listener;
+@property(nonatomic,assign) id<GenEditTypeViewDelegate> delegate;
 @property(nonatomic,assign) int identifier;
 @property(nonatomic,retain) NSArray *typeArray;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) BOOL autoPop;
 
-+ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
++ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id;
 
 @end

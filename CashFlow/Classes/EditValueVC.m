@@ -41,7 +41,7 @@
 
 @implementation EditValueViewController
 
-@synthesize listener, value;
+@synthesize delegate, value;
 
 - (id)init
 {
@@ -93,7 +93,7 @@
 -(void)doneAction
 {
     value = [numstr doubleValue];
-    [listener editValueViewChanged:self];
+    [delegate editValueViewChanged:self];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -39,7 +39,7 @@
 
 @implementation EditDescViewController
 
-@synthesize listener, description, category;
+@synthesize delegate, description, category;
 
 - (id)init
 {
@@ -99,7 +99,7 @@
 - (void)doneAction
 {
     self.description = textField.text;
-    [listener editDescViewChanged:self];
+    [delegate editDescViewChanged:self];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

@@ -37,23 +37,23 @@
 
 @class EditMemoViewController;
 
-@protocol EditMemoViewListener
+@protocol EditMemoViewDelegate
 - (void)editMemoViewChanged:(EditMemoViewController *)vc identifier:(int)id;
 @end
 
 @interface EditMemoViewController : UIViewController {
     IBOutlet UITextView *textView;
 	
-    id<EditMemoViewListener> listener;
+    id<EditMemoViewDelegate> delegate;
     NSString *text;
     int identifier;
 }
 
-@property(nonatomic,assign) id<EditMemoViewListener> listener;
+@property(nonatomic,assign) id<EditMemoViewDelegate> delegate;
 @property(nonatomic,assign) int identifier;
 @property(nonatomic,retain) NSString *text;
 
-+ (EditMemoViewController *)editMemoViewController:(id<EditMemoViewListener>)listener title:(NSString*)title identifier:(int)id;
++ (EditMemoViewController *)editMemoViewController:(id<EditMemoViewDelegate>)delegate title:(NSString*)title identifier:(int)id;
 - (void)doneAction;
 
 @end

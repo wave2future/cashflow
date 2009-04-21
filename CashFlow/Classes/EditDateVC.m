@@ -39,7 +39,7 @@
 
 @implementation EditDateViewController
 
-@synthesize listener, date;
+@synthesize delegate, date;
 
 - (id)init
 {
@@ -71,7 +71,7 @@
 - (void)doneAction
 {
     self.date = datePicker.date;
-    [listener editDateViewChanged:self];
+    [delegate editDateViewChanged:self];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

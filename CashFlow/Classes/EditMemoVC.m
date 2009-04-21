@@ -37,14 +37,14 @@
 
 @implementation EditMemoViewController
 
-@synthesize listener, identifier, text;
+@synthesize delegate, identifier, text;
 
-+ (EditMemoViewController *)editMemoViewController:(id<EditMemoViewListener>)listener title:(NSString*)title identifier:(int)id
++ (EditMemoViewController *)editMemoViewController:(id<EditMemoViewDelegate>)delegate title:(NSString*)title identifier:(int)id
 {
     EditMemoViewController *vc = [[[EditMemoViewController alloc]
                                       initWithNibName:@"EditMemoView"
                                       bundle:[NSBundle mainBundle]] autorelease];
-    vc.listener = listener;
+    vc.delegate = delegate;
     vc.title = title;
     vc.identifier = id;
 
@@ -87,7 +87,7 @@
 - (void)doneAction
 {
     self.text = textView.text;
-    [listener editMemoViewChanged:self identifier:identifier];
+    [delegate editMemoViewChanged:self identifier:identifier];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

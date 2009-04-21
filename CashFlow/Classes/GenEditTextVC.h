@@ -37,23 +37,23 @@
 
 @class GenEditTextViewController;
 
-@protocol GenEditTextViewListener
+@protocol GenEditTextViewDelegate
 - (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)id;
 @end
 
 @interface GenEditTextViewController : UIViewController {
     IBOutlet UITextField *textField;
 	
-    id<GenEditTextViewListener> listener;
+    id<GenEditTextViewDelegate> delegate;
     NSString *text;
     int identifier;
 }
 
-@property(nonatomic,assign) id<GenEditTextViewListener> listener;
+@property(nonatomic,assign) id<GenEditTextViewDelegate> delegate;
 @property(nonatomic,assign) int identifier;
 @property(nonatomic,retain) NSString *text;
 
-+ (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewListener>)listener title:(NSString*)title identifier:(int)id;
++ (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewDelegate>)delegate title:(NSString*)title identifier:(int)id;
 - (void)doneAction;
 
 @end

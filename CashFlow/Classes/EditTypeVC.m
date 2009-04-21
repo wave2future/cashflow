@@ -38,7 +38,7 @@
 
 @implementation EditTypeViewController
 
-@synthesize listener, type, dst_asset;
+@synthesize delegate, type, dst_asset;
 
 - (id)init
 {
@@ -114,7 +114,7 @@
 
     if (self.type != TYPE_TRANSFER) {
         // pop しない
-        [listener editTypeViewChanged:self];
+        [delegate editTypeViewChanged:self];
         return;
     }
 
@@ -146,7 +146,7 @@
     dst_asset = as.pkey;
 
     // pop しない
-    [listener editTypeViewChanged:self];
+    [delegate editTypeViewChanged:self];
 }
 
 @end

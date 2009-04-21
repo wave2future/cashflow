@@ -40,7 +40,7 @@
 
 @implementation CategoryListViewController
 
-@synthesize isSelectMode, selectedIndex, listener;
+@synthesize isSelectMode, selectedIndex, delegate;
 
 - (id)init
 {
@@ -146,8 +146,8 @@
         [tv deselectRowAtIndexPath:indexPath animated:NO];
 		
         selectedIndex = indexPath.row;
-        ASSERT(listener);
-        [listener categoryListViewChanged:self];
+        ASSERT(delegate);
+        [delegate categoryListViewChanged:self];
 		
         [self.navigationController popViewControllerAnimated:YES];
         return;

@@ -40,7 +40,7 @@
 #import "EditValueVC.h"
 
 @interface TransactionListViewController : UIViewController 
-    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewListener>
+    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewDelegate>
 {
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *barBalanceLabel;

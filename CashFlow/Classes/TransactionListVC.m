@@ -292,7 +292,7 @@
     if (idx < 0) {
         // initial balance cell
         EditValueViewController *v = [[[EditValueViewController alloc] init] autorelease];
-        v.listener = self;
+        v.delegate = self;
         v.value = asset.initialBalance;
 
         [self.navigationController pushViewController:v animated:YES];

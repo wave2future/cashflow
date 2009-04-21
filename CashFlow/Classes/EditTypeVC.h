@@ -39,19 +39,19 @@
 
 @class EditTypeViewController;
 
-@protocol EditTypeViewListener
+@protocol EditTypeViewDelegate
 - (void)editTypeViewChanged:(EditTypeViewController*)vc;
 @end
 
-@interface EditTypeViewController : UITableViewController <GenEditTypeViewListener>
+@interface EditTypeViewController : UITableViewController <GenEditTypeViewDelegate>
 {
-    id<EditTypeViewListener> listener;
+    id<EditTypeViewDelegate> delegate;
 
     int type;
     int dst_asset;
 }
 
-@property(nonatomic,assign) id<EditTypeViewListener> listener;
+@property(nonatomic,assign) id<EditTypeViewDelegate> delegate;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) int dst_asset;
 

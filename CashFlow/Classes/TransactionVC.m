@@ -264,14 +264,14 @@
     switch (indexPath.row) {
     case ROW_DATE:
         editDateVC = [[[EditDateViewController alloc] init] autorelease];
-        editDateVC.listener = self;
+        editDateVC.delegate = self;
         editDateVC.date = editingEntry.transaction.date;
         vc = editDateVC;
         break;
 
     case ROW_TYPE:
         editTypeVC = [[[EditTypeViewController alloc] init] autorelease];
-        editTypeVC.listener = self;
+        editTypeVC.delegate = self;
         editTypeVC.type = editingEntry.transaction.type;
         editTypeVC.dst_asset = [editingEntry dstAsset];
         vc = editTypeVC;
@@ -279,14 +279,14 @@
 
     case ROW_VALUE:
         editValueVC = [[[EditValueViewController alloc] init] autorelease];
-        editValueVC.listener = self;
+        editValueVC.delegate = self;
         editValueVC.value = editingEntry.evalue;
         vc = editValueVC;
         break;
 
     case ROW_DESC:
         editDescVC = [[[EditDescViewController alloc] init] autorelease];
-        editDescVC.listener = self;
+        editDescVC.delegate = self;
         editDescVC.description = editingEntry.transaction.description;
         editDescVC.category = editingEntry.transaction.category;
         vc = editDescVC;
@@ -304,7 +304,7 @@
     case ROW_CATEGORY:
         editCategoryVC = [[[CategoryListViewController alloc] init] autorelease];
         editCategoryVC.isSelectMode = YES;
-        editCategoryVC.listener = self;
+        editCategoryVC.delegate = self;
         editCategoryVC.selectedIndex = [[DataModel categories] categoryIndexWithKey:editingEntry.transaction.category];
         vc = editCategoryVC;
         break;

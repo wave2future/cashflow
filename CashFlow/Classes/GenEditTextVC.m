@@ -37,14 +37,14 @@
 
 @implementation GenEditTextViewController
 
-@synthesize listener, identifier, text;
+@synthesize delegate, identifier, text;
 
-+ (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewListener>)listener title:(NSString*)title identifier:(int)id
++ (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewDelegate>)delegate title:(NSString*)title identifier:(int)id
 {
     GenEditTextViewController *vc = [[[GenEditTextViewController alloc]
                                          initWithNibName:@"GenEditTextView"
                                          bundle:[NSBundle mainBundle]] autorelease];
-    vc.listener = listener;
+    vc.delegate = delegate;
     vc.title = title;
     vc.identifier = id;
 
@@ -86,7 +86,7 @@
 - (void)doneAction
 {
     self.text = textField.text;
-    [listener genEditTextViewChanged:self identifier:identifier];
+    [delegate genEditTextViewChanged:self identifier:identifier];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

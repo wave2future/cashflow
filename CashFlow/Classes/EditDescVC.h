@@ -39,7 +39,7 @@
 @class TransactionViewController;
 @class EditDescViewController;
 
-@protocol EditDescViewListener
+@protocol EditDescViewDelegate
 - (void)editDescViewChanged:(EditDescViewController*)vc;
 @end
 
@@ -51,12 +51,12 @@
 
     NSMutableArray *descArray;
 
-    id<EditDescViewListener> listener;
+    id<EditDescViewDelegate> delegate;
     NSString *description;
     int category;
 }
 
-@property(nonatomic,assign) id<EditDescViewListener> listener;
+@property(nonatomic,assign) id<EditDescViewDelegate> delegate;
 @property(nonatomic,retain)	NSString *description;
 @property(nonatomic,assign)	int category;
 

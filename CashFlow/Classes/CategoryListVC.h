@@ -39,21 +39,21 @@
 
 @class CategoryListViewController;
 
-@protocol CategoryListViewListener
+@protocol CategoryListViewDelegate
 - (void)categoryListViewChanged:(CategoryListViewController *)vc;
 @end
 
 @interface CategoryListViewController : UITableViewController
-    <GenEditTextViewListener>
+    <GenEditTextViewDelegate>
 {
     BOOL isSelectMode;
     int selectedIndex;
 	
-    id<CategoryListViewListener> listener;
+    id<CategoryListViewDelegate> delegate;
 }
 
 @property(nonatomic,assign) BOOL isSelectMode;
 @property(nonatomic,assign) int selectedIndex;
-@property(nonatomic,assign) id<CategoryListViewListener> listener;
+@property(nonatomic,assign) id<CategoryListViewDelegate> delegate;
 
 @end

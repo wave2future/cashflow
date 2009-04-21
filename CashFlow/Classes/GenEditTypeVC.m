@@ -37,14 +37,14 @@
 
 @implementation GenEditTypeViewController
 
-@synthesize listener, typeArray, identifier, type, autoPop;
+@synthesize delegate, typeArray, identifier, type, autoPop;
 
-+ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewListener>)listener array:(NSArray*)ary title:(NSString*)title identifier:(int)id
++ (GenEditTypeViewController *)genEditTypeViewController:(id<GenEditTypeViewDelegate>)delegate array:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
     GenEditTypeViewController *vc = [[[GenEditTypeViewController alloc]
                                          initWithNibName:@"GenEditTypeView"
                                          bundle:[NSBundle mainBundle]] autorelease];
-    vc.listener = listener;
+    vc.delegate = delegate;
     vc.typeArray = ary;
     vc.title = title;
     vc.autoPop = YES;
@@ -97,7 +97,7 @@
 {
     self.type = indexPath.row;
 
-    [listener genEditTypeViewChanged:self identifier:identifier];
+    [delegate genEditTypeViewChanged:self identifier:identifier];
     
     if (autoPop) {
         [self.navigationController popViewControllerAnimated:YES];
