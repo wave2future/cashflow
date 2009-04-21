@@ -19,7 +19,6 @@
 		3E003BC80F9CB7BD00521E2B /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BC40F9CB7BD00521E2B /* ReportVC.m */; };
 		3E003BD60F9CB7E300521E2B /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BCB0F9CB7E300521E2B /* CategoryListVC.m */; };
 		3E003BD70F9CB7E300521E2B /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BCD0F9CB7E300521E2B /* GenEditTextVC.m */; };
-		3E003BD80F9CB7E300521E2B /* GenEditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BCF0F9CB7E300521E2B /* GenEditTypeVC.m */; };
 		3E003BD90F9CB7E300521E2B /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BD10F9CB7E300521E2B /* Pin.m */; };
 		3E003BDA0F9CB7E300521E2B /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BD30F9CB7E300521E2B /* PinVC.m */; };
 		3E003BDB0F9CB7E300521E2B /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BD50F9CB7E300521E2B /* WebServer.m */; };
@@ -47,7 +46,6 @@
 		3E003C580F9CB8E300521E2B /* EditValueView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C470F9CB8E300521E2B /* EditValueView.xib */; };
 		3E003C590F9CB8E300521E2B /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C480F9CB8E300521E2B /* ExportView.xib */; };
 		3E003C5A0F9CB8E300521E2B /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C490F9CB8E300521E2B /* GenEditTextView.xib */; };
-		3E003C5B0F9CB8E300521E2B /* GenEditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C4A0F9CB8E300521E2B /* GenEditTypeView.xib */; };
 		3E003C5C0F9CB8E300521E2B /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C4B0F9CB8E300521E2B /* InfoView.xib */; };
 		3E003C5E0F9CB8E300521E2B /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C4D0F9CB8E300521E2B /* PinView.xib */; };
 		3E003C5F0F9CB8E300521E2B /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E003C4E0F9CB8E300521E2B /* ReportView.xib */; };
@@ -80,6 +78,8 @@
 		3E448B090F98A50B001F97B5 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AFF0F98A50B001F97B5 /* Transaction.m */; };
 		3E448B5B0F98A584001F97B5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */; };
 		3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */; };
+		3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */; };
+		3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */; };
 		3EFD6BBF0F98C7E60060B3BF /* DataModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */; };
 		3EFD6BD20F98C8560060B3BF /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD10F98C8560060B3BF /* TestCommon.m */; };
 		3EFD6BD70F98C87A0060B3BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD60F98C87A0060B3BF /* AppDelegate.m */; };
@@ -129,8 +129,6 @@
 		3E003BCB0F9CB7E300521E2B /* CategoryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListVC.m; sourceTree = "<group>"; };
 		3E003BCC0F9CB7E300521E2B /* GenEditTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTextVC.h; sourceTree = "<group>"; };
 		3E003BCD0F9CB7E300521E2B /* GenEditTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTextVC.m; sourceTree = "<group>"; };
-		3E003BCE0F9CB7E300521E2B /* GenEditTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTypeVC.h; sourceTree = "<group>"; };
-		3E003BCF0F9CB7E300521E2B /* GenEditTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTypeVC.m; sourceTree = "<group>"; };
 		3E003BD00F9CB7E300521E2B /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
 		3E003BD10F9CB7E300521E2B /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
 		3E003BD20F9CB7E300521E2B /* PinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinVC.h; sourceTree = "<group>"; };
@@ -174,7 +172,6 @@
 		3E003C470F9CB8E300521E2B /* EditValueView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditValueView.xib; sourceTree = "<group>"; };
 		3E003C480F9CB8E300521E2B /* ExportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportView.xib; sourceTree = "<group>"; };
 		3E003C490F9CB8E300521E2B /* GenEditTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenEditTextView.xib; sourceTree = "<group>"; };
-		3E003C4A0F9CB8E300521E2B /* GenEditTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenEditTypeView.xib; sourceTree = "<group>"; };
 		3E003C4B0F9CB8E300521E2B /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		3E003C4D0F9CB8E300521E2B /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
 		3E003C4E0F9CB8E300521E2B /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
@@ -218,6 +215,9 @@
 		3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntryTest.h; sourceTree = "<group>"; };
 		3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
+		3EAEBCA30F9DE14C00AD3D15 /* GenSelectListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenSelectListVC.h; sourceTree = "<group>"; };
+		3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenSelectListVC.m; sourceTree = "<group>"; };
+		3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenSelectListView.xib; sourceTree = "<group>"; };
 		3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTest.m; sourceTree = "<group>"; };
 		3EFD6BCC0F98C83E0060B3BF /* DataModelTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelTest.h; sourceTree = "<group>"; };
 		3EFD6BD00F98C8560060B3BF /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
@@ -355,7 +355,7 @@
 				3E003C470F9CB8E300521E2B /* EditValueView.xib */,
 				3E003C480F9CB8E300521E2B /* ExportView.xib */,
 				3E003C490F9CB8E300521E2B /* GenEditTextView.xib */,
-				3E003C4A0F9CB8E300521E2B /* GenEditTypeView.xib */,
+				3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */,
 				3E003C4B0F9CB8E300521E2B /* InfoView.xib */,
 				3E003C4D0F9CB8E300521E2B /* PinView.xib */,
 				3E003C4E0F9CB8E300521E2B /* ReportView.xib */,
@@ -423,8 +423,8 @@
 				3E003BCB0F9CB7E300521E2B /* CategoryListVC.m */,
 				3E003BCC0F9CB7E300521E2B /* GenEditTextVC.h */,
 				3E003BCD0F9CB7E300521E2B /* GenEditTextVC.m */,
-				3E003BCE0F9CB7E300521E2B /* GenEditTypeVC.h */,
-				3E003BCF0F9CB7E300521E2B /* GenEditTypeVC.m */,
+				3EAEBCA30F9DE14C00AD3D15 /* GenSelectListVC.h */,
+				3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */,
 				3E003BD00F9CB7E300521E2B /* Pin.h */,
 				3E003BD10F9CB7E300521E2B /* Pin.m */,
 				3E003BD20F9CB7E300521E2B /* PinVC.h */,
@@ -610,7 +610,6 @@
 				3E003C580F9CB8E300521E2B /* EditValueView.xib in Resources */,
 				3E003C590F9CB8E300521E2B /* ExportView.xib in Resources */,
 				3E003C5A0F9CB8E300521E2B /* GenEditTextView.xib in Resources */,
-				3E003C5B0F9CB8E300521E2B /* GenEditTypeView.xib in Resources */,
 				3E003C5C0F9CB8E300521E2B /* InfoView.xib in Resources */,
 				3E003C5E0F9CB8E300521E2B /* PinView.xib in Resources */,
 				3E003C5F0F9CB8E300521E2B /* ReportView.xib in Resources */,
@@ -624,6 +623,7 @@
 				3E003D900F9CC25400521E2B /* icon.png in Resources */,
 				3E003D910F9CC25400521E2B /* PiggyBank.png in Resources */,
 				3E003D920F9CC25400521E2B /* redButton.png in Resources */,
+				3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,7 +676,6 @@
 				3E003BC80F9CB7BD00521E2B /* ReportVC.m in Sources */,
 				3E003BD60F9CB7E300521E2B /* CategoryListVC.m in Sources */,
 				3E003BD70F9CB7E300521E2B /* GenEditTextVC.m in Sources */,
-				3E003BD80F9CB7E300521E2B /* GenEditTypeVC.m in Sources */,
 				3E003BD90F9CB7E300521E2B /* Pin.m in Sources */,
 				3E003BDA0F9CB7E300521E2B /* PinVC.m in Sources */,
 				3E003BDB0F9CB7E300521E2B /* WebServer.m in Sources */,
@@ -694,6 +693,7 @@
 				3E003C040F9CB83200521E2B /* ExportOfx.m in Sources */,
 				3E003C050F9CB83200521E2B /* ExportServer.m in Sources */,
 				3E003D5F0F9CC11D00521E2B /* AssetListVCTest.m in Sources */,
+				3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

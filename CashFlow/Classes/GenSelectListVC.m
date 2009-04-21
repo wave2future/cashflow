@@ -37,7 +37,7 @@
 
 @implementation GenSelectListViewController
 
-@synthesize delegate, typeArray, identifier, type;
+@synthesize delegate, items, selectedIndex, identifier;
 
 + (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate items:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
@@ -47,7 +47,6 @@
     vc.delegate = delegate;
     vc.items = ary;
     vc.title = title;
-    vc.autoPop = YES;
     vc.identifier = id;
 
     return vc;

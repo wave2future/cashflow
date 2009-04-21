@@ -140,7 +140,7 @@
                                     items:assetNames
                                     title:NSLocalizedString(@"Asset", @"")
                                     identifier:0];
-    vc.type = [ledger assetIndexWithKey:dst_asset];
+    vc.selectedIndex = [ledger assetIndexWithKey:dst_asset];
 
     [self.navigationController pushViewController:vc animated:YES];
 }
