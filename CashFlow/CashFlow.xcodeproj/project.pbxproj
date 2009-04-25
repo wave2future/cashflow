@@ -48,6 +48,8 @@
 		3E6B2EBF0F12259C0008AFB6 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
 		3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
 		3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
+		3E6B365D0FA2DD8700FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
+		3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E8B257A0F348C090007929E /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
@@ -213,6 +215,8 @@
 		3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportView.xib; sourceTree = "<group>"; };
 		3E6B35E80FA2A84E00FCF592 /* ReportCatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatCell.h; sourceTree = "<group>"; };
 		3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
+		3E6B365B0FA2DD8700FCF592 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
+		3E6B365C0FA2DD8700FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 				3E5868280EEFFCAF00951C2F /* EditMemoVC.m */,
 				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
+				3E6B365B0FA2DD8700FCF592 /* ReportCell.h */,
+				3E6B365C0FA2DD8700FCF592 /* ReportCell.m */,
 				3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */,
 				3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */,
 				3E6B35E80FA2A84E00FCF592 /* ReportCatCell.h */,
@@ -664,6 +670,7 @@
 				3E1AE0B70F97416F00AAB4AC /* Ledger.m in Sources */,
 				3EAEBC5D0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
+				3E6B365D0FA2DD8700FCF592 /* ReportCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +715,7 @@
 				3E1AE0BA0F97416F00AAB4AC /* Ledger.m in Sources */,
 				3EAEBC5E0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
+				3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,11 +9,12 @@
 @interface ReportViewController : UITableViewController
 {
     Reports *reports;
+    double maxAbsValue;
 
     NSDateFormatter *dateFormatter;
 }
 
 - (void)generateReport:(int)type asset:(Asset*)asset;
-- (UITableViewCell *)reportCell:(Report*)report;
+//- (UITableViewCell *)reportCell:(Report*)report;
 
 @end
