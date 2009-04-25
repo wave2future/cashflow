@@ -1,3 +1,6 @@
+2009-04-25: Takuya Murakami
+	* レポートグラフ表示機能を追加
+	
 2009-04-19: Takuya Murakami
 	* OFX で ><& をエスケープするように修正
 
