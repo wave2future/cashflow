@@ -77,6 +77,8 @@
 		3E448B080F98A50B001F97B5 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AFD0F98A50B001F97B5 /* Report.m */; };
 		3E448B090F98A50B001F97B5 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AFF0F98A50B001F97B5 /* Transaction.m */; };
 		3E448B5B0F98A584001F97B5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */; };
+		3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */; };
+		3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37040FA2E3D200FCF592 /* ReportCell.m */; };
 		3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */; };
 		3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */; };
 		3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */; };
@@ -213,6 +215,10 @@
 		3E448AFE0F98A50B001F97B5 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		3E448AFF0F98A50B001F97B5 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		3E6B37010FA2E3D200FCF592 /* ReportCatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatCell.h; sourceTree = "<group>"; };
+		3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
+		3E6B37030FA2E3D200FCF592 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
+		3E6B37040FA2E3D200FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
 		3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntryTest.h; sourceTree = "<group>"; };
 		3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
 		3EAEBCA30F9DE14C00AD3D15 /* GenSelectListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenSelectListVC.h; sourceTree = "<group>"; };
@@ -439,6 +445,10 @@
 				3E003BC20F9CB7BD00521E2B /* InfoVC.m */,
 				3E003BC30F9CB7BD00521E2B /* ReportVC.h */,
 				3E003BC40F9CB7BD00521E2B /* ReportVC.m */,
+				3E6B37010FA2E3D200FCF592 /* ReportCatCell.h */,
+				3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */,
+				3E6B37030FA2E3D200FCF592 /* ReportCell.h */,
+				3E6B37040FA2E3D200FCF592 /* ReportCell.m */,
 				3E003BB60F9CB77200521E2B /* AssetListVC.h */,
 				3E003BB70F9CB77200521E2B /* AssetListVC.m */,
 				3EFD6BD50F98C87A0060B3BF /* AppDelegate.h */,
@@ -694,6 +704,8 @@
 				3E003C050F9CB83200521E2B /* ExportServer.m in Sources */,
 				3E003D5F0F9CC11D00521E2B /* AssetListVCTest.m in Sources */,
 				3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */,
+				3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */,
+				3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
