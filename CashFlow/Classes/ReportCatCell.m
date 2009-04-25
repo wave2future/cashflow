@@ -27,19 +27,19 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    graphView = [[[UILabel alloc] initWithFrame:CGRectMake(160, 2, 130,20)] autorelease];
+    graphView = [[[UILabel alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
     graphView.backgroundColor = [UIColor greenColor];
     graphView.opaque = YES;
     [self.contentView addSubview:graphView];
 
-    nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 160, 44)] autorelease];
-    nameLabel.font = [UIFont systemFontOfSize: 18.0];
+    nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, 44)] autorelease];
+    nameLabel.font = [UIFont systemFontOfSize: 14.0];
     nameLabel.textColor = [UIColor blackColor];
     nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentView addSubview:nameLabel];
 
-    valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(160, 23, 130, 20)] autorelease];
-    valueLabel.font = [UIFont systemFontOfSize: 12.0];
+    valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, 23, 130, 20)] autorelease];
+    valueLabel.font = [UIFont systemFontOfSize: 13.0];
     //valueLabel.textAlignment = UITextAlignmentRight;
     valueLabel.textAlignment = UITextAlignmentLeft;
     valueLabel.textColor = [UIColor blackColor];
@@ -79,20 +79,27 @@
 - (void)setMaxAbsValue:(double)mav
 {
     maxAbsValue = mav;
+    if (maxAbsValue < 0.0000001) {
+        maxAbsValue = 0.0000001; // for safety
+    }
     [self updateGraph];
 }
 
 - (void)updateGraph
 {
-    double ratio = value / maxAbsValue;
-    if (ratio > 0) {
-        graphView.backgroundColor = [UIColor redColor];
+    double ratio;
+    ratio = value / maxAbsValue;
+    if (ratio > 1.0) ratio = 1.0;
+
+    if (ratio > 0.0) {
+        graphView.backgroundColor = [UIColor blueColor];
     } else {
-        graphView.backgroundColor = [UIColor blueColor];        
+        graphView.backgroundColor = [UIColor redColor];        
         ratio = -ratio;
     }
+    int width = 200.0 * ratio + 6;
 
-    graphView.frame = CGRectMake(160, 2, 130.0 * ratio, 20);
+    graphView.frame = CGRectMake(100, 2, width, 20);
 }
 
 @end

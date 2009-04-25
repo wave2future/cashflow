@@ -9,6 +9,7 @@
 @interface CatReportViewController : UITableViewController
 {
     Report *report;
+    double maxAbsValue;
 }
 
 @property(nonatomic,retain) Report *report;

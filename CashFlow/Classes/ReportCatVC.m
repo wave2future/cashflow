@@ -35,6 +35,7 @@
 #import "AppDelegate.h"
 #import "DataModel.h"
 #import "ReportCatVC.h"
+#import "ReportCatCell.h"
 
 @implementation CatReportViewController
 
@@ -65,6 +66,32 @@
     [super dealloc];
 }
 
+- (void)setReport:(Report *)rep
+{
+    if (report != rep) {
+        [report release];
+        report = [rep retain];
+    }
+
+    // 合計値を計算
+    maxAbsValue = 0.0;
+    for (CatReport *cr in report.catReports) {
+#if 0
+        if (cr.value > maxAbsValue) {
+            maxAbsValue = cr.value;
+        }
+        else if (-cr.value > -maxAbsValue) {
+            maxAbsValue = -cr.value;
+        }
+#endif
+        if (cr.value >= 0.0) {
+            maxAbsValue += cr.value;
+        } else {
+            maxAbsValue -= cr.value;
+        }
+    }
+}
+
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -77,46 +104,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellid = @"catReportCell";
-
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-    UILabel *nameLabel, *valueLabel;
-
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 44)] autorelease];
-        nameLabel.tag = 1;
-        nameLabel.font = [UIFont systemFontOfSize: 18.0];
-        nameLabel.textColor = [UIColor blackColor];
-        nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:nameLabel];
-
-        valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 0, 130, 44)] autorelease];
-        valueLabel.tag = 2;
-        valueLabel.font = [UIFont systemFontOfSize: 18.0];
-        valueLabel.textAlignment = UITextAlignmentRight;
-        valueLabel.textColor = [UIColor blackColor];
-        valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:valueLabel];
-    } else {
-        nameLabel = (UILabel *)[cell.contentView viewWithTag:1];
-        valueLabel = (UILabel *)[cell.contentView viewWithTag:2];
-    }
+    ReportCatCell *cell = [ReportCatCell reportCatCell:tv];
 
     CatReport *cr = [report.catReports objectAtIndex:indexPath.row];
     if (cr.catkey >= 0) {
-        nameLabel.text = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
+        cell.name = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
     } else {
-        nameLabel.text = NSLocalizedString(@"No category", @"");
+        cell.name = NSLocalizedString(@"No category", @"");
     }
-    valueLabel.text = [DataModel currencyString:cr.value];
-    if (cr.value >= 0) {
-        valueLabel.textColor = [UIColor blueColor];
-    } else {
-        valueLabel.textColor = [UIColor redColor];
-    }
+
+    cell.value = cr.value;
+    cell.maxAbsValue = maxAbsValue;
+
     return cell;
 }
 
