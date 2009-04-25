@@ -46,6 +46,8 @@
 		3E5B83AB0EC359590035AF05 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
 		3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
 		3E6B2EBF0F12259C0008AFB6 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
+		3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
+		3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E8B257A0F348C090007929E /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
@@ -209,6 +211,8 @@
 		3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTextVC.h; sourceTree = "<group>"; };
 		3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTextVC.m; sourceTree = "<group>"; };
 		3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportView.xib; sourceTree = "<group>"; };
+		3E6B35E80FA2A84E00FCF592 /* ReportCatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatCell.h; sourceTree = "<group>"; };
+		3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -325,6 +329,8 @@
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
 				3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */,
 				3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */,
+				3E6B35E80FA2A84E00FCF592 /* ReportCatCell.h */,
+				3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */,
 				3EDDADBC0E89280800268AED /* InfoVC.h */,
 				3EDDADBD0E89280800268AED /* InfoVC.m */,
 				3EDDAE7C0E8E468700268AED /* ExportVC.h */,
@@ -657,6 +663,7 @@
 				3E1AE0B60F97416F00AAB4AC /* Journal.m in Sources */,
 				3E1AE0B70F97416F00AAB4AC /* Ledger.m in Sources */,
 				3EAEBC5D0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
+				3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +707,7 @@
 				3E1AE0B90F97416F00AAB4AC /* Journal.m in Sources */,
 				3E1AE0BA0F97416F00AAB4AC /* Ledger.m in Sources */,
 				3EAEBC5E0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
+				3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,7 +919,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D0A7D7DC-02C5-486D-8AD3-6184C64CC338";
-				SDKROOT = iphoneos2.1;
+				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
 		};
