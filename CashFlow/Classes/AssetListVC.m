@@ -44,23 +44,11 @@
 #import "BackupServer.h"
 #import "Pin.h"
 
-#import "AdMobView.h"
+#import "AdCell.h"
 
 @implementation AssetListViewController
 
 @synthesize tableView;
-
-// AdMob
-- (NSString*)publisherId
-{
-    return @"a14a8b599ca8e92";
-}
-
-#if 0
-- (BOOL)useTestAd {
-    return YES;
-}
-#endif
 
 - (void)viewDidLoad
 {
@@ -101,6 +89,7 @@
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 	
     // load user defaults
+#ifndef FREE_VERSION
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
@@ -112,7 +101,8 @@
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
     }
-
+#endif
+    
 #ifndef FREE_VERSION
     PinController *pinController = [[[PinController alloc] init] autorelease];
     [pinController firstPinCheck:self];
@@ -126,7 +116,6 @@
 - (void)dealloc {
     [tableView release];
     [iconArray release];
-    [adMobView release];
     [super dealloc];
 }
 
@@ -174,9 +163,18 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *cellid = @"assetCell";
+    UITableViewCell *cell;
 
-    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:cellid];
+#ifdef FREE_VERSION
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        // ad
+        cell = [AdCell adCell:tableView];
+        return cell;
+    }
+#endif
+
+    NSString *cellid = @"assetCell";
+    cell = [tv dequeueReusableCellWithIdentifier:cellid];
 
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
@@ -211,14 +209,7 @@
             cell.accessoryType = UITableViewCellAccessoryNone;
             cell.image = nil;
         }
-#ifdef FREE_VERSION
-        else {
-            // admob
-            [cell.contentView addSubview:[AdMobView requestAdWithDelegate:self]];
-            return cell;
-        }
     }
-#endif
     
     cell.text = [NSString stringWithFormat:@"%@ : %@", label,
                           [DataModel currencyString:value]];

@@ -140,6 +140,8 @@
 		3EB5552F103B930E00BA13D4 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
 		3EB55575103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
 		3EB55576103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
+		3EB555F0103C1AE800BA13D4 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB555EF103C1AE800BA13D4 /* AdCell.m */; };
+		3EB555F1103C1AE800BA13D4 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB555EF103C1AE800BA13D4 /* AdCell.m */; };
 		3EB8EA500F1F7919000A8276 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
@@ -261,6 +263,8 @@
 		3EB554B3103B92D700BA13D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		3EB5552D103B930D00BA13D4 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
 		3EB55574103B96CE00BA13D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3EB555EE103C1AE800BA13D4 /* AdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCell.h; sourceTree = "<group>"; };
+		3EB555EF103C1AE800BA13D4 /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
 		3EB8EA4F0F1F7919000A8276 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
@@ -336,6 +340,8 @@
 				3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */,
 				3EA0114C0EC3461A008CEEB7 /* AssetVC.h */,
 				3EA0114D0EC34626008CEEB7 /* AssetVC.m */,
+				3EB555EE103C1AE800BA13D4 /* AdCell.h */,
+				3EB555EF103C1AE800BA13D4 /* AdCell.m */,
 				28C286DF0D94DF7D0034E888 /* TransactionListVC.h */,
 				3E0A9E390EC33894005195A5 /* TransactionListVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
@@ -713,6 +719,7 @@
 				3EAEBC5D0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365D0FA2DD8700FCF592 /* ReportCell.m in Sources */,
+				3EB555F0103C1AE800BA13D4 /* AdCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -758,6 +765,7 @@
 				3EAEBC5E0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */,
+				3EB555F1103C1AE800BA13D4 /* AdCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
