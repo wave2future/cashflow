@@ -44,9 +44,23 @@
 #import "BackupServer.h"
 #import "Pin.h"
 
+#import "AdMobView.h"
+
 @implementation AssetListViewController
 
 @synthesize tableView;
+
+// AdMob
+- (NSString*)publisherId
+{
+    return @"a14a8b599ca8e92";
+}
+
+#if 0
+- (BOOL)useTestAd {
+    return YES;
+}
+#endif
 
 - (void)viewDidLoad
 {
@@ -112,6 +126,7 @@
 - (void)dealloc {
     [tableView release];
     [iconArray release];
+    [adMobView release];
     [super dealloc];
 }
 
@@ -148,7 +163,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
-        return 1;
+#ifdef FREE_VERSION
+        return 2; // total + admob
+#else
+        return 1; // total
+#endif
     }
     return [ledger assetCount];
 }
@@ -179,18 +198,27 @@
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         cell.image = [iconArray objectAtIndex:asset.type];
     }
-    else {
-        // 合計欄
-        value = 0.0;
-        int i;
-        for (i = 0; i < [ledger assetCount]; i++) {
-            value += [[ledger assetAtIndex:i] lastBalance];
-        }
-        label = [NSString stringWithFormat:@"            %@", NSLocalizedString(@"Total", @"")];
+    else if (indexPath.section == 1) {
+        if (indexPath.row == 0) {
+            // 合計欄
+            value = 0.0;
+            int i;
+            for (i = 0; i < [ledger assetCount]; i++) {
+                value += [[ledger assetAtIndex:i] lastBalance];
+            }
+            label = [NSString stringWithFormat:@"            %@", NSLocalizedString(@"Total", @"")];
 
-        cell.accessoryType = UITableViewCellAccessoryNone;
-        cell.image = nil;
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.image = nil;
+        }
+#ifdef FREE_VERSION
+        else {
+            // admob
+            [cell.contentView addSubview:[AdMobView requestAdWithDelegate:self]];
+            return cell;
+        }
     }
+#endif
     
     cell.text = [NSString stringWithFormat:@"%@ : %@", label,
                           [DataModel currencyString:value]];

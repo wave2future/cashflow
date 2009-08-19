@@ -38,8 +38,11 @@
 #import "TransactionListVC.h"
 #import "BackupServer.h"
 
+#import "AdMobDelegateProtocol.h"
+#import "AdMobView.h"
+
 @interface AssetListViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
+<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate, AdMobDelegate>
 {
     IBOutlet UITableView *tableView;
 
@@ -53,6 +56,8 @@
     UIActionSheet *asDelete;
 
     Asset *assetToBeDelete;
+    
+    AdMobView *adMobView;
 }
 
 @property(nonatomic,retain) UITableView *tableView;
