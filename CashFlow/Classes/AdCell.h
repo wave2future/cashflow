@@ -8,9 +8,12 @@
 #import "AdMobDelegateProtocol.h"
 #import "AdMobView.h"
 
-@interface AdCell : UITableViewCell <AdMobDelegate> {
+@interface AdMobDelegate : NSObject <AdMobDelegate> {
+}
+@end
+
+@interface AdCell : UITableViewCell {
 }
 
 + (AdCell *)adCell:(UITableView *)tableView;
-
 @end

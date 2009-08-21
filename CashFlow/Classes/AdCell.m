@@ -3,15 +3,12 @@
 // AdCell.m
 //
 
+// Note:
+//   AdMob : size = 320x48
+//   TG ad : size = 320x60
+
 #import "AdCell.h"
-
 #import "TGAView.h" // TG ad
-
-@interface AdMobDelegate : NSObject <AdMobDelegate> {
-}
-
-+ (AdMobDelegate*)getInstance;
-@end
 
 @implementation AdMobDelegate
 
@@ -86,26 +83,6 @@
 
 - (void)dealloc {
     [super dealloc];
-}
-
-// AdMob
-- (NSString*)publisherId
-{
-    return @"a14a8b599ca8e92";
-}
-
-#if 0
-- (BOOL)useTestAd {
-    return YES;
-}
-#endif
-
-- (void)didReceiveAd:(AdMobView *)adView {
-    NSLog(@"AdMob:disReceiveAd");
-}
-
-- (void)didFailToReceiveAd:(AdMobView *)adView {
-    NSLog(@"AdMob:didFailToReceiveAd");
 }
 
 @end
