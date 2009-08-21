@@ -35,6 +35,10 @@
 		3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
 		3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
 		3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E2B2D81103EF8910014234E /* libTGAforiPhone-Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2D7E103EF8910014234E /* libTGAforiPhone-Debug.a */; };
+		3E2B2D82103EF8910014234E /* libTGAforiPhone-Release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2D7F103EF8910014234E /* libTGAforiPhone-Release.a */; };
+		3E2B2D83103EF8910014234E /* libTGAforiPhone-Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2D7E103EF8910014234E /* libTGAforiPhone-Debug.a */; };
+		3E2B2D84103EF8910014234E /* libTGAforiPhone-Release.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E2B2D7F103EF8910014234E /* libTGAforiPhone-Release.a */; };
 		3E2CBDA00F1615470025A682 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
 		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
@@ -202,6 +206,9 @@
 		3E2710420EAA196A00E57E51 /* ExportCsv.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportCsv.m; sourceTree = "<group>"; };
 		3E2710430EAA196A00E57E51 /* ExportOfx.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportOfx.h; sourceTree = "<group>"; };
 		3E2710440EAA196A00E57E51 /* ExportOfx.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportOfx.m; sourceTree = "<group>"; };
+		3E2B2D7E103EF8910014234E /* libTGAforiPhone-Debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libTGAforiPhone-Debug.a"; sourceTree = "<group>"; };
+		3E2B2D7F103EF8910014234E /* libTGAforiPhone-Release.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libTGAforiPhone-Release.a"; sourceTree = "<group>"; };
+		3E2B2D80103EF8910014234E /* TGAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TGAView.h; sourceTree = "<group>"; };
 		3E2CBDA10F1615580025A682 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E2CBDA20F16155D0025A682 /* ja */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E2CBDA30F16155F0025A682 /* de */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -308,6 +315,8 @@
 				3EB554B4103B92D700BA13D4 /* QuartzCore.framework in Frameworks */,
 				3EB5552E103B930D00BA13D4 /* AddressBook.framework in Frameworks */,
 				3EB55575103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */,
+				3E2B2D81103EF8910014234E /* libTGAforiPhone-Debug.a in Frameworks */,
+				3E2B2D82103EF8910014234E /* libTGAforiPhone-Release.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -325,6 +334,8 @@
 				3EB554B5103B92D700BA13D4 /* QuartzCore.framework in Frameworks */,
 				3EB5552F103B930E00BA13D4 /* AddressBook.framework in Frameworks */,
 				3EB55576103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */,
+				3E2B2D83103EF8910014234E /* libTGAforiPhone-Debug.a in Frameworks */,
+				3E2B2D84103EF8910014234E /* libTGAforiPhone-Release.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +413,7 @@
 				3E2CBD9B0F1614E90025A682 /* locale */,
 				3EB5406B0E8E907B00608B77 /* images */,
 				3EB55498103B922700BA13D4 /* AdMob */,
+				3E2B2D7D103EF8620014234E /* TGAd */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
@@ -457,6 +469,16 @@
 				3EB5552D103B930D00BA13D4 /* AddressBook.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E2B2D7D103EF8620014234E /* TGAd */ = {
+			isa = PBXGroup;
+			children = (
+				3E2B2D80103EF8910014234E /* TGAView.h */,
+				3E2B2D7E103EF8910014234E /* libTGAforiPhone-Debug.a */,
+				3E2B2D7F103EF8910014234E /* libTGAforiPhone-Release.a */,
+			);
+			path = TGAd;
 			sourceTree = "<group>";
 		};
 		3E2CBD9B0F1614E90025A682 /* locale */ = {
@@ -524,10 +546,10 @@
 		3EB55498103B922700BA13D4 /* AdMob */ = {
 			isa = PBXGroup;
 			children = (
-				3EB5549B103B926A00BA13D4 /* libAdMobDevice.a */,
-				3EB5549C103B926A00BA13D4 /* libAdMobSimulator.a */,
 				3EB55499103B925300BA13D4 /* AdMobDelegateProtocol.h */,
 				3EB5549A103B925300BA13D4 /* AdMobView.h */,
+				3EB5549B103B926A00BA13D4 /* libAdMobDevice.a */,
+				3EB5549C103B926A00BA13D4 /* libAdMobSimulator.a */,
 			);
 			path = AdMob;
 			sourceTree = "<group>";
@@ -806,6 +828,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
@@ -825,6 +848,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
@@ -861,6 +885,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1F4F20-F073-48BF-8301-82D85D64466D";
@@ -899,6 +924,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
@@ -926,9 +952,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02DF9A92-7B14-4E65-9052-418797E4BC2B";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
@@ -946,6 +973,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
@@ -966,6 +994,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1F4F20-F073-48BF-8301-82D85D64466D";
@@ -987,6 +1016,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
+					"\"$(SRCROOT)/TGAd\"",
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;

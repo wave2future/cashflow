@@ -53,6 +53,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    tableView.rowHeight = 48;
 
     ledger = [DataModel ledger];
 	

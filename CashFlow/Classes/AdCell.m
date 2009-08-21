@@ -5,6 +5,8 @@
 
 #import "AdCell.h"
 
+#import "TGAView.h" // TG ad
+
 @implementation AdCell
 
 + (AdCell *)adCell:(UITableView *)tableView
@@ -22,7 +24,22 @@
 {
     self = [super initWithFrame:frame reuseIdentifier:identifier];
 
-    [self.contentView addSubview:[AdMobView requestAdWithDelegate:self]];
+#if 0
+    // AdMob
+    AdMobView *admob = [AdMobView requestAdWithDelegate:self];
+    [self.contentView addSubview:admob];
+
+#else
+    // TG ad
+    static TGAView *tgad = nil;
+    if (tgad == nil) {
+        tgad = [TGAView requestWithKey:@"5AeoNWm3LatP" Position:0];
+        [tgad retain];
+    }
+    [self.contentView addSubview:tgad];
+    [tgad release];
+#endif
+    
     return self;
 }
 
@@ -36,8 +53,18 @@
     return @"a14a8b599ca8e92";
 }
 
+#if 0
 - (BOOL)useTestAd {
-    return NO;
+    return YES;
+}
+#endif
+
+- (void)didReceiveAd:(AdMobView *)adView {
+    NSLog(@"AdMob:disReceiveAd");
+}
+
+- (void)didFailToReceiveAd:(AdMobView *)adView {
+    NSLog(@"AdMob:didFailToReceiveAd");
 }
 
 @end
