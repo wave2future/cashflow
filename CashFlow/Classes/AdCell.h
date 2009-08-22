@@ -8,6 +8,8 @@
 #import "AdMobDelegateProtocol.h"
 #import "AdMobView.h"
 
+#import "TGAView.h"
+
 @interface AdMobDelegate : NSObject <AdMobDelegate> {
 }
 @end
@@ -16,4 +18,6 @@
 }
 
 + (AdCell *)adCell:(UITableView *)tableView;
++ (CGFloat)adCellHeight;
++ (BOOL)_isJaAd;
 @end

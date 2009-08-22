@@ -58,6 +58,9 @@
 
 @property(nonatomic,retain) UITableView *tableView;
 
+- (int)_assetIndex:(NSIndexPath*)indexPath;
+- (BOOL)_isAdCell:(NSIndexPath*)indexPath;
+
 - (void)addAsset;
 
 - (void)_actionDelete:(NSInteger)buttonIndex;

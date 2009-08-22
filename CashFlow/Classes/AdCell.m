@@ -8,7 +8,6 @@
 //   TG ad : size = 320x60
 
 #import "AdCell.h"
-#import "TGAView.h" // TG ad
 
 @implementation AdMobDelegate
 
@@ -26,14 +25,13 @@
     return @"a14a8b599ca8e92";
 }
 
-#if 1
 - (BOOL)useTestAd {
-    return YES;
+    return NO;
+    //return YES;
 }
-#endif
 
 - (void)didReceiveAd:(AdMobView *)adView {
-    NSLog(@"AdMob:disReceiveAd");
+    NSLog(@"AdMob:didReceiveAd");
 }
 
 - (void)didFailToReceiveAd:(AdMobView *)adView {
@@ -42,7 +40,37 @@
 
 @end
 
+/////////////////////////////////////////////////////////////////////
+// AdCell
+
 @implementation AdCell
+
++ (BOOL)_isJaAd
+{
+    return NO;
+    
+    static NSString *plang = nil;
+    static BOOL isJa = YES;
+
+    if (plang == nil) {
+        plang = [[NSLocale preferredLanguages] objectAtIndex:0];
+        if ([plang isEqualToString:@"ja"]) {
+            isJa = YES;
+        } else {
+            isJa = NO;
+        }
+    }
+
+    return isJa;
+}
+
++ (CGFloat)adCellHeight
+{
+    if ([AdCell _isJaAd]) {
+        return 60; // TG ad
+    }
+    return 48; // admob
+}
 
 + (AdCell *)adCell:(UITableView *)tableView
 {
@@ -59,10 +87,7 @@
 {
     self = [super initWithFrame:frame reuseIdentifier:identifier];
 
-    NSString *plang = [[NSLocale preferredLanguages] objectAtIndex:0];
-    //NSLog(@"Prefered Language: %@", plang);
-
-    if ([plang isEqualToString:@"ja"]) {
+    if ([AdCell _isJaAd]) {
         // TG ad
         static TGAView *tgad = nil;
         if (tgad == nil) {
@@ -70,7 +95,6 @@
             [tgad retain];
         }
         [self.contentView addSubview:tgad];
-        [tgad release];
     } else {
         // AdMob
         AdMobDelegate *amd = [AdMobDelegate getInstance];

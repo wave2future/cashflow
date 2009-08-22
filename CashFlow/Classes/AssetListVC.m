@@ -89,8 +89,8 @@
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 	
-    // load user defaults
 #ifndef FREE_VERSION
+    // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
@@ -104,10 +104,10 @@
     }
 #endif
     
-#ifndef FREE_VERSION
+//#ifndef FREE_VERSION
     PinController *pinController = [[[PinController alloc] init] autorelease];
     [pinController firstPinCheck:self];
-#endif
+//#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -152,27 +152,56 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 1) {
+    switch (section) {
+        case 0:
+            return [ledger assetCount];
+
+        case 1:
 #ifdef FREE_VERSION
-        return 2; // total + admob
+            return 2;
 #else
-        return 1; // total
+            return 1;
 #endif
     }
-    return [ledger assetCount];
+    // NOT REACH HERE
+    return 0;
+}
+
+- (int)_assetIndex:(NSIndexPath*)indexPath
+{
+    if (indexPath.section == 0) {
+        return indexPath.row;
+    }
+    return -1;
+}
+
+- (BOOL)_isAdCell:(NSIndexPath*)indexPath
+{
+#ifdef FREE_VERSION
+    if (indexPath.section == 1 && indexPath.row == 1) {
+        return YES;
+    }
+#endif
+    return NO;
+}
+
+- (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self _isAdCell:indexPath]) {
+        return [AdCell adCellHeight];
+    }
+    return tv.rowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
 
-#ifdef FREE_VERSION
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        // ad
+    // Ad
+    if ([self _isAdCell:indexPath]) {
         cell = [AdCell adCell:tableView];
         return cell;
     }
-#endif
 
     NSString *cellid = @"assetCell";
     cell = [tv dequeueReusableCellWithIdentifier:cellid];
@@ -189,7 +218,7 @@
     NSString *label;
 
     if (indexPath.section == 0) {
-        Asset *asset = [ledger assetAtIndex:indexPath.row];
+        Asset *asset = [ledger assetAtIndex:[self _assetIndex:indexPath]];
     
         label = asset.name;
         value = [asset lastBalance];
@@ -229,13 +258,15 @@
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
-    if (indexPath.section != 0) return;
-    
+
+    int assetIndex = [self _assetIndex:indexPath];
+    if (assetIndex < 0) return;
+
     // save preference
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:indexPath.row forKey:@"firstShowAssetIndex"];
+    [defaults setInteger:assetIndex forKey:@"firstShowAssetIndex"];
 	
-    Asset *asset = [ledger assetAtIndex:indexPath.row];
+    Asset *asset = [ledger assetAtIndex:assetIndex];
 
     // TransactionListView を表示
     TransactionListViewController *vc = 
@@ -249,8 +280,11 @@
 - (void)tableView:(UITableView *)tv accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
     AssetViewController *vc = [[[AssetViewController alloc] init] autorelease];
-    [vc setAssetIndex:indexPath.row];
-    [self.navigationController pushViewController:vc animated:YES];
+    int assetIndex = [self _assetIndex:indexPath];
+    if (assetIndex >= 0) {
+        [vc setAssetIndex:indexPath.row];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 // 新規アセット追加
@@ -278,7 +312,7 @@
 
 - (BOOL)tableView:(UITableView*)tv canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section != 0)
+    if ([self _assetIndex:indexPath] < 0)
         return NO;
     return YES;
 }
@@ -286,7 +320,7 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section != 0) {
+    if ([self _assetIndex:indexPath] < 0) {
         return UITableViewCellEditingStyleNone;
     }
     return UITableViewCellEditingStyleDelete;
@@ -296,7 +330,8 @@
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
     if (style == UITableViewCellEditingStyleDelete) {
-        assetToBeDelete = [ledger assetAtIndex:indexPath.row];
+        int assetIndex = [self _assetIndex:indexPath];
+        assetToBeDelete = [ledger assetAtIndex:assetIndex];
 
         asDelete =
             [[UIActionSheet alloc]
@@ -324,15 +359,19 @@
 // 並べ替え処理
 - (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section != 0)
+    if ([self _assetIndex:indexPath] < 0) {
         return NO;
+    }
     return YES;
 }
 
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
-    if (from.section != 0 || to.section != 0) return;
-    [[DataModel ledger] reorderAsset:from.row to:to.row];
+    int fromIndex = [self _assetIndex:from];
+    int toIndex = [self _assetIndex:to];
+    if (fromIndex < 0 || toIndex < 0) return;
+
+    [[DataModel ledger] reorderAsset:fromIndex to:toIndex];
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -381,9 +420,9 @@
             destructiveButtonTitle:nil
             otherButtonTitles:NSLocalizedString(@"Edit Categories", @""),
             NSLocalizedString(@"Backup", @""),
-#ifndef FREE_VERSION
+//#ifndef FREE_VERSION
             NSLocalizedString(@"Set PIN Code", @""),
-#endif
+//#endif
             nil];
     [asConfig showInView:[self view]];
     [asConfig release];
@@ -392,9 +431,7 @@
 - (void)_actionConfig:(NSInteger)buttonIndex
 {
     CategoryListViewController *categoryVC;
-#ifndef FREE_VERSION
     PinController *pinController;
-#endif
 
     switch (buttonIndex) {
     case 0:
@@ -407,12 +444,10 @@
         [self doBackup];
         break;
 
-#ifndef FREE_VERSION
     case 2:
         pinController = [[[PinController alloc] init] autorelease];
         [pinController modifyPin:self];
         break;
-#endif
     }
 }
 
