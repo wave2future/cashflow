@@ -817,7 +817,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -831,7 +831,7 @@
 					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
@@ -840,7 +840,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
@@ -851,7 +851,7 @@
 					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
@@ -877,7 +877,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
@@ -888,7 +888,7 @@
 					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1F4F20-F073-48BF-8301-82D85D64466D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -916,7 +916,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
@@ -928,7 +928,7 @@
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7489E81F-18C8-4533-81BB-F264EAF876F0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";
@@ -937,7 +937,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -955,7 +955,7 @@
 					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "02DF9A92-7B14-4E65-9052-418797E4BC2B";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Debug;
@@ -964,7 +964,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
@@ -976,7 +976,7 @@
 					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "2CA744B8-A724-4DB2-9649-5483907F303F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Release;
@@ -985,7 +985,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
@@ -997,7 +997,7 @@
 					"\"$(SRCROOT)/TGAd\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "DA1F4F20-F073-48BF-8301-82D85D64466D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = Distribution;
@@ -1007,7 +1007,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Takuya Murakami";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				COPY_PHASE_STRIP = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
@@ -1020,7 +1020,7 @@
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7489E81F-18C8-4533-81BB-F264EAF876F0";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos2.0;
 			};
 			name = "Ad hoc distribution";

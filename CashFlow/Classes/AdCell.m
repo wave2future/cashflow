@@ -22,7 +22,7 @@
 
 - (NSString*)publisherId
 {
-    return @"a14a8b599ca8e92";
+    return ADMOB_ID;
 }
 
 - (BOOL)useTestAd {
@@ -91,7 +91,7 @@
         // TG ad
         static TGAView *tgad = nil;
         if (tgad == nil) {
-            tgad = [TGAView requestWithKey:@"5AeoNWm3LatP" Position:0];
+            tgad = [TGAView requestWithKey:TGAD_ID Position:0];
             [tgad retain];
         }
         [self.contentView addSubview:tgad];

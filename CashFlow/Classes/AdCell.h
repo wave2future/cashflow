@@ -10,6 +10,9 @@
 
 #import "TGAView.h"
 
+#define ADMOB_ID @"a14a8b599ca8e92"
+#define TGAD_ID @"5AeoNWm3LatP"
+
 @interface AdMobDelegate : NSObject <AdMobDelegate> {
 }
 @end
