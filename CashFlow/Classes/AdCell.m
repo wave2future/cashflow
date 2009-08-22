@@ -47,7 +47,7 @@
 
 + (BOOL)_isJaAd
 {
-    return NO;
+    // return NO; // force debug admob
     
     static NSString *plang = nil;
     static BOOL isJa = YES;
