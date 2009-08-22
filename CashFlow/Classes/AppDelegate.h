@@ -54,5 +54,8 @@ void AssertFailed(const char *filename, int lineno);
 #define ASSERT(x) /**/
 #endif
 
+// AdMob
+- (void)reportAppOpenToAdMob;
+
 @end
 
