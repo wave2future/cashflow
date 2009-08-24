@@ -180,7 +180,7 @@ static int compareCatReport(id x, id y, void *context)
         // カテゴリ毎の集計
         int i;
         r.catReports = [[NSMutableArray alloc] init];
-        double remain = r.totalIncome - r.totalOutgo;
+        double remain = r.totalIncome + r.totalOutgo;
 
         init_filter(&filter);
         filter.asset = assetKey;

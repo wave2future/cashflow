@@ -28,7 +28,7 @@
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    graphView = [[[UILabel alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
+    graphView = [[[UIView alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
     graphView.backgroundColor = [UIColor greenColor];
     graphView.opaque = YES;
     [self.contentView addSubview:graphView];

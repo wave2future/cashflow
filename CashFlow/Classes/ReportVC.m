@@ -34,6 +34,7 @@
 
 #import "ReportVC.h"
 #import "ReportCatVC.h"
+#import "ReportCell.h"
 
 @implementation ReportViewController
 
@@ -81,6 +82,12 @@
         [dateFormatter setDateFormat:@"yyyy/MM"];
         break;
     }
+
+    maxAbsValue = 1;
+    for (Report *rep in reports.reports) {
+        if (rep.totalIncome > maxAbsValue) maxAbsValue = rep.totalIncome;
+        if (-rep.totalOutgo > maxAbsValue) maxAbsValue = -rep.totalOutgo;
+    }
 }
 
 #pragma mark TableViewDataSource
@@ -104,60 +111,12 @@
     int count = [reports.reports count];
     Report *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
 	
-    UITableViewCell *cell = [self reportCell:report];
-    return cell;
-}
-
-- (UITableViewCell *)reportCell:(Report*)report
-{
-    NSString *cellid = @"reportCell";
-
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-    UILabel *dateLabel, *incomeLabel, *outgoLabel;
-
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-        dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-        dateLabel.tag = 1;
-        dateLabel.font = [UIFont systemFontOfSize: 16.0];
-        dateLabel.textColor = [UIColor grayColor];
-        dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [cell.contentView addSubview:dateLabel];
-
-        incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(20, 20, 130, 40)] autorelease];
-        incomeLabel.tag = 2;
-        incomeLabel.font = [UIFont systemFontOfSize: 16.0];
-        incomeLabel.textAlignment = UITextAlignmentLeft;
-        incomeLabel.textColor = [UIColor blueColor];
-        incomeLabel.lineBreakMode = UILineBreakModeWordWrap;
-        incomeLabel.numberOfLines = 2;
-        incomeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [cell.contentView addSubview:incomeLabel];
-
-        outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(180, 20, 130, 40)] autorelease];
-        outgoLabel.tag = 3;
-        outgoLabel.font = [UIFont systemFontOfSize: 16.0];
-        outgoLabel.textAlignment = UITextAlignmentRight;
-        outgoLabel.textColor = [UIColor redColor];
-        outgoLabel.lineBreakMode = UILineBreakModeWordWrap;
-        outgoLabel.numberOfLines = 2;
-        outgoLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        [cell.contentView addSubview:outgoLabel];
-    } else {
-        dateLabel = (UILabel *)[cell.contentView viewWithTag:1];
-        incomeLabel = (UILabel *)[cell.contentView viewWithTag:2];
-        outgoLabel = (UILabel *)[cell.contentView viewWithTag:3];
-    }
-
-    dateLabel.text = [dateFormatter stringFromDate:report.date];
-
-    incomeLabel.text = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Income", @""), 
-                                 [DataModel currencyString:report.totalIncome]];
-    outgoLabel.text = [NSString stringWithFormat:@"%@\n%@", NSLocalizedString(@"Outgo", @""), 
-                                [DataModel currencyString:report.totalOutgo]];
+    //UITableViewCell *cell = [self reportCell:report];
+    ReportCell *cell = [ReportCell reportCell:tv];
+    cell.name = [dateFormatter stringFromDate:report.date];
+    cell.income = report.totalIncome;
+    cell.outgo = report.totalOutgo;
+    cell.maxAbsValue = maxAbsValue;
 
     return cell;
 }
