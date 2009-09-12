@@ -22,5 +22,6 @@
 
 + (AdCell *)adCell:(UITableView *)tableView;
 + (CGFloat)adCellHeight;
++ (UIView *)adView;
 + (BOOL)_isJaAd;
 @end

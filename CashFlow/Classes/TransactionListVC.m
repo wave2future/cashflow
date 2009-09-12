@@ -39,6 +39,7 @@
 #import "InfoVC.h"
 #import "EditValueVC.h"
 #import "ReportVC.h"
+#import "AdCell.h"
 
 @implementation TransactionListViewController
 
@@ -137,13 +138,35 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [asset entryCount] + 1;
+    int n = [asset entryCount] + 1;
+#if FREE_VERSION
+    n++;
+#endif
+    return n;
+}
+
+- (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+#if FREE_VERSION
+    if (indexPath.row == 0) {
+        return [AdCell adCellHeight];
+    }
+#endif
+    return tableView.rowHeight;
 }
 
 // 指定セル位置に該当する entry Index を返す
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-    return [asset entryCount] - indexPath.row - 1;
+    int idx = [asset entryCount] - indexPath.row - 1;
+#if FREE_VERSION
+    if (indexPath.row == 0) {
+        idx = -2; // ad
+    } else {
+        idx++;
+    }
+#endif
+    return idx;
 }
 
 // 指定セル位置の Entry を返す
@@ -152,7 +175,7 @@
     int idx = [self entryIndexWithIndexPath:indexPath];
 
     if (idx < 0) {
-        return nil;  // initial balance
+        return nil;  // initial balance or ad
     } 
     AssetEntry *e = [asset entryAt:idx];
     return e;
@@ -173,7 +196,13 @@
     AssetEntry *e = [self entryWithIndexPath:indexPath];
     if (e) {
         cell = [self _entryCell:e];
-    } else {
+    }
+#if FREE_VERSION
+    else if (indexPath.row == 0) {
+        cell = [self _adCell];
+    }
+#endif
+    else {
         cell = [self initialBalanceCell];
     }
 
@@ -281,6 +310,11 @@
     return cell;
 }
 
+- (UITableViewCell *)_adCell
+{
+    return [AdCell adCell:tableView];
+}
+
 //
 // セルをクリックしたときの処理
 //
@@ -289,14 +323,14 @@
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
     int idx = [self entryIndexWithIndexPath:indexPath];
-    if (idx < 0) {
+    if (idx == -1) {
         // initial balance cell
         EditValueViewController *v = [[[EditValueViewController alloc] init] autorelease];
         v.delegate = self;
         v.value = asset.initialBalance;
 
         [self.navigationController pushViewController:v animated:YES];
-    } else {
+    } else if (idx >= 0) {
         // transaction view を表示
         [transactionView setTransactionIndex:idx];
         [self.navigationController pushViewController:transactionView animated:YES];

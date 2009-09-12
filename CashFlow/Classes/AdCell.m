@@ -47,7 +47,7 @@
 
 + (BOOL)_isJaAd
 {
-    // return NO; // force debug admob
+    return NO; // force debug admob
     
     static NSString *plang = nil;
     static BOOL isJa = YES;
@@ -72,6 +72,28 @@
     return 48; // admob
 }
 
++ (UIView *)adView
+{
+    static UIView *adView = nil;
+    
+    if (adView == nil) {
+        NSLog(@"adView start load");
+        if ([AdCell _isJaAd]) {
+            // TG ad
+            TGAView *tgad = [TGAView requestWithKey:TGAD_ID Position:0];
+            adView = tgad;
+        } else {
+            // AdMob
+            AdMobDelegate *amd = [AdMobDelegate getInstance];
+            AdMobView *admob = [AdMobView requestAdWithDelegate:amd];
+            adView = admob;
+        }
+        NSLog(@"adView load finish");
+        [adView retain];
+    }
+    return adView;
+}
+
 + (AdCell *)adCell:(UITableView *)tableView
 {
     NSString *identifier = @"AdCell";
@@ -86,21 +108,12 @@
 - (UITableViewCell *)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)identifier
 {
     self = [super initWithFrame:frame reuseIdentifier:identifier];
+    self.text = @"Advertisement Space...";
+    self.textColor = [UIColor lightGrayColor];
+    self.textAlignment = UITextAlignmentCenter;
 
-    if ([AdCell _isJaAd]) {
-        // TG ad
-        static TGAView *tgad = nil;
-        if (tgad == nil) {
-            tgad = [TGAView requestWithKey:TGAD_ID Position:0];
-            [tgad retain];
-        }
-        [self.contentView addSubview:tgad];
-    } else {
-        // AdMob
-        AdMobDelegate *amd = [AdMobDelegate getInstance];
-        AdMobView *admob = [AdMobView requestAdWithDelegate:amd];
-        [self.contentView addSubview:admob];
-    }
+    UIView *adView = [AdCell adView];
+    [self.contentView addSubview:adView];
     
     return self;
 }
