@@ -41,6 +41,8 @@
 #import "ReportVC.h"
 #import "AdCell.h"
 
+#define AD_CELL_ROW 7
+
 @implementation TransactionListViewController
 
 @synthesize tableView;
@@ -140,7 +142,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int n = [asset entryCount] + 1;
 #if FREE_VERSION
-    n++;
+    if (n >= AD_CELL_ROW + 1) {
+        n++;
+    }
 #endif
     return n;
 }
@@ -148,7 +152,7 @@
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 #if FREE_VERSION
-    if (indexPath.row == 0) {
+    if (indexPath.row == AD_CELL_ROW) {
         return [AdCell adCellHeight];
     }
 #endif
@@ -158,11 +162,11 @@
 // 指定セル位置に該当する entry Index を返す
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-    int idx = [asset entryCount] - indexPath.row - 1;
+    int idx = ([asset entryCount] - 1) - indexPath.row;
 #if FREE_VERSION
-    if (indexPath.row == 0) {
+    if (indexPath.row == AD_CELL_ROW) {
         idx = -2; // ad
-    } else {
+    } else if (indexPath.row > AD_CELL_ROW) {
         idx++;
     }
 #endif
@@ -198,7 +202,7 @@
         cell = [self _entryCell:e];
     }
 #if FREE_VERSION
-    else if (indexPath.row == 0) {
+    else if (indexPath.row == AD_CELL_ROW) {
         cell = [self _adCell];
     }
 #endif
