@@ -35,8 +35,8 @@
 }
 
 - (BOOL)useTestAd {
-    return NO;
     //return YES;
+    return NO;
 }
 
 - (void)didReceiveAd:(AdMobView *)adView {
