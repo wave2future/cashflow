@@ -14,8 +14,13 @@
 #define TGAD_ID @"5AeoNWm3LatP"
 
 @interface AdMobDelegate : NSObject <AdMobDelegate> {
+    BOOL adReceived;
 }
+
+@property(nonatomic,assign) BOOL adReceived;
+
 @end
+
 
 @interface AdCell : UITableViewCell {
 }
@@ -24,4 +29,7 @@
 + (CGFloat)adCellHeight;
 + (UIView *)adView;
 + (BOOL)_isJaAd;
+
+- (void)checkRefresh;
+
 @end

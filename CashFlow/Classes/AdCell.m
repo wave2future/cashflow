@@ -11,6 +11,8 @@
 
 @implementation AdMobDelegate
 
+@synthesize adReceived;
+
 + (AdMobDelegate*)getInstance
 {
     static AdMobDelegate *theInstance = nil;
@@ -18,6 +20,13 @@
         theInstance = [[AdMobDelegate alloc] init];
     }
     return theInstance;
+}
+
+- (id)init
+{
+    self = [super init];
+    adReceived = YES; // ### ad hoc... avoid retry for first time.
+    return self;
 }
 
 - (NSString*)publisherId
@@ -32,10 +41,12 @@
 
 - (void)didReceiveAd:(AdMobView *)adView {
     NSLog(@"AdMob:didReceiveAd");
+    adReceived = YES;
 }
 
 - (void)didFailToReceiveAd:(AdMobView *)adView {
     NSLog(@"AdMob:didFailToReceiveAd");
+    adReceived = NO;
 }
 
 @end
@@ -47,7 +58,7 @@
 
 + (BOOL)_isJaAd
 {
-    //return NO; // force debug admob
+    return NO; // force debug admob
     
     static NSString *plang = nil;
     static BOOL isJa = YES;
@@ -101,7 +112,10 @@
     AdCell *cell = (AdCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[AdCell alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+    } else {
+        [cell checkRefresh];
     }
+
     return cell;
 }
 
@@ -113,6 +127,7 @@
     self.textAlignment = UITextAlignmentCenter;
 
     UIView *adView = [AdCell adView];
+    [self checkRefresh];
     [self.contentView addSubview:adView];
     
     return self;
@@ -120,6 +135,14 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (void)checkRefresh
+{
+    if (![AdCell _isJaAd] && ![AdMobDelegate getInstance].adReceived) {
+        AdMobView *admob = (AdMobView *)[AdCell adView];
+        [admob requestFreshAd];
+    }
 }
 
 @end
