@@ -74,11 +74,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#if FREE_VERSION
-    return 3;   // Free版は資産間移動なし
-#else
+//#if FREE_VERSION
+/    return 3;   // Free版は資産間移動なし
+//#else
     return 4;
-#endif
+//#endif
 }
 
 // 行の内容
