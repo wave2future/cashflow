@@ -41,8 +41,6 @@
 #import "ReportVC.h"
 #import "AdCell.h"
 
-#define AD_CELL_ROW 7
-
 @implementation TransactionListViewController
 
 @synthesize tableView;
@@ -142,17 +140,27 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int n = [asset entryCount] + 1;
 #if FREE_VERSION
-    if (n >= AD_CELL_ROW + 1) {
-        n++;
-    }
+    n++;
 #endif
     return n;
+}
+
+- (int)_adCellRow
+{
+#define _AD_CELL_ROW 7
+    int nentry = [asset entryCount];
+
+    int r = _AD_CELL_ROW;
+    if (r > nentry) {
+        r = nentry;  // 全エントリの下（初期残高の上）
+    }
+    return r;
 }
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 #if FREE_VERSION
-    if (indexPath.row == AD_CELL_ROW) {
+    if (indexPath.row == [self _adCellRow]) {
         return [AdCell adCellHeight];
     }
 #endif
@@ -164,9 +172,10 @@
 {
     int idx = ([asset entryCount] - 1) - indexPath.row;
 #if FREE_VERSION
-    if (indexPath.row == AD_CELL_ROW) {
+    int ar = [self _adCellRow];
+    if (indexPath.row == ar) {
         idx = -2; // ad
-    } else if (indexPath.row > AD_CELL_ROW) {
+    } else if (indexPath.row > ar) {
         idx++;
     }
 #endif
@@ -202,7 +211,7 @@
         cell = [self _entryCell:e];
     }
 #if FREE_VERSION
-    else if (indexPath.row == AD_CELL_ROW) {
+    else if (indexPath.row == [self _adCellRow]) {
         cell = [self _adCell];
     }
 #endif
