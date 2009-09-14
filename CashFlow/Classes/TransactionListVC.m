@@ -145,8 +145,10 @@
     return n;
 }
 
+// 広告行の位置を返す
 - (int)_adCellRow
 {
+    //return 0;
 #define _AD_CELL_ROW 7
     int nentry = [asset entryCount];
 

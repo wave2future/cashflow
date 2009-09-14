@@ -1,6 +1,10 @@
+2009-09-14: Takuya Murakami
+	* トランザクション削除時に落ちる問題を修正（広告位置)
+	* ver 2.0.2
+	
 2009-09-13: Takuya Murakami
 	* 広告の表示箇所を変更
-	* ver 2.0.2
+	* ver 2.0.2 -> self reject
 	
 2009-08-22: Takuya Murakami
 	* Free version に広告 (AdMob, TG ad) を追加
