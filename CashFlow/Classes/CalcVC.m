@@ -97,17 +97,19 @@
 
 - (IBAction)onButtonPressed:(id)sender
 {
-    NSString *ch = nil;
     calcOperator op = OP_NONE;
     int len;
-	
+    int num;
+
     if (sender == button_Clear) {
         value = 0.0;
         state = ST_DISPLAY;
         storedOperator = OP_NONE;
+        [self updateLabel];
+        return;
     }
 
-    else if (sender == button_BS) {
+    if (sender == button_BS) {
         // バックスペース
         if (state == ST_INPUT && decimalPlace > 0) {
             decimalPlace--;
@@ -116,112 +118,124 @@
             value = (int)(value / 10);
         }
         [self updateLabel];
+        return;
     }
 
-    else if (sender == button_inv) {
+    if (sender == button_inv) {
         value = -value;
         [self updateLabel];
+        return;
     }
 
-    else if (sender == button_plus) op = OP_PLUS;
+    // 演算子入力
+    if (sender == button_plus) op = OP_PLUS;
     else if (sender == button_minus) op = OP_MINUS;
     else if (sender == button_multiply) op = OP_MULTIPLY;
     else if (sender == button_divide) op = OP_DIVIDE;
     else if (sender == button_equal) op = OP_EQUAL;
-		
-    else if (sender == button_0) ch = @"0";
-    else if (sender == button_1) ch = @"1";
-    else if (sender == button_2) ch = @"2";
-    else if (sender == button_3) ch = @"3";
-    else if (sender == button_4) ch = @"4";
-    else if (sender == button_5) ch = @"5";
-    else if (sender == button_6) ch = @"6";
-    else if (sender == button_7) ch = @"7";
-    else if (sender == button_8) ch = @"8";
-    else if (sender == button_9) ch = @"9";
-    else if (sender == button_Period) ch = @".";
 
-    // 演算子入力
     if (op != OP_NONE) {
-        if (state == ST_INPUT || op == OP_EQUAL) {
-            // 数値入力中に演算ボタンが押された場合、
-            // あるいは = が押された場合 (5x= など)
-            // メモリしてある式を計算する
-            switch (storedOperator) {
-            case OP_PLUS:
-                value = storedValue + value;
-                break;
-
-            case OP_MINUS:
-                value = storedValue - value;
-                break;
-
-            case OP_MULTIPLY:
-                value = storedValue * value;
-                break;
-
-            case OP_DIVIDE:
-                if (value == 0.0) {
-                    // divided by zero error
-                    value = 0.0;
-                } else {
-                    value = storedValue / value;
-                }
-                break;
-            }
-
-            // 表示中の値を記憶
-            storedValue = value;
-
-            // 表示状態に遷移
-            state = ST_DISPLAY;
-            [self updateLabel];
-        }
-        
-        // 表示中の場合は、operator を変えるだけ
-
-        if (op == OP_EQUAL) {
-            // '=' を押したら演算終了
-            storedOperator = OP_NONE;
-        } else {
-            storedOperator = op;
-        }
+        [self onInputOperator:op];
+        return;
     }
-    
+		
     // 数値入力
+    if (sender == button_0) num = 0;
+    else if (sender == button_1) num = 1;
+    else if (sender == button_2) num = 2;
+    else if (sender == button_3) num = 3;
+    else if (sender == button_4) num = 4;
+    else if (sender == button_5) num = 5;
+    else if (sender == button_6) num = 6;
+    else if (sender == button_7) num = 7;
+    else if (sender == button_8) num = 8;
+    else if (sender == button_9) num = 9;
+    else if (sender == button_Period) num = -1;
+    
     if (ch != nil) {
-        if (state == ST_DISPLAY) {
-            state = ST_INPUT; // 入力状態に遷移
+        [self onInputNumeric:num];
+    }
+}
 
-            storedValue = value;
+- (void)onInputOperator:(calcOperator)op
+{
+    if (state == ST_INPUT || op == OP_EQUAL) {
+        // 数値入力中に演算ボタンが押された場合、
+        // あるいは = が押された場合 (5x= など)
+        // メモリしてある式を計算する
+        switch (storedOperator) {
+        case OP_PLUS:
+            value = storedValue + value;
+            break;
 
-            value = 0; // 表示中の値をリセット
-            decimalPlace = 0;
-        }
+        case OP_MINUS:
+            value = storedValue - value;
+            break;
 
-        if ([ch isEqualToString:@"."]) { // 小数点
-            if (decimalPlace == 0) {
-                decimalPlace = 1;
-            }
-        }
-        else { // 数値
-            int n = [ch intValue];
-            if (decimalPlace == 0) {
-                value = value * 10 + n;
+        case OP_MULTIPLY:
+            value = storedValue * value;
+            break;
+
+        case OP_DIVIDE:
+            if (value == 0.0) {
+                // divided by zero error
+                value = 0.0;
             } else {
-                double v = (double)n;
-                for (int i = 0; i < decimalPlace; i++) {
-                    v /= 10.0;
-                }
-                value += v;
-
-                decimalPlace++;
+                value = storedValue / value;
             }
+            break;
         }
-         
+
+        // 表示中の値を記憶
+        storedValue = value;
+
+        // 表示状態に遷移
+        state = ST_DISPLAY;
         [self updateLabel];
     }
-	
+        
+    // 表示中の場合は、operator を変えるだけ
+
+    if (op == OP_EQUAL) {
+        // '=' を押したら演算終了
+        storedOperator = OP_NONE;
+    } else {
+        storedOperator = op;
+    }
+}
+
+- (void)onInputNumeric:(int)num
+{
+    if (state == ST_DISPLAY) {
+        state = ST_INPUT; // 入力状態に遷移
+
+        storedValue = value;
+
+        value = 0; // 表示中の値をリセット
+        decimalPlace = 0;
+    }
+
+    if (num == -1) { // 小数点
+        if (decimalPlace == 0) {
+            decimalPlace = 1;
+        }
+    }
+    else { // 数値
+        if (decimalPlace == 0) {
+            // 整数入力
+            value = value * 10 + num;
+        } else {
+            // 小数入力
+            double v = (double)num;
+            for (int i = 0; i < decimalPlace; i++) {
+                v /= 10.0;
+            }
+            value += v;
+
+            decimalPlace++;
+        }
+    }
+         
     [self updateLabel];
 }
 
