@@ -95,7 +95,7 @@
     storedValue = 0.0;
 }
 
-- (IBAction)onNumButtonDown:(id)sender
+- (IBAction)onButtonDown:(id)sender
 {
     // play keyboard click sound
     AudioServicesPlaySystemSound(1105);
@@ -132,11 +132,11 @@
 
     // 演算子入力
     calcOperator op = OP_NONE;
-    if (sender == button_plus) op = OP_PLUS;
-    else if (sender == button_minus) op = OP_MINUS;
-    else if (sender == button_multiply) op = OP_MULTIPLY;
-    else if (sender == button_divide) op = OP_DIVIDE;
-    else if (sender == button_equal) op = OP_EQUAL;
+    if (sender == button_Plus) op = OP_PLUS;
+    else if (sender == button_Minus) op = OP_MINUS;
+    else if (sender == button_Multiply) op = OP_MULTIPLY;
+    else if (sender == button_Divide) op = OP_DIVIDE;
+    else if (sender == button_Equal) op = OP_EQUAL;
 
     if (op != OP_NONE) {
         [self onInputOperator:op];
@@ -144,7 +144,7 @@
     }
 		
     // 数値入力
-    int num;
+    int num = -99;
     if (sender == button_0) num = 0;
     else if (sender == button_1) num = 1;
     else if (sender == button_2) num = 2;
@@ -157,7 +157,7 @@
     else if (sender == button_9) num = 9;
     else if (sender == button_Period) num = -1;
     
-    if (ch != nil) {
+    if (num != -99) {
         [self onInputNumeric:num];
     }
 }
@@ -281,7 +281,7 @@
         [numstr setString:@"-"];
     } else {
         isMinus = NO;
-        [numstr empty];
+        [numstr setString:@""];
     }
 
     // 整数部
@@ -323,7 +323,7 @@
     NSRange range = [numstr rangeOfString:@"."];
     int i;
     if (range.location == NSNotFound) {
-        i = tmp.length;
+        i = numstr.length;
     } else {
         i = range.location;
     }

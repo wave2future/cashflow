@@ -41,11 +41,12 @@
 @class CalculatorViewController;
 
 @protocol CalculatorViewDelegate
-- (void)editValueViewChanged:(CalculatorViewController *)vc;
+- (void)calculatorViewChanged:(CalculatorViewController *)vc;
 @end
 
 typedef enum {
     OP_NONE = 0,
+    OP_EQUAL,
     OP_PLUS,
     OP_MINUS,
     OP_MULTIPLY,
@@ -101,7 +102,7 @@ typedef enum {
 - (void)updateLabel;
 - (void)allClear;
 - (void)onInputOperator:(calcOperator)op;
-- (void)onInputNumeric:(NSString *)ch;
+- (void)onInputNumeric:(int)num;
 - (void)roundInputValue;
 
 @end
