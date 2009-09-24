@@ -34,6 +34,7 @@
 
 
 #import <AudioToolbox/AudioToolbox.h>
+#import <math.h>
 
 #import "TransactionVC.h"
 #import "CalcVC.h"
@@ -111,13 +112,16 @@
 
     if (sender == button_BS) {
         // バックスペース
-        if (state == ST_INPUT && decimalPlace > 0) {
-            decimalPlace--;
-            [self roundInputValue]; // TBD
-        } else {
-            value = (int)(value / 10);
+        if (state == ST_INPUT) {
+            if (decimalPlace > 0) {
+                decimalPlace--;
+                [self roundInputValue]; // TBD
+            } else {
+                value = floor(value / 10);
+            }
+
+            [self updateLabel];
         }
-        [self updateLabel];
         return;
     }
 
@@ -226,10 +230,7 @@
             value = value * 10 + num;
         } else {
             // 小数入力
-            double v = (double)num;
-            for (int i = 0; i < decimalPlace; i++) {
-                v /= 10.0;
-            }
+            double v = (double)num * pow(10, -decimalPlace);
             value += v;
 
             decimalPlace++;
@@ -245,20 +246,18 @@
     BOOL isMinus = NO;
 
     v = value;
-    if (value < 0.0) {
+    if (v < 0.0) {
         isMinus = YES;
-        v = -value;
+        v = -v;
     }
 
-    value = (int)v;
+    value = floor(v);
     v -= value; // 小数点以下
 
     if (decimalPlace >= 2) {
-        int k = 1;
-        for (int i = 1; i <= decimalPlace - 1; i++) {
-            k *= 10;
-        }
-        v = (int)(v * k) / (double)k;
+        // decimalPlace 桁以下を落とす
+        double k = pow(10, decimalPlace - 1);
+        v = floor(v * k) / (double)k;
         value += v;
     }
 
