@@ -225,6 +225,34 @@
     [self updateLabel];
 }
 
+- (void)roundInputValue
+{
+    double v;
+    BOOL isMinus = NO;
+
+    v = value;
+    if (value < 0.0) {
+        isMinus = YES;
+        v = -value;
+    }
+
+    value = (int)v;
+    v -= value; // 小数点以下
+
+    if (decimalPlace >= 2) {
+        int k = 1;
+        for (int i = 1; i <= decimalPlace - 1; i++) {
+            k *= 10;
+        }
+        v = (int)(v * k) / (double)k;
+        value += v;
+    }
+
+    if (isMinus) {
+        value = -value;
+    }
+}
+
 - (void)updateLabel
 {
     NSString *n;

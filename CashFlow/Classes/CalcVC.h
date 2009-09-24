@@ -99,5 +99,6 @@ typedef enum {
 // private method
 - (void)doneAction;
 - (void)updateLabel;
+- (void)roundInputValue;
 
 @end
