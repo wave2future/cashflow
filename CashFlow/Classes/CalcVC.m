@@ -48,6 +48,7 @@
 {
     self = [super initWithNibName:@"CalculatorView" bundle:nil];
     if (self) {
+        [self allClear];
     }
     return self;
 }
@@ -69,11 +70,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-	
-    state = ST_DISPLAY;
-    decimalPlace = 0;
-    storedOperator = OP_NONE;
-    storedValue = 0.0;
 
     [self updateLabel];
 }
@@ -90,6 +86,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (void)allClear
+{
+    value = 0.0;
+    state = ST_DISPLAY;
+    decimalPlace = 0;
+    storedOperator = OP_NONE;
+    storedValue = 0.0;
+}
+
 - (IBAction)onNumButtonDown:(id)sender
 {
     // play keyboard click sound
@@ -98,14 +103,8 @@
 
 - (IBAction)onButtonPressed:(id)sender
 {
-    calcOperator op = OP_NONE;
-    int len;
-    int num;
-
     if (sender == button_Clear) {
-        value = 0.0;
-        state = ST_DISPLAY;
-        storedOperator = OP_NONE;
+        [self allClear];
         [self updateLabel];
         return;
     }
@@ -132,6 +131,7 @@
     }
 
     // 演算子入力
+    calcOperator op = OP_NONE;
     if (sender == button_plus) op = OP_PLUS;
     else if (sender == button_minus) op = OP_MINUS;
     else if (sender == button_multiply) op = OP_MULTIPLY;
@@ -144,6 +144,7 @@
     }
 		
     // 数値入力
+    int num;
     if (sender == button_0) num = 0;
     else if (sender == button_1) num = 1;
     else if (sender == button_2) num = 2;

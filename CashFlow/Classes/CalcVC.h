@@ -99,6 +99,7 @@ typedef enum {
 // private method
 - (void)doneAction;
 - (void)updateLabel;
+- (void)allClear;
 - (void)onInputOperator:(calcOperator)op;
 - (void)onInputNumeric:(NSString *)ch;
 - (void)roundInputValue;
