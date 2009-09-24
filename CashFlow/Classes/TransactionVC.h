@@ -37,10 +37,9 @@
 #import <Foundation/Foundation.h>
 #import "Transaction.h"
 
-//#import "GenEditTextVC.h"; // memo
 #import "EditTypeVC.h"; // type
 #import "EditDescVC.h";
-#import "EditValueVC.h";
+#import "CalcVC.h"
 #import "EditDateVC.h";
 #import "EditMemoVC.h";
 #import "CategoryListVC.h"
@@ -48,7 +47,7 @@
 @interface TransactionViewController : UITableViewController 
     <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
     EditMemoViewDelegate, EditTypeViewDelegate,
-    EditDateViewDelegate, EditValueViewDelegate, 
+    EditDateViewDelegate, CalculatorViewDelegate,
     EditDescViewDelegate, CategoryListViewDelegate>
 {
     int transactionIndex;

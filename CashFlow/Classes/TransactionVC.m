@@ -253,9 +253,8 @@
     UIViewController *vc = nil;
     EditDateViewController *editDateVC;
     EditTypeViewController *editTypeVC; // type
-    EditValueViewController *editValueVC;
+    CalculatorViewController *calcVC;
     EditDescViewController *editDescVC;
-    //GenEditTextViewController *editMemoVC; // memo
     EditMemoViewController *editMemoVC; // memo
     CategoryListViewController *editCategoryVC;
 
@@ -278,10 +277,10 @@
         break;
 
     case ROW_VALUE:
-        editValueVC = [[[EditValueViewController alloc] init] autorelease];
-        editValueVC.delegate = self;
-        editValueVC.value = editingEntry.evalue;
-        vc = editValueVC;
+        calcVC = [[[CalculatorViewController alloc] init] autorelease];
+        calcVC.delegate = self;
+        calcVC.value = editingEntry.evalue;
+        vc = calcVC;
         break;
 
     case ROW_DESC:
@@ -349,7 +348,7 @@
     }
 }
 
-- (void)editValueViewChanged:(EditValueViewController *)vc
+- (void)calculatorViewChanged:(CalculatorViewController *)vc
 {
     [editingEntry setEvalue:vc.value];
 }

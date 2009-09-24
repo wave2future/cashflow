@@ -37,7 +37,7 @@
 #import "AppDelegate.h"
 #import "Transaction.h"
 #import "InfoVC.h"
-#import "EditValueVC.h"
+#import "CalcVC.h"
 #import "ReportVC.h"
 #import "AdCell.h"
 
@@ -340,7 +340,7 @@
     int idx = [self entryIndexWithIndexPath:indexPath];
     if (idx == -1) {
         // initial balance cell
-        EditValueViewController *v = [[[EditValueViewController alloc] init] autorelease];
+        CalculatorViewController *v = [[[CalculatorViewController alloc] init] autorelease];
         v.delegate = self;
         v.value = asset.initialBalance;
 
@@ -353,7 +353,7 @@
 }
 
 // 初期残高変更処理
-- (void)editValueViewChanged:(EditValueViewController *)vc
+- (void)calculatorViewChanged:(CalculatorViewController *)vc
 {
     asset.initialBalance = vc.value;
     [asset updateInitialBalance];

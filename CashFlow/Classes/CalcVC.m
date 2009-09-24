@@ -269,7 +269,6 @@
 
 - (void)updateLabel
 {
-    NSString *n;
     double v = value;
     BOOL isMinus;
     NSMutableString *numstr = [[NSMutableString alloc] initWithCapacity:16];
@@ -285,8 +284,7 @@
     }
 
     // 整数部
-    n = [NSString stringWithFormat:@"%.0f", v];
-    [numstr appendString:n];
+    [numstr appendFormat:@"%.0f", v];
 
     // 表示すべき小数点以下の桁数を求める
     int dp;
@@ -297,7 +295,7 @@
         break;
 
     case ST_DISPLAY:
-        dp = 0;
+        dp = -1;
         vtmp = v;
         for (int i = 1; i <= 6; i++) {
             vtmp *= 10;
@@ -309,14 +307,13 @@
     }
             
     // 小数部を表示する
-    if (dp > 0) {
+    if (dp >= 0) {
         [numstr appendString:@"."];
         vtmp = v - (int)v;
         for (int i = 1; i <= dp; i++) {
             vtmp *= 10;
+            [numstr appendFormat:@"%d", (int)vtmp % 10];
         }
-        n = [NSString stringWithFormat:@"%d", (int)vtmp];
-        [numstr appendString:n];
     }
 
     // カンマを３桁ごとに挿入
