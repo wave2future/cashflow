@@ -175,7 +175,7 @@
 						<string key="IBUIHighlightedTitle">C</string>
 						<string key="IBUIDisabledTitle">C</string>
 						<string key="IBUISelectedTitle">C</string>
-						<string key="IBUINormalTitle">C</string>
+						<string key="IBUINormalTitle">AC</string>
 						<reference key="IBUIHighlightedTitleColor" ref="786665285"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>

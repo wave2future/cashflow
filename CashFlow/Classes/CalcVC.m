@@ -269,26 +269,12 @@
 
 - (void)updateLabel
 {
-    double v = value;
-    BOOL isMinus;
     NSMutableString *numstr = [[NSMutableString alloc] initWithCapacity:16];
-
-    // 符号の処理
-    if (v < 0) {
-        isMinus = YES;
-        v = -v;
-        [numstr setString:@"-"];
-    } else {
-        isMinus = NO;
-        [numstr setString:@""];
-    }
-
-    // 整数部
-    [numstr appendFormat:@"%.0f", v];
 
     // 表示すべき小数点以下の桁数を求める
     int dp;
     double vtmp;
+
     switch (state) {
     case ST_INPUT:
         dp = decimalPlace - 1;
@@ -296,7 +282,9 @@
 
     case ST_DISPLAY:
         dp = -1;
-        vtmp = v;
+        vtmp = value;
+        if (vtmp < 0) vtmp = -vtmp;
+        vtmp -= (int)vtmp;
         for (int i = 1; i <= 6; i++) {
             vtmp *= 10;
             if ((int)vtmp % 10 != 0) {
@@ -305,15 +293,12 @@
         }
         break;
     }
-            
-    // 小数部を表示する
-    if (dp >= 0) {
-        [numstr appendString:@"."];
-        vtmp = v - (int)v;
-        for (int i = 1; i <= dp; i++) {
-            vtmp *= 10;
-            [numstr appendFormat:@"%d", (int)vtmp % 10];
-        }
+
+    if (dp <= 0) {
+        [numstr appendFormat:@"%.0f", value];
+    } else {
+        NSString *fmt = [NSString stringWithFormat:@"%%.%df", dp];
+        [numstr appendFormat:fmt, value];
     }
 
     // カンマを３桁ごとに挿入
@@ -326,7 +311,7 @@
     }
 
     for (i -= 3 ; i > 0; i -= 3) {
-        if (isMinus && i <= 1) break;
+        if (value < 0 && i <= 1) break;
         [numstr insertString:@"," atIndex:i];
     }
 	
