@@ -24,7 +24,6 @@
 		3E003BDB0F9CB7E300521E2B /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BD50F9CB7E300521E2B /* WebServer.m */; };
 		3E003BE10F9CB7F700521E2B /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BDE0F9CB7F700521E2B /* ReportCatVC.m */; };
 		3E003BE20F9CB7F700521E2B /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BE00F9CB7F700521E2B /* TransactionListVC.m */; };
-		3E003BEA0F9CB81000521E2B /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BE50F9CB81000521E2B /* EditValueVC.m */; };
 		3E003BEB0F9CB81000521E2B /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BE70F9CB81000521E2B /* ExportVC.m */; };
 		3E003BEC0F9CB81000521E2B /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BE90F9CB81000521E2B /* TransactionVC.m */; };
 		3E003BFE0F9CB83200521E2B /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BEF0F9CB83200521E2B /* EditDateVC.m */; };
@@ -80,6 +79,13 @@
 		3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */; };
 		3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37040FA2E3D200FCF592 /* ReportCell.m */; };
 		3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */; };
+		3EA1405E106FC1D10017A114 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1405D106FC1D10017A114 /* AdCell.m */; };
+		3EA14063106FC1E20017A114 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA14062106FC1E20017A114 /* CalcVC.m */; };
+		3EA1408E106FC2500017A114 /* libAdMobSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA1408D106FC2500017A114 /* libAdMobSimulator.a */; };
+		3EA14090106FC2610017A114 /* libTGAforiPhone-Debug.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA1408F106FC2610017A114 /* libTGAforiPhone-Debug.a */; };
+		3EA14094106FC2760017A114 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA14093106FC2760017A114 /* AddressBook.framework */; };
+		3EA1409A106FC2990017A114 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA14099106FC2990017A114 /* CoreLocation.framework */; };
+		3EA140BC106FC2BA0017A114 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA140BB106FC2BA0017A114 /* QuartzCore.framework */; };
 		3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */; };
 		3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */; };
 		3EFD6BBF0F98C7E60060B3BF /* DataModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */; };
@@ -141,8 +147,6 @@
 		3E003BDE0F9CB7F700521E2B /* ReportCatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatVC.m; sourceTree = "<group>"; };
 		3E003BDF0F9CB7F700521E2B /* TransactionListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionListVC.h; sourceTree = "<group>"; };
 		3E003BE00F9CB7F700521E2B /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
-		3E003BE40F9CB81000521E2B /* EditValueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditValueVC.h; sourceTree = "<group>"; };
-		3E003BE50F9CB81000521E2B /* EditValueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditValueVC.m; sourceTree = "<group>"; };
 		3E003BE60F9CB81000521E2B /* ExportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportVC.h; sourceTree = "<group>"; };
 		3E003BE70F9CB81000521E2B /* ExportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportVC.m; sourceTree = "<group>"; };
 		3E003BE80F9CB81000521E2B /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
@@ -221,6 +225,17 @@
 		3E6B37040FA2E3D200FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
 		3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntryTest.h; sourceTree = "<group>"; };
 		3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
+		3EA14056106FC1980017A114 /* TGAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TGAView.h; path = ../CashFlow/TGAd/TGAView.h; sourceTree = SOURCE_ROOT; };
+		3EA14057106FC1A60017A114 /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdMobDelegateProtocol.h; path = ../CashFlow/AdMob/AdMobDelegateProtocol.h; sourceTree = SOURCE_ROOT; };
+		3EA14058106FC1A60017A114 /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdMobView.h; path = ../CashFlow/AdMob/AdMobView.h; sourceTree = SOURCE_ROOT; };
+		3EA1405D106FC1D10017A114 /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
+		3EA14061106FC1E20017A114 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
+		3EA14062106FC1E20017A114 /* CalcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcVC.m; sourceTree = "<group>"; };
+		3EA1408D106FC2500017A114 /* libAdMobSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdMobSimulator.a; path = ../CashFlow/AdMob/libAdMobSimulator.a; sourceTree = SOURCE_ROOT; };
+		3EA1408F106FC2610017A114 /* libTGAforiPhone-Debug.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libTGAforiPhone-Debug.a"; path = "../CashFlow/TGAd/libTGAforiPhone-Debug.a"; sourceTree = SOURCE_ROOT; };
+		3EA14093106FC2760017A114 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = /System/Library/Frameworks/AddressBook.framework; sourceTree = "<absolute>"; };
+		3EA14099106FC2990017A114 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = /System/Library/Frameworks/CoreLocation.framework; sourceTree = "<absolute>"; };
+		3EA140BB106FC2BA0017A114 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = /System/Library/Frameworks/QuartzCore.framework; sourceTree = "<absolute>"; };
 		3EAEBCA30F9DE14C00AD3D15 /* GenSelectListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenSelectListVC.h; sourceTree = "<group>"; };
 		3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenSelectListVC.m; sourceTree = "<group>"; };
 		3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenSelectListView.xib; sourceTree = "<group>"; };
@@ -281,6 +296,11 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				3E448B5B0F98A584001F97B5 /* libsqlite3.0.dylib in Frameworks */,
 				3E003C0E0F9CB84800521E2B /* AudioToolbox.framework in Frameworks */,
+				3EA1408E106FC2500017A114 /* libAdMobSimulator.a in Frameworks */,
+				3EA14090106FC2610017A114 /* libTGAforiPhone-Debug.a in Frameworks */,
+				3EA14094106FC2760017A114 /* AddressBook.framework in Frameworks */,
+				3EA1409A106FC2990017A114 /* CoreLocation.framework in Frameworks */,
+				3EA140BC106FC2BA0017A114 /* QuartzCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -298,7 +318,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				46C20FD50F256E610053F9B9 /* Classes */,
+				46C20FD50F256E610053F9B9 /* TargetClasses */,
 				46C20FD60F256E610053F9B9 /* Tests */,
 				46C6AB3C0F2DBE7E00BA1B73 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -339,11 +359,16 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3EA1408F106FC2610017A114 /* libTGAforiPhone-Debug.a */,
+				3EA1408D106FC2500017A114 /* libAdMobSimulator.a */,
 				3E003C0D0F9CB84800521E2B /* AudioToolbox.framework */,
 				3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				3EA14093106FC2760017A114 /* AddressBook.framework */,
+				3EA14099106FC2990017A114 /* CoreLocation.framework */,
+				3EA140BB106FC2BA0017A114 /* QuartzCore.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -396,9 +421,15 @@
 			path = testdata;
 			sourceTree = "<group>";
 		};
-		46C20FD50F256E610053F9B9 /* Classes */ = {
+		46C20FD50F256E610053F9B9 /* TargetClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3EA14061106FC1E20017A114 /* CalcVC.h */,
+				3EA14062106FC1E20017A114 /* CalcVC.m */,
+				3EA1405D106FC1D10017A114 /* AdCell.m */,
+				3EA14057106FC1A60017A114 /* AdMobDelegateProtocol.h */,
+				3EA14058106FC1A60017A114 /* AdMobView.h */,
+				3EA14056106FC1980017A114 /* TGAView.h */,
 				3E003BEE0F9CB83200521E2B /* EditDateVC.h */,
 				3E003BEF0F9CB83200521E2B /* EditDateVC.m */,
 				3E003BF00F9CB83200521E2B /* EditDescVC.h */,
@@ -415,8 +446,6 @@
 				3E003BFB0F9CB83200521E2B /* ExportOfx.m */,
 				3E003BFC0F9CB83200521E2B /* ExportServer.h */,
 				3E003BFD0F9CB83200521E2B /* ExportServer.m */,
-				3E003BE40F9CB81000521E2B /* EditValueVC.h */,
-				3E003BE50F9CB81000521E2B /* EditValueVC.m */,
 				3E003BE60F9CB81000521E2B /* ExportVC.h */,
 				3E003BE70F9CB81000521E2B /* ExportVC.m */,
 				3E003BE80F9CB81000521E2B /* TransactionVC.h */,
@@ -474,7 +503,7 @@
 				3E448AFE0F98A50B001F97B5 /* Transaction.h */,
 				3E448AFF0F98A50B001F97B5 /* Transaction.m */,
 			);
-			name = Classes;
+			name = TargetClasses;
 			path = ../CashFlow/Classes;
 			sourceTree = "<group>";
 		};
@@ -691,7 +720,6 @@
 				3E003BDB0F9CB7E300521E2B /* WebServer.m in Sources */,
 				3E003BE10F9CB7F700521E2B /* ReportCatVC.m in Sources */,
 				3E003BE20F9CB7F700521E2B /* TransactionListVC.m in Sources */,
-				3E003BEA0F9CB81000521E2B /* EditValueVC.m in Sources */,
 				3E003BEB0F9CB81000521E2B /* ExportVC.m in Sources */,
 				3E003BEC0F9CB81000521E2B /* TransactionVC.m in Sources */,
 				3E003BFE0F9CB83200521E2B /* EditDateVC.m in Sources */,
@@ -706,6 +734,8 @@
 				3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */,
 				3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */,
+				3EA1405E106FC1D10017A114 /* AdCell.m in Sources */,
+				3EA14063106FC1E20017A114 /* CalcVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,8 +754,13 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iUnitTest_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../CashFlow/AdMob\"",
+					"\"$(SRCROOT)/../CashFlow/TGAd\"",
+				);
 				PRODUCT_NAME = CashFlowTest;
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Debug;
 		};
@@ -738,9 +773,14 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iUnitTest_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../CashFlow/AdMob\"",
+					"\"$(SRCROOT)/../CashFlow/TGAd\"",
+				);
 				PRODUCT_NAME = CashFlowTest;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "015FD9E7-03D2-482E-8BF0-526AFEFF0A8C";
-				SDKROOT = iphonesimulator2.2;
+				SDKROOT = iphonesimulator3.0;
 			};
 			name = Release;
 		};
