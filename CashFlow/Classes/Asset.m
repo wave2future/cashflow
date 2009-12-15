@@ -152,14 +152,15 @@
 // 注：entries からは削除されない。journal から削除されるだけ
 - (void)_deleteEntryAt:(int)index
 {
-    // 初期残高変更
+    // 先頭エントリ削除の場合は、初期残高を変更する
     if (index == 0) {
         initialBalance = [[self entryAt:0] balance];
         [self updateInitialBalance];
     }
 
+    // エントリ削除
     AssetEntry *e = [self entryAt:index];
-    [[DataModel journal] deleteTransaction:e.transaction];
+    [[DataModel journal] deleteTransaction:e.transaction withAsset:self];
 }
 
 // エントリ削除
@@ -171,7 +172,7 @@
     [[DataModel ledger] rebuild];
 }
 
-// 指定日以前の取引を削除
+// 指定日以前の取引をまとめて削除
 - (void)deleteOldEntriesBefore:(NSDate*)date
 {
     Database *db = [Database instance];
