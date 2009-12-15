@@ -17,6 +17,7 @@
     ReportCatCell *cell = (ReportCatCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[ReportCatCell alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+        //cell = [[[ReportCatCell alloc] initWithStyle:UITableViewStyleDefault reuseIdentifier:identifier] autorelease];
     }
     return cell;
 }
