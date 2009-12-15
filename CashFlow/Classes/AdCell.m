@@ -91,8 +91,8 @@
         NSLog(@"adView start load");
         if ([AdCell _isJaAd]) {
             // TG ad
-            TGAView *tgad = [TGAView requestWithKey:TGAD_ID Position:0];
-            adView = tgad;
+            //TGAView *tgad = [TGAView requestWithKey:TGAD_ID Position:0];
+            //adView = tgad;
         } else {
             // AdMob
             AdMobDelegate *amd = [AdMobDelegate getInstance];
