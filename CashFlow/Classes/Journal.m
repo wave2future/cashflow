@@ -137,10 +137,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 */
 - (BOOL)deleteTransaction:(Transaction *)t withAsset:(Asset *)asset
 {
-#if 0
-    [t deleteDb];
-    [entries removeObject:t];
-#else
     if (t.type != TYPE_TRANSFER) {
         // 資産間移動取引以外の場合
         [t deleteDb];
@@ -176,10 +172,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 */
 - (void)deleteAllTransactionsWithAsset:(Asset *)asset
 {
-#if 0
-    [Transaction deleteDbWithAsset:asset.pkey];
-    [self reload];
-#endif
     Transaction *t;
     int max = [entries count];
 

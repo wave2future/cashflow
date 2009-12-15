@@ -210,6 +210,7 @@
     [stmt reset];
 }
 
+#if 0 // not used
 + (void)deleteDbWithAsset:(int)assetKey
 {
     DBStatement *stmt;
@@ -219,5 +220,6 @@
     [stmt bindInt:1 val:assetKey];
     [stmt step];
 }
+#endif
 
 @end
