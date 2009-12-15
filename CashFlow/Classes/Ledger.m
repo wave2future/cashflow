@@ -117,7 +117,7 @@
     [stmt bindInt:0 val:as.pkey];
     [stmt step];
 
-    [[DataModel journal] deleteTransactionsWithAsset:as];
+    [[DataModel journal] deleteAllTransactionsWithAsset:as];
 
     [assets removeObject:as];
 

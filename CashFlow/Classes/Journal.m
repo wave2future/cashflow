@@ -125,16 +125,76 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     [entries sortUsingFunction:compareByDate context:NULL];
 }
     
-- (void)deleteTransaction:(Transaction *)t
+/**
+   Transaction 削除処理
+
+   資産間移動取引の場合は、相手方資産残高が狂わないようにするため、
+   相手方資産の入金・出金処理に置換する。
+
+   @param t 取引
+   @param asset 取引を削除する資産
+   @return エントリが消去された場合は YES、置換された場合は NO。
+*/
+- (BOOL)deleteTransaction:(Transaction *)t withAsset:(Asset *)asset
 {
+#if 0
     [t deleteDb];
     [entries removeObject:t];
+#else
+    if (t.type != TYPE_TRANSFER) {
+        // 資産間移動取引以外の場合
+        [t deleteDb];
+        [entries removeObject:t];
+        return YES;
+    }
+
+    // 資産間移動の場合の処理
+    // 通常取引 (入金 or 出金) に変更する
+    if (t.asset == asset.pkey) {
+        // 自分が移動元の場合、移動方向を逆にする
+        // (金額も逆転する）
+        t.asset = t.dst_asset;
+        t.value = -t.value;
+    }
+    t.dst_asset = -1;
+
+    // 取引タイプを変更
+    if (t.value >= 0) {
+        t.type = TYPE_INCOME;
+    } else {
+        t.type = TYPE_OUTGO;
+    }
+
+    // データベース書き換え
+    [t updateDb];
+    return NO;
+#endif
 }
 
-- (void)deleteTransactionsWithAsset:(Asset *)asset
+/**
+   Asset に紐づけられた全 Transaction を削除する (Asset 削除用)
+*/
+- (void)deleteAllTransactionsWithAsset:(Asset *)asset
 {
+#if 0
     [Transaction deleteDbWithAsset:asset.pkey];
     [self reload];
+#endif
+    Transaction *t;
+    int max = [entries count];
+
+    for (i = 0; i < max; i++) {
+        t = [entries objectAtIndex:i];
+        if (t.asset != asset.pkey && t.dst_asset != asset.pkey) {
+            continue;
+        }
+
+        if ([self deleteTransaction:t withAsset:asset]) {
+            // エントリが削除された場合は、配列が一個ずれる
+            i--;
+            max--;
+        }
+    }
 
     // rebuild が必要!
 }
