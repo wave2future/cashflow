@@ -164,7 +164,6 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     // データベース書き換え
     [t updateDb];
     return NO;
-#endif
 }
 
 /**
