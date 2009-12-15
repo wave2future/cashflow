@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2009, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -32,23 +32,38 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-// PIN code view
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import "Transaction.h"
 
-@class PinViewController;
+@class TransactionViewController;
+@class CalculatorViewController;
 
-@protocol PinViewDelegate
-- (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel;
+@protocol CalculatorViewDelegate
+- (void)calculatorViewChanged:(CalculatorViewController *)vc;
 @end
 
-@interface PinViewController : UIViewController 
-{
-    IBOutlet UILabel *valueLabel;
+typedef enum {
+    OP_NONE = 0,
+    OP_EQUAL,
+    OP_PLUS,
+    OP_MINUS,
+    OP_MULTIPLY,
+    OP_DIVIDE
+} calcOperator;
 
+typedef enum {
+    ST_DISPLAY,
+    ST_INPUT,
+} calcState;
+
+@interface CalculatorViewController : UIViewController {
+    IBOutlet UILabel *numLabel;
     IBOutlet UIButton *button_Clear;
     IBOutlet UIButton *button_BS;
+    IBOutlet UIButton *button_inv;
+    IBOutlet UIButton *button_Period;
     IBOutlet UIButton *button_0;
     IBOutlet UIButton *button_1;
     IBOutlet UIButton *button_2;
@@ -60,18 +75,34 @@
     IBOutlet UIButton *button_8;
     IBOutlet UIButton *button_9;
 
-    NSMutableString *value;
-    BOOL enableCancel;
-    id<PinViewDelegate> delegate;
+    IBOutlet UIButton *button_Plus;
+    IBOutlet UIButton *button_Minus;
+    IBOutlet UIButton *button_Multiply;
+    IBOutlet UIButton *button_Divide;
+    IBOutlet UIButton *button_Equal;
+
+    id<CalculatorViewDelegate> delegate;
+    double value;
+
+    calcState state;
+    int decimalPlace; // 現在入力中の小数位
+
+    double storedValue;
+    calcOperator storedOperator;
 }
 
-@property(nonatomic,assign) id<PinViewDelegate> delegate;
-@property(nonatomic,retain) NSMutableString *value;
-@property(nonatomic,assign) BOOL enableCancel;
+@property(nonatomic,assign) id<CalculatorViewDelegate> delegate;
+@property(nonatomic,assign) double value;
 
-- (IBAction)onNumButtonDown:(id)sender;
-- (IBAction)onNumButtonPressed:(id)sender;
-- (void)doneAction:(id)sender;
-- (void)cancelAction:(id)sender;
+- (IBAction)onButtonDown:(id)sender;
+- (IBAction)onButtonPressed:(id)sender;
+
+// private method
+- (void)doneAction;
+- (void)updateLabel;
+- (void)allClear;
+- (void)onInputOperator:(calcOperator)op;
+- (void)onInputNumeric:(int)num;
+- (void)roundInputValue;
 
 @end

@@ -37,10 +37,10 @@
 #import "TransactionVC.h"
 #import "ExportVC.h"
 #import "DataModel.h"
-#import "EditValueVC.h"
+#import "CalcVC.h"
 
 @interface TransactionListViewController : UIViewController 
-    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, EditValueViewDelegate>
+    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, CalculatorViewDelegate>
 {
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *barBalanceLabel;
@@ -63,5 +63,7 @@
 - (IBAction)showHelp:(id)sender;
 
 - (UITableViewCell *)_entryCell:(AssetEntry *)e;
+- (int)_adCellRow;
+- (UITableViewCell *)_adCell;
 
 @end

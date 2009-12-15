@@ -54,6 +54,8 @@
 		3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
 		3E6B365D0FA2DD8700FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
 		3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
+		3E6B4ED5106BC30D0036D429 /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
+		3E6B4ED6106BC30D0036D429 /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E8B257A0F348C090007929E /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
@@ -117,6 +119,8 @@
 		3E8B25B90F348C090007929E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E8B25BA0F348C090007929E /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3E8C36160F1E0D82004AFFCA /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
+		3E92947B106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
+		3E92947C106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
 		3E9433760EC1E0750033D50A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E94339F0EC1E7650033D50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3E9A3B390EC47AA0005A4664 /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
@@ -236,6 +240,7 @@
 		3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
 		3E6B365B0FA2DD8700FCF592 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
 		3E6B365C0FA2DD8700FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
+		3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculatorView.xib; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = /System/Library/Frameworks/AudioToolbox.framework; sourceTree = "<absolute>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -243,6 +248,8 @@
 		3E8C35B30F1E074C004AFFCA /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
 		3E8C35B40F1E074C004AFFCA /* PinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinVC.h; sourceTree = "<group>"; };
 		3E8C36150F1E0D82004AFFCA /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
+		3E929479106BBC7900DE6040 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
+		3E92947A106BBC7900DE6040 /* CalcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcVC.m; sourceTree = "<group>"; };
 		3E9433750EC1E0750033D50A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		3E9433770EC1E0800033D50A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
@@ -369,6 +376,8 @@
 				3E0887F90E6EACEB00739AC9 /* EditDateVC.m */,
 				3E0888020E6EAD0B00739AC9 /* EditValueVC.h */,
 				3E0888010E6EAD0B00739AC9 /* EditValueVC.m */,
+				3E929479106BBC7900DE6040 /* CalcVC.h */,
+				3E92947A106BBC7900DE6040 /* CalcVC.m */,
 				3E0887FD0E6EACF400739AC9 /* EditDescVC.h */,
 				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
 				3E5868270EEFFCAF00951C2F /* EditMemoVC.h */,
@@ -443,6 +452,7 @@
 				3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
 				3E0887F20E6EAC7600739AC9 /* EditValueView.xib */,
+				3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */,
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
 				3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */,
 				3E5868230EEFFB6E00951C2F /* EditMemoView.xib */,
@@ -659,6 +669,7 @@
 				3EB8EA500F1F7919000A8276 /* config.png in Resources */,
 				3EFD00340F95E31D00F4B4C4 /* EditTypeView.xib in Resources */,
 				3EAEBC870F9DE0C700AD3D15 /* GenSelectListView.xib in Resources */,
+				3E6B4ED5106BC30D0036D429 /* CalculatorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -693,6 +704,7 @@
 				3E8B25930F348C090007929E /* config.png in Resources */,
 				3EFD00350F95E31D00F4B4C4 /* EditTypeView.xib in Resources */,
 				3EAEBC880F9DE0C700AD3D15 /* GenSelectListView.xib in Resources */,
+				3E6B4ED6106BC30D0036D429 /* CalculatorView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -742,6 +754,7 @@
 				3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365D0FA2DD8700FCF592 /* ReportCell.m in Sources */,
 				3EB555F0103C1AE800BA13D4 /* AdCell.m in Sources */,
+				3E92947B106BBC7900DE6040 /* CalcVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,6 +801,7 @@
 				3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */,
 				3EB555F1103C1AE800BA13D4 /* AdCell.m in Sources */,
+				3E92947C106BBC7900DE6040 /* CalcVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

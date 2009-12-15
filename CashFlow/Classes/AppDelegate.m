@@ -54,6 +54,8 @@
 //
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
+    NSLog(@"applicationDidFinishLaunching");
+    
     // Configure and show the window
     [window addSubview:[navigationController view]];
     [window makeKeyAndVisible];
@@ -62,6 +64,8 @@
 #ifndef FREE_VERSION
     [self performSelectorInBackground:@selector(reportAppOpenToAdMob) withObject:nil];
 #endif
+
+    NSLog(@"applicationDidFinishLaunching: done");
 }
 
 //

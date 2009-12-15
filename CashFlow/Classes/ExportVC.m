@@ -76,10 +76,10 @@
     [exportButton setBackgroundImage:bg forState:UIControlStateNormal];
 	
 #ifdef FREE_VERSION
-    formatLabel.hidden = YES;
-    formatControl.hidden = YES;
-    methodLabel.hidden = YES;
-    methodControl.hidden = YES;
+//    formatLabel.hidden = YES;
+//    formatControl.hidden = YES;
+//    methodLabel.hidden = YES;
+//    methodControl.hidden = YES;
 #endif
 
     //noteTextView.font = [UIFont systemFontOfSize:12.0];
@@ -154,7 +154,7 @@
         ex = csv;
         break;
 
-#ifndef FREE_VERSION
+//#ifndef FREE_VERSION
     case 1:
         if (ofx == nil) {
             ofx = [[ExportOfx alloc] init];
@@ -162,7 +162,7 @@
         ofx.asset = asset;
         ex = ofx;
         break;
-#endif
+//#endif
     }
     ex.firstDate = date;
 	
@@ -171,11 +171,11 @@
     default:
         result = [ex sendMail];
         break;
-#ifndef FREE_VERSION
+//#ifndef FREE_VERSION
     case 1:
         result = [ex sendWithWebServer];
         break;
-#endif
+//#endif
     }
 	
     if (!result) {

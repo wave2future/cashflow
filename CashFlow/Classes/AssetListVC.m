@@ -89,7 +89,7 @@
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 	
-#ifndef FREE_VERSION
+//#ifndef FREE_VERSION
     // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
@@ -102,7 +102,7 @@
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
     }
-#endif
+//#endif
     
 //#ifndef FREE_VERSION
     PinController *pinController = [[[PinController alloc] init] autorelease];
@@ -157,11 +157,11 @@
             return [ledger assetCount];
 
         case 1:
-#ifdef FREE_VERSION
-            return 2;
-#else
+//#ifdef FREE_VERSION
+//            return 2;
+//#else
             return 1;
-#endif
+//#endif
     }
     // NOT REACH HERE
     return 0;
@@ -177,11 +177,11 @@
 
 - (BOOL)_isAdCell:(NSIndexPath*)indexPath
 {
-#ifdef FREE_VERSION
-    if (indexPath.section == 1 && indexPath.row == 1) {
-        return YES;
-    }
-#endif
+//#ifdef FREE_VERSION
+//    if (indexPath.section == 1 && indexPath.row == 1) {
+//        return YES;
+//    }
+//#endif
     return NO;
 }
 
@@ -198,10 +198,10 @@
     UITableViewCell *cell;
 
     // Ad
-    if ([self _isAdCell:indexPath]) {
-        cell = [AdCell adCell:tableView];
-        return cell;
-    }
+//    if ([self _isAdCell:indexPath]) {
+//        cell = [AdCell adCell:tableView];
+//        return cell;
+//    }
 
     NSString *cellid = @"assetCell";
     cell = [tv dequeueReusableCellWithIdentifier:cellid];
