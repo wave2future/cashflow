@@ -183,7 +183,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     Transaction *t;
     int max = [entries count];
 
-    for (i = 0; i < max; i++) {
+    for (int i = 0; i < max; i++) {
         t = [entries objectAtIndex:i];
         if (t.asset != asset.pkey && t.dst_asset != asset.pkey) {
             continue;
