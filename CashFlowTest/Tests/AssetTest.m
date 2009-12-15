@@ -156,13 +156,13 @@
     ASSERT_EQUAL_INT(3, [asset entryCount]);
     ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
 
-    // 別資産の取引数が減っていることを確認
-    ASSERT_EQUAL_INT(1, [[ledger assetAtIndex:1] entryCount]);
+    // 別資産の取引数が減って「いない」ことを確認(置換されているはず)
+    ASSERT_EQUAL_INT(2, [[ledger assetAtIndex:1] entryCount]);
 
     // データベースが更新されていることを確認する
     [DataModel load];
     ASSERT_EQUAL_INT(3, [asset entryCount]);
-    ASSERT_EQUAL_INT(1, [[ledger assetAtIndex:1] entryCount]);
+    ASSERT_EQUAL_INT(2, [[ledger assetAtIndex:1] entryCount]);
 }
 
 // 先頭取引削除

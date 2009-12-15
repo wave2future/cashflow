@@ -100,11 +100,54 @@
 {
     [TestCommon installDatabase:@"testdata1"];
     journal = [DataModel journal];
+    Asset *asset = [[[Asset alloc] init] autorelease];
 
+    // 資産間取引を削除 (pkey == 4 の取引)
+    asset.pkey = 2;
     Transaction *t = [journal.entries objectAtIndex:3];
-    [journal deleteTransaction:t];
+    ASSERT(![journal deleteTransaction:t withAsset:asset]);
+    ASSERT_EQUAL_INT(6, [journal.entries count]); // 置換されたので消えてないはず
+    
+    t = [journal.entries objectAtIndex:2];
+    ASSERT_EQUAL_INT(3, t.pkey);
+    t = [journal.entries objectAtIndex:3];
+    ASSERT_EQUAL_INT(4, t.pkey); // まだ消えてない
+    
+    // 置換されていることを確認する
+    ASSERT_EQUAL_INT(1, t.asset);
+    ASSERT_EQUAL_INT(-1, t.dst_asset);
+    ASSERT_EQUAL_DOUBLE(5000, t.value);
+    
+    // 今度は置換された資産間取引を消す
+    asset.pkey = 1;
+    ASSERT([journal deleteTransaction:t withAsset:asset]);
+    
+    t = [journal.entries objectAtIndex:2];
+    ASSERT_EQUAL_INT(3, t.pkey);
+    t = [journal.entries objectAtIndex:3];
+    ASSERT_EQUAL_INT(5, t.pkey);
+}
 
-    ASSERT_EQUAL_INT(5, [journal.entries count]);
+- (void)testDeleteTransaction2
+{
+    [TestCommon installDatabase:@"testdata1"];
+    journal = [DataModel journal];
+    Asset *asset = [[[Asset alloc] init] autorelease];
+    
+    // 資産間取引を削除 (pkey == 4 の取引)、ただし、testDeleteTransaction とは逆方向
+    asset.pkey = 1;
+    Transaction *t = [journal.entries objectAtIndex:3];
+    ASSERT(![journal deleteTransaction:t withAsset:asset]);
+    
+    // 置換されていることを確認する
+    ASSERT_EQUAL_INT(2, t.asset);
+    ASSERT_EQUAL_INT(-1, t.dst_asset);
+    ASSERT_EQUAL_DOUBLE(-5000, t.value);
+    
+    // 置換された資産間取引を消す
+    asset.pkey = 2;
+    ASSERT([journal deleteTransaction:t withAsset:asset]);
+    
     t = [journal.entries objectAtIndex:2];
     ASSERT_EQUAL_INT(3, t.pkey);
     t = [journal.entries objectAtIndex:3];
@@ -120,19 +163,19 @@
     ASSERT_EQUAL_INT(6, [journal.entries count]);
 
     asset.pkey = 4; // not exist
-    [journal deleteTransactionsWithAsset:asset];
+    [journal deleteAllTransactionsWithAsset:asset];
     ASSERT_EQUAL_INT(6, [journal.entries count]);
     
     asset.pkey = 1;
-    [journal deleteTransactionsWithAsset:asset];
-    ASSERT_EQUAL_INT(2, [journal.entries count]);
+    [journal deleteAllTransactionsWithAsset:asset];
+    ASSERT_EQUAL_INT(3, [journal.entries count]);
     
     asset.pkey = 2;
-    [journal deleteTransactionsWithAsset:asset];
+    [journal deleteAllTransactionsWithAsset:asset];
     ASSERT_EQUAL_INT(1, [journal.entries count]);
 
     asset.pkey = 3;
-    [journal deleteTransactionsWithAsset:asset];
+    [journal deleteAllTransactionsWithAsset:asset];
     ASSERT_EQUAL_INT(0, [journal.entries count]);
 }
 
