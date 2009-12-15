@@ -6,7 +6,6 @@
  */
 #import <CoreLocation/CoreLocation.h>
 #import <UIKit/UIKit.h>
-
 @class AdMobView;
 
 @protocol AdMobDelegate<NSObject>
@@ -77,7 +76,8 @@
 
 // If implemented, lets you specify the action type of the test ad. Defaults to @"url" (web page).
 // Does nothing if useTestAd is not implemented or returns NO.
-// Acceptable values are @"url", @"app", @"video", @"itunes", @"call", @"canvas".
+// Acceptable values are @"url", @"app", @"movie", @"itunes", @"call", @"canvas".  For interstitials
+// use "video_int".
 // Normally, the adservers restricts ads appropriately (e.g. no click to call ads for iPod touches).
 // However, for your testing convenience, they will return any type requested for test ads.
 - (NSString *)testAdAction;
@@ -105,12 +105,6 @@
 - (NSString *)gender; // user's gender (e.g. @"m" or @"f")
 - (NSString *)keywords; // keywords the user has provided or that are contextually relevant, e.g. @"twitter client iPhone"
 - (NSString *)searchString; // a search string the user has provided, e.g. @"Jasmine Tea House San Francisco"
-
-// You can control the appearance of the AdMob mini-browser and the nav bars 
-// to fit with the rest of your app. See the documentation for UIToolbar
-// and UINavigationBar for details. Defaults to standard iPhone chrome.
-- (UIBarStyle)embeddedWebViewBarStyle;
-- (UIColor *)embeddedWebViewTintColor;
 
 // Sent just before presenting the user a full screen view, such as a canvas page or an embedded webview,
 // in response to clicking on an ad. Use this opportunity to stop animations, time sensitive interactions, etc.
