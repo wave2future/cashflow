@@ -122,9 +122,7 @@
 
 
 - (void)viewWillAppear:(BOOL)animated {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
-        
+
     [ledger rebuild]; // ### 必要？？？
 
     [tableView reloadData];
@@ -132,6 +130,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // 最初に起動する画面を資産一覧画面にする
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
+    [defaults synchronize];
+    
     [super viewDidAppear:animated];
 }
 
@@ -265,6 +268,7 @@
     // save preference
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:assetIndex forKey:@"firstShowAssetIndex"];
+    [defaults synchronize];
 	
     Asset *asset = [ledger assetAtIndex:assetIndex];
 
