@@ -38,7 +38,7 @@
 
 @synthesize firstDate, asset;
 
-- (BOOL)sendMail { return NO; }
+- (BOOL)sendMail:(UIViewController*)parent { return NO; }
 - (BOOL)sendWithWebServer { return NO; }
 - (NSMutableString*)generateBody {	return nil; }
 
@@ -49,6 +49,12 @@
     [super dealloc];
 }
 
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [controller dismissModalViewControllerAnimated:YES];
+}
+
+#if 0
 /*
   変換規則:
     HTML への変換:
@@ -84,7 +90,7 @@
     // encode for mail body
     REPLACE(@"&", @"%26");
 }
-
+#endif
 
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
 {

@@ -34,15 +34,18 @@
 
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 #import "ExportBase.h"
 
 @interface ExportCsv : ExportBase {
 }
 
-- (BOOL)sendMail;
+- (BOOL)sendMail:(UIViewController *)parent;
 - (BOOL)sendWithWebServer;
 
-- (NSMutableString *)generateMailUrl;
+//- (NSMutableString *)generateMailUrl;
 
 @end
 

@@ -46,7 +46,30 @@
     [super dealloc];
 }
 
-- (BOOL)sendMail
+- (BOOL)sendMail:(UIViewController *)parent
+{
+    // generate OFX data
+    NSString *body = [self generateBody];
+    if (body == nil) {
+        return NO;
+    }
+    const char *s = [body UTF8String];
+    NSData *data = [NSData dataWithBytes:s length:strlen(s)];
+    
+    MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+    vc.mailComposeDelegate = self;
+    
+    [vc setSubject:@"CashFlow OFX Data"];
+
+    [vc addAttachmentData:data mimeType:@"application/x-ofx" fileName:@"CashFlow.ofx"];
+    [parent presentModalViewController:vc animated:YES];
+    [vc release];
+    return YES;
+}
+
+#if 0 
+// old : iPhone 2.0
+- (BOOL)sendMail:(UIViewController*)parent
 {
     NSMutableString *data = [[[NSMutableString alloc] init] autorelease];
     [data appendString:@"mailto:?Subject=CashFlow%20OFX&body="];
@@ -79,6 +102,7 @@
     // not reach here...
     return YES;
 }
+#endif
 
 - (BOOL)sendWithWebServer
 {

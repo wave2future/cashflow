@@ -169,7 +169,7 @@
     switch (methodControl.selectedSegmentIndex) {
     case 0:
     default:
-        result = [ex sendMail];
+        result = [ex sendMail:self];
         break;
 //#ifndef FREE_VERSION
     case 1:

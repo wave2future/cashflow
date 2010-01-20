@@ -34,6 +34,9 @@
 
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 #import "ExportServer.h"
 #import "Asset.h"
 
@@ -41,7 +44,7 @@
   [str replaceOccurrencesOfString: from withString: to \
   options:NSLiteralSearch range:NSMakeRange(0, [str length])]
 	
-@interface ExportBase : NSObject <UIAlertViewDelegate> {
+@interface ExportBase : NSObject <UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
     NSDate *firstDate;
     Asset *asset;
 
@@ -52,10 +55,10 @@
 @property(nonatomic,assign) Asset *asset;
 
 - (NSMutableString*)generateBody;
-- (BOOL)sendMail;
+- (BOOL)sendMail:(UIViewController*)parent;
 - (BOOL)sendWithWebServer;
 
-- (void)EncodeMailBody:(NSMutableString*)str;
+//- (void)EncodeMailBody:(NSMutableString*)str;
 - (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename;
 
 @end

@@ -32,8 +32,10 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
+
 #import "ExportBase.h"
 #import "Transaction.h"
 #import "ExportServer.h"
@@ -44,7 +46,7 @@
     NSCalendar *greg;
 }
 
-- (BOOL)sendMail;
+- (BOOL)sendMail:(UIViewController*)parent;
 - (BOOL)sendWithWebServer;
 
 // private

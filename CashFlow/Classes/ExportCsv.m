@@ -32,12 +32,34 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
 #import "ExportCsv.h"
 #import "AppDelegate.h"
 
 @implementation ExportCsv
 
+- (BOOL)sendMail:(UIViewController *)parent
+{
+    // generate CSV data
+    NSString *body = [self generateBody];
+    if (body == nil) {
+        return NO;
+    }
+    const char *s = [body UTF8String];
+    NSData *data = [NSData dataWithBytes:s length:strlen(s)];
+    
+    MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+    vc.mailComposeDelegate = self;
+    
+    [vc setSubject:@"CashFlow CSV Data"];
+
+    [vc addAttachmentData:data mimeType:@"text/comma-separeted-value" fileName:@"CashFlow.csv"];
+    [parent presentModalViewController:vc animated:YES];
+    [vc release];
+    return YES;
+}
+
+#if 0
+// old : iPhone OS 2.0
 - (BOOL)sendMail
 {
     NSMutableString *s = [self generateMailUrl];
@@ -69,6 +91,7 @@
     [data appendString:body];
     return data;
 }
+#endif
 
 - (BOOL)sendWithWebServer
 {
