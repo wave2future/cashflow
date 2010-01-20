@@ -233,7 +233,7 @@
     UILabel *descLabel, *dateLabel, *valueLabel, *balanceLabel;
 
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
@@ -298,7 +298,7 @@
     UILabel *descLabel, *balanceLabel;
 
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 		
         descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];

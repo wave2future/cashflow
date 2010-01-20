@@ -111,7 +111,7 @@
 
     AdCell *cell = (AdCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[AdCell alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+        cell = [[[AdCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     } else {
         [cell checkRefresh];
     }
@@ -119,12 +119,12 @@
     return cell;
 }
 
-- (UITableViewCell *)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)identifier
+- (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
 {
-    self = [super initWithFrame:frame reuseIdentifier:identifier];
-    self.text = @"Advertisement Space...";
-    self.textColor = [UIColor lightGrayColor];
-    self.textAlignment = UITextAlignmentCenter;
+    self = [super initWithStyle:style reuseIdentifier:identifier];
+    self.textLabel.text = @"Advertisement Space...";
+    self.textLabel.textColor = [UIColor lightGrayColor];
+    self.textLabel.textAlignment = UITextAlignmentCenter;
 
     UIView *adView = [AdCell adView];
     [self checkRefresh];

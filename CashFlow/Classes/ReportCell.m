@@ -16,14 +16,14 @@
 
     ReportCell *cell = (ReportCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[ReportCell alloc] initWithFrame:CGRectZero reuseIdentifier:identifier] autorelease];
+        cell = [[[ReportCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
     return cell;
 }
 
-- (UITableViewCell *)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)identifier
+- (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
 {
-    self = [super initWithFrame:frame reuseIdentifier:identifier];
+    self = [super initWithStyle:style reuseIdentifier:identifier];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;

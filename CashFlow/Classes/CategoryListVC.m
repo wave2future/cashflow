@@ -106,14 +106,14 @@
     UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:cellid];
 
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
     }
 
     if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
-        cell.text = NSLocalizedString(@"Add category", @"");
+        cell.textLabel.text = NSLocalizedString(@"Add category", @"");
     } else {
         Category *c = [[DataModel instance].categories categoryAtIndex:indexPath.row];
-        cell.text = c.name;
+        cell.textLabel.text = c.name;
 
     }
 	

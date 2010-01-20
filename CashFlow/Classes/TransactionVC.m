@@ -79,7 +79,7 @@
         b = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         [b setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [b setTitleShadowColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [b setFont:[UIFont systemFontOfSize:14.0]];
+        b.titleLabel.font = [UIFont systemFontOfSize:14.0];
 	
         [b setBackgroundImage:bg forState:UIControlStateNormal];
 		
@@ -181,7 +181,7 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 

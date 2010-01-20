@@ -207,10 +207,10 @@
     cell = [tv dequeueReusableCellWithIdentifier:cellid];
 
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellid] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
         //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 		
-        cell.font = [UIFont systemFontOfSize:16.0];
+        cell.textLabel.font = [UIFont systemFontOfSize:16.0];
     }
 
     // 資産
@@ -224,7 +224,7 @@
         value = [asset lastBalance];
 
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        cell.image = [iconArray objectAtIndex:asset.type];
+        cell.imageView.image = [iconArray objectAtIndex:asset.type];
     }
     else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
@@ -237,16 +237,16 @@
             label = [NSString stringWithFormat:@"            %@", NSLocalizedString(@"Total", @"")];
 
             cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.image = nil;
+            cell.imageView.image = nil;
         }
     }
     
-    cell.text = [NSString stringWithFormat:@"%@ : %@", label,
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", label,
                           [DataModel currencyString:value]];
     if (value >= 0) {
-        cell.textColor = [UIColor blackColor];
+        cell.textLabel.textColor = [UIColor blackColor];
     } else {
-        cell.textColor = [UIColor redColor];
+        cell.textLabel.textColor = [UIColor redColor];
     }
 	
     return cell;

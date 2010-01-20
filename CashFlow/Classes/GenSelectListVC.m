@@ -79,7 +79,7 @@
 	
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:MyIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
     }
     if (indexPath.row == self.selectedIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
@@ -87,7 +87,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 		
-    cell.text = [items objectAtIndex:indexPath.row];
+    cell.textLabel.text = [items objectAtIndex:indexPath.row];
 
     return cell;
 }
