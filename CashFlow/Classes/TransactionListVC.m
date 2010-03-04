@@ -78,6 +78,24 @@
         transactionView = [[TransactionViewController alloc] init];
     }
     transactionView.asset = asset;
+    
+#if FREE_VERSION
+    // 広告領域分だけ、tableView の下部をあける
+    CGRect frame = tableView.frame;
+    CGRect tframe = frame;
+    tframe.size.height -= 50;
+    tableView.frame = tframe;
+
+#if 0
+    // 広告を作成する
+    //GADAdViewController *ad = [[[GADAdViewController alloc] initWithStyle:xxx] autorelease];
+    CGRect aframe = frame;
+    aframe.origin.y += aframe.size.height - 50;
+    aframe.size.height = 50;
+    ad.frame = aframe;
+    [view addSubview:ad.view];
+#endif
+#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -163,11 +181,6 @@
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#if FREE_VERSION
-    if (indexPath.row == [self _adCellRow]) {
-        return [AdCell adCellHeight];
-    }
-#endif
     return tableView.rowHeight;
 }
 
@@ -175,14 +188,6 @@
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
     int idx = ([asset entryCount] - 1) - indexPath.row;
-#if FREE_VERSION
-    int ar = [self _adCellRow];
-    if (indexPath.row == ar) {
-        idx = -2; // ad
-    } else if (indexPath.row > ar) {
-        idx++;
-    }
-#endif
     return idx;
 }
 
@@ -214,11 +219,6 @@
     if (e) {
         cell = [self _entryCell:e];
     }
-#if FREE_VERSION
-    else if (indexPath.row == [self _adCellRow]) {
-        cell = [self _adCell];
-    }
-#endif
     else {
         cell = [self initialBalanceCell];
     }
