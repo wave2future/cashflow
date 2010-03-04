@@ -22,6 +22,8 @@
 		3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
+		3E13EE70114008E400523938 /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE6F114008E400523938 /* libGoogleAds.a */; };
 		3E1AE0B50F97416F00AAB4AC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
 		3E1AE0B60F97416F00AAB4AC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
 		3E1AE0B70F97416F00AAB4AC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
@@ -188,6 +190,10 @@
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
 		3E0A9E390EC33894005195A5 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
+		3E13EE58114007D600523938 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		3E13EE6D114008E400523938 /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
+		3E13EE6E114008E400523938 /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
+		3E13EE6F114008E400523938 /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
 		3E1AE0AF0F97416F00AAB4AC /* AssetEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntry.h; sourceTree = "<group>"; };
 		3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntry.m; sourceTree = "<group>"; };
 		3E1AE0B10F97416F00AAB4AC /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
@@ -326,6 +332,8 @@
 				3EB5552F103B930E00BA13D4 /* AddressBook.framework in Frameworks */,
 				3EB55576103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */,
 				3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */,
+				3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */,
+				3E13EE70114008E400523938 /* libGoogleAds.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +404,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				3E13EE661140085000523938 /* GoogleAds */,
 				3EB540870E8E921700608B77 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Controller */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -449,6 +458,7 @@
 			isa = PBXGroup;
 			children = (
 				3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */,
+				3E13EE58114007D600523938 /* AVFoundation.framework */,
 				3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */,
 				2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -462,6 +472,16 @@
 			name = Frameworks;
 			path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks;
 			sourceTree = "<absolute>";
+		};
+		3E13EE661140085000523938 /* GoogleAds */ = {
+			isa = PBXGroup;
+			children = (
+				3E13EE6D114008E400523938 /* GADAdSenseParameters.h */,
+				3E13EE6E114008E400523938 /* GADAdViewController.h */,
+				3E13EE6F114008E400523938 /* libGoogleAds.a */,
+			);
+			path = GoogleAds;
+			sourceTree = "<group>";
 		};
 		3E2CBD9B0F1614E90025A682 /* locale */ = {
 			isa = PBXGroup;
@@ -934,6 +954,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
 					"\"$(SRCROOT)/TGAd\"",
+					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -957,6 +978,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
 					"\"$(SRCROOT)/TGAd\"",
+					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -980,6 +1002,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
 					"\"$(SRCROOT)/TGAd\"",
+					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -1004,6 +1027,7 @@
 					"$(inherited)",
 					"\"$(SRCROOT)/AdMob\"",
 					"\"$(SRCROOT)/TGAd\"",
+					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;

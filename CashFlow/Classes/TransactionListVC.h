@@ -39,8 +39,17 @@
 #import "DataModel.h"
 #import "CalcVC.h"
 
+#if FREE_VERSION
+#import "GADAdViewController.h"
+#import "GADAdSenseParameters.h"
+#endif
+
 @interface TransactionListViewController : UIViewController 
-    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, CalculatorViewDelegate>
+    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, CalculatorViewDelegate
+#if FREE_VERSION
+, GADAdViewControllerDelegate
+#endif
+>
 {
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *barBalanceLabel;

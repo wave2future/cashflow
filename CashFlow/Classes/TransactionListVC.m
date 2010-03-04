@@ -86,17 +86,34 @@
     tframe.size.height -= 50;
     tableView.frame = tframe;
 
-#if 0
     // 広告を作成する
-    //GADAdViewController *ad = [[[GADAdViewController alloc] initWithStyle:xxx] autorelease];
-    CGRect aframe = frame;
-    aframe.origin.y += aframe.size.height - 50;
-    aframe.size.height = 50;
-    ad.frame = aframe;
-    [view addSubview:ad.view];
-#endif
+    GADAdViewController *advc = [[[GADAdViewController alloc] initWithDelegate:self] autorelease];
+    advc.adSize = kGADAdSize320x50;
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                @"ca-mb-app-pub-nnnnnnnnnnnnnnnn", kGADAdSenseClientID,
+                                @"Company Name", kGADAdSenseCompanyName,
+                                @"App Name", kGADAdSenseAppName,
+                                @"hotels+san+francisco", kGADAdSenseKeywords,
+                                [NSArray arrayWithObjects:@"06562723305", nil], kGADAdSenseChannelIDs,
+                                [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
+                                nil];
+    
+    [advc loadGoogleAd:attributes];
+    UIView *adView = advc.view;
+    CGPoint center = CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame) - [adView bounds].size.height);
+    [advc.view setCenter:center];
+    [self.view addSubview:adView];
 #endif
 }
+
+#if FREE_VERSION
+// GADAdViewControllerDelegate
+- (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
+{
+    return self;
+}
+#endif
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
