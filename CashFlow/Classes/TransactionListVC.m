@@ -80,15 +80,11 @@
     transactionView.asset = asset;
     
 #if FREE_VERSION
-    // 広告領域分だけ、tableView の下部をあける
-    CGRect frame = tableView.frame;
-    CGRect tframe = frame;
-    tframe.size.height -= 50;
-    tableView.frame = tframe;
-
+    CGRect frame = tableView.bounds;
+    
     // 広告を作成する
-    GADAdViewController *advc = [[[GADAdViewController alloc] initWithDelegate:self] autorelease];
-    advc.adSize = kGADAdSize320x50;
+    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
+    adViewController.adSize = kGADAdSize320x50;
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 @"ca-mb-app-pub-nnnnnnnnnnnnnnnn", kGADAdSenseClientID,
@@ -99,11 +95,20 @@
                                 [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
                                 nil];
     
-    [advc loadGoogleAd:attributes];
-    UIView *adView = advc.view;
-    CGPoint center = CGPointMake(CGRectGetMidX(frame), CGRectGetMaxY(frame) - [adView bounds].size.height);
-    [advc.view setCenter:center];
+    [adViewController loadGoogleAd:attributes];
+    UIView *adView = adViewController.view;
+    float adViewHeight = [adView bounds].size.height;
+
+    CGRect aframe = frame;
+    aframe.origin.y = frame.size.height - adViewHeight;
+    aframe.size.height = adViewHeight;
+    adView.frame = aframe;
     [self.view addSubview:adView];
+
+    // 広告領域分だけ、tableView の下部をあける
+    CGRect tframe = frame;
+    tframe.size.height -= adViewHeight;
+    tableView.frame = tframe;
 #endif
 }
 

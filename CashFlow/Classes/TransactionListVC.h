@@ -57,6 +57,9 @@
     TransactionViewController *transactionView;
 
     Asset *asset;
+#if FREE_VERSION
+    GADAdViewController *adViewController;
+#endif
 }
 
 //- (UITableView*)tableView;
