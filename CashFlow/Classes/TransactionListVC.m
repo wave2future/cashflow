@@ -158,7 +158,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int n = [asset entryCount] + 1;
 #if FREE_VERSION
-    n++;
+    //n++;
 #endif
     return n;
 }
