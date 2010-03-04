@@ -39,7 +39,7 @@
 #import "InfoVC.h"
 #import "CalcVC.h"
 #import "ReportVC.h"
-#import "AdCell.h"
+//#import "AdCell.h"
 
 @implementation TransactionListViewController
 
@@ -146,6 +146,7 @@
 }
 
 // 広告行の位置を返す
+#if 0
 - (int)_adCellRow
 {
     //return 0;
@@ -158,6 +159,7 @@
     }
     return r;
 }
+#endif
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -325,10 +327,10 @@
     return cell;
 }
 
-- (UITableViewCell *)_adCell
-{
-    return [AdCell adCell:tableView];
-}
+//- (UITableViewCell *)_adCell
+//{
+//  return [AdCell adCell:tableView];
+//}
 
 //
 // セルをクリックしたときの処理

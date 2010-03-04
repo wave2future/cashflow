@@ -63,7 +63,7 @@
 - (IBAction)showHelp:(id)sender;
 
 - (UITableViewCell *)_entryCell:(AssetEntry *)e;
-- (int)_adCellRow;
-- (UITableViewCell *)_adCell;
+//- (int)_adCellRow;
+//- (UITableViewCell *)_adCell;
 
 @end

@@ -37,7 +37,7 @@
 #import "DataModel.h"
 #import "TransactionListVC.h"
 #import "BackupServer.h"
-#import "AdCell.h"
+//#import "AdCell.h"
 
 @interface AssetListViewController : UIViewController
 <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
@@ -59,7 +59,6 @@
 @property(nonatomic,retain) UITableView *tableView;
 
 - (int)_assetIndex:(NSIndexPath*)indexPath;
-- (BOOL)_isAdCell:(NSIndexPath*)indexPath;
 
 - (void)addAsset;
 

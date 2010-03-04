@@ -44,8 +44,6 @@
 #import "BackupServer.h"
 #import "Pin.h"
 
-#import "AdCell.h"
-
 @implementation AssetListViewController
 
 @synthesize tableView;
@@ -89,7 +87,6 @@
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 	
-//#ifndef FREE_VERSION
     // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
@@ -102,12 +99,9 @@
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
     }
-//#endif
-    
-//#ifndef FREE_VERSION
+
     PinController *pinController = [[[PinController alloc] init] autorelease];
     [pinController firstPinCheck:self];
-//#endif
 }
 
 - (void)didReceiveMemoryWarning {
@@ -160,11 +154,7 @@
             return [ledger assetCount];
 
         case 1:
-//#ifdef FREE_VERSION
-//            return 2;
-//#else
             return 1;
-//#endif
     }
     // NOT REACH HERE
     return 0;
@@ -178,33 +168,14 @@
     return -1;
 }
 
-- (BOOL)_isAdCell:(NSIndexPath*)indexPath
-{
-//#ifdef FREE_VERSION
-//    if (indexPath.section == 1 && indexPath.row == 1) {
-//        return YES;
-//    }
-//#endif
-    return NO;
-}
-
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([self _isAdCell:indexPath]) {
-        return [AdCell adCellHeight];
-    }
     return tv.rowHeight;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-
-    // Ad
-//    if ([self _isAdCell:indexPath]) {
-//        cell = [AdCell adCell:tableView];
-//        return cell;
-//    }
 
     NSString *cellid = @"assetCell";
     cell = [tv dequeueReusableCellWithIdentifier:cellid];
