@@ -196,10 +196,27 @@
     return n;
 }
 
+// 広告行の位置を返す
+- (int)_adCellRow
+{
+#if 1
+    return 0;
+#else
+#define _AD_CELL_ROW 7
+    int nentry = [asset entryCount];
+    
+    int r = _AD_CELL_ROW;
+    if (r > nentry) {
+        r = nentry;  // 全エントリの下（初期残高の上）
+    }
+    return r;
+#endif
+}
+
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 #if FREE_VERSION
-    if (indexPath.row == 0) {
+    if (indexPath.row == [self _adCellRow]) {
         return [AdCell adCellHeight];
     }
 #endif
@@ -211,9 +228,10 @@
 {
     int idx = ([asset entryCount] - 1) - indexPath.row;
 #if FREE_VERSION
-    if (indexPath.row == 0) {
+    int ar = [self _adCellRow];
+    if (indexPath.row == ar) {
         idx = -2; // ad
-    } else {
+    } else if (indexPath.row > ar) {
         idx++;
     }
 #endif
@@ -249,7 +267,7 @@
         cell = [self _entryCell:e];
     }
 #if FREE_VERSION
-    else if (indexPath.row == 0) {
+    else if (indexPath.row == [self _adCellRow]) {
         cell = [self _adCell];
     }
 #endif
