@@ -189,7 +189,7 @@
 
     // 資産
     double value;
-    NSString *label;
+    NSString *label = nil;
 
     if (indexPath.section == 0) {
         Asset *asset = [ledger assetAtIndex:[self _assetIndex:indexPath]];

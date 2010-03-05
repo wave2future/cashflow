@@ -272,7 +272,7 @@
     NSMutableString *numstr = [[NSMutableString alloc] initWithCapacity:16];
 
     // 表示すべき小数点以下の桁数を求める
-    int dp;
+    int dp = 0;
     double vtmp;
 
     switch (state) {

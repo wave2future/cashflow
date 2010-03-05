@@ -99,6 +99,7 @@
     NSString *t;
     switch (indexPath.row) {
     case 0:
+    default:
         t = @"Payment";
         break;
     case 1:
