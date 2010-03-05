@@ -4,117 +4,33 @@
 //
 
 // Note:
-//   AdMob : size = 320x48
-//   TG ad : size = 320x60
+//   AdSense : size = 320x50
+
+#if FREE_VERSION
 
 #import "AdCell.h"
-
-@implementation AdMobDelegate
-
-@synthesize adReceived;
-
-+ (AdMobDelegate*)getInstance
-{
-    static AdMobDelegate *theInstance = nil;
-    if (theInstance == nil) {
-        theInstance = [[AdMobDelegate alloc] init];
-    }
-    return theInstance;
-}
-
-- (id)init
-{
-    self = [super init];
-    adReceived = YES; // ### ad hoc... avoid retry for first time.
-    return self;
-}
-
-- (NSString*)publisherId
-{
-    return ADMOB_ID;
-}
-
-- (BOOL)useTestAd {
-    //return YES;
-    return NO;
-}
-
-- (void)didReceiveAd:(AdMobView *)adView {
-    NSLog(@"AdMob:didReceiveAd");
-    adReceived = YES;
-}
-
-- (void)didFailToReceiveAd:(AdMobView *)adView {
-    NSLog(@"AdMob:didFailToReceiveAd");
-    adReceived = NO;
-}
-
-@end
 
 /////////////////////////////////////////////////////////////////////
 // AdCell
 
 @implementation AdCell
 
-+ (BOOL)_isJaAd
-{
-    return NO; // force debug admob
-    
-    static NSString *plang = nil;
-    static BOOL isJa = YES;
-
-    if (plang == nil) {
-        plang = [[NSLocale preferredLanguages] objectAtIndex:0];
-        if ([plang isEqualToString:@"ja"]) {
-            isJa = YES;
-        } else {
-            isJa = NO;
-        }
-    }
-
-    return isJa;
-}
+@synthesize parentViewController;
 
 + (CGFloat)adCellHeight
 {
-    if ([AdCell _isJaAd]) {
-        return 60; // TG ad
-    }
-    return 48; // admob
+    return 51; // AdSense
 }
 
-+ (UIView *)adView
-{
-    static UIView *adView = nil;
-    
-    if (adView == nil) {
-        NSLog(@"adView start load");
-        if ([AdCell _isJaAd]) {
-            // TG ad
-            //TGAView *tgad = [TGAView requestWithKey:TGAD_ID Position:0];
-            //adView = tgad;
-        } else {
-            // AdMob
-            AdMobDelegate *amd = [AdMobDelegate getInstance];
-            AdMobView *admob = [AdMobView requestAdWithDelegate:amd];
-            adView = admob;
-        }
-        NSLog(@"adView load finish");
-        [adView retain];
-    }
-    return adView;
-}
-
-+ (AdCell *)adCell:(UITableView *)tableView
++ (AdCell *)adCell:(UITableView *)tableView parentViewController:(UIViewController *)parentViewController
 {
     NSString *identifier = @"AdCell";
 
     AdCell *cell = (AdCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
         cell = [[[AdCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
-    } else {
-        [cell checkRefresh];
     }
+    cell.parentViewController = parentViewController;
 
     return cell;
 }
@@ -122,27 +38,58 @@
 - (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
 {
     self = [super initWithStyle:style reuseIdentifier:identifier];
-    self.textLabel.text = @"Advertisement Space...";
-    self.textLabel.textColor = [UIColor lightGrayColor];
-    self.textLabel.textAlignment = UITextAlignmentCenter;
 
-    UIView *adView = [AdCell adView];
-    [self checkRefresh];
-    [self.contentView addSubview:adView];
+    // 広告を作成する
+    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
+    adViewController.adSize = kGADAdSize320x50;
     
+    NSString *keyword;
+    keyword = @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit";
+
+    NSDictionary *attributes =
+        [NSDictionary dictionaryWithObjectsAndKeys:
+                      @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
+                      @"Takuya Murakami", kGADAdSenseCompanyName,
+                      @"CashFlow Free", kGADAdSenseAppName,
+                      keyword, kGADAdSenseKeywords,
+                      [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
+                      [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
+
+                      [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
+                      [UIColor lightGrayColor], kGADAdSenseAdBorderColor,
+                      [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
+                      [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
+                      [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
+                      nil];
+    
+    [adViewController loadGoogleAd:attributes];
+    UIView *v = adViewController.view;
+    CGRect frame = v.frame;
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    v.frame = frame;
+    [self.contentView addSubview:v];
+
     return self;
 }
 
 - (void)dealloc {
+    [adViewController release];
     [super dealloc];
 }
 
-- (void)checkRefresh
+#pragma mark GADAdViewControllerDelegate
+
+- (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
 {
-    if (![AdCell _isJaAd] && ![AdMobDelegate getInstance].adReceived) {
-        AdMobView *admob = (AdMobView *)[AdCell adView];
-        [admob requestFreshAd];
-    }
+    return self.parentViewController;
 }
+
+- (GADAdClickAction)adControllerActionModelForAdClick:(GADAdViewController *)adController
+{
+    return GAD_ACTION_DISPLAY_INTERNAL_WEBSITE_VIEW;
+}
+
+#endif // FREE_VERSION
 
 @end
