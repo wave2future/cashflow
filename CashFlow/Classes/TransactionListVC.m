@@ -81,7 +81,7 @@
     }
     transactionView.asset = asset;
     
-#if FREE_VERSION
+#if 0 //FREE_VERSION
     CGRect frame = tableView.bounds;
     
     // 広告を作成する
@@ -364,7 +364,7 @@
 #if FREE_VERSION
 - (UITableViewCell *)_adCell
 {
-  return [AdCell adCell:tableView viewController:self.navigationController];
+  return [AdCell adCell:tableView parentViewController:self.navigationController];
 }
 #endif
 

@@ -19,10 +19,10 @@
 
 + (CGFloat)adCellHeight
 {
-    return 50; // AdSense
+    return 51; // AdSense
 }
 
-+ (AdCell *)adCell:(UITableView *)tableView viewController:(UIViewController *)parentViewController
++ (AdCell *)adCell:(UITableView *)tableView parentViewController:(UIViewController *)parentViewController
 {
     NSString *identifier = @"AdCell";
 
@@ -56,14 +56,19 @@
                       [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
 
                       [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
-                      [UIColor whiteColor], kGADAdSenseAdBorderColor,
+                      [UIColor lightGrayColor], kGADAdSenseAdBorderColor,
                       [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
                       [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
                       [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
                       nil];
     
     [adViewController loadGoogleAd:attributes];
-    [self.contentView addSubview:adViewController.view];
+    UIView *v = adViewController.view;
+    CGRect frame = v.frame;
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    v.frame = frame;
+    [self.contentView addSubview:v];
 
     return self;
 }
