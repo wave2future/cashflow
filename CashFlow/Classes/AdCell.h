@@ -3,33 +3,21 @@
 //  AdCell.h
 //
 
+#if FREE_VERSION
+
 #import <UIKit/UIKit.h>
 
-#import "AdMobDelegateProtocol.h"
-#import "AdMobView.h"
+#import "GADAdViewController.h"
+#import "GADAdSenseParameters.h"
 
-//#import "TGAView.h"
-
-#define ADMOB_ID @"a14a8b599ca8e92"
-#define TGAD_ID @"5AeoNWm3LatP"
-
-@interface AdMobDelegate : NSObject <AdMobDelegate> {
-    BOOL adReceived;
-}
-
-@property(nonatomic,assign) BOOL adReceived;
-
-@end
-
-
-@interface AdCell : UITableViewCell {
+@interface AdCell : UITableViewCell <GADAdViewControllerDelegate> {
+    GADAdViewController *adViewController;
 }
 
 + (AdCell *)adCell:(UITableView *)tableView;
 + (CGFloat)adCellHeight;
 + (UIView *)adView;
-+ (BOOL)_isJaAd;
 
-- (void)checkRefresh;
+#endif
 
 @end
