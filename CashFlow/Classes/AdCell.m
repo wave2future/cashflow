@@ -6,6 +6,8 @@
 // Note:
 //   AdSense : size = 320x50
 
+#if FREE_VERSION
+
 #import "AdCell.h"
 
 /////////////////////////////////////////////////////////////////////
@@ -18,7 +20,7 @@
     return 50; // AdSense
 }
 
-+ (AdCell *)adCell:(UITableView *)tableView
++ (AdCell *)adCell:(UITableView *)tableView viewController:(UIViewController *)parentViewController
 {
     NSString *identifier = @"AdCell";
 
@@ -26,6 +28,7 @@
     if (cell == nil) {
         cell = [[[AdCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
     }
+    cell.parentViewController = parentViewController;
 
     return cell;
 }
@@ -61,5 +64,19 @@
     [adViewController release];
     [super dealloc];
 }
+
+#pragma mark GADAdViewControllerDelegate
+
+- (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
+{
+    return parentViewController;
+}
+
+- (GADAdClickAction)adControllerActionModelForAdClick:(GADAdViewController *)adController
+{
+    return GAD_ACTION_DISPLAY_INTERNAL_WEBSITE_VIEW;
+}
+
+#endif // FREE_VERSION
 
 @end

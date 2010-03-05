@@ -12,11 +12,13 @@
 
 @interface AdCell : UITableViewCell <GADAdViewControllerDelegate> {
     GADAdViewController *adViewController;
+    UIViewController *parentViewController;
 }
 
-+ (AdCell *)adCell:(UITableView *)tableView;
+@property(nonatomic,assign) UIViewController *parentViewController;
+
++ (AdCell *)adCell:(UITableView *)tableView viewController:(UIViewController *)parentViewController;
 + (CGFloat)adCellHeight;
-+ (UIView *)adView;
 
 #endif
 

@@ -39,7 +39,9 @@
 #import "InfoVC.h"
 #import "CalcVC.h"
 #import "ReportVC.h"
-//#import "AdCell.h"
+#if FREE_VERSION
+#import "AdCell.h"
+#endif
 
 @implementation TransactionListViewController
 
@@ -189,29 +191,18 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int n = [asset entryCount] + 1;
 #if FREE_VERSION
-    //n++;
+    n++;
 #endif
     return n;
 }
 
-// 広告行の位置を返す
-#if 0
-- (int)_adCellRow
-{
-    //return 0;
-#define _AD_CELL_ROW 7
-    int nentry = [asset entryCount];
-
-    int r = _AD_CELL_ROW;
-    if (r > nentry) {
-        r = nentry;  // 全エントリの下（初期残高の上）
-    }
-    return r;
-}
-#endif
-
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+#if FREE_VERSION
+    if (indexPath.row == 0) {
+        return [AdCell adCellHeight];
+    }
+#endif
     return tableView.rowHeight;
 }
 
@@ -219,6 +210,13 @@
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
     int idx = ([asset entryCount] - 1) - indexPath.row;
+#if FREE_VERSION
+    if (indexPath.row == 0) {
+        idx = -2; // ad
+    } else {
+        idx++;
+    }
+#endif
     return idx;
 }
 
@@ -250,6 +248,11 @@
     if (e) {
         cell = [self _entryCell:e];
     }
+#if FREE_VERSION
+    else if (indexPath.row == 0) {
+        cell = [self _adCell];
+    }
+#endif
     else {
         cell = [self initialBalanceCell];
     }
@@ -358,10 +361,12 @@
     return cell;
 }
 
-//- (UITableViewCell *)_adCell
-//{
-//  return [AdCell adCell:tableView];
-//}
+#if FREE_VERSION
+- (UITableViewCell *)_adCell
+{
+  return [AdCell adCell:tableView viewController:self.navigationController];
+}
+#endif
 
 //
 // セルをクリックしたときの処理
