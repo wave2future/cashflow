@@ -45,12 +45,15 @@
                                 @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
                                 @"Takuya Murakami", kGADAdSenseCompanyName,
                                 @"CashFlow Free", kGADAdSenseAppName,
-                                //@"ファイナンス,家計簿,金融,キャッシュ,キャッシング,finance,cash,money", kGADAdSenseKeywords,
-                                //@"クレジット+カード,銀行,ファイナンス,キャッシュ,finance,cash,money", kGADAdSenseKeywords,
                                 @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit", kGADAdSenseKeywords,
                                 [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
                                 [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
-                                //[UIColor colorWithRed:129/255.0 green:149/255.0 blue:175/256.0 alpha:0], kGADAdSenseAdBackgroundColor,
+
+                                [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
+                                [UIColor whiteColor], kGADAdSenseAdBorderColor,
+                                [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
+                                [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
+                                [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
                                 nil];
     
     [adViewController loadGoogleAd:attributes];
