@@ -15,6 +15,8 @@
 
 @implementation AdCell
 
+@synthesize parentViewController;
+
 + (CGFloat)adCellHeight
 {
     return 50; // AdSense
@@ -41,24 +43,27 @@
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
     adViewController.adSize = kGADAdSize320x50;
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
-                                @"Takuya Murakami", kGADAdSenseCompanyName,
-                                @"CashFlow Free", kGADAdSenseAppName,
-                                @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit", kGADAdSenseKeywords,
-                                [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
-                                [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
+    NSString *keyword;
+    keyword = @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit";
 
-                                [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
-                                [UIColor whiteColor], kGADAdSenseAdBorderColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
-                                [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
-                                [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
-                                nil];
+    NSDictionary *attributes =
+        [NSDictionary dictionaryWithObjectsAndKeys:
+                      @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
+                      @"Takuya Murakami", kGADAdSenseCompanyName,
+                      @"CashFlow Free", kGADAdSenseAppName,
+                      keyword, kGADAdSenseKeywords,
+                      [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
+                      [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
+
+                      [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
+                      [UIColor whiteColor], kGADAdSenseAdBorderColor,
+                      [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
+                      [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
+                      [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
+                      nil];
     
     [adViewController loadGoogleAd:attributes];
-    UIView *adView = adViewController.view;
-    [self.contentView addSubview:adView];
+    [self.contentView addSubview:adViewController.view];
 
     return self;
 }
@@ -72,7 +77,7 @@
 
 - (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
 {
-    return parentViewController;
+    return self.parentViewController;
 }
 
 - (GADAdClickAction)adControllerActionModelForAdClick:(GADAdViewController *)adController

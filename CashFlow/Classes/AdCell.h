@@ -17,7 +17,7 @@
 
 @property(nonatomic,assign) UIViewController *parentViewController;
 
-+ (AdCell *)adCell:(UITableView *)tableView viewController:(UIViewController *)parentViewController;
++ (AdCell *)adCell:(UITableView *)tableView parentViewController:(UIViewController *)parentViewController;
 + (CGFloat)adCellHeight;
 
 #endif
