@@ -87,12 +87,15 @@
     adViewController.adSize = kGADAdSize320x50;
     
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"ca-mb-app-pub-nnnnnnnnnnnnnnnn", kGADAdSenseClientID,
-                                @"Company Name", kGADAdSenseCompanyName,
-                                @"App Name", kGADAdSenseAppName,
-                                @"hotels+san+francisco", kGADAdSenseKeywords,
-                                [NSArray arrayWithObjects:@"06562723305", nil], kGADAdSenseChannelIDs,
+                                @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
+                                @"Takuya Murakami", kGADAdSenseCompanyName,
+                                @"CashFlow Free", kGADAdSenseAppName,
+                                //@"ファイナンス,家計簿,金融,キャッシュ,キャッシング,finance,cash,money", kGADAdSenseKeywords,
+                                //@"クレジット+カード,銀行,ファイナンス,キャッシュ,finance,cash,money", kGADAdSenseKeywords,
+                                @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit", kGADAdSenseKeywords,
+                                [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
                                 [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
+                                //[UIColor colorWithRed:129/255.0 green:149/255.0 blue:175/256.0 alpha:0], kGADAdSenseAdBackgroundColor,
                                 nil];
     
     [adViewController loadGoogleAd:attributes];
@@ -116,8 +119,14 @@
 // GADAdViewControllerDelegate
 - (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
 {
-    return self;
+    return self.navigationController;
 }
+
+- (GADAdClickAction)adControllerActionModelForAdClick:(GADAdViewController *)adController
+{
+    return GAD_ACTION_DISPLAY_INTERNAL_WEBSITE_VIEW;
+}
+
 #endif
 
 - (void)didReceiveMemoryWarning {
