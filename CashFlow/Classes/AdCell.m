@@ -53,11 +53,9 @@
 
          [UIColor lightGrayColor], kGADAdSenseAdBorderColor,
          
-         //[UIColor blackColor], kGADAdSenseAdTextColor,
-         //[UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
-          
-         //[UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
-         //[UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
+         [UIColor colorWithRed:0.3 green:0.3 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
+         [UIColor colorWithRed:0.3 green:0.3 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
+         [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
          nil];
     return attributes;
 }
