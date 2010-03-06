@@ -43,6 +43,10 @@
 #import "AdCell.h"
 #endif
 
+// 広告位置
+// -1 を指定した場合は、画面下部固定
+#define AD_CELL_ROW -1
+
 @implementation TransactionListViewController
 
 @synthesize tableView;
@@ -81,29 +85,18 @@
     }
     transactionView.asset = asset;
     
-#if 0 //FREE_VERSION
+#if FREE_VERSION
+    if (AD_CELL_ROW >= 0) return;
+    
     CGRect frame = tableView.bounds;
     
-    // 広告を作成する
+    // 画面下部固定で広告を作成する
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
     adViewController.adSize = kGADAdSize320x50;
     
-    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
-                                @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
-                                @"Takuya Murakami", kGADAdSenseCompanyName,
-                                @"CashFlow Free", kGADAdSenseAppName,
-                                //@"ファイナンス,家計簿,金融,キャッシュ,キャッシング,finance,cash,money", kGADAdSenseKeywords,
-                                //@"クレジット+カード,銀行,ファイナンス,キャッシュ,finance,cash,money", kGADAdSenseKeywords,
-                                @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit", kGADAdSenseKeywords,
-                                [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
-                                [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
-
-                                //[UIColor colorWithRed:153/255.0 green:169/255.0 blue:190/256.0 alpha:0], kGADAdSenseAdBackgroundColor,
-                                [UIColor colorWithRed:129/255.0 green:149/255.0 blue:175/256.0 alpha:0], kGADAdSenseAdBackgroundColor,
-                                //[UIColor darkGrayColor], kGADAdSenseAdBackgroundColor,
-                                nil];
-    
+    NSDictionary *attributes = [AdCell adAttributes];
     [adViewController loadGoogleAd:attributes];
+    
     UIView *adView = adViewController.view;
     float adViewHeight = [adView bounds].size.height;
 
@@ -194,7 +187,9 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int n = [asset entryCount] + 1;
 #if FREE_VERSION
-    n++;
+    if ([self _adCellRow] >= 0) {
+        n++;
+    }
 #endif
     return n;
 }
@@ -202,18 +197,13 @@
 // 広告行の位置を返す
 - (int)_adCellRow
 {
-#if 1
-    return 0;
-#else
-#define _AD_CELL_ROW 7
+    int r = AD_CELL_ROW;
     int nentry = [asset entryCount];
-    
-    int r = _AD_CELL_ROW;
+
     if (r > nentry) {
         r = nentry;  // 全エントリの下（初期残高の上）
     }
     return r;
-#endif
 }
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -232,10 +222,12 @@
     int idx = ([asset entryCount] - 1) - indexPath.row;
 #if FREE_VERSION
     int ar = [self _adCellRow];
-    if (indexPath.row == ar) {
-        idx = -2; // ad
-    } else if (indexPath.row > ar) {
-        idx++;
+    if (ar >= 0) {
+        if (indexPath.row == ar) {
+            idx = -2; // ad
+        } else if (indexPath.row > ar) {
+            idx++;
+        }
     }
 #endif
     return idx;

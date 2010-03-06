@@ -35,6 +35,33 @@
     return cell;
 }
 
++ (NSDictionary *)adAttributes
+{
+    NSDictionary *attributes = 
+        [NSDictionary dictionaryWithObjectsAndKeys:
+         AFMA_CLIENT_ID, kGADAdSenseClientID,
+         @"Takuya Murakami", kGADAdSenseCompanyName,
+         @"CashFlow Free", kGADAdSenseAppName,
+         AFMA_KEYWORDS, kGADAdSenseKeywords,
+         [NSArray arrayWithObjects:AFMA_CHANNEL_IDS, nil], kGADAdSenseChannelIDs,
+         [NSNumber numberWithInt:AFMA_IS_TEST], kGADAdSenseIsTestAdRequest,
+
+         [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
+         //[UIColor colorWithRed:153/255.0 green:169/255.0 blue:190/256.0 alpha:0], kGADAdSenseAdBackgroundColor,
+         //[UIColor colorWithRed:129/255.0 green:149/255.0 blue:175/256.0 alpha:0], kGADAdSenseAdBackgroundColor,
+         //[UIColor darkGrayColor], kGADAdSenseAdBackgroundColor,
+
+         [UIColor lightGrayColor], kGADAdSenseAdBorderColor,
+         
+         //[UIColor blackColor], kGADAdSenseAdTextColor,
+         //[UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
+          
+         //[UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
+         //[UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
+         nil];
+    return attributes;
+}
+
 - (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
 {
     self = [super initWithStyle:style reuseIdentifier:identifier];
@@ -43,26 +70,9 @@
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
     adViewController.adSize = kGADAdSize320x50;
     
-    NSString *keyword;
-    keyword = @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,money,finance,bank,cash,credit";
-
-    NSDictionary *attributes =
-        [NSDictionary dictionaryWithObjectsAndKeys:
-                      @"ca-mb-app-pub-4621925249922081", kGADAdSenseClientID,
-                      @"Takuya Murakami", kGADAdSenseCompanyName,
-                      @"CashFlow Free", kGADAdSenseAppName,
-                      keyword, kGADAdSenseKeywords,
-                      [NSArray arrayWithObjects:@"9215174282", nil], kGADAdSenseChannelIDs,
-                      [NSNumber numberWithInt:1], kGADAdSenseIsTestAdRequest,
-
-                      [UIColor whiteColor], kGADAdSenseAdBackgroundColor,
-                      [UIColor lightGrayColor], kGADAdSenseAdBorderColor,
-                      [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdLinkColor,
-                      [UIColor colorWithRed:0.0 green:0.0 blue:0.5 alpha:0], kGADAdSenseAdTextColor,
-                      [UIColor colorWithRed:0.0 green:0.4 blue:0.0 alpha:0], kGADAdSenseAdURLColor,
-                      nil];
-    
+    NSDictionary *attributes = [AdCell adAttributes];
     [adViewController loadGoogleAd:attributes];
+    
     UIView *v = adViewController.view;
     CGRect frame = v.frame;
     frame.origin.x = 0;
@@ -77,6 +87,7 @@
     [adViewController release];
     [super dealloc];
 }
+
 
 #pragma mark GADAdViewControllerDelegate
 
