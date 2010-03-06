@@ -1,3 +1,7 @@
+2010-03-07: Takuya Murakami
+	* 広告を AdSense for Mobile Application (AFMA) に変更
+	* バグ修正: 資産並び替えで、合計額欄に移動させないようにした
+	
 2009-12-16: Takuya Murakami
 	* 資産間移動削除時の処理を修正
 	* ver 2.1
