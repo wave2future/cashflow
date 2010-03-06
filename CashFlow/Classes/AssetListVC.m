@@ -340,6 +340,15 @@
     return YES;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tv
+targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath 
+       toProposedIndexPath:(NSIndexPath *)proposedIndexPath
+{
+    // 合計額(section:1)には移動させない
+    NSIndexPath *idx = [NSIndexPath indexPathForRow:proposedIndexPath.row inSection:0];
+    return idx;
+}
+
 - (void)tableView:(UITableView *)tv moveRowAtIndexPath:(NSIndexPath*)from toIndexPath:(NSIndexPath*)to
 {
     int fromIndex = [self _assetIndex:from];
