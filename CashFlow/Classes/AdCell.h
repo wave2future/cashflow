@@ -12,8 +12,8 @@
 
 #define AFMA_CLIENT_ID  @"ca-mb-app-pub-4621925249922081"
 #define AFMA_CHANNEL_IDS @"9215174282"
-#define AFMA_KEYWORDS  @"マネー,ファイナンス,銀行,預金,キャッシュ,クレジット,節約,資産,money,finance,bank,cash,credit,saving,asset"
-#define AFMA_IS_TEST 1
+#define AFMA_KEYWORDS  @"マネー,預金,キャッシュ,クレジット,小遣い,貯金,資産+管理,money,deposit,cash,credit,allowance,spending+money,pocket+money,savings,saving+money,asset+management"
+#define AFMA_IS_TEST 0
 
 @interface AdCell : UITableViewCell <GADAdViewControllerDelegate> {
     GADAdViewController *adViewController;
