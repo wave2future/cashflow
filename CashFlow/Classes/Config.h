@@ -36,13 +36,14 @@
 
 @interface Config : NSObject
 {
+#define DateTimeModeOnlyDate 0
+#define DateTimeModeWithTime 1
     int dateTimeMode;
 }
 
 @property(nonatomic,assign) int dateTimeMode;
 
 + (Config *)instance;
-- (void)load;
 - (void)save;
 
 @end

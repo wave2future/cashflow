@@ -51,21 +51,17 @@ static Config *theConfig = nil;
 - (id)init
 {
     self = [super init];
-    if (self) {
-        [self load];
+    if (!self) return nil;
+
+
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
+    
+    self.dateTimeMode = [defaults integerForKey:@"DateTimeMode"];
+    if (self.dateTimeMode != DateTimeModeOnlyDate &&
+        self.dateTImeMode != DateTimeModeWithTime) {
+        self.dateTimeMode = DateTimeModeWithTime;
     }
     return self;
-}
-
-- (void)load
-{
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
-
-    dateTimeMode = [defaults integerForKey:@"DateTimeMode"];
-    if (dateTimeMode != DATETIME_MODE_ONLYDATE &&
-        dateTImeMode != DATE_TIME_MODE_WITHTIME) {
-        dateTimeMode = DATE_TIME_MODE_WITHTIME;
-    }
 }
 
 - (void)save
