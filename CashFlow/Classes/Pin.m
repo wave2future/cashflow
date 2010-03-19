@@ -155,6 +155,7 @@
             // set new pin
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:newPin forKey:@"PinCode"];
+            [defaults synchronize];
         } else {
             isBadPin = YES;
         }
