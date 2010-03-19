@@ -34,6 +34,7 @@
 
 #import "Transaction.h"
 #import "Database.h"
+#import "Config.h"
 
 @implementation Transaction
 
@@ -44,8 +45,17 @@
 {
     asset = -1;
     dst_asset = -1;
+    
     // 現在時刻で作成
     NSDate *dt = [[[NSDate alloc] init] autorelease];
+    
+    if ([Config instance].dateTimeMode == DateTimeModeDateOnly) {
+        // 時刻を 0:00:00 に設定
+        NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
+        NSDateComponents *dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:dt];
+        dt = [greg dateFromComponents:dc];
+    }
+    
     self.date = dt;
     self.description = @"";
     self.memo = @"";
