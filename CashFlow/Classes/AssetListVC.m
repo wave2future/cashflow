@@ -403,11 +403,8 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
             initWithTitle:@"" delegate:self 
             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
             destructiveButtonTitle:nil
-            otherButtonTitles:NSLocalizedString(@"Edit Categories", @""),
+            otherButtonTitles:
             NSLocalizedString(@"Backup", @""),
-//#ifndef FREE_VERSION
-            NSLocalizedString(@"Set PIN Code", @""),
-//#endif
             NSLocalizedString(@"Config", @""),
             nil];
     [asConfig showInView:[self view]];
@@ -422,21 +419,10 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
     switch (buttonIndex) {
     case 0:
-        categoryVC = [[[CategoryListViewController alloc] init] autorelease];
-        categoryVC.isSelectMode = NO;
-        [self.navigationController pushViewController:categoryVC animated:YES];
-        break;
-
-    case 1:
         [self doBackup];
         break;
-
-    case 2:
-        pinController = [[[PinController alloc] init] autorelease];
-        [pinController modifyPin:self];
-        break;
             
-    case 3:
+    case 1:
         configVC = [[[ConfigViewController alloc] init] autorelease];
         [self.navigationController pushViewController:configVC animated:YES];
         break;
