@@ -135,17 +135,19 @@ static int compareCatReport(id x, id y, void *context)
         // 締め日設定
         int cutoffDate = [Config instance].cutoffDate;
         if (cutoffDate == 0) {
-            // 月末締め ⇒ 開始は1日から。
+            // 月末締め ⇒ 開始は同月1日から。
             [dc setDay:1];
         }
         else {
             // 一つ前の月の締め日翌日から開始
+            int year = [dc year];
             int month = [dc month];
             month--;
             if (month < 1) {
                 month = 12;
-                [dc setYear:[dc year] - 1];
+                year--;
             }
+            [dc setYear:year];
             [dc setMonth:month];
             [dc setDay:cutoffDate + 1];
         }
