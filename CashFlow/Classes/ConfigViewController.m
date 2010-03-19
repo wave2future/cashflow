@@ -35,6 +35,8 @@
 #import "ConfigViewController.h"
 #import "Config.h"
 #import "GenSelectListVC.h"
+#import "CategoryListVC.h"
+#import "Pin.h"
 
 @implementation ConfigViewController
 
@@ -49,9 +51,11 @@
     [super viewDidLoad];
 
     self.navigationItem.title = NSLocalizedString(@"Config", @"");
+#if 0
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                   target:self action:@selector(doneAction:)] autorelease];
+#endif
 }
 
 - (void)dealloc
@@ -81,7 +85,7 @@
 #pragma mark Table view methods
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 3;
 }
 
 #if 0
@@ -93,7 +97,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 2;
+    if (section == 0) {
+        return 2;
+    }
+        
+    return 1;
 }
 
 #define ROW_DATE_TIME_MODE 0
@@ -112,67 +120,104 @@
 
     Config *config = [Config instance];
 
-    switch (indexPath.row) {
-    case ROW_DATE_TIME_MODE:
-        cell.textLabel.text = NSLocalizedString(@"Date style", @"");
-        if (config.dateTimeMode == DateTimeModeWithTime) {
-            cell.detailTextLabel.text = NSLocalizedString(@"Date and time", @"");
-        } else {
-            cell.detailTextLabel.text = NSLocalizedString(@"Date only", @"");
-        }
-        break;
+    NSString *text;
+    NSString *detailText = @"";
 
-    case ROW_CUTOFF_DATE:
-        cell.textLabel.text = NSLocalizedString(@"Cutoff date", @"");
-        if (config.cutoffDate == 0) {
-            cell.detailTextLabel.text = NSLocalizedString(@"End of month", @"");
-        } else {
-            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", config.cutoffDate];
-        }
-        break;
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case ROW_DATE_TIME_MODE:
+                    text = NSLocalizedString(@"Date style", @"");
+                    if (config.dateTimeMode == DateTimeModeWithTime) {
+                        detailText = NSLocalizedString(@"Date and time", @"");
+                    } else {
+                        detailText = NSLocalizedString(@"Date only", @"");
+                    }
+                    break;
+
+                case ROW_CUTOFF_DATE:
+                    text = NSLocalizedString(@"Cutoff date", @"");
+                    if (config.cutoffDate == 0) {
+                        detailText = NSLocalizedString(@"End of month", @"");
+                    } else {
+                        detailText = [NSString stringWithFormat:@"%d", config.cutoffDate];
+                    }
+                    break;
+            }
+            break;
+            
+        case 1:
+            text = NSLocalizedString(@"Edit Categories", @"");
+            break;
+            
+        case 2:
+            text = NSLocalizedString(@"Set PIN Code", @"");
+            break;
     }
-
+    
+    cell.textLabel.text = text;
+    cell.detailTextLabel.text = detailText;
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Config *config = [Config instance];
+
     GenSelectListViewController *gt;
     NSMutableArray *typeArray;
-    Config *config = [Config instance];
+    CategoryListViewController *categoryVC;
+    PinController *pinController;
 
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 
-    switch (indexPath.row) {
-    case ROW_DATE_TIME_MODE:
-        typeArray = [[[NSArray alloc] initWithObjects:
-                      NSLocalizedString(@"Date and time", @""),
-                      NSLocalizedString(@"Date only", @""),
-                      nil] autorelease];
-        gt = [GenSelectListViewController
-              genSelectListViewController:self
-              items:typeArray
-              title:NSLocalizedString(@"Date style", @"")
-              identifier:ROW_DATE_TIME_MODE];
-        gt.selectedIndex = config.dateTimeMode;
-        break;
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case ROW_DATE_TIME_MODE:
+                    typeArray = [[[NSArray alloc] initWithObjects:
+                                  NSLocalizedString(@"Date and time", @""),
+                                  NSLocalizedString(@"Date only", @""),
+                                  nil] autorelease];
+                    gt = [GenSelectListViewController
+                          genSelectListViewController:self
+                          items:typeArray
+                          title:NSLocalizedString(@"Date style", @"")
+                          identifier:ROW_DATE_TIME_MODE];
+                    gt.selectedIndex = config.dateTimeMode;
+                    break;
 
-    case ROW_CUTOFF_DATE:
-        typeArray = [[[NSMutableArray alloc] init] autorelease];
-        [typeArray addObject:NSLocalizedString(@"End of month", @"")];
-        for (int i = 1; i <= 28; i++) {
-            [typeArray addObject:[NSString stringWithFormat:@"%d", i]];
-        }
-        gt = [GenSelectListViewController
-              genSelectListViewController:self
-              items:typeArray
-              title:NSLocalizedString(@"Cutoff date", @"")
-              identifier:ROW_CUTOFF_DATE];
-        gt.selectedIndex = config.cutoffDate;
-        break;
+                case ROW_CUTOFF_DATE:
+                    typeArray = [[[NSMutableArray alloc] init] autorelease];
+                    [typeArray addObject:NSLocalizedString(@"End of month", @"")];
+                    for (int i = 1; i <= 28; i++) {
+                        [typeArray addObject:[NSString stringWithFormat:@"%d", i]];
+                    }
+                    gt = [GenSelectListViewController
+                          genSelectListViewController:self
+                          items:typeArray
+                          title:NSLocalizedString(@"Cutoff date", @"")
+                          identifier:ROW_CUTOFF_DATE];
+                    gt.selectedIndex = config.cutoffDate;
+                    break;
+            }
+
+            [self.navigationController pushViewController:gt animated:YES];
+            break;
+            
+        case 1:
+            categoryVC = [[[CategoryListViewController alloc] init] autorelease];
+            categoryVC.isSelectMode = NO;
+            [self.navigationController pushViewController:categoryVC animated:YES];
+            break;
+            
+        case 2:
+            pinController = [[[PinController alloc] init] autorelease];
+            [pinController modifyPin:self];
+            break;
     }
 
-    [self.navigationController pushViewController:gt animated:YES];
 }
 
 - (BOOL)genSelectListViewChanged:(GenSelectListViewController *)vc identifier:(int)id
