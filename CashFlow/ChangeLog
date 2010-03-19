@@ -1,3 +1,7 @@
+2010-03-19: Takuya Murakami
+	* 締め日設定できるようにした
+	* 日時モードを設定できるようにした
+	
 2010-03-14: Takuya Murakami
 	* ver 2.2.1 (Free 版のみ)
 	* AFMA channel ID 修正
