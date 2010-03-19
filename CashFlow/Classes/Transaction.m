@@ -121,7 +121,7 @@
 
     /* load transactions */
     stmt = [[Database instance] prepare:"SELECT key, asset, dst_asset, date, type, category, value, description, memo"
-               " FROM Transactions ORDER BY date;"];
+               " FROM Transactions ORDER BY date, key;"];
 
     NSMutableArray *ary = [[[NSMutableArray alloc] init] autorelease];
 
