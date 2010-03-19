@@ -146,26 +146,28 @@
     switch (indexPath.row) {
     case ROW_DATE_TIME_MODE:
         typeArray = [[[NSArray alloc] initWithObjects:
-                                          NSLocalizedString(@"Date and time", @""),
-                                      NSLocalizedString(@"Date only", @""),
-                                      nil] autorelease];
-        gt = [GenSelectListViewController genSelectListViewController:self
-                                            items:typeArray
-                                            title:NSLocalizedString(@"Date style", @"")
-                                            identifier:0];
+                      NSLocalizedString(@"Date and time", @""),
+                      NSLocalizedString(@"Date only", @""),
+                      nil] autorelease];
+        gt = [GenSelectListViewController
+              genSelectListViewController:self
+              items:typeArray
+              title:NSLocalizedString(@"Date style", @"")
+              identifier:ROW_DATE_TIME_MODE];
         gt.selectedIndex = config.dateTimeMode;
         break;
 
     case ROW_CUTOFF_DATE:
         typeArray = [[[NSMutableArray alloc] init] autorelease];
-        [typeArray addObject:@"End of month"];
+        [typeArray addObject:NSLocalizedString(@"End of month", @"")];
         for (int i = 1; i <= 28; i++) {
             [typeArray addObject:[NSString stringWithFormat:@"%d", i]];
         }
-        gt = [GenSelectListViewController genSelectListViewController:self
-                                            items:typeArray
-                                            title:NSLocalizedString(@"Cutoff date", @"")
-                                            identifier:0];
+        gt = [GenSelectListViewController
+              genSelectListViewController:self
+              items:typeArray
+              title:NSLocalizedString(@"Cutoff date", @"")
+              identifier:ROW_CUTOFF_DATE];
         gt.selectedIndex = config.cutoffDate;
         break;
     }

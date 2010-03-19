@@ -79,7 +79,8 @@
         [dateFormatter setDateFormat:@"yyyy/MM/dd~"];
         break;
     case REPORT_MONTHLY:
-        [dateFormatter setDateFormat:@"yyyy/MM"];
+        //[dateFormatter setDateFormat:@"yyyy/MM"];
+        [dateFormatter setDateFormat:@"~yyyy/MM/dd"];
         break;
     }
 
@@ -100,7 +101,8 @@
         //    1分前は当月最終日の23:59である。
         // 2) 締め日が任意の日、例えば25日の場合、endDate は当月25日を
         //    指している。そのまま年月を得る。
-        return [dateFormatter stringFromDate:[report.endDate addTimeInterval:-60]];
+        NSDate *d = [report.endDate addTimeInterval:-60];
+        return [dateFormatter stringFromDate:d];
     } else {
         return [dateFormatter stringFromDate:report.date];
     }
