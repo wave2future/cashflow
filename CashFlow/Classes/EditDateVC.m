@@ -54,6 +54,11 @@
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                   target:self
                                                   action:@selector(doneAction)] autorelease];
+
+    //datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+    //datePicker.datePickerMode = UIDatePickerModeDate;
+
+    //datePicker.minuteInterval = 5;
 }
 
 - (void)dealloc
