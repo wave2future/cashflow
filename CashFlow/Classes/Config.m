@@ -63,7 +63,7 @@ static Config *theConfig = nil;
     }
 
     self.cutoffDate = [default integerForKey:@"CutoffDate"];
-    if (self.cutoffDate < 0 || self.cutoffDate > 31) {
+    if (self.cutoffDate < 0 || self.cutoffDate > 28) {
         self.cutoffDate = 0;
     }
     return self;

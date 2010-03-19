@@ -130,8 +130,26 @@ static int compareCatReport(id x, id y, void *context)
     steps = [[[NSDateComponents alloc] init] autorelease];
     switch (type) {
     case REPORT_MONTHLY:
-        dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit) fromDate:firstDate];
-        [dc setDay:1];
+        dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+
+        // 締め日設定
+        int cutoffDate = [Config instance].cutoffDate;
+        if (cutoffDate == 0) {
+            // 月末締め ⇒ 開始は1日から。
+            [dc setDay:1];
+        }
+        else {
+            // 一つ前の月の締め日翌日から開始
+            int month = [dc month];
+            month--;
+            if (month < 1) {
+                month = 12;
+                [dc setYear:[dc year] - 1];
+            }
+            [dc setMonth:month];
+            [dc setDay:cutoffDate + 1];
+        }
+
         dd = [greg dateFromComponents:dc];
         [steps setMonth:1];
         break;

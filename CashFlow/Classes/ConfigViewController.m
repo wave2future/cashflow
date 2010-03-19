@@ -150,7 +150,7 @@
     case ROW_CUTOFF_DATE:
         typeArray = [[[NSMutableArray alloc] init] autorelease];
         [typeArray addObject:@"End of month"];
-        for (int i = 1; i <= 29; i++) {
+        for (int i = 1; i <= 28; i++) {
             [typeArray addObject:[NSString stringWithFormat:@"%d", i]];
         }
         gt = [GenSelectedListViewController genSelectListViewController:self
