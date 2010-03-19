@@ -36,6 +36,7 @@
 // (SQLite ver)
 
 #import "DataModel.h"
+#import "Config.h"
 
 @implementation DataModel
 
@@ -123,14 +124,24 @@ static DataModel *theDataModel = nil;
 //
 + (NSDateFormatter *)dateFormatter
 {
-    static NSDateFormatter *theDateFormatter = nil;
+    static NSDateFormatter *dfDateTime = nil;
+    static NSDateFormatter *dfDateOnly = nil;
 
-    if (!theDateFormatter) {
-        theDateFormatter = [[NSDateFormatter alloc] init];
-        [theDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-        [theDateFormatter setTimeStyle:NSDateFormatterShortStyle];
+    if (!dfDateTime) {
+        dfDateTime = [[NSDateFormatter alloc] init];
+        [dfDateTime setDateStyle:NSDateFormatterMediumStyle];
+        [dfDateTime setTimeStyle:NSDateFormatterShortStyle];
     }
-    return theDateFormatter;
+    if (!dfDateOnly) {
+        dfDateOnly = [[NSDateFormatter alloc] init];
+        [dfDateOnly setDateStyle:NSDateFormatterMediumStyle];
+        [dfDateOnly setTimeStyle:NSDateFormatterNoStyle];
+    }
+
+    if ([Config instance].dateTimeMode == DateTimeModeDateOnly) {
+        return dfDateOnly;
+    }
+    return dfDateTime;
 }
 
 static NSNumberFormatter *currencyFormatter = nil;
