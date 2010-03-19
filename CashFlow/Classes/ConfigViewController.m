@@ -165,7 +165,7 @@
 {
     Config *config = [Config instance];
 
-    GenSelectListViewController *gt;
+    GenSelectListViewController *gt = nil;
     NSMutableArray *typeArray;
     CategoryListViewController *categoryVC;
     PinController *pinController;

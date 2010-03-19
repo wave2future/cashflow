@@ -38,7 +38,7 @@
 #import "Asset.h"
 #import "AssetVC.h"
 #import "TransactionListVC.h"
-#import "CategoryListVC.h"
+//#import "CategoryListVC.h"
 #import "ReportVC.h"
 #import "InfoVC.h"
 #import "BackupServer.h"
@@ -413,8 +413,6 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
 - (void)_actionConfig:(NSInteger)buttonIndex
 {
-    CategoryListViewController *categoryVC;
-    PinController *pinController;
     ConfigViewController *configVC;
 
     switch (buttonIndex) {
