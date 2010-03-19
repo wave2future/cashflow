@@ -90,6 +90,22 @@
     }
 }
 
+// レポートのタイトルを得る
+- (NSString *)_reportTitle:(Report *)report
+{
+    if (reports.type == REPORT_MONTHLY) {
+        // 終了日の時刻の１分前の時刻から年月を得る
+        //
+        // 1) 締め日が月末の場合、endDate は翌月1日0:00を指しているので、
+        //    1分前は当月最終日の23:59である。
+        // 2) 締め日が任意の日、例えば25日の場合、endDate は当月25日を
+        //    指している。そのまま年月を得る。
+        return [dateFormatter stringFromDate:[r.endDate addTimeInterval:-60]];
+    } else {
+        return [dateFormatter stringFromDate:r.date];
+    }
+}
+
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -111,9 +127,8 @@
     int count = [reports.reports count];
     Report *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
 	
-    //UITableViewCell *cell = [self reportCell:report];
     ReportCell *cell = [ReportCell reportCell:tv];
-    cell.name = [dateFormatter stringFromDate:report.date];
+    cell.name = [self _reportTitle:report];
     cell.income = report.totalIncome;
     cell.outgo = report.totalOutgo;
     cell.maxAbsValue = maxAbsValue;
@@ -129,7 +144,7 @@
     Report *r = [reports.reports objectAtIndex:count - indexPath.row - 1];
 
     CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
-    vc.title = [dateFormatter stringFromDate:r.date];
+    vc.title = [self _reportTitle:r];
     vc.report = r;
     [self.navigationController pushViewController:vc animated:YES];
 }

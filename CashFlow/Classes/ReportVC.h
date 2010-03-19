@@ -15,6 +15,6 @@
 }
 
 - (void)generateReport:(int)type asset:(Asset*)asset;
-//- (UITableViewCell *)reportCell:(Report*)report;
+- (NSString *)_reportTitle:(Report *)report;
 
 @end
