@@ -38,6 +38,12 @@
 
 @implementation ConfigViewController
 
+- (id)init
+{
+    self = [super initWithNibName:@"ConfigView" bundle:nil];
+    return self;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
