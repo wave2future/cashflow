@@ -38,7 +38,7 @@
 {
     // 日時モード
 #define DateTimeModeWithTime 0  // 日＋時
-#define DateTimeModeOnlyDate 1  // 日のみ
+#define DateTimeModeDateOnly 1  // 日のみ
     int dateTimeMode;
 
     // 締め日 (1～29)、月末を指定する場合は 0

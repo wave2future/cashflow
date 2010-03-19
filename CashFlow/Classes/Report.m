@@ -35,6 +35,7 @@
 #import "AppDelegate.h"
 #import "Report.h"
 #import "Database.h"
+#import "Config.h"
 
 static void init_filter(Filter *filter);
 

@@ -32,11 +32,11 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <Config.h>
+#import "Config.h"
 
 @implementation Config
 
-@synthesize dateTimeMode;
+@synthesize dateTimeMode, cutoffDate;
 
 static Config *theConfig = nil;
 
@@ -57,12 +57,12 @@ static Config *theConfig = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     
     self.dateTimeMode = [defaults integerForKey:@"DateTimeMode"];
-    if (self.dateTimeMode != DateTimeModeOnlyDate &&
-        self.dateTImeMode != DateTimeModeWithTime) {
+    if (self.dateTimeMode != DateTimeModeDateOnly &&
+        self.dateTimeMode != DateTimeModeWithTime) {
         self.dateTimeMode = DateTimeModeWithTime;
     }
 
-    self.cutoffDate = [default integerForKey:@"CutoffDate"];
+    self.cutoffDate = [defaults integerForKey:@"CutoffDate"];
     if (self.cutoffDate < 0 || self.cutoffDate > 28) {
         self.cutoffDate = 0;
     }

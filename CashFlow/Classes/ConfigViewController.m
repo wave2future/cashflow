@@ -46,14 +46,10 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
                                                   target:self action:@selector(doneAction:)] autorelease];
-
-    dateModeSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(200, 11, 94, 27)];
-    dateModeSwitch.on = ([Config instance].dateTimeMode == DateTimeModeWithTime) ? YES : NO;
 }
 
 - (void)dealloc
 {
-    [dateModeSwitch release];
     [super dealloc];
 }
 
@@ -93,7 +89,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
-    static NSString *cellid = "ConfigCell";
+    static NSString *cellid = @"ConfigCell";
 
     cell = [tableView dequeueReusableCellWithIdentifier:cellid];
     if (cell == nil) {
@@ -129,7 +125,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     GenSelectListViewController *gt;
-    NSArray *typeArray;
+    NSMutableArray *typeArray;
     Config *config = [Config instance];
 
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -140,7 +136,7 @@
                                           NSLocalizedString(@"Date and time", @""),
                                       NSLocalizedString(@"Date only", @""),
                                       nil] autorelease];
-        gt = [GenSelectedListViewController genSelectListViewController:self
+        gt = [GenSelectListViewController genSelectListViewController:self
                                             items:typeArray
                                             title:NSLocalizedString(@"Date style", @"")
                                             identifier:0];
@@ -153,7 +149,7 @@
         for (int i = 1; i <= 28; i++) {
             [typeArray addObject:[NSString stringWithFormat:@"%d", i]];
         }
-        gt = [GenSelectedListViewController genSelectListViewController:self
+        gt = [GenSelectListViewController genSelectListViewController:self
                                             items:typeArray
                                             title:NSLocalizedString(@"Cutoff date", @"")
                                             identifier:0];

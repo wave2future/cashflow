@@ -33,6 +33,7 @@
 */
 
 #import <UIKit/UIKit.h>
+#import "GenSelectListVC.h"
 
 @interface ConfigViewController : UITableViewController <GenSelectListViewDelegate>
 {
