@@ -43,6 +43,7 @@
 #import "InfoVC.h"
 #import "BackupServer.h"
 #import "Pin.h"
+#import "ConfigViewController.h"
 
 @implementation AssetListViewController
 
@@ -407,6 +408,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 //#ifndef FREE_VERSION
             NSLocalizedString(@"Set PIN Code", @""),
 //#endif
+            NSLocalizedString(@"Config", @""),
             nil];
     [asConfig showInView:[self view]];
     [asConfig release];
@@ -416,6 +418,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 {
     CategoryListViewController *categoryVC;
     PinController *pinController;
+    ConfigViewController *configVC;
 
     switch (buttonIndex) {
     case 0:
@@ -431,6 +434,11 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     case 2:
         pinController = [[[PinController alloc] init] autorelease];
         [pinController modifyPin:self];
+        break;
+            
+    case 3:
+        configVC = [[[ConfigViewController alloc] init] autorelease];
+        [self.navigationController pushViewController:configVC animated:YES];
         break;
     }
 }

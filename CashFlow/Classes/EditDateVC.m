@@ -36,6 +36,7 @@
 #import "TransactionVC.h"
 #import "EditDateVC.h"
 #import "AppDelegate.h"
+#import "Config.h"
 
 @implementation EditDateViewController
 
@@ -55,10 +56,12 @@
                                                   target:self
                                                   action:@selector(doneAction)] autorelease];
 
-    //datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    //datePicker.datePickerMode = UIDatePickerModeDate;
-
-    //datePicker.minuteInterval = 5;
+    if ([Config instance].dateTimeMode == DateTimeModeDateOnly) {
+        datePicker.datePickerMode = UIDatePickerModeDate;
+    } else {
+        datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        datePicker.minuteInterval = 5;
+    }
 }
 
 - (void)dealloc

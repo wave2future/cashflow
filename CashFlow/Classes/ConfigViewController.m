@@ -53,9 +53,16 @@
     [super dealloc];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.tableView reloadData];
+}
+
 - (void)doneAction:(id)sender
 {
-    [self.navigationController dismissModalViewControllerAnimated:YES];
+    //[self.navigationController dismissModalViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -95,7 +102,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellid] autorelease];
     }
-    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     Config *config = [Config instance];
 
@@ -165,16 +172,17 @@
     Config *config = [Config instance];
 
     switch (id) {
-    case ROW_DATE_TIME_MODE:
-        config.dateTimeMode = id;
-        break;
+        case ROW_DATE_TIME_MODE:
+            config.dateTimeMode = vc.selectedIndex;
+            break;
 
-    case ROW_CUTOFF_DATE:
-        config.cutoffDate = id;
-        break;
+        case ROW_CUTOFF_DATE:
+            config.cutoffDate = vc.selectedIndex;
+            break;
     }
 
     [config save];
+    return YES;
 }
 
 @end
