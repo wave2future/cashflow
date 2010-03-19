@@ -36,12 +36,17 @@
 
 @interface Config : NSObject
 {
-#define DateTimeModeOnlyDate 0
-#define DateTimeModeWithTime 1
+    // 日時モード
+#define DateTimeModeOnlyDate 0  // 日のみ
+#define DateTimeModeWithTime 1  // 日＋時
     int dateTimeMode;
+
+    // 締め日 (1～31)、末尾を指定する場合は 31
+    int cutoffDate;
 }
 
 @property(nonatomic,assign) int dateTimeMode;
+@property(nonatomic,assign) int cutoffDate;
 
 + (Config *)instance;
 - (void)save;

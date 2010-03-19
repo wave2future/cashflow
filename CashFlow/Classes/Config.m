@@ -61,6 +61,11 @@ static Config *theConfig = nil;
         self.dateTImeMode != DateTimeModeWithTime) {
         self.dateTimeMode = DateTimeModeWithTime;
     }
+
+    self.cutoffDate = [default integerForKey:@"CutoffDate"];
+    if (self.cutoffDate < 1 || self.cutoffDate > 31) {
+        self.cutoffDate = 31;
+    }
     return self;
 }
 
@@ -69,6 +74,8 @@ static Config *theConfig = nil;
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults setInteger:self.dateTimeMode forKey:@"DateTimeMode"];
+    [defaults setInteger:self.cutoffDate   forKey:@"CutoffDate"];
+
     [defaults synchronize];
 }
 
