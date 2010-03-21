@@ -81,6 +81,8 @@
 		3E448B5B0F98A584001F97B5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */; };
 		3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */; };
 		3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37040FA2E3D200FCF592 /* ReportCell.m */; };
+		3E748E871155ED85000328A4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E748E841155ED85000328A4 /* Config.m */; };
+		3E748E881155ED85000328A4 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E748E861155ED85000328A4 /* ConfigViewController.m */; };
 		3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */; };
 		3EA1405E106FC1D10017A114 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1405D106FC1D10017A114 /* AdCell.m */; };
 		3EA14063106FC1E20017A114 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA14062106FC1E20017A114 /* CalcVC.m */; };
@@ -227,11 +229,12 @@
 		3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
 		3E6B37030FA2E3D200FCF592 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
 		3E6B37040FA2E3D200FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
+		3E748E831155ED85000328A4 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
+		3E748E841155ED85000328A4 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		3E748E851155ED85000328A4 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
+		3E748E861155ED85000328A4 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntryTest.h; sourceTree = "<group>"; };
 		3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
-		3EA14056106FC1980017A114 /* TGAView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TGAView.h; path = ../CashFlow/TGAd/TGAView.h; sourceTree = SOURCE_ROOT; };
-		3EA14057106FC1A60017A114 /* AdMobDelegateProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdMobDelegateProtocol.h; path = ../CashFlow/AdMob/AdMobDelegateProtocol.h; sourceTree = SOURCE_ROOT; };
-		3EA14058106FC1A60017A114 /* AdMobView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AdMobView.h; path = ../CashFlow/AdMob/AdMobView.h; sourceTree = SOURCE_ROOT; };
 		3EA1405D106FC1D10017A114 /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
 		3EA14061106FC1E20017A114 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
 		3EA14062106FC1E20017A114 /* CalcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcVC.m; sourceTree = "<group>"; };
@@ -428,12 +431,13 @@
 		46C20FD50F256E610053F9B9 /* TargetClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3E748E831155ED85000328A4 /* Config.h */,
+				3E748E841155ED85000328A4 /* Config.m */,
+				3E748E851155ED85000328A4 /* ConfigViewController.h */,
+				3E748E861155ED85000328A4 /* ConfigViewController.m */,
 				3EA14061106FC1E20017A114 /* CalcVC.h */,
 				3EA14062106FC1E20017A114 /* CalcVC.m */,
 				3EA1405D106FC1D10017A114 /* AdCell.m */,
-				3EA14057106FC1A60017A114 /* AdMobDelegateProtocol.h */,
-				3EA14058106FC1A60017A114 /* AdMobView.h */,
-				3EA14056106FC1980017A114 /* TGAView.h */,
 				3E003BEE0F9CB83200521E2B /* EditDateVC.h */,
 				3E003BEF0F9CB83200521E2B /* EditDateVC.m */,
 				3E003BF00F9CB83200521E2B /* EditDescVC.h */,
@@ -740,6 +744,8 @@
 				3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */,
 				3EA1405E106FC1D10017A114 /* AdCell.m in Sources */,
 				3EA14063106FC1E20017A114 /* CalcVC.m in Sources */,
+				3E748E871155ED85000328A4 /* Config.m in Sources */,
+				3E748E881155ED85000328A4 /* ConfigViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
