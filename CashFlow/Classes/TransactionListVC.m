@@ -39,6 +39,7 @@
 #import "InfoVC.h"
 #import "CalcVC.h"
 #import "ReportVC.h"
+#import "ConfigViewController.h"
 #if FREE_VERSION
 #import "AdCell.h"
 #endif
@@ -465,15 +466,17 @@
 // action sheet
 - (void)doAction:(id)sender
 {
-    UIActionSheet *as = [[UIActionSheet alloc] initWithTitle:@"" delegate:self 
-                                               cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                                               destructiveButtonTitle:nil otherButtonTitles:
-                                                   NSLocalizedString(@"Weekly Report", @""),
-                                               NSLocalizedString(@"Monthly Report", @""),
-                                               NSLocalizedString(@"Export", @""),
-                                               //NSLocalizedString(@"Info", @""),
-                                               //NSLocalizedString(@"Delete Transactions", @""),
-                                               nil];
+    UIActionSheet *as = 
+        [[UIActionSheet alloc]
+         initWithTitle:@"" 
+         delegate:self 
+         cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+         destructiveButtonTitle:nil otherButtonTitles:
+         NSLocalizedString(@"Weekly Report", @""),
+         NSLocalizedString(@"Monthly Report", @""),
+         NSLocalizedString(@"Export", @""),
+         NSLocalizedString(@"Config", @""),
+         nil];
     [as showInView:[self view]];
     [as release];
 }
@@ -482,25 +485,31 @@
 {
     ReportViewController *reportVC;
     ExportVC *exportVC;
-
+    ConfigViewController *configVC;
+    
     switch (buttonIndex) {
-    case 0:
-    case 1:
-        reportVC = [[[ReportViewController alloc] init] autorelease];
-        if (buttonIndex == 0) {
-            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-            [reportVC generateReport:REPORT_WEEKLY asset:asset];
-        } else {
-            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-            [reportVC generateReport:REPORT_MONTHLY asset:asset];
-        }
-        [self.navigationController pushViewController:reportVC animated:YES];
-        break;
+        case 0:
+        case 1:
+            reportVC = [[[ReportViewController alloc] init] autorelease];
+            if (buttonIndex == 0) {
+                reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+                [reportVC generateReport:REPORT_WEEKLY asset:asset];
+            } else {
+                reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+                [reportVC generateReport:REPORT_MONTHLY asset:asset];
+            }
+            [self.navigationController pushViewController:reportVC animated:YES];
+            break;
 			
-    case 2:
-        exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
-        [self.navigationController pushViewController:exportVC animated:YES];
-        break;
+        case 2:
+            exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
+            [self.navigationController pushViewController:exportVC animated:YES];
+            break;
+            
+        case 3:
+            configVC = [[[ConfigViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:configVC animated:YES];
+            break;            
     }
 }
 

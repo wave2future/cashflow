@@ -49,8 +49,7 @@
     NSArray *iconArray;
     BackupServer *backupServer;
 
-    UIActionSheet *asReport;
-    UIActionSheet *asConfig;
+    UIActionSheet *asActionButton;
     UIActionSheet *asDelete;
 
     Asset *assetToBeDelete;
@@ -65,10 +64,7 @@
 - (void)_actionDelete:(NSInteger)buttonIndex;
 
 - (IBAction)doAction:(id)sender;
-- (void)_actionReport:(NSInteger)buttonIndex;
-
-- (IBAction)doConfig:(id)sender;
-- (void)_actionConfig:(NSInteger)buttonIndex;
+- (void)_actionActionButton:(NSInteger)buttonIndex;
 
 - (IBAction)showHelp:(id)sender;
 - (void)doBackup;

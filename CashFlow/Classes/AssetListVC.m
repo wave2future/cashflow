@@ -364,79 +364,56 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
 - (void)doAction:(id)sender
 {
-    asReport = 
+    asActionButton = 
         [[UIActionSheet alloc]
-            initWithTitle:@"" delegate:self 
-            cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-            destructiveButtonTitle:nil
-            otherButtonTitles:NSLocalizedString(@"Weekly Report", @""),
-            NSLocalizedString(@"Monthly Report", @""),
-            nil];
-    [asReport showInView:[self view]];
-    [asReport release];
+         initWithTitle:@"" delegate:self 
+         cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+         destructiveButtonTitle:nil
+         otherButtonTitles:NSLocalizedString(@"Weekly Report", @""),
+         NSLocalizedString(@"Monthly Report", @""),
+         NSLocalizedString(@"Backup", @""),
+         NSLocalizedString(@"Config", @""),
+         nil];
+    [asActionButton showInView:[self view]];
+    [asActionButton release];
 }
 
-- (void)_actionReport:(NSInteger)buttonIndex
+- (void)_actionActionButton:(NSInteger)buttonIndex
 {
     ReportViewController *reportVC;
-
-    switch (buttonIndex) {
-    case 0:
-    case 1:
-        reportVC = [[[ReportViewController alloc] init] autorelease];
-        if (buttonIndex == 0) {
-            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-            [reportVC generateReport:REPORT_WEEKLY asset:nil];
-        } else {
-            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-            [reportVC generateReport:REPORT_MONTHLY asset:nil];
-        }
-        [self.navigationController pushViewController:reportVC animated:YES];
-        break;
-    }
-}
-
-- (void)doConfig:(id)sender
-{
-    asConfig = 
-        [[UIActionSheet alloc]
-            initWithTitle:@"" delegate:self 
-            cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-            destructiveButtonTitle:nil
-            otherButtonTitles:
-            NSLocalizedString(@"Backup", @""),
-            NSLocalizedString(@"Config", @""),
-            nil];
-    [asConfig showInView:[self view]];
-    [asConfig release];
-}
-
-- (void)_actionConfig:(NSInteger)buttonIndex
-{
     ConfigViewController *configVC;
-
+    
     switch (buttonIndex) {
-    case 0:
-        [self doBackup];
-        break;
+        case 0:
+        case 1:
+            reportVC = [[[ReportViewController alloc] init] autorelease];
+            if (buttonIndex == 0) {
+                reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+                [reportVC generateReport:REPORT_WEEKLY asset:nil];
+            } else {
+                reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+                [reportVC generateReport:REPORT_MONTHLY asset:nil];
+            }
+            [self.navigationController pushViewController:reportVC animated:YES];
+            break;
+
+        case 2:
+            [self doBackup];
+            break;
             
-    case 1:
-        configVC = [[[ConfigViewController alloc] init] autorelease];
-        [self.navigationController pushViewController:configVC animated:YES];
-        break;
+        case 3:
+            configVC = [[[ConfigViewController alloc] init] autorelease];
+            [self.navigationController pushViewController:configVC animated:YES];
+            break;
     }
 }
 
 // actionSheet ハンドラ
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (as == asReport) {
-        asReport = nil;
-        [self _actionReport:buttonIndex];
-    }
-    else if (as == asConfig) {
-        asConfig = nil;
-        [self _actionConfig:buttonIndex];
+    if (as == asActionButton) {
+        asActionButton = nil;
+        [self _actionActionButton:buttonIndex];
     }
     else if (as == asDelete) {
         asDelete = nil;
