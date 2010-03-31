@@ -44,8 +44,13 @@
     if (body == nil) {
         return NO;
     }
+
+    const char bom[3] = {0xef, 0xbb, 0xbf};
     const char *s = [body UTF8String];
-    NSData *data = [NSData dataWithBytes:s length:strlen(s)];
+
+    NSMutableData *data = [NSMutableData dataWithLength:0];
+    [data appendBytes:bom length:sizeof(bom)];
+    [data appendBytes:s length:strlen(s)];
     
     MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
     vc.mailComposeDelegate = self;
