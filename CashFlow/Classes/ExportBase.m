@@ -40,7 +40,7 @@
 
 - (BOOL)sendMail:(UIViewController*)parent { return NO; }
 - (BOOL)sendWithWebServer { return NO; }
-- (NSMutableString*)generateBody {	return nil; }
+- (NSData*)generateBody {	return nil; }
 
 - (void)dealloc
 {
@@ -92,7 +92,7 @@
 }
 #endif
 
-- (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
+- (void)sendWithWebServer:(NSData *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename
 {
     BOOL result = NO;
     NSString *message = nil;

@@ -54,12 +54,12 @@
 @property(nonatomic,retain) NSDate *firstDate;
 @property(nonatomic,assign) Asset *asset;
 
-- (NSMutableString*)generateBody;
+- (NSData*)generateBody;
 - (BOOL)sendMail:(UIViewController*)parent;
 - (BOOL)sendWithWebServer;
 
 //- (void)EncodeMailBody:(NSMutableString*)str;
-- (void)sendWithWebServer:(NSString *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename;
+- (void)sendWithWebServer:(NSData *)contentBody contentType:(NSString *)contentType filename:(NSString *)filename;
 
 @end
 

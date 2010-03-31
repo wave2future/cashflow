@@ -40,12 +40,12 @@
 @interface ExportServer : WebServer
 {
     NSString *contentType;
-    NSString *contentBody;
+    NSData *contentBody;
     NSString *filename;
 }
 
 @property(nonatomic,retain) NSString* contentType;
-@property(nonatomic,retain) NSString* contentBody;
+@property(nonatomic,retain) NSData* contentBody;
 @property(nonatomic,retain) NSString* filename;
 
 - (void)requestHandler:(int)s filereq:(NSString*)filereq body:(char *)body bodylen:(int)bodylen;

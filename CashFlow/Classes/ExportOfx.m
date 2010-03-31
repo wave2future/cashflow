@@ -49,12 +49,10 @@
 - (BOOL)sendMail:(UIViewController *)parent
 {
     // generate OFX data
-    NSString *body = [self generateBody];
-    if (body == nil) {
+    NSData *data = [self generateBody];
+    if (data == nil) {
         return NO;
     }
-    const char *s = [body UTF8String];
-    NSData *data = [NSData dataWithBytes:s length:strlen(s)];
     
     MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
     vc.mailComposeDelegate = self;
@@ -106,7 +104,7 @@
 
 - (BOOL)sendWithWebServer
 {
-    NSMutableString *body = [self generateBody];
+    NSData *body = [self generateBody];
     if (body == nil) {
         return NO;
     }
@@ -115,7 +113,7 @@
     return YES;
 }
 
-- (NSMutableString *)generateBody
+- (NSData *)generateBody
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
@@ -227,7 +225,12 @@
     [data appendString:@"</BANKMSGSRSV1>\n"];
     [data appendString:@"</OFX>\n"];
 
-    return data;
+    const char *p = [data UTF8String];
+    //const unsigned char bom[3] = {0xEF, 0xBB, 0xBF};
+    NSMutableData *d = [NSMutableData dataWithLength:0];
+    //[d appendBytes:bom length:sizeof(bom)];
+    [d appendBytes:p length:strlen(p)];
+    return d;
 }
 
 - (NSString*)typeString:(AssetEntry*)e

@@ -52,15 +52,19 @@
 
 - (void)requestHandler:(int)s filereq:(NSString*)filereq body:(char *)body bodylen:(int)bodylen
 {
+    const char *p;
+    
     // Request to '/' url.
     // Return redirect to target file name.
     if ([filereq isEqualToString:@"/"])
     {
         NSString *outcontent = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: text/html\r\n\r\n"];
-        write(s, [outcontent UTF8String], [outcontent length]);
+        p = [outcontent UTF8String];
+        write(s, p, strlen(p));
 		
         outcontent = [NSString stringWithFormat:@"<html><head><meta http-equiv=\"refresh\" content=\"0;url=%@\"></head></html>", filename];
-        write(s, [outcontent UTF8String], [outcontent length]);
+        p = [outcontent UTF8String];
+        write(s, p, strlen(p));
 		
         return;
     }
@@ -68,10 +72,14 @@
     // Ad hoc...
     // No need to read request... Just send only one file!
     NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
-    write(s, [content UTF8String], [content length]);
+    p = [content UTF8String];
+    write(s, p, strlen(p));
 	
-    const char *utf8 = [contentBody UTF8String];
-    write(s, utf8, strlen(utf8));
+    int clen = [contentBody length];
+    if (clen > 0) {
+        write(s, [contentBody bytes], clen);
+    }
+
 }
 
 @end

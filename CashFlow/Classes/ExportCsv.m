@@ -40,24 +40,17 @@
 - (BOOL)sendMail:(UIViewController *)parent
 {
     // generate CSV data
-    NSString *body = [self generateBody];
+    NSData *body = [self generateBody];
     if (body == nil) {
         return NO;
     }
 
-    const char bom[3] = {0xef, 0xbb, 0xbf};
-    const char *s = [body UTF8String];
-
-    NSMutableData *data = [NSMutableData dataWithLength:0];
-    [data appendBytes:bom length:sizeof(bom)];
-    [data appendBytes:s length:strlen(s)];
-    
     MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
     vc.mailComposeDelegate = self;
     
     [vc setSubject:@"CashFlow CSV Data"];
 
-    [vc addAttachmentData:data mimeType:@"text/comma-separeted-value" fileName:@"CashFlow.csv"];
+    [vc addAttachmentData:body mimeType:@"text/comma-separeted-value" fileName:@"CashFlow.csv"];
     [parent presentModalViewController:vc animated:YES];
     [vc release];
     return YES;
@@ -100,7 +93,7 @@
 
 - (BOOL)sendWithWebServer
 {
-    NSMutableString *body = [self generateBody];
+    NSData *body = [self generateBody];
     if (body == nil) {
         return NO;
     }
@@ -109,7 +102,7 @@
     return YES;
 }
 
-- (NSMutableString *)generateBody
+- (NSData *)generateBody
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
     [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
@@ -141,7 +134,13 @@
         [data appendString:d];
         [d release];
     }
-    return data;
+
+    const char *p = [data UTF8String];
+    const unsigned char bom[3] = {0xEF, 0xBB, 0xBF};
+    NSMutableData *d = [NSMutableData dataWithLength:0];
+    [d appendBytes:bom length:sizeof(bom)];
+    [d appendBytes:p length:strlen(p)];
+    return d;
 }
 
 @end
