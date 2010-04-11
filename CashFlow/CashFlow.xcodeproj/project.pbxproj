@@ -137,6 +137,7 @@
 		3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
 		3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
+		3EACDBAD1172031B005DA87D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EACDBAC1172031B005DA87D /* SystemConfiguration.framework */; };
 		3EAEBC5D0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
 		3EAEBC5E0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
 		3EAEBC870F9DE0C700AD3D15 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */; };
@@ -273,6 +274,7 @@
 		3EA0114C0EC3461A008CEEB7 /* AssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetVC.h; sourceTree = "<group>"; };
 		3EA0114D0EC34626008CEEB7 /* AssetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetVC.m; sourceTree = "<group>"; };
 		3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-rendered.png"; sourceTree = "<group>"; };
+		3EACDBAC1172031B005DA87D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3EAEBC5B0F9DE02700AD3D15 /* GenSelectListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenSelectListVC.h; sourceTree = "<group>"; };
 		3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenSelectListVC.m; sourceTree = "<group>"; };
 		3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenSelectListView.xib; sourceTree = "<group>"; };
@@ -348,6 +350,7 @@
 				3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */,
 				3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */,
 				3E13EE70114008E400523938 /* libGoogleAds.a in Frameworks */,
+				3EACDBAD1172031B005DA87D /* SystemConfiguration.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +488,7 @@
 				3EB5552D103B930D00BA13D4 /* AddressBook.framework */,
 				3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */,
 				3EC572D61107451F00A551D5 /* MessageUI.framework */,
+				3EACDBAC1172031B005DA87D /* SystemConfiguration.framework */,
 			);
 			name = Frameworks;
 			path = /Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS3.0.sdk/System/Library/Frameworks;
@@ -847,10 +851,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -864,11 +869,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
@@ -899,11 +904,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Distribution;
 		};
@@ -936,12 +941,12 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = "Ad hoc distribution";
 		};
@@ -962,13 +967,14 @@
 					DEBUG,
 				);
 				INFOPLIST_FILE = "Info-free.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Debug;
 		};
@@ -983,14 +989,14 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				INFOPLIST_FILE = "Info-free.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Release;
 		};
@@ -1005,14 +1011,14 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				INFOPLIST_FILE = "Info-free.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAds\"",
 				);
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = Distribution;
 		};
@@ -1028,7 +1034,7 @@
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
 				GCC_PREPROCESSOR_DEFINITIONS = FREE_VERSION;
 				INFOPLIST_FILE = "Info-free.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/GoogleAds\"",
@@ -1036,7 +1042,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6020BB8D-8A9F-4FE6-90D0-D6D14B965EC4";
-				SDKROOT = iphoneos3.0;
+				SDKROOT = iphoneos3.2;
 			};
 			name = "Ad hoc distribution";
 		};
