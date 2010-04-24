@@ -94,6 +94,8 @@
             [b addTarget:self action:@selector(delPastButtonTapped) forControlEvents:UIControlEventTouchUpInside];
             delPastButton = [b retain];
         }
+
+        b.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
     }
 }
 
@@ -181,10 +183,11 @@
 
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:MyIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
+        /*
         name = [[[UILabel alloc] initWithFrame:CGRectMake(0, 6, 110, 32)] autorelease];
         name.tag = 1;
         name.font = [UIFont systemFontOfSize: 14.0];
@@ -199,11 +202,14 @@
         value.textColor = [UIColor blackColor];
         value.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         [cell.contentView addSubview:value];
-
+         */
     } else {
-        name  = (UILabel *)[cell.contentView viewWithTag:1];
-        value = (UILabel *)[cell.contentView viewWithTag:2];
+        //name  = (UILabel *)[cell.contentView viewWithTag:1];
+        //value = (UILabel *)[cell.contentView viewWithTag:2];
     }
+
+    name = cell.textLabel;
+    value = cell.detailTextLabel;
 
     double evalue;
     switch (indexPath.row) {

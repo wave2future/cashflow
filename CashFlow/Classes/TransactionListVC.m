@@ -105,6 +105,7 @@
     aframe.origin.y = frame.size.height - adViewHeight;
     aframe.size.height = adViewHeight;
     adView.frame = aframe;
+    adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [self.view addSubview:adView];
 
     // 広告領域分だけ、tableView の下部をあける
