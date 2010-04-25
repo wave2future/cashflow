@@ -108,6 +108,7 @@
     aframe.origin.x = (frame.size.width - adViewWidth) / 2;
     aframe.origin.y = frame.size.height - adViewHeight;
     aframe.size.height = adViewHeight;
+    aframe.size.width = adViewWidth;
     adView.frame = aframe;
     adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [self.view addSubview:adView];
