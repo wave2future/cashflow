@@ -48,7 +48,8 @@
     <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,
     EditMemoViewDelegate, EditTypeViewDelegate,
     EditDateViewDelegate, CalculatorViewDelegate,
-    EditDescViewDelegate, CategoryListViewDelegate>
+    EditDescViewDelegate, CategoryListViewDelegate,
+    UIPopoverControllerDelegate>
 {
     int transactionIndex;
     AssetEntry *editingEntry;
@@ -58,6 +59,8 @@
 	
     UIButton *delButton;
     UIButton *delPastButton;
+    
+    UIPopoverController *currentPopoverController;
 }
 
 @property(nonatomic,assign) Asset *asset;
@@ -73,5 +76,6 @@
 - (UITableViewCell *)getCellForField:(NSIndexPath*)indexPath tableView:(UITableView *)tableView;
 //- (UITableViewCell *)getCellForDelButton:(UITableView *)tableView isDeleteAll:(Boolean)flag;
 
+- (void)_dismissPopover;
 
 @end

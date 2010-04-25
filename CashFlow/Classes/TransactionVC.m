@@ -314,13 +314,46 @@
         vc = editCategoryVC;
         break;
     }
-    [nc pushViewController:vc animated:YES];
+    
+    if (IS_IPAD) { // TBD
+        nc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
+        
+        if (currentPopoverController != nil) {
+            [currentPopoverController release];
+        }
+        currentPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
+        
+        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        CGRect rect = cell.frame;
+        [currentPopoverController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    } else {
+        [nc pushViewController:vc animated:YES];
+    }
+}
+
+- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
+{
+    if (IS_IPAD && currentPopoverController != nil) {
+        [currentPopoverController release];
+        currentPopoverController = nil;
+    }
+}
+
+- (void)_dismissPopover
+{
+    if (IS_IPAD) {
+        if (currentPopoverController != nil) {
+            [currentPopoverController dismissPopoverAnimated:YES];
+        }
+        [self.tableView reloadData];
+    }
 }
 
 // delegate : 下位 ViewController からの変更通知
 - (void)editDateViewChanged:(EditDateViewController *)vc
 {
     editingEntry.transaction.date = vc.date;
+    [self _dismissPopover];
 }
 
 - (void)editTypeViewChanged:(EditTypeViewController*)vc
@@ -352,11 +385,14 @@
     default:
         break;
     }
+
+    [self _dismissPopover];
 }
 
 - (void)calculatorViewChanged:(CalculatorViewController *)vc
 {
     [editingEntry setEvalue:vc.value];
+    [self _dismissPopover];
 }
 
 - (void)editDescViewChanged:(EditDescViewController *)vc
@@ -367,11 +403,13 @@
         // set category from description
         editingEntry.transaction.category = [[DataModel instance] categoryWithDescription:editingEntry.transaction.description];
     }
+    [self _dismissPopover];
 }
 
 - (void)editMemoViewChanged:(EditMemoViewController*)vc identifier:(int)id
 {
     editingEntry.transaction.memo = vc.text;
+    [self _dismissPopover];
 }
 
 - (void)categoryListViewChanged:(CategoryListViewController*)vc;
@@ -382,6 +420,7 @@
         Category *c = [[DataModel categories] categoryAtIndex:vc.selectedIndex];
         editingEntry.transaction.category = c.pkey;
     }
+    [self _dismissPopover];
 }
 
 ////////////////////////////////////////////////////////////////////////////////
