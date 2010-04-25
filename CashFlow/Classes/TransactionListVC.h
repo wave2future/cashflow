@@ -44,8 +44,10 @@
 #import "GADAdSenseParameters.h"
 #endif
 
+@class AssetListViewController;
+
 @interface TransactionListViewController : UIViewController 
-    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, CalculatorViewDelegate
+    <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate, CalculatorViewDelegate, UISplitViewControllerDelegate
 #if FREE_VERSION
 , GADAdViewControllerDelegate
 #endif
@@ -60,6 +62,9 @@
 #if FREE_VERSION
     GADAdViewController *adViewController;
 #endif
+    
+    // for Split view
+    IBOutlet AssetListViewController *splitAssetListViewController;
 }
 
 //- (UITableView*)tableView;

@@ -40,6 +40,8 @@
 #import "CalcVC.h"
 #import "ReportVC.h"
 #import "ConfigViewController.h"
+#import "AssetListVC.h"
+
 #if FREE_VERSION
 #import "AdCell.h"
 #endif
@@ -99,9 +101,11 @@
     [adViewController loadGoogleAd:attributes];
     
     UIView *adView = adViewController.view;
+    float adViewWidth = [adView bounds].size.width;
     float adViewHeight = [adView bounds].size.height;
 
     CGRect aframe = frame;
+    aframe.origin.x = (frame.size.width - adViewWidth) / 2;
     aframe.origin.y = frame.size.height - adViewHeight;
     aframe.size.height = adViewHeight;
     adView.frame = aframe;
@@ -162,6 +166,10 @@
 #endif
 	
     barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
+    
+    if (IS_IPAD) {
+        [splitAssetListViewController viewWillAppear:YES]; // reload
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -513,6 +521,37 @@
             [self.navigationController pushViewController:configVC animated:YES];
             break;            
     }
+}
+
+#pragma mark Split View Delegate
+
+- (void)splitViewController: (UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController
+          withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc
+{
+    barButtonItem.title = NSLocalizedString(@"Assets", @"");
+    self.navigationItem.leftBarButtonItem = barButtonItem;
+#if 0
+    NSMutableArray *items = [[toolbar items] mutableCopy];
+    [items insertObject:barButtonItem atIndex:0];
+    [toolbar setItems:items animated:YES];
+    [items release];
+#endif
+    //self.popoverController = pc;
+}
+
+
+// Called when the view is shown again in the split view, invalidating the button and popover controller.
+- (void)splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController
+  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
+{
+    self.navigationItem.leftBarButtonItem = nil;
+#if 0    
+    NSMutableArray *items = [[toolbar items] mutableCopy];
+    [items removeObjectAtIndex:0];
+    [toolbar setItems:items animated:YES];
+    [items release];
+    //self.popoverController = nil;
+#endif
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
