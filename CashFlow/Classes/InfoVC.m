@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
+#import "AppDelegate.h"
 #import "InfoVC.h"
 
 
@@ -77,11 +77,6 @@
     [super dealloc];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
 - (IBAction)webButtonTapped
 {
     NSURL *url = [NSURL URLWithString:NSLocalizedString(@"HelpURL", @"web help url")];
@@ -92,5 +87,10 @@
 {
     NSURL *url = [NSURL URLWithString:@"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=290776107&mt=8"];
     [[UIApplication sharedApplication] openURL:url];
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (IS_IPAD) return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 @end

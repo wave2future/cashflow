@@ -95,10 +95,15 @@
         Asset *asset = [ledger assetAtIndex:firstShowAssetIndex];
 		
         // TransactionListView を表示
-        TransactionListViewController *vc = 
-            [[[TransactionListViewController alloc] init] autorelease];
-        vc.asset = asset;
-        [self.navigationController pushViewController:vc animated:NO];
+        if (IS_IPAD) {
+            splitTransactionListViewController.asset = asset;
+            [splitTransactionListViewController viewWillAppear:NO];
+        } else {
+            TransactionListViewController *vc = 
+                [[[TransactionListViewController alloc] init] autorelease];
+            vc.asset = asset;
+            [self.navigationController pushViewController:vc animated:NO];
+        }
     }
 
     PinController *pinController = [[[PinController alloc] init] autorelease];
@@ -245,11 +250,16 @@
     Asset *asset = [ledger assetAtIndex:assetIndex];
 
     // TransactionListView を表示
-    TransactionListViewController *vc = 
-        [[[TransactionListViewController alloc] init] autorelease];
-    vc.asset = asset;
+    if (IS_IPAD) {
+        splitTransactionListViewController.asset = asset;
+        [splitTransactionListViewController viewWillAppear:NO];
+    } else {
+        TransactionListViewController *vc = 
+            [[[TransactionListViewController alloc] init] autorelease];
+        vc.asset = asset;
 
-    [self.navigationController pushViewController:vc animated:YES];
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 // アクセサリボタンをタップしたときの処理 : アセット変更
@@ -476,7 +486,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
+    if (IS_IPAD) return YES;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 

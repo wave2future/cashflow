@@ -144,7 +144,8 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
+    
+    self.title = asset.name;
     [self updateBalance];
 	
     [self.tableView reloadData]; //### Reload data...
@@ -515,7 +516,7 @@
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
+    if (IS_IPAD) return YES;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 

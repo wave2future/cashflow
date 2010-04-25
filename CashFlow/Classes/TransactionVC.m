@@ -480,4 +480,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (IS_IPAD) return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 @end

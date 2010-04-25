@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-
+#import "AppDelegate.h"
 #import "GenSelectListVC.h"
 
 @implementation GenSelectListViewController
@@ -99,6 +99,11 @@
     if ([delegate genSelectListViewChanged:self identifier:identifier]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (IS_IPAD) return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

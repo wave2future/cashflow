@@ -35,10 +35,17 @@
 
 #import <UIKit/UIKit.h>
 #import "DataModel.h"
+#import "AssetListVC.h"
+#import "TransactionListVC.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow *window;
     IBOutlet UINavigationController *navigationController;
+    
+    // iPad
+    IBOutlet UISplitViewController *splitViewController;
+    IBOutlet AssetListViewController *assetListViewController;
+    IBOutlet TransactionListViewController *transactionListViewController;
 }
 
 @property (nonatomic, retain) UIWindow *window;

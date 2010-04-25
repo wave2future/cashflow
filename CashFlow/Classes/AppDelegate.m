@@ -57,7 +57,11 @@
     NSLog(@"applicationDidFinishLaunching");
     
     // Configure and show the window
-    [window addSubview:[navigationController view]];
+    if (IS_IPAD) {
+        [window addSubview:splitViewController.view];
+    } else {
+        [window addSubview:[navigationController view]];
+    }
     [window makeKeyAndVisible];
 
     // AdMob

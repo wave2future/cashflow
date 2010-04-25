@@ -53,6 +53,9 @@
     UIActionSheet *asDelete;
 
     Asset *assetToBeDelete;
+    
+    // for iPad (Split View)
+    IBOutlet TransactionListViewController *splitTransactionListViewController;
 }
 
 @property(nonatomic,retain) UITableView *tableView;

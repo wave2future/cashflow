@@ -437,7 +437,6 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
-				3EF054821182DCB200411C71 /* MainWindow-iPad.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -578,6 +577,7 @@
 		3EF054671182D9CC00411C71 /* Resources-iPad */ = {
 			isa = PBXGroup;
 			children = (
+				3EF054821182DCB200411C71 /* MainWindow-iPad.xib */,
 			);
 			name = "Resources-iPad";
 			sourceTree = "<group>";

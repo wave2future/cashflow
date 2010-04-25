@@ -32,6 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import "AppDelegate.h"
 #import "ConfigViewController.h"
 #import "Config.h"
 #import "GenSelectListVC.h"
@@ -236,6 +237,11 @@
 
     [config save];
     return YES;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    if (IS_IPAD) return YES;
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end
