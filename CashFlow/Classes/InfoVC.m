@@ -57,6 +57,11 @@
 {
     [super viewDidLoad];
     self.title = NSLocalizedString(@"Info", @"");
+    self.navigationItem.rightBarButtonItem =
+    [[[UIBarButtonItem alloc]
+      initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+      target:self
+      action:@selector(doneAction:)] autorelease];
 
 #ifdef FREE_VERSION
     [nameLabel setText:@"CashFlow Free"];
@@ -75,6 +80,11 @@
 
 - (void)dealloc {
     [super dealloc];
+}
+
+- (void)doneAction:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (IBAction)webButtonTapped

@@ -41,6 +41,7 @@
     IBOutlet UIButton *purchaseButton;
 }
 
+- (void)doneAction:(id)sender;
 - (IBAction)webButtonTapped;
 - (IBAction)purchaseStandardVersion;
 
