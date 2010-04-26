@@ -65,11 +65,13 @@
     
     // for Split view
     IBOutlet AssetListViewController *splitAssetListViewController;
+    UIPopoverController *popoverController;
 }
 
 //- (UITableView*)tableView;
 @property(nonatomic,retain) UITableView *tableView;
 @property(nonatomic,assign) Asset *asset;
+@property(nonatomic,retain) UIPopoverController *popoverController;
 
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath;
 - (AssetEntry *)entryWithIndexPath:(NSIndexPath *)indexPath;

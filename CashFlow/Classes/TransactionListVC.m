@@ -54,6 +54,7 @@
 
 @synthesize tableView;
 @synthesize asset;
+@synthesize popoverController;
 
 - (id)init
 {
@@ -141,6 +142,7 @@
 - (void)dealloc {
     [transactionView release];
     [tableView release];
+    [popoverController release];
 
     [super dealloc];
 }
@@ -154,6 +156,10 @@
     [self updateBalance];
 	
     [self.tableView reloadData]; //### Reload data...
+    
+    if (popoverController != nil) { // ### TBD
+        [popoverController dismissPopoverAnimated:YES];
+    }
 }
 
 - (void)updateBalance
@@ -531,13 +537,7 @@
 {
     barButtonItem.title = NSLocalizedString(@"Assets", @"");
     self.navigationItem.leftBarButtonItem = barButtonItem;
-#if 0
-    NSMutableArray *items = [[toolbar items] mutableCopy];
-    [items insertObject:barButtonItem atIndex:0];
-    [toolbar setItems:items animated:YES];
-    [items release];
-#endif
-    //self.popoverController = pc;
+    self.popoverController = pc;
 }
 
 
@@ -546,13 +546,7 @@
   invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
 {
     self.navigationItem.leftBarButtonItem = nil;
-#if 0    
-    NSMutableArray *items = [[toolbar items] mutableCopy];
-    [items removeObjectAtIndex:0];
-    [toolbar setItems:items animated:YES];
-    [items release];
-    //self.popoverController = nil;
-#endif
+    self.popoverController = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
