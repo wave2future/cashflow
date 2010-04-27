@@ -147,19 +147,21 @@
     [super dealloc];
 }
 
+- (void)reload
+{
+    self.title = self.asset.name;
+    [self updateBalance];
+    [self.tableView reloadData];
+
+    if (popoverController != nil) {
+        [popoverController dismissPopoverAnimated:YES];
+    }
+}    
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    self.title = asset.name;
-    [self updateBalance];
-	
-    [self.tableView reloadData]; //### Reload data...
-    
-    if (popoverController != nil) { // ### TBD
-        [popoverController dismissPopoverAnimated:YES];
-    }
+    [self reload];
 }
 
 - (void)updateBalance
@@ -175,7 +177,7 @@
     barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
     
     if (IS_IPAD) {
-        [splitAssetListViewController viewWillAppear:YES]; // reload
+        [splitAssetListViewController reload];
     }
 }
 

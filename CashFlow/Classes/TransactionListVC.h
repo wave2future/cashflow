@@ -76,6 +76,7 @@
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath;
 - (AssetEntry *)entryWithIndexPath:(NSIndexPath *)indexPath;
 - (UITableViewCell *)initialBalanceCell;
+- (void)reload;
 - (void)updateBalance;
 - (void)addTransaction;
 - (IBAction)doAction:(id)sender;

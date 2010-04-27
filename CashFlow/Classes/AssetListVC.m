@@ -97,7 +97,7 @@
         // TransactionListView を表示
         if (IS_IPAD) {
             splitTransactionListViewController.asset = asset;
-            [splitTransactionListViewController viewWillAppear:NO];
+            [splitTransactionListViewController reload];
         } else {
             TransactionListViewController *vc = 
                 [[[TransactionListViewController alloc] init] autorelease];
@@ -120,12 +120,15 @@
     [super dealloc];
 }
 
-
-- (void)viewWillAppear:(BOOL)animated {
-
-    [ledger rebuild]; // ### 必要？？？
-
+- (void)reload
+{
+    [ledger rebuild];
     [tableView reloadData];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self reload];
     [super viewWillAppear:animated];
 }
 
@@ -252,7 +255,7 @@
     // TransactionListView を表示
     if (IS_IPAD) {
         splitTransactionListViewController.asset = asset;
-        [splitTransactionListViewController viewWillAppear:NO];
+        [splitTransactionListViewController reload];
     } else {
         TransactionListViewController *vc = 
             [[[TransactionListViewController alloc] init] autorelease];

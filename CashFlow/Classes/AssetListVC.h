@@ -60,6 +60,8 @@
 
 @property(nonatomic,retain) UITableView *tableView;
 
+- (void)reload;
+
 - (int)_assetIndex:(NSIndexPath*)indexPath;
 
 - (void)addAsset;
