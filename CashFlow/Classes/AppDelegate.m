@@ -36,6 +36,7 @@
 #import "TransactionListVC.h"
 #import "DataModel.h"
 #import "Transaction.h"
+#import "Pin.h"
 
 @implementation AppDelegate
 
@@ -64,6 +65,14 @@
     }
     [window makeKeyAndVisible];
 
+    // PIN チェック
+    PinController *pinController = [[[PinController alloc] init] autorelease];
+    if (IS_IPAD) {
+        [pinController firstPinCheck:splitViewController];
+    } else {
+        [pinController firstPinCheck:navigationController];
+    }
+    
     // AdMob
 #ifndef FREE_VERSION
     [self performSelectorInBackground:@selector(reportAppOpenToAdMob) withObject:nil];

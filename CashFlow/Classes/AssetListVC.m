@@ -52,6 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    pinChecked = NO;
     tableView.rowHeight = 48;
 
     ledger = [DataModel ledger];
@@ -91,23 +92,25 @@
     // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
+
+    Asset *asset = nil;
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
-        Asset *asset = [ledger assetAtIndex:firstShowAssetIndex];
-		
-        // TransactionListView を表示
-        if (IS_IPAD) {
-            splitTransactionListViewController.asset = asset;
-            [splitTransactionListViewController reload];
-        } else {
-            TransactionListViewController *vc = 
-                [[[TransactionListViewController alloc] init] autorelease];
-            vc.asset = asset;
-            [self.navigationController pushViewController:vc animated:NO];
-        }
+        asset = [ledger assetAtIndex:firstShowAssetIndex];
+    }
+    if (IS_IPAD && asset == nil && [ledger assetCount] > 0) {
+        asset = [ledger assetAtIndex:0];
     }
 
-    PinController *pinController = [[[PinController alloc] init] autorelease];
-    [pinController firstPinCheck:self];
+    // TransactionListView を表示
+    if (IS_IPAD) {
+        splitTransactionListViewController.asset = asset;
+        [splitTransactionListViewController reload];
+    } else {
+        TransactionListViewController *vc = 
+            [[[TransactionListViewController alloc] init] autorelease];
+        vc.asset = asset;
+        [self.navigationController pushViewController:vc animated:NO];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -137,7 +140,7 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
     [defaults synchronize];
-    
+
     [super viewDidAppear:animated];
 }
 
@@ -342,6 +345,14 @@
     }
 	
     [ledger deleteAsset:assetToBeDelete];
+    
+    if (IS_IPAD) {
+        if (splitTransactionListViewController.asset == assetToBeDelete) {
+            splitTransactionListViewController.asset = nil;
+            [splitTransactionListViewController reload];
+        }
+    }
+
     [self.tableView reloadData];
 }
 

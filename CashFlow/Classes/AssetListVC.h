@@ -54,6 +54,8 @@
 
     Asset *assetToBeDelete;
     
+    BOOL pinChecked;
+    
     // for iPad (Split View)
     IBOutlet TransactionListViewController *splitTransactionListViewController;
 }

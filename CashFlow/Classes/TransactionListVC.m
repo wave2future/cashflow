@@ -68,7 +68,11 @@
 	
     // title 設定
     //self.title = NSLocalizedString(@"Transactions", @"");
-    self.title = asset.name;
+    if (asset == nil) {
+        self.title = @"";
+    } else {
+        self.title = asset.name;
+    }
 	
     // "+" ボタンを追加
     UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
@@ -212,6 +216,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (asset == nil) return 0;
+    
     int n = [asset entryCount] + 1;
 #if FREE_VERSION
     if ([self _adCellRow] >= 0) {
@@ -443,6 +449,8 @@
 // 新規トランザクション追加
 - (void)addTransaction
 {
+    if (asset == nil) return;
+    
     [transactionView setTransactionIndex:-1];
     [self.navigationController pushViewController:transactionView animated:YES];
 }
@@ -450,6 +458,8 @@
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
+    if (asset == nil) return;
+    
     [super setEditing:editing animated:animated];
 	
     // tableView に通知

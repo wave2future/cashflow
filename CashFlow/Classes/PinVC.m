@@ -42,7 +42,11 @@
 
 - (id)init
 {
-    self = [super initWithNibName:@"PinView" bundle:nil];
+    if (IS_IPAD) {
+        self = [super initWithNibName:@"PinView-ipad" bundle:nil];
+    } else {
+        self = [super initWithNibName:@"PinView" bundle:nil];
+    }
     return self;
 }
 
