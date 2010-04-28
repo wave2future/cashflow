@@ -487,6 +487,10 @@
         [self updateBalance];
         [self.tableView reloadData];
     }
+
+    if (IS_IPAD) {
+        [splitAssetListViewController reload];
+    }
 }
 
 // action sheet
@@ -509,6 +513,7 @@
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    UIViewController *vc;
     ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
@@ -524,19 +529,27 @@
                 reportVC.title = NSLocalizedString(@"Monthly Report", @"");
                 [reportVC generateReport:REPORT_MONTHLY asset:asset];
             }
-            [self.navigationController pushViewController:reportVC animated:YES];
+            vc = reportVC;
             break;
 			
         case 2:
             exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
-            [self.navigationController pushViewController:exportVC animated:YES];
+            vc = exportVC;
             break;
             
         case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:configVC animated:YES];
+            vc = configVC;
             break;            
     }
+
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
+    if (IS_IPAD) {
+        vc.modalPresentationStyle = UIModalPresentationPageSheet;
+    }
+    //[self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController presentModalViewController:nv animated:YES];
+    [nv release];
 }
 
 #pragma mark Split View Delegate

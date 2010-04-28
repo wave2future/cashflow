@@ -49,6 +49,17 @@
 {
     [super viewDidLoad];
     //self.title = NSLocalizedString(@"Report", @"");
+
+    self.navigationItem.rightBarButtonItem =
+        [[[UIBarButtonItem alloc]
+             initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+             target:self
+             action:@selector(doneAction:)] autorelease];
+}
+
+- (void)doneAction:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

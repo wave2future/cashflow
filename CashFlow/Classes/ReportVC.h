@@ -14,6 +14,7 @@
     NSDateFormatter *dateFormatter;
 }
 
+- (void)doneAction:(id)sender;
 - (void)generateReport:(int)type asset:(Asset*)asset;
 - (NSString *)_reportTitle:(Report *)report;
 

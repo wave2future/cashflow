@@ -56,6 +56,8 @@
 		3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
 		3E6B4ED5106BC30D0036D429 /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
 		3E6B4ED6106BC30D0036D429 /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
+		3E6CE72B11872D9900221C66 /* ItemListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6CE72A11872D9900221C66 /* ItemListView-ipad.xib */; };
+		3E6CE72C11872D9900221C66 /* ItemListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6CE72A11872D9900221C66 /* ItemListView-ipad.xib */; };
 		3E6F5D5F0EB8C30B0082F50A /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
 		3E7BB12D11539997004B7D03 /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB12C11539997004B7D03 /* ConfigView.xib */; };
 		3E7BB12E11539997004B7D03 /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB12C11539997004B7D03 /* ConfigView.xib */; };
@@ -249,6 +251,7 @@
 		3E6B365B0FA2DD8700FCF592 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
 		3E6B365C0FA2DD8700FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
 		3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalculatorView.xib; sourceTree = "<group>"; };
+		3E6CE72A11872D9900221C66 /* ItemListView-ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = "ItemListView-ipad.xib"; path = "Resources/ItemListView-ipad.xib"; sourceTree = "<group>"; };
 		3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		3E7BB12C11539997004B7D03 /* ConfigView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigView.xib; sourceTree = "<group>"; };
 		3E7BB134115399C5004B7D03 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
@@ -437,6 +440,7 @@
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
+				3E6CE72A11872D9900221C66 /* ItemListView-ipad.xib */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -690,6 +694,7 @@
 				3E6B4ED5106BC30D0036D429 /* CalculatorView.xib in Resources */,
 				3E7BB12E11539997004B7D03 /* ConfigView.xib in Resources */,
 				3EF054841182DCB200411C71 /* MainWindow-iPad.xib in Resources */,
+				3E6CE72B11872D9900221C66 /* ItemListView-ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,6 +732,7 @@
 				3E6B4ED6106BC30D0036D429 /* CalculatorView.xib in Resources */,
 				3E7BB12D11539997004B7D03 /* ConfigView.xib in Resources */,
 				3EF054831182DCB200411C71 /* MainWindow-iPad.xib in Resources */,
+				3E6CE72C11872D9900221C66 /* ItemListView-ipad.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

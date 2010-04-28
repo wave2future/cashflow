@@ -52,11 +52,17 @@
     [super viewDidLoad];
 
     self.navigationItem.title = NSLocalizedString(@"Config", @"");
-#if 0
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                  target:self action:@selector(doneAction:)] autorelease];
-#endif
+
+    self.navigationItem.rightBarButtonItem =
+        [[[UIBarButtonItem alloc]
+             initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+             target:self
+             action:@selector(doneAction:)] autorelease];
+}
+
+- (void)doneAction:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)dealloc
@@ -68,12 +74,6 @@
 {
     [super viewWillAppear:animated];
     [self.tableView reloadData];
-}
-
-- (void)doneAction:(id)sender
-{
-    //[self.navigationController dismissModalViewControllerAnimated:YES];
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -89,6 +89,17 @@
     formatControl.selectedSegmentIndex = [defaults integerForKey:@"exportFormat"];
     rangeControl.selectedSegmentIndex = [defaults integerForKey:@"exportRange"];
     methodControl.selectedSegmentIndex = [defaults integerForKey:@"exportMethod"];	
+
+    self.navigationItem.rightBarButtonItem =
+        [[[UIBarButtonItem alloc]
+             initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+             target:self
+             action:@selector(doneAction:)] autorelease];
+}
+
+- (void)doneAction:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

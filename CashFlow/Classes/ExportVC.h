@@ -58,7 +58,7 @@
 @property(nonatomic,assign) Asset *asset;
 
 - (IBAction)doExport;
-
 - (id)initWithAsset:(Asset *)asset;
+- (void)doneAction:(id)sender;
 
 @end
