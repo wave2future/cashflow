@@ -93,6 +93,8 @@
     }
     transactionView.asset = asset;
     
+    asDisplaying = NO;
+    
 #if FREE_VERSION
     if (AD_CELL_ROW >= 0) return;
     
@@ -510,6 +512,9 @@
 // action sheet
 - (void)doAction:(id)sender
 {
+    if (asDisplaying) return;
+    asDisplaying = YES;
+    
     UIActionSheet *as = 
         [[UIActionSheet alloc]
          initWithTitle:@"" 
@@ -521,17 +526,24 @@
          NSLocalizedString(@"Export", @""),
          NSLocalizedString(@"Config", @""),
          nil];
-    [as showInView:[self view]];
+    if (IS_IPAD) {
+        [as showFromBarButtonItem:barActionButton animated:YES];
+    } else {
+        [as showInView:[self view]];
+    }
     [as release];
 }
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    UIViewController *vc;
     ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
-    UIModalPresentationStyle modalStyle = UIModalPresentationPageSheet;
+    
+    UIViewController *vc;
+    UIModalPresentationStyle modalPresentationStyle = UIModalPresentationPageSheet;
+    
+    asDisplaying = NO;
     
     switch (buttonIndex) {
         case 0:
@@ -550,19 +562,24 @@
         case 2:
             exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
             vc = exportVC;
-            modalStyle = UIModalPresentationFormSheet;
+            modalPresentationStyle = UIModalPresentationFormSheet;
             break;
             
         case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
-            modalStyle = UIModalPresentationFormSheet;
-            break;            
+            modalPresentationStyle = UIModalPresentationFormSheet;
+            break;
+            
+        default:
+            return;
     }
 
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
-    nv.modalPresentationStyle = modalStyle;
-
+    if (IS_IPAD) {
+        nv.modalPresentationStyle = modalPresentationStyle;
+    }
+    
     //[self.navigationController pushViewController:vc animated:YES];
     [self.navigationController presentModalViewController:nv animated:YES];
     [nv release];

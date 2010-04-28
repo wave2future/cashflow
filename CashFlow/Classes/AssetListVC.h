@@ -43,12 +43,14 @@
 <UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView *tableView;
+    IBOutlet UIBarButtonItem *barActionButton;
 
     Ledger *ledger;
 
     NSArray *iconArray;
     BackupServer *backupServer;
 
+    BOOL asDisplaying;
     UIActionSheet *asActionButton;
     UIActionSheet *asDelete;
 

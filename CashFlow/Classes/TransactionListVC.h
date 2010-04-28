@@ -55,6 +55,7 @@
 {
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *barBalanceLabel;
+    IBOutlet UIBarButtonItem *barActionButton;
 	
     TransactionViewController *transactionView;
 
@@ -62,6 +63,8 @@
 #if FREE_VERSION
     GADAdViewController *adViewController;
 #endif
+    
+    BOOL asDisplaying;
     
     // for Split view
     IBOutlet AssetListViewController *splitAssetListViewController;

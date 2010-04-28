@@ -52,8 +52,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    pinChecked = NO;
     tableView.rowHeight = 48;
+    pinChecked = NO;
+    asDisplaying = NO;
 
     ledger = [DataModel ledger];
 	
@@ -238,6 +239,8 @@
     return cell;
 }
 
+#pragma mark UITableViewDelegate
+
 //
 // セルをクリックしたときの処理
 //
@@ -386,8 +389,13 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 //////////////////////////////////////////////////////////////////////////////////////////
 // Action Sheet 処理
 
+#pragma mark Action Sheet
+
 - (void)doAction:(id)sender
 {
+    if (asDisplaying) return;
+    asDisplaying = YES;
+    
     asActionButton = 
         [[UIActionSheet alloc]
          initWithTitle:@"" delegate:self 
@@ -398,7 +406,11 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
          nil];
-    [asActionButton showInView:[self view]];
+    if (IS_IPAD) {
+        [asActionButton showFromBarButtonItem:barActionButton animated:YES];
+    } else {
+        [asActionButton showInView:[self view]];
+    }
     [asActionButton release];
 }
 
@@ -406,6 +418,9 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 {
     ReportViewController *reportVC;
     ConfigViewController *configVC;
+    UIViewController *vc;
+    
+    asDisplaying = NO;
     
     switch (buttonIndex) {
         case 0:
@@ -418,18 +433,28 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
                 reportVC.title = NSLocalizedString(@"Monthly Report", @"");
                 [reportVC generateReport:REPORT_MONTHLY asset:nil];
             }
-            [self.navigationController pushViewController:reportVC animated:YES];
+            vc = reportVC;
             break;
 
         case 2:
             [self doBackup];
-            break;
+            return;
             
         case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:configVC animated:YES];
+            vc = configVC;
             break;
+            
+        default:
+            return;
     }
+    
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
+    if (IS_IPAD) {
+        nv.modalPresentationStyle = UIModalPresentationPageSheet;
+    }
+    [self.navigationController presentModalViewController:nv animated:YES];
+    [nv release];
 }
 
 // actionSheet ハンドラ
