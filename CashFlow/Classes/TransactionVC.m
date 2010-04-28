@@ -158,6 +158,8 @@
 /////////////////////////////////////////////////////////////////////////////////
 // TableView 表示処理
 
+#pragma mark UITableViewDataSource
+
 // セクション数
 - (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
 {
@@ -250,6 +252,8 @@
 
 ///////////////////////////////////////////////////////////////////////////////////
 // 値変更処理
+
+#pragma mark UITableViewDelegate
 
 // セルをクリックしたときの処理
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -349,6 +353,8 @@
     }
 }
 
+#pragma mark EditView delegates
+
 // delegate : 下位 ViewController からの変更通知
 - (void)editDateViewChanged:(EditDateViewController *)vc
 {
@@ -425,6 +431,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // 削除処理
+
+#pragma mark Deletion
+
 - (void)delButtonTapped
 {
     [asset deleteEntryAt:transactionIndex];
@@ -464,6 +473,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////
 // 保存処理
+
+#pragma mark Save action
+
 - (void)saveAction
 {
     //editingEntry.transaction.asset = asset.pkey;
@@ -479,6 +491,8 @@
 	
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark Rotation support
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if (IS_IPAD) return YES;

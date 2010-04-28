@@ -408,6 +408,8 @@
 }
 #endif
 
+#pragma mark UITableViewDelegate
+
 //
 // セルをクリックしたときの処理
 //
@@ -493,6 +495,8 @@
     }
 }
 
+#pragma mark Action sheet handling
+
 // action sheet
 - (void)doAction:(id)sender
 {
@@ -517,6 +521,7 @@
     ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
+    UIModalPresentationStyle modalStyle = UIModalPresentationPageSheet;
     
     switch (buttonIndex) {
         case 0:
@@ -535,18 +540,19 @@
         case 2:
             exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
             vc = exportVC;
+            modalStyle = UIModalPresentationFormSheet;
             break;
             
         case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
+            modalStyle = UIModalPresentationFormSheet;
             break;            
     }
 
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
-    if (IS_IPAD) {
-        vc.modalPresentationStyle = UIModalPresentationPageSheet;
-    }
+    nv.modalPresentationStyle = modalStyle;
+
     //[self.navigationController pushViewController:vc animated:YES];
     [self.navigationController presentModalViewController:nv animated:YES];
     [nv release];
