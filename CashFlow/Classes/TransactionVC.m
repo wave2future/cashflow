@@ -83,19 +83,29 @@
 	
         [b setBackgroundImage:bg forState:UIControlStateNormal];
 		
+        const int width = 300;
+        const int height = 40;
+        CGRect rect = CGRectMake((self.view.frame.size.width - width) / 2.0, 310, width, height);
+        if (IS_IPAD) {
+            rect.origin.y += 100; // ad hoc...
+        }
+        
         if (i == 0) {
-            [b setFrame:CGRectMake(10, 310, 300, 40)];
+            [b setFrame:rect];
             [b setTitle:NSLocalizedString(@"Delete transaction", @"") forState:UIControlStateNormal];
             [b addTarget:self action:@selector(delButtonTapped) forControlEvents:UIControlEventTouchUpInside];
             delButton = [b retain];
         } else {
-            [b setFrame:CGRectMake(10, 365, 300, 40)];
+            rect.origin.y += 55;
+            [b setFrame:rect];
             [b setTitle:NSLocalizedString(@"Delete with all past transactions", @"") forState:UIControlStateNormal];
             [b addTarget:self action:@selector(delPastButtonTapped) forControlEvents:UIControlEventTouchUpInside];
             delPastButton = [b retain];
         }
 
-        b.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleTopMargin;
+        b.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+        [self.view addSubview:b];
+        //[self.view bringSubviewToFront:b];
     }
 }
 
@@ -132,8 +142,8 @@
     [super viewWillAppear:animated];
 	
     if (transactionIndex >= 0) {
-        [self.view addSubview:delButton];
-        [self.view addSubview:delPastButton];
+        //[self.view addSubview:delButton];
+        //[self.view addSubview:delPastButton];
     }
 		
     [[self tableView] reloadData];
