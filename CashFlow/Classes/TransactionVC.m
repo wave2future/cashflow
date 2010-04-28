@@ -140,11 +140,11 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    BOOL hideDelButton = (transactionIndex >= 0) ? NO : YES;
 	
-    if (transactionIndex >= 0) {
-        //[self.view addSubview:delButton];
-        //[self.view addSubview:delPastButton];
-    }
+    delButton.hidden = hideDelButton;
+    delPastButton.hidden = hideDelButton;
 		
     [[self tableView] reloadData];
 }
@@ -158,11 +158,6 @@
 - (void)viewDidDisappear:(BOOL)animated
 {
     [super viewDidDisappear:animated];
-	
-    if (transactionIndex >= 0) {
-        [delButton removeFromSuperview];
-        [delPastButton removeFromSuperview];
-    }
 }
 
 /////////////////////////////////////////////////////////////////////////////////
