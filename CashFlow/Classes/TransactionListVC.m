@@ -41,6 +41,7 @@
 #import "ReportVC.h"
 #import "ConfigViewController.h"
 #import "AssetListVC.h"
+#import "Backup.h"
 
 #if FREE_VERSION
 #import "AdCell.h"
@@ -533,6 +534,7 @@
          NSLocalizedString(@"Weekly Report", @""),
          NSLocalizedString(@"Monthly Report", @""),
          NSLocalizedString(@"Export", @""),
+         NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
          nil];
     if (IS_IPAD) {
@@ -548,6 +550,7 @@
     ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
+    Backup *backup;
     
     UIViewController *vc;
     UIModalPresentationStyle modalPresentationStyle = UIModalPresentationPageSheet;
@@ -575,6 +578,11 @@
             break;
             
         case 3:
+            backup = [[Backup alloc] init];
+            [backup execute];
+            return;
+            
+        case 4:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
             modalPresentationStyle = UIModalPresentationFormSheet;

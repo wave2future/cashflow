@@ -90,7 +90,8 @@
 /* Config */
 "Config" = "Config";
 "Date style" = "Date style";
-"Date and time" = "Date and time";
+"Date and time (1 min)" = "Date and time (1 min)";
+"Date and time (5 min)" = "Date and time (5 min)";
 "Date only" = "Date only";
 "Cutoff date" = "Cutoff date";
 "End of month" = "End of month";

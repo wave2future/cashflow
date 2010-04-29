@@ -129,10 +129,16 @@
             switch (indexPath.row) {
                 case ROW_DATE_TIME_MODE:
                     text = NSLocalizedString(@"Date style", @"");
-                    if (config.dateTimeMode == DateTimeModeWithTime) {
-                        detailText = NSLocalizedString(@"Date and time", @"");
-                    } else {
-                        detailText = NSLocalizedString(@"Date only", @"");
+                    switch (config.dateTimeMode) {
+                        case DateTimeModeWithTime:
+                            detailText = NSLocalizedString(@"Date and time (1 min)", @"");
+                            break;
+                        case DateTimeModeWithTime5min:
+                            detailText = NSLocalizedString(@"Date and time (5 min)", @"");
+                            break;
+                        default:
+                            detailText = NSLocalizedString(@"Date only", @"");                            
+                            break;
                     }
                     break;
 
@@ -178,7 +184,8 @@
             switch (indexPath.row) {
                 case ROW_DATE_TIME_MODE:
                     typeArray = [[[NSArray alloc] initWithObjects:
-                                  NSLocalizedString(@"Date and time", @""),
+                                  NSLocalizedString(@"Date and time (1 min)", @""),
+                                  NSLocalizedString(@"Date and time (5 min)", @""),
                                   NSLocalizedString(@"Date only", @""),
                                   nil] autorelease];
                     gt = [GenSelectListViewController

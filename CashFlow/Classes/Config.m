@@ -58,7 +58,8 @@ static Config *theConfig = nil;
     
     self.dateTimeMode = [defaults integerForKey:@"DateTimeMode"];
     if (self.dateTimeMode != DateTimeModeDateOnly &&
-        self.dateTimeMode != DateTimeModeWithTime) {
+        self.dateTimeMode != DateTimeModeWithTime &&
+        self.dateTimeMode != DateTimeModeWithTime5min) {
         self.dateTimeMode = DateTimeModeWithTime;
     }
 

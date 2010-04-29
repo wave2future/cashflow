@@ -112,6 +112,12 @@
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
     }
+ 
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 600;
+        self.contentSizeForViewInPopover = s;
+    }
 }
 
 - (void)didReceiveMemoryWarning {

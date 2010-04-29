@@ -66,7 +66,10 @@
         datePicker.datePickerMode = UIDatePickerModeDate;
     } else {
         datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        datePicker.minuteInterval = 5;
+        datePicker.minuteInterval = 1;
+        if ([Config instance].dateTimeMode == DateTimeModeWithTime5min) {
+            datePicker.minuteInterval = 5;
+        }
     }
 }
 
