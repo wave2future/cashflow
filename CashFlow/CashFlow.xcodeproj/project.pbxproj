@@ -20,7 +20,6 @@
 		3E0887F60E6EAC8900739AC9 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
 		3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
 		3E0887FE0E6EACF400739AC9 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
-		3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
 		3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
@@ -102,7 +101,6 @@
 		3E8B25980F348C090007929E /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 		3E8B25990F348C090007929E /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
 		3E8B259A0F348C090007929E /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
-		3E8B259B0F348C090007929E /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888010E6EAD0B00739AC9 /* EditValueVC.m */; };
 		3E8B259C0F348C090007929E /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E8B259D0F348C090007929E /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
 		3E8B259E0F348C090007929E /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
@@ -202,8 +200,6 @@
 		3E0887FA0E6EACEB00739AC9 /* EditDateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDateVC.h; sourceTree = "<group>"; };
 		3E0887FC0E6EACF400739AC9 /* EditDescVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVC.m; sourceTree = "<group>"; };
 		3E0887FD0E6EACF400739AC9 /* EditDescVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditDescVC.h; sourceTree = "<group>"; };
-		3E0888010E6EAD0B00739AC9 /* EditValueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditValueVC.m; sourceTree = "<group>"; };
-		3E0888020E6EAD0B00739AC9 /* EditValueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditValueVC.h; sourceTree = "<group>"; };
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
 		3E0A9E390EC33894005195A5 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
@@ -383,24 +379,22 @@
 				3E0A9E390EC33894005195A5 /* TransactionListVC.m */,
 				3E0888100E6EAEE200739AC9 /* TransactionVC.h */,
 				3E0888110E6EAEEB00739AC9 /* TransactionVC.m */,
-				3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */,
-				3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */,
-				3EFD00080F95E17B00F4B4C4 /* EditTypeVC.h */,
-				3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */,
-				3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */,
-				3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */,
-				3EAEBC5B0F9DE02700AD3D15 /* GenSelectListVC.h */,
-				3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */,
 				3E0887FA0E6EACEB00739AC9 /* EditDateVC.h */,
 				3E0887F90E6EACEB00739AC9 /* EditDateVC.m */,
-				3E0888020E6EAD0B00739AC9 /* EditValueVC.h */,
-				3E0888010E6EAD0B00739AC9 /* EditValueVC.m */,
+				3EFD00080F95E17B00F4B4C4 /* EditTypeVC.h */,
+				3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */,
 				3E929479106BBC7900DE6040 /* CalcVC.h */,
 				3E92947A106BBC7900DE6040 /* CalcVC.m */,
 				3E0887FD0E6EACF400739AC9 /* EditDescVC.h */,
 				3E0887FC0E6EACF400739AC9 /* EditDescVC.m */,
+				3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */,
+				3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */,
 				3E5868270EEFFCAF00951C2F /* EditMemoVC.h */,
 				3E5868280EEFFCAF00951C2F /* EditMemoVC.m */,
+				3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */,
+				3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */,
+				3EAEBC5B0F9DE02700AD3D15 /* GenSelectListVC.h */,
+				3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */,
 				3E4D1D1A0EBB471E006050FE /* ReportVC.h */,
 				3E4D1D1B0EBB471E006050FE /* ReportVC.m */,
 				3E6B365B0FA2DD8700FCF592 /* ReportCell.h */,
@@ -760,7 +754,6 @@
 				3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */,
 				3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */,
 				3E0887FE0E6EACF400739AC9 /* EditDescVC.m in Sources */,
-				3E0888040E6EAD0B00739AC9 /* EditValueVC.m in Sources */,
 				3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */,
 				3EDDADBE0E89280800268AED /* InfoVC.m in Sources */,
 				3EDDAE7E0E8E468700268AED /* ExportVC.m in Sources */,
@@ -810,7 +803,6 @@
 				3E8B25980F348C090007929E /* DataModel.m in Sources */,
 				3E8B25990F348C090007929E /* EditDateVC.m in Sources */,
 				3E8B259A0F348C090007929E /* EditDescVC.m in Sources */,
-				3E8B259B0F348C090007929E /* EditValueVC.m in Sources */,
 				3E8B259C0F348C090007929E /* TransactionVC.m in Sources */,
 				3E8B259D0F348C090007929E /* InfoVC.m in Sources */,
 				3E8B259E0F348C090007929E /* ExportVC.m in Sources */,

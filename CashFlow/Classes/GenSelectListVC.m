@@ -48,7 +48,7 @@
     vc.items = ary;
     vc.title = title;
     vc.identifier = id;
-
+    
     return vc;
 }
 
@@ -58,6 +58,17 @@
     [super dealloc];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 480;
+        self.contentSizeForViewInPopover = s;
+    }
+}
+    
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];

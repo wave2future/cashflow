@@ -53,6 +53,12 @@
 
 - (void)viewDidLoad
 {
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 480;
+        self.contentSizeForViewInPopover = s;
+    }
+    
     self.title = NSLocalizedString(@"Amount", @"金額");
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone

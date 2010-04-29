@@ -55,6 +55,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 300;
+        self.contentSizeForViewInPopover = s;
+    }
+    
     textField.placeholder = self.title;
 	
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]

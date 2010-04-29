@@ -425,7 +425,18 @@
         v.delegate = self;
         v.value = asset.initialBalance;
 
-        [self.navigationController pushViewController:v animated:YES];
+        UINavigationController *nv = [[[UINavigationController alloc] initWithRootViewController:v] autorelease];
+        
+        if (!IS_IPAD) {
+            [self presentModalViewController:nv animated:YES];
+        } else {
+            if (self.popoverController) {
+                [self.popoverController dismissPopoverAnimated:YES];
+            }
+            self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:nv] autorelease];
+            [self.popoverController presentPopoverFromRect:[tv cellForRowAtIndexPath:indexPath].frame inView:self.view
+               permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        }
     } else if (idx >= 0) {
         // transaction view を表示
         TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
@@ -441,6 +452,7 @@
     asset.initialBalance = vc.value;
     [asset updateInitialBalance];
     [asset rebuild];
+    [self reload];
 }
 
 // 新規トランザクション追加

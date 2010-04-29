@@ -56,6 +56,12 @@
 
 - (void)viewDidLoad
 {
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 600;  // AdHoc : 480 にすると横画面の時に下に出てしまい、文字入力ができない
+        self.contentSizeForViewInPopover = s;
+    }
+    
     self.title = NSLocalizedString(@"Name", @"Description");
     textField.placeholder = NSLocalizedString(@"Name", @"Description");
 	

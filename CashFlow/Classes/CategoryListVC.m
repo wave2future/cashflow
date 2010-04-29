@@ -53,6 +53,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 600;
+        self.contentSizeForViewInPopover = s;
+    }
 	
     // title 設定
     self.title = NSLocalizedString(@"Categories", @"");
