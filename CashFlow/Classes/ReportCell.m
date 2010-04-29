@@ -5,6 +5,7 @@
 
 #import "ReportCell.h"
 #import "DataModel.h"
+#import "AppDelegate.h"
 
 @implementation ReportCell
 
@@ -31,7 +32,7 @@
     nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
     nameLabel.font = [UIFont systemFontOfSize: 14.0];
     nameLabel.textColor = [UIColor grayColor];
-    nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    nameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:nameLabel];
 
     incomeGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 22, 170, 16)] autorelease];
@@ -44,7 +45,7 @@
     incomeLabel.textAlignment = UITextAlignmentRight;
     incomeLabel.textColor = [UIColor blueColor];
     //incomeLabel.lineBreakMode = UILineBreakModeWordWrap;
-    incomeLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    incomeLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:incomeLabel];
 
     outgoGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 42, 170, 16)] autorelease];
@@ -57,7 +58,7 @@
     outgoLabel.textAlignment = UITextAlignmentRight;
     outgoLabel.textColor = [UIColor redColor];
     //outgoLabel.lineBreakMode = UILineBreakModeWordWrap;
-    outgoLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    outgoLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
     [self.contentView addSubview:outgoLabel];
     
     maxAbsValue = 0.000001;
@@ -107,16 +108,22 @@
 {
     double ratio;
     int width;
-
+    int fullWidth;
+    
+    if (IS_IPAD) {
+        fullWidth = 500;
+    } else {
+        fullWidth = 170;
+    }
 
     ratio = income / maxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
-    width = 170.0 * ratio + 1;
+    width = fullWidth * ratio + 1;
     incomeGraph.frame = CGRectMake(120, 22, width, 16);
 
     ratio = -outgo / maxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
-    width = 170.0 * ratio + 1;
+    width = fullWidth * ratio + 1;
     outgoGraph.frame = CGRectMake(120, 42, width, 16);
 }
 

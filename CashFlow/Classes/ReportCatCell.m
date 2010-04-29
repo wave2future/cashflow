@@ -5,6 +5,7 @@
 
 #import "ReportCatCell.h"
 #import "DataModel.h"
+#import "AppDelegate.h"
 
 @implementation ReportCatCell
 
@@ -35,7 +36,7 @@
     nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, 44)] autorelease];
     nameLabel.font = [UIFont systemFontOfSize: 14.0];
     nameLabel.textColor = [UIColor blackColor];
-    nameLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    nameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentView addSubview:nameLabel];
 
     valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, 23, 130, 20)] autorelease];
@@ -43,7 +44,7 @@
     //valueLabel.textAlignment = UITextAlignmentRight;
     valueLabel.textAlignment = UITextAlignmentLeft;
     valueLabel.textColor = [UIColor blackColor];
-    valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    valueLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     [self.contentView addSubview:valueLabel];
 
     return self;
@@ -88,6 +89,13 @@
 - (void)updateGraph
 {
     double ratio;
+    int fullWidth;
+    if (IS_IPAD) {
+        fullWidth = 500;
+    } else {
+        fullWidth = 200;
+    }
+    
     ratio = value / maxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
 
@@ -97,7 +105,7 @@
         graphView.backgroundColor = [UIColor redColor];        
         ratio = -ratio;
     }
-    int width = 200.0 * ratio + 6;
+    int width = fullWidth * ratio + 6;
 
     graphView.frame = CGRectMake(100, 2, width, 20);
 }
