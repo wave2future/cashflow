@@ -41,7 +41,7 @@
 //#import "CategoryListVC.h"
 #import "ReportVC.h"
 #import "InfoVC.h"
-#import "BackupServer.h"
+#import "Backup.h"
 #import "Pin.h"
 #import "ConfigViewController.h"
 
@@ -418,6 +418,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 {
     ReportViewController *reportVC;
     ConfigViewController *configVC;
+    Backup *backup;
     UIViewController *vc;
     
     asDisplaying = NO;
@@ -437,7 +438,8 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
             break;
 
         case 2:
-            [self doBackup];
+            backup = [[Backup alloc] init];
+            [backup execute];
             return;
             
         case 3:
@@ -477,51 +479,6 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 {
     InfoVC *v = [[[InfoVC alloc] init] autorelease];
     [self.navigationController pushViewController:v animated:YES];
-}
-
-- (void)doBackup
-{
-    BOOL result = NO;
-    NSString *message = nil;
-
-    backupServer = [[BackupServer alloc] init];
-    NSString *url = [backupServer serverUrl];
-    if (url != nil) {
-        result = [backupServer startServer];
-    } else {
-        message = NSLocalizedString(@"Network is unreachable.", @"");
-    }
-    
-    UIAlertView *v;
-    if (!result) {
-        if (message == nil) {
-            message = NSLocalizedString(@"Cannot start web server.", @"");
-        }
-
-        [backupServer release];
-        v = [[UIAlertView alloc]
-             initWithTitle:@"Error"
-             message:message
-             delegate:nil cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
-             otherButtonTitles:nil];
-    } else {
-        message = [NSString stringWithFormat:NSLocalizedString(@"BackupNotation", @""), url];
-        
-        v = [[UIAlertView alloc]
-             initWithTitle:NSLocalizedString(@"Backup and restore", @"")
-             message:message
-             delegate:self cancelButtonTitle:NSLocalizedString(@"Dismiss", @"")
-             otherButtonTitles:nil];
-    }
-    [v show];
-    [v release];
-}
-
-- (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    [backupServer stopServer];
-    [backupServer release];
-    backupServer = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
