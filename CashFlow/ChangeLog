@@ -1,3 +1,8 @@
+2010-04-29: Takuya Murakami
+	* ver 3.0
+	* iPad 対応
+	* 日付モード:1/5分単位モードを追加
+	
 2010-04-01: Takuya Murakami
 	* CSV ファイルの先頭に BOM をつけるようにした
 
