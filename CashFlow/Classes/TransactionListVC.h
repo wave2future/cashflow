@@ -57,8 +57,6 @@
     IBOutlet UIBarButtonItem *barBalanceLabel;
     IBOutlet UIBarButtonItem *barActionButton;
 	
-    TransactionViewController *transactionView;
-
     Asset *asset;
 #if FREE_VERSION
     GADAdViewController *adViewController;

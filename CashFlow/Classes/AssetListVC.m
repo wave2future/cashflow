@@ -106,7 +106,7 @@
     if (IS_IPAD) {
         splitTransactionListViewController.asset = asset;
         [splitTransactionListViewController reload];
-    } else {
+    } else if (asset != nil) {
         TransactionListViewController *vc = 
             [[[TransactionListViewController alloc] init] autorelease];
         vc.asset = asset;
@@ -137,10 +137,12 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    // 最初に起動する画面を資産一覧画面にする
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
-    [defaults synchronize];
+    if (!IS_IPAD) {
+        // 最初に起動する画面を資産一覧画面にする
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
+        [defaults synchronize];
+    }
 
     [super viewDidAppear:animated];
 }

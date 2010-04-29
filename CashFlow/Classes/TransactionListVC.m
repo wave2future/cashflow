@@ -87,12 +87,6 @@
     // TBD
     //self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	
-    // 下位 View を作っておく
-    if (transactionView == nil) {
-        transactionView = [[TransactionViewController alloc] init];
-    }
-    transactionView.asset = asset;
-    
     asDisplaying = NO;
     
 #if FREE_VERSION
@@ -146,7 +140,6 @@
 }
 
 - (void)dealloc {
-    [transactionView release];
     [tableView release];
     [popoverController release];
 
@@ -435,8 +428,10 @@
         [self.navigationController pushViewController:v animated:YES];
     } else if (idx >= 0) {
         // transaction view を表示
-        [transactionView setTransactionIndex:idx];
-        [self.navigationController pushViewController:transactionView animated:YES];
+        TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
+        vc.asset = self.asset;
+        [vc setTransactionIndex:idx];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
@@ -453,8 +448,10 @@
 {
     if (asset == nil) return;
     
-    [transactionView setTransactionIndex:-1];
-    [self.navigationController pushViewController:transactionView animated:YES];
+    TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
+    vc.asset = self.asset;
+    [vc setTransactionIndex:-1];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 // Editボタン処理
