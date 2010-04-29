@@ -50,7 +50,7 @@
     
     [vc setSubject:@"CashFlow CSV Data"];
 
-    [vc addAttachmentData:body mimeType:@"text/comma-separeted-value" fileName:@"CashFlow.csv"];
+    [vc addAttachmentData:body mimeType:@"text/comma-separeted-value" fileName:@"CashFlow.txt"];
     [parent presentModalViewController:vc animated:YES];
     [vc release];
     return YES;
@@ -98,7 +98,7 @@
         return NO;
     }
 	
-    [self sendWithWebServer:body contentType:@"text/csv" filename:@"cashflow.csv"];
+    [self sendWithWebServer:body contentType:@"text/csv" filename:@"cashflow.txt"];
     return YES;
 }
 
