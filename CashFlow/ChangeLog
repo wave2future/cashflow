@@ -1,3 +1,6 @@
+2010-05-11: Takuya Murakami
+	* バグ修正: 残高調整ウィンドウが閉じない (iPad以外）問題を修正
+	
 2010-04-29: Takuya Murakami
 	* ver 3.0
 	* iPad 対応

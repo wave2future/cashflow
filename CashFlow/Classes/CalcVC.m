@@ -88,7 +88,12 @@
 {
     [delegate calculatorViewChanged:self];
 
-    [self.navigationController popViewControllerAnimated:YES];
+    if (!IS_IPAD && [self.navigationController.viewControllers count] == 1) {
+        // I am modal view!
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
 }
 
 - (void)allClear
