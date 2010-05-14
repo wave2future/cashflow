@@ -31,53 +31,53 @@
     AssetEntry *e;
 
     asset = [ledger assetAtIndex:0];
-    ASSERT_EQUAL_INT(1, asset.pkey);
-    ASSERT_EQUAL_INT(0, asset.type);
-    ASSERT([asset.name isEqualToString:@"Cash"]);
-    ASSERT_EQUAL_INT(0, asset.sorder);
-    ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
+    STAssertEquals(1, asset.pkey, @"pkey mismatch");
+    STAssertEquals(0, asset.type, @"type mismatch");
+    STAssertTrue([asset.name isEqualToString:@"Cash"], @"Asset name mismatch (%@ != Cash)", asset.name);
+    STAssertEquals(0, asset.sorder, @"sorder mismatch");
+    STAssertEquals(5000.0, asset.initialBalance, @"initial balance");
     
-    ASSERT_EQUAL_INT(4, [asset entryCount]);
+    STAssertEquals(4, [asset entryCount], @"# of entries");
     e = [asset entryAt:0];
-    ASSERT_EQUAL_DOUBLE(-100, e.value);
-    ASSERT_EQUAL_DOUBLE(4900, e.balance);
+    STAssertEquals(-100.0, e.value, @"value");
+    STAssertEquals(4900.0, e.balance, @"balance");
     e = [asset entryAt:1];
-    ASSERT_EQUAL_DOUBLE(-800, e.value);
-    ASSERT_EQUAL_DOUBLE(4100, e.balance);
+    STAssertEquals(-800.0, e.value, @"value");
+    STAssertEquals(4100.0, e.balance, @"balance");
     e = [asset entryAt:2];
-    ASSERT_EQUAL_DOUBLE(-100, e.value);
-    ASSERT_EQUAL_DOUBLE(4000, e.balance);
+    STAssertEquals(-100.0, e.value, @"value");
+    STAssertEquals(4000.0, e.balance, @"balance");
     e = [asset entryAt:3];
-    ASSERT_EQUAL_DOUBLE(5000, e.value);
-    ASSERT_EQUAL_DOUBLE(9000, e.balance);
+    STAssertEquals(5000.0, e.value, @"value");
+    STAssertEquals(9000.0, e.balance, @"balance");
 
     asset = [ledger assetAtIndex:1];
-    ASSERT_EQUAL_INT(2, asset.pkey);
-    ASSERT_EQUAL_INT(1, asset.type);
-    ASSERT([asset.name isEqualToString:@"Bank"]);
-    ASSERT_EQUAL_INT(1, asset.sorder);
-    ASSERT_EQUAL_DOUBLE(100000, asset.initialBalance);
+    STAssertEquals(2, asset.pkey, @"pkey");
+    STAssertEquals(1, asset.type, @"asset type");
+    STAssertTrue([asset.name isEqualToString:@"Bank"], @"name");
+    STAssertEquals(1, asset.sorder, @"sorder");
+    STAssertEquals(100000.0, asset.initialBalance, @"initial balance");
 
-    ASSERT_EQUAL_INT(2, [asset entryCount]);
+    STAssertEquals(2, [asset entryCount], @"# of entries");
     e = [asset entryAt:0];
-    ASSERT_EQUAL_DOUBLE(-5000, e.value);
-    ASSERT_EQUAL_DOUBLE(95000, e.balance);
+    STAssertEquals(-5000.0, e.value, @"value");
+    STAssertEquals(95000.0, e.balance, @"balance");
     e = [asset entryAt:1];
-    ASSERT_EQUAL_DOUBLE(100000, e.value);
-    ASSERT_EQUAL_DOUBLE(195000, e.balance);
+    STAssertEquals(100000.0, e.value, @"value");
+    STAssertEquals(195000.0, e.balance, @"balance");
 
     asset = [ledger assetAtIndex:2];
-    ASSERT_EQUAL_INT(3, asset.pkey);
-    ASSERT_EQUAL_INT(2, asset.type);
+    STAssertEquals(3, asset.pkey, @"pkey");
+    STAssertEquals(2, asset.type, @"type");
     ASSERT([asset.name isEqualToString:@"Card"]);
-    ASSERT_EQUAL_INT(2, asset.sorder);
-    ASSERT_EQUAL_DOUBLE(-10000, asset.initialBalance);
+    STAssertEquals(2, asset.sorder, @"sorder");
+    STAssertEquals(-10000.0, asset.initialBalance, @"initial balance");
     
-    ASSERT_EQUAL_INT(1, [asset entryCount]);
+    STAssertEquals(1, [asset entryCount], @"# of entries");
 
     e = [asset entryAt:0];
-    ASSERT_EQUAL_DOUBLE( -2100, e.value);
-    ASSERT_EQUAL_DOUBLE(-12100, e.balance);
+    STAssertEquals( -2100.0, e.value, @"value");
+    STAssertEquals(-12100.0, e.balance, @"balance");
 }
 
 // 支払い取引の追加
@@ -99,7 +99,7 @@
     Ledger *ledger = [DataModel ledger];
     asset = [ledger assetAtIndex:0];
     
-    ASSERT_EQUAL_DOUBLE(9000, [asset lastBalance]);
+    STAssertEquals(9000.0, [asset lastBalance], @"last balance");
 
     // 新規エントリ
     AssetEntry *ae = [[[AssetEntry alloc] initWithTransaction:nil withAsset:asset] autorelease];
@@ -110,7 +110,7 @@
     ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
 
     [asset insertEntry:ae];
-    ASSERT_EQUAL_DOUBLE(10000, [asset lastBalance]);
+    STAssertEquals(10000.0, [asset lastBalance], @"last balance");
 }
 
 // 資産間移動の追加
@@ -126,23 +126,23 @@
     Ledger *ledger = [DataModel ledger];
     asset = [ledger assetAtIndex:0];
 
-    ASSERT_EQUAL_DOUBLE(5000.0, [asset initialBalance]);
-    ASSERT_EQUAL_DOUBLE(9000.0, [asset lastBalance]);
+    STAssertEquals(5000.0, [asset initialBalance], @"initial balance");
+    STAssertEquals(9000.0, [asset lastBalance], @"last balance");
     
     asset.initialBalance = 0.0;
     [asset rebuild];
-    ASSERT_EQUAL_DOUBLE(0.0, [asset initialBalance]);
+    STAssertEquals(0.0, [asset initialBalance], @"initial balance");
 
     AssetEntry *e;
     e = [asset entryAt:0];
-    ASSERT_EQUAL_DOUBLE(e.balance, -100.0);
+    STAssertEquals(e.balance, -100.0, @"balance");
     e = [asset entryAt:1];
-    ASSERT_EQUAL_DOUBLE(e.balance, -900.0);    
+    STAssertEquals(e.balance, -900.0, @"balance");    
     e = [asset entryAt:2];
-    ASSERT_EQUAL_DOUBLE(e.balance, 4000.0);    // 残高調整のため、balance 変化なし
-    ASSERT_EQUAL_DOUBLE(e.value, 4900.0);
+    STAssertEquals(e.balance, 4000.0, @"balance");    // 残高調整のため、balance 変化なし
+    STAssertEquals(e.value, 4900.0, @"balance");
     
-    ASSERT_EQUAL_DOUBLE(9000.0, [asset lastBalance]);
+    STAssertEquals(9000.0, [asset lastBalance], @"last balance");
 }
 
 // 取引削除
@@ -152,20 +152,20 @@
     Ledger *ledger = [DataModel ledger];
     
     asset = [ledger assetAtIndex:0];
-    ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
+    STAssertEquals(5000.0, asset.initialBalance, @"initial balance");
 
     [asset deleteEntryAt:3]; // 資産間移動取引を削除する
 
-    ASSERT_EQUAL_INT(3, [asset entryCount]);
-    ASSERT_EQUAL_DOUBLE(5000, asset.initialBalance);
+    STAssertEquals(3, [asset entryCount], @"# of entries");
+    STAssertEquals(5000.0, asset.initialBalance, @"initial balance");
 
     // 別資産の取引数が減って「いない」ことを確認(置換されているはず)
-    ASSERT_EQUAL_INT(2, [[ledger assetAtIndex:1] entryCount]);
+    STAssertEquals(2, [[ledger assetAtIndex:1] entryCount], @"# of trans. of other asset");
 
     // データベースが更新されていることを確認する
     [DataModel load];
-    ASSERT_EQUAL_INT(3, [asset entryCount]);
-    ASSERT_EQUAL_INT(2, [[ledger assetAtIndex:1] entryCount]);
+    STAssertEquals(3, [asset entryCount], @"# of entries");
+    STAssertEquals(2, [[ledger assetAtIndex:1] entryCount], @"# of entries");
 }
 
 // 先頭取引削除
@@ -183,30 +183,30 @@
     NSDate *date;
 
     asset = [ledger assetAtIndex:0];
-    ASSERT_EQUAL_INT(4, [asset entryCount]);
+    STAssertEquals(4, [asset entryCount], @"# of entries");
 
     // 最初よりも早い日付の場合に何も削除されないこと
     date = [TestCommon dateWithString:@"200812310000"];
     [asset deleteOldEntriesBefore:date];
-    ASSERT_EQUAL_INT(4, [asset entryCount]);    
+    STAssertEquals(4, [asset entryCount], @"# of entries");    
 
     // 途中削除
     e = [asset entryAt:2];
     [asset deleteOldEntriesBefore:e.transaction.date];
-    ASSERT_EQUAL_INT(2, [asset entryCount]);    
+    STAssertEquals(2, [asset entryCount], @"# of entries");    
 
     // 最後の日付の後で削除
     date = [TestCommon dateWithString:@"200902010000"];
     [asset deleteOldEntriesBefore:date];
-    ASSERT_EQUAL_INT(0, [asset entryCount]);
+    STAssertEquals(0, [asset entryCount], @"# of entries");
 
     // 残高チェック
-    ASSERT_EQUAL_DOUBLE(9000, asset.initialBalance);
+    STAssertEquals(9000.0, asset.initialBalance, @"initial balance");
 
     // データベースが更新されていることを確認する
     [DataModel load];
-    ASSERT_EQUAL_INT(0, [asset entryCount]);
-    ASSERT_EQUAL_DOUBLE(9000, asset.initialBalance);
+    STAssertEquals(0, [asset entryCount], @"# of entries");
+    STAssertEquals(9000.0, asset.initialBalance, @"initial balance");
 }
 
 // replace : 日付変更、種別変更なし
