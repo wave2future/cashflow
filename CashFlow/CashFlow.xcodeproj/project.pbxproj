@@ -153,6 +153,94 @@
 		3EB2FCDE0EC7314100F356A3 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
 		3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
 		3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3EB4FB09119D6DEA001C3EEB /* AssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FB08119D6DEA001C3EEB /* AssetTests.m */; };
+		3EB4FB50119D7094001C3EEB /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
+		3EB4FB51119D7094001C3EEB /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
+		3EB4FB52119D7094001C3EEB /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
+		3EB4FB53119D7094001C3EEB /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
+		3EB4FB54119D7094001C3EEB /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
+		3EB4FB55119D7094001C3EEB /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
+		3EB4FB56119D7094001C3EEB /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
+		3EB4FB57119D7094001C3EEB /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
+		3EB4FB58119D7094001C3EEB /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
+		3EB4FB59119D7094001C3EEB /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
+		3EB4FB5A119D7094001C3EEB /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
+		3EB4FB5B119D7094001C3EEB /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
+		3EB4FB5C119D7094001C3EEB /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
+		3EB4FB5D119D7094001C3EEB /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
+		3EB4FB5E119D7094001C3EEB /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
+		3EB4FB5F119D7094001C3EEB /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
+		3EB4FB60119D7094001C3EEB /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
+		3EB4FB61119D7094001C3EEB /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
+		3EB4FB62119D7094001C3EEB /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
+		3EB4FB63119D7094001C3EEB /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
+		3EB4FB64119D7094001C3EEB /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
+		3EB4FB65119D7094001C3EEB /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
+		3EB4FB66119D7094001C3EEB /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
+		3EB4FB67119D7094001C3EEB /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
+		3EB4FB68119D7094001C3EEB /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */; };
+		3EB4FB69119D7094001C3EEB /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
+		3EB4FB6A119D7094001C3EEB /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB12C11539997004B7D03 /* ConfigView.xib */; };
+		3EB4FB6B119D7094001C3EEB /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
+		3EB4FB6C119D7094001C3EEB /* AssetListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774E3D1188807900687776 /* AssetListView-ipad.xib */; };
+		3EB4FB6D119D7094001C3EEB /* PinView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774EE911888C6600687776 /* PinView-ipad.xib */; };
+		3EB4FB6E119D7094001C3EEB /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E811898E9600542042 /* Default-Landscape.png */; };
+		3EB4FB6F119D7094001C3EEB /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E911898E9600542042 /* Default-Portrait.png */; };
+		3EB4FB70119D7094001C3EEB /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA1F1189908A00542042 /* icon-ipad.png */; };
+		3EB4FB71119D7094001C3EEB /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA80118994AA00542042 /* icon.png */; };
+		3EB4FB73119D7094001C3EEB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		3EB4FB74119D7094001C3EEB /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
+		3EB4FB75119D7094001C3EEB /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3EB4FB76119D7094001C3EEB /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
+		3EB4FB77119D7094001C3EEB /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
+		3EB4FB78119D7094001C3EEB /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
+		3EB4FB79119D7094001C3EEB /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
+		3EB4FB7A119D7094001C3EEB /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
+		3EB4FB7B119D7094001C3EEB /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3EB4FB7C119D7094001C3EEB /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3EB4FB7D119D7094001C3EEB /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3EB4FB7E119D7094001C3EEB /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3EB4FB7F119D7094001C3EEB /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3EB4FB80119D7094001C3EEB /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
+		3EB4FB81119D7094001C3EEB /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
+		3EB4FB82119D7094001C3EEB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3EB4FB83119D7094001C3EEB /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3EB4FB84119D7094001C3EEB /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3EB4FB85119D7094001C3EEB /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
+		3EB4FB86119D7094001C3EEB /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
+		3EB4FB87119D7094001C3EEB /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
+		3EB4FB88119D7094001C3EEB /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
+		3EB4FB89119D7094001C3EEB /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
+		3EB4FB8A119D7094001C3EEB /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
+		3EB4FB8B119D7094001C3EEB /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
+		3EB4FB8C119D7094001C3EEB /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3EB4FB8D119D7094001C3EEB /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3EB4FB8E119D7094001C3EEB /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
+		3EB4FB8F119D7094001C3EEB /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
+		3EB4FB90119D7094001C3EEB /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
+		3EB4FB91119D7094001C3EEB /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
+		3EB4FB92119D7094001C3EEB /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
+		3EB4FB93119D7094001C3EEB /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
+		3EB4FB94119D7094001C3EEB /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
+		3EB4FB95119D7094001C3EEB /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
+		3EB4FB96119D7094001C3EEB /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
+		3EB4FB97119D7094001C3EEB /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
+		3EB4FB98119D7094001C3EEB /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
+		3EB4FB99119D7094001C3EEB /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
+		3EB4FB9A119D7094001C3EEB /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
+		3EB4FB9B119D7094001C3EEB /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
+		3EB4FB9D119D7094001C3EEB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3EB4FB9E119D7094001C3EEB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3EB4FB9F119D7094001C3EEB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		3EB4FBA0119D7094001C3EEB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
+		3EB4FBA1119D7094001C3EEB /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3EB4FBA2119D7094001C3EEB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
+		3EB4FBA3119D7094001C3EEB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
+		3EB4FBA4119D7094001C3EEB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
+		3EB4FBA5119D7094001C3EEB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */; };
+		3EB4FBA6119D7094001C3EEB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
+		3EB4FBC6119D70ED001C3EEB /* AppTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4FBBA119D70AC001C3EEB /* AppTests.octest */; };
+		3EB4FC08119D72DA001C3EEB /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB4FC07119D72DA001C3EEB /* AppTests.m */; };
 		3EB554B4103B92D700BA13D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
 		3EB554B5103B92D700BA13D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
 		3EB5552E103B930D00BA13D4 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
@@ -182,6 +270,16 @@
 		3EFD00340F95E31D00F4B4C4 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
 		3EFD00350F95E31D00F4B4C4 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3EB4FBC1119D70BC001C3EEB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3EB4FBB9119D70AC001C3EEB;
+			remoteInfo = AppTests;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -297,8 +395,15 @@
 		3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatVC.m; sourceTree = "<group>"; };
 		3EB35B270EC302DD0008FAF0 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		3EB35B290EC302E90008FAF0 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
-		3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LogicTests.octest; path = "build/Debug-iphoneos/LogicTests.octest"; sourceTree = "<group>"; };
+		3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LogicTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB4FAF7119D6D05001C3EEB /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
+		3EB4FB07119D6DEA001C3EEB /* AssetTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetTests.h; sourceTree = "<group>"; };
+		3EB4FB08119D6DEA001C3EEB /* AssetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTests.m; sourceTree = "<group>"; };
+		3EB4FBAC119D7094001C3EEB /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EB4FBBA119D70AC001C3EEB /* AppTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EB4FBBB119D70AD001C3EEB /* AppTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AppTests-Info.plist"; sourceTree = "<group>"; };
+		3EB4FC06119D72DA001C3EEB /* AppTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTests.h; sourceTree = "<group>"; };
+		3EB4FC07119D72DA001C3EEB /* AppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		3EB554B3103B92D700BA13D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EB5552D103B930D00BA13D4 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3EB55574103B96CE00BA13D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -378,6 +483,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EB4FB9C119D7094001C3EEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EB4FB9D119D7094001C3EEB /* Foundation.framework in Frameworks */,
+				3EB4FB9E119D7094001C3EEB /* UIKit.framework in Frameworks */,
+				3EB4FB9F119D7094001C3EEB /* CoreGraphics.framework in Frameworks */,
+				3EB4FBA0119D7094001C3EEB /* AudioToolbox.framework in Frameworks */,
+				3EB4FBA1119D7094001C3EEB /* libsqlite3.0.dylib in Frameworks */,
+				3EB4FBA2119D7094001C3EEB /* QuartzCore.framework in Frameworks */,
+				3EB4FBA3119D7094001C3EEB /* AddressBook.framework in Frameworks */,
+				3EB4FBA4119D7094001C3EEB /* CoreLocation.framework in Frameworks */,
+				3EB4FBA5119D7094001C3EEB /* MediaPlayer.framework in Frameworks */,
+				3EB4FBA6119D7094001C3EEB /* MessageUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EB4FBB7119D70AC001C3EEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -439,6 +568,8 @@
 				1D6058910D05DD3D006BFB54 /* CashFlow.app */,
 				3E8B25C20F348C090007929E /* CashFlowFree.app */,
 				3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */,
+				3EB4FBAC119D7094001C3EEB /* CashFlow.app */,
+				3EB4FBBA119D70AC001C3EEB /* AppTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -459,6 +590,7 @@
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
 				3EB4FAF7119D6D05001C3EEB /* LogicTests-Info.plist */,
+				3EB4FBBB119D70AD001C3EEB /* AppTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -540,8 +672,12 @@
 		3EB4FB04119D6D2C001C3EEB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3EB4FB07119D6DEA001C3EEB /* AssetTests.h */,
+				3EB4FB08119D6DEA001C3EEB /* AssetTests.m */,
+				3EB4FC06119D72DA001C3EEB /* AppTests.h */,
+				3EB4FC07119D72DA001C3EEB /* AppTests.m */,
 			);
-			name = Tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		3EB5406B0E8E907B00608B77 /* images */ = {
@@ -672,6 +808,42 @@
 			productReference = 3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		3EB4FB4E119D7094001C3EEB /* CashFlowTesting */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EB4FBA7119D7094001C3EEB /* Build configuration list for PBXNativeTarget "CashFlowTesting" */;
+			buildPhases = (
+				3EB4FB4F119D7094001C3EEB /* Resources */,
+				3EB4FB72119D7094001C3EEB /* Sources */,
+				3EB4FB9C119D7094001C3EEB /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3EB4FBC2119D70BC001C3EEB /* PBXTargetDependency */,
+			);
+			name = CashFlowTesting;
+			productName = CashFlow;
+			productReference = 3EB4FBAC119D7094001C3EEB /* CashFlow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3EB4FBB9119D70AC001C3EEB /* AppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EB4FBC0119D70AD001C3EEB /* Build configuration list for PBXNativeTarget "AppTests" */;
+			buildPhases = (
+				3EB4FBB5119D70AC001C3EEB /* Resources */,
+				3EB4FBB6119D70AC001C3EEB /* Sources */,
+				3EB4FBB7119D70AC001C3EEB /* Frameworks */,
+				3EB4FBB8119D70AC001C3EEB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AppTests;
+			productName = AppTests;
+			productReference = 3EB4FBBA119D70AC001C3EEB /* AppTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -705,6 +877,8 @@
 				1D6058900D05DD3D006BFB54 /* CashFlow */,
 				3E8B25780F348C090007929E /* CashFlowFree */,
 				3EB4FAF5119D6D05001C3EEB /* LogicTests */,
+				3EB4FB4E119D7094001C3EEB /* CashFlowTesting */,
+				3EB4FBB9119D70AC001C3EEB /* AppTests */,
 			);
 		};
 /* End PBXProject section */
@@ -799,10 +973,72 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EB4FB4F119D7094001C3EEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EB4FBC6119D70ED001C3EEB /* AppTests.octest in Resources */,
+				3EB4FB50119D7094001C3EEB /* TransactionListView.xib in Resources */,
+				3EB4FB51119D7094001C3EEB /* TransactionView.xib in Resources */,
+				3EB4FB52119D7094001C3EEB /* EditDescView.xib in Resources */,
+				3EB4FB53119D7094001C3EEB /* EditDateView.xib in Resources */,
+				3EB4FB54119D7094001C3EEB /* Default.png in Resources */,
+				3EB4FB55119D7094001C3EEB /* redButton.png in Resources */,
+				3EB4FB56119D7094001C3EEB /* InfoView.xib in Resources */,
+				3EB4FB57119D7094001C3EEB /* icon-rendered.png in Resources */,
+				3EB4FB58119D7094001C3EEB /* Entitlements.plist in Resources */,
+				3EB4FB59119D7094001C3EEB /* ReportView.xib in Resources */,
+				3EB4FB5A119D7094001C3EEB /* AssetListView.xib in Resources */,
+				3EB4FB5B119D7094001C3EEB /* AssetView.xib in Resources */,
+				3EB4FB5C119D7094001C3EEB /* MainWindow.xib in Resources */,
+				3EB4FB5D119D7094001C3EEB /* GenEditTextView.xib in Resources */,
+				3EB4FB5E119D7094001C3EEB /* cash.png in Resources */,
+				3EB4FB5F119D7094001C3EEB /* bank.png in Resources */,
+				3EB4FB60119D7094001C3EEB /* card.png in Resources */,
+				3EB4FB61119D7094001C3EEB /* CategoryListView.xib in Resources */,
+				3EB4FB62119D7094001C3EEB /* EditMemoView.xib in Resources */,
+				3EB4FB63119D7094001C3EEB /* ExportView.xib in Resources */,
+				3EB4FB64119D7094001C3EEB /* Localizable.strings in Resources */,
+				3EB4FB65119D7094001C3EEB /* PinView.xib in Resources */,
+				3EB4FB66119D7094001C3EEB /* config.png in Resources */,
+				3EB4FB67119D7094001C3EEB /* EditTypeView.xib in Resources */,
+				3EB4FB68119D7094001C3EEB /* GenSelectListView.xib in Resources */,
+				3EB4FB69119D7094001C3EEB /* CalculatorView.xib in Resources */,
+				3EB4FB6A119D7094001C3EEB /* ConfigView.xib in Resources */,
+				3EB4FB6B119D7094001C3EEB /* MainWindow-iPad.xib in Resources */,
+				3EB4FB6C119D7094001C3EEB /* AssetListView-ipad.xib in Resources */,
+				3EB4FB6D119D7094001C3EEB /* PinView-ipad.xib in Resources */,
+				3EB4FB6E119D7094001C3EEB /* Default-Landscape.png in Resources */,
+				3EB4FB6F119D7094001C3EEB /* Default-Portrait.png in Resources */,
+				3EB4FB70119D7094001C3EEB /* icon-ipad.png in Resources */,
+				3EB4FB71119D7094001C3EEB /* icon.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EB4FBB5119D70AC001C3EEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		3EB4FAF4119D6D05001C3EEB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		3EB4FBB8119D70AC001C3EEB /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -919,10 +1155,75 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EB4FB09119D6DEA001C3EEB /* AssetTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EB4FB72119D7094001C3EEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EB4FB73119D7094001C3EEB /* main.m in Sources */,
+				3EB4FB74119D7094001C3EEB /* Transaction.m in Sources */,
+				3EB4FB75119D7094001C3EEB /* DataModel.m in Sources */,
+				3EB4FB76119D7094001C3EEB /* EditDateVC.m in Sources */,
+				3EB4FB77119D7094001C3EEB /* EditDescVC.m in Sources */,
+				3EB4FB78119D7094001C3EEB /* TransactionVC.m in Sources */,
+				3EB4FB79119D7094001C3EEB /* InfoVC.m in Sources */,
+				3EB4FB7A119D7094001C3EEB /* ExportVC.m in Sources */,
+				3EB4FB7B119D7094001C3EEB /* ExportServer.m in Sources */,
+				3EB4FB7C119D7094001C3EEB /* ExportBase.m in Sources */,
+				3EB4FB7D119D7094001C3EEB /* ExportCsv.m in Sources */,
+				3EB4FB7E119D7094001C3EEB /* ExportOfx.m in Sources */,
+				3EB4FB7F119D7094001C3EEB /* Report.m in Sources */,
+				3EB4FB80119D7094001C3EEB /* ReportVC.m in Sources */,
+				3EB4FB81119D7094001C3EEB /* Database.m in Sources */,
+				3EB4FB82119D7094001C3EEB /* AppDelegate.m in Sources */,
+				3EB4FB83119D7094001C3EEB /* Asset.m in Sources */,
+				3EB4FB84119D7094001C3EEB /* TransactionListVC.m in Sources */,
+				3EB4FB85119D7094001C3EEB /* AssetListVC.m in Sources */,
+				3EB4FB86119D7094001C3EEB /* AssetVC.m in Sources */,
+				3EB4FB87119D7094001C3EEB /* GenEditTextVC.m in Sources */,
+				3EB4FB88119D7094001C3EEB /* Category.m in Sources */,
+				3EB4FB89119D7094001C3EEB /* CategoryListVC.m in Sources */,
+				3EB4FB8A119D7094001C3EEB /* ReportCatVC.m in Sources */,
+				3EB4FB8B119D7094001C3EEB /* EditMemoVC.m in Sources */,
+				3EB4FB8C119D7094001C3EEB /* WebServer.m in Sources */,
+				3EB4FB8D119D7094001C3EEB /* BackupServer.m in Sources */,
+				3EB4FB8E119D7094001C3EEB /* Pin.m in Sources */,
+				3EB4FB8F119D7094001C3EEB /* PinVC.m in Sources */,
+				3EB4FB90119D7094001C3EEB /* DateFormatter2.m in Sources */,
+				3EB4FB91119D7094001C3EEB /* EditTypeVC.m in Sources */,
+				3EB4FB92119D7094001C3EEB /* AssetEntry.m in Sources */,
+				3EB4FB93119D7094001C3EEB /* Journal.m in Sources */,
+				3EB4FB94119D7094001C3EEB /* Ledger.m in Sources */,
+				3EB4FB95119D7094001C3EEB /* GenSelectListVC.m in Sources */,
+				3EB4FB96119D7094001C3EEB /* ReportCatCell.m in Sources */,
+				3EB4FB97119D7094001C3EEB /* ReportCell.m in Sources */,
+				3EB4FB98119D7094001C3EEB /* CalcVC.m in Sources */,
+				3EB4FB99119D7094001C3EEB /* Config.m in Sources */,
+				3EB4FB9A119D7094001C3EEB /* ConfigViewController.m in Sources */,
+				3EB4FB9B119D7094001C3EEB /* Backup.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EB4FBB6119D70AC001C3EEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EB4FC08119D72DA001C3EEB /* AppTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3EB4FBC2119D70BC001C3EEB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3EB4FBB9119D70AC001C3EEB /* AppTests */;
+			targetProxy = 3EB4FBC1119D70BC001C3EEB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		3E2CBD9F0F1615470025A682 /* Localizable.strings */ = {
@@ -1288,6 +1589,205 @@
 			};
 			name = "Ad hoc distribution";
 		};
+		3EB4FBA8119D7094001C3EEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3EB4FBA9119D7094001C3EEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3EB4FBAA119D7094001C3EEB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Distribution;
+		};
+		3EB4FBAB119D7094001C3EEB /* Ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos3.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Ad hoc distribution";
+		};
+		3EB4FBBC119D70AD001C3EEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "AppTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3EB4FBBD119D70AD001C3EEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "AppTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		3EB4FBBE119D70AD001C3EEB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "AppTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
+		3EB4FBBF119D70AD001C3EEB /* Ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "AppTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = AppTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad hoc distribution";
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1358,6 +1858,28 @@
 				3EB4FAF9119D6D06001C3EEB /* Release */,
 				3EB4FAFA119D6D06001C3EEB /* Distribution */,
 				3EB4FAFB119D6D06001C3EEB /* Ad hoc distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EB4FBA7119D7094001C3EEB /* Build configuration list for PBXNativeTarget "CashFlowTesting" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EB4FBA8119D7094001C3EEB /* Debug */,
+				3EB4FBA9119D7094001C3EEB /* Release */,
+				3EB4FBAA119D7094001C3EEB /* Distribution */,
+				3EB4FBAB119D7094001C3EEB /* Ad hoc distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EB4FBC0119D70AD001C3EEB /* Build configuration list for PBXNativeTarget "AppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EB4FBBC119D70AD001C3EEB /* Debug */,
+				3EB4FBBD119D70AD001C3EEB /* Release */,
+				3EB4FBBE119D70AD001C3EEB /* Distribution */,
+				3EB4FBBF119D70AD001C3EEB /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
