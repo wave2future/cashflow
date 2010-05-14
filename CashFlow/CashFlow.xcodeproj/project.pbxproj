@@ -297,6 +297,8 @@
 		3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatVC.m; sourceTree = "<group>"; };
 		3EB35B270EC302DD0008FAF0 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
 		3EB35B290EC302E90008FAF0 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
+		3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = LogicTests.octest; path = "build/Debug-iphoneos/LogicTests.octest"; sourceTree = "<group>"; };
+		3EB4FAF7119D6D05001C3EEB /* LogicTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LogicTests-Info.plist"; sourceTree = "<group>"; };
 		3EB554B3103B92D700BA13D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EB5552D103B930D00BA13D4 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3EB55574103B96CE00BA13D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -369,6 +371,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EB4FAF3119D6D05001C3EEB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -429,6 +438,7 @@
 			children = (
 				1D6058910D05DD3D006BFB54 /* CashFlow.app */,
 				3E8B25C20F348C090007929E /* CashFlowFree.app */,
+				3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -442,11 +452,13 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				3EF054671182D9CC00411C71 /* Resources-iPad */,
+				3EB4FB04119D6D2C001C3EEB /* Tests */,
 				3E2CBD9B0F1614E90025A682 /* locale */,
 				3EB5406B0E8E907B00608B77 /* images */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
+				3EB4FAF7119D6D05001C3EEB /* LogicTests-Info.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
@@ -523,6 +535,13 @@
 				3E2CBD9F0F1615470025A682 /* Localizable.strings */,
 			);
 			path = locale;
+			sourceTree = "<group>";
+		};
+		3EB4FB04119D6D2C001C3EEB /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Tests;
 			sourceTree = "<group>";
 		};
 		3EB5406B0E8E907B00608B77 /* images */ = {
@@ -635,6 +654,24 @@
 			productReference = 3E8B25C20F348C090007929E /* CashFlowFree.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3EB4FAF5119D6D05001C3EEB /* LogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EB4FAFC119D6D06001C3EEB /* Build configuration list for PBXNativeTarget "LogicTests" */;
+			buildPhases = (
+				3EB4FAF1119D6D05001C3EEB /* Resources */,
+				3EB4FAF2119D6D05001C3EEB /* Sources */,
+				3EB4FAF3119D6D05001C3EEB /* Frameworks */,
+				3EB4FAF4119D6D05001C3EEB /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LogicTests;
+			productName = LogicTests;
+			productReference = 3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -667,6 +704,7 @@
 			targets = (
 				1D6058900D05DD3D006BFB54 /* CashFlow */,
 				3E8B25780F348C090007929E /* CashFlowFree */,
+				3EB4FAF5119D6D05001C3EEB /* LogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -754,7 +792,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EB4FAF1119D6D05001C3EEB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3EB4FAF4119D6D05001C3EEB /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -851,6 +912,13 @@
 				3E7BB138115399C5004B7D03 /* Config.m in Sources */,
 				3E7BB139115399C5004B7D03 /* ConfigViewController.m in Sources */,
 				3E35661A1189697E007DAF44 /* Backup.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3EB4FAF2119D6D05001C3EEB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1110,6 +1178,116 @@
 			};
 			name = "Ad hoc distribution";
 		};
+		3EB4FAF8119D6D06001C3EEB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3EB4FAF9119D6D06001C3EEB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
+		3EB4FAFA119D6D06001C3EEB /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
+		3EB4FAFB119D6D06001C3EEB /* Ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				INFOPLIST_FILE = "LogicTests-Info.plist";
+				OTHER_LDFLAGS = (
+					"-framework",
+					Foundation,
+					"-framework",
+					SenTestingKit,
+					"-framework",
+					UIKit,
+				);
+				PREBINDING = NO;
+				PRODUCT_NAME = LogicTests;
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad hoc distribution";
+		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1169,6 +1347,17 @@
 				3E8B25BE0F348C090007929E /* Release */,
 				3E8B25BF0F348C090007929E /* Distribution */,
 				3E8B25C10F348C090007929E /* Ad hoc distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3EB4FAFC119D6D06001C3EEB /* Build configuration list for PBXNativeTarget "LogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EB4FAF8119D6D06001C3EEB /* Debug */,
+				3EB4FAF9119D6D06001C3EEB /* Release */,
+				3EB4FAFA119D6D06001C3EEB /* Distribution */,
+				3EB4FAFB119D6D06001C3EEB /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
