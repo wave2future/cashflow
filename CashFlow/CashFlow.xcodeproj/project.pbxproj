@@ -76,6 +76,29 @@
 		3E7BB13B115399C5004B7D03 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E82905111411D7C00CD8212 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E82905011411D7C00CD8212 /* AdCell.m */; };
+		3E832452119D776800629871 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E832451119D776800629871 /* TestCommon.m */; };
+		3E832467119D798400629871 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3E8324C2119D9F8600629871 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
+		3E8324C4119D9F8600629871 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3E8324C6119D9F8600629871 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
+		3E8324C8119D9F8600629871 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
+		3E8324CA119D9F8600629871 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3E8324CC119D9F8600629871 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
+		3E8324CE119D9F8600629871 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
+		3E8324D0119D9F8600629871 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
+		3E8324D2119D9F8600629871 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
+		3E8324D4119D9F8600629871 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3E8324D6119D9F8600629871 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
+		3E8324D8119D9F8600629871 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3E8324DA119D9F8600629871 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3E8324DC119D9F8600629871 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E8324DE119D9F8600629871 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3E8324E0119D9F8600629871 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3E8324E2119D9F8600629871 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3E8324E4119D9F8600629871 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
+		3E8324E7119D9FDA00629871 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3E8324ED119DA0AD00629871 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
+		3E832521119DA25A00629871 /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E832520119DA25A00629871 /* testdata1.sql */; };
 		3E8B257A0F348C090007929E /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
 		3E8B257B0F348C090007929E /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E8B257C0F348C090007929E /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
@@ -368,6 +391,9 @@
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E82904F11411D7C00CD8212 /* AdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCell.h; sourceTree = "<group>"; };
 		3E82905011411D7C00CD8212 /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
+		3E832450119D776800629871 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
+		3E832451119D776800629871 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
+		3E832520119DA25A00629871 /* testdata1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testdata1.sql; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E8B25C20F348C090007929E /* CashFlowFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlowFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E8C35B30F1E074C004AFFCA /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
@@ -480,6 +506,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E832467119D798400629871 /* libsqlite3.0.dylib in Frameworks */,
+				3E8324ED119DA0AD00629871 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,9 +697,20 @@
 			path = locale;
 			sourceTree = "<group>";
 		};
+		3E832510119DA21D00629871 /* testdata */ = {
+			isa = PBXGroup;
+			children = (
+				3E832520119DA25A00629871 /* testdata1.sql */,
+			);
+			path = testdata;
+			sourceTree = "<group>";
+		};
 		3EB4FB04119D6D2C001C3EEB /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3E832510119DA21D00629871 /* testdata */,
+				3E832450119D776800629871 /* TestCommon.h */,
+				3E832451119D776800629871 /* TestCommon.m */,
 				3EB4FB07119D6DEA001C3EEB /* AssetTests.h */,
 				3EB4FB08119D6DEA001C3EEB /* AssetTests.m */,
 				3EB4FC06119D72DA001C3EEB /* AppTests.h */,
@@ -970,6 +1009,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E832521119DA25A00629871 /* testdata1.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,7 +1195,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E8324C2119D9F8600629871 /* Database.m in Sources */,
+				3E8324C4119D9F8600629871 /* DataModel.m in Sources */,
+				3E8324C6119D9F8600629871 /* Journal.m in Sources */,
+				3E8324C8119D9F8600629871 /* Ledger.m in Sources */,
+				3E8324CA119D9F8600629871 /* Asset.m in Sources */,
+				3E8324CC119D9F8600629871 /* AssetEntry.m in Sources */,
+				3E8324CE119D9F8600629871 /* Transaction.m in Sources */,
+				3E8324D0119D9F8600629871 /* Category.m in Sources */,
+				3E8324D2119D9F8600629871 /* DateFormatter2.m in Sources */,
+				3E8324D4119D9F8600629871 /* Report.m in Sources */,
+				3E8324D6119D9F8600629871 /* Config.m in Sources */,
+				3E8324D8119D9F8600629871 /* ExportBase.m in Sources */,
+				3E8324DA119D9F8600629871 /* ExportCsv.m in Sources */,
+				3E8324DC119D9F8600629871 /* ExportOfx.m in Sources */,
+				3E8324DE119D9F8600629871 /* WebServer.m in Sources */,
+				3E8324E0119D9F8600629871 /* ExportServer.m in Sources */,
+				3E8324E2119D9F8600629871 /* BackupServer.m in Sources */,
+				3E8324E4119D9F8600629871 /* Backup.m in Sources */,
 				3EB4FB09119D6DEA001C3EEB /* AssetTests.m in Sources */,
+				3E832452119D776800629871 /* TestCommon.m in Sources */,
+				3E8324E7119D9FDA00629871 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
