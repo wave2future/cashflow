@@ -274,6 +274,10 @@
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED1C395119E76B80030B0B2 /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C394119E76B80030B0B2 /* AppTests.m */; };
 		3ED1C39F119E78070030B0B2 /* DataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C39E119E78070030B0B2 /* DataModelTests.m */; };
+		3ED1C3B9119E79F20030B0B2 /* LedgerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */; };
+		3ED1C3CE119E7A500030B0B2 /* TransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */; };
+		3ED1C3D5119E7AB20030B0B2 /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */; };
+		3ED1C3E6119E7BC70030B0B2 /* ReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */; };
 		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
@@ -438,6 +442,10 @@
 		3ED1C393119E76B80030B0B2 /* AppTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppTests.h; sourceTree = "<group>"; };
 		3ED1C394119E76B80030B0B2 /* AppTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppTests.m; sourceTree = "<group>"; };
 		3ED1C39E119E78070030B0B2 /* DataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTests.m; sourceTree = "<group>"; };
+		3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedgerTests.m; sourceTree = "<group>"; };
+		3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTests.m; sourceTree = "<group>"; };
+		3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
+		3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTests.m; sourceTree = "<group>"; };
 		3ED8D2F30EC72F9000BC723D /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		3ED8D2F40EC72F9E00BC723D /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListVC.h; sourceTree = "<group>"; };
@@ -715,6 +723,10 @@
 				3E832451119D776800629871 /* TestCommon.m */,
 				3EB4FB08119D6DEA001C3EEB /* AssetTests.m */,
 				3ED1C39E119E78070030B0B2 /* DataModelTests.m */,
+				3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */,
+				3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */,
+				3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */,
+				3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */,
 			);
 			path = LogicTests;
 			sourceTree = "<group>";
@@ -1226,6 +1238,10 @@
 				3E832452119D776800629871 /* TestCommon.m in Sources */,
 				3E8324E7119D9FDA00629871 /* AppDelegate.m in Sources */,
 				3ED1C39F119E78070030B0B2 /* DataModelTests.m in Sources */,
+				3ED1C3B9119E79F20030B0B2 /* LedgerTests.m in Sources */,
+				3ED1C3CE119E7A500030B0B2 /* TransactionTests.m in Sources */,
+				3ED1C3D5119E7AB20030B0B2 /* JournalTests.m in Sources */,
+				3ED1C3E6119E7BC70030B0B2 /* ReportTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

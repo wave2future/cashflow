@@ -14,6 +14,7 @@
 #define Assert(x) STAssertTrue(x, @"")
 #define AssertNil(x) STAssertNil(x, @"")
 #define AssertNotNil(x) STAssertNotNil(x, @"")
+#define AssertEqualObjects(a, b) STAssertEqualObjects(a, b, @"")
 #define AssertEqualInt(a, b) STAssertEquals((int)(a), (int)(b), @"")
 #define AssertEqualDouble(a, b) STAssertEquals((double)(a), (double)(b), @"")
 
