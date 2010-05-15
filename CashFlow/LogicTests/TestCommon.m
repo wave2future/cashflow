@@ -86,6 +86,7 @@
 
 @end
 
+#if 0
 #import "Pin.h"
 
 // dummy
@@ -115,4 +116,5 @@
 }
 
 @end
+#endif
 
