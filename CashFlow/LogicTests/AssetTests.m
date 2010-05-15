@@ -1,15 +1,11 @@
-//
 //  AssetTests.m
-//  CashFlow
-//
-//  Created by 村上 卓弥 on 10/05/14.
-//  Copyright 2010 __MyCompanyName__. All rights reserved.
-//
-
-#import "AssetTests.h"
 
 #import "TestCommon.h"
-#import "DataModel.h"
+
+@interface AssetTests : SenTestCase {
+    Asset *asset;
+}
+@end
 
 @implementation AssetTests
 
