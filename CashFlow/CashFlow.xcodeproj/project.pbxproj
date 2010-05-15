@@ -278,6 +278,10 @@
 		3ED1C3CE119E7A500030B0B2 /* TransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */; };
 		3ED1C3D5119E7AB20030B0B2 /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */; };
 		3ED1C3E6119E7BC70030B0B2 /* ReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */; };
+		3ED1C3FB119EE5860030B0B2 /* AssetEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3FA119EE5860030B0B2 /* AssetEntryTests.m */; };
+		3ED1C403119EE6070030B0B2 /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C402119EE6070030B0B2 /* AssetListVCTests.m */; };
+		3ED1C405119EE6410030B0B2 /* CashFlowTesting-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */; };
+		3ED1C42C119EE6F40030B0B2 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E832451119D776800629871 /* TestCommon.m */; };
 		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
@@ -446,6 +450,9 @@
 		3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTests.m; sourceTree = "<group>"; };
 		3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
 		3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTests.m; sourceTree = "<group>"; };
+		3ED1C3FA119EE5860030B0B2 /* AssetEntryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTests.m; sourceTree = "<group>"; };
+		3ED1C402119EE6070030B0B2 /* AssetListVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVCTests.m; sourceTree = "<group>"; };
+		3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CashFlowTesting-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3ED8D2F30EC72F9000BC723D /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		3ED8D2F40EC72F9E00BC723D /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListVC.h; sourceTree = "<group>"; };
@@ -665,6 +672,7 @@
 				3E7BB12C11539997004B7D03 /* ConfigView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3E5A8D7E0EAE34B200118C3C /* Info-free.plist */,
+				3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -721,9 +729,10 @@
 				3E832510119DA21D00629871 /* testdata */,
 				3E832450119D776800629871 /* TestCommon.h */,
 				3E832451119D776800629871 /* TestCommon.m */,
-				3EB4FB08119D6DEA001C3EEB /* AssetTests.m */,
 				3ED1C39E119E78070030B0B2 /* DataModelTests.m */,
 				3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */,
+				3EB4FB08119D6DEA001C3EEB /* AssetTests.m */,
+				3ED1C3FA119EE5860030B0B2 /* AssetEntryTests.m */,
 				3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */,
 				3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */,
 				3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */,
@@ -797,6 +806,7 @@
 		3ED1C392119E76990030B0B2 /* AppTests */ = {
 			isa = PBXGroup;
 			children = (
+				3ED1C402119EE6070030B0B2 /* AssetListVCTests.m */,
 				3ED1C393119E76B80030B0B2 /* AppTests.h */,
 				3ED1C394119E76B80030B0B2 /* AppTests.m */,
 			);
@@ -1073,6 +1083,7 @@
 				3EB4FB6F119D7094001C3EEB /* Default-Portrait.png in Resources */,
 				3EB4FB70119D7094001C3EEB /* icon-ipad.png in Resources */,
 				3EB4FB71119D7094001C3EEB /* icon.png in Resources */,
+				3ED1C405119EE6410030B0B2 /* CashFlowTesting-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1242,6 +1253,7 @@
 				3ED1C3CE119E7A500030B0B2 /* TransactionTests.m in Sources */,
 				3ED1C3D5119E7AB20030B0B2 /* JournalTests.m in Sources */,
 				3ED1C3E6119E7BC70030B0B2 /* ReportTests.m in Sources */,
+				3ED1C3FB119EE5860030B0B2 /* AssetEntryTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1298,6 +1310,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				3ED1C395119E76B80030B0B2 /* AppTests.m in Sources */,
+				3ED1C403119EE6070030B0B2 /* AssetListVCTests.m in Sources */,
+				3ED1C42C119EE6F40030B0B2 /* TestCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1688,7 +1702,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1709,7 +1723,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1730,7 +1744,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
@@ -1752,7 +1766,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
