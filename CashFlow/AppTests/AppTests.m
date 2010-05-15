@@ -12,7 +12,8 @@
 @implementation AppTests
 
 - (void) testAppDelegate {
-    
+    NSLog(@"testAppDelegate");
+
     id yourApplicationDelegate = [[UIApplication sharedApplication] delegate];
     STAssertNotNil(yourApplicationDelegate, @"UIApplication failed to find the AppDelegate");
 }    

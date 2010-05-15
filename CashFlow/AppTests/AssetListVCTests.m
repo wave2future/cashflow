@@ -39,6 +39,8 @@
 
 - (void)testNormal
 {
+    NSLog(@"testNormal");
+    
     // test number of rows
     AssertEqualInt(3, [vc tableView:vc.tableView numberOfRowsInSection:0]);
     AssertEqualInt(1, [vc tableView:vc.tableView numberOfRowsInSection:1]); // 合計
