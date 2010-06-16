@@ -43,6 +43,7 @@
          AFMA_CLIENT_ID, kGADAdSenseClientID,
          @"Takuya Murakami", kGADAdSenseCompanyName,
          @"CashFlow Free", kGADAdSenseAppName,
+         AFMA_APPID, kGADAdSenseApplicationAppleID,
          AFMA_KEYWORDS, kGADAdSenseKeywords,
          [NSNumber numberWithInt:AFMA_IS_TEST], kGADAdSenseIsTestAdRequest,
 
