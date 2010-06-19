@@ -143,6 +143,9 @@
 - (void)dealloc {
     [tableView release];
     [popoverController release];
+#if FREE_VERSION
+    [adViewController release];
+#endif
 
     [super dealloc];
 }
