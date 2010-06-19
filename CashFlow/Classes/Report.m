@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2010, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -287,11 +287,16 @@ static void init_filter(Filter *filter)
 
     for (t in [DataModel journal]) {
         // match filter
-        if (filter->start && [t.date compare:filter->start] == NSOrderedAscending) {
-            continue;
+        NSComparisonResult cpr;
+        if (filter->start) {
+            cpr = [t.date compare:filter->start];
+            if (cpr == NSOrderedAscending) continue;
         }
-        if (filter->end && [t.date compare:filter->end] == NSOrderedDescending) {
-            continue;
+        if (filter->end) {
+            cpr = [t.date compare:filter->end];
+            if (cpr == NSOrderedSame || cpr == NSOrderedDescending) {
+                continue;
+            }
         }
         if (filter->category >= 0 && t.category != filter->category) {
             continue;
