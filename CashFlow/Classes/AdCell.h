@@ -11,7 +11,7 @@
 #import "GADAdSenseParameters.h"
 
 #define AFMA_CLIENT_ID  @"ca-mb-app-pub-4621925249922081"
-#define AFMA_APPID @"55KHLYPDD7" // CashFlow Free
+#define AFMA_APPID @"294304828" // CashFlow Free
 
 #define AFMA_CHANNEL_IDS @"7922983440"
 #define AFMA_CHANNEL_IDS_IPAD @"5863989042"
