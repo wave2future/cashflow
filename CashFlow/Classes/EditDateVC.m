@@ -71,6 +71,8 @@
             datePicker.minuteInterval = 5;
         }
     }
+    
+    [datePicker setTimeZone:[NSTimeZone systemTimeZone]];
 }
 
 - (void)dealloc
