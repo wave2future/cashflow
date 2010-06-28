@@ -34,6 +34,7 @@
 
 #import "ExportServer.h"
 #import <arpa/inet.h>
+#import <unistd.h>
 
 @implementation ExportServer
 
