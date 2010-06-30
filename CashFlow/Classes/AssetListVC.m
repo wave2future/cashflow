@@ -486,7 +486,14 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 - (IBAction)showHelp:(id)sender
 {
     InfoVC *v = [[[InfoVC alloc] init] autorelease];
-    [self.navigationController pushViewController:v animated:YES];
+    //[self.navigationController pushViewController:v animated:YES];
+
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:v];
+    if (IS_IPAD) {
+        nc.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    [self presentModalViewController:nc animated:YES];
+    [nc release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
