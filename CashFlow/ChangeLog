@@ -1,3 +1,10 @@
+2010-06-30: Takuya Murakami
+	* ver 3.2.1
+	
+2010-06-28: Takuya Murakami
+	* バグ修正: UIDatePicker の TimeZone がシステムのものに問題を修正
+	* Deployment Target を 3.1.3 から 3.0 に変更
+	
 2010-06-19: Takuya Murakami
 	* バグ修正: 締め日当日の取引が前月のレポートに表示されるバグを修正
 	* バグ修正: 資産間を頻繁に移動すると落ちるバグを修正(メモリリーク)
