@@ -68,7 +68,7 @@
 - (void)setValue:(double)v
 {
     value = v;
-    valueLabel.text = [DataModel currencyString:value];
+    valueLabel.text = [[CurrencyManager instance] formatCurrencyString:value];
     if (value >= 0) {
         valueLabel.textColor = [UIColor blackColor];
     } else {

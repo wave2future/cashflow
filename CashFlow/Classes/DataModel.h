@@ -70,7 +70,7 @@
 - (void)load;
 
 // utility operation
-+ (NSString*)currencyString:(double)x;
+//+ (NSString*)currencyString:(double)x;
 
 - (NSMutableArray *)descLRUWithCategory:(int)category;
 - (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category;

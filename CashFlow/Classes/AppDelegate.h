@@ -37,6 +37,7 @@
 #import "DataModel.h"
 #import "AssetListVC.h"
 #import "TransactionListVC.h"
+#import "CurrencyManager.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow *window;

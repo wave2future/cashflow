@@ -821,14 +821,14 @@
 		3EB540870E8E921700608B77 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3E98A66811E8368800B7F289 /* CurrencyManager.m */,
-				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
 				3E82904F11411D7C00CD8212 /* AdCell.h */,
 				3E82905011411D7C00CD8212 /* AdCell.m */,
 				3E9433770EC1E0800033D50A /* Database.h */,
 				3E9433750EC1E0750033D50A /* Database.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
 				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
+				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
+				3E98A66811E8368800B7F289 /* CurrencyManager.m */,
 				3E1AE0B10F97416F00AAB4AC /* Journal.h */,
 				3E1AE0B20F97416F00AAB4AC /* Journal.m */,
 				3E1AE0B30F97416F00AAB4AC /* Ledger.h */,

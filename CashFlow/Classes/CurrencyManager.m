@@ -63,14 +63,13 @@
         baseCurrency = currency;
         [baseCurrency retain];
         
-        if (currency != nil) {
-            [numberFormatter setCurrencyCode:currency];
-        } else {
+        if (currency == nil) {
             NSNumberFormatter *tmp = [[[NSNumberFormatter alloc] init] autorelease];
             [tmp setNumberStyle:NSNumberFormatterCurrencyStyle];
-            [numberFormatter setCurrencyCode:[tmp currencyCode]];
+            currency = [tmp currencyCode];
         }
-
+        [numberFormatter setCurrencyCode:currency];
+        
         [[NSUserDefaults standardUserDefaults] setObject:baseCurrency forKey:@"BaseCurrency"];
     }
 }

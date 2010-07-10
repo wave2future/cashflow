@@ -84,14 +84,14 @@
 - (void)setIncome:(double)v
 {
     income = v;
-    incomeLabel.text = [DataModel currencyString:income];
+    incomeLabel.text = [[CurrencyManager instance] formatCurrencyString:income];
     [self updateGraph];
 }
 
 - (void)setOutgo:(double)v
 {
     outgo = v;
-    outgoLabel.text = [DataModel currencyString:outgo];
+    outgoLabel.text = [[CurrencyManager instance] formatCurrencyString:outgo];
     [self updateGraph];
 }
 
