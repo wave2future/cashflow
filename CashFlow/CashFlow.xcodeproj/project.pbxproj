@@ -293,6 +293,10 @@
 		3E92947C106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
 		3E9433760EC1E0750033D50A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E94339F0EC1E7650033D50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
+		3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
+		3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
+		3E98A6C511E8391000B7F289 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */; };
 		3E9A3B390EC47AA0005A4664 /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
 		3E9A3B3B0EC47AAB005A4664 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
 		3E9A3B3D0EC47ABA005A4664 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
@@ -461,6 +465,9 @@
 		3E9433750EC1E0750033D50A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		3E9433770EC1E0800033D50A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		3E98A66711E8367B00B7F289 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
+		3E98A66811E8368800B7F289 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
+		3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
 		3E9A3B380EC47AA0005A4664 /* cash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cash.png; sourceTree = "<group>"; };
 		3E9A3B3A0EC47AAB005A4664 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bank.png; sourceTree = "<group>"; };
 		3E9A3B3C0EC47ABA005A4664 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
@@ -788,6 +795,7 @@
 				3ED1C3D4119E7AB20030B0B2 /* JournalTests.m */,
 				3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */,
 				3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */,
+				3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */,
 			);
 			path = LogicTests;
 			sourceTree = "<group>";
@@ -813,6 +821,8 @@
 		3EB540870E8E921700608B77 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3E98A66811E8368800B7F289 /* CurrencyManager.m */,
+				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
 				3E82904F11411D7C00CD8212 /* AdCell.h */,
 				3E82905011411D7C00CD8212 /* AdCell.m */,
 				3E9433770EC1E0800033D50A /* Database.h */,
@@ -1223,6 +1233,7 @@
 				3E7BB13A115399C5004B7D03 /* Config.m in Sources */,
 				3E7BB13B115399C5004B7D03 /* ConfigViewController.m in Sources */,
 				3E35661B1189697E007DAF44 /* Backup.m in Sources */,
+				3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1320,6 +1331,7 @@
 				3E7BB138115399C5004B7D03 /* Config.m in Sources */,
 				3E7BB139115399C5004B7D03 /* ConfigViewController.m in Sources */,
 				3E35661A1189697E007DAF44 /* Backup.m in Sources */,
+				3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1327,6 +1339,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */,
 				3E51D9F6119EF74500B59839 /* PinVC.m in Sources */,
 				3E51D9F1119EF72B00B59839 /* Pin.m in Sources */,
 				3E8324C2119D9F8600629871 /* Database.m in Sources */,
@@ -1356,6 +1369,7 @@
 				3ED1C3D5119E7AB20030B0B2 /* JournalTests.m in Sources */,
 				3ED1C3E6119E7BC70030B0B2 /* ReportTests.m in Sources */,
 				3ED1C3FB119EE5860030B0B2 /* AssetEntryTests.m in Sources */,
+				3E98A6C511E8391000B7F289 /* CurrencyManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

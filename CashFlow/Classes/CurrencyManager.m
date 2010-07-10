@@ -2,10 +2,10 @@
 
 #import "CurrencyManager.h"
 
+@implementation CurrencyManager
+
 @synthesize baseCurrency;
 @synthesize currencies;
-
-@implementation CurrencyManager
 
 + (CurrencyManager *)instance
 {
@@ -61,11 +61,11 @@
         baseCurrency = currency;
         [baseCurrency retain];
 
-        [[NSUserDefaults standradUserDefaults] setObject:baseCurrency forKey:@"BaseCurrency"];
+        [[NSUserDefaults standardUserDefaults] setObject:baseCurrency forKey:@"BaseCurrency"];
     }
 }
 
-- (NSString *)fomatCurrencyString:(double)value
+- (NSString *)formatCurrencyString:(double)value
 {
     BOOL withFraction = YES;
     NSString *symbol = nil;
@@ -73,28 +73,28 @@
     NSNumber *n = [NSNumber numberWithDouble:value];
 
     if (baseCurrency == nil) {
-        return [currencyFormatter stringFromNumber:n];
+        return [numberFormatterSystem stringFromNumber:n];
     }
 
-    if ([currency isEqual:@"USD"]) {
+    if ([baseCurrency isEqual:@"USD"]) {
         symbol = @"$";
     }
-    else if ([currency isEqual:@"EUR"]) {
+    else if ([baseCurrency isEqual:@"EUR"]) {
         symbol = @"€";
     }
-    else if ([currency isEqual:@"JPY"]) {
+    else if ([baseCurrency isEqual:@"JPY"]) {
         symbol = @"¥";
         withFraction = NO;
     }
-    else if ([currency isEqual:@"GBP"]) {
+    else if ([baseCurrency isEqual:@"GBP"]) {
         symbol = @"£";
     }
 
     NSNumberFormatter *numFormatter;
     if (withFraction) {
-        numFormatter = numFormatterWithFraction;
+        numFormatter = numberFormatterWithFraction;
     } else {
-        numFormatter = numFormatterWithoutFraction;
+        numFormatter = numberFormatterWithoutFraction;
     }
     NSString *number = [numFormatter stringFromNumber:n];
 
@@ -102,7 +102,7 @@
     if (symbol != nil) {
         fmted = [NSString stringWithFormat:@"%@%@", symbol, number];
     } else {
-        fmted = [NSString stringWithFormat:@"%@ %@", number, currency];
+        fmted = [NSString stringWithFormat:@"%@ %@", number, baseCurrency];
     }
     return fmted;
 }

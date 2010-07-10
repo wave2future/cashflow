@@ -17,5 +17,7 @@
 
 + (CurrencyManager *)instance;
 
+- (NSString *)formatCurrencyString:(double)value;
+
 @end
 
