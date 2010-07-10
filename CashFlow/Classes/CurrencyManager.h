@@ -7,9 +7,9 @@
     NSString *baseCurrency;
     NSArray *currencies;
 
-    NSNumberFormatter *numberFormatterSystem;
-    NSNumberFormatter *numberFormatterWithFraction;
-    NSNumberFormatter *numberFormatterWithoutFraction;
+    NSNumberFormatter *numberFormatter;
+    //NSNumberFormatter *numberFormatterWithFraction;
+    //NSNumberFormatter *numberFormatterWithoutFraction;
 }
 
 @property(nonatomic,retain) NSString *baseCurrency;

@@ -25,8 +25,9 @@
     nf = [[NSNumberFormatter alloc] init];
     [nf setNumberStyle:NSNumberFormatterCurrencyStyle];
     [nf setLocale:[NSLocale currentLocale]];
-    numberFormatterSystem = nf;
+    numberFormatter = nf;
 
+#if 0
     nf = [[NSNumberFormatter alloc] init];
     [nf setMinimumFractionDigits:2];
     [nf setMaximumFractionDigits:2];
@@ -38,7 +39,8 @@
     [nf setMaximumFractionDigits:0];
     [nf setMinimumIntegerDigits:1];
     numberFormatterWithoutFraction = nf;
-
+#endif
+    
     self.currencies = [NSArray arrayWithObjects:
         @"USD", @"AUD", @"BHD", @"THB", @"BND",
         @"CLP", @"DKK", @"EUR", @"HUF", @"HKD", @"ISK", @"CAD",
@@ -60,6 +62,14 @@
         [baseCurrency release];
         baseCurrency = currency;
         [baseCurrency retain];
+        
+        if (currency != nil) {
+            [numberFormatter setCurrencyCode:currency];
+        } else {
+            NSNumberFormatter *tmp = [[[NSNumberFormatter alloc] init] autorelease];
+            [tmp setNumberStyle:NSNumberFormatterCurrencyStyle];
+            [numberFormatter setCurrencyCode:[tmp currencyCode]];
+        }
 
         [[NSUserDefaults standardUserDefaults] setObject:baseCurrency forKey:@"BaseCurrency"];
     }
@@ -72,6 +82,9 @@
 
     NSNumber *n = [NSNumber numberWithDouble:value];
 
+    return [numberFormatter stringFromNumber:n];
+    
+#if 0
     if (baseCurrency == nil) {
         return [numberFormatterSystem stringFromNumber:n];
     }
@@ -105,6 +118,7 @@
         fmted = [NSString stringWithFormat:@"%@ %@", number, baseCurrency];
     }
     return fmted;
+#endif
 }
 
 @end

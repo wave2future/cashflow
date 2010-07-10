@@ -57,7 +57,7 @@
 {
     [manager setBaseCurrency:@"CAD"];
     NSString *s = [manager formatCurrencyString:1234.56];
-    STAssertTrue([s isEqualToString:@"1,234.56 CAD"], s);
+    STAssertTrue([s isEqualToString:@"CA$1,234.56"], s);
 }
 
 @end
