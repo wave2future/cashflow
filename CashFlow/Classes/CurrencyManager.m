@@ -41,15 +41,53 @@
     numberFormatterWithoutFraction = nf;
 #endif
     
-    self.currencies = [NSArray arrayWithObjects:
-        @"USD", @"AUD", @"BHD", @"THB", @"BND",
-        @"CLP", @"DKK", @"EUR", @"HUF", @"HKD", @"ISK", @"CAD",
-        @"QAR", @"KWD", @"MYR", @"MTL", @"MUR", @"MXN",
-        @"NPR", @"TWD", @"NZD", @"NOK", @"PKR", @"GBP",
-        @"ZAR", @"BRL", @"CNY", @"OMR", @"IDR", @"RUB",
-        @"SAR", @"ILS", @"SEK", @"CHF", @"SGD", @"SKK",
-        @"LKR", @"KRW", @"KZT", @"CZK", @"AED", @"JPY",
-        @"CYP", @"INR", nil];
+    self.currencies =
+        [NSArray arrayWithObjects:
+         @"AED",
+         @"AUD",
+         @"BHD",
+         @"BND",
+         @"BRL",
+         @"CAD", 
+         @"CHF",
+         @"CLP",
+         @"CNY",
+         @"CYP",
+         @"CZK",
+         @"DKK",
+         @"EUR",
+         @"GBP",
+         @"HKD",
+         @"HUF",
+         @"IDR",
+         @"ILS",
+         @"INR",
+         @"ISK",
+         @"JPY",
+         @"KRW",
+         @"KWD",
+         @"KZT",
+         @"LKR",
+         @"MTL",
+         @"MUR",
+         @"MXN",
+         @"MYR",
+         @"NOK",
+         @"NPR",
+         @"NZD",
+         @"OMR",
+         @"PKR",
+         @"QAR",
+         @"RUB",
+         @"SAR",
+         @"SEK",
+         @"SGD",
+         @"SKK",
+         @"THB",
+         @"TWD",
+         @"USD",
+         @"ZAR",
+         nil];
 
     self.baseCurrency = [[NSUserDefaults standardUserDefaults] objectForKey:@"BaseCurrency"];
 
@@ -76,8 +114,8 @@
 
 - (NSString *)formatCurrencyString:(double)value
 {
-    BOOL withFraction = YES;
-    NSString *symbol = nil;
+    //BOOL withFraction = YES;
+    //NSString *symbol = nil;
 
     NSNumber *n = [NSNumber numberWithDouble:value];
 

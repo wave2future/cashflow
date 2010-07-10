@@ -144,21 +144,6 @@ static DataModel *theDataModel = nil;
     return dfDateTime;
 }
 
-static NSNumberFormatter *currencyFormatter = nil;
-
-+ (NSString*)currencyString:(double)x
-{
-    if (currencyFormatter == nil) {
-        currencyFormatter = [[NSNumberFormatter alloc] init];
-        [currencyFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-        [currencyFormatter setLocale:[NSLocale currentLocale]];
-    }
-    NSNumber *n = [NSNumber numberWithDouble:x];
-    NSString *bstr = [currencyFormatter stringFromNumber:n];
-
-    return bstr;
-}
-
 // LRU
 #define MAX_LRU_SIZE 50
 

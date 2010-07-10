@@ -99,7 +99,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 2;
+        return 3;
     }
         
     return 1;
@@ -107,6 +107,7 @@
 
 #define ROW_DATE_TIME_MODE 0
 #define ROW_CUTOFF_DATE 1
+#define ROW_CURRENCY 2
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -149,6 +150,15 @@
                     } else {
                         detailText = [NSString stringWithFormat:@"%d", config.cutoffDate];
                     }
+                    break;
+                    
+                case ROW_CURRENCY:
+                    text = NSLocalizedString(@"Currency", @"");
+                    NSString *currency = [[CurrencyManager instance] baseCurrency];
+                    if (currency == nil) {
+                        currency = @"System";
+                    }
+                    detailText = currency;
                     break;
             }
             break;
@@ -209,6 +219,26 @@
                           identifier:ROW_CUTOFF_DATE];
                     gt.selectedIndex = config.cutoffDate;
                     break;
+                    
+                case ROW_CURRENCY:
+                    typeArray = [[[NSMutableArray alloc] initWithArray:[[CurrencyManager instance] currencies]] autorelease];
+                    [typeArray insertObject:@"System" atIndex:0];
+                    gt = [GenSelectListViewController
+                          genSelectListViewController:self
+                          items:typeArray
+                          title:NSLocalizedString(@"Currency", @"")
+                          identifier:ROW_CURRENCY];
+                    NSString *currency = [[CurrencyManager instance] baseCurrency];
+                    gt.selectedIndex = 0;
+                    if (currency != nil) {
+                        for (int i = 1; i < [typeArray count]; i++) {
+                            if ([currency isEqualToString:[typeArray objectAtIndex:i]]) {
+                                gt.selectedIndex = i;
+                                break;
+                            }
+                        }
+                    }
+                    break;
             }
 
             [self.navigationController pushViewController:gt animated:YES];
@@ -231,7 +261,8 @@
 - (BOOL)genSelectListViewChanged:(GenSelectListViewController *)vc identifier:(int)id
 {
     Config *config = [Config instance];
-
+    NSString *currency = nil;
+    
     switch (id) {
         case ROW_DATE_TIME_MODE:
             config.dateTimeMode = vc.selectedIndex;
@@ -239,6 +270,13 @@
 
         case ROW_CUTOFF_DATE:
             config.cutoffDate = vc.selectedIndex;
+            break;
+
+        case ROW_CURRENCY:
+            if (vc.selectedIndex > 0) {
+                currency = [vc.items objectAtIndex:vc.selectedIndex];
+            }
+            [CurrencyManager instance].baseCurrency = currency;
             break;
     }
 
