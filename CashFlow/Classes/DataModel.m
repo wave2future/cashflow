@@ -102,8 +102,11 @@ static DataModel *theDataModel = nil;
 
     // Load from DB
     if (![db openDB]) {
-        [db initializeDB];
     }
+
+    [Transaction migrate];
+    [Asset migrate];
+    [Category migrate];
 	
     // Load all transactions
     [journal reload];
