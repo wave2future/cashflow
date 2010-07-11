@@ -380,7 +380,7 @@
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3EB4FBB9119D70AC001C3EEB /* AppTests */;
+			remoteGlobalIDString = 3EB4FBB9119D70AC001C3EEB;
 			remoteInfo = AppTests;
 		};
 /* End PBXContainerItemProxy section */
@@ -439,7 +439,6 @@
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E3EC2F811EA1DF8004DFF93 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "../Info copy.plist"; sourceTree = "<group>"; };
-		3E4A0000119EEFB800FF1A20 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
 		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
@@ -726,7 +725,6 @@
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
 				3EB4FAF7119D6D05001C3EEB /* LogicTests-Info.plist */,
 				3EB4FBBB119D70AD001C3EEB /* AppTests-Info.plist */,
-				3E4A0000119EEFB800FF1A20 /* Info copy.plist */,
 			);
 			name = CustomTemplate;
 			sourceTree = "<group>";
