@@ -90,6 +90,12 @@
     [Database shutdown];
 }
 
+- (void)applicationDidEnterBackground:(UIApplication *)application
+{
+    //[DataModel finalize];
+    //[Database shutdown];
+}
+
 - (void)dealloc {
     [navigationController release];
     [window release];
