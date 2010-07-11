@@ -52,7 +52,7 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navigationController;
 
-+ (NSString*)pathOfDataFile:(NSString*)filename;
+//+ (NSString*)pathOfDataFile:(NSString*)filename;
 
 // Utility
 #ifdef NDEBUG

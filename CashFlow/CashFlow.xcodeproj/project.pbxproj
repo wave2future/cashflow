@@ -55,7 +55,6 @@
 		3E4A0028119EF13F00FF1A20 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
 		3E4A0029119EF13F00FF1A20 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4A002A119EF13F00FF1A20 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
-		3E4A002B119EF13F00FF1A20 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E4A002C119EF13F00FF1A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		3E4A002D119EF13F00FF1A20 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3E4A002E119EF13F00FF1A20 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
@@ -130,7 +129,6 @@
 		3E4AFFD0119EEFB800FF1A20 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
 		3E4AFFD1119EEFB800FF1A20 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4AFFD2119EEFB800FF1A20 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
-		3E4AFFD3119EEFB800FF1A20 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E4AFFD4119EEFB800FF1A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
 		3E4AFFD5119EEFB800FF1A20 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3E4AFFD6119EEFB800FF1A20 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
@@ -210,7 +208,6 @@
 		3E82905111411D7C00CD8212 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E82905011411D7C00CD8212 /* AdCell.m */; };
 		3E832452119D776800629871 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E832451119D776800629871 /* TestCommon.m */; };
 		3E832467119D798400629871 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
-		3E8324C2119D9F8600629871 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E8324C4119D9F8600629871 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 		3E8324C6119D9F8600629871 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
 		3E8324C8119D9F8600629871 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
@@ -269,7 +266,6 @@
 		3E8B25A20F348C090007929E /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
 		3E8B25A30F348C090007929E /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E8B25A40F348C090007929E /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
-		3E8B25A50F348C090007929E /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E8B25A70F348C090007929E /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3E8B25A80F348C090007929E /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
 		3E8B25A90F348C090007929E /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
@@ -291,7 +287,6 @@
 		3E8C36160F1E0D82004AFFCA /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
 		3E92947B106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
 		3E92947C106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
-		3E9433760EC1E0750033D50A /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9433750EC1E0750033D50A /* Database.m */; };
 		3E94339F0EC1E7650033D50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
@@ -321,6 +316,20 @@
 		3EB55576103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
 		3EB8EA500F1F7919000A8276 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
+		3ECEF32B11E9C64E00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
+		3ECEF32C11E9C64E00738E69 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31F11E9C64E00738E69 /* Assets.m */; };
+		3ECEF32D11E9C64E00738E69 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32111E9C64E00738E69 /* Categories.m */; };
+		3ECEF32E11E9C64E00738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
+		3ECEF32F11E9C64E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
+		3ECEF33111E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
+		3ECEF33211E9C64E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
+		3ECEF33311E9C64E00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
+		3ECEF33411E9C64E00738E69 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31F11E9C64E00738E69 /* Assets.m */; };
+		3ECEF33511E9C64E00738E69 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32111E9C64E00738E69 /* Categories.m */; };
+		3ECEF33611E9C64E00738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
+		3ECEF33711E9C64E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
+		3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
+		3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED1C39F119E78070030B0B2 /* DataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C39E119E78070030B0B2 /* DataModelTests.m */; };
 		3ED1C3B9119E79F20030B0B2 /* LedgerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */; };
@@ -462,8 +471,6 @@
 		3E8C36150F1E0D82004AFFCA /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
 		3E929479106BBC7900DE6040 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
 		3E92947A106BBC7900DE6040 /* CalcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcVC.m; sourceTree = "<group>"; };
-		3E9433750EC1E0750033D50A /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
-		3E9433770EC1E0800033D50A /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		3E98A66711E8367B00B7F289 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
 		3E98A66811E8368800B7F289 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
@@ -495,6 +502,20 @@
 		3EB55574103B96CE00BA13D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EB8EA4F0F1F7919000A8276 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		3ECEF31C11E9C64E00738E69 /* AssetBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetBase.h; sourceTree = "<group>"; };
+		3ECEF31D11E9C64E00738E69 /* AssetBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetBase.m; sourceTree = "<group>"; };
+		3ECEF31E11E9C64E00738E69 /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
+		3ECEF31F11E9C64E00738E69 /* Assets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assets.m; sourceTree = "<group>"; };
+		3ECEF32011E9C64E00738E69 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
+		3ECEF32111E9C64E00738E69 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
+		3ECEF32211E9C64E00738E69 /* CategoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBase.h; sourceTree = "<group>"; };
+		3ECEF32311E9C64E00738E69 /* CategoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBase.m; sourceTree = "<group>"; };
+		3ECEF32411E9C64E00738E69 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		3ECEF32511E9C64E00738E69 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		3ECEF32711E9C64E00738E69 /* ORRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORRecord.h; sourceTree = "<group>"; };
+		3ECEF32811E9C64E00738E69 /* ORRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORRecord.m; sourceTree = "<group>"; };
+		3ECEF32911E9C64E00738E69 /* TransactionBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionBase.h; sourceTree = "<group>"; };
+		3ECEF32A11E9C64E00738E69 /* TransactionBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionBase.m; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
 		3ED1C39E119E78070030B0B2 /* DataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTests.m; sourceTree = "<group>"; };
@@ -680,6 +701,7 @@
 			isa = PBXGroup;
 			children = (
 				3E13EE661140085000523938 /* GoogleAds */,
+				3ECEF31B11E9C61600738E69 /* ormapper */,
 				3EB540870E8E921700608B77 /* Classes */,
 				080E96DDFE201D6D7F000001 /* Controller */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
@@ -823,8 +845,6 @@
 			children = (
 				3E82904F11411D7C00CD8212 /* AdCell.h */,
 				3E82905011411D7C00CD8212 /* AdCell.m */,
-				3E9433770EC1E0800033D50A /* Database.h */,
-				3E9433750EC1E0750033D50A /* Database.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
 				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
 				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
@@ -863,6 +883,27 @@
 				3E3566191189697E007DAF44 /* Backup.m */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		3ECEF31B11E9C61600738E69 /* ormapper */ = {
+			isa = PBXGroup;
+			children = (
+				3ECEF31C11E9C64E00738E69 /* AssetBase.h */,
+				3ECEF31D11E9C64E00738E69 /* AssetBase.m */,
+				3ECEF31E11E9C64E00738E69 /* Assets.h */,
+				3ECEF31F11E9C64E00738E69 /* Assets.m */,
+				3ECEF32011E9C64E00738E69 /* Categories.h */,
+				3ECEF32111E9C64E00738E69 /* Categories.m */,
+				3ECEF32211E9C64E00738E69 /* CategoryBase.h */,
+				3ECEF32311E9C64E00738E69 /* CategoryBase.m */,
+				3ECEF32411E9C64E00738E69 /* Database.h */,
+				3ECEF32511E9C64E00738E69 /* Database.m */,
+				3ECEF32711E9C64E00738E69 /* ORRecord.h */,
+				3ECEF32811E9C64E00738E69 /* ORRecord.m */,
+				3ECEF32911E9C64E00738E69 /* TransactionBase.h */,
+				3ECEF32A11E9C64E00738E69 /* TransactionBase.m */,
+			);
+			path = ormapper;
 			sourceTree = "<group>";
 		};
 		3ED1C392119E76990030B0B2 /* AppTests */ = {
@@ -1206,7 +1247,6 @@
 				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,
 				3E4D1CF10EBB4599006050FE /* Report.m in Sources */,
 				3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */,
-				3E9433760EC1E0750033D50A /* Database.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
 				3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */,
 				3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */,
@@ -1234,6 +1274,13 @@
 				3E7BB13B115399C5004B7D03 /* ConfigViewController.m in Sources */,
 				3E35661B1189697E007DAF44 /* Backup.m in Sources */,
 				3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */,
+				3ECEF33311E9C64E00738E69 /* AssetBase.m in Sources */,
+				3ECEF33411E9C64E00738E69 /* Assets.m in Sources */,
+				3ECEF33511E9C64E00738E69 /* Categories.m in Sources */,
+				3ECEF33611E9C64E00738E69 /* CategoryBase.m in Sources */,
+				3ECEF33711E9C64E00738E69 /* Database.m in Sources */,
+				3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */,
+				3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1255,7 +1302,6 @@
 				3E4AFFD0119EEFB800FF1A20 /* ExportOfx.m in Sources */,
 				3E4AFFD1119EEFB800FF1A20 /* Report.m in Sources */,
 				3E4AFFD2119EEFB800FF1A20 /* ReportVC.m in Sources */,
-				3E4AFFD3119EEFB800FF1A20 /* Database.m in Sources */,
 				3E4AFFD4119EEFB800FF1A20 /* AppDelegate.m in Sources */,
 				3E4AFFD5119EEFB800FF1A20 /* Asset.m in Sources */,
 				3E4AFFD6119EEFB800FF1A20 /* TransactionListVC.m in Sources */,
@@ -1304,7 +1350,6 @@
 				3E8B25A20F348C090007929E /* ExportOfx.m in Sources */,
 				3E8B25A30F348C090007929E /* Report.m in Sources */,
 				3E8B25A40F348C090007929E /* ReportVC.m in Sources */,
-				3E8B25A50F348C090007929E /* Database.m in Sources */,
 				3E8B25A70F348C090007929E /* Asset.m in Sources */,
 				3E8B25A80F348C090007929E /* TransactionListVC.m in Sources */,
 				3E8B25A90F348C090007929E /* AssetListVC.m in Sources */,
@@ -1332,6 +1377,13 @@
 				3E7BB139115399C5004B7D03 /* ConfigViewController.m in Sources */,
 				3E35661A1189697E007DAF44 /* Backup.m in Sources */,
 				3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */,
+				3ECEF32B11E9C64E00738E69 /* AssetBase.m in Sources */,
+				3ECEF32C11E9C64E00738E69 /* Assets.m in Sources */,
+				3ECEF32D11E9C64E00738E69 /* Categories.m in Sources */,
+				3ECEF32E11E9C64E00738E69 /* CategoryBase.m in Sources */,
+				3ECEF32F11E9C64E00738E69 /* Database.m in Sources */,
+				3ECEF33111E9C64E00738E69 /* ORRecord.m in Sources */,
+				3ECEF33211E9C64E00738E69 /* TransactionBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1342,7 +1394,6 @@
 				3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */,
 				3E51D9F6119EF74500B59839 /* PinVC.m in Sources */,
 				3E51D9F1119EF72B00B59839 /* Pin.m in Sources */,
-				3E8324C2119D9F8600629871 /* Database.m in Sources */,
 				3E8324C4119D9F8600629871 /* DataModel.m in Sources */,
 				3E8324C6119D9F8600629871 /* Journal.m in Sources */,
 				3E8324C8119D9F8600629871 /* Ledger.m in Sources */,
@@ -1390,7 +1441,6 @@
 				3E4A0028119EF13F00FF1A20 /* ExportOfx.m in Sources */,
 				3E4A0029119EF13F00FF1A20 /* Report.m in Sources */,
 				3E4A002A119EF13F00FF1A20 /* ReportVC.m in Sources */,
-				3E4A002B119EF13F00FF1A20 /* Database.m in Sources */,
 				3E4A002C119EF13F00FF1A20 /* AppDelegate.m in Sources */,
 				3E4A002D119EF13F00FF1A20 /* Asset.m in Sources */,
 				3E4A002E119EF13F00FF1A20 /* TransactionListVC.m in Sources */,

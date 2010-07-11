@@ -101,7 +101,7 @@ static DataModel *theDataModel = nil;
     Database *db = [Database instance];
 
     // Load from DB
-    if (![db openDB]) {
+    if (![db open:@"CashFlow.db"]) {
     }
 
     [Transaction migrate];
@@ -168,24 +168,20 @@ static DataModel *theDataModel = nil;
 
 - (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category
 {
-    DBStatement *stmt;
-    Database *db = [Database instance];
-
+    NSMutableArray *ary = nil;
+    
     if (category < 0) {
         // 全検索
-        stmt = [db prepare:"SELECT description FROM Transactions ORDER BY date DESC;"];
+        ary = [Transaction find_cond:@"ORDER BY date DESC"];
     } else {
         // カテゴリ指定検索
-        stmt = [db prepare:"SELECT description FROM Transactions"
-                   " WHERE category = ? ORDER BY date DESC;"];
-        [stmt bindInt:0 val:category];
+        NSString *cond = [NSString stringWithFormat:@"WHERE category = %@ ORDER BY date DESC", category];
+        ary = [Transaction find_cond:cond];
     }
 
     // 摘要をリストに追加していく
-    while ([stmt step] == SQLITE_ROW) {
-        const char *cs = [stmt colCString:0];
-        if (*cs == '\0') continue;
-        NSString *s = [NSString stringWithCString:cs encoding:NSUTF8StringEncoding];
+    for (Transaction *t in ary) {
+        NSString *s = t.description;
         if (s == nil) continue;
 
         // 重複チェック
@@ -216,14 +212,15 @@ static DataModel *theDataModel = nil;
 //
 - (int)categoryWithDescription:(NSString *)desc
 {
-    DBStatement *stmt;
+    NSMutableArray *ary;
+    
+    NSString *cond = [NSString stringWithFormat:@"WHERE description '%@' ORDER BY date DESC", desc]; // TBD
+    ary = [Transaction find_cond:cond];
+    
     int category = -1;
-
-    stmt = [[Database instance] prepare:"SELECT category FROM Transactions WHERE description = ? ORDER BY date DESC;"];
-    [stmt bindString:0 val:desc];
-
-    if ([stmt step] == SQLITE_ROW) {
-        category = [stmt colInt:0];
+    if ([ary count] > 0) {
+        Transaction *t = (Transaction *)[ary objectAtIndex:0];
+        category = t.category;
     }
     return category;
 }

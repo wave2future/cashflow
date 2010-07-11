@@ -53,7 +53,7 @@
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 
-+ (void)createTable;
+//+ (void)createTable;
 + (NSMutableArray *)loadTransactions;
 
 - (void)insertDb;
