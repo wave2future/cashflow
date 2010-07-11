@@ -326,6 +326,16 @@
 		3ECEF33711E9C64E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
 		3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
 		3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
+		3ECEF45111E9D96E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
+		3ECEF45211E9D96F00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
+		3ECEF45311E9D97700738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
+		3ECEF45411E9D97700738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
+		3ECEF45511E9D97D00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
+		3ECEF45611E9D97E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
+		3ECEF45711E9D98300738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
+		3ECEF45811E9D98400738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
+		3ECEF45911E9D98A00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
+		3ECEF45A11E9D98A00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED1C39F119E78070030B0B2 /* DataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C39E119E78070030B0B2 /* DataModelTests.m */; };
 		3ED1C3B9119E79F20030B0B2 /* LedgerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */; };
@@ -1405,6 +1415,11 @@
 				3ED1C3E6119E7BC70030B0B2 /* ReportTests.m in Sources */,
 				3ED1C3FB119EE5860030B0B2 /* AssetEntryTests.m in Sources */,
 				3E98A6C511E8391000B7F289 /* CurrencyManagerTests.m in Sources */,
+				3ECEF45111E9D96E00738E69 /* TransactionBase.m in Sources */,
+				3ECEF45311E9D97700738E69 /* ORRecord.m in Sources */,
+				3ECEF45511E9D97D00738E69 /* Database.m in Sources */,
+				3ECEF45711E9D98300738E69 /* CategoryBase.m in Sources */,
+				3ECEF45911E9D98A00738E69 /* AssetBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1454,6 +1469,11 @@
 				3ED1C4FA119EEBF00030B0B2 /* AppTests.m in Sources */,
 				3E4A0019119EF12C00FF1A20 /* TestCommon.m in Sources */,
 				3E4A0013119EF11300FF1A20 /* AssetListVCTests.m in Sources */,
+				3ECEF45211E9D96F00738E69 /* TransactionBase.m in Sources */,
+				3ECEF45411E9D97700738E69 /* ORRecord.m in Sources */,
+				3ECEF45611E9D97E00738E69 /* Database.m in Sources */,
+				3ECEF45811E9D98400738E69 /* CategoryBase.m in Sources */,
+				3ECEF45A11E9D98A00738E69 /* AssetBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

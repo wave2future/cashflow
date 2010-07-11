@@ -43,7 +43,7 @@
     
     int i = 1;
     for (Transaction *t in journal) {
-        AssertEqualInt(i, t.pkey);
+        AssertEqualInt(i, t.pid);
         i++;
     }
 }
@@ -55,7 +55,7 @@
 
     // 途中に挿入する
     Transaction *t = [[[Transaction alloc] init] autorelease];
-    t.pkey = 7;
+    t.pid = 7;
     t.asset = 1;
     t.type = 0;
     t.value = 100;
@@ -65,7 +65,7 @@
     AssertEqualInt(7, [journal.entries count]);
     Transaction *tt = [journal.entries objectAtIndex:2];
     AssertEqualObjects(t, tt);
-    AssertEqualInt(t.pkey, tt.pkey);
+    AssertEqualInt(t.pid, tt.pid);
 }
 
 - (void)testReplaceTransaction
@@ -75,7 +75,7 @@
 
     // 途中に挿入する
     Transaction *t = [[[Transaction alloc] init] autorelease];
-    t.pkey = 999;
+    t.pid = 999;
     t.asset = 3;
     t.type = 0;
     t.value = 100;
@@ -83,14 +83,14 @@
     
     Transaction *orig = [journal.entries objectAtIndex:3];
     [orig retain];
-    AssertEqualInt(4, orig.pkey);
+    AssertEqualInt(4, orig.pid);
 
     [journal replaceTransaction:orig withObject:t];
 
     AssertEqualInt(6, [journal.entries count]); // 数は変更なし
     Transaction *tt = [journal.entries objectAtIndex:5];
     //ASSERT_EQUAL(t, tt);
-    AssertEqualInt(t.pkey, tt.pkey);
+    AssertEqualInt(t.pid, tt.pid);
 
     [orig release];
 }
@@ -101,16 +101,16 @@
     journal = [DataModel journal];
     Asset *asset = [[[Asset alloc] init] autorelease];
 
-    // 資産間取引を削除 (pkey == 4 の取引)
-    asset.pkey = 2;
+    // 資産間取引を削除 (pid == 4 の取引)
+    asset.pid = 2;
     Transaction *t = [journal.entries objectAtIndex:3];
     Assert(![journal deleteTransaction:t withAsset:asset]);
     AssertEqualInt(6, [journal.entries count]); // 置換されたので消えてないはず
     
     t = [journal.entries objectAtIndex:2];
-    AssertEqualInt(3, t.pkey);
+    AssertEqualInt(3, t.pid);
     t = [journal.entries objectAtIndex:3];
-    AssertEqualInt(4, t.pkey); // まだ消えてない
+    AssertEqualInt(4, t.pid); // まだ消えてない
     
     // 置換されていることを確認する
     AssertEqualInt(1, t.asset);
@@ -118,13 +118,13 @@
     AssertEqualDouble(5000, t.value);
     
     // 今度は置換された資産間取引を消す
-    asset.pkey = 1;
+    asset.pid = 1;
     Assert([journal deleteTransaction:t withAsset:asset]);
     
     t = [journal.entries objectAtIndex:2];
-    AssertEqualInt(3, t.pkey);
+    AssertEqualInt(3, t.pid);
     t = [journal.entries objectAtIndex:3];
-    AssertEqualInt(5, t.pkey);
+    AssertEqualInt(5, t.pid);
 }
 
 - (void)testDeleteTransaction2
@@ -133,8 +133,8 @@
     journal = [DataModel journal];
     Asset *asset = [[[Asset alloc] init] autorelease];
     
-    // 資産間取引を削除 (pkey == 4 の取引)、ただし、testDeleteTransaction とは逆方向
-    asset.pkey = 1;
+    // 資産間取引を削除 (pid == 4 の取引)、ただし、testDeleteTransaction とは逆方向
+    asset.pid = 1;
     Transaction *t = [journal.entries objectAtIndex:3];
     Assert(![journal deleteTransaction:t withAsset:asset]);
     
@@ -144,13 +144,13 @@
     AssertEqualDouble(-5000, t.value);
     
     // 置換された資産間取引を消す
-    asset.pkey = 2;
+    asset.pid = 2;
     Assert([journal deleteTransaction:t withAsset:asset]);
     
     t = [journal.entries objectAtIndex:2];
-    AssertEqualInt(3, t.pkey);
+    AssertEqualInt(3, t.pid);
     t = [journal.entries objectAtIndex:3];
-    AssertEqualInt(5, t.pkey);
+    AssertEqualInt(5, t.pid);
 }
 
 - (void)testADeleteTransactionWithAsset
@@ -161,19 +161,19 @@
 
     AssertEqualInt(6, [journal.entries count]);
 
-    asset.pkey = 4; // not exist
+    asset.pid = 4; // not exist
     [journal deleteAllTransactionsWithAsset:asset];
     AssertEqualInt(6, [journal.entries count]);
     
-    asset.pkey = 1;
+    asset.pid = 1;
     [journal deleteAllTransactionsWithAsset:asset];
     AssertEqualInt(3, [journal.entries count]);
     
-    asset.pkey = 2;
+    asset.pid = 2;
     [journal deleteAllTransactionsWithAsset:asset];
     AssertEqualInt(1, [journal.entries count]);
 
-    asset.pkey = 3;
+    asset.pid = 3;
     [journal deleteAllTransactionsWithAsset:asset];
     AssertEqualInt(0, [journal.entries count]);
 }
