@@ -28,35 +28,35 @@
 - (void)testSystem
 {
     [manager setBaseCurrency:nil];
-    NSString *s = [manager formatCurrencyString:1234.56];
+    NSString *s = [CurrencyManager formatCurrency:1234.56];
     STAssertTrue([s isEqualToString:@"$1,234.56"], s);
 }
 
 - (void)testUSD
 {
     [manager setBaseCurrency:@"USD"];
-    NSString *s = [manager formatCurrencyString:1234.56];
+    NSString *s = [CurrencyManager formatCurrency:1234.56];
     STAssertTrue([s isEqualToString:@"$1,234.56"], s);
 }
 
 - (void)testJPY
 {
     [manager setBaseCurrency:@"JPY"];
-    NSString *s = [manager formatCurrencyString:1234];
+    NSString *s = [CurrencyManager formatCurrency:1234];
     STAssertTrue([s isEqualToString:@"¥1,234"], s);
 }
 
 - (void)testEUR
 {
     [manager setBaseCurrency:@"EUR"];
-    NSString *s = [manager formatCurrencyString:1234.56];
+    NSString *s = [CurrencyManager formatCurrency:1234.56];
     STAssertTrue([s isEqualToString:@"€1,234.56"], s);
 }
 
 - (void)testOther
 {
     [manager setBaseCurrency:@"CAD"];
-    NSString *s = [manager formatCurrencyString:1234.56];
+    NSString *s = [CurrencyManager formatCurrency:1234.56];
     STAssertTrue([s isEqualToString:@"CA$1,234.56"], s);
 }
 
