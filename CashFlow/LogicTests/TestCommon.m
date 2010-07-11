@@ -32,7 +32,7 @@
     [DataModel finalize];
     [Database shutdown];
 
-    NSString *dbPath = [Database dataFilePath];
+    NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
     [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
 }
@@ -56,7 +56,7 @@
                        attributes:nil error:NULL];
     }
     
-    NSString *dbPath = [Database dataFilePath];
+    NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
     // load sql
     NSData *data = [NSData dataWithContentsOfFile:sqlPath];
