@@ -34,21 +34,12 @@
 
 #import <UIKit/UIKit.h>
 #import "Database.h"
+#import "CategoryBase.h"
 
 @class Database;
 
-@interface Category : NSObject {
-    int pkey;
-    NSString *name;
-    int sorder;
+@interface Category : CategoryBase {
 }
-
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,retain) NSString *name;
-@property(nonatomic,assign) int sorder;
-
-+ (void)createTable;
-
 @end
 
 @interface Categories : NSObject {
