@@ -218,7 +218,8 @@ static Database *theDatabase = nil;
 	
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
+    //[dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
+    [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
 
     // Set US locale, because JP locale for date formatter is buggy,
     // especially for 12 hour settings.
@@ -352,7 +353,8 @@ static Database *theDatabase = nil;
 
 - (NSDate *)dateFromString:(NSString *)str
 {
-    return [dateFormatter dateFromString:str];
+    NSDate *date = [dateFormatter dateFromString:str];
+    return date;
 }
 
 - (NSString *)stringFromDate:(NSDate *)date
