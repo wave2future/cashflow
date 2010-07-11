@@ -123,7 +123,7 @@
         if (firstDate != nil && [e.transaction.date compare:firstDate] == NSOrderedAscending) continue;
 		
         NSMutableString *d = [[NSMutableString alloc] init];
-        [d appendFormat:@"%d,", e.transaction.pkey];
+        [d appendFormat:@"%d,", e.transaction.pid];
         [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:e.transaction.date]];
         [d appendFormat:@"%.2f,", e.value];
         [d appendFormat:@"%.2f,", e.balance];

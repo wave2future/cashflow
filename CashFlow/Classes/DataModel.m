@@ -172,10 +172,10 @@ static DataModel *theDataModel = nil;
     
     if (category < 0) {
         // 全検索
-        ary = [Transaction find_cond:@"ORDER BY date DESC"];
+        ary = [Transaction find_cond:@"ORDER BY date DESC LIMIT 100"];
     } else {
         // カテゴリ指定検索
-        NSString *cond = [NSString stringWithFormat:@"WHERE category = %@ ORDER BY date DESC", category];
+        NSString *cond = [NSString stringWithFormat:@"WHERE category = %@ ORDER BY date DESC LIMIT 100", category];
         ary = [Transaction find_cond:cond];
     }
 
@@ -214,7 +214,7 @@ static DataModel *theDataModel = nil;
 {
     NSMutableArray *ary;
     
-    NSString *cond = [NSString stringWithFormat:@"WHERE description '%@' ORDER BY date DESC", desc]; // TBD
+    NSString *cond = [NSString stringWithFormat:@"WHERE description '%@' ORDER BY date DESC LIMIT 1", desc]; // TBD
     ary = [Transaction find_cond:cond];
     
     int category = -1;

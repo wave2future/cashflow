@@ -161,7 +161,7 @@
 - (BOOL)genSelectListViewChanged:(GenSelectListViewController*)vc identifier:(int)id
 {
     Asset *as = [[DataModel ledger] assetAtIndex:vc.selectedIndex];
-    dst_asset = as.pkey;
+    dst_asset = as.pid;
 
     [delegate editTypeViewChanged:self];
 

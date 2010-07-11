@@ -76,7 +76,7 @@
     int i, max = [categories count];
     for (i = 0; i < max; i++) {
         Category *c = [categories objectAtIndex:i];
-        if (c.pkey == key) {
+        if (c.pid == key) {
             return i;
         }
     }

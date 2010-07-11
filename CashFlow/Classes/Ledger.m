@@ -43,21 +43,7 @@
 
 - (void)load
 {
-    DBStatement *stmt;
-    self.assets = [[[NSMutableArray alloc] init] autorelease];
-
-    stmt = [[Database instance] prepare:"SELECT * FROM Assets ORDER BY sorder;"];
-    while ([stmt step] == SQLITE_ROW) {
-        Asset *as = [[Asset alloc] init];
-        as.pkey = [stmt colInt:0];
-        as.name = [stmt colString:1];
-        as.type = [stmt colInt:2];
-        as.initialBalance = [stmt colDouble:3];
-        as.sorder = [stmt colInt:4];
-
-        [assets addObject:as];
-        [as release];
-    }
+    self.assets = [Asset find_cond:@"ORDER BY sorder"];
 }
 
 - (void)rebuild
@@ -77,20 +63,20 @@
     return [assets objectAtIndex:n];
 }
 
-- (Asset*)assetWithKey:(int)pkey
+- (Asset*)assetWithKey:(int)pid
 {
     for (Asset *as in assets) {
-        if (as.pkey == pkey) return as;
+        if (as.pid == pid) return as;
     }
     return nil;
 }
 
-- (int)assetIndexWithKey:(int)pkey
+- (int)assetIndexWithKey:(int)pid
 {
     int i;
     for (i = 0; i < [assets count]; i++) {
         Asset *as = [assets objectAtIndex:i];
-        if (as.pkey == pkey) return i;
+        if (as.pid == pid) return i;
     }
     return -1;
 }
@@ -98,24 +84,12 @@
 - (void)addAsset:(Asset *)as
 {
     [assets addObject:as];
-
-    DBStatement *stmt = [[Database instance] prepare:"INSERT INTO Assets VALUES(NULL, ?, ?, ?, ?);"];
-    [stmt bindString:0 val:as.name];
-    [stmt bindInt:1 val:as.type];
-    [stmt bindDouble:2 val:as.initialBalance];
-    [stmt bindInt:3 val:as.sorder];
-    [stmt step];
-
-    as.pkey = [[Database instance] lastInsertRowId];
+    [as insert];
 }
 
 - (void)deleteAsset:(Asset *)as
 {
-    DBStatement *stmt;
-    Database *db = [Database instance];
-    stmt = [db prepare:"DELETE FROM Assets WHERE key=?;"];
-    [stmt bindInt:0 val:as.pkey];
-    [stmt step];
+    [as delete];
 
     [[DataModel journal] deleteAllTransactionsWithAsset:as];
 
@@ -126,13 +100,7 @@
 
 - (void)updateAsset:(Asset*)asset
 {
-    DBStatement *stmt = [[Database instance] prepare:"UPDATE Assets SET name=?,type=?,initialBalance=?,sorder=? WHERE key=?;"];
-    [stmt bindString:0 val:asset.name];
-    [stmt bindInt:1 val:asset.type];
-    [stmt bindDouble:2 val:asset.initialBalance];
-    [stmt bindInt:3 val:asset.sorder];
-    [stmt bindInt:4 val:asset.pkey];
-    [stmt step];
+    [asset update];
 }
 
 - (void)reorderAsset:(int)from to:(int)to
@@ -145,15 +113,10 @@
     // renumbering sorder
     Database *db = [Database instance];
     [db beginTransaction];
-    DBStatement *stmt = [db prepare:"UPDATE Assets SET sorder=? WHERE key=?;"];
     for (int i = 0; i < [assets count]; i++) {
         as = [assets objectAtIndex:i];
         as.sorder = i;
-
-        [stmt bindInt:0 val:as.sorder];
-        [stmt bindInt:1 val:as.pkey];
-        [stmt step];
-        [stmt reset];
+        [as update];
     }
     [db commitTransaction];
 }

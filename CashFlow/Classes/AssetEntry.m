@@ -63,7 +63,7 @@
 {
     self = [self init];
 
-    self.assetKey = asset.pkey;
+    self.assetKey = asset.pid;
     
     if (t == nil) {
         // 新規エントリ生成
