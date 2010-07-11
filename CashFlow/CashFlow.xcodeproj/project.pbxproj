@@ -39,132 +39,145 @@
 		3E2CBDA00F1615470025A682 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
 		3E35661A1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
 		3E35661B1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
-		3E4A0004119EEFE000FF1A20 /* AppTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4FBBA119D70AC001C3EEB /* AppTests.octest */; };
-		3E4A0013119EF11300FF1A20 /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C402119EE6070030B0B2 /* AssetListVCTests.m */; };
-		3E4A0019119EF12C00FF1A20 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E832451119D776800629871 /* TestCommon.m */; };
-		3E4A001E119EF13F00FF1A20 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
-		3E4A001F119EF13F00FF1A20 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
-		3E4A0020119EF13F00FF1A20 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
-		3E4A0021119EF13F00FF1A20 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
-		3E4A0022119EF13F00FF1A20 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
-		3E4A0023119EF13F00FF1A20 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
-		3E4A0024119EF13F00FF1A20 /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
-		3E4A0025119EF13F00FF1A20 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
-		3E4A0026119EF13F00FF1A20 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
-		3E4A0027119EF13F00FF1A20 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
-		3E4A0028119EF13F00FF1A20 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
-		3E4A0029119EF13F00FF1A20 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
-		3E4A002A119EF13F00FF1A20 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
-		3E4A002C119EF13F00FF1A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
-		3E4A002D119EF13F00FF1A20 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
-		3E4A002E119EF13F00FF1A20 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
-		3E4A002F119EF13F00FF1A20 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
-		3E4A0030119EF13F00FF1A20 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
-		3E4A0031119EF13F00FF1A20 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
-		3E4A0032119EF13F00FF1A20 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
-		3E4A0033119EF13F00FF1A20 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
-		3E4A0034119EF13F00FF1A20 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
-		3E4A0035119EF13F00FF1A20 /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
-		3E4A0036119EF13F00FF1A20 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
-		3E4A0037119EF13F00FF1A20 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
-		3E4A0038119EF13F00FF1A20 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
-		3E4A0039119EF13F00FF1A20 /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
-		3E4A003A119EF13F00FF1A20 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
-		3E4A003B119EF13F00FF1A20 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
-		3E4A003C119EF13F00FF1A20 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
-		3E4A003D119EF13F00FF1A20 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
-		3E4A003E119EF13F00FF1A20 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
-		3E4A003F119EF13F00FF1A20 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
-		3E4A0040119EF13F00FF1A20 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
-		3E4A0041119EF13F00FF1A20 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
-		3E4A0042119EF13F00FF1A20 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
-		3E4A0043119EF13F00FF1A20 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
-		3E4A0044119EF13F00FF1A20 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
-		3E4A0045119EF13F00FF1A20 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
-		3E4AFFA2119EEFB800FF1A20 /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
-		3E4AFFA3119EEFB800FF1A20 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
-		3E4AFFA4119EEFB800FF1A20 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
-		3E4AFFA5119EEFB800FF1A20 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
-		3E4AFFA6119EEFB800FF1A20 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
-		3E4AFFA7119EEFB800FF1A20 /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
-		3E4AFFA8119EEFB800FF1A20 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
-		3E4AFFA9119EEFB800FF1A20 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
-		3E4AFFAA119EEFB800FF1A20 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
-		3E4AFFAB119EEFB800FF1A20 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
-		3E4AFFAC119EEFB800FF1A20 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
-		3E4AFFAD119EEFB800FF1A20 /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
-		3E4AFFAE119EEFB800FF1A20 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
-		3E4AFFAF119EEFB800FF1A20 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
-		3E4AFFB0119EEFB800FF1A20 /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
-		3E4AFFB1119EEFB800FF1A20 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
-		3E4AFFB2119EEFB800FF1A20 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
-		3E4AFFB3119EEFB800FF1A20 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
-		3E4AFFB4119EEFB800FF1A20 /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
-		3E4AFFB5119EEFB800FF1A20 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
-		3E4AFFB6119EEFB800FF1A20 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
-		3E4AFFB7119EEFB800FF1A20 /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
-		3E4AFFB8119EEFB800FF1A20 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
-		3E4AFFB9119EEFB800FF1A20 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
-		3E4AFFBA119EEFB800FF1A20 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */; };
-		3E4AFFBB119EEFB800FF1A20 /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
-		3E4AFFBC119EEFB800FF1A20 /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB12C11539997004B7D03 /* ConfigView.xib */; };
-		3E4AFFBD119EEFB800FF1A20 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
-		3E4AFFBE119EEFB800FF1A20 /* AssetListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774E3D1188807900687776 /* AssetListView-ipad.xib */; };
-		3E4AFFBF119EEFB800FF1A20 /* PinView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774EE911888C6600687776 /* PinView-ipad.xib */; };
-		3E4AFFC0119EEFB800FF1A20 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E811898E9600542042 /* Default-Landscape.png */; };
-		3E4AFFC1119EEFB800FF1A20 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E911898E9600542042 /* Default-Portrait.png */; };
-		3E4AFFC2119EEFB800FF1A20 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA1F1189908A00542042 /* icon-ipad.png */; };
-		3E4AFFC3119EEFB800FF1A20 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA80118994AA00542042 /* icon.png */; };
-		3E4AFFC5119EEFB800FF1A20 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
-		3E4AFFC6119EEFB800FF1A20 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
-		3E4AFFC7119EEFB800FF1A20 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
-		3E4AFFC8119EEFB800FF1A20 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
-		3E4AFFC9119EEFB800FF1A20 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
-		3E4AFFCA119EEFB800FF1A20 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
-		3E4AFFCB119EEFB800FF1A20 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
-		3E4AFFCC119EEFB800FF1A20 /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
-		3E4AFFCD119EEFB800FF1A20 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
-		3E4AFFCE119EEFB800FF1A20 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
-		3E4AFFCF119EEFB800FF1A20 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
-		3E4AFFD0119EEFB800FF1A20 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
-		3E4AFFD1119EEFB800FF1A20 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
-		3E4AFFD2119EEFB800FF1A20 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
-		3E4AFFD4119EEFB800FF1A20 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
-		3E4AFFD5119EEFB800FF1A20 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
-		3E4AFFD6119EEFB800FF1A20 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
-		3E4AFFD7119EEFB800FF1A20 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
-		3E4AFFD8119EEFB800FF1A20 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
-		3E4AFFD9119EEFB800FF1A20 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
-		3E4AFFDA119EEFB800FF1A20 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
-		3E4AFFDB119EEFB800FF1A20 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
-		3E4AFFDC119EEFB800FF1A20 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
-		3E4AFFDD119EEFB800FF1A20 /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
-		3E4AFFDE119EEFB800FF1A20 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
-		3E4AFFDF119EEFB800FF1A20 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
-		3E4AFFE0119EEFB800FF1A20 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
-		3E4AFFE1119EEFB800FF1A20 /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
-		3E4AFFE2119EEFB800FF1A20 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
-		3E4AFFE3119EEFB800FF1A20 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
-		3E4AFFE4119EEFB800FF1A20 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
-		3E4AFFE5119EEFB800FF1A20 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
-		3E4AFFE6119EEFB800FF1A20 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
-		3E4AFFE7119EEFB800FF1A20 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
-		3E4AFFE8119EEFB800FF1A20 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
-		3E4AFFE9119EEFB800FF1A20 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
-		3E4AFFEA119EEFB800FF1A20 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
-		3E4AFFEB119EEFB800FF1A20 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
-		3E4AFFEC119EEFB800FF1A20 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
-		3E4AFFED119EEFB800FF1A20 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
-		3E4AFFEF119EEFB800FF1A20 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
-		3E4AFFF0119EEFB800FF1A20 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		3E4AFFF1119EEFB800FF1A20 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
-		3E4AFFF2119EEFB800FF1A20 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
-		3E4AFFF3119EEFB800FF1A20 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
-		3E4AFFF4119EEFB800FF1A20 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
-		3E4AFFF5119EEFB800FF1A20 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
-		3E4AFFF6119EEFB800FF1A20 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
-		3E4AFFF7119EEFB800FF1A20 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */; };
-		3E4AFFF8119EEFB800FF1A20 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
+		3E3EC1D711EA1BA8004DFF93 /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C4F9119EEBF00030B0B2 /* AppTests.m */; };
+		3E3EC1D811EA1BAE004DFF93 /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C402119EE6070030B0B2 /* AssetListVCTests.m */; };
+		3E3EC1DD11EA1BCF004DFF93 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E832451119D776800629871 /* TestCommon.m */; };
+		3E3EC22311EA1C84004DFF93 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
+		3E3EC22411EA1C84004DFF93 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3E3EC22511EA1C84004DFF93 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
+		3E3EC22611EA1C84004DFF93 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
+		3E3EC22711EA1C84004DFF93 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
+		3E3EC22811EA1C84004DFF93 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
+		3E3EC22911EA1C84004DFF93 /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
+		3E3EC22A11EA1C84004DFF93 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3E3EC22B11EA1C84004DFF93 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3E3EC22C11EA1C84004DFF93 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3E3EC22D11EA1C84004DFF93 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E3EC22E11EA1C84004DFF93 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3E3EC22F11EA1C84004DFF93 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
+		3E3EC23011EA1C84004DFF93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3E3EC23111EA1C84004DFF93 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3E3EC23211EA1C84004DFF93 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E3EC23311EA1C84004DFF93 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
+		3E3EC23411EA1C84004DFF93 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
+		3E3EC23511EA1C84004DFF93 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
+		3E3EC23611EA1C84004DFF93 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
+		3E3EC23711EA1C84004DFF93 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
+		3E3EC23811EA1C84004DFF93 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
+		3E3EC23911EA1C84004DFF93 /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
+		3E3EC23A11EA1C84004DFF93 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3E3EC23B11EA1C84004DFF93 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3E3EC23C11EA1C84004DFF93 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
+		3E3EC23D11EA1C84004DFF93 /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
+		3E3EC23E11EA1C84004DFF93 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
+		3E3EC23F11EA1C84004DFF93 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
+		3E3EC24011EA1C84004DFF93 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
+		3E3EC24111EA1C84004DFF93 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
+		3E3EC24211EA1C84004DFF93 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
+		3E3EC24311EA1C84004DFF93 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
+		3E3EC24411EA1C84004DFF93 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
+		3E3EC24511EA1C84004DFF93 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
+		3E3EC24611EA1C84004DFF93 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
+		3E3EC24711EA1C84004DFF93 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
+		3E3EC24811EA1C84004DFF93 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
+		3E3EC24911EA1C84004DFF93 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
+		3E3EC24A11EA1C84004DFF93 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
+		3E3EC24B11EA1C84004DFF93 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
+		3E3EC24C11EA1C84004DFF93 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
+		3E3EC24D11EA1C84004DFF93 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
+		3E3EC24E11EA1C84004DFF93 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
+		3E3EC24F11EA1C84004DFF93 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
+		3E3EC29511EA1DF7004DFF93 /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
+		3E3EC29611EA1DF7004DFF93 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
+		3E3EC29711EA1DF7004DFF93 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
+		3E3EC29811EA1DF7004DFF93 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
+		3E3EC29911EA1DF7004DFF93 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
+		3E3EC29A11EA1DF7004DFF93 /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
+		3E3EC29B11EA1DF7004DFF93 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
+		3E3EC29C11EA1DF7004DFF93 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
+		3E3EC29D11EA1DF7004DFF93 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
+		3E3EC29E11EA1DF7004DFF93 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
+		3E3EC29F11EA1DF7004DFF93 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
+		3E3EC2A011EA1DF7004DFF93 /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
+		3E3EC2A111EA1DF7004DFF93 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
+		3E3EC2A211EA1DF7004DFF93 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
+		3E3EC2A311EA1DF7004DFF93 /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
+		3E3EC2A411EA1DF7004DFF93 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
+		3E3EC2A511EA1DF7004DFF93 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
+		3E3EC2A611EA1DF7004DFF93 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
+		3E3EC2A711EA1DF7004DFF93 /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
+		3E3EC2A811EA1DF7004DFF93 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
+		3E3EC2A911EA1DF7004DFF93 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
+		3E3EC2AA11EA1DF7004DFF93 /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
+		3E3EC2AB11EA1DF7004DFF93 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
+		3E3EC2AC11EA1DF7004DFF93 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
+		3E3EC2AD11EA1DF7004DFF93 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */; };
+		3E3EC2AE11EA1DF7004DFF93 /* CalculatorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B4ED4106BC30D0036D429 /* CalculatorView.xib */; };
+		3E3EC2AF11EA1DF7004DFF93 /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB12C11539997004B7D03 /* ConfigView.xib */; };
+		3E3EC2B011EA1DF7004DFF93 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
+		3E3EC2B111EA1DF7004DFF93 /* AssetListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774E3D1188807900687776 /* AssetListView-ipad.xib */; };
+		3E3EC2B211EA1DF7004DFF93 /* PinView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774EE911888C6600687776 /* PinView-ipad.xib */; };
+		3E3EC2B311EA1DF7004DFF93 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E811898E9600542042 /* Default-Landscape.png */; };
+		3E3EC2B411EA1DF7004DFF93 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E911898E9600542042 /* Default-Portrait.png */; };
+		3E3EC2B511EA1DF7004DFF93 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA1F1189908A00542042 /* icon-ipad.png */; };
+		3E3EC2B611EA1DF7004DFF93 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA80118994AA00542042 /* icon.png */; };
+		3E3EC2B811EA1DF7004DFF93 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		3E3EC2B911EA1DF7004DFF93 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
+		3E3EC2BA11EA1DF7004DFF93 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
+		3E3EC2BB11EA1DF7004DFF93 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
+		3E3EC2BC11EA1DF7004DFF93 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
+		3E3EC2BD11EA1DF7004DFF93 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
+		3E3EC2BE11EA1DF7004DFF93 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
+		3E3EC2BF11EA1DF7004DFF93 /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
+		3E3EC2C011EA1DF7004DFF93 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3E3EC2C111EA1DF7004DFF93 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3E3EC2C211EA1DF7004DFF93 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3E3EC2C311EA1DF7004DFF93 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3E3EC2C411EA1DF7004DFF93 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
+		3E3EC2C511EA1DF7004DFF93 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
+		3E3EC2C611EA1DF7004DFF93 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3E3EC2C711EA1DF7004DFF93 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
+		3E3EC2C811EA1DF7004DFF93 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E3EC2C911EA1DF7004DFF93 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
+		3E3EC2CA11EA1DF7004DFF93 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
+		3E3EC2CB11EA1DF7004DFF93 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
+		3E3EC2CC11EA1DF7004DFF93 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
+		3E3EC2CD11EA1DF7004DFF93 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
+		3E3EC2CE11EA1DF7004DFF93 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
+		3E3EC2CF11EA1DF7004DFF93 /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
+		3E3EC2D011EA1DF7004DFF93 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3E3EC2D111EA1DF7004DFF93 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3E3EC2D211EA1DF7004DFF93 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
+		3E3EC2D311EA1DF7004DFF93 /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
+		3E3EC2D411EA1DF7004DFF93 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
+		3E3EC2D511EA1DF7004DFF93 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
+		3E3EC2D611EA1DF7004DFF93 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
+		3E3EC2D711EA1DF7004DFF93 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
+		3E3EC2D811EA1DF7004DFF93 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
+		3E3EC2D911EA1DF7004DFF93 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBC5C0F9DE02700AD3D15 /* GenSelectListVC.m */; };
+		3E3EC2DA11EA1DF7004DFF93 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
+		3E3EC2DB11EA1DF7004DFF93 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B365C0FA2DD8700FCF592 /* ReportCell.m */; };
+		3E3EC2DC11EA1DF7004DFF93 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
+		3E3EC2DD11EA1DF7004DFF93 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
+		3E3EC2DE11EA1DF7004DFF93 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
+		3E3EC2DF11EA1DF7004DFF93 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
+		3E3EC2E011EA1DF7004DFF93 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
+		3E3EC2E111EA1DF7004DFF93 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
+		3E3EC2E211EA1DF7004DFF93 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
+		3E3EC2E311EA1DF7004DFF93 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
+		3E3EC2E411EA1DF7004DFF93 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
+		3E3EC2E511EA1DF7004DFF93 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
+		3E3EC2E711EA1DF7004DFF93 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3E3EC2E811EA1DF7004DFF93 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		3E3EC2E911EA1DF7004DFF93 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		3E3EC2EA11EA1DF7004DFF93 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
+		3E3EC2EB11EA1DF7004DFF93 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3E3EC2EC11EA1DF7004DFF93 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
+		3E3EC2ED11EA1DF7004DFF93 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
+		3E3EC2EE11EA1DF7004DFF93 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
+		3E3EC2EF11EA1DF7004DFF93 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */; };
+		3E3EC2F011EA1DF7004DFF93 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
+		3E3EC2FB11EA1E11004DFF93 /* AppTests.octest in Resources */ = {isa = PBXBuildFile; fileRef = 3EB4FBBA119D70AC001C3EEB /* AppTests.octest */; };
 		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
@@ -327,15 +340,10 @@
 		3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
 		3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
 		3ECEF45111E9D96E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
-		3ECEF45211E9D96F00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
 		3ECEF45311E9D97700738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
-		3ECEF45411E9D97700738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
 		3ECEF45511E9D97D00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
-		3ECEF45611E9D97E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
 		3ECEF45711E9D98300738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
-		3ECEF45811E9D98400738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
 		3ECEF45911E9D98A00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
-		3ECEF45A11E9D98A00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED1C39F119E78070030B0B2 /* DataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C39E119E78070030B0B2 /* DataModelTests.m */; };
 		3ED1C3B9119E79F20030B0B2 /* LedgerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C3B8119E79F20030B0B2 /* LedgerTests.m */; };
@@ -346,7 +354,6 @@
 		3ED1C464119EEA820030B0B2 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3ED1C46A119EEA8D0030B0B2 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ED1C4A9119EEB020030B0B2 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
-		3ED1C4FA119EEBF00030B0B2 /* AppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED1C4F9119EEBF00030B0B2 /* AppTests.m */; };
 		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
@@ -369,11 +376,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		3E4A0001119EEFCF00FF1A20 /* PBXContainerItemProxy */ = {
+		3E3EC2F911EA1E09004DFF93 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3EB4FBB9119D70AC001C3EEB;
+			remoteGlobalIDString = 3EB4FBB9119D70AC001C3EEB /* AppTests */;
 			remoteInfo = AppTests;
 		};
 /* End PBXContainerItemProxy section */
@@ -430,8 +437,9 @@
 		3E2CBDA90F1615880025A682 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
+		3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E3EC2F811EA1DF8004DFF93 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "../Info copy.plist"; sourceTree = "<group>"; };
 		3E4A0000119EEFB800FF1A20 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Info copy.plist"; sourceTree = "<group>"; };
-		3E4AFFFE119EEFB800FF1A20 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
@@ -575,20 +583,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E4AFFEE119EEFB800FF1A20 /* Frameworks */ = {
+		3E3EC2E611EA1DF7004DFF93 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4AFFEF119EEFB800FF1A20 /* Foundation.framework in Frameworks */,
-				3E4AFFF0119EEFB800FF1A20 /* UIKit.framework in Frameworks */,
-				3E4AFFF1119EEFB800FF1A20 /* CoreGraphics.framework in Frameworks */,
-				3E4AFFF2119EEFB800FF1A20 /* AudioToolbox.framework in Frameworks */,
-				3E4AFFF3119EEFB800FF1A20 /* libsqlite3.0.dylib in Frameworks */,
-				3E4AFFF4119EEFB800FF1A20 /* QuartzCore.framework in Frameworks */,
-				3E4AFFF5119EEFB800FF1A20 /* AddressBook.framework in Frameworks */,
-				3E4AFFF6119EEFB800FF1A20 /* CoreLocation.framework in Frameworks */,
-				3E4AFFF7119EEFB800FF1A20 /* MediaPlayer.framework in Frameworks */,
-				3E4AFFF8119EEFB800FF1A20 /* MessageUI.framework in Frameworks */,
+				3E3EC2E711EA1DF7004DFF93 /* Foundation.framework in Frameworks */,
+				3E3EC2E811EA1DF7004DFF93 /* UIKit.framework in Frameworks */,
+				3E3EC2E911EA1DF7004DFF93 /* CoreGraphics.framework in Frameworks */,
+				3E3EC2EA11EA1DF7004DFF93 /* AudioToolbox.framework in Frameworks */,
+				3E3EC2EB11EA1DF7004DFF93 /* libsqlite3.0.dylib in Frameworks */,
+				3E3EC2EC11EA1DF7004DFF93 /* QuartzCore.framework in Frameworks */,
+				3E3EC2ED11EA1DF7004DFF93 /* AddressBook.framework in Frameworks */,
+				3E3EC2EE11EA1DF7004DFF93 /* CoreLocation.framework in Frameworks */,
+				3E3EC2EF11EA1DF7004DFF93 /* MediaPlayer.framework in Frameworks */,
+				3E3EC2F011EA1DF7004DFF93 /* MessageUI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -694,7 +702,7 @@
 				3E8B25C20F348C090007929E /* CashFlowFree.app */,
 				3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */,
 				3EB4FBBA119D70AC001C3EEB /* AppTests.octest */,
-				3E4AFFFE119EEFB800FF1A20 /* CashFlow.app */,
+				3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -756,6 +764,7 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3E5A8D7E0EAE34B200118C3C /* Info-free.plist */,
 				3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */,
+				3E3EC2F811EA1DF8004DFF93 /* Info copy.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -944,22 +953,22 @@
 			productReference = 1D6058910D05DD3D006BFB54 /* CashFlow.app */;
 			productType = "com.apple.product-type.application";
 		};
-		3E4AFFA0119EEFB800FF1A20 /* CashFlowTesting */ = {
+		3E3EC29311EA1DF7004DFF93 /* CashFlowTesting */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3E4AFFF9119EEFB800FF1A20 /* Build configuration list for PBXNativeTarget "CashFlowTesting" */;
+			buildConfigurationList = 3E3EC2F111EA1DF7004DFF93 /* Build configuration list for PBXNativeTarget "CashFlowTesting" */;
 			buildPhases = (
-				3E4AFFA1119EEFB800FF1A20 /* Resources */,
-				3E4AFFC4119EEFB800FF1A20 /* Sources */,
-				3E4AFFEE119EEFB800FF1A20 /* Frameworks */,
+				3E3EC29411EA1DF7004DFF93 /* Resources */,
+				3E3EC2B711EA1DF7004DFF93 /* Sources */,
+				3E3EC2E611EA1DF7004DFF93 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3E4A0002119EEFCF00FF1A20 /* PBXTargetDependency */,
+				3E3EC2FA11EA1E09004DFF93 /* PBXTargetDependency */,
 			);
 			name = CashFlowTesting;
 			productName = CashFlow;
-			productReference = 3E4AFFFE119EEFB800FF1A20 /* CashFlow.app */;
+			productReference = 3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3E8B25780F348C090007929E /* CashFlowFree */ = {
@@ -1048,8 +1057,8 @@
 				1D6058900D05DD3D006BFB54 /* CashFlow */,
 				3E8B25780F348C090007929E /* CashFlowFree */,
 				3EB4FAF5119D6D05001C3EEB /* LogicTests */,
-				3E4AFFA0119EEFB800FF1A20 /* CashFlowTesting */,
 				3EB4FBB9119D70AC001C3EEB /* AppTests */,
+				3E3EC29311EA1DF7004DFF93 /* CashFlowTesting */,
 			);
 		};
 /* End PBXProject section */
@@ -1096,45 +1105,45 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E4AFFA1119EEFB800FF1A20 /* Resources */ = {
+		3E3EC29411EA1DF7004DFF93 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4A0004119EEFE000FF1A20 /* AppTests.octest in Resources */,
-				3E4AFFA2119EEFB800FF1A20 /* TransactionListView.xib in Resources */,
-				3E4AFFA3119EEFB800FF1A20 /* TransactionView.xib in Resources */,
-				3E4AFFA4119EEFB800FF1A20 /* EditDescView.xib in Resources */,
-				3E4AFFA5119EEFB800FF1A20 /* EditDateView.xib in Resources */,
-				3E4AFFA6119EEFB800FF1A20 /* Default.png in Resources */,
-				3E4AFFA7119EEFB800FF1A20 /* redButton.png in Resources */,
-				3E4AFFA8119EEFB800FF1A20 /* InfoView.xib in Resources */,
-				3E4AFFA9119EEFB800FF1A20 /* icon-rendered.png in Resources */,
-				3E4AFFAA119EEFB800FF1A20 /* Entitlements.plist in Resources */,
-				3E4AFFAB119EEFB800FF1A20 /* ReportView.xib in Resources */,
-				3E4AFFAC119EEFB800FF1A20 /* AssetListView.xib in Resources */,
-				3E4AFFAD119EEFB800FF1A20 /* AssetView.xib in Resources */,
-				3E4AFFAE119EEFB800FF1A20 /* MainWindow.xib in Resources */,
-				3E4AFFAF119EEFB800FF1A20 /* GenEditTextView.xib in Resources */,
-				3E4AFFB0119EEFB800FF1A20 /* cash.png in Resources */,
-				3E4AFFB1119EEFB800FF1A20 /* bank.png in Resources */,
-				3E4AFFB2119EEFB800FF1A20 /* card.png in Resources */,
-				3E4AFFB3119EEFB800FF1A20 /* CategoryListView.xib in Resources */,
-				3E4AFFB4119EEFB800FF1A20 /* EditMemoView.xib in Resources */,
-				3E4AFFB5119EEFB800FF1A20 /* ExportView.xib in Resources */,
-				3E4AFFB6119EEFB800FF1A20 /* Localizable.strings in Resources */,
-				3E4AFFB7119EEFB800FF1A20 /* PinView.xib in Resources */,
-				3E4AFFB8119EEFB800FF1A20 /* config.png in Resources */,
-				3E4AFFB9119EEFB800FF1A20 /* EditTypeView.xib in Resources */,
-				3E4AFFBA119EEFB800FF1A20 /* GenSelectListView.xib in Resources */,
-				3E4AFFBB119EEFB800FF1A20 /* CalculatorView.xib in Resources */,
-				3E4AFFBC119EEFB800FF1A20 /* ConfigView.xib in Resources */,
-				3E4AFFBD119EEFB800FF1A20 /* MainWindow-iPad.xib in Resources */,
-				3E4AFFBE119EEFB800FF1A20 /* AssetListView-ipad.xib in Resources */,
-				3E4AFFBF119EEFB800FF1A20 /* PinView-ipad.xib in Resources */,
-				3E4AFFC0119EEFB800FF1A20 /* Default-Landscape.png in Resources */,
-				3E4AFFC1119EEFB800FF1A20 /* Default-Portrait.png in Resources */,
-				3E4AFFC2119EEFB800FF1A20 /* icon-ipad.png in Resources */,
-				3E4AFFC3119EEFB800FF1A20 /* icon.png in Resources */,
+				3E3EC2FB11EA1E11004DFF93 /* AppTests.octest in Resources */,
+				3E3EC29511EA1DF7004DFF93 /* TransactionListView.xib in Resources */,
+				3E3EC29611EA1DF7004DFF93 /* TransactionView.xib in Resources */,
+				3E3EC29711EA1DF7004DFF93 /* EditDescView.xib in Resources */,
+				3E3EC29811EA1DF7004DFF93 /* EditDateView.xib in Resources */,
+				3E3EC29911EA1DF7004DFF93 /* Default.png in Resources */,
+				3E3EC29A11EA1DF7004DFF93 /* redButton.png in Resources */,
+				3E3EC29B11EA1DF7004DFF93 /* InfoView.xib in Resources */,
+				3E3EC29C11EA1DF7004DFF93 /* icon-rendered.png in Resources */,
+				3E3EC29D11EA1DF7004DFF93 /* Entitlements.plist in Resources */,
+				3E3EC29E11EA1DF7004DFF93 /* ReportView.xib in Resources */,
+				3E3EC29F11EA1DF7004DFF93 /* AssetListView.xib in Resources */,
+				3E3EC2A011EA1DF7004DFF93 /* AssetView.xib in Resources */,
+				3E3EC2A111EA1DF7004DFF93 /* MainWindow.xib in Resources */,
+				3E3EC2A211EA1DF7004DFF93 /* GenEditTextView.xib in Resources */,
+				3E3EC2A311EA1DF7004DFF93 /* cash.png in Resources */,
+				3E3EC2A411EA1DF7004DFF93 /* bank.png in Resources */,
+				3E3EC2A511EA1DF7004DFF93 /* card.png in Resources */,
+				3E3EC2A611EA1DF7004DFF93 /* CategoryListView.xib in Resources */,
+				3E3EC2A711EA1DF7004DFF93 /* EditMemoView.xib in Resources */,
+				3E3EC2A811EA1DF7004DFF93 /* ExportView.xib in Resources */,
+				3E3EC2A911EA1DF7004DFF93 /* Localizable.strings in Resources */,
+				3E3EC2AA11EA1DF7004DFF93 /* PinView.xib in Resources */,
+				3E3EC2AB11EA1DF7004DFF93 /* config.png in Resources */,
+				3E3EC2AC11EA1DF7004DFF93 /* EditTypeView.xib in Resources */,
+				3E3EC2AD11EA1DF7004DFF93 /* GenSelectListView.xib in Resources */,
+				3E3EC2AE11EA1DF7004DFF93 /* CalculatorView.xib in Resources */,
+				3E3EC2AF11EA1DF7004DFF93 /* ConfigView.xib in Resources */,
+				3E3EC2B011EA1DF7004DFF93 /* MainWindow-iPad.xib in Resources */,
+				3E3EC2B111EA1DF7004DFF93 /* AssetListView-ipad.xib in Resources */,
+				3E3EC2B211EA1DF7004DFF93 /* PinView-ipad.xib in Resources */,
+				3E3EC2B311EA1DF7004DFF93 /* Default-Landscape.png in Resources */,
+				3E3EC2B411EA1DF7004DFF93 /* Default-Portrait.png in Resources */,
+				3E3EC2B511EA1DF7004DFF93 /* icon-ipad.png in Resources */,
+				3E3EC2B611EA1DF7004DFF93 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1280,50 +1289,56 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		3E4AFFC4119EEFB800FF1A20 /* Sources */ = {
+		3E3EC2B711EA1DF7004DFF93 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4AFFC5119EEFB800FF1A20 /* main.m in Sources */,
-				3E4AFFC6119EEFB800FF1A20 /* Transaction.m in Sources */,
-				3E4AFFC7119EEFB800FF1A20 /* DataModel.m in Sources */,
-				3E4AFFC8119EEFB800FF1A20 /* EditDateVC.m in Sources */,
-				3E4AFFC9119EEFB800FF1A20 /* EditDescVC.m in Sources */,
-				3E4AFFCA119EEFB800FF1A20 /* TransactionVC.m in Sources */,
-				3E4AFFCB119EEFB800FF1A20 /* InfoVC.m in Sources */,
-				3E4AFFCC119EEFB800FF1A20 /* ExportVC.m in Sources */,
-				3E4AFFCD119EEFB800FF1A20 /* ExportServer.m in Sources */,
-				3E4AFFCE119EEFB800FF1A20 /* ExportBase.m in Sources */,
-				3E4AFFCF119EEFB800FF1A20 /* ExportCsv.m in Sources */,
-				3E4AFFD0119EEFB800FF1A20 /* ExportOfx.m in Sources */,
-				3E4AFFD1119EEFB800FF1A20 /* Report.m in Sources */,
-				3E4AFFD2119EEFB800FF1A20 /* ReportVC.m in Sources */,
-				3E4AFFD4119EEFB800FF1A20 /* AppDelegate.m in Sources */,
-				3E4AFFD5119EEFB800FF1A20 /* Asset.m in Sources */,
-				3E4AFFD6119EEFB800FF1A20 /* TransactionListVC.m in Sources */,
-				3E4AFFD7119EEFB800FF1A20 /* AssetListVC.m in Sources */,
-				3E4AFFD8119EEFB800FF1A20 /* AssetVC.m in Sources */,
-				3E4AFFD9119EEFB800FF1A20 /* GenEditTextVC.m in Sources */,
-				3E4AFFDA119EEFB800FF1A20 /* Category.m in Sources */,
-				3E4AFFDB119EEFB800FF1A20 /* CategoryListVC.m in Sources */,
-				3E4AFFDC119EEFB800FF1A20 /* ReportCatVC.m in Sources */,
-				3E4AFFDD119EEFB800FF1A20 /* EditMemoVC.m in Sources */,
-				3E4AFFDE119EEFB800FF1A20 /* WebServer.m in Sources */,
-				3E4AFFDF119EEFB800FF1A20 /* BackupServer.m in Sources */,
-				3E4AFFE0119EEFB800FF1A20 /* Pin.m in Sources */,
-				3E4AFFE1119EEFB800FF1A20 /* PinVC.m in Sources */,
-				3E4AFFE2119EEFB800FF1A20 /* DateFormatter2.m in Sources */,
-				3E4AFFE3119EEFB800FF1A20 /* EditTypeVC.m in Sources */,
-				3E4AFFE4119EEFB800FF1A20 /* AssetEntry.m in Sources */,
-				3E4AFFE5119EEFB800FF1A20 /* Journal.m in Sources */,
-				3E4AFFE6119EEFB800FF1A20 /* Ledger.m in Sources */,
-				3E4AFFE7119EEFB800FF1A20 /* GenSelectListVC.m in Sources */,
-				3E4AFFE8119EEFB800FF1A20 /* ReportCatCell.m in Sources */,
-				3E4AFFE9119EEFB800FF1A20 /* ReportCell.m in Sources */,
-				3E4AFFEA119EEFB800FF1A20 /* CalcVC.m in Sources */,
-				3E4AFFEB119EEFB800FF1A20 /* Config.m in Sources */,
-				3E4AFFEC119EEFB800FF1A20 /* ConfigViewController.m in Sources */,
-				3E4AFFED119EEFB800FF1A20 /* Backup.m in Sources */,
+				3E3EC2B811EA1DF7004DFF93 /* main.m in Sources */,
+				3E3EC2B911EA1DF7004DFF93 /* Transaction.m in Sources */,
+				3E3EC2BA11EA1DF7004DFF93 /* DataModel.m in Sources */,
+				3E3EC2BB11EA1DF7004DFF93 /* EditDateVC.m in Sources */,
+				3E3EC2BC11EA1DF7004DFF93 /* EditDescVC.m in Sources */,
+				3E3EC2BD11EA1DF7004DFF93 /* TransactionVC.m in Sources */,
+				3E3EC2BE11EA1DF7004DFF93 /* InfoVC.m in Sources */,
+				3E3EC2BF11EA1DF7004DFF93 /* ExportVC.m in Sources */,
+				3E3EC2C011EA1DF7004DFF93 /* ExportServer.m in Sources */,
+				3E3EC2C111EA1DF7004DFF93 /* ExportBase.m in Sources */,
+				3E3EC2C211EA1DF7004DFF93 /* ExportCsv.m in Sources */,
+				3E3EC2C311EA1DF7004DFF93 /* ExportOfx.m in Sources */,
+				3E3EC2C411EA1DF7004DFF93 /* Report.m in Sources */,
+				3E3EC2C511EA1DF7004DFF93 /* ReportVC.m in Sources */,
+				3E3EC2C611EA1DF7004DFF93 /* AppDelegate.m in Sources */,
+				3E3EC2C711EA1DF7004DFF93 /* Asset.m in Sources */,
+				3E3EC2C811EA1DF7004DFF93 /* TransactionListVC.m in Sources */,
+				3E3EC2C911EA1DF7004DFF93 /* AssetListVC.m in Sources */,
+				3E3EC2CA11EA1DF7004DFF93 /* AssetVC.m in Sources */,
+				3E3EC2CB11EA1DF7004DFF93 /* GenEditTextVC.m in Sources */,
+				3E3EC2CC11EA1DF7004DFF93 /* Category.m in Sources */,
+				3E3EC2CD11EA1DF7004DFF93 /* CategoryListVC.m in Sources */,
+				3E3EC2CE11EA1DF7004DFF93 /* ReportCatVC.m in Sources */,
+				3E3EC2CF11EA1DF7004DFF93 /* EditMemoVC.m in Sources */,
+				3E3EC2D011EA1DF7004DFF93 /* WebServer.m in Sources */,
+				3E3EC2D111EA1DF7004DFF93 /* BackupServer.m in Sources */,
+				3E3EC2D211EA1DF7004DFF93 /* Pin.m in Sources */,
+				3E3EC2D311EA1DF7004DFF93 /* PinVC.m in Sources */,
+				3E3EC2D411EA1DF7004DFF93 /* DateFormatter2.m in Sources */,
+				3E3EC2D511EA1DF7004DFF93 /* EditTypeVC.m in Sources */,
+				3E3EC2D611EA1DF7004DFF93 /* AssetEntry.m in Sources */,
+				3E3EC2D711EA1DF7004DFF93 /* Journal.m in Sources */,
+				3E3EC2D811EA1DF7004DFF93 /* Ledger.m in Sources */,
+				3E3EC2D911EA1DF7004DFF93 /* GenSelectListVC.m in Sources */,
+				3E3EC2DA11EA1DF7004DFF93 /* ReportCatCell.m in Sources */,
+				3E3EC2DB11EA1DF7004DFF93 /* ReportCell.m in Sources */,
+				3E3EC2DC11EA1DF7004DFF93 /* CalcVC.m in Sources */,
+				3E3EC2DD11EA1DF7004DFF93 /* Config.m in Sources */,
+				3E3EC2DE11EA1DF7004DFF93 /* ConfigViewController.m in Sources */,
+				3E3EC2DF11EA1DF7004DFF93 /* Backup.m in Sources */,
+				3E3EC2E011EA1DF7004DFF93 /* CurrencyManager.m in Sources */,
+				3E3EC2E111EA1DF7004DFF93 /* AssetBase.m in Sources */,
+				3E3EC2E211EA1DF7004DFF93 /* CategoryBase.m in Sources */,
+				3E3EC2E311EA1DF7004DFF93 /* Database.m in Sources */,
+				3E3EC2E411EA1DF7004DFF93 /* ORRecord.m in Sources */,
+				3E3EC2E511EA1DF7004DFF93 /* TransactionBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,63 +1442,64 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E4A001E119EF13F00FF1A20 /* Transaction.m in Sources */,
-				3E4A001F119EF13F00FF1A20 /* DataModel.m in Sources */,
-				3E4A0020119EF13F00FF1A20 /* EditDateVC.m in Sources */,
-				3E4A0021119EF13F00FF1A20 /* EditDescVC.m in Sources */,
-				3E4A0022119EF13F00FF1A20 /* TransactionVC.m in Sources */,
-				3E4A0023119EF13F00FF1A20 /* InfoVC.m in Sources */,
-				3E4A0024119EF13F00FF1A20 /* ExportVC.m in Sources */,
-				3E4A0025119EF13F00FF1A20 /* ExportServer.m in Sources */,
-				3E4A0026119EF13F00FF1A20 /* ExportBase.m in Sources */,
-				3E4A0027119EF13F00FF1A20 /* ExportCsv.m in Sources */,
-				3E4A0028119EF13F00FF1A20 /* ExportOfx.m in Sources */,
-				3E4A0029119EF13F00FF1A20 /* Report.m in Sources */,
-				3E4A002A119EF13F00FF1A20 /* ReportVC.m in Sources */,
-				3E4A002C119EF13F00FF1A20 /* AppDelegate.m in Sources */,
-				3E4A002D119EF13F00FF1A20 /* Asset.m in Sources */,
-				3E4A002E119EF13F00FF1A20 /* TransactionListVC.m in Sources */,
-				3E4A002F119EF13F00FF1A20 /* AssetListVC.m in Sources */,
-				3E4A0030119EF13F00FF1A20 /* AssetVC.m in Sources */,
-				3E4A0031119EF13F00FF1A20 /* GenEditTextVC.m in Sources */,
-				3E4A0032119EF13F00FF1A20 /* Category.m in Sources */,
-				3E4A0033119EF13F00FF1A20 /* CategoryListVC.m in Sources */,
-				3E4A0034119EF13F00FF1A20 /* ReportCatVC.m in Sources */,
-				3E4A0035119EF13F00FF1A20 /* EditMemoVC.m in Sources */,
-				3E4A0036119EF13F00FF1A20 /* WebServer.m in Sources */,
-				3E4A0037119EF13F00FF1A20 /* BackupServer.m in Sources */,
-				3E4A0038119EF13F00FF1A20 /* Pin.m in Sources */,
-				3E4A0039119EF13F00FF1A20 /* PinVC.m in Sources */,
-				3E4A003A119EF13F00FF1A20 /* DateFormatter2.m in Sources */,
-				3E4A003B119EF13F00FF1A20 /* EditTypeVC.m in Sources */,
-				3E4A003C119EF13F00FF1A20 /* AssetEntry.m in Sources */,
-				3E4A003D119EF13F00FF1A20 /* Journal.m in Sources */,
-				3E4A003E119EF13F00FF1A20 /* Ledger.m in Sources */,
-				3E4A003F119EF13F00FF1A20 /* GenSelectListVC.m in Sources */,
-				3E4A0040119EF13F00FF1A20 /* ReportCatCell.m in Sources */,
-				3E4A0041119EF13F00FF1A20 /* ReportCell.m in Sources */,
-				3E4A0042119EF13F00FF1A20 /* CalcVC.m in Sources */,
-				3E4A0043119EF13F00FF1A20 /* Config.m in Sources */,
-				3E4A0044119EF13F00FF1A20 /* ConfigViewController.m in Sources */,
-				3E4A0045119EF13F00FF1A20 /* Backup.m in Sources */,
-				3ED1C4FA119EEBF00030B0B2 /* AppTests.m in Sources */,
-				3E4A0019119EF12C00FF1A20 /* TestCommon.m in Sources */,
-				3E4A0013119EF11300FF1A20 /* AssetListVCTests.m in Sources */,
-				3ECEF45211E9D96F00738E69 /* TransactionBase.m in Sources */,
-				3ECEF45411E9D97700738E69 /* ORRecord.m in Sources */,
-				3ECEF45611E9D97E00738E69 /* Database.m in Sources */,
-				3ECEF45811E9D98400738E69 /* CategoryBase.m in Sources */,
-				3ECEF45A11E9D98A00738E69 /* AssetBase.m in Sources */,
+				3E3EC22311EA1C84004DFF93 /* Transaction.m in Sources */,
+				3E3EC22411EA1C84004DFF93 /* DataModel.m in Sources */,
+				3E3EC22511EA1C84004DFF93 /* EditDateVC.m in Sources */,
+				3E3EC22611EA1C84004DFF93 /* EditDescVC.m in Sources */,
+				3E3EC22711EA1C84004DFF93 /* TransactionVC.m in Sources */,
+				3E3EC22811EA1C84004DFF93 /* InfoVC.m in Sources */,
+				3E3EC22911EA1C84004DFF93 /* ExportVC.m in Sources */,
+				3E3EC22A11EA1C84004DFF93 /* ExportServer.m in Sources */,
+				3E3EC22B11EA1C84004DFF93 /* ExportBase.m in Sources */,
+				3E3EC22C11EA1C84004DFF93 /* ExportCsv.m in Sources */,
+				3E3EC22D11EA1C84004DFF93 /* ExportOfx.m in Sources */,
+				3E3EC22E11EA1C84004DFF93 /* Report.m in Sources */,
+				3E3EC22F11EA1C84004DFF93 /* ReportVC.m in Sources */,
+				3E3EC23011EA1C84004DFF93 /* AppDelegate.m in Sources */,
+				3E3EC23111EA1C84004DFF93 /* Asset.m in Sources */,
+				3E3EC23211EA1C84004DFF93 /* TransactionListVC.m in Sources */,
+				3E3EC23311EA1C84004DFF93 /* AssetListVC.m in Sources */,
+				3E3EC23411EA1C84004DFF93 /* AssetVC.m in Sources */,
+				3E3EC23511EA1C84004DFF93 /* GenEditTextVC.m in Sources */,
+				3E3EC23611EA1C84004DFF93 /* Category.m in Sources */,
+				3E3EC23711EA1C84004DFF93 /* CategoryListVC.m in Sources */,
+				3E3EC23811EA1C84004DFF93 /* ReportCatVC.m in Sources */,
+				3E3EC23911EA1C84004DFF93 /* EditMemoVC.m in Sources */,
+				3E3EC23A11EA1C84004DFF93 /* WebServer.m in Sources */,
+				3E3EC23B11EA1C84004DFF93 /* BackupServer.m in Sources */,
+				3E3EC23C11EA1C84004DFF93 /* Pin.m in Sources */,
+				3E3EC23D11EA1C84004DFF93 /* PinVC.m in Sources */,
+				3E3EC23E11EA1C84004DFF93 /* DateFormatter2.m in Sources */,
+				3E3EC23F11EA1C84004DFF93 /* EditTypeVC.m in Sources */,
+				3E3EC24011EA1C84004DFF93 /* AssetEntry.m in Sources */,
+				3E3EC24111EA1C84004DFF93 /* Journal.m in Sources */,
+				3E3EC24211EA1C84004DFF93 /* Ledger.m in Sources */,
+				3E3EC24311EA1C84004DFF93 /* GenSelectListVC.m in Sources */,
+				3E3EC24411EA1C84004DFF93 /* ReportCatCell.m in Sources */,
+				3E3EC24511EA1C84004DFF93 /* ReportCell.m in Sources */,
+				3E3EC24611EA1C84004DFF93 /* CalcVC.m in Sources */,
+				3E3EC24711EA1C84004DFF93 /* Config.m in Sources */,
+				3E3EC24811EA1C84004DFF93 /* ConfigViewController.m in Sources */,
+				3E3EC24911EA1C84004DFF93 /* Backup.m in Sources */,
+				3E3EC24A11EA1C84004DFF93 /* AssetBase.m in Sources */,
+				3E3EC24B11EA1C84004DFF93 /* CategoryBase.m in Sources */,
+				3E3EC24C11EA1C84004DFF93 /* Database.m in Sources */,
+				3E3EC24D11EA1C84004DFF93 /* ORRecord.m in Sources */,
+				3E3EC24E11EA1C84004DFF93 /* TransactionBase.m in Sources */,
+				3E3EC24F11EA1C84004DFF93 /* CurrencyManager.m in Sources */,
+				3E3EC1D711EA1BA8004DFF93 /* AppTests.m in Sources */,
+				3E3EC1D811EA1BAE004DFF93 /* AssetListVCTests.m in Sources */,
+				3E3EC1DD11EA1BCF004DFF93 /* TestCommon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		3E4A0002119EEFCF00FF1A20 /* PBXTargetDependency */ = {
+		3E3EC2FA11EA1E09004DFF93 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 3EB4FBB9119D70AC001C3EEB /* AppTests */;
-			targetProxy = 3E4A0001119EEFCF00FF1A20 /* PBXContainerItemProxy */;
+			targetProxy = 3E3EC2F911EA1E09004DFF93 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1552,6 +1568,95 @@
 			};
 			name = Release;
 		};
+		3E3EC2F211EA1DF7004DFF93 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_RESOURCE_RULES_PATH = "";
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E3EC2F311EA1DF7004DFF93 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		3E3EC2F411EA1DF7004DFF93 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Distribution;
+		};
+		3E3EC2F511EA1DF7004DFF93 /* Ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				COPY_PHASE_STRIP = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
+				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_NAME = CashFlow;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				SDKROOT = iphoneos4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = "Ad hoc distribution";
+		};
 		3E4181BE0E76CDC300F0B14C /* Distribution */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1590,95 +1695,6 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
-		};
-		3E4AFFFA119EEFB800FF1A20 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_RESOURCE_RULES_PATH = "";
-				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3E4AFFFB119EEFB800FF1A20 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		3E4AFFFC119EEFB800FF1A20 /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Distribution;
-		};
-		3E4AFFFD119EEFB800FF1A20 /* Ad hoc distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_UNIVERSAL_IPHONE_OS)";
-				CODE_SIGN_ENTITLEMENTS = Entitlements.plist;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = CashFlow_Prefix.pch;
-				INFOPLIST_FILE = "CashFlowTesting-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				ONLY_ACTIVE_ARCH = NO;
-				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_NAME = CashFlow;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos3.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = "Ad hoc distribution";
 		};
 		3E4DA8AB0EAB6CAE001FBB70 /* Ad hoc distribution */ = {
 			isa = XCBuildConfiguration;
@@ -2102,13 +2118,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3E4AFFF9119EEFB800FF1A20 /* Build configuration list for PBXNativeTarget "CashFlowTesting" */ = {
+		3E3EC2F111EA1DF7004DFF93 /* Build configuration list for PBXNativeTarget "CashFlowTesting" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				3E4AFFFA119EEFB800FF1A20 /* Debug */,
-				3E4AFFFB119EEFB800FF1A20 /* Release */,
-				3E4AFFFC119EEFB800FF1A20 /* Distribution */,
-				3E4AFFFD119EEFB800FF1A20 /* Ad hoc distribution */,
+				3E3EC2F211EA1DF7004DFF93 /* Debug */,
+				3E3EC2F311EA1DF7004DFF93 /* Release */,
+				3E3EC2F411EA1DF7004DFF93 /* Distribution */,
+				3E3EC2F511EA1DF7004DFF93 /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
