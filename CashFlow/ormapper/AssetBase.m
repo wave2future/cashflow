@@ -54,9 +54,9 @@
 
     NSString *sql;
     if (cond == nil) {
-        sql = @"SELECT * FROM Assets:AssetBase;";
+        sql = @"SELECT * FROM Assets;";
     } else {
-        sql = [NSString stringWithFormat:@"SELECT * FROM Assets:AssetBase %@;", cond];
+        sql = [NSString stringWithFormat:@"SELECT * FROM Assets %@;", cond];
     }  
 
     stmt = [db prepare:sql];
@@ -78,7 +78,7 @@
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"SELECT * FROM Assets:AssetBase WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"SELECT * FROM Assets WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
     if ([stmt step] != SQLITE_ROW) {
         return nil;
@@ -103,7 +103,7 @@
 
 + (NSString *)tableName
 {
-    return @"Assets:AssetBase";
+    return @"Assets";
 }
 
 - (void)insert
@@ -114,7 +114,7 @@
     dbstmt *stmt;
     
     [db beginTransaction];
-    stmt = [db prepare:@"INSERT INTO Assets:AssetBase VALUES(NULL,?,?,?,?);"];
+    stmt = [db prepare:@"INSERT INTO Assets VALUES(NULL,?,?,?,?);"];
 
     [stmt bindString:0 val:name];
     [stmt bindInt:1 val:type];
@@ -135,7 +135,7 @@
     Database *db = [Database instance];
     [db beginTransaction];
 
-    dbstmt *stmt = [db prepare:@"UPDATE Assets:AssetBase SET "
+    dbstmt *stmt = [db prepare:@"UPDATE Assets SET "
         "name = ?"
         ",type = ?"
         ",initialBalance = ?"
@@ -158,7 +158,7 @@
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"DELETE FROM Assets:AssetBase WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"DELETE FROM Assets WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
     [stmt step];
 }
@@ -173,7 +173,7 @@
     if (cond == nil) {
         cond = @"";
     }
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Assets:AssetBase %@;", cond];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Assets %@;", cond];
     [db exec:sql];
 }
 

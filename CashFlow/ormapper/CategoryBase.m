@@ -50,9 +50,9 @@
 
     NSString *sql;
     if (cond == nil) {
-        sql = @"SELECT * FROM Categories:CategoryBase;";
+        sql = @"SELECT * FROM Categories;";
     } else {
-        sql = [NSString stringWithFormat:@"SELECT * FROM Categories:CategoryBase %@;", cond];
+        sql = [NSString stringWithFormat:@"SELECT * FROM Categories %@;", cond];
     }  
 
     stmt = [db prepare:sql];
@@ -74,7 +74,7 @@
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"SELECT * FROM Categories:CategoryBase WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"SELECT * FROM Categories WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
     if ([stmt step] != SQLITE_ROW) {
         return nil;
@@ -97,7 +97,7 @@
 
 + (NSString *)tableName
 {
-    return @"Categories:CategoryBase";
+    return @"Categories";
 }
 
 - (void)insert
@@ -108,7 +108,7 @@
     dbstmt *stmt;
     
     [db beginTransaction];
-    stmt = [db prepare:@"INSERT INTO Categories:CategoryBase VALUES(NULL,?,?);"];
+    stmt = [db prepare:@"INSERT INTO Categories VALUES(NULL,?,?);"];
 
     [stmt bindString:0 val:name];
     [stmt bindInt:1 val:sorder];
@@ -127,7 +127,7 @@
     Database *db = [Database instance];
     [db beginTransaction];
 
-    dbstmt *stmt = [db prepare:@"UPDATE Categories:CategoryBase SET "
+    dbstmt *stmt = [db prepare:@"UPDATE Categories SET "
         "name = ?"
         ",sorder = ?"
         " WHERE key = ?;"];
@@ -146,7 +146,7 @@
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"DELETE FROM Categories:CategoryBase WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"DELETE FROM Categories WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
     [stmt step];
 }
@@ -161,7 +161,7 @@
     if (cond == nil) {
         cond = @"";
     }
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Categories:CategoryBase %@;", cond];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Categories %@;", cond];
     [db exec:sql];
 }
 

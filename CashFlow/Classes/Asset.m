@@ -40,19 +40,12 @@
 
 @implementation Asset
 
-@synthesize pkey, type, name, sorder;
-@synthesize initialBalance;
-
 - (id)init
 {
     [super init];
 
-    pkey = 1; // とりあえず
-
-    initialBalance = 0.0;
     entries = [[NSMutableArray alloc] init];
     type = ASSET_CASH;
-    self.name = @"";
 	
     return self;
 }
@@ -60,8 +53,6 @@
 - (void)dealloc 
 {
     [entries release];
-    [name release];
-
     [super dealloc];
 }
 

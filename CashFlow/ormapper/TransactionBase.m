@@ -64,9 +64,9 @@
 
     NSString *sql;
     if (cond == nil) {
-        sql = @"SELECT * FROM Transactions:TransactionBase;";
+        sql = @"SELECT * FROM Transactions;";
     } else {
-        sql = [NSString stringWithFormat:@"SELECT * FROM Transactions:TransactionBase %@;", cond];
+        sql = [NSString stringWithFormat:@"SELECT * FROM Transactions %@;", cond];
     }  
 
     stmt = [db prepare:sql];
@@ -88,7 +88,7 @@
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"SELECT * FROM Transactions:TransactionBase WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"SELECT * FROM Transactions WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
     if ([stmt step] != SQLITE_ROW) {
         return nil;
@@ -117,7 +117,7 @@
 
 + (NSString *)tableName
 {
-    return @"Transactions:TransactionBase";
+    return @"Transactions";
 }
 
 - (void)insert
@@ -128,7 +128,7 @@
     dbstmt *stmt;
     
     [db beginTransaction];
-    stmt = [db prepare:@"INSERT INTO Transactions:TransactionBase VALUES(NULL,?,?,?,?,?,?,?,?);"];
+    stmt = [db prepare:@"INSERT INTO Transactions VALUES(NULL,?,?,?,?,?,?,?,?);"];
 
     [stmt bindInt:0 val:asset];
     [stmt bindInt:1 val:dst_asset];
@@ -153,7 +153,7 @@
     Database *db = [Database instance];
     [db beginTransaction];
 
-    dbstmt *stmt = [db prepare:@"UPDATE Transactions:TransactionBase SET "
+    dbstmt *stmt = [db prepare:@"UPDATE Transactions SET "
         "asset = ?"
         ",dst_asset = ?"
         ",date = ?"
@@ -184,7 +184,7 @@
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"DELETE FROM Transactions:TransactionBase WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"DELETE FROM Transactions WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
     [stmt step];
 }
@@ -199,7 +199,7 @@
     if (cond == nil) {
         cond = @"";
     }
-    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Transactions:TransactionBase %@;", cond];
+    NSString *sql = [NSString stringWithFormat:@"DELETE FROM Transactions %@;", cond];
     [db exec:sql];
 }
 
