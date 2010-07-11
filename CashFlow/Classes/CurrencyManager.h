@@ -8,8 +8,6 @@
     NSArray *currencies;
 
     NSNumberFormatter *numberFormatter;
-    //NSNumberFormatter *numberFormatterWithFraction;
-    //NSNumberFormatter *numberFormatterWithoutFraction;
 }
 
 @property(nonatomic,retain) NSString *baseCurrency;
@@ -17,7 +15,12 @@
 
 + (CurrencyManager *)instance;
 
-- (NSString *)formatCurrencyString:(double)value;
++ (NSString *)systemCurrency;
++ (NSString *)formatCurrency:(double)value;
+
+// private
+- (NSString *)_formatCurrency:(double)value;
+
 
 @end
 

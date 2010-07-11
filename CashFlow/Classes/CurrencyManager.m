@@ -27,20 +27,6 @@
     [nf setLocale:[NSLocale currentLocale]];
     numberFormatter = nf;
 
-#if 0
-    nf = [[NSNumberFormatter alloc] init];
-    [nf setMinimumFractionDigits:2];
-    [nf setMaximumFractionDigits:2];
-    [nf setMinimumIntegerDigits:1];
-    numberFormatterWithFraction = nf;
-
-    nf = [[NSNumberFormatter alloc] init];
-    [nf setMinimumFractionDigits:0];
-    [nf setMaximumFractionDigits:0];
-    [nf setMinimumIntegerDigits:1];
-    numberFormatterWithoutFraction = nf;
-#endif
-    
     self.currencies =
         [NSArray arrayWithObjects:
          @"AED",
@@ -94,6 +80,13 @@
     return self;
 }
 
++ (NSString *)systemCurrency
+{
+    NSNumberFormatter *nf = [[[NSNumberFormatter alloc] init] autorelease];
+    [nf setNumberStyle:NSNumberFormatterCurrencyStyle];
+    return [nf currencyCode];
+}
+
 - (void)setBaseCurrency:(NSString *)currency
 {
     if (baseCurrency != currency) {
@@ -102,9 +95,7 @@
         [baseCurrency retain];
         
         if (currency == nil) {
-            NSNumberFormatter *tmp = [[[NSNumberFormatter alloc] init] autorelease];
-            [tmp setNumberStyle:NSNumberFormatterCurrencyStyle];
-            currency = [tmp currencyCode];
+            currency = [CurrencyManager systemCurrency];
         }
         [numberFormatter setCurrencyCode:currency];
         
@@ -112,50 +103,15 @@
     }
 }
 
-- (NSString *)formatCurrencyString:(double)value
++ (NSString *)formatCurrency:(double)value
 {
-    //BOOL withFraction = YES;
-    //NSString *symbol = nil;
+    return [[CurrencyManager instance] _formatCurrency:value];
+}
 
+- (NSString *)_formatCurrency:(double)value
+{
     NSNumber *n = [NSNumber numberWithDouble:value];
-
     return [numberFormatter stringFromNumber:n];
-    
-#if 0
-    if (baseCurrency == nil) {
-        return [numberFormatterSystem stringFromNumber:n];
-    }
-
-    if ([baseCurrency isEqual:@"USD"]) {
-        symbol = @"$";
-    }
-    else if ([baseCurrency isEqual:@"EUR"]) {
-        symbol = @"€";
-    }
-    else if ([baseCurrency isEqual:@"JPY"]) {
-        symbol = @"¥";
-        withFraction = NO;
-    }
-    else if ([baseCurrency isEqual:@"GBP"]) {
-        symbol = @"£";
-    }
-
-    NSNumberFormatter *numFormatter;
-    if (withFraction) {
-        numFormatter = numberFormatterWithFraction;
-    } else {
-        numFormatter = numberFormatterWithoutFraction;
-    }
-    NSString *number = [numFormatter stringFromNumber:n];
-
-    NSString *fmted;
-    if (symbol != nil) {
-        fmted = [NSString stringWithFormat:@"%@%@", symbol, number];
-    } else {
-        fmted = [NSString stringWithFormat:@"%@ %@", number, baseCurrency];
-    }
-    return fmted;
-#endif
 }
 
 @end

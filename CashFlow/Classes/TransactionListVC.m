@@ -170,7 +170,7 @@
 - (void)updateBalance
 {
     double lastBalance = [asset lastBalance];
-    NSString *bstr = [[CurrencyManager instance] formatCurrencyString:lastBalance];
+    NSString *bstr = [CurrencyManager formatCurrency:lastBalance];
 
 #if 0
     UILabel *tableTitle = (UILabel *)[self.tableView tableHeaderView];
@@ -364,9 +364,9 @@
         v = -v;
         valueLabel.textColor = [UIColor redColor];
     }
-    valueLabel.text = [[CurrencyManager instance] formatCurrencyString:v];
+    valueLabel.text = [CurrencyManager formatCurrency:v];
     balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                         [[CurrencyManager instance] formatCurrencyString:e.balance]];
+                         [CurrencyManager formatCurrency:e.balance]];
 	
     return cell;
 }
@@ -402,7 +402,7 @@
     }
 
     balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                                  [[CurrencyManager instance] formatCurrencyString:asset.initialBalance]];
+                                  [CurrencyManager formatCurrency:asset.initialBalance]];
 
     return cell;
 }

@@ -237,7 +237,7 @@
     }
     
     cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", label,
-                          [[CurrencyManager instance] formatCurrencyString:value]];
+                          [CurrencyManager formatCurrency:value]];
     if (value >= 0) {
         cell.textLabel.textColor = [UIColor blackColor];
     } else {

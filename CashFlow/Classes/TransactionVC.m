@@ -233,7 +233,7 @@
     case ROW_VALUE:
         name.text = NSLocalizedString(@"Amount", @"");
         evalue = editingEntry.evalue;
-        value.text = [[CurrencyManager instance] formatCurrencyString:evalue];
+        value.text = [CurrencyManager formatCurrency:evalue];
         break;
 		
     case ROW_DESC:
