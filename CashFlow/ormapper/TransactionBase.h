@@ -25,6 +25,7 @@
 
 + (BOOL)migrate;
 
++ (id)allocator;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (TransactionBase *)find:(int)pid;
 - (void)delete;

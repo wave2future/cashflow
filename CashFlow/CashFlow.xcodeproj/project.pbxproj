@@ -318,14 +318,12 @@
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECEF32B11E9C64E00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
 		3ECEF32C11E9C64E00738E69 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31F11E9C64E00738E69 /* Assets.m */; };
-		3ECEF32D11E9C64E00738E69 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32111E9C64E00738E69 /* Categories.m */; };
 		3ECEF32E11E9C64E00738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
 		3ECEF32F11E9C64E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
 		3ECEF33111E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
 		3ECEF33211E9C64E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
 		3ECEF33311E9C64E00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
 		3ECEF33411E9C64E00738E69 /* Assets.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31F11E9C64E00738E69 /* Assets.m */; };
-		3ECEF33511E9C64E00738E69 /* Categories.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32111E9C64E00738E69 /* Categories.m */; };
 		3ECEF33611E9C64E00738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
 		3ECEF33711E9C64E00738E69 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32511E9C64E00738E69 /* Database.m */; };
 		3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
@@ -506,8 +504,6 @@
 		3ECEF31D11E9C64E00738E69 /* AssetBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetBase.m; sourceTree = "<group>"; };
 		3ECEF31E11E9C64E00738E69 /* Assets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Assets.h; sourceTree = "<group>"; };
 		3ECEF31F11E9C64E00738E69 /* Assets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Assets.m; sourceTree = "<group>"; };
-		3ECEF32011E9C64E00738E69 /* Categories.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Categories.h; sourceTree = "<group>"; };
-		3ECEF32111E9C64E00738E69 /* Categories.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Categories.m; sourceTree = "<group>"; };
 		3ECEF32211E9C64E00738E69 /* CategoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBase.h; sourceTree = "<group>"; };
 		3ECEF32311E9C64E00738E69 /* CategoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBase.m; sourceTree = "<group>"; };
 		3ECEF32411E9C64E00738E69 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
@@ -892,8 +888,6 @@
 				3ECEF31D11E9C64E00738E69 /* AssetBase.m */,
 				3ECEF31E11E9C64E00738E69 /* Assets.h */,
 				3ECEF31F11E9C64E00738E69 /* Assets.m */,
-				3ECEF32011E9C64E00738E69 /* Categories.h */,
-				3ECEF32111E9C64E00738E69 /* Categories.m */,
 				3ECEF32211E9C64E00738E69 /* CategoryBase.h */,
 				3ECEF32311E9C64E00738E69 /* CategoryBase.m */,
 				3ECEF32411E9C64E00738E69 /* Database.h */,
@@ -1276,7 +1270,6 @@
 				3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */,
 				3ECEF33311E9C64E00738E69 /* AssetBase.m in Sources */,
 				3ECEF33411E9C64E00738E69 /* Assets.m in Sources */,
-				3ECEF33511E9C64E00738E69 /* Categories.m in Sources */,
 				3ECEF33611E9C64E00738E69 /* CategoryBase.m in Sources */,
 				3ECEF33711E9C64E00738E69 /* Database.m in Sources */,
 				3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */,
@@ -1379,7 +1372,6 @@
 				3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */,
 				3ECEF32B11E9C64E00738E69 /* AssetBase.m in Sources */,
 				3ECEF32C11E9C64E00738E69 /* Assets.m in Sources */,
-				3ECEF32D11E9C64E00738E69 /* Categories.m in Sources */,
 				3ECEF32E11E9C64E00738E69 /* CategoryBase.m in Sources */,
 				3ECEF32F11E9C64E00738E69 /* Database.m in Sources */,
 				3ECEF33111E9C64E00738E69 /* ORRecord.m in Sources */,

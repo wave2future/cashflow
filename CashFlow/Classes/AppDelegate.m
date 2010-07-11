@@ -103,7 +103,6 @@
 }
 
 // データファイルのパスを取得
-#if 0
 + (NSString*)pathOfDataFile:(NSString*)filename
 {
     NSArray *paths = NSSearchPathForDirectoriesInDomains(
@@ -118,7 +117,6 @@
 
     return path;
 }
-#endif
 
 void AssertFailed(const char *filename, int lineno)
 {

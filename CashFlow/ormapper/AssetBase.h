@@ -17,6 +17,7 @@
 
 + (BOOL)migrate;
 
++ (id)allocator;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (AssetBase *)find:(int)pid;
 - (void)delete;

@@ -37,6 +37,15 @@
 }
 
 /**
+  @brief allocate entry
+*/
++ (id)allocator
+{
+    id e = [[CategoryBase alloc] init];
+    return e;
+}
+
+/**
   @brief get all records matche the conditions
 
   @param cond Conditions (WHERE phrase and so on)
@@ -57,7 +66,7 @@
 
     stmt = [db prepare:sql];
     while ([stmt step] == SQLITE_ROW) {
-        CategoryBase *e = [[[CategoryBase alloc] init] autorelease];
+        CategoryBase *e = [[self allocator] autorelease];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -80,7 +89,7 @@
         return nil;
     }
 
-    CategoryBase *e = [[[CategoryBase alloc] init] autorelease];
+    CategoryBase *e = [[self allocator] autorelease];
     [e _loadRow:stmt];
  
     return e;

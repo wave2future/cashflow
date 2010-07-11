@@ -51,6 +51,15 @@
 }
 
 /**
+  @brief allocate entry
+*/
++ (id)allocator
+{
+    id e = [[TransactionBase alloc] init];
+    return e;
+}
+
+/**
   @brief get all records matche the conditions
 
   @param cond Conditions (WHERE phrase and so on)
@@ -71,7 +80,7 @@
 
     stmt = [db prepare:sql];
     while ([stmt step] == SQLITE_ROW) {
-        TransactionBase *e = [[[TransactionBase alloc] init] autorelease];
+        TransactionBase *e = [[self allocator] autorelease];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -94,7 +103,7 @@
         return nil;
     }
 
-    TransactionBase *e = [[[TransactionBase alloc] init] autorelease];
+    TransactionBase *e = [[self allocator] autorelease];
     [e _loadRow:stmt];
  
     return e;

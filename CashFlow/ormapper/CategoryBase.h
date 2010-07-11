@@ -13,6 +13,7 @@
 
 + (BOOL)migrate;
 
++ (id)allocator;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (CategoryBase *)find:(int)pid;
 - (void)delete;
