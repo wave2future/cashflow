@@ -206,8 +206,11 @@
 //
 // Database operations
 //
-+ (void)createTable
++ (BOOL)migrate
 {
+    return [super migrate];
+
+#if 0
     Database *db = [Database instance];
 
     [db execSql:"CREATE TABLE Assets ("
@@ -222,6 +225,7 @@
                      "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
                      [NSLocalizedString(@"Cash", @"") UTF8String]);
     [db execSql:sql];
+#endif
 }
 
 
