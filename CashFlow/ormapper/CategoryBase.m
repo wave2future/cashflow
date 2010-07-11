@@ -53,18 +53,28 @@
 */
 + (NSMutableArray *)find_cond:(NSString *)cond
 {
-    NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
-    Database *db = [Database instance];
-    dbstmt *stmt;
-
     NSString *sql;
     if (cond == nil) {
         sql = @"SELECT * FROM Categories;";
     } else {
         sql = [NSString stringWithFormat:@"SELECT * FROM Categories %@;", cond];
     }  
+    dbstmt *stmt = [[Database instance] prepare:sql];
 
-    stmt = [db prepare:sql];
+    NSMutableArray *array = [self find_stmt:stmt];
+    return array;
+}
+
+/**
+  @brief get all records matche the conditions
+
+  @param stmt Statement
+  @return array of records
+*/
++ (NSMutableArray *)find_stmt:(dbstmt *)stmt
+{
+    NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
+
     while ([stmt step] == SQLITE_ROW) {
         CategoryBase *e = [[self allocator] autorelease];
         [e _loadRow:stmt];
