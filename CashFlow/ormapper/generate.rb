@@ -101,6 +101,7 @@ EOF
 
 + (BOOL)migrate;
 
++ (id)allocator;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (#{cdef.bcname} *)find:(int)pid;
 - (void)delete;
@@ -179,6 +180,15 @@ EOF
 }
 
 /**
+  @brief allocate entry
+*/
++ (id)allocator
+{
+    id e = [[#{cdef.bcname} alloc] init];
+    return e;
+}
+
+/**
   @brief get all records matche the conditions
 
   @param cond Conditions (WHERE phrase and so on)
@@ -199,7 +209,7 @@ EOF
 
     stmt = [db prepare:sql];
     while ([stmt step] == SQLITE_ROW) {
-        #{cdef.bcname} *e = [[[#{cdef.bcname} alloc] init] autorelease];
+        #{cdef.bcname} *e = [[self allocator] autorelease];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -222,7 +232,7 @@ EOF
         return nil;
     }
 
-    #{cdef.bcname} *e = [[[#{cdef.bcname} alloc] init] autorelease];
+    #{cdef.bcname} *e = [[self allocator] autorelease];
     [e _loadRow:stmt];
  
     return e;
