@@ -40,6 +40,11 @@
 
 @synthesize hasBalance, balance;
 
++ (id)allocator
+{
+    return [[Transaction alloc] init];
+}
+
 - (id)init
 {
     [super init];
@@ -104,26 +109,6 @@
     n.hasBalance = self.hasBalance;
     n.balance = self.balance;
     return n;
-}
-
-+ (NSMutableArray *)loadTransactions
-{
-    return [self find_cond:@"ORDER BY date, key"];
-}
-
-- (void)insertDb
-{
-    [self insert];
-}
-
-- (void)updateDb
-{
-    [self update];
-}
-
-- (void)deleteDb
-{
-    [self delete];
 }
 
 @end

@@ -36,6 +36,12 @@
 #import "AppDelegate.h"
 
 @implementation Category
+
++(id)allocator
+{
+    return [[Category alloc] init];
+}
+
 @end
 
 @implementation Categories
@@ -58,6 +64,7 @@
 {
     [categories release];
     categories = [Category find_cond:@"ORDER BY sorder"];
+    [categories retain];
 }
 
 -(int)categoryCount

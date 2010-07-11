@@ -40,6 +40,11 @@
 
 @implementation Asset
 
++ (id)allocator
+{
+    return [[Asset alloc] init];
+}
+
 - (id)init
 {
     [super init];
@@ -81,7 +86,7 @@
                 t.value = t.balance - balance;
                 if (t.value != oldval) {
                     // 金額が変更された場合、DBを更新
-                    [t updateDb];
+                    [t update];
                 }
                 balance = t.balance;
 

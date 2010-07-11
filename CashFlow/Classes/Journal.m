@@ -61,7 +61,7 @@
     if (entries) {
         [entries release];
     }
-    entries = [Transaction loadTransactions];
+    entries = [Transaction find_cond:@"ORDER BY date, key"];
     [entries retain];
 }
 
@@ -89,7 +89,7 @@
 
     // 挿入
     [entries insertObject:tr atIndex:i];
-    [tr insertDb];
+    [tr insert];
 
     // 上限チェック
     if ([entries count] > MAX_TRANSACTIONS) {
@@ -107,7 +107,7 @@
     to.pid = from.pid;
 
     // update DB
-    [to updateDb];
+    [to update];
 
     int idx = [entries indexOfObject:from];
     [entries replaceObjectAtIndex:idx withObject:to];
@@ -139,7 +139,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
     if (t.type != TYPE_TRANSFER) {
         // 資産間移動取引以外の場合
-        [t deleteDb];
+        [t delete];
         [entries removeObject:t];
         return YES;
     }
@@ -162,7 +162,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     }
 
     // データベース書き換え
-    [t updateDb];
+    [t update];
     return NO;
 }
 

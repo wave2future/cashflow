@@ -54,11 +54,6 @@
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 
 //+ (void)createTable;
-+ (NSMutableArray *)loadTransactions;
-
-- (void)insertDb;
-- (void)updateDb;
-- (void)deleteDb;
 //+ (void)deleteDbWithAsset:(int)assetKey;
 
 @end
