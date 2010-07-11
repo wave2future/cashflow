@@ -106,10 +106,7 @@
 
 - (void)updateInitialBalance
 {
-    DBStatement *stmt = [[Database instance] prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
-    [stmt bindDouble:0 val:initialBalance];
-    [stmt bindInt:1 val:pkey];
-    [stmt step];
+    [self update];
 }
 
 ////////////////////////////////////////////////////////////////////////////
