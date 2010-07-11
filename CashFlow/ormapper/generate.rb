@@ -38,6 +38,7 @@ $LOAD_PATH.push(File.expand_path(File.dirname($0)))
 require "schema.rb"
 
 VER = "0.1"
+PKEY = "key"
 
 def getObjcType(type)
     case type
@@ -226,7 +227,7 @@ EOF
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"SELECT * FROM #{cdef.name} WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"SELECT * FROM #{cdef.name} WHERE #{PKEY} = ?;"];
     [stmt bindInt:0 val:pid];
     if ([stmt step] != SQLITE_ROW) {
         return nil;
@@ -315,7 +316,7 @@ EOF
         fh.puts "#{m} = ?\""
     end
     
-    fh.puts "        \" WHERE key = ?;\"];"
+    fh.puts "        \" WHERE #{PKEY} = ?;\"];"
 
     i = 0
     cdef.members.each do |m|
@@ -337,7 +338,7 @@ EOF
 {
     Database *db = [Database instance];
 
-    dbstmt *stmt = [db prepare:@"DELETE FROM #{cdef.name} WHERE key = ?;"];
+    dbstmt *stmt = [db prepare:@"DELETE FROM #{cdef.name} WHERE #{PKEY} = ?;"];
     [stmt bindInt:0 val:pid];
     [stmt step];
 }

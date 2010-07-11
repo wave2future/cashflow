@@ -213,24 +213,18 @@
 //
 + (BOOL)migrate
 {
-    return [super migrate];
-
-#if 0
-    Database *db = [Database instance];
-
-    [db execSql:"CREATE TABLE Assets ("
-        "key INTEGER PRIMARY KEY,"
-        "name TEXT,"
-        "type INTEGER,"
-        "initialBalance REAL,"
-        "sorder INTEGER);"];
-
-    char sql[256];
-    sqlite3_snprintf(sizeof(sql), sql,
-                     "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
-                     [NSLocalizedString(@"Cash", @"") UTF8String]);
-    [db execSql:sql];
-#endif
+    BOOL ret = [super migrate];
+    
+    if (ret) {
+        // newly created...
+        Asset *as = [[[Asset alloc] init] autorelease];
+        as.name = NSLocalizedString(@"Cash", @"");
+        as.type = ASSET_CASH;
+        as.initialBalance = 0;
+        as.sorder = 0;
+        [as insert];
+    }
+    return ret;
 }
 
 

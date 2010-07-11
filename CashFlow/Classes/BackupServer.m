@@ -84,7 +84,7 @@
 */
 - (void)sendBackup:(int)s
 {
-    NSString *path = [AppDelegate pathOfDataFile:@"CashFlow.db"];
+    NSString *path = [[Database instance] dbPath:@"CashFlow.db"];
 
     int f = open([path UTF8String], O_RDONLY);
     if (f < 0) {
@@ -141,7 +141,7 @@
     }
 
     // okay, save data between start and end.
-    NSString *path = [AppDelegate pathOfDataFile:@"CashFlow.db"];
+    NSString *path = [[Database instance] dbPath:@"CashFlow.db"];
     int f = open([path UTF8String], O_WRONLY);
     if (f < 0) {
         // TBD;

@@ -106,7 +106,7 @@
     ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
 
     [asset insertEntry:ae];
-    STAssertEquals(10000.0, [asset lastBalance], @"last balance");
+    STAssertEquals(10000.0, [asset lastBalance], [NSString stringWithFormat:@"last balance (%f)", [asset lastBalance]]);
 }
 
 // 資産間移動の追加
@@ -194,7 +194,7 @@
     // 最後の日付の後で削除
     date = [TestCommon dateWithString:@"200902010000"];
     [asset deleteOldEntriesBefore:date];
-    STAssertEquals(0, [asset entryCount], @"# of entries");
+    STAssertEquals(0, [asset entryCount], [NSString stringWithFormat:@"invalid # of entries (%d)", [asset entryCount]]);
 
     // 残高チェック
     STAssertEquals(9000.0, asset.initialBalance, @"initial balance");

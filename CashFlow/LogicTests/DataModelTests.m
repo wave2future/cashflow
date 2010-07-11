@@ -30,7 +30,6 @@
     Assert(dm != nil);
     AssertEqualInt(0, [dm.journal.entries count]);
 
-    AssertEqualInt(1, [dm.ledger.assets count]);
     Asset *as = [dm.ledger.assets objectAtIndex:0];
     Assert([as.name isEqualToString:@"Cash"]); 
                   
