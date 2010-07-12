@@ -50,7 +50,7 @@
     
     // Document ディレクトリを作成する (単体テストだとなぜかできてない)
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dbdir = [AppDelegate pathOfDataFile:nil];
+    NSString *dbdir = [[Database instance] dbPath:@""];
     if (![fm fileExistsAtPath:dbdir]) {
         [fm createDirectoryAtPath:dbdir withIntermediateDirectories:NO
                        attributes:nil error:NULL];
