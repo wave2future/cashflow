@@ -148,66 +148,6 @@ static DataModel *theDataModel = nil;
     return dfDateTime;
 }
 
-// LRU
-#define MAX_LRU_SIZE 50
-
-//
-// 摘要のヒストリ(LRU)を取り出す
-//  category 指定がある場合は、こちらを優先する
-//
-- (NSMutableArray *)descLRUWithCategory:(int)category
-{
-    NSMutableArray *descAry = [[[NSMutableArray alloc] init] autorelease];
-
-    if (category >= 0) {
-        [self _setDescLRU:descAry withCategory:category];
-    }
-    [self _setDescLRU:descAry withCategory:-1];
-
-    return descAry;
-}
-
-- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category
-{
-    NSMutableArray *ary = nil;
-    
-    if (category < 0) {
-        // 全検索
-        ary = [Transaction find_cond:@"ORDER BY date DESC LIMIT 100"];
-    } else {
-        // カテゴリ指定検索
-        dbstmt *stmt = [Transaction gen_stmt:@"WHERE category = ? ORDER BY date DESC LIMIT 100"];
-        [stmt bindInt:0 val:category];
-        ary = [Transaction find_stmt:stmt];
-    }
-
-    // 摘要をリストに追加していく
-    for (Transaction *t in ary) {
-        NSString *s = t.description;
-        if (s == nil) continue;
-
-        // 重複チェック
-        BOOL match = NO;
-        NSString *ss;
-        int i, max = [descAry count];
-        for (i = 0; i < max; i++) {
-            ss = [descAry objectAtIndex:i];
-            if ([s isEqualToString:ss]) {
-                match = YES;
-                break;
-            }
-        }
-
-        // 追加
-        if (!match) {
-            [descAry addObject:s];
-            if ([descAry count] > MAX_LRU_SIZE) {
-                break;
-            }
-        }
-    }
-}
-
 // 摘要からカテゴリを推定する
 //
 // note: 本メソッドは Asset ではなく DataModel についているべき
