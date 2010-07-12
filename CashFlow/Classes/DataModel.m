@@ -175,8 +175,9 @@ static DataModel *theDataModel = nil;
         ary = [Transaction find_cond:@"ORDER BY date DESC LIMIT 100"];
     } else {
         // カテゴリ指定検索
-        NSString *cond = [NSString stringWithFormat:@"WHERE category = %@ ORDER BY date DESC LIMIT 100", category];
-        ary = [Transaction find_cond:cond];
+        dbstmt *stmt = [Transaction gen_stmt:@"WHERE category = ? ORDER BY date DESC LIMIT 100"];
+        [stmt bindInt:0 val:category];
+        ary = [Transaction find_stmt:stmt];
     }
 
     // 摘要をリストに追加していく
@@ -213,9 +214,10 @@ static DataModel *theDataModel = nil;
 - (int)categoryWithDescription:(NSString *)desc
 {
     NSMutableArray *ary;
-    
-    NSString *cond = [NSString stringWithFormat:@"WHERE description '%@' ORDER BY date DESC LIMIT 1", desc]; // TBD
-    ary = [Transaction find_cond:cond];
+
+    dbstmt *stmt = [Transaction gen_stmt:@"WHERE description ? ORDER BY date DESC LIMIT 1"];
+    [stmt bindString:0 val:desc];
+    ary = [Transaction find_stmt:stmt];
     
     int category = -1;
     if ([ary count] > 0) {
