@@ -301,6 +301,15 @@
 		3E92947B106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
 		3E92947C106BBC7900DE6040 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E92947A106BBC7900DE6040 /* CalcVC.m */; };
 		3E94339F0EC1E7650033D50A /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3E97AEEF11EB26C5004296F3 /* TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEEE11EB26C5004296F3 /* TimeTests.m */; };
+		3E97AEF211EB26FA004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
+		3E97AEF311EB26FA004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
+		3E97AEF411EB26FA004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
+		3E97AEF511EB26FA004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
+		3E97AF0011EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
+		3E97AF0111EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
+		3E97AF0211EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
+		3E97AF0311EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
@@ -485,6 +494,11 @@
 		3E929479106BBC7900DE6040 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
 		3E92947A106BBC7900DE6040 /* CalcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcVC.m; sourceTree = "<group>"; };
 		3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
+		3E97AEEE11EB26C5004296F3 /* TimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTests.m; sourceTree = "<group>"; };
+		3E97AEF011EB26FA004296F3 /* DescLRUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRUManager.h; sourceTree = "<group>"; };
+		3E97AEF111EB26FA004296F3 /* DescLRUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManager.m; sourceTree = "<group>"; };
+		3E97AEFE11EB272E004296F3 /* DescLRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRU.h; sourceTree = "<group>"; };
+		3E97AEFF11EB272E004296F3 /* DescLRU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRU.m; sourceTree = "<group>"; };
 		3E98A66711E8367B00B7F289 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
 		3E98A66811E8368800B7F289 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
 		3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
@@ -816,6 +830,7 @@
 		3EB4FB04119D6D2C001C3EEB /* LogicTests */ = {
 			isa = PBXGroup;
 			children = (
+				3E97AEEE11EB26C5004296F3 /* TimeTests.m */,
 				3E832510119DA21D00629871 /* testdata */,
 				3E832450119D776800629871 /* TestCommon.h */,
 				3E832451119D776800629871 /* TestCommon.m */,
@@ -852,6 +867,8 @@
 		3EB540870E8E921700608B77 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3E97AEF011EB26FA004296F3 /* DescLRUManager.h */,
+				3E97AEF111EB26FA004296F3 /* DescLRUManager.m */,
 				3E82904F11411D7C00CD8212 /* AdCell.h */,
 				3E82905011411D7C00CD8212 /* AdCell.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
@@ -907,6 +924,8 @@
 				3ECEF32811E9C64E00738E69 /* ORRecord.m */,
 				3ECEF32911E9C64E00738E69 /* TransactionBase.h */,
 				3ECEF32A11E9C64E00738E69 /* TransactionBase.m */,
+				3E97AEFE11EB272E004296F3 /* DescLRU.h */,
+				3E97AEFF11EB272E004296F3 /* DescLRU.m */,
 			);
 			path = ormapper;
 			sourceTree = "<group>";
@@ -1284,6 +1303,8 @@
 				3ECEF33711E9C64E00738E69 /* Database.m in Sources */,
 				3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */,
 				3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */,
+				3E97AEF211EB26FA004296F3 /* DescLRUManager.m in Sources */,
+				3E97AF0011EB272E004296F3 /* DescLRU.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1337,6 +1358,8 @@
 				3E3EC2E311EA1DF7004DFF93 /* Database.m in Sources */,
 				3E3EC2E411EA1DF7004DFF93 /* ORRecord.m in Sources */,
 				3E3EC2E511EA1DF7004DFF93 /* TransactionBase.m in Sources */,
+				3E97AEF511EB26FA004296F3 /* DescLRUManager.m in Sources */,
+				3E97AF0311EB272E004296F3 /* DescLRU.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1391,6 +1414,8 @@
 				3ECEF32F11E9C64E00738E69 /* Database.m in Sources */,
 				3ECEF33111E9C64E00738E69 /* ORRecord.m in Sources */,
 				3ECEF33211E9C64E00738E69 /* TransactionBase.m in Sources */,
+				3E97AEF311EB26FA004296F3 /* DescLRUManager.m in Sources */,
+				3E97AF0111EB272E004296F3 /* DescLRU.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1433,6 +1458,7 @@
 				3ECEF45511E9D97D00738E69 /* Database.m in Sources */,
 				3ECEF45711E9D98300738E69 /* CategoryBase.m in Sources */,
 				3ECEF45911E9D98A00738E69 /* AssetBase.m in Sources */,
+				3E97AEEF11EB26C5004296F3 /* TimeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1488,6 +1514,8 @@
 				3E3EC1D711EA1BA8004DFF93 /* AppTests.m in Sources */,
 				3E3EC1D811EA1BAE004DFF93 /* AssetListVCTests.m in Sources */,
 				3E3EC1DD11EA1BCF004DFF93 /* TestCommon.m in Sources */,
+				3E97AEF411EB26FA004296F3 /* DescLRUManager.m in Sources */,
+				3E97AF0211EB272E004296F3 /* DescLRU.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

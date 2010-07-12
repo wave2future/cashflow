@@ -47,7 +47,7 @@
     // find desc LRU from history
     dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ? AND category = ?"];
     [stmt bindString:0 val:description];
-    [stmt bindInteger:1 val:category];
+    [stmt bindInt:1 val:category];
     NSMutableArray *ary = [DescLRU find_stmt:stmt];
 
     DescLRU *lru;
