@@ -218,7 +218,7 @@ static Database *theDatabase = nil;
 	
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+    [dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
 
     // Set US locale, because JP locale for date formatter is buggy,
     // especially for 12 hour settings.
