@@ -36,6 +36,7 @@
 #import "Journal.h"
 #import "Ledger.h"
 #import "Category.h"
+#import "DescLRU.h"
 #import "Database.h"
 
 @interface DataModel : NSObject

@@ -35,6 +35,7 @@
 #import "Transaction.h"
 #import "Database.h"
 #import "Config.h"
+#import "DescLRUManager.h"
 
 @implementation Transaction
 
@@ -109,6 +110,18 @@
     n.hasBalance = self.hasBalance;
     n.balance = self.balance;
     return n;
+}
+
+- (void)insert
+{
+    [super insert];
+    [DescLRUManager addDescLRU:description category:category];
+}
+
+- (void)update
+{
+    [super update];
+    [DescLRUManager addDescLRU:description category:category];
 }
 
 @end

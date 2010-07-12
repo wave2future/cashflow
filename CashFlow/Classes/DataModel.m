@@ -107,6 +107,7 @@ static DataModel *theDataModel = nil;
     [Transaction migrate];
     [Asset migrate];
     [Category migrate];
+    [DescLRU migrate];
 	
     // Load all transactions
     [journal reload];
