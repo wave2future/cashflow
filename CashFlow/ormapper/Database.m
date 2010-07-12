@@ -264,6 +264,7 @@ static Database *theDatabase = nil;
         isExistedDb = NO;
     }
 
+    NSLog(@"Database:open: %d", isExistedDb);
     return isExistedDb;
 }
 

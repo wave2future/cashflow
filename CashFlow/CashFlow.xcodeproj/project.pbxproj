@@ -199,6 +199,7 @@
 		3E5B83A90EC359440035AF05 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
 		3E5B83AB0EC359590035AF05 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
 		3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
+		3E5BCED311EB543100C590C3 /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5BCED211EB543100C590C3 /* DescLRUManagerTests.m */; };
 		3E6B2EBF0F12259C0008AFB6 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
 		3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
 		3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
@@ -312,7 +313,6 @@
 		3E97AF0311EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
-		3E97AFBD11EB300A004296F3 /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AFBC11EB300A004296F3 /* DescLRUManagerTests.m */; };
 		3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
@@ -469,6 +469,7 @@
 		3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenEditTextView.xib; sourceTree = "<group>"; };
 		3E5B83AC0EC359680035AF05 /* GenEditTextVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenEditTextVC.h; sourceTree = "<group>"; };
 		3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenEditTextVC.m; sourceTree = "<group>"; };
+		3E5BCED211EB543100C590C3 /* DescLRUManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManagerTests.m; sourceTree = "<group>"; };
 		3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExportView.xib; sourceTree = "<group>"; };
 		3E6B35E80FA2A84E00FCF592 /* ReportCatCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatCell.h; sourceTree = "<group>"; };
 		3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
@@ -502,7 +503,6 @@
 		3E97AEF111EB26FA004296F3 /* DescLRUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManager.m; sourceTree = "<group>"; };
 		3E97AEFE11EB272E004296F3 /* DescLRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRU.h; sourceTree = "<group>"; };
 		3E97AEFF11EB272E004296F3 /* DescLRU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRU.m; sourceTree = "<group>"; };
-		3E97AFBC11EB300A004296F3 /* DescLRUManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManagerTests.m; sourceTree = "<group>"; };
 		3E98A66711E8367B00B7F289 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
 		3E98A66811E8368800B7F289 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
 		3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
@@ -846,7 +846,7 @@
 				3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */,
 				3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */,
 				3E97AEEE11EB26C5004296F3 /* TimeTests.m */,
-				3E97AFBC11EB300A004296F3 /* DescLRUManagerTests.m */,
+				3E5BCED211EB543100C590C3 /* DescLRUManagerTests.m */,
 			);
 			path = LogicTests;
 			sourceTree = "<group>";
@@ -1466,7 +1466,7 @@
 				3E97AEEF11EB26C5004296F3 /* TimeTests.m in Sources */,
 				3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */,
 				3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */,
-				3E97AFBD11EB300A004296F3 /* DescLRUManagerTests.m in Sources */,
+				3E5BCED311EB543100C590C3 /* DescLRUManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,6 +15,7 @@
 {
     [super setUp];
     [TestCommon deleteDatabase];
+    DataModel *dm = [DataModel instance]; // re-create DataModel
 }
 
 - (void)tearDown
@@ -25,7 +26,7 @@
 - (void)setupTestData
 {
     Database *db = [Database instance];
-    
+     
     [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"201001010000"]];
     [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"201001010001"]];
     [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"201001010002"]];
@@ -44,7 +45,7 @@
     [self setupTestData];
     
     NSMutableArray *ary;
-    ary = [DescLRUManager getDescLRUs:-1];
+    ary = [DescLRUManager getDescLRUStrings:-1];
     STAssertTrue([ary count] == 6, @"LRU count must be 6.");
 
     NSString *s;
@@ -59,7 +60,7 @@
     [self setupTestData];
 
     NSMutableArray *ary;
-    ary = [DescLRUManager getDescLRUs:1];
+    ary = [DescLRUManager getDescLRUStrings:1];
     STAssertTrue([ary count] == 2, @"LRU count must be 2.");
 
     NSString *s;
@@ -76,7 +77,7 @@
     [DescLRUManager addDescLRU:@"test1" category:1]; // same name/cat.
 
     NSMutableArray *ary;
-    ary = [DescLRUManager getDescLRUs:1];
+    ary = [DescLRUManager getDescLRUStrings:1];
     STAssertTrue([ary count] == 2, @"LRU count must be 2.");
 
     NSString *s;
@@ -93,16 +94,14 @@
     [DescLRUManager addDescLRU:@"test1" category:2]; // same name/other cat.
 
     NSMutableArray *ary;
-    ary = [DescLRUManager getDescLRUs:1];
-    STAssertTrue([ary count] == 2, @"LRU count must be 2.");
+    ary = [DescLRUManager getDescLRUStrings:1];
+    STAssertTrue([ary count] == 1, @"LRU count must be 2.");
 
     NSString *s;
     s = [ary objectAtIndex:0];
     STAssertTrue([s isEqualToString:@"test4"], @"first entry");
-    s = [ary objectAtIndex:1];
-    STAssertTrue([s isEqualToString:@"test1"], @"last entry");
 
-    ary = [DescLRUManager getDescLRUs:2];
+    ary = [DescLRUManager getDescLRUStrings:2];
     STAssertTrue([ary count] == 3, @"LRU count must be 3.");
     s = [ary objectAtIndex:0];
     STAssertTrue([s isEqualToString:@"test1"], @"new entry");
