@@ -38,6 +38,7 @@
 #import "AppDelegate.h"
 #import "DataModel.h"
 #import "Config.h"
+#import "DescLRUManager.h"
 
 @implementation DataModel
 
@@ -109,6 +110,8 @@ static DataModel *theDataModel = nil;
     [Asset migrate];
     [Category migrate];
     [DescLRU migrate];
+    
+    [DescLRUManager migrate];
 	
     // Load all transactions
     [journal reload];
@@ -157,7 +160,7 @@ static DataModel *theDataModel = nil;
 {
     NSMutableArray *ary;
 
-    dbstmt *stmt = [Transaction gen_stmt:@"WHERE description ? ORDER BY date DESC LIMIT 1"];
+    dbstmt *stmt = [Transaction gen_stmt:@"WHERE description = ? ORDER BY date DESC LIMIT 1"];
     [stmt bindString:0 val:desc];
     ary = [Transaction find_stmt:stmt];
     

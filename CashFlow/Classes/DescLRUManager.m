@@ -33,8 +33,27 @@
 */
 
 #import "DescLRUManager.h"
+#import "Transaction.h"
 
 @implementation DescLRUManager
+
+// 旧バージョンからの移行処理
+// Transaction から DescLRU を生成する
++ (void)migrate
+{
+    NSMutableArray *ary;
+    
+    ary = [self getDescLRUs:-1];
+    if ([ary count] > 0) {
+        return;
+    }
+    
+    // okay, we need to migrate...
+    ary = [Transaction find_cond:@"ORDER BY date DESC LIMIT 100"];
+    for (Transaction *t in ary) {
+        [self addDescLRU:t.description category:t.category date:t.date];
+    }
+}
 
 + (void)addDescLRU:(NSString *)description category:(int)category
 {
@@ -44,10 +63,11 @@
 
 + (void)addDescLRU:(NSString *)description category:(int)category date:(NSDate*)date
 {
+    if ([description length] == 0) return;
+    
     // find desc LRU from history
-    dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ? AND category = ?"];
+    dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ?"];
     [stmt bindString:0 val:description];
-    [stmt bindInt:1 val:category];
     NSMutableArray *ary = [DescLRU find_stmt:stmt];
 
     DescLRU *lru;
@@ -57,8 +77,8 @@
     } else {
         lru = [[[DescLRU alloc] init] autorelease];
         lru.description = description;
-        lru.category = category;
     }
+    lru.category = category;
     lru.lastUse = date;
     [lru save];
 }
