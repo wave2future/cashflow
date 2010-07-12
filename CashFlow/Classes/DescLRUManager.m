@@ -53,7 +53,7 @@
         lru.description = description;
         lru.category = category;
     }
-    lru.date = [[[NSDate alloc] init] autorelease]; // current time
+    lru.lastUse = [[[NSDate alloc] init] autorelease]; // current time
     [lru save];
 }
 
@@ -63,9 +63,9 @@
 
     if (category < 0) {
         // 全検索
-        ary = [DescLRU find_cond:@"ORDER BY date DESC LIMIT 100"];
+        ary = [DescLRU find_cond:@"ORDER BY lastUse DESC LIMIT 100"];
     } else {
-        dbstmt *stmt = [DescLRU gen_stmt:@"WHERE category = ? ORDER BY date DESC LIMIT 100"];
+        dbstmt *stmt = [DescLRU gen_stmt:@"WHERE category = ? ORDER BY lastUse DESC LIMIT 100"];
         [stmt bindInt:0 val:category];
         ary = [DescLRU find_stmt:stmt];
     }
