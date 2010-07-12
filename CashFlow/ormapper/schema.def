@@ -21,3 +21,4 @@ Categories:CategoryBase
 DescLRUs:DescLRU
         description :TEXT
         lastUse :DATE
+        category :INTEGER

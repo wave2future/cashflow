@@ -7,6 +7,7 @@
 
 @synthesize description;
 @synthesize lastUse;
+@synthesize category;
 
 - (id)init
 {
@@ -32,6 +33,7 @@
     NSArray *columnTypes = [NSArray arrayWithObjects:
         @"description", @"TEXT",
         @"lastUse", @"DATE",
+        @"category", @"INTEGER",
         nil];
 
     return [super migrate:columnTypes];
@@ -122,6 +124,7 @@
     self.pid = [stmt colInt:0];
     self.description = [stmt colString:1];
     self.lastUse = [stmt colDate:2];
+    self.category = [stmt colInt:3];
 
     isInserted = YES;
 }
@@ -139,10 +142,11 @@
     dbstmt *stmt;
     
     [db beginTransaction];
-    stmt = [db prepare:@"INSERT INTO DescLRUs VALUES(NULL,?,?);"];
+    stmt = [db prepare:@"INSERT INTO DescLRUs VALUES(NULL,?,?,?);"];
 
     [stmt bindString:0 val:description];
     [stmt bindDate:1 val:lastUse];
+    [stmt bindInt:2 val:category];
     [stmt step];
 
     self.pid = [db lastInsertRowId];
@@ -161,10 +165,12 @@
     dbstmt *stmt = [db prepare:@"UPDATE DescLRUs SET "
         "description = ?"
         ",lastUse = ?"
+        ",category = ?"
         " WHERE key = ?;"];
     [stmt bindString:0 val:description];
     [stmt bindDate:1 val:lastUse];
-    [stmt bindInt:2 val:pid];
+    [stmt bindInt:2 val:category];
+    [stmt bindInt:3 val:pid];
 
     [stmt step];
     [db commitTransaction];

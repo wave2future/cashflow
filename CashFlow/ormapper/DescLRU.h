@@ -6,10 +6,12 @@
 @interface DescLRU : ORRecord {
     NSString* description;
     NSDate* lastUse;
+    int category;
 }
 
 @property(nonatomic,retain) NSString* description;
 @property(nonatomic,retain) NSDate* lastUse;
+@property(nonatomic,assign) int category;
 
 + (BOOL)migrate;
 
