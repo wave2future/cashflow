@@ -38,6 +38,12 @@
 
 + (void)addDescLRU:(NSString *)description category:(int)category
 {
+    NSDate *now = [[[NSDate alloc] init] autorelease];
+    [self addDescLRU:description category:category date:now];
+}
+
++ (void)addDescLRU:(NSString *)description category:(int)category date:(NSDate*)date
+{
     // find desc LRU from history
     dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ? AND category = ?"];
     [stmt bindString:0 val:description];
@@ -53,7 +59,7 @@
         lru.description = description;
         lru.category = category;
     }
-    lru.lastUse = [[[NSDate alloc] init] autorelease]; // current time
+    lru.lastUse = date;
     [lru save];
 }
 
