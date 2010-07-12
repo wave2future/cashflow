@@ -103,7 +103,7 @@
     ae.assetKey = asset.pid;
     ae.transaction.type = TYPE_ADJ;
     [ae setEvalue:10000.0];
-    ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
+    ae.transaction.date = [TestCommon dateWithString:@"20090201000000"];
 
     [asset insertEntry:ae];
     STAssertEquals(10000.0, [asset lastBalance], [NSString stringWithFormat:@"last balance (%f)", [asset lastBalance]]);
@@ -182,7 +182,7 @@
     STAssertEquals(4, [asset entryCount], @"# of entries");
 
     // 最初よりも早い日付の場合に何も削除されないこと
-    date = [TestCommon dateWithString:@"200812310000"];
+    date = [TestCommon dateWithString:@"20081231000000"];
     [asset deleteOldEntriesBefore:date];
     STAssertEquals(4, [asset entryCount], @"# of entries");    
 
@@ -192,7 +192,7 @@
     STAssertEquals(2, [asset entryCount], @"# of entries");    
 
     // 最後の日付の後で削除
-    date = [TestCommon dateWithString:@"200902010000"];
+    date = [TestCommon dateWithString:@"20090201000000"];
     [asset deleteOldEntriesBefore:date];
     STAssertEquals(0, [asset entryCount], [NSString stringWithFormat:@"invalid # of entries (%d)", [asset entryCount]]);
 

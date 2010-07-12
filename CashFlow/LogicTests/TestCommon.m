@@ -11,7 +11,7 @@
     if (df == nil) {
         df = [[DateFormatter2 alloc] init];
         [df setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        [df setDateFormat: @"yyyyMMddHHmm"];
+        [df setDateFormat: @"yyyyMMddHHmmss"];
     }
     return df;
 }

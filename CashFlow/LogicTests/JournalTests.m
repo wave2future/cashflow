@@ -59,7 +59,7 @@
     t.asset = 1;
     t.type = 0;
     t.value = 100;
-    t.date = [TestCommon dateWithString:@"200901030000"];
+    t.date = [TestCommon dateWithString:@"20090103000000"];
     
     [journal insertTransaction:t];
     AssertEqualInt(7, [journal.entries count]);
@@ -79,7 +79,7 @@
     t.asset = 3;
     t.type = 0;
     t.value = 100;
-    t.date = [TestCommon dateWithString:@"200902010000"]; // last
+    t.date = [TestCommon dateWithString:@"20090201000000"]; // last
     
     Transaction *orig = [journal.entries objectAtIndex:3];
     [orig retain];

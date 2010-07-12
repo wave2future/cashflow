@@ -15,7 +15,8 @@
 {
     [super setUp];
     [TestCommon deleteDatabase];
-    DataModel *dm = [DataModel instance]; // re-create DataModel
+
+    [DataModel instance]; // re-create DataModel
 }
 
 - (void)tearDown
@@ -27,12 +28,12 @@
 {
     Database *db = [Database instance];
      
-    [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"201001010000"]];
-    [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"201001010001"]];
-    [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"201001010002"]];
-    [DescLRUManager addDescLRU:@"test3" category:0 date:[db dateFromString:@"201001010003"]];
-    [DescLRUManager addDescLRU:@"test4" category:1 date:[db dateFromString:@"201001010004"]];
-    [DescLRUManager addDescLRU:@"test5" category:2 date:[db dateFromString:@"201001010005"]];
+    [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"20100101000000"]];
+    [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"20100101000001"]];
+    [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"20100101000002"]];
+    [DescLRUManager addDescLRU:@"test3" category:0 date:[db dateFromString:@"20100101000003"]];
+    [DescLRUManager addDescLRU:@"test4" category:1 date:[db dateFromString:@"20100101000004"]];
+    [DescLRUManager addDescLRU:@"test5" category:2 date:[db dateFromString:@"20100101000005"]];
 }
 
 - (void) testInit {
