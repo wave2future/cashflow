@@ -101,7 +101,7 @@ static DataModel *theDataModel = nil;
     Database *db = [Database instance];
 
     // Load from DB
-    if (![db open:@"CashFlow.db"]) {
+    if (![db open:DBNAME]) {
     }
 
     [Transaction migrate];

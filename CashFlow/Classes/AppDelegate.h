@@ -39,6 +39,8 @@
 #import "TransactionListVC.h"
 #import "CurrencyManager.h"
 
+#define DBNAME  @"CashFlow.db"
+
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow *window;
     IBOutlet UINavigationController *navigationController;
