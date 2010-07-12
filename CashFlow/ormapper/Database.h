@@ -71,7 +71,6 @@
     sqlite3 *handle; ///< Database handle
 
     NSDateFormatter *dateFormatter;
-    NSDateFormatter *dateFormatterOld;
 }
 
 @property(nonatomic,readonly) sqlite3 *handle;
