@@ -180,7 +180,7 @@
     [data appendString:@"<BANKACCTFROM>\n"];
     [data appendString:@"<BANKID>CashFlow\n"];
     [data appendString:@"<BRANCHID>000\n"];
-    [data appendFormat:@"<ACCTID>%d\n", asset.pkey];
+    [data appendFormat:@"<ACCTID>%d\n", asset.pid];
     [data appendString:@"<ACCTTYPE>SAVINGS\n"]; // ### Use asset.type?
     [data appendString:@"</BANKACCTFROM>\n"];
 
@@ -261,7 +261,7 @@
 - (NSString*)fitId:(AssetEntry*)e
 {
     NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:e.transaction.date];
-    NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], e.transaction.pkey];
+    NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], e.transaction.pid];
     return f;
 }
 

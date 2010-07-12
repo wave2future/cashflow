@@ -36,24 +36,10 @@
 #import "AppDelegate.h"
 
 @implementation Category
-@synthesize pkey, name, sorder;
 
-- (void)dealloc
++(id)allocator
 {
-    [name release];
-    [super dealloc];
-}
-
-//
-// Database operations
-//
-+ (void)createTable
-{
-    [[Database instance]
-        execSql:"CREATE TABLE Categories ("
-        "key INTEGER PRIMARY KEY,"
-        "name TEXT,"
-        "sorder INTEGER);"];
+    return [[[Category alloc] init] autorelease];
 }
 
 @end
@@ -76,22 +62,9 @@
 
 -(void)reload
 {
-    if (categories != nil) {
-        [categories release];
-    }
-    categories = [[NSMutableArray alloc] init];
-
-    DBStatement *stmt;
-    stmt = [[Database instance] prepare:"SELECT * FROM Categories ORDER BY sorder;"];
-    while ([stmt step] == SQLITE_ROW) {
-        Category *c = [[Category alloc] init];
-        c.pkey = [stmt colInt:0];
-        c.name = [stmt colString:1];
-        c.sorder = [stmt colInt:2];
-		
-        [categories addObject:c];
-        [c release];
-    }
+    [categories release];
+    categories = [Category find_cond:@"ORDER BY sorder"];
+    [categories retain];
 }
 
 -(int)categoryCount
@@ -110,7 +83,7 @@
     int i, max = [categories count];
     for (i = 0; i < max; i++) {
         Category *c = [categories objectAtIndex:i];
-        if (c.pkey == key) {
+        if (c.pid == key) {
             return i;
         }
     }
@@ -136,35 +109,19 @@
 
     [self renumber];
 
-    DBStatement *stmt;
-    stmt = [[Database instance] prepare:"INSERT INTO Categories VALUES(NULL, ?, ?);"];
-    [stmt bindString:0 val:c.name];
-    [stmt bindInt:1 val:c.sorder];
-    [stmt step];
-
-    c.pkey = [[Database instance] lastInsertRowId];
-
+    [c insert];
     return c;
 }
 
 -(void)updateCategory:(Category*)category
 {
-    DBStatement *stmt;
-    stmt = [[Database instance] prepare:"UPDATE Categories SET name=?, sorder=? WHERE key=?;"];
-    [stmt bindString:0 val:category.name];
-    [stmt bindInt:1 val:category.sorder];
-    [stmt bindInt:2 val:category.pkey];
-    [stmt step];
+    [category update];
 }
 
 -(void)deleteCategoryAtIndex:(int)index
 {
     Category *c = [categories objectAtIndex:index];
-
-    DBStatement *stmt;
-    stmt = [[Database instance] prepare:"DELETE FROM Categories WHERE key=?;"];
-    [stmt bindInt:0 val:c.pkey];
-    [stmt step];
+    [c delete];
 
     [categories removeObjectAtIndex:index];
 }
@@ -183,13 +140,11 @@
 {
     int i, max = [categories count];
 
-    [[Database instance] beginTransaction];
     for (i = 0; i < max; i++) {
         Category *c = [categories objectAtIndex:i];
         c.sorder = i;
-        [self updateCategory:c];
+        [c update];
     }
-    [[Database instance] commitTransaction];
 }
 
 @end

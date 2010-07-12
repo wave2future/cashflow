@@ -102,22 +102,6 @@
     [super dealloc];
 }
 
-// データファイルのパスを取得
-+ (NSString*)pathOfDataFile:(NSString*)filename
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(
-        NSDocumentDirectory, NSUserDomainMask, YES);
-
-    NSString *datapath = [paths objectAtIndex:0];
-    if (filename == nil) {
-        return datapath;
-    }
-    
-    NSString *path = [datapath stringByAppendingPathComponent:filename];
-
-    return path;
-}
-
 void AssertFailed(const char *filename, int lineno)
 {
     UIAlertView *v = [[UIAlertView alloc]

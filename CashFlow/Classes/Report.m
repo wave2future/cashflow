@@ -118,7 +118,7 @@ static int compareCatReport(id x, id y, void *context)
     if (asset == nil) {
         assetKey = -1;
     } else {
-        assetKey = asset.pkey;
+        assetKey = asset.pid;
     }
     NSDate *firstDate = [self firstDateOfAsset:assetKey];
     if (firstDate == nil) return; // no data
@@ -210,9 +210,9 @@ static int compareCatReport(id x, id y, void *context)
             Category *c = [[DataModel instance].categories categoryAtIndex:i];
             CatReport *cr = [[CatReport alloc] init];
 
-            cr.catkey = c.pkey;
+            cr.catkey = c.pid;
 
-            filter.category = c.pkey;
+            filter.category = c.pid;
             filter.start = r.date;
             filter.end = r.endDate;
             cr.value = [self calculateSum:&filter];

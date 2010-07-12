@@ -122,7 +122,7 @@
 
     Config *config = [Config instance];
 
-    NSString *text;
+    NSString *text = nil;
     NSString *detailText = @"";
 
     switch (indexPath.section) {

@@ -1,3 +1,9 @@
+2010-07-12:
+	* DescLRU モデルを追加
+
+2010-07-11: Takuya Murakami
+	* データモデルを大幅に変更、ormapper 採用
+
 2010-06-30: Takuya Murakami
 	* ver 3.2.1
 	

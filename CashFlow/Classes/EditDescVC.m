@@ -36,6 +36,7 @@
 #import "TransactionVC.h"
 #import "EditDescVC.h"
 #import "AppDelegate.h"
+#import "DescLRUManager.h"
 
 @implementation EditDescViewController
 
@@ -86,7 +87,7 @@
     textField.text = self.description;
     [super viewWillAppear:animated];
 
-    descArray = [[DataModel instance] descLRUWithCategory:category];
+    descArray = [DescLRUManager getDescLRUStrings:category];
     [descArray retain];
     [descArray insertObject:@"" atIndex:0];  // dummy entry
     [picker reloadAllComponents];

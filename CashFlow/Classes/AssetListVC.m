@@ -209,7 +209,7 @@
     }
 
     // 資産
-    double value;
+    double value = 0;
     NSString *label = nil;
 
     if (indexPath.section == 0) {
@@ -236,8 +236,9 @@
         }
     }
     
-    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", label,
-                          [CurrencyManager formatCurrency:value]];
+    NSString *c = [CurrencyManager formatCurrency:value];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", label, c];
+    
     if (value >= 0) {
         cell.textLabel.textColor = [UIColor blackColor];
     } else {
@@ -448,7 +449,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
         case 2:
             backup = [[Backup alloc] init];
             [backup execute];
-            return;
+            return; // do not release backup instance here!
             
         case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];

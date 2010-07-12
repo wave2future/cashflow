@@ -63,7 +63,7 @@
 {
     self = [self init];
 
-    self.assetKey = asset.pkey;
+    self.assetKey = asset.pid;
     
     if (t == nil) {
         // 新規エントリ生成
@@ -120,7 +120,7 @@
 // TransactionViewController 用の値を返す
 - (double)evalue
 {
-    double ret;
+    double ret = 0.0;
 
     switch (transaction.type) {
     case TYPE_INCOME:

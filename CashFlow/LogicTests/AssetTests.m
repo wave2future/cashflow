@@ -27,7 +27,7 @@
     AssetEntry *e;
 
     asset = [ledger assetAtIndex:0];
-    STAssertEquals(1, asset.pkey, @"pkey mismatch");
+    STAssertEquals(1, asset.pid, @"pid mismatch");
     STAssertEquals(0, asset.type, @"type mismatch");
     STAssertTrue([asset.name isEqualToString:@"Cash"], @"Asset name mismatch (%@ != Cash)", asset.name);
     STAssertEquals(0, asset.sorder, @"sorder mismatch");
@@ -48,7 +48,7 @@
     STAssertEquals(9000.0, e.balance, @"balance");
 
     asset = [ledger assetAtIndex:1];
-    STAssertEquals(2, asset.pkey, @"pkey");
+    STAssertEquals(2, asset.pid, @"pid");
     STAssertEquals(1, asset.type, @"asset type");
     STAssertTrue([asset.name isEqualToString:@"Bank"], @"name");
     STAssertEquals(1, asset.sorder, @"sorder");
@@ -63,7 +63,7 @@
     STAssertEquals(195000.0, e.balance, @"balance");
 
     asset = [ledger assetAtIndex:2];
-    STAssertEquals(3, asset.pkey, @"pkey");
+    STAssertEquals(3, asset.pid, @"pid");
     STAssertEquals(2, asset.type, @"type");
     ASSERT([asset.name isEqualToString:@"Card"]);
     STAssertEquals(2, asset.sorder, @"sorder");
@@ -100,13 +100,13 @@
     // 新規エントリ
     AssetEntry *ae = [[[AssetEntry alloc] initWithTransaction:nil withAsset:asset] autorelease];
 
-    ae.assetKey = asset.pkey;
+    ae.assetKey = asset.pid;
     ae.transaction.type = TYPE_ADJ;
     [ae setEvalue:10000.0];
-    ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
+    ae.transaction.date = [TestCommon dateWithString:@"20090201000000"];
 
     [asset insertEntry:ae];
-    STAssertEquals(10000.0, [asset lastBalance], @"last balance");
+    STAssertEquals(10000.0, [asset lastBalance], [NSString stringWithFormat:@"last balance (%f)", [asset lastBalance]]);
 }
 
 // 資産間移動の追加
@@ -182,7 +182,7 @@
     STAssertEquals(4, [asset entryCount], @"# of entries");
 
     // 最初よりも早い日付の場合に何も削除されないこと
-    date = [TestCommon dateWithString:@"200812310000"];
+    date = [TestCommon dateWithString:@"20081231000000"];
     [asset deleteOldEntriesBefore:date];
     STAssertEquals(4, [asset entryCount], @"# of entries");    
 
@@ -192,9 +192,9 @@
     STAssertEquals(2, [asset entryCount], @"# of entries");    
 
     // 最後の日付の後で削除
-    date = [TestCommon dateWithString:@"200902010000"];
+    date = [TestCommon dateWithString:@"20090201000000"];
     [asset deleteOldEntriesBefore:date];
-    STAssertEquals(0, [asset entryCount], @"# of entries");
+    STAssertEquals(0, [asset entryCount], [NSString stringWithFormat:@"invalid # of entries (%d)", [asset entryCount]]);
 
     // 残高チェック
     STAssertEquals(9000.0, asset.initialBalance, @"initial balance");

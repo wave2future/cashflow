@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2010, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -32,65 +32,19 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <UIKit/UIKit.h>
-#import <sqlite3.h>
-#import "Transaction.h"
-#import "Asset.h"
-#import "Category.h"
+#import "DescLRU.h"
 
-@class Asset;
-@class Category;
-@class Database;
-
-@interface DBStatement : NSObject {
-    sqlite3_stmt *stmt;
+@interface DescLRUManager : NSObject
+{
 }
 
-- (id)initWithStatement:(sqlite3_stmt *)st;
-- (int)step;
-- (void)reset;
++ (void)migrate;
 
-- (void)bindInt:(int)idx val:(int)val;
-- (void)bindDouble:(int)idx val:(double)val;
-- (void)bindCString:(int)idx val:(const char *)val;
-- (void)bindString:(int)idx val:(NSString*)val;
-- (void)bindDate:(int)idx val:(NSDate*)date;
++ (void)addDescLRU:(NSString *)description category:(int)category;
++ (void)addDescLRU:(NSString *)description category:(int)category date:(NSDate*)date;
++ (NSMutableArray *)getDescLRUs:(int)category;
++ (NSMutableArray *)getDescLRUStrings:(int)category;
 
-- (int)colInt:(int)idx;
-- (double)colDouble:(int)idx;
-- (const char*)colCString:(int)idx;
-- (NSString*)colString:(int)idx;
-- (NSDate*)colDate:(int)idx;
 @end
 
 
-@interface Database : NSObject {
-    sqlite3 *handle;
-}
-
-@property(nonatomic,readonly) sqlite3 *handle;
-
-+ (Database *)instance;
-+ (void)shutdown;
-
-- (id)init;
-- (void)dealloc;
-
-- (void)execSql:(const char *)sql;
-- (DBStatement*)prepare:(const char *)sql;
-- (int)lastInsertRowId;
-
-- (void)beginTransaction;
-- (void)commitTransaction;
-
-+ (NSString *)dataFilePath;
-- (BOOL)openDB;
-- (void)initializeDB;
-
-// Utilities
-+ (NSDate*)dateFromCString:(const char *)str;
-+ (const char *)cstringFromDate:(NSDate*)date;
-
-+ (void)shutdown;
-
-@end

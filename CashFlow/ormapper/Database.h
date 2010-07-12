@@ -1,8 +1,8 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 /*
-  CashFlow for iPhone/iPod touch
+  O/R Mapper library for iPhone
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2010, Takuya Murakami. All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -32,44 +32,68 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+// sqlite3 wrapper
 
 #import <UIKit/UIKit.h>
-#import "DataModel.h"
-#import "AssetListVC.h"
-#import "TransactionListVC.h"
-#import "CurrencyManager.h"
+#import <sqlite3.h>
 
-#define DBNAME  @"CashFlow.db"
-
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
-    IBOutlet UIWindow *window;
-    IBOutlet UINavigationController *navigationController;
-    
-    // iPad
-    IBOutlet UISplitViewController *splitViewController;
-    IBOutlet AssetListViewController *assetListViewController;
-    IBOutlet TransactionListViewController *transactionListViewController;
+/**
+   Wrapper class of sqlite3_stmt
+*/
+@interface dbstmt : NSObject {
+    sqlite3_stmt *stmt;	///< sqlite3_stmt handle.
+    sqlite3 *handle;    ///< database handle.
 }
 
-@property (nonatomic, retain) UIWindow *window;
-@property (nonatomic, retain) UINavigationController *navigationController;
+@property(nonatomic,assign) sqlite3 *handle;
 
-// Utility
-#ifdef NDEBUG
-void AssertFailed(const char *filename, int lineno);
-#define ASSERT(x)  if (!(x)) AssertFailed(__FILE__, __LINE__)
-#else
-#define ASSERT(x) /**/
-#endif
+- (id)initWithStmt:(sqlite3_stmt *)st;
+- (int)step;
+- (void)reset;
 
-#ifndef UI_USER_INTERFACE_IDIOM
-#define IS_IPAD NO
-#else
-#define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
-#endif
+- (void)bindInt:(int)idx val:(int)val;
+- (void)bindDouble:(int)idx val:(double)val;
+- (void)bindCString:(int)idx val:(const char *)val;
+- (void)bindString:(int)idx val:(NSString*)val;
+- (void)bindDate:(int)idx val:(NSDate*)date;
 
-// AdMob
-- (void)reportAppOpenToAdMob;
-
+- (int)colInt:(int)idx;
+- (double)colDouble:(int)idx;
+- (const char*)colCString:(int)idx;
+- (NSString*)colString:(int)idx;
+- (NSDate*)colDate:(int)idx;
 @end
 
+/**
+   Wrapper class of sqlite3 database
+*/
+@interface Database : NSObject {
+    sqlite3 *handle; ///< Database handle
+
+    NSDateFormatter *dateFormatter;
+}
+
+@property(nonatomic,readonly) sqlite3 *handle;
+
++ (Database*)instance;
++ (void)shutdown;
+
+- (id)init;
+- (void)dealloc;
+
+- (void)exec:(NSString *)sql;
+- (dbstmt*)prepare:(NSString *)sql;
+- (int)lastInsertRowId;
+
+- (void)beginTransaction;
+- (void)commitTransaction;
+- (void)rollbackTransaction;
+
+- (NSString *)dbPath:(NSString *)dbname;
+- (BOOL)open:(NSString *)dbname;
+
+// utilities
+- (NSDate*)dateFromString:(NSString *)str;
+- (NSString *)stringFromDate:(NSDate*)date;
+
+@end

@@ -35,6 +35,7 @@
 #import <UIKit/UIKit.h>
 #import "Transaction.h"
 #import "Database.h"
+#import "AssetBase.h"
 #import "AssetEntry.h"
 
 // asset types
@@ -49,22 +50,9 @@
 //
 // 資産 (総勘定元帳の勘定に相当)
 // 
-@interface Asset : NSObject {
-    int pkey;
-    int type;
-    NSString *name;
-    int sorder;
-
-    double initialBalance;
+@interface Asset : AssetBase {
     NSMutableArray *entries; // AssetEntry の配列
 }
-
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,assign) int type;
-@property(nonatomic,retain) NSString *name;
-@property(nonatomic,assign) int sorder;
-
-@property(nonatomic,assign) double initialBalance;
 
 - (void)rebuild;
 
@@ -79,7 +67,5 @@
 
 - (double)lastBalance;
 - (void)updateInitialBalance;
-
-+ (void)createTable;
 
 @end

@@ -33,6 +33,7 @@
 */
 
 #import <UIKit/UIKit.h>
+#import "TransactionBase.h"
 
 #define TYPE_OUTGO      0       // 支払
 #define TYPE_INCOME	1       // 入金
@@ -41,42 +42,18 @@
 
 @class Asset;
 
-@interface Transaction : NSObject <NSCopying> {
-    int pkey; // primary key
-    NSDate *date;
-    int asset;
-    int dst_asset;
-    NSString *description;
-    NSString *memo;
-    double value; // plus - income, minus - outgo.
-    int type;  // TYPE_*
-    int category;
-
+@interface Transaction : TransactionBase <NSCopying> {
     // for balance adjustment
     BOOL hasBalance;
     double balance;
 }
 
-@property(nonatomic,assign) int pkey;
-@property(nonatomic,assign) int asset;
-@property(nonatomic,assign) int dst_asset;
-@property(nonatomic,copy) NSDate *date;
-@property(nonatomic,copy) NSString *description;
-@property(nonatomic,copy) NSString *memo;
-@property(nonatomic,assign) double value;
-@property(nonatomic,assign) int type;
-@property(nonatomic,assign) int category;
 @property(nonatomic,assign) BOOL hasBalance;
 @property(nonatomic,assign) double balance;
 
 - (id)initWithDate:(NSDate*)date description:(NSString*)desc value:(double)v;
 
-+ (void)createTable;
-+ (NSMutableArray *)loadTransactions;
-
-- (void)insertDb;
-- (void)updateDb;
-- (void)deleteDb;
+//+ (void)createTable;
 //+ (void)deleteDbWithAsset:(int)assetKey;
 
 @end

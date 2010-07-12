@@ -36,6 +36,7 @@
 #import "Journal.h"
 #import "Ledger.h"
 #import "Category.h"
+#import "DescLRU.h"
 #import "Database.h"
 
 @interface DataModel : NSObject
@@ -72,8 +73,6 @@
 // utility operation
 //+ (NSString*)currencyString:(double)x;
 
-- (NSMutableArray *)descLRUWithCategory:(int)category;
-- (void)_setDescLRU:(NSMutableArray *)descAry withCategory:(int)category;
 - (int)categoryWithDescription:(NSString *)desc;
 
 @end

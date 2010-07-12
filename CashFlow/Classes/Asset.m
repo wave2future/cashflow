@@ -40,19 +40,17 @@
 
 @implementation Asset
 
-@synthesize pkey, type, name, sorder;
-@synthesize initialBalance;
++ (id)allocator
+{
+    return [[[Asset alloc] init] autorelease];
+}
 
 - (id)init
 {
     [super init];
 
-    pkey = 1; // とりあえず
-
-    initialBalance = 0.0;
     entries = [[NSMutableArray alloc] init];
     type = ASSET_CASH;
-    self.name = @"";
 	
     return self;
 }
@@ -60,8 +58,6 @@
 - (void)dealloc 
 {
     [entries release];
-    [name release];
-
     [super dealloc];
 }
 
@@ -80,7 +76,7 @@
 
     AssetEntry *e;
     for (Transaction *t in [DataModel journal]) {
-        if (t.asset == self.pkey || t.dst_asset == self.pkey) {
+        if (t.asset == self.pid || t.dst_asset == self.pid) {
             e = [[AssetEntry alloc] initWithTransaction:t withAsset:self];
 
             // 残高計算
@@ -90,7 +86,7 @@
                 t.value = t.balance - balance;
                 if (t.value != oldval) {
                     // 金額が変更された場合、DBを更新
-                    [t updateDb];
+                    [t update];
                 }
                 balance = t.balance;
 
@@ -115,10 +111,7 @@
 
 - (void)updateInitialBalance
 {
-    DBStatement *stmt = [[Database instance] prepare:"UPDATE Assets SET initialBalance=? WHERE key=?;"];
-    [stmt bindDouble:0 val:initialBalance];
-    [stmt bindInt:1 val:pkey];
-    [stmt step];
+    [self update];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -218,22 +211,20 @@
 //
 // Database operations
 //
-+ (void)createTable
++ (BOOL)migrate
 {
-    Database *db = [Database instance];
-
-    [db execSql:"CREATE TABLE Assets ("
-        "key INTEGER PRIMARY KEY,"
-        "name TEXT,"
-        "type INTEGER,"
-        "initialBalance REAL,"
-        "sorder INTEGER);"];
-
-    char sql[256];
-    sqlite3_snprintf(sizeof(sql), sql,
-                     "INSERT INTO Assets VALUES(1, %Q, 0, 0.0, 0);", 
-                     [NSLocalizedString(@"Cash", @"") UTF8String]);
-    [db execSql:sql];
+    BOOL ret = [super migrate];
+    
+    if (ret) {
+        // newly created...
+        Asset *as = [[[Asset alloc] init] autorelease];
+        as.name = NSLocalizedString(@"Cash", @"");
+        as.type = ASSET_CASH;
+        as.initialBalance = 0;
+        as.sorder = 0;
+        [as insert];
+    }
+    return ret;
 }
 
 

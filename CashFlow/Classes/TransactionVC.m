@@ -372,7 +372,7 @@
     // autoPop == NO なので、自分で pop する
     [self.navigationController popToViewController:self animated:YES];
 
-    if (![editingEntry changeType:vc.type assetKey:asset.pkey dstAssetKey:vc.dst_asset]) {
+    if (![editingEntry changeType:vc.type assetKey:asset.pid dstAssetKey:vc.dst_asset]) {
         return;
     }
 
@@ -429,7 +429,7 @@
         editingEntry.transaction.category = -1;
     } else {
         Category *c = [[DataModel categories] categoryAtIndex:vc.selectedIndex];
-        editingEntry.transaction.category = c.pkey;
+        editingEntry.transaction.category = c.pid;
     }
     [self _dismissPopover];
 }

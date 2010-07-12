@@ -35,14 +35,46 @@
 #import "Transaction.h"
 #import "Database.h"
 #import "Config.h"
+#import "DescLRUManager.h"
 
 @implementation Transaction
 
-@synthesize pkey, asset, dst_asset, date, description, memo, value, type, category;
 @synthesize hasBalance, balance;
+
++ (id)allocator
+{
+    return [[[Transaction alloc] init] autorelease];
+}
+
+/*
+    テーブルの migration と日付フォーマットのアップグレードを行う
+ 
+    旧バージョンでは日付フォーマットが yyyyMMddHHmm であったが、
+    ormapper 導入にあわせて yyyyMMddHHmmss に変更。
+ */
++ (BOOL)migrate
+{
+    BOOL ret = [super migrate];
+
+    // 日付フォーマットをチェックする
+    Database *db = [Database instance];
+    dbstmt *stmt = [db prepare:@"SELECT date FROM Transactions LIMIT 1;"];
+    if ([stmt step] != SQLITE_ROW) return ret;
+    
+    NSString *dateStr = [stmt colString:0];
+    if ([dateStr length] == 12) { // yyyyMMDDHHmm
+        // 秒の桁を追加する
+        NSString *sql = @"UPDATE Transactions SET date = date * 100;";
+        [[Database instance] exec:sql];
+    }
+
+    return ret;
+}
 
 - (id)init
 {
+    [super init];
+
     asset = -1;
     dst_asset = -1;
     
@@ -62,21 +94,19 @@
     value = 0.0;
     type = 0;
     category = -1;
-    pkey = 0; // init
     hasBalance = NO;
     return self;
 }
 
 - (void)dealloc
 {
-    [date release];
-    [description release];
-    [memo release];
     [super dealloc];
 }
 
 - (id)initWithDate: (NSDate*)dt description:(NSString*)desc value:(double)v
 {
+    [super init];
+
     asset = -1;
     dst_asset = -1;
     self.date = dt;
@@ -85,7 +115,7 @@
     value = v;
     type = 0;
     category = -1;
-    pkey = 0; // init
+    pid = 0; // init
     hasBalance = NO;
     return self;
 }
@@ -93,7 +123,7 @@
 - (id)copyWithZone:(NSZone*)zone
 {
     Transaction *n = [[Transaction alloc] init];
-    n.pkey = self.pkey;
+    n.pid = self.pid;
     n.asset = self.asset;
     n.dst_asset = self.dst_asset;
     n.date = self.date;
@@ -107,129 +137,16 @@
     return n;
 }
 
-//
-// Database operations
-//
-+ (void)createTable
+- (void)insert
 {
-    [[Database instance] 
-        execSql:"CREATE TABLE Transactions ("
-        "key INTEGER PRIMARY KEY,"
-        "asset INTEGER,"
-        "dst_asset INTEGER,"
-        "date DATE,"
-        "type INTEGER,"
-        "category INTEGER,"
-        "value REAL,"
-        "description TEXT,"
-        "memo TEXT);"];
+    [super insert];
+    [DescLRUManager addDescLRU:description category:category];
 }
 
-+ (NSMutableArray *)loadTransactions
+- (void)update
 {
-    DBStatement *stmt;
-
-    /* load transactions */
-    stmt = [[Database instance] prepare:"SELECT key, asset, dst_asset, date, type, category, value, description, memo"
-               " FROM Transactions ORDER BY date, key;"];
-
-    NSMutableArray *ary = [[[NSMutableArray alloc] init] autorelease];
-
-    while ([stmt step] == SQLITE_ROW) {
-        Transaction *t = [[Transaction alloc] init];
-        t.pkey = [stmt colInt:0];
-        t.asset = [stmt colInt:1];
-        t.dst_asset = [stmt colInt:2];
-        t.date = [stmt colDate:3];
-        t.type = [stmt colInt:4];
-        t.category = [stmt colInt:5];
-        t.value = [stmt colDouble:6];
-        t.description = [stmt colString:7];
-        t.memo = [stmt colString:8];
-
-        if (t.date == nil) {
-            // fail safe
-            NSLog(@"Invalid date: %@", [stmt colString:1]);
-            [t release];
-            continue;
-        }
-
-        [ary addObject:t];
-        [t release];
-    }
-
-    return ary;
+    [super update];
+    [DescLRUManager addDescLRU:description category:category];
 }
-
-- (void)insertDb
-{
-    static DBStatement *stmt = nil;
-
-    if (stmt == nil) {
-        const char *s = "INSERT INTO Transactions VALUES(NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
-        stmt = [[Database instance] prepare:s];
-        [stmt retain];
-    }
-    [stmt bindInt:0 val:asset];
-    [stmt bindInt:1 val:dst_asset];
-    [stmt bindDate:2 val:date];
-    [stmt bindInt:3 val:type];
-    [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
-    [stmt bindString:6 val:description];
-    [stmt bindString:7 val:memo];
-    [stmt step];
-    [stmt reset];
-
-    // get primary key
-    pkey = [[Database instance] lastInsertRowId];
-}
-
-- (void)updateDb
-{
-    static DBStatement *stmt = nil;
-
-    if (stmt == nil) {
-        const char *s = "UPDATE Transactions SET asset=?, dst_asset=?, date=?, type=?, category=?, value=?, description=?, memo=? WHERE key = ?;";
-        stmt = [[Database instance] prepare:s];
-        [stmt retain];
-    }
-    [stmt bindInt:0 val:asset];
-    [stmt bindInt:1 val:dst_asset];
-    [stmt bindDate:2 val:date];
-    [stmt bindInt:3 val:type];
-    [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
-    [stmt bindString:6 val:description];
-    [stmt bindString:7 val:memo];
-    [stmt bindInt:8 val:pkey];
-    [stmt step];
-    [stmt reset];
-}
-
-- (void)deleteDb
-{
-    static DBStatement *stmt = nil;
-    if (stmt == nil) {
-        const char *s = "DELETE FROM Transactions WHERE key = ?;";
-        stmt = [[Database instance] prepare:s];
-        [stmt retain];
-    }
-    [stmt bindInt:0 val:pkey];
-    [stmt step];
-    [stmt reset];
-}
-
-#if 0 // not used
-+ (void)deleteDbWithAsset:(int)assetKey
-{
-    DBStatement *stmt;
-    Database *db = [Database instance];
-    stmt = [db prepare:"DELETE FROM Transactions WHERE asset=? OR dst_asset=?;"];
-    [stmt bindInt:0 val:assetKey];
-    [stmt bindInt:1 val:assetKey];
-    [stmt step];
-}
-#endif
 
 @end

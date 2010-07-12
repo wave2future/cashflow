@@ -11,7 +11,7 @@
     if (df == nil) {
         df = [[DateFormatter2 alloc] init];
         [df setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        [df setDateFormat: @"yyyyMMddHHmm"];
+        [df setDateFormat: @"yyyyMMddHHmmss"];
     }
     return df;
 }
@@ -32,7 +32,7 @@
     [DataModel finalize];
     [Database shutdown];
 
-    NSString *dbPath = [Database dataFilePath];
+    NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
     [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
 }
@@ -50,13 +50,13 @@
     
     // Document ディレクトリを作成する (単体テストだとなぜかできてない)
     NSFileManager *fm = [NSFileManager defaultManager];
-    NSString *dbdir = [AppDelegate pathOfDataFile:nil];
+    NSString *dbdir = [[Database instance] dbPath:@""];
     if (![fm fileExistsAtPath:dbdir]) {
         [fm createDirectoryAtPath:dbdir withIntermediateDirectories:NO
                        attributes:nil error:NULL];
     }
     
-    NSString *dbPath = [Database dataFilePath];
+    NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
     // load sql
     NSData *data = [NSData dataWithContentsOfFile:sqlPath];

@@ -61,7 +61,7 @@
     if (entries) {
         [entries release];
     }
-    entries = [Transaction loadTransactions];
+    entries = [Transaction find_cond:@"ORDER BY date, key"];
     [entries retain];
 }
 
@@ -89,7 +89,7 @@
 
     // 挿入
     [entries insertObject:tr atIndex:i];
-    [tr insertDb];
+    [tr insert];
 
     // 上限チェック
     if ([entries count] > MAX_TRANSACTIONS) {
@@ -104,10 +104,10 @@
 - (void)replaceTransaction:(Transaction *)from withObject:(Transaction*)to
 {
     // copy key
-    to.pkey = from.pkey;
+    to.pid = from.pid;
 
     // update DB
-    [to updateDb];
+    [to update];
 
     int idx = [entries indexOfObject:from];
     [entries replaceObjectAtIndex:idx withObject:to];
@@ -139,14 +139,14 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 {
     if (t.type != TYPE_TRANSFER) {
         // 資産間移動取引以外の場合
-        [t deleteDb];
+        [t delete];
         [entries removeObject:t];
         return YES;
     }
 
     // 資産間移動の場合の処理
     // 通常取引 (入金 or 出金) に変更する
-    if (t.asset == asset.pkey) {
+    if (t.asset == asset.pid) {
         // 自分が移動元の場合、移動方向を逆にする
         // (金額も逆転する）
         t.asset = t.dst_asset;
@@ -162,7 +162,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     }
 
     // データベース書き換え
-    [t updateDb];
+    [t update];
     return NO;
 }
 
@@ -176,7 +176,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
     for (int i = 0; i < max; i++) {
         t = [entries objectAtIndex:i];
-        if (t.asset != asset.pkey && t.dst_asset != asset.pkey) {
+        if (t.asset != asset.pid && t.dst_asset != asset.pid) {
             continue;
         }
 

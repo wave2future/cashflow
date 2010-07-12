@@ -584,7 +584,7 @@
         case 3:
             backup = [[Backup alloc] init];
             [backup execute];
-            return;
+            return; // do not release back instance here!
             
         case 4:
             configVC = [[[ConfigViewController alloc] init] autorelease];
