@@ -20,6 +20,19 @@
 {
 }
 
+- (void)setupTestData
+{
+    Database *db = [Database instance];
+    NSDate *date;
+
+    [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"20100101000000"]];
+    [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"20100101000001"]];
+    [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"20100101000002"]];
+    [DescLRUManager addDescLRU:@"test3" category:0 date:[db dateFromString:@"20100101000003"]];
+    [DescLRUManager addDescLRU:@"test4" category:1 date:[db dateFromString:@"20100101000004"]];
+    [DescLRUManager addDescLRU:@"test5" category:2 date:[db dateFromString:@"20100101000005"]];
+}
+
 - (void) testInit {
     NSMutableArray *ary = [DescLRUManager getDescLRUs:-1];
     STAssertTrue([ary count] == 0, @"LRU count must be 0.");
@@ -27,12 +40,7 @@
 
 - (void)testAnyCategory
 {
-    [DescLRUManager addDescLRU:@"test0" category:0];
-    [DescLRUManager addDescLRU:@"test1" category:1];
-    [DescLRUManager addDescLRU:@"test2" category:2];
-    [DescLRUManager addDescLRU:@"test3" category:0];
-    [DescLRUManager addDescLRU:@"test4" category:1];
-    [DescLRUManager addDescLRU:@"test5" category:2];
+    [self setupTestData];
 
     NSMutableArray *ary;
     ary = [DescLRUManager getDescLRUs:-1];
@@ -47,12 +55,7 @@
 
 - (void)testCategory
 {
-    [DescLRUManager addDescLRU:@"test0" category:0];
-    [DescLRUManager addDescLRU:@"test1" category:1];
-    [DescLRUManager addDescLRU:@"test2" category:2];
-    [DescLRUManager addDescLRU:@"test3" category:0];
-    [DescLRUManager addDescLRU:@"test4" category:1];
-    [DescLRUManager addDescLRU:@"test5" category:2];
+    [self setupTestData];
 
     NSMutableArray *ary;
     ary = [DescLRUManager getDescLRUs:1];
@@ -65,14 +68,9 @@
     STAssertTrue([s isEqualToString:@"test1"], @"last entry");
 }
 
-- (void)testUpdate
+- (void)testUpdateSameCategory
 {
-    [DescLRUManager addDescLRU:@"test0" category:0];
-    [DescLRUManager addDescLRU:@"test1" category:1];
-    [DescLRUManager addDescLRU:@"test2" category:2];
-    [DescLRUManager addDescLRU:@"test3" category:0];
-    [DescLRUManager addDescLRU:@"test4" category:1];
-    [DescLRUManager addDescLRU:@"test5" category:2];
+    [self setupTestData];
 
     [DescLRUManager addDescLRU:@"test1" category:1]; // same name/cat.
 
@@ -85,6 +83,28 @@
     STAssertTrue([s isEqualToString:@"test1"], @"first entry");
     s = [ary objectAtIndex:1];
     STAssertTrue([s isEqualToString:@"test4"], @"last entry");
+}
+
+- (void)testUpdateOtherCategory
+{
+    [self setupTestData];
+
+    [DescLRUManager addDescLRU:@"test1" category:2]; // same name/other cat.
+
+    NSMutableArray *ary;
+    ary = [DescLRUManager getDescLRUs:1];
+    STAssertTrue([ary count] == 2, @"LRU count must be 2.");
+
+    NSString *s;
+    s = [ary objectAtIndex:0];
+    STAssertTrue([s isEqualToString:@"test4"], @"first entry");
+    s = [ary objectAtIndex:1];
+    STAssertTrue([s isEqualToString:@"test1"], @"last entry");
+
+    ary = [DescLRUManager getDescLRUs:2];
+    STAssertTrue([ary count] == 3, @"LRU count must be 3.");
+    s = [ary objectAtIndex:0];
+    STAssertTrue([s isEqualToString:@"test1"], @"new entry");
 }
 
 @end
