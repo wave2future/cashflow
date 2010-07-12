@@ -54,8 +54,6 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navigationController;
 
-+ (NSString*)pathOfDataFile:(NSString*)filename;
-
 // Utility
 #ifdef NDEBUG
 void AssertFailed(const char *filename, int lineno);
