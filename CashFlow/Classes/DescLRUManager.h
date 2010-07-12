@@ -41,6 +41,7 @@
 + (void)addDescLRU:(NSString *)description category:(int)category;
 + (void)addDescLRU:(NSString *)description category:(int)category date:(NSDate*)date;
 + (NSMutableArray *)getDescLRUs:(int)category;
++ (NSMutableArray *)getDescLRUStrings:(int)category;
 
 @end
 

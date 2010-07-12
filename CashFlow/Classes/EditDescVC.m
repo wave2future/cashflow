@@ -87,7 +87,7 @@
     textField.text = self.description;
     [super viewWillAppear:animated];
 
-    descArray = [DescLRUManager getDescLRUs:category];
+    descArray = [DescLRUManager getDescLRUStrings:category];
     [descArray retain];
     [descArray insertObject:@"" atIndex:0];  // dummy entry
     [picker reloadAllComponents];

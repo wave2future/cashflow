@@ -75,6 +75,12 @@
         [stmt bindInt:0 val:category];
         ary = [DescLRU find_stmt:stmt];
     }
+    return ary;
+}
+
++ (NSMutableArray *)getDescLRUStrings:(int)category
+{
+    NSMutableArray *ary = [self getDescLRUs:category];
 
     // 文字列配列に変換
     NSMutableArray *ss = [[[NSMutableArray alloc] init] autorelease];
@@ -84,5 +90,18 @@
 
     return ss;
 }
+
+#if 0
++ (void)gc
+{
+    NSMutableArray *ary = [DescLRU find:cond:@"ORDER BY lastUse DESC LIMIT 1 OFFSET 100"];
+    if ([ary count] > 0) {
+        DescLRU *lru = [ary objectAtIndex:0];
+        dbstmt *stmt = [[Database instance] prepare:@"DELETE FROM DescLRUs WHERE lastUse < ?"];
+        [stmt bindDate:0 val:lru.date];
+        [stmt step];
+    }
+}
+#endif
 
 @end
