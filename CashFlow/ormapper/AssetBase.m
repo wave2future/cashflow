@@ -45,7 +45,7 @@
 */
 + (id)allocator
 {
-    id e = [[AssetBase alloc] init];
+    id e = [[[AssetBase alloc] init] autorelease];
     return e;
 }
 
@@ -91,7 +91,7 @@
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
-        AssetBase *e = [[self allocator] autorelease];
+        AssetBase *e = [self allocator];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -114,7 +114,7 @@
         return nil;
     }
 
-    AssetBase *e = [[self allocator] autorelease];
+    AssetBase *e = [self allocator];
     [e _loadRow:stmt];
  
     return e;

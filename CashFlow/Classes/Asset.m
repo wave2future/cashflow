@@ -42,7 +42,7 @@
 
 + (id)allocator
 {
-    return [[Asset alloc] init];
+    return [[[Asset alloc] init] autorelease];
 }
 
 - (id)init

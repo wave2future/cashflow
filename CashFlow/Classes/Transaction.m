@@ -43,7 +43,7 @@
 
 + (id)allocator
 {
-    return [[Transaction alloc] init];
+    return [[[Transaction alloc] init] autorelease];
 }
 
 - (id)init

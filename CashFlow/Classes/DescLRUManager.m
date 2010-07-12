@@ -64,7 +64,7 @@
 + (void)addDescLRU:(NSString *)description category:(int)category date:(NSDate*)date
 {
     if ([description length] == 0) return;
-    
+
     // find desc LRU from history
     dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ?"];
     [stmt bindString:0 val:description];

@@ -39,7 +39,7 @@
 
 +(id)allocator
 {
-    return [[Category alloc] init];
+    return [[[Category alloc] init] autorelease];
 }
 
 @end

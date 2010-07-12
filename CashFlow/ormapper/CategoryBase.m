@@ -41,7 +41,7 @@
 */
 + (id)allocator
 {
-    id e = [[CategoryBase alloc] init];
+    id e = [[[CategoryBase alloc] init] autorelease];
     return e;
 }
 
@@ -87,7 +87,7 @@
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
-        CategoryBase *e = [[self allocator] autorelease];
+        CategoryBase *e = [self allocator];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -110,7 +110,7 @@
         return nil;
     }
 
-    CategoryBase *e = [[self allocator] autorelease];
+    CategoryBase *e = [self allocator];
     [e _loadRow:stmt];
  
     return e;

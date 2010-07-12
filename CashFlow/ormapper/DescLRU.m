@@ -44,7 +44,7 @@
 */
 + (id)allocator
 {
-    id e = [[DescLRU alloc] init];
+    id e = [[[DescLRU alloc] init] autorelease];
     return e;
 }
 
@@ -90,7 +90,7 @@
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
-        DescLRU *e = [[self allocator] autorelease];
+        DescLRU *e = [self allocator];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -113,7 +113,7 @@
         return nil;
     }
 
-    DescLRU *e = [[self allocator] autorelease];
+    DescLRU *e = [self allocator];
     [e _loadRow:stmt];
  
     return e;

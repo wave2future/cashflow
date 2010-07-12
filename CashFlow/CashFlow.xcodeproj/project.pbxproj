@@ -312,6 +312,7 @@
 		3E97AF0311EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
+		3E97AFBD11EB300A004296F3 /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AFBC11EB300A004296F3 /* DescLRUManagerTests.m */; };
 		3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
@@ -501,6 +502,7 @@
 		3E97AEF111EB26FA004296F3 /* DescLRUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManager.m; sourceTree = "<group>"; };
 		3E97AEFE11EB272E004296F3 /* DescLRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRU.h; sourceTree = "<group>"; };
 		3E97AEFF11EB272E004296F3 /* DescLRU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRU.m; sourceTree = "<group>"; };
+		3E97AFBC11EB300A004296F3 /* DescLRUManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManagerTests.m; sourceTree = "<group>"; };
 		3E98A66711E8367B00B7F289 /* CurrencyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrencyManager.h; sourceTree = "<group>"; };
 		3E98A66811E8368800B7F289 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
 		3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
@@ -832,7 +834,6 @@
 		3EB4FB04119D6D2C001C3EEB /* LogicTests */ = {
 			isa = PBXGroup;
 			children = (
-				3E97AEEE11EB26C5004296F3 /* TimeTests.m */,
 				3E832510119DA21D00629871 /* testdata */,
 				3E832450119D776800629871 /* TestCommon.h */,
 				3E832451119D776800629871 /* TestCommon.m */,
@@ -844,6 +845,8 @@
 				3ED1C3CD119E7A500030B0B2 /* TransactionTests.m */,
 				3ED1C3E5119E7BC70030B0B2 /* ReportTests.m */,
 				3E98A6A911E8382700B7F289 /* CurrencyManagerTests.m */,
+				3E97AEEE11EB26C5004296F3 /* TimeTests.m */,
+				3E97AFBC11EB300A004296F3 /* DescLRUManagerTests.m */,
 			);
 			path = LogicTests;
 			sourceTree = "<group>";
@@ -1463,6 +1466,7 @@
 				3E97AEEF11EB26C5004296F3 /* TimeTests.m in Sources */,
 				3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */,
 				3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */,
+				3E97AFBD11EB300A004296F3 /* DescLRUManagerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

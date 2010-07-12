@@ -120,7 +120,7 @@
 // TransactionViewController 用の値を返す
 - (double)evalue
 {
-    double ret;
+    double ret = 0.0;
 
     switch (transaction.type) {
     case TYPE_INCOME:

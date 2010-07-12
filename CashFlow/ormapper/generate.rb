@@ -187,7 +187,7 @@ EOF
 */
 + (id)allocator
 {
-    id e = [[#{cdef.bcname} alloc] init];
+    id e = [[[#{cdef.bcname} alloc] init] autorelease];
     return e;
 }
 
@@ -233,7 +233,7 @@ EOF
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
-        #{cdef.bcname} *e = [[self allocator] autorelease];
+        #{cdef.bcname} *e = [self allocator];
         [e _loadRow:stmt];
         [array addObject:e];
     }
@@ -256,7 +256,7 @@ EOF
         return nil;
     }
 
-    #{cdef.bcname} *e = [[self allocator] autorelease];
+    #{cdef.bcname} *e = [self allocator];
     [e _loadRow:stmt];
  
     return e;
