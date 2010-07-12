@@ -310,6 +310,8 @@
 		3E97AF0111EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E97AF0211EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
 		3E97AF0311EB272E004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
+		3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEFF11EB272E004296F3 /* DescLRU.m */; };
+		3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
 		3E98A66911E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A66A11E8368800B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3E98A67B11E8379000B7F289 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
@@ -867,8 +869,6 @@
 		3EB540870E8E921700608B77 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3E97AEF011EB26FA004296F3 /* DescLRUManager.h */,
-				3E97AEF111EB26FA004296F3 /* DescLRUManager.m */,
 				3E82904F11411D7C00CD8212 /* AdCell.h */,
 				3E82905011411D7C00CD8212 /* AdCell.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
@@ -887,6 +887,8 @@
 				3E0519130E6A9D09008F1F65 /* Transaction.m */,
 				3ED8D2F30EC72F9000BC723D /* Category.h */,
 				3ED8D2F40EC72F9E00BC723D /* Category.m */,
+				3E97AEF011EB26FA004296F3 /* DescLRUManager.h */,
+				3E97AEF111EB26FA004296F3 /* DescLRUManager.m */,
 				3E1E63690F7B8A670037C34C /* DateFormatter2.h */,
 				3E1E636A0F7B8A670037C34C /* DateFormatter2.m */,
 				3E4D1CF20EBB45AB006050FE /* Report.h */,
@@ -1459,6 +1461,8 @@
 				3ECEF45711E9D98300738E69 /* CategoryBase.m in Sources */,
 				3ECEF45911E9D98A00738E69 /* AssetBase.m in Sources */,
 				3E97AEEF11EB26C5004296F3 /* TimeTests.m in Sources */,
+				3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */,
+				3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
