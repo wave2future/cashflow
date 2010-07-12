@@ -218,13 +218,18 @@ static Database *theDatabase = nil;
 	
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    //[dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
-    [dateFormatter setDateFormat: @"yyyyMMddHHmm"];
+    [dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
+
+    // for backward compatibility
+    dateFormatterOld = [[NSDateFormatter alloc] init];
+    [dateFormatterOld setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormatterOld setDateFormat: @"yyyyMMddHHmm"];
 
     // Set US locale, because JP locale for date formatter is buggy,
     // especially for 12 hour settings.
     NSLocale *us = [[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease];
     [dateFormatter setLocale:us];
+    [dateFormatterOld setLocale:us];
 
     return self;
 }
@@ -239,6 +244,7 @@ static Database *theDatabase = nil;
     }
 
     [dateFormatter release];
+    [dateFormatterOld release];
 
     [super dealloc];
 }
@@ -354,6 +360,9 @@ static Database *theDatabase = nil;
 - (NSDate *)dateFromString:(NSString *)str
 {
     NSDate *date = [dateFormatter dateFromString:str];
+    if (date == nil) {
+        date = [dateFormatterOld dateFromString:str];  // backward compat.
+    }
     return date;
 }
 
