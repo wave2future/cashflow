@@ -15,6 +15,7 @@
 
 + (id)allocator;
 + (NSMutableArray *)find_cond:(NSString *)cond;
++ (dbstmt *)gen_stmt:(NSString *)cond;
 + (NSMutableArray *)find_stmt:(dbstmt *)cond;
 + (CategoryBase *)find:(int)pid;
 - (void)delete;

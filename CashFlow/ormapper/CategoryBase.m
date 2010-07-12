@@ -53,6 +53,19 @@
 */
 + (NSMutableArray *)find_cond:(NSString *)cond
 {
+    dbstmt *stmt = [self gen_stmt:cond];
+    NSMutableArray *array = [self find_stmt:stmt];
+    return array;
+}
+
+/**
+  @brief create dbstmt
+
+  @param s condition
+  @return dbstmt
+*/
++ (dbstmt *)gen_stmt:(NSString *)cond
+{
     NSString *sql;
     if (cond == nil) {
         sql = @"SELECT * FROM Categories;";
@@ -60,9 +73,7 @@
         sql = [NSString stringWithFormat:@"SELECT * FROM Categories %@;", cond];
     }  
     dbstmt *stmt = [[Database instance] prepare:sql];
-
-    NSMutableArray *array = [self find_stmt:stmt];
-    return array;
+    return stmt;
 }
 
 /**
