@@ -68,8 +68,8 @@
              action:@selector(doneAction)] autorelease];
 
     // ここで textField を生成する
-    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 12, 300, 24)];
-    textField.placeholder = NSLocalizedString("@Name", @"Description");
+    textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 12, 300, 24)];
+    textField.placeholder = NSLocalizedString(@"Description", @"");
     textField.returnKeyType = UIReturnKeyDone;
     textField.delegate = self;
     [textField addTarget:self action:@selector(onTextChange:)
@@ -101,7 +101,7 @@
     // キーボードを消す ###
     [textField resignFirstResponder];
 
-    [tableView reload];
+    [tableView reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -144,7 +144,7 @@
     UITableViewCell *cell;
 
     if (indexPath.section == 0) {
-        cell = [self.tableView dequeueReusabelCellWithIdentifier:@"textFieldCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"textFieldCell"];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textFieldCell"] autorelease];
 
@@ -152,7 +152,7 @@
         }
     } 
     else {
-        cell = [self.tableView dequeueReusableCellWithIdentifier:@"descCell"];
+        cell = [tableView dequeueReusableCellWithIdentifier:@"descCell"];
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"descCell"] autorelease];
         }

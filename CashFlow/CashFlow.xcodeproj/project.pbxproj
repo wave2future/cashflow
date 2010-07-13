@@ -219,7 +219,6 @@
 		3E7BB13A115399C5004B7D03 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
 		3E7BB13B115399C5004B7D03 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
-		3E82905111411D7C00CD8212 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E82905011411D7C00CD8212 /* AdCell.m */; };
 		3E832452119D776800629871 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E832451119D776800629871 /* TestCommon.m */; };
 		3E832467119D798400629871 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3E8324C4119D9F8600629871 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
@@ -340,6 +339,11 @@
 		3EB55575103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
 		3EB55576103B96CE00BA13D4 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
 		3EB8EA500F1F7919000A8276 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
+		3EC0B7A211EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC0B7A311EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC0B7A411EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC0B7A511EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC0B7A611EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECEF32B11E9C64E00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
 		3ECEF32E11E9C64E00738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
@@ -450,7 +454,6 @@
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E3EC2F811EA1DF8004DFF93 /* Info copy.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Info copy.plist"; path = "../Info copy.plist"; sourceTree = "<group>"; };
 		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
@@ -485,8 +488,6 @@
 		3E7BB136115399C5004B7D03 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
 		3E7BB137115399C5004B7D03 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
-		3E82904F11411D7C00CD8212 /* AdCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdCell.h; sourceTree = "<group>"; };
-		3E82905011411D7C00CD8212 /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
 		3E832450119D776800629871 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		3E832451119D776800629871 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
 		3E832520119DA25A00629871 /* testdata1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testdata1.sql; sourceTree = "<group>"; };
@@ -532,6 +533,8 @@
 		3EB5552D103B930D00BA13D4 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3EB55574103B96CE00BA13D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		3EB8EA4F0F1F7919000A8276 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
+		3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdUtil.h; sourceTree = "<group>"; };
+		3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdUtil.m; sourceTree = "<group>"; };
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECEF31C11E9C64E00738E69 /* AssetBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetBase.h; sourceTree = "<group>"; };
 		3ECEF31D11E9C64E00738E69 /* AssetBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetBase.m; sourceTree = "<group>"; };
@@ -780,7 +783,6 @@
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3E5A8D7E0EAE34B200118C3C /* Info-free.plist */,
 				3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */,
-				3E3EC2F811EA1DF8004DFF93 /* Info copy.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -872,8 +874,8 @@
 		3EB540870E8E921700608B77 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				3E82904F11411D7C00CD8212 /* AdCell.h */,
-				3E82905011411D7C00CD8212 /* AdCell.m */,
+				3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */,
+				3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */,
 				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
 				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
 				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
@@ -1310,6 +1312,7 @@
 				3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */,
 				3E97AEF211EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0011EB272E004296F3 /* DescLRU.m in Sources */,
+				3EC0B7A311EC8B4900AA02A8 /* AdUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1365,6 +1368,7 @@
 				3E3EC2E511EA1DF7004DFF93 /* TransactionBase.m in Sources */,
 				3E97AEF511EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0311EB272E004296F3 /* DescLRU.m in Sources */,
+				3EC0B7A611EC8B4900AA02A8 /* AdUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1409,7 +1413,6 @@
 				3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */,
 				3E92947C106BBC7900DE6040 /* CalcVC.m in Sources */,
-				3E82905111411D7C00CD8212 /* AdCell.m in Sources */,
 				3E7BB138115399C5004B7D03 /* Config.m in Sources */,
 				3E7BB139115399C5004B7D03 /* ConfigViewController.m in Sources */,
 				3E35661A1189697E007DAF44 /* Backup.m in Sources */,
@@ -1421,6 +1424,7 @@
 				3ECEF33211E9C64E00738E69 /* TransactionBase.m in Sources */,
 				3E97AEF311EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0111EB272E004296F3 /* DescLRU.m in Sources */,
+				3EC0B7A411EC8B4900AA02A8 /* AdUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1467,6 +1471,7 @@
 				3E97AF2311EB27CD004296F3 /* DescLRU.m in Sources */,
 				3E97AF2611EB27DF004296F3 /* DescLRUManager.m in Sources */,
 				3E5BCED311EB543100C590C3 /* DescLRUManagerTests.m in Sources */,
+				3EC0B7A211EC8B4900AA02A8 /* AdUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1524,6 +1529,7 @@
 				3E3EC1DD11EA1BCF004DFF93 /* TestCommon.m in Sources */,
 				3E97AEF411EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0211EB272E004296F3 /* DescLRU.m in Sources */,
+				3EC0B7A511EC8B4900AA02A8 /* AdUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

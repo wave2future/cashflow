@@ -44,10 +44,9 @@
 @end
 
 @interface EditDescViewController : UIViewController
-  <UITableViewDelegate, UITableViewDataSource,
-   UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+  <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
-    IBOutlet *tableView;
+    IBOutlet UITableView *tableView;
 
     UITextField *textField;
     NSMutableArray *descArray;

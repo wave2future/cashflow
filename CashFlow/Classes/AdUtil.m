@@ -47,6 +47,6 @@
     return md;
 }
 
-#endif // FREE_VERSION
-
 @end
+
+#endif // FREE_VERSION
