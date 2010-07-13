@@ -454,7 +454,7 @@
 		3E2CBDA90F1615880025A682 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
-		3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E3EC2F611EA1DF7004DFF93 /* CashFlowTesting.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlowTesting.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
 		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
@@ -724,7 +724,7 @@
 				3E8B25C20F348C090007929E /* CashFlowFree.app */,
 				3EB4FAF6119D6D05001C3EEB /* LogicTests.octest */,
 				3EB4FBBA119D70AC001C3EEB /* AppTests.octest */,
-				3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */,
+				3E3EC2F611EA1DF7004DFF93 /* CashFlowTesting.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -995,7 +995,7 @@
 			);
 			name = CashFlowTesting;
 			productName = CashFlow;
-			productReference = 3E3EC2F611EA1DF7004DFF93 /* CashFlow.app */;
+			productReference = 3E3EC2F611EA1DF7004DFF93 /* CashFlowTesting.app */;
 			productType = "com.apple.product-type.application";
 		};
 		3E8B25780F348C090007929E /* CashFlowFree */ = {
@@ -1629,7 +1629,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CashFlow;
+				PRODUCT_NAME = CashFlowTesting;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1650,7 +1650,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CashFlow;
+				PRODUCT_NAME = CashFlowTesting;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1671,7 +1671,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 3.1.3;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_NAME = CashFlow;
+				PRODUCT_NAME = CashFlowTesting;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1694,7 +1694,7 @@
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_NAME = CashFlow;
+				PRODUCT_NAME = CashFlowTesting;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				SDKROOT = iphoneos4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
