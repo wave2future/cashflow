@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2010, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -51,10 +51,6 @@
     return self;
 }
 
--(void)onTextChange:(id)sender {
-    // dummy func must exist for textFieldShouldReturn event to be called
-}
-
 - (void)viewDidLoad
 {
     if (IS_IPAD) {
@@ -64,18 +60,30 @@
     }
     
     self.title = NSLocalizedString(@"Name", @"Description");
-    textField.placeholder = NSLocalizedString(@"Name", @"Description");
-	
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
-                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                  target:self
-                                                  action:@selector(doneAction)] autorelease];
 
-    [textField addTarget:self action:@selector(onTextChange:) forControlEvents:UIControlEventEditingDidEndOnExit];
+    self.navigationItem.rightBarButtonItem =
+        [[[UIBarButtonItem alloc]
+             initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+             target:self
+             action:@selector(doneAction)] autorelease];
+
+    // ここで textField を生成する
+    UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 12, 300, 24)];
+    textField.placeholder = NSLocalizedString("@Name", @"Description");
+    textField.returnKeyType = UIReturnKeyDone;
+    textField.delegate = self;
+    [textField addTarget:self action:@selector(onTextChange:)
+               forControlEvents:UIControlEventEditingDidEndOnExit];
+}
+
+-(void)onTextChange:(id)sender {
+    // dummy func must exist for textFieldShouldReturn event to be called
 }
 
 - (void)dealloc
 {
+    [tableView release];
+    [textField release];
     [description release];
     [super dealloc];
 }
@@ -89,12 +97,11 @@
 
     descArray = [DescLRUManager getDescLRUStrings:category];
     [descArray retain];
-    [descArray insertObject:@"" atIndex:0];  // dummy entry
-    [picker reloadAllComponents];
-    [picker selectRow:0 inComponent:0 animated:NO];
 
     // キーボードを消す ###
     [textField resignFirstResponder];
+
+    [tableView reload];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -118,26 +125,59 @@
     return YES;
 }
 
-// Picker
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)v
-{
-    return 1;
+#pragma mark TableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
 }
 
-- (NSInteger)pickerView:(UIPickerView *)v numberOfRowsInComponent:(NSInteger)c
-{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 1; // テキスト入力欄
+    }
+
     return [descArray count];
 }
 
-- (NSString *)pickerView:(UIPickerView *)v titleForRow:(NSInteger)row forComponent:(NSInteger)comp
+- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [descArray objectAtIndex:row];
+    UITableViewCell *cell;
+
+    if (indexPath.section == 0) {
+        cell = [self.tableView dequeueReusabelCellWithIdentifier:@"textFieldCell"];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textFieldCell"] autorelease];
+
+            [cell.contentView addSubview:textField];
+        }
+    } 
+    else {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"descCell"];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"descCell"] autorelease];
+        }
+        cell.textLabel.text = [descArray objectAtIndex:indexPath.row];
+    }
+    return cell;
 }
 
-- (void)pickerView:(UIPickerView *)v didSelectRow:(NSInteger)row inComponent:(NSInteger)comp
+#pragma mark UITableViewDelegate
+
+//
+// セルをクリックしたときの処理
+//
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    textField.text = [descArray objectAtIndex:row];
+    [tv deselectRowAtIndexPath:indexPath animated:NO];
+
+    if (indexPath.section == 1) {
+        NSString *desc = [descArray objectAtIndex:indexPath.row];
+        textField.text = desc;
+        [self doneAction];
+    }
 }
+
+#pragma mark -
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if (IS_IPAD) return YES;

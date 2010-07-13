@@ -44,11 +44,12 @@
 @end
 
 @interface EditDescViewController : UIViewController
-    <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+  <UITableViewDelegate, UITableViewDataSource,
+   UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
 {
-    IBOutlet UITextField *textField;
-    IBOutlet UIPickerView *picker;
+    IBOutlet *tableView;
 
+    UITextField *textField;
     NSMutableArray *descArray;
 
     id<EditDescViewDelegate> delegate;
