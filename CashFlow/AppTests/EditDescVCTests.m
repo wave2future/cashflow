@@ -19,6 +19,7 @@
 {
     [description release];
     description = v.description;
+    [description retain];
 }
 
 #pragma mark -
@@ -31,6 +32,7 @@
 
 - (void)setUp
 {
+    [DataModel instance];
     description = nil;
 
     // erase all desc LRU data
@@ -54,7 +56,7 @@
 
 - (UITableViewCell *)_cellForRow:(int)row section:(int)section
 {
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
     UITableViewCell *cell = [vc tableView:vc.tableView cellForRowAtIndexPath:indexPath];
     return cell;
 }

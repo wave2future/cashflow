@@ -13,6 +13,7 @@
 - (UIViewController *)rootViewController
 {
     vc = [[[AssetListViewController alloc] initWithNibName:@"AssetListView" bundle:nil] autorelease];
+    [vc viewDidLoad];
     return vc;
 }
 
@@ -20,6 +21,8 @@
 {
     [TestCommon installDatabase:@"testdata1"];
 
+    [self rootViewController];
+    
     // AssetView を表示させないようにガードする
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
