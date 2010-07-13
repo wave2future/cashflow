@@ -1,6 +1,6 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 //
-// AdCell.m
+// AdUtil.m
 //
 
 // Note:
@@ -8,9 +8,9 @@
 
 #if FREE_VERSION
 
-#import "AdCell.h"
+#import "AdUtil.h"
 
-@implementation AdCell
+@implementation AdUtil
 
 + (NSDictionary *)adAttributes
 {

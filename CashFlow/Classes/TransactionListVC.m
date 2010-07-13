@@ -44,7 +44,7 @@
 #import "Backup.h"
 
 #if FREE_VERSION
-#import "AdCell.h"
+#import "AdUtil.h"
 #endif
 
 @implementation TransactionListViewController
