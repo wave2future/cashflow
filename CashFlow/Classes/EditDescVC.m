@@ -139,6 +139,17 @@
     return [descArray count];
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+        case 0:
+            return @""; //NSLocalizedString(@"Description", @"");
+        case 1:
+            return NSLocalizedString(@"History", @"");
+    }
+    return nil;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell;
