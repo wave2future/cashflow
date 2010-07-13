@@ -60,6 +60,8 @@
 @property(nonatomic,retain)	NSString *description;
 @property(nonatomic,assign)	int category;
 
+@property(nonatomic,readonly) UITableView *tableView; // for test
+
 - (void)doneAction;
 
 @end

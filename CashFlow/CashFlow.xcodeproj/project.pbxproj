@@ -344,6 +344,7 @@
 		3EC0B7A411EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
 		3EC0B7A511EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
 		3EC0B7A611EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC0B7EF11EC8DF700AA02A8 /* EditDescVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7EE11EC8DF700AA02A8 /* EditDescVCTests.m */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECEF32B11E9C64E00738E69 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF31D11E9C64E00738E69 /* AssetBase.m */; };
 		3ECEF32E11E9C64E00738E69 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32311E9C64E00738E69 /* CategoryBase.m */; };
@@ -535,6 +536,7 @@
 		3EB8EA4F0F1F7919000A8276 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
 		3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdUtil.h; sourceTree = "<group>"; };
 		3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdUtil.m; sourceTree = "<group>"; };
+		3EC0B7EE11EC8DF700AA02A8 /* EditDescVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVCTests.m; sourceTree = "<group>"; };
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECEF31C11E9C64E00738E69 /* AssetBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetBase.h; sourceTree = "<group>"; };
 		3ECEF31D11E9C64E00738E69 /* AssetBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetBase.m; sourceTree = "<group>"; };
@@ -943,6 +945,7 @@
 				3ED1C4F8119EEBF00030B0B2 /* AppTests.h */,
 				3ED1C4F9119EEBF00030B0B2 /* AppTests.m */,
 				3ED1C402119EE6070030B0B2 /* AssetListVCTests.m */,
+				3EC0B7EE11EC8DF700AA02A8 /* EditDescVCTests.m */,
 			);
 			path = AppTests;
 			sourceTree = "<group>";
@@ -1530,6 +1533,7 @@
 				3E97AEF411EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0211EB272E004296F3 /* DescLRU.m in Sources */,
 				3EC0B7A511EC8B4900AA02A8 /* AdUtil.m in Sources */,
+				3EC0B7EF11EC8DF700AA02A8 /* EditDescVCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

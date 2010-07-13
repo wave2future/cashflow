@@ -15,10 +15,10 @@
 
 #pragma mark EditDescViewDelegate
 
-- (void)editDescViewChanged:(EditDescViewController*)vc
+- (void)editDescViewChanged:(EditDescViewController*)v
 {
     [description release];
-    description = vc.description;
+    description = v.description;
 }
 
 #pragma mark -
@@ -61,7 +61,7 @@
 
 - (void)testDescArea
 {
-    AssertEqualInt(2, [vc tableView:vc.tableView numberOfSectionsInTableView]);
+    AssertEqualInt(2, [vc numberOfSectionsInTableView:vc.tableView]);
     AssertEqualInt(1, [vc tableView:vc.tableView numberOfRowsInSection:0]);
     
     UITableViewCell *cell = [self _cellForRow:0 section:0];
@@ -79,6 +79,7 @@
 
 - (void)testAnyCategory
 {
+    Database *db = [Database instance];
     [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"20100101000000"]];
     [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"20100101000001"]];
     [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"20100101000002"]];
@@ -101,6 +102,7 @@
 
 - (void)testSpecificCategory
 {
+    Database *db = [Database instance];
     [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"20100101000000"]];
     [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"20100101000001"]];
     [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"20100101000002"]];
@@ -123,6 +125,7 @@
 
 - (void)testClickCell
 {
+    Database *db = [Database instance];
     [DescLRUManager addDescLRU:@"test0" category:0 date:[db dateFromString:@"20100101000000"]];
     [DescLRUManager addDescLRU:@"test1" category:1 date:[db dateFromString:@"20100101000001"]];
     [DescLRUManager addDescLRU:@"test2" category:2 date:[db dateFromString:@"20100101000002"]];
@@ -133,7 +136,7 @@
     vc.category = -1;
     [vc viewWillAppear:YES]; // reload descArray
 
-    NSIndexPath *indexPath = [NSIndexPath pathForRow:1 forSection:1];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     [vc tableView:vc.tableView didSelectRowAtIndexPath:indexPath];
     Assert([description isEqualToString:@"test4"]);
 }

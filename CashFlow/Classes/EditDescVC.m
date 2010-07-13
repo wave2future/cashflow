@@ -40,7 +40,7 @@
 
 @implementation EditDescViewController
 
-@synthesize delegate, description, category;
+@synthesize delegate, description, category, tableView;
 
 - (id)init
 {
