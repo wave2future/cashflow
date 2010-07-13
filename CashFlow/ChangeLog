@@ -1,4 +1,8 @@
-2010-07-12:
+2010-07-13: Takuya Murakami
+	* AdCell -> AdUtil
+	* 単体テスト追加
+
+2010-07-12: Takuya Murakami
 	* DescLRU モデルを追加
 
 2010-07-11: Takuya Murakami
