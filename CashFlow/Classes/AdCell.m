@@ -9,32 +9,8 @@
 #if FREE_VERSION
 
 #import "AdCell.h"
-#import "AppDelegate.h"
-
-/////////////////////////////////////////////////////////////////////
-// AdCell
 
 @implementation AdCell
-
-@synthesize parentViewController;
-
-+ (CGFloat)adCellHeight
-{
-    return 51; // AdSense
-}
-
-+ (AdCell *)adCell:(UITableView *)tableView parentViewController:(UIViewController *)parentViewController
-{
-    NSString *identifier = @"AdCell";
-
-    AdCell *cell = (AdCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
-    if (cell == nil) {
-        cell = [[[AdCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
-    }
-    cell.parentViewController = parentViewController;
-
-    return cell;
-}
 
 + (NSDictionary *)adAttributes
 {
@@ -69,45 +45,6 @@
     }
 
     return md;
-}
-
-- (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
-{
-    self = [super initWithStyle:style reuseIdentifier:identifier];
-
-    // 広告を作成する
-    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
-    adViewController.adSize = kGADAdSize320x50;
-    
-    NSDictionary *attributes = [AdCell adAttributes];
-    [adViewController loadGoogleAd:attributes];
-    
-    UIView *v = adViewController.view;
-    CGRect frame = v.frame;
-    frame.origin.x = 0;
-    frame.origin.y = 0;
-    v.frame = frame;
-    [self.contentView addSubview:v];
-
-    return self;
-}
-
-- (void)dealloc {
-    [adViewController release];
-    [super dealloc];
-}
-
-
-#pragma mark GADAdViewControllerDelegate
-
-- (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
-{
-    return self.parentViewController;
-}
-
-- (GADAdClickAction)adControllerActionModelForAdClick:(GADAdViewController *)adController
-{
-    return GAD_ACTION_DISPLAY_INTERNAL_WEBSITE_VIEW;
 }
 
 #endif // FREE_VERSION

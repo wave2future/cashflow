@@ -18,17 +18,11 @@
 #define AFMA_KEYWORDS  @"マネー,預金,キャッシュ,クレジット,小遣い,貯金,資産+管理,money,deposit,cash,credit,allowance,spending+money,pocket+money,savings,saving+money,asset+management"
 #define AFMA_IS_TEST 0
 
-@interface AdCell : UITableViewCell <GADAdViewControllerDelegate> {
-    GADAdViewController *adViewController;
-    UIViewController *parentViewController;
+@interface AdCell : NSObject {
 }
 
-@property(nonatomic,assign) UIViewController *parentViewController;
-
-+ (AdCell *)adCell:(UITableView *)tableView parentViewController:(UIViewController *)parentViewController;
-+ (CGFloat)adCellHeight;
-
 + (NSDictionary *)adAttributes;
+
 #endif
 
 @end
