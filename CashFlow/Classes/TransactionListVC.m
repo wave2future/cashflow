@@ -47,10 +47,6 @@
 #import "AdCell.h"
 #endif
 
-// 広告位置
-// -1 を指定した場合は、画面下部固定
-#define AD_CELL_ROW -1
-
 @implementation TransactionListViewController
 
 @synthesize tableView;
@@ -91,8 +87,6 @@
     asDisplaying = NO;
     
 #if FREE_VERSION
-    if (AD_CELL_ROW >= 0) return;
-    
     CGRect frame = tableView.bounds;
     
     // 画面下部固定で広告を作成する
@@ -218,33 +212,11 @@
     if (asset == nil) return 0;
     
     int n = [asset entryCount] + 1;
-#if FREE_VERSION
-    if ([self _adCellRow] >= 0) {
-        n++;
-    }
-#endif
     return n;
-}
-
-// 広告行の位置を返す
-- (int)_adCellRow
-{
-    int r = AD_CELL_ROW;
-    int nentry = [asset entryCount];
-
-    if (r > nentry) {
-        r = nentry;  // 全エントリの下（初期残高の上）
-    }
-    return r;
 }
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-#if FREE_VERSION
-    if (indexPath.row == [self _adCellRow]) {
-        return [AdCell adCellHeight];
-    }
-#endif
     return tableView.rowHeight;
 }
 
@@ -252,16 +224,6 @@
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
     int idx = ([asset entryCount] - 1) - indexPath.row;
-#if FREE_VERSION
-    int ar = [self _adCellRow];
-    if (ar >= 0) {
-        if (indexPath.row == ar) {
-            idx = -2; // ad
-        } else if (indexPath.row > ar) {
-            idx++;
-        }
-    }
-#endif
     return idx;
 }
 
@@ -271,7 +233,7 @@
     int idx = [self entryIndexWithIndexPath:indexPath];
 
     if (idx < 0) {
-        return nil;  // initial balance or ad
+        return nil;  // initial balance
     } 
     AssetEntry *e = [asset entryAt:idx];
     return e;
@@ -293,11 +255,6 @@
     if (e) {
         cell = [self _entryCell:e];
     }
-#if FREE_VERSION
-    else if (indexPath.row == [self _adCellRow]) {
-        cell = [self _adCell];
-    }
-#endif
     else {
         cell = [self initialBalanceCell];
     }
@@ -406,13 +363,6 @@
 
     return cell;
 }
-
-#if FREE_VERSION
-- (UITableViewCell *)_adCell
-{
-  return [AdCell adCell:tableView parentViewController:self.navigationController];
-}
-#endif
 
 #pragma mark UITableViewDelegate
 

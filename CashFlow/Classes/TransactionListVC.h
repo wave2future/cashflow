@@ -84,9 +84,5 @@
 - (IBAction)showHelp:(id)sender;
 
 - (UITableViewCell *)_entryCell:(AssetEntry *)e;
-#if FREE_VERSION
-- (int)_adCellRow;
-- (UITableViewCell *)_adCell;
-#endif
 
 @end
