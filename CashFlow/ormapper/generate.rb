@@ -37,7 +37,7 @@ $LOAD_PATH.push(File.expand_path(File.dirname($0)))
 
 require "schema.rb"
 
-VER = "0.1"
+VER = "0.1(cashflow)"
 PKEY = "key"
 
 def getObjcType(type)
@@ -103,18 +103,28 @@ EOF
 + (BOOL)migrate;
 
 + (id)allocator;
+
+// CRUD (Create/Read/Update/Delete) operations
+
+// Create operations
+- (void)insert;
+
+// Read operations
++ (#{cdef.bcname} *)find:(int)pid;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (dbstmt *)gen_stmt:(NSString *)cond;
 + (NSMutableArray *)find_stmt:(dbstmt *)cond;
-+ (#{cdef.bcname} *)find:(int)pid;
+
+// Update operations
+- (void)update;
+
+// Delete operations
 - (void)delete;
 + (void)delete_cond:(NSString *)cond;
 + (void)delete_all;
 
 // internal functions
 + (NSString *)tableName;
-- (void)insert;
-- (void)update;
 - (void)_loadRow:(dbstmt *)stmt;
 
 @end
@@ -191,6 +201,30 @@ EOF
     return e;
 }
 
+#pragma mark Read operations
+
+/**
+  @brief get the record matchs the id
+
+  @param pid Primary key of the record
+  @return record
+*/
++ (#{cdef.bcname} *)find:(int)pid
+{
+    Database *db = [Database instance];
+
+    dbstmt *stmt = [db prepare:@"SELECT * FROM #{cdef.name} WHERE #{PKEY} = ?;"];
+    [stmt bindInt:0 val:pid];
+    if ([stmt step] != SQLITE_ROW) {
+        return nil;
+    }
+
+    #{cdef.bcname} *e = [self allocator];
+    [e _loadRow:stmt];
+ 
+    return e;
+}
+
 /**
   @brief get all records matche the conditions
 
@@ -240,28 +274,6 @@ EOF
     return array;
 }
 
-/**
-  @brief get the record matchs the id
-
-  @param pid Primary key of the record
-  @return record
-*/
-+ (#{cdef.bcname} *)find:(int)pid
-{
-    Database *db = [Database instance];
-
-    dbstmt *stmt = [db prepare:@"SELECT * FROM #{cdef.name} WHERE #{PKEY} = ?;"];
-    [stmt bindInt:0 val:pid];
-    if ([stmt step] != SQLITE_ROW) {
-        return nil;
-    }
-
-    #{cdef.bcname} *e = [self allocator];
-    [e _loadRow:stmt];
- 
-    return e;
-}
-
 - (void)_loadRow:(dbstmt *)stmt
 {
     self.pid = [stmt colInt:0];
@@ -280,10 +292,7 @@ EOF
     isInserted = YES;
 }
 
-+ (NSString *)tableName
-{
-    return @"#{cdef.name}";
-}
+#pragma mark Create operations
 
 - (void)insert
 {
@@ -317,6 +326,8 @@ EOF
     [db commitTransaction];
     isInserted = YES;
 }
+
+#pragma mark Update operations
 
 - (void)update
 {
@@ -354,6 +365,8 @@ EOF
     [db commitTransaction];
 }
 
+#pragma mark Delete operations
+
 /**
   @brief Delete record
 */
@@ -383,6 +396,13 @@ EOF
 + (void)delete_all
 {
     [#{cdef.bcname} delete_cond:nil];
+}
+
+#pragma mark Internal functions
+
++ (NSString *)tableName
+{
+    return @"#{cdef.name}";
 }
 
 @end
