@@ -134,13 +134,7 @@
 {
     [ledger rebuild];
     [tableView reloadData];
-}
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self reload];
-    [super viewWillAppear:animated];
-    
     // 合計欄
     double value = 0.0;
     for (int i = 0; i < [ledger assetCount]; i++) {
@@ -148,6 +142,12 @@
     }
     NSString *lbl = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Total", @""), [CurrencyManager formatCurrency:value]];
     barSumLabel.title = lbl;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self reload];
+    [super viewWillAppear:animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

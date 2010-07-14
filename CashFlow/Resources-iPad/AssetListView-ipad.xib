@@ -11,7 +11,7 @@
 			<string key="NS.object.0">117</string>
 		</object>
 		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="3"/>
+			<integer value="1"/>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -66,6 +66,17 @@
 								<int key="IBUISystemItemIdentifier">9</int>
 							</object>
 							<object class="IBUIBarButtonItem" id="1057254807">
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<reference key="IBUIToolbar" ref="1024968948"/>
+								<int key="IBUISystemItemIdentifier">5</int>
+							</object>
+							<object class="IBUIBarButtonItem" id="507327809">
+								<string key="IBUITitle">00</string>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<float key="IBUIWidth">229</float>
+								<reference key="IBUIToolbar" ref="1024968948"/>
+							</object>
+							<object class="IBUIBarButtonItem" id="992766585">
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<reference key="IBUIToolbar" ref="1024968948"/>
 								<int key="IBUISystemItemIdentifier">5</int>
@@ -138,6 +149,14 @@
 					</object>
 					<int key="connectionID">25</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">barSumLabel</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="507327809"/>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -173,6 +192,8 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="1036565278"/>
 							<reference ref="1057254807"/>
+							<reference ref="507327809"/>
+							<reference ref="992766585"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -191,15 +212,27 @@
 						<reference key="object" ref="1057254807"/>
 						<reference key="parent" ref="1024968948"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">26</int>
+						<reference key="object" ref="507327809"/>
+						<reference key="parent" ref="1024968948"/>
+					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">27</int>
+						<reference key="object" ref="992766585"/>
+						<reference key="parent" ref="1024968948"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
 				<string key="-1.CustomClassName">AssetListViewController</string>
 				<string key="-2.CustomClassName">UIResponder</string>
-				<string key="1.IBEditorWindowLastContentRect">{{260, 255}, {320, 480}}</string>
+				<string key="1.IBEditorWindowLastContentRect">{{295, 330}, {320, 480}}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="26.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="3.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
@@ -207,7 +240,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">25</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -230,12 +263,17 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="barActionButton">UIBarButtonItem</string>
+						<string key="barSumLabel">UIBarButtonItem</string>
 						<string key="splitTransactionListViewController">TransactionListViewController</string>
 						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="barActionButton">
 							<string key="name">barActionButton</string>
+							<string key="candidateClassName">UIBarButtonItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="barSumLabel">
+							<string key="name">barSumLabel</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="splitTransactionListViewController">
