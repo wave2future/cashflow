@@ -44,6 +44,7 @@
 {
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *barActionButton;
+    IBOutlet UIBarButtonItem *barSumLabel;
 
     Ledger *ledger;
 
