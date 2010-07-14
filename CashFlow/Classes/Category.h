@@ -36,8 +36,6 @@
 #import "Database.h"
 #import "CategoryBase.h"
 
-@class Database;
-
 @interface Category : CategoryBase {
 }
 @end
