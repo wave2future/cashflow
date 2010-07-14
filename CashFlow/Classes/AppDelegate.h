@@ -68,8 +68,5 @@ void AssertFailed(const char *filename, int lineno);
 #define IS_IPAD (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad)
 #endif
 
-// AdMob
-- (void)reportAppOpenToAdMob;
-
 @end
 
