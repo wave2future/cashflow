@@ -1,0 +1,14 @@
+* How to run unit tests
+
+- Run Logic Test
+
+1) Change target to 'Simulator'/'LogicTests'
+2) Execute 'Build'.
+3) Test result will be shown in build result.
+
+- Run App Test
+
+1) Change target to 'Device'/'CashFlowTesting'
+2) Execute 'Build' and 'Run'
+3) Test result will be shown in console.
+
