@@ -8,6 +8,7 @@
 
 #if FREE_VERSION
 
+#import "AppDelegate.h"
 #import "AdUtil.h"
 
 @implementation AdUtil
