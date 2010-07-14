@@ -81,8 +81,6 @@ typedef struct _filter
 @interface Reports : NSObject {
     int type;
     NSMutableArray *reports;
-
-    Database *db;
 }
 
 @property(nonatomic,assign) int type;

@@ -102,8 +102,6 @@ static int compareCatReport(id x, id y, void *context)
 
 - (void)generate:(int)t asset:(Asset*)asset
 {
-    db = [Database instance];
-	
     self.type = t;
 	
     if (reports != nil) {
