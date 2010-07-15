@@ -1,3 +1,6 @@
+2010-07-15: Takuya Murakami
+	* 日本語 CSV ファイルのエンコーディングを SJIS に変更
+	
 2010-07-14: Takuya Murakami
 	* 資産合計値をツールバーに表示するようにした
 
