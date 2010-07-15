@@ -1,3 +1,6 @@
+2010-07-14: Takuya Murakami
+	* 資産合計値をツールバーに表示するようにした
+
 2010-07-13: Takuya Murakami
 	* EditDescView を変更 (Picker でなく Table にした)
 	* AdCell -> AdUtil

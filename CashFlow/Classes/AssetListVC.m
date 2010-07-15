@@ -134,6 +134,14 @@
 {
     [ledger rebuild];
     [tableView reloadData];
+
+    // 合計欄
+    double value = 0.0;
+    for (int i = 0; i < [ledger assetCount]; i++) {
+        value += [[ledger assetAtIndex:i] lastBalance];
+    }
+    NSString *lbl = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Total", @""), [CurrencyManager formatCurrency:value]];
+    barSumLabel.title = lbl;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -164,18 +172,18 @@
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tv {
-    if (tv.editing) 
-        return 1;
-    return 2;
+    return 1;
+    
+    //if (tv.editing) return 1 else return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     switch (section) {
         case 0:
             return [ledger assetCount];
-
-        case 1:
-            return 1;
+            
+        //case 1:
+        //    return 1; // 合計欄
     }
     // NOT REACH HERE
     return 0;
@@ -221,6 +229,7 @@
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
         cell.imageView.image = [iconArray objectAtIndex:asset.type];
     }
+#if 0
     else if (indexPath.section == 1) {
         if (indexPath.row == 0) {
             // 合計欄
@@ -235,6 +244,7 @@
             cell.imageView.image = nil;
         }
     }
+#endif
     
     NSString *c = [CurrencyManager formatCurrency:value];
     cell.textLabel.text = [NSString stringWithFormat:@"%@ : %@", label, c];

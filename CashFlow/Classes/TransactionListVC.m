@@ -93,7 +93,7 @@
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
     adViewController.adSize = kGADAdSize320x50;
     
-    NSDictionary *attributes = [AdCell adAttributes];
+    NSDictionary *attributes = [AdUtil adAttributes];
     [adViewController loadGoogleAd:attributes];
     
     UIView *adView = adViewController.view;
