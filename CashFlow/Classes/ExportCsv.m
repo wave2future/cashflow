@@ -56,41 +56,6 @@
     return YES;
 }
 
-#if 0
-// old : iPhone OS 2.0
-- (BOOL)sendMail
-{
-    NSMutableString *s = [self generateMailUrl];
-    if (s == nil) return NO;
-	
-    NSLog(@"%@", s);
-
-    NSURL *url = [NSURL URLWithString:s];
-
-    [[UIApplication sharedApplication] openURL:url];
-	
-    // not reach here
-    return YES;
-}
-
-- (NSMutableString *)generateMailUrl
-{
-    NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
-
-    [data appendString:@"mailto:?Subject=CashFlow%20CSV%20Data&body="];
-    [data appendString:@"%20CashFlow%20generated%20CSV%20data%20%0D%0A"];
-
-    NSMutableString *body = [self generateBody];
-    if (body == nil) {
-        return nil; // no data
-    }
-    [self EncodeMailBody:body];
-
-    [data appendString:body];
-    return data;
-}
-#endif
-
 - (BOOL)sendWithWebServer
 {
     NSData *body = [self generateBody];
@@ -135,11 +100,28 @@
         [d release];
     }
 
-    const char *p = [data UTF8String];
-    const unsigned char bom[3] = {0xEF, 0xBB, 0xBF};
+    // locale 毎の encoding を決める
+    NSStringEncoding encoding = NSUTF8StringEncoding;
+    NSString *lang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
+    if ([loc isEqualToString:@"ja"]) {
+        // 日本語の場合は Shift-JIS にする
+        encoding = NSShiftJISStringEncoding;
+    }
+
+    // バイナリ列に変換
     NSMutableData *d = [NSMutableData dataWithLength:0];
-    [d appendBytes:bom length:sizeof(bom)];
+    const char *p = [data cStringUsingEncoding:encoding];
+    if (!p) {
+        encoding = NSUTF8StringEncoding;
+        p = [data UTF8String]; // fallback
+    }
+    if (encoding == NSUTF8StringEncoding) {
+        // UTF-8 BOM を追加
+        const unsigned char bom[3] = {0xEF, 0xBB, 0xBF};
+        [d appendBytes:bom length:sizeof(bom)];
+    }
     [d appendBytes:p length:strlen(p)];
+
     return d;
 }
 
