@@ -28,7 +28,7 @@
     AssetEntry *e;
 
     asset = [ledger assetAtIndex:0];
-    ASSERT_EQUAL_INT(1, asset.pkey);
+    ASSERT_EQUAL_INT(1, asset.pid);
     ASSERT_EQUAL_INT(0, asset.type);
     ASSERT([asset.name isEqualToString:@"Cash"]);
     ASSERT_EQUAL_INT(0, asset.sorder);
@@ -49,7 +49,7 @@
     ASSERT_EQUAL_DOUBLE(9000, e.balance);
 
     asset = [ledger assetAtIndex:1];
-    ASSERT_EQUAL_INT(2, asset.pkey);
+    ASSERT_EQUAL_INT(2, asset.pid);
     ASSERT_EQUAL_INT(1, asset.type);
     ASSERT([asset.name isEqualToString:@"Bank"]);
     ASSERT_EQUAL_INT(1, asset.sorder);
@@ -64,7 +64,7 @@
     ASSERT_EQUAL_DOUBLE(195000, e.balance);
 
     asset = [ledger assetAtIndex:2];
-    ASSERT_EQUAL_INT(3, asset.pkey);
+    ASSERT_EQUAL_INT(3, asset.pid);
     ASSERT_EQUAL_INT(2, asset.type);
     ASSERT([asset.name isEqualToString:@"Card"]);
     ASSERT_EQUAL_INT(2, asset.sorder);
@@ -101,7 +101,7 @@
     // 新規エントリ
     AssetEntry *ae = [[[AssetEntry alloc] initWithTransaction:nil withAsset:asset] autorelease];
 
-    ae.assetKey = asset.pkey;
+    ae.assetKey = asset.pid;
     ae.transaction.type = TYPE_ADJ;
     [ae setEvalue:10000.0];
     ae.transaction.date = [TestCommon dateWithString:@"200902010000"];

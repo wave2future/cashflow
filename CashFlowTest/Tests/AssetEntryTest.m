@@ -32,7 +32,7 @@
 {
     AssetEntry *e;
     Asset *a = [[[Asset alloc] init] autorelease];
-    a.pkey = 999;
+    a.pid = 999;
 
     e = [[[AssetEntry alloc] initWithTransaction:nil withAsset:a] autorelease];
 
@@ -52,7 +52,7 @@
 - (void)testAllocExisting
 {
     Asset *a = [[[Asset alloc] init] autorelease];
-    a.pkey = 111;
+    a.pid = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.type = TYPE_TRANSFER;
     t.asset = 111;
@@ -77,7 +77,7 @@
 - (void)testAllocExistingReverse
 {
     Asset *a = [[[Asset alloc] init] autorelease];
-    a.pkey = 111;
+    a.pid = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.type = TYPE_TRANSFER;
     t.asset = 222;
@@ -101,7 +101,7 @@
 - (void)testEvalueNormal
 {
     Asset *a = [[[Asset alloc] init] autorelease];
-    a.pkey = 111;
+    a.pid = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.asset = 111;
     t.dst_asset = -1;

@@ -103,7 +103,7 @@
     // locale 毎の encoding を決める
     NSStringEncoding encoding = NSUTF8StringEncoding;
     NSString *lang = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
-    if ([loc isEqualToString:@"ja"]) {
+    if ([lang isEqualToString:@"ja"]) {
         // 日本語の場合は Shift-JIS にする
         encoding = NSShiftJISStringEncoding;
     }

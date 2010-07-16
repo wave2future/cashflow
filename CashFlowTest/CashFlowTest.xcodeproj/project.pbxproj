@@ -61,7 +61,6 @@
 		3E003D920F9CC25400521E2B /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D8A0F9CC25400521E2B /* redButton.png */; };
 		3E094EB60F99A9E200D2E7C0 /* TimeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E094EB50F99A9E200D2E7C0 /* TimeTest.m */; };
 		3E26DAFC11075D7300A72C3A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DAFB11075D7300A72C3A /* MessageUI.framework */; };
-		3E26DB0511075D8E00A72C3A /* libAdMobSimulator.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DB0411075D8E00A72C3A /* libAdMobSimulator.a */; };
 		3E26DB0911075DA900A72C3A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DB0811075DA900A72C3A /* MediaPlayer.framework */; };
 		3E3918ED0F98CEAA0027A3EF /* JournalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918EC0F98CEAA0027A3EF /* JournalTest.m */; };
 		3E3918F10F98CEEC0027A3EF /* LedgerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918F00F98CEEC0027A3EF /* LedgerTest.m */; };
@@ -71,7 +70,6 @@
 		3E448B000F98A50B001F97B5 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AED0F98A50B001F97B5 /* Asset.m */; };
 		3E448B010F98A50B001F97B5 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AEF0F98A50B001F97B5 /* AssetEntry.m */; };
 		3E448B020F98A50B001F97B5 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AF10F98A50B001F97B5 /* Category.m */; };
-		3E448B030F98A50B001F97B5 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AF30F98A50B001F97B5 /* Database.m */; };
 		3E448B040F98A50B001F97B5 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AF50F98A50B001F97B5 /* DataModel.m */; };
 		3E448B050F98A50B001F97B5 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AF70F98A50B001F97B5 /* DateFormatter2.m */; };
 		3E448B060F98A50B001F97B5 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AF90F98A50B001F97B5 /* Journal.m */; };
@@ -84,7 +82,17 @@
 		3E748E871155ED85000328A4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E748E841155ED85000328A4 /* Config.m */; };
 		3E748E881155ED85000328A4 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E748E861155ED85000328A4 /* ConfigViewController.m */; };
 		3E7BC9300F98C6A200AE18AF /* AssetEntryTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */; };
-		3EA1405E106FC1D10017A114 /* AdCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA1405D106FC1D10017A114 /* AdCell.m */; };
+		3E8715EF11F07FA7000313C2 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8715EA11F07FA7000313C2 /* AdUtil.m */; };
+		3E8715F011F07FA7000313C2 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8715EB11F07FA7000313C2 /* Backup.m */; };
+		3E8715F111F07FA7000313C2 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8715EC11F07FA7000313C2 /* CurrencyManager.m */; };
+		3E8715F211F07FA7000313C2 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8715ED11F07FA7000313C2 /* DescLRUManager.m */; };
+		3E8715F311F07FA7000313C2 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8715EE11F07FA7000313C2 /* EditValueVC.m */; };
+		3E87160F11F08030000313C2 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E87160411F08030000313C2 /* AssetBase.m */; };
+		3E87161011F08030000313C2 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E87160611F08030000313C2 /* CategoryBase.m */; };
+		3E87161111F08030000313C2 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E87160811F08030000313C2 /* Database.m */; };
+		3E87161211F08030000313C2 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E87160A11F08030000313C2 /* DescLRU.m */; };
+		3E87161311F08030000313C2 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E87160C11F08030000313C2 /* ORRecord.m */; };
+		3E87161411F08030000313C2 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E87160E11F08030000313C2 /* TransactionBase.m */; };
 		3EA14063106FC1E20017A114 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA14062106FC1E20017A114 /* CalcVC.m */; };
 		3EA14094106FC2760017A114 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA14093106FC2760017A114 /* AddressBook.framework */; };
 		3EA1409A106FC2990017A114 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA14099106FC2990017A114 /* CoreLocation.framework */; };
@@ -197,7 +205,6 @@
 		3E003D8A0F9CC25400521E2B /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
 		3E094EB50F99A9E200D2E7C0 /* TimeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTest.m; sourceTree = "<group>"; };
 		3E26DAFB11075D7300A72C3A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
-		3E26DB0411075D8E00A72C3A /* libAdMobSimulator.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libAdMobSimulator.a; path = ../CashFlow/AdMob/libAdMobSimulator.a; sourceTree = SOURCE_ROOT; };
 		3E26DB0811075DA900A72C3A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3E3918EC0F98CEAA0027A3EF /* JournalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTest.m; sourceTree = "<group>"; };
 		3E3918F00F98CEEC0027A3EF /* LedgerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedgerTest.m; sourceTree = "<group>"; };
@@ -210,8 +217,6 @@
 		3E448AEF0F98A50B001F97B5 /* AssetEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntry.m; sourceTree = "<group>"; };
 		3E448AF00F98A50B001F97B5 /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		3E448AF10F98A50B001F97B5 /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
-		3E448AF20F98A50B001F97B5 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
-		3E448AF30F98A50B001F97B5 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
 		3E448AF40F98A50B001F97B5 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		3E448AF50F98A50B001F97B5 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		3E448AF60F98A50B001F97B5 /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
@@ -235,7 +240,23 @@
 		3E748E861155ED85000328A4 /* ConfigViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ConfigViewController.m; sourceTree = "<group>"; };
 		3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntryTest.h; sourceTree = "<group>"; };
 		3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTest.m; sourceTree = "<group>"; };
-		3EA1405D106FC1D10017A114 /* AdCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdCell.m; sourceTree = "<group>"; };
+		3E8715EA11F07FA7000313C2 /* AdUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdUtil.m; sourceTree = "<group>"; };
+		3E8715EB11F07FA7000313C2 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
+		3E8715EC11F07FA7000313C2 /* CurrencyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManager.m; sourceTree = "<group>"; };
+		3E8715ED11F07FA7000313C2 /* DescLRUManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManager.m; sourceTree = "<group>"; };
+		3E8715EE11F07FA7000313C2 /* EditValueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditValueVC.m; sourceTree = "<group>"; };
+		3E87160311F08030000313C2 /* AssetBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetBase.h; sourceTree = "<group>"; };
+		3E87160411F08030000313C2 /* AssetBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetBase.m; sourceTree = "<group>"; };
+		3E87160511F08030000313C2 /* CategoryBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryBase.h; sourceTree = "<group>"; };
+		3E87160611F08030000313C2 /* CategoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBase.m; sourceTree = "<group>"; };
+		3E87160711F08030000313C2 /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
+		3E87160811F08030000313C2 /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
+		3E87160911F08030000313C2 /* DescLRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRU.h; sourceTree = "<group>"; };
+		3E87160A11F08030000313C2 /* DescLRU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRU.m; sourceTree = "<group>"; };
+		3E87160B11F08030000313C2 /* ORRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORRecord.h; sourceTree = "<group>"; };
+		3E87160C11F08030000313C2 /* ORRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ORRecord.m; sourceTree = "<group>"; };
+		3E87160D11F08030000313C2 /* TransactionBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionBase.h; sourceTree = "<group>"; };
+		3E87160E11F08030000313C2 /* TransactionBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionBase.m; sourceTree = "<group>"; };
 		3EA14061106FC1E20017A114 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
 		3EA14062106FC1E20017A114 /* CalcVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalcVC.m; sourceTree = "<group>"; };
 		3EA14093106FC2760017A114 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
@@ -305,7 +326,6 @@
 				3EA1409A106FC2990017A114 /* CoreLocation.framework in Frameworks */,
 				3EA140BC106FC2BA0017A114 /* QuartzCore.framework in Frameworks */,
 				3E26DAFC11075D7300A72C3A /* MessageUI.framework in Frameworks */,
-				3E26DB0511075D8E00A72C3A /* libAdMobSimulator.a in Frameworks */,
 				3E26DB0911075DA900A72C3A /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -365,7 +385,6 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				3E26DB0411075D8E00A72C3A /* libAdMobSimulator.a */,
 				3E003C0D0F9CB84800521E2B /* AudioToolbox.framework */,
 				3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
@@ -420,6 +439,26 @@
 			path = ../CashFlow/images;
 			sourceTree = "<group>";
 		};
+		3E87160211F07FFA000313C2 /* ormapper */ = {
+			isa = PBXGroup;
+			children = (
+				3E87160311F08030000313C2 /* AssetBase.h */,
+				3E87160411F08030000313C2 /* AssetBase.m */,
+				3E87160511F08030000313C2 /* CategoryBase.h */,
+				3E87160611F08030000313C2 /* CategoryBase.m */,
+				3E87160711F08030000313C2 /* Database.h */,
+				3E87160811F08030000313C2 /* Database.m */,
+				3E87160911F08030000313C2 /* DescLRU.h */,
+				3E87160A11F08030000313C2 /* DescLRU.m */,
+				3E87160B11F08030000313C2 /* ORRecord.h */,
+				3E87160C11F08030000313C2 /* ORRecord.m */,
+				3E87160D11F08030000313C2 /* TransactionBase.h */,
+				3E87160E11F08030000313C2 /* TransactionBase.m */,
+			);
+			name = ormapper;
+			path = ../ormapper;
+			sourceTree = "<group>";
+		};
 		3EFD6C100F98CA5F0060B3BF /* testdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -431,13 +470,18 @@
 		46C20FD50F256E610053F9B9 /* TargetClasses */ = {
 			isa = PBXGroup;
 			children = (
+				3E87160211F07FFA000313C2 /* ormapper */,
+				3E8715EA11F07FA7000313C2 /* AdUtil.m */,
+				3E8715EB11F07FA7000313C2 /* Backup.m */,
+				3E8715EC11F07FA7000313C2 /* CurrencyManager.m */,
+				3E8715ED11F07FA7000313C2 /* DescLRUManager.m */,
+				3E8715EE11F07FA7000313C2 /* EditValueVC.m */,
 				3E748E831155ED85000328A4 /* Config.h */,
 				3E748E841155ED85000328A4 /* Config.m */,
 				3E748E851155ED85000328A4 /* ConfigViewController.h */,
 				3E748E861155ED85000328A4 /* ConfigViewController.m */,
 				3EA14061106FC1E20017A114 /* CalcVC.h */,
 				3EA14062106FC1E20017A114 /* CalcVC.m */,
-				3EA1405D106FC1D10017A114 /* AdCell.m */,
 				3E003BEE0F9CB83200521E2B /* EditDateVC.h */,
 				3E003BEF0F9CB83200521E2B /* EditDateVC.m */,
 				3E003BF00F9CB83200521E2B /* EditDescVC.h */,
@@ -496,8 +540,6 @@
 				3E448AEF0F98A50B001F97B5 /* AssetEntry.m */,
 				3E448AF00F98A50B001F97B5 /* Category.h */,
 				3E448AF10F98A50B001F97B5 /* Category.m */,
-				3E448AF20F98A50B001F97B5 /* Database.h */,
-				3E448AF30F98A50B001F97B5 /* Database.m */,
 				3E448AF40F98A50B001F97B5 /* DataModel.h */,
 				3E448AF50F98A50B001F97B5 /* DataModel.m */,
 				3E448AF60F98A50B001F97B5 /* DateFormatter2.h */,
@@ -699,7 +741,6 @@
 				3E448B000F98A50B001F97B5 /* Asset.m in Sources */,
 				3E448B010F98A50B001F97B5 /* AssetEntry.m in Sources */,
 				3E448B020F98A50B001F97B5 /* Category.m in Sources */,
-				3E448B030F98A50B001F97B5 /* Database.m in Sources */,
 				3E448B040F98A50B001F97B5 /* DataModel.m in Sources */,
 				3E448B050F98A50B001F97B5 /* DateFormatter2.m in Sources */,
 				3E448B060F98A50B001F97B5 /* Journal.m in Sources */,
@@ -742,10 +783,20 @@
 				3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */,
 				3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */,
-				3EA1405E106FC1D10017A114 /* AdCell.m in Sources */,
 				3EA14063106FC1E20017A114 /* CalcVC.m in Sources */,
 				3E748E871155ED85000328A4 /* Config.m in Sources */,
 				3E748E881155ED85000328A4 /* ConfigViewController.m in Sources */,
+				3E8715EF11F07FA7000313C2 /* AdUtil.m in Sources */,
+				3E8715F011F07FA7000313C2 /* Backup.m in Sources */,
+				3E8715F111F07FA7000313C2 /* CurrencyManager.m in Sources */,
+				3E8715F211F07FA7000313C2 /* DescLRUManager.m in Sources */,
+				3E8715F311F07FA7000313C2 /* EditValueVC.m in Sources */,
+				3E87160F11F08030000313C2 /* AssetBase.m in Sources */,
+				3E87161011F08030000313C2 /* CategoryBase.m in Sources */,
+				3E87161111F08030000313C2 /* Database.m in Sources */,
+				3E87161211F08030000313C2 /* DescLRU.m in Sources */,
+				3E87161311F08030000313C2 /* ORRecord.m in Sources */,
+				3E87161411F08030000313C2 /* TransactionBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,13 +815,9 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = iUnitTest_Prefix.pch;
 				INFOPLIST_FILE = Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../CashFlow/AdMob\"",
-					"\"$(SRCROOT)/../CashFlow/TGAd\"",
-				);
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				PRODUCT_NAME = CashFlowTest;
-				SDKROOT = iphonesimulator3.0;
+				SDKROOT = iphoneos4.0;
 			};
 			name = Debug;
 		};
