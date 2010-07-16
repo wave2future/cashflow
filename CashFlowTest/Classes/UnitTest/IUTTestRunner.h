@@ -21,6 +21,8 @@
     NSException *exception;
 
     BOOL stopRequest;
+    
+    NSTimeInterval delay;
 }
 
 @property (retain, readonly) NSMutableArray *sites;
@@ -44,6 +46,7 @@
 
 @property (assign, readonly) UIColor *successColor;
 @property (assign, readonly) UIColor *failureColor;
+@property (assign, readonly) UIColor *failureColor2;
 @property (assign, readonly) UIColor *errorColor;
 @property (assign, readonly) UIColor *idleColor;
 @property (assign, readonly) UIColor *backgroundColor;
@@ -51,6 +54,7 @@
 
 + (UIColor *)successColor;
 + (UIColor *)failureColor;
++ (UIColor *)failureColor2;
 + (UIColor *)errorColor;
 + (UIColor *)idleColor;
 

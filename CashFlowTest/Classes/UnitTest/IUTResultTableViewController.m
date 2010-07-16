@@ -10,6 +10,9 @@
 #import "IUTAssertion.h"
 #import "IUTResultTableViewCell.h"
 #import "IUTTestRunnerViewController.h"
+#import "SourceCodeOpener.h"
+#import "NSExceptionExtension.h"
+
 
 @implementation IUTResultTableViewController
 
@@ -70,6 +73,11 @@
     return (section == 0) ? self.runner.fails : self.runner.errors;
 }
 
+- (NSException *)resultForIndexPath:(NSIndexPath *)indexPath
+{
+    return [[self resultsForSection:indexPath.section] objectAtIndex:indexPath.row];
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
@@ -97,26 +105,31 @@
     
     IUTResultTableViewCell *cell = (IUTResultTableViewCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if (cell == nil) {
-        cell = [[[IUTResultTableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:CellIdentifier] autorelease];
+        cell = [[[IUTResultTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier] autorelease];
     }
     
-    cell.exception = [[self resultsForSection:indexPath.section] objectAtIndex:indexPath.row];
+    cell.exception = [self resultForIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
     
     return cell;
 }
 
-- (UITableViewCellAccessoryType)tableView:(UITableView *)tableView accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    return UITableViewCellAccessoryDisclosureIndicator;
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    self.detailViewController.exception = [[self resultsForSection:indexPath.section] objectAtIndex:indexPath.row];
-    [self.navigationController pushViewController:self.detailViewController animated:YES];
+#if TARGET_IPHONE_SIMULATOR
+    IUTAssertionInfo *info = [self resultForIndexPath:indexPath].assertionInfo;
+    if (info) {
+        [[SourceCodeOpener sourceCodeOpener] open:info];
+    }
+#endif
 
     [tableView deselectRowAtIndexPath:[tableView indexPathForSelectedRow] animated:YES];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    self.detailViewController.exception = [[self resultsForSection:indexPath.section] objectAtIndex:indexPath.row];
+    [self.navigationController pushViewController:self.detailViewController animated:YES];
+}
 
 /*
 // Override to support conditional editing of the table view.

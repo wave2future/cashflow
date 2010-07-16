@@ -11,11 +11,21 @@
 #import "/usr/include/objc/objc-class.h"
 #import "IUTLog.h"
 #import "IUTPreference.h"
+#import "NSExceptionExtension.h"
 
 
 @interface IUTTestRunner(_private)
 - (BOOL)isSubclassOf:(Class)class;
 - (void)collectTestSites;
+- (void)performSelectorWithSelectorAndTargetArray:(NSArray *)arg;
+- (void)performSelectorOnMainThread:(NSString *)selectorString target:(id)target;
+- (void)performSelectorWithSelectorAndTargetArray2:(NSArray *)arg;
+- (void)performSelectorOnMainThread2:(NSString *)selectorString target:(id)target;
+- (void)runSetUp:(IUTTest *)site;
+- (void)runSetUpSequence:(IUTTest *)site;
+- (void)runTest:(IUTTest *)site selector:(NSString *)testSel;
+- (void)runTearDown:(IUTTest *)site;
+- (void)wait:(NSTimeInterval)time;
 @end
 
 @implementation IUTTestRunner
@@ -165,6 +175,11 @@
     return [UIColor yellowColor];
 }
 
++ (UIColor *)failureColor2
+{
+    return [self successColor];
+}
+
 + (UIColor *)errorColor
 {
     return [UIColor redColor];
@@ -183,6 +198,11 @@
 - (UIColor *)failureColor
 {
     return [[self class] failureColor];
+}
+
+- (UIColor *)failureColor2
+{
+    return [[self class] failureColor2];
 }
 
 - (UIColor *)errorColor
@@ -232,6 +252,111 @@
     [arg release];
 }
 
+- (void)performSelectorWithSelectorAndTargetArray2:(NSArray *)arg
+{
+    SEL selector = NSSelectorFromString([arg objectAtIndex:0]);
+    id target = [arg objectAtIndex:1];
+    @try {
+         delay = [[target performSelector:selector] doubleValue];
+    }
+    @catch (NSException * e) {
+        self.exception = e;
+    }
+}
+
+- (void)performSelectorOnMainThread2:(NSString *)selectorString target:(id)target
+{
+    NSArray *arg = [[NSArray alloc] initWithObjects:selectorString, target, nil];
+    [self performSelectorOnMainThread:@selector(performSelectorWithSelectorAndTargetArray2:) withObject:arg waitUntilDone:YES];
+    [arg release];
+}
+
+
+- (void)runSetUp:(IUTTest *)site
+{
+IUTLog(@"  　　setUp");
+    [self performSelectorOnMainThread2:@"willSetUp" target:site];
+    if (self.exception) @throw self.exception;
+    [self wait:delay];
+    
+    [self performSelectorOnMainThread:@"setUp" target:site];
+    if (self.exception) @throw self.exception;
+    [self wait:delay];
+    
+    [self performSelectorOnMainThread2:@"didSetUp" target:site];
+    if (self.exception) @throw self.exception;
+    [self wait:delay];
+}
+
+- (void)runSetUpSequence:(IUTTest *)site
+{
+IUTLog(@"  　　setUpSequence");
+            
+    // next test
+    while(site.nextSetUpSequence) {
+        SEL aSelector = site.nextSetUpSequence;
+        site.nextSetUpSequence = NULL;
+        [self wait:site.nextSetUpSequenceAfterDelay];
+
+IUTLog(@"  　　  %@", NSStringFromSelector(aSelector));
+        [self performSelectorOnMainThread:NSStringFromSelector(aSelector) target:site];
+        if (self.exception) {
+            @throw self.exception;
+        }
+    }
+}
+
+- (void)runTest:(IUTTest *)site selector:(NSString *)testSel
+{
+IUTLog(@"  　　test");
+            
+    [self performSelectorOnMainThread:testSel target:site];
+    if (self.exception) @throw self.exception;
+                
+    // next test
+    while(site.nextTest) {
+        SEL aSelector = site.nextTest;
+        site.nextTest = NULL;
+        [self wait:site.nextTestAfterDelay];
+
+IUTLog(@"  　　  %@", NSStringFromSelector(aSelector));
+        [self performSelectorOnMainThread:NSStringFromSelector(aSelector) target:site];
+        if (self.exception) {
+            @throw self.exception;
+        }
+    }
+}
+
+- (void)runTearDown:(IUTTest *)site
+{
+    self.exception = nil;
+
+IUTLog(@"  　　tearDown");
+    @try {
+        [self performSelectorOnMainThread2:@"willTearDown" target:site];
+        [self wait:delay];
+    } @finally {
+        @try {
+            [self performSelectorOnMainThread:@"tearDown" target:site];
+        } @finally {
+            @try {
+                [self performSelectorOnMainThread2:@"didTearDown" target:site];
+                [self wait:delay];
+            } @finally {
+                if (self.exception) @throw self.exception;
+            }
+        }
+    }
+    
+}
+
+
+- (void)wait:(NSTimeInterval)time
+{
+    if (time != 0.0) {
+        [NSThread sleepForTimeInterval:time];
+    }
+}
 
 - (void)run:(id)sender
 {
@@ -251,14 +376,14 @@
 
     for (IUTTest *site in sites) {
         NSString *siteName = NSStringFromClass([site class]);
-IUTLog(siteName);
+IUTLog(@"%@", siteName);
         [site clearAssertedCount];
         for (NSString *testSel in site.tests) {
             if (stopRequest) {
                 goto ABORT_TEST;
             }
             if (![preference needsTest:siteName methodName:testSel]) {
-IUTLog(@"  %@ was skiped", testSel);
+// DEBUGME: IUTLog(@"  %@ was skiped", testSel);
                 continue;
             }
             
@@ -266,62 +391,31 @@ IUTLog(@"  %@ was skiped", testSel);
 IUTLog(@"  %@", testSel);
                 [tests addObject:testSel];
                 
-                // setup
-IUTLog(@"  　　setUp");
-                [self performSelectorOnMainThread:@"setUp" target:site];
-                if (self.exception) @throw self.exception;
-                if (site.testAfterDelay != 0.0) {
-                    [NSThread sleepForTimeInterval:site.testAfterDelay];
-                }
-                
-                // test
-IUTLog(@"  　　test");
-            
-                [self performSelectorOnMainThread:testSel target:site];
-                if (self.exception) @throw self.exception;
-                
-                // next test
-                while(site.nextTest) {
-                    SEL aSelector = site.nextTest;
-                    site.nextTest = NULL;
-                    if (site.nextTestAfterDelay != 0.0) {
-                        [NSThread sleepForTimeInterval:site.nextTestAfterDelay];
-                    }
-IUTLog(@"  　　  %@", NSStringFromSelector(aSelector));
-                    [self performSelectorOnMainThread:NSStringFromSelector(aSelector) target:site];
-                    if (self.exception) {
-                        @throw self.exception;
-                    }
-                }
+                [self runSetUp:site];
+                [self runSetUpSequence:site];
+                [self runTest:site selector:testSel];
                 
                 [passes addObject:testSel];
                 [preference addPassedTest:siteName methodName:testSel];
-            }
-            @catch (NSException * e) {
-                if ([[e name] isEqualToString:IUTAssertionExceptionName]) {
-IUTLog(@"    *** Fail:%@", [IUTAssertion assertionInfoForException:e].message);
+            } @catch (NSException * e) {
+                if ([e isFailure]) {
+IUTLog(@"    *** Fail:%@", e.assertionInfo.message);
                     [fails addObject:e];
                 } else {
                     NSException *anException = [IUTAssertion assertionErrorExceptionFrom:e klass:[site class] selectorName:testSel];
-IUTLog(@"    Error:%@", [IUTAssertion assertionInfoForException:anException].message);
+IUTLog(@"    *** Error:%@", e.assertionInfo.message);
                     [errors addObject:anException];
                 }
-            }
-            @finally {
-                self.exception = nil;
+            } @finally {
                 @try {
+                    [self runTearDown:site];
+                } @catch (NSException * e) {
                 
-                // tear down
-IUTLog(@"  　　tearDown");
-                    [self performSelectorOnMainThread:@"tearDown" target:site];
-                    if (self.exception) @throw self.exception;
-                }
-                @catch (NSException * e) {
                     NSException *anException = [IUTAssertion assertionErrorExceptionFrom:e klass:[site class] selectorName:testSel];
-IUTLog(@"  Error:%@", [IUTAssertion assertionInfoForException:anException].message);
+IUTLog(@"    *** Error:%@", e.assertionInfo.message);
                     [errors addObject:anException];
-                }
-                @finally {
+                    
+                } @finally {
                     i++;
                     [sender performSelectorOnMainThread:@selector(setProgress:) withObject:[NSNumber numberWithFloat:(float)i / (float)count] waitUntilDone:YES];
                     self.exception = nil;

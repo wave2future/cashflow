@@ -59,6 +59,13 @@
 		3E003D900F9CC25400521E2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D880F9CC25400521E2B /* icon.png */; };
 		3E003D910F9CC25400521E2B /* PiggyBank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D890F9CC25400521E2B /* PiggyBank.png */; };
 		3E003D920F9CC25400521E2B /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D8A0F9CC25400521E2B /* redButton.png */; };
+		3E07B6DA11F0831000F67109 /* AppAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6D311F0831000F67109 /* AppAgent.m */; };
+		3E07B6DB11F0831000F67109 /* NSExceptionExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6D611F0831000F67109 /* NSExceptionExtension.m */; };
+		3E07B6DC11F0831000F67109 /* SourceCodeOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6D811F0831000F67109 /* SourceCodeOpener.m */; };
+		3E07B6E511F0831E00F67109 /* UITableViewBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6DE11F0831E00F67109 /* UITableViewBasedTest.m */; };
+		3E07B6E611F0831E00F67109 /* UITableViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6E011F0831E00F67109 /* UITableViewControllerTest.m */; };
+		3E07B6E711F0831E00F67109 /* UIViewBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6E211F0831E00F67109 /* UIViewBasedTest.m */; };
+		3E07B6E811F0831E00F67109 /* UIViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6E411F0831E00F67109 /* UIViewControllerTest.m */; };
 		3E094EB60F99A9E200D2E7C0 /* TimeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E094EB50F99A9E200D2E7C0 /* TimeTest.m */; };
 		3E26DAFC11075D7300A72C3A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DAFB11075D7300A72C3A /* MessageUI.framework */; };
 		3E26DB0911075DA900A72C3A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DB0811075DA900A72C3A /* MediaPlayer.framework */; };
@@ -203,6 +210,22 @@
 		3E003D880F9CC25400521E2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3E003D890F9CC25400521E2B /* PiggyBank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PiggyBank.png; sourceTree = "<group>"; };
 		3E003D8A0F9CC25400521E2B /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
+		3E07B6D211F0831000F67109 /* AppAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAgent.h; sourceTree = "<group>"; };
+		3E07B6D311F0831000F67109 /* AppAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAgent.m; sourceTree = "<group>"; };
+		3E07B6D411F0831000F67109 /* AppAgentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAgentHelper.h; sourceTree = "<group>"; };
+		3E07B6D511F0831000F67109 /* NSExceptionExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSExceptionExtension.h; sourceTree = "<group>"; };
+		3E07B6D611F0831000F67109 /* NSExceptionExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSExceptionExtension.m; sourceTree = "<group>"; };
+		3E07B6D711F0831000F67109 /* SourceCodeOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceCodeOpener.h; sourceTree = "<group>"; };
+		3E07B6D811F0831000F67109 /* SourceCodeOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceCodeOpener.m; sourceTree = "<group>"; };
+		3E07B6D911F0831000F67109 /* UITableViewControllerTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerTestHelper.h; sourceTree = "<group>"; };
+		3E07B6DD11F0831E00F67109 /* UITableViewBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewBasedTest.h; sourceTree = "<group>"; };
+		3E07B6DE11F0831E00F67109 /* UITableViewBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewBasedTest.m; sourceTree = "<group>"; };
+		3E07B6DF11F0831E00F67109 /* UITableViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerTest.h; sourceTree = "<group>"; };
+		3E07B6E011F0831E00F67109 /* UITableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewControllerTest.m; sourceTree = "<group>"; };
+		3E07B6E111F0831E00F67109 /* UIViewBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewBasedTest.h; sourceTree = "<group>"; };
+		3E07B6E211F0831E00F67109 /* UIViewBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewBasedTest.m; sourceTree = "<group>"; };
+		3E07B6E311F0831E00F67109 /* UIViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTest.h; sourceTree = "<group>"; };
+		3E07B6E411F0831E00F67109 /* UIViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerTest.m; sourceTree = "<group>"; };
 		3E094EB50F99A9E200D2E7C0 /* TimeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTest.m; sourceTree = "<group>"; };
 		3E26DAFB11075D7300A72C3A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3E26DB0811075DA900A72C3A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -592,6 +615,14 @@
 			isa = PBXGroup;
 			children = (
 				46C6AB400F2DBE7E00BA1B73 /* ControllerTest */,
+				3E07B6D211F0831000F67109 /* AppAgent.h */,
+				3E07B6D311F0831000F67109 /* AppAgent.m */,
+				3E07B6D411F0831000F67109 /* AppAgentHelper.h */,
+				3E07B6D511F0831000F67109 /* NSExceptionExtension.h */,
+				3E07B6D611F0831000F67109 /* NSExceptionExtension.m */,
+				3E07B6D711F0831000F67109 /* SourceCodeOpener.h */,
+				3E07B6D811F0831000F67109 /* SourceCodeOpener.m */,
+				3E07B6D911F0831000F67109 /* UITableViewControllerTestHelper.h */,
 				466EDC780F4094DB00D2B9AC /* IUTLog.h */,
 				46718C880F38239A00272C9A /* SenTestAssertion.h */,
 				466EDC790F4094F900D2B9AC /* GTMSenTestCase.h */,
@@ -621,6 +652,14 @@
 		46C6AB400F2DBE7E00BA1B73 /* ControllerTest */ = {
 			isa = PBXGroup;
 			children = (
+				3E07B6DD11F0831E00F67109 /* UITableViewBasedTest.h */,
+				3E07B6DE11F0831E00F67109 /* UITableViewBasedTest.m */,
+				3E07B6DF11F0831E00F67109 /* UITableViewControllerTest.h */,
+				3E07B6E011F0831E00F67109 /* UITableViewControllerTest.m */,
+				3E07B6E111F0831E00F67109 /* UIViewBasedTest.h */,
+				3E07B6E211F0831E00F67109 /* UIViewBasedTest.m */,
+				3E07B6E311F0831E00F67109 /* UIViewControllerTest.h */,
+				3E07B6E411F0831E00F67109 /* UIViewControllerTest.m */,
 				46C6AB410F2DBE7E00BA1B73 /* UINavigationBarBasedTest.h */,
 				46C6AB420F2DBE7E00BA1B73 /* UINavigationBarBasedTest.m */,
 				46C6AB430F2DBE7E00BA1B73 /* UITabBarAndNavigationBarBasedTest.h */,
@@ -797,6 +836,13 @@
 				3E87161211F08030000313C2 /* DescLRU.m in Sources */,
 				3E87161311F08030000313C2 /* ORRecord.m in Sources */,
 				3E87161411F08030000313C2 /* TransactionBase.m in Sources */,
+				3E07B6DA11F0831000F67109 /* AppAgent.m in Sources */,
+				3E07B6DB11F0831000F67109 /* NSExceptionExtension.m in Sources */,
+				3E07B6DC11F0831000F67109 /* SourceCodeOpener.m in Sources */,
+				3E07B6E511F0831E00F67109 /* UITableViewBasedTest.m in Sources */,
+				3E07B6E611F0831E00F67109 /* UITableViewControllerTest.m in Sources */,
+				3E07B6E711F0831E00F67109 /* UIViewBasedTest.m in Sources */,
+				3E07B6E811F0831E00F67109 /* UIViewControllerTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

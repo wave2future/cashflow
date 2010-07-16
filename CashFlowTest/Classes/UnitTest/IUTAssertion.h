@@ -67,7 +67,28 @@
     } while(0)
 
 
+#define ASSERT_EQUAL_LOCALIZED_STRING(_expected, _value) ASSERT_EQUAL(NSLocalizedString(_expected, nil), _value)
 
+#define ASSERT_EQUAL_LOCALIZED_STRING_FROM_TABLE(_expected, _table, _value) ASSERT_EQUAL(NSLocalizedStringFromTable(_expected, _table, nil), _value)
+
+
+#pragma mark -
+#pragma mark helper
+
+#define TEST_IDLE(sel,t) \
+    [self performTest:@selector(_ ## sel) afterDelay:t];\
+}\
+- (void)_ ## sel {\
+
+
+#define SETUP_IDLE(sel,t) \
+    [self performSetUpSequence:@selector(_ ## sel) afterDelay:t];\
+}\
+- (void)_ ## sel {\
+
+
+
+#pragma mark -
 
 extern NSString * const IUTAssertionExceptionName;
 extern NSString * const IUTAssertionErrorExceptionName;
@@ -80,8 +101,6 @@ extern NSString * const IUTAssertionInfoKey;
 }
 
 @property (readonly) int assertedCount;
-
-+ (IUTAssertionInfo *)assertionInfoForException:(NSException *)exception;
 
 + (NSException *)assertionErrorExceptionFrom:(NSException *)exception klass:(Class)klass selectorName:(NSString *)selectorString;
 
