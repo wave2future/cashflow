@@ -253,7 +253,6 @@
 		3EE401BB11F3365000171A15 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B211F3365000171A15 /* icon.png */; };
 		3EE401BD11F3365000171A15 /* isd_logo_60x40_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B411F3365000171A15 /* isd_logo_60x40_w.png */; };
 		3EE401BE11F3365000171A15 /* isd_logo_60x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B511F3365000171A15 /* isd_logo_60x40.png */; };
-		3EE401BF11F3365000171A15 /* iunittest_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B611F3365000171A15 /* iunittest_icon.png */; };
 		3EE401C011F3365000171A15 /* IUTDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B711F3365000171A15 /* IUTDetailView.xib */; };
 		3EE401C111F3365000171A15 /* IUTMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B811F3365000171A15 /* IUTMainWindow.xib */; };
 		3EE401C211F3365000171A15 /* IUTTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B911F3365000171A15 /* IUTTestView.xib */; };
@@ -549,7 +548,6 @@
 		3EE401B211F3365000171A15 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3EE401B411F3365000171A15 /* isd_logo_60x40_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40_w.png; sourceTree = "<group>"; };
 		3EE401B511F3365000171A15 /* isd_logo_60x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40.png; sourceTree = "<group>"; };
-		3EE401B611F3365000171A15 /* iunittest_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = iunittest_icon.png; sourceTree = "<group>"; };
 		3EE401B711F3365000171A15 /* IUTDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTDetailView.xib; sourceTree = "<group>"; };
 		3EE401B811F3365000171A15 /* IUTMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTMainWindow.xib; sourceTree = "<group>"; };
 		3EE401B911F3365000171A15 /* IUTTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTTestView.xib; sourceTree = "<group>"; };
@@ -994,7 +992,6 @@
 				3EE401B211F3365000171A15 /* icon.png */,
 				3EE401B411F3365000171A15 /* isd_logo_60x40_w.png */,
 				3EE401B511F3365000171A15 /* isd_logo_60x40.png */,
-				3EE401B611F3365000171A15 /* iunittest_icon.png */,
 				3EE401B711F3365000171A15 /* IUTDetailView.xib */,
 				3EE401B811F3365000171A15 /* IUTMainWindow.xib */,
 				3EE401B911F3365000171A15 /* IUTTestView.xib */,
@@ -1195,7 +1192,6 @@
 				3EE401BB11F3365000171A15 /* icon.png in Resources */,
 				3EE401BD11F3365000171A15 /* isd_logo_60x40_w.png in Resources */,
 				3EE401BE11F3365000171A15 /* isd_logo_60x40.png in Resources */,
-				3EE401BF11F3365000171A15 /* iunittest_icon.png in Resources */,
 				3EE401C011F3365000171A15 /* IUTDetailView.xib in Resources */,
 				3EE401C111F3365000171A15 /* IUTMainWindow.xib in Resources */,
 				3EE401C211F3365000171A15 /* IUTTestView.xib in Resources */,
