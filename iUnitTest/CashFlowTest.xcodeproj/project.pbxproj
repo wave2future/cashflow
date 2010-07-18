@@ -67,9 +67,7 @@
 		3E094EB60F99A9E200D2E7C0 /* TimeTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E094EB50F99A9E200D2E7C0 /* TimeTest.m */; };
 		3E26DAFC11075D7300A72C3A /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DAFB11075D7300A72C3A /* MessageUI.framework */; };
 		3E26DB0911075DA900A72C3A /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E26DB0811075DA900A72C3A /* MediaPlayer.framework */; };
-		3E3918ED0F98CEAA0027A3EF /* JournalTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918EC0F98CEAA0027A3EF /* JournalTest.m */; };
 		3E3918F10F98CEEC0027A3EF /* LedgerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918F00F98CEEC0027A3EF /* LedgerTest.m */; };
-		3E3918F80F98CF400027A3EF /* AssetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918F70F98CF400027A3EF /* AssetTest.m */; };
 		3E3918FC0F98CF670027A3EF /* ReportTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918FB0F98CF670027A3EF /* ReportTest.m */; };
 		3E3918FE0F98CF7E0027A3EF /* TransactionTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3918FD0F98CF7E0027A3EF /* TransactionTest.m */; };
 		3E448B000F98A50B001F97B5 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E448AED0F98A50B001F97B5 /* Asset.m */; };
@@ -108,6 +106,8 @@
 		3EB9124B11F2BB7D0007EA15 /* IUTDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB9124811F2BB7D0007EA15 /* IUTDetailView.xib */; };
 		3EB9124C11F2BB7D0007EA15 /* IUTMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB9124911F2BB7D0007EA15 /* IUTMainWindow.xib */; };
 		3EB9124D11F2BB7D0007EA15 /* IUTTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB9124A11F2BB7D0007EA15 /* IUTTestView.xib */; };
+		3ECABC9B11F2C19C00420CA0 /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABC9A11F2C19C00420CA0 /* JournalTests.m */; };
+		3ECABCAA11F2C47900420CA0 /* AssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABCA911F2C47900420CA0 /* AssetTests.m */; };
 		3EFD6BBF0F98C7E60060B3BF /* DataModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */; };
 		3EFD6BD20F98C8560060B3BF /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD10F98C8560060B3BF /* TestCommon.m */; };
 		3EFD6BD70F98C87A0060B3BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD60F98C87A0060B3BF /* AppDelegate.m */; };
@@ -226,9 +226,7 @@
 		3E094EB50F99A9E200D2E7C0 /* TimeTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTest.m; sourceTree = "<group>"; };
 		3E26DAFB11075D7300A72C3A /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3E26DB0811075DA900A72C3A /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
-		3E3918EC0F98CEAA0027A3EF /* JournalTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTest.m; sourceTree = "<group>"; };
 		3E3918F00F98CEEC0027A3EF /* LedgerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedgerTest.m; sourceTree = "<group>"; };
-		3E3918F70F98CF400027A3EF /* AssetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTest.m; sourceTree = "<group>"; };
 		3E3918FB0F98CF670027A3EF /* ReportTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTest.m; sourceTree = "<group>"; };
 		3E3918FD0F98CF7E0027A3EF /* TransactionTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTest.m; sourceTree = "<group>"; };
 		3E448AEC0F98A50B001F97B5 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
@@ -290,6 +288,8 @@
 		3EB9124811F2BB7D0007EA15 /* IUTDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTDetailView.xib; sourceTree = "<group>"; };
 		3EB9124911F2BB7D0007EA15 /* IUTMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTMainWindow.xib; sourceTree = "<group>"; };
 		3EB9124A11F2BB7D0007EA15 /* IUTTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTTestView.xib; sourceTree = "<group>"; };
+		3ECABC9A11F2C19C00420CA0 /* JournalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
+		3ECABCA911F2C47900420CA0 /* AssetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTests.m; sourceTree = "<group>"; };
 		3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTest.m; sourceTree = "<group>"; };
 		3EFD6BCC0F98C83E0060B3BF /* DataModelTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelTest.h; sourceTree = "<group>"; };
 		3EFD6BD00F98C8560060B3BF /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
@@ -586,12 +586,12 @@
 		46C20FD60F256E610053F9B9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3ECABCA911F2C47900420CA0 /* AssetTests.m */,
+				3ECABC9A11F2C19C00420CA0 /* JournalTests.m */,
 				3E003D5E0F9CC11D00521E2B /* AssetListVCTest.m */,
 				3EFD6BCC0F98C83E0060B3BF /* DataModelTest.h */,
 				3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */,
-				3E3918EC0F98CEAA0027A3EF /* JournalTest.m */,
 				3E3918F00F98CEEC0027A3EF /* LedgerTest.m */,
-				3E3918F70F98CF400027A3EF /* AssetTest.m */,
 				3E7BC92E0F98C6A200AE18AF /* AssetEntryTest.h */,
 				3E7BC92F0F98C6A200AE18AF /* AssetEntryTest.m */,
 				3E3918FD0F98CF7E0027A3EF /* TransactionTest.m */,
@@ -792,9 +792,7 @@
 				3EFD6BBF0F98C7E60060B3BF /* DataModelTest.m in Sources */,
 				3EFD6BD20F98C8560060B3BF /* TestCommon.m in Sources */,
 				3EFD6BD70F98C87A0060B3BF /* AppDelegate.m in Sources */,
-				3E3918ED0F98CEAA0027A3EF /* JournalTest.m in Sources */,
 				3E3918F10F98CEEC0027A3EF /* LedgerTest.m in Sources */,
-				3E3918F80F98CF400027A3EF /* AssetTest.m in Sources */,
 				3E3918FC0F98CF670027A3EF /* ReportTest.m in Sources */,
 				3E3918FE0F98CF7E0027A3EF /* TransactionTest.m in Sources */,
 				3E094EB60F99A9E200D2E7C0 /* TimeTest.m in Sources */,
@@ -846,6 +844,8 @@
 				3E07B6E711F0831E00F67109 /* UIViewBasedTest.m in Sources */,
 				3E07B6E811F0831E00F67109 /* UIViewControllerTest.m in Sources */,
 				3EB9124211F2BB010007EA15 /* IUTAppDelegate.m in Sources */,
+				3ECABC9B11F2C19C00420CA0 /* JournalTests.m in Sources */,
+				3ECABCAA11F2C47900420CA0 /* AssetTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

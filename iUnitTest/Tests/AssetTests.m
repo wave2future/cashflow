@@ -104,7 +104,7 @@
     ae.assetKey = asset.pid;
     ae.transaction.type = TYPE_ADJ;
     [ae setEvalue:10000.0];
-    ae.transaction.date = [TestCommon dateWithString:@"200902010000"];
+    ae.transaction.date = [TestCommon dateWithString:@"20090201000000"];
 
     [asset insertEntry:ae];
     ASSERT_EQUAL_DOUBLE(10000, [asset lastBalance]);
@@ -183,7 +183,7 @@
     ASSERT_EQUAL_INT(4, [asset entryCount]);
 
     // 最初よりも早い日付の場合に何も削除されないこと
-    date = [TestCommon dateWithString:@"200812310000"];
+    date = [TestCommon dateWithString:@"20081231000000"];
     [asset deleteOldEntriesBefore:date];
     ASSERT_EQUAL_INT(4, [asset entryCount]);    
 
@@ -193,7 +193,7 @@
     ASSERT_EQUAL_INT(2, [asset entryCount]);    
 
     // 最後の日付の後で削除
-    date = [TestCommon dateWithString:@"200902010000"];
+    date = [TestCommon dateWithString:@"20090201000000"];
     [asset deleteOldEntriesBefore:date];
     ASSERT_EQUAL_INT(0, [asset entryCount]);
 
