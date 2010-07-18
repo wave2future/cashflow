@@ -77,6 +77,7 @@
 {
     //[vc viewWillDisappear:YES];
     [description release];
+    [super tearDown];
 }
 
 - (UITableViewCell *)_cellForRow:(int)row section:(int)section

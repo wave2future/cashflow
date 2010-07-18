@@ -77,6 +77,7 @@
 		3E448B5B0F98A584001F97B5 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E448B5A0F98A584001F97B5 /* libsqlite3.0.dylib */; };
 		3E6B37050FA2E3D200FCF592 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */; };
 		3E6B37060FA2E3D200FCF592 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B37040FA2E3D200FCF592 /* ReportCell.m */; };
+		3E6EF43711F3114B00F7D966 /* EditDescVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6EF43611F3114B00F7D966 /* EditDescVCTests.m */; };
 		3E748E871155ED85000328A4 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E748E841155ED85000328A4 /* Config.m */; };
 		3E748E881155ED85000328A4 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E748E861155ED85000328A4 /* ConfigViewController.m */; };
 		3E8715EF11F07FA7000313C2 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8715EA11F07FA7000313C2 /* AdUtil.m */; };
@@ -111,7 +112,6 @@
 		3ECABCF311F2C7BB00420CA0 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABCF111F2C7BB00420CA0 /* CurrencyManagerTests.m */; };
 		3ECABCF411F2C7BB00420CA0 /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABCF211F2C7BB00420CA0 /* DescLRUManagerTests.m */; };
 		3ECABD4811F2D19400420CA0 /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABD4711F2D19400420CA0 /* AssetListVCTests.m */; };
-		3ECABD5E11F2D25900420CA0 /* EditDescVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABD5D11F2D25900420CA0 /* EditDescVCTests.m */; };
 		3EFD6BD20F98C8560060B3BF /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD10F98C8560060B3BF /* TestCommon.m */; };
 		3EFD6BD70F98C87A0060B3BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD60F98C87A0060B3BF /* AppDelegate.m */; };
 		3EFD6C170F98CAA60060B3BF /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD6C160F98CAA60060B3BF /* testdata1.sql */; };
@@ -250,6 +250,7 @@
 		3E6B37020FA2E3D200FCF592 /* ReportCatCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatCell.m; sourceTree = "<group>"; };
 		3E6B37030FA2E3D200FCF592 /* ReportCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCell.h; sourceTree = "<group>"; };
 		3E6B37040FA2E3D200FCF592 /* ReportCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCell.m; sourceTree = "<group>"; };
+		3E6EF43611F3114B00F7D966 /* EditDescVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVCTests.m; sourceTree = "<group>"; };
 		3E748E831155ED85000328A4 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		3E748E841155ED85000328A4 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
 		3E748E851155ED85000328A4 /* ConfigViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ConfigViewController.h; sourceTree = "<group>"; };
@@ -300,7 +301,6 @@
 		3ECABCFC11F2C7E600420CA0 /* DescLRUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRUManager.h; sourceTree = "<group>"; };
 		3ECABCFD11F2C7E600420CA0 /* EditValueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditValueVC.h; sourceTree = "<group>"; };
 		3ECABD4711F2D19400420CA0 /* AssetListVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVCTests.m; sourceTree = "<group>"; };
-		3ECABD5D11F2D25900420CA0 /* EditDescVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVCTests.m; sourceTree = "<group>"; };
 		3EFD6BD00F98C8560060B3BF /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		3EFD6BD10F98C8560060B3BF /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
 		3EFD6BD50F98C87A0060B3BF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -600,6 +600,7 @@
 		46C20FD60F256E610053F9B9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				3EFD6C100F98CA5F0060B3BF /* testdata */,
 				3EFD6BD00F98C8560060B3BF /* TestCommon.h */,
 				3EFD6BD10F98C8560060B3BF /* TestCommon.m */,
 				3ECABCC011F2C67800420CA0 /* DataModelTests.m */,
@@ -613,8 +614,7 @@
 				3ECABCDD11F2C75400420CA0 /* TimeTests.m */,
 				3ECABCD711F2C70C00420CA0 /* ReportTests.m */,
 				3ECABD4711F2D19400420CA0 /* AssetListVCTests.m */,
-				3ECABD5D11F2D25900420CA0 /* EditDescVCTests.m */,
-				3EFD6C100F98CA5F0060B3BF /* testdata */,
+				3E6EF43611F3114B00F7D966 /* EditDescVCTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -863,7 +863,7 @@
 				3ECABCF311F2C7BB00420CA0 /* CurrencyManagerTests.m in Sources */,
 				3ECABCF411F2C7BB00420CA0 /* DescLRUManagerTests.m in Sources */,
 				3ECABD4811F2D19400420CA0 /* AssetListVCTests.m in Sources */,
-				3ECABD5E11F2D25900420CA0 /* EditDescVCTests.m in Sources */,
+				3E6EF43711F3114B00F7D966 /* EditDescVCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
