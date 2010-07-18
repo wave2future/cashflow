@@ -1,3 +1,6 @@
+2010-07-18: Takuya Murakami
+	* 単体テストを iUnitTest ベースに変更
+	
 2010-07-15: Takuya Murakami
 	* 日本語 CSV ファイルのエンコーディングを SJIS に変更
 	
