@@ -44,7 +44,6 @@
 {
     // test number of rows
     ASSERT_EQUAL_INT(3, [vc tableView:vc.tableView numberOfRowsInSection:0]);
-    ASSERT_EQUAL_INT(1, [vc tableView:vc.tableView numberOfRowsInSection:1]); // 合計
 
     // test cell
     ASSERT_EQUAL(@"Cash : ￥9,000", [self cellText:0 section:0]);

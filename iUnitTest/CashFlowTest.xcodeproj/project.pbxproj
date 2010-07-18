@@ -56,7 +56,6 @@
 		3E003D8D0F9CC25400521E2B /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D850F9CC25400521E2B /* cash.png */; };
 		3E003D8E0F9CC25400521E2B /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D860F9CC25400521E2B /* config.png */; };
 		3E003D8F0F9CC25400521E2B /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D870F9CC25400521E2B /* icon-rendered.png */; };
-		3E003D900F9CC25400521E2B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D880F9CC25400521E2B /* icon.png */; };
 		3E003D910F9CC25400521E2B /* PiggyBank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D890F9CC25400521E2B /* PiggyBank.png */; };
 		3E003D920F9CC25400521E2B /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E003D8A0F9CC25400521E2B /* redButton.png */; };
 		3E07B6DA11F0831000F67109 /* AppAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E07B6D311F0831000F67109 /* AppAgent.m */; };
@@ -207,7 +206,6 @@
 		3E003D850F9CC25400521E2B /* cash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cash.png; sourceTree = "<group>"; };
 		3E003D860F9CC25400521E2B /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
 		3E003D870F9CC25400521E2B /* icon-rendered.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-rendered.png"; sourceTree = "<group>"; };
-		3E003D880F9CC25400521E2B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		3E003D890F9CC25400521E2B /* PiggyBank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PiggyBank.png; sourceTree = "<group>"; };
 		3E003D8A0F9CC25400521E2B /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
 		3E07B6D211F0831000F67109 /* AppAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAgent.h; sourceTree = "<group>"; };
@@ -367,9 +365,9 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
-				46C20FD50F256E610053F9B9 /* TargetClasses */,
+				3EB9123311F2B9540007EA15 /* TestTarget */,
 				46C20FD60F256E610053F9B9 /* Tests */,
-				46C6AB3C0F2DBE7E00BA1B73 /* Classes */,
+				46C6AB3C0F2DBE7E00BA1B73 /* iUnitTest */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
@@ -399,8 +397,6 @@
 				465B04240F2056FF000E8FE2 /* TestView.xib */,
 				460633940F55AC9000A33C8B /* Settings.bundle */,
 				4617B7EF0F57B76100D94BF1 /* Default.png */,
-				3E003C3F0F9CB8B200521E2B /* CashFlowResources */,
-				3E003D820F9CC20600521E2B /* CashFlowImages */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -422,7 +418,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		3E003C3F0F9CB8B200521E2B /* CashFlowResources */ = {
+		3E003C3F0F9CB8B200521E2B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				3E003C400F9CB8E300521E2B /* AssetListView.xib */,
@@ -442,11 +438,10 @@
 				3E003C4F0F9CB8E300521E2B /* TransactionListView.xib */,
 				3E003C500F9CB8E300521E2B /* TransactionView.xib */,
 			);
-			name = CashFlowResources;
-			path = ../CashFlow/Resources;
+			path = Resources;
 			sourceTree = "<group>";
 		};
-		3E003D820F9CC20600521E2B /* CashFlowImages */ = {
+		3E003D820F9CC20600521E2B /* images */ = {
 			isa = PBXGroup;
 			children = (
 				3E003D830F9CC25400521E2B /* bank.png */,
@@ -454,12 +449,10 @@
 				3E003D850F9CC25400521E2B /* cash.png */,
 				3E003D860F9CC25400521E2B /* config.png */,
 				3E003D870F9CC25400521E2B /* icon-rendered.png */,
-				3E003D880F9CC25400521E2B /* icon.png */,
 				3E003D890F9CC25400521E2B /* PiggyBank.png */,
 				3E003D8A0F9CC25400521E2B /* redButton.png */,
 			);
-			name = CashFlowImages;
-			path = ../CashFlow/images;
+			path = images;
 			sourceTree = "<group>";
 		};
 		3E87160211F07FFA000313C2 /* ormapper */ = {
@@ -482,6 +475,17 @@
 			path = ../ormapper;
 			sourceTree = "<group>";
 		};
+		3EB9123311F2B9540007EA15 /* TestTarget */ = {
+			isa = PBXGroup;
+			children = (
+				46C20FD50F256E610053F9B9 /* Classes */,
+				3E003C3F0F9CB8B200521E2B /* Resources */,
+				3E003D820F9CC20600521E2B /* images */,
+			);
+			name = TestTarget;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		3EFD6C100F98CA5F0060B3BF /* testdata */ = {
 			isa = PBXGroup;
 			children = (
@@ -490,7 +494,7 @@
 			path = testdata;
 			sourceTree = "<group>";
 		};
-		46C20FD50F256E610053F9B9 /* TargetClasses */ = {
+		46C20FD50F256E610053F9B9 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				3E87160211F07FFA000313C2 /* ormapper */,
@@ -576,8 +580,7 @@
 				3E448AFE0F98A50B001F97B5 /* Transaction.h */,
 				3E448AFF0F98A50B001F97B5 /* Transaction.m */,
 			);
-			name = TargetClasses;
-			path = ../CashFlow/Classes;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 		46C20FD60F256E610053F9B9 /* Tests */ = {
@@ -601,13 +604,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		46C6AB3C0F2DBE7E00BA1B73 /* Classes */ = {
+		46C6AB3C0F2DBE7E00BA1B73 /* iUnitTest */ = {
 			isa = PBXGroup;
 			children = (
 				46C6AB3D0F2DBE7E00BA1B73 /* TestAppDelegate.h */,
 				46C6AB3E0F2DBE7E00BA1B73 /* TestAppDelegate.m */,
 				46C6AB3F0F2DBE7E00BA1B73 /* UnitTest */,
 			);
+			name = iUnitTest;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -748,7 +752,6 @@
 				3E003D8D0F9CC25400521E2B /* cash.png in Resources */,
 				3E003D8E0F9CC25400521E2B /* config.png in Resources */,
 				3E003D8F0F9CC25400521E2B /* icon-rendered.png in Resources */,
-				3E003D900F9CC25400521E2B /* icon.png in Resources */,
 				3E003D910F9CC25400521E2B /* PiggyBank.png in Resources */,
 				3E003D920F9CC25400521E2B /* redButton.png in Resources */,
 				3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */,
