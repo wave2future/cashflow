@@ -1,7 +1,6 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 
 #import "TestCommon.h"
-#import "DataModel.h"
 
 @interface JournalTest : IUTTest {
     Journal *journal;
@@ -25,16 +24,16 @@
 
 - (void)testReload
 {
-    ASSERT_EQUAL_INT(0, [journal.entries count]);
+    AssertEqualInt(0, [journal.entries count]);
     [journal reload];
-    ASSERT_EQUAL_INT(0, [journal.entries count]);
+    AssertEqualInt(0, [journal.entries count]);
     
     [TestCommon installDatabase:@"testdata1"];
     journal = [DataModel journal];
-    ASSERT_EQUAL_INT(6, [journal.entries count]);
+    AssertEqualInt(6, [journal.entries count]);
 
     [journal reload];
-    ASSERT_EQUAL_INT(6, [journal.entries count]);
+    AssertEqualInt(6, [journal.entries count]);
 }
 
 - (void)testFastEnumeration
@@ -44,7 +43,7 @@
     
     int i = 1;
     for (Transaction *t in journal) {
-        ASSERT_EQUAL_INT(i, t.pid);
+        AssertEqualInt(i, t.pid);
         i++;
     }
 }
@@ -60,13 +59,13 @@
     t.asset = 1;
     t.type = 0;
     t.value = 100;
-    t.date = [TestCommon dateWithString:@"200901030000"];
+    t.date = [TestCommon dateWithString:@"20090103000000"];
     
     [journal insertTransaction:t];
-    ASSERT_EQUAL_INT(7, [journal.entries count]);
+    AssertEqualInt(7, [journal.entries count]);
     Transaction *tt = [journal.entries objectAtIndex:2];
-    ASSERT_EQUAL(t, tt);
-    ASSERT_EQUAL_INT(t.pid, tt.pid);
+    AssertEqualObjects(t, tt);
+    AssertEqualInt(t.pid, tt.pid);
 }
 
 - (void)testReplaceTransaction
@@ -80,18 +79,18 @@
     t.asset = 3;
     t.type = 0;
     t.value = 100;
-    t.date = [TestCommon dateWithString:@"200902010000"]; // last
+    t.date = [TestCommon dateWithString:@"20090201000000"]; // last
     
     Transaction *orig = [journal.entries objectAtIndex:3];
     [orig retain];
-    ASSERT_EQUAL_INT(4, orig.pid);
+    AssertEqualInt(4, orig.pid);
 
     [journal replaceTransaction:orig withObject:t];
 
-    ASSERT_EQUAL_INT(6, [journal.entries count]); // 数は変更なし
+    AssertEqualInt(6, [journal.entries count]); // 数は変更なし
     Transaction *tt = [journal.entries objectAtIndex:5];
     //ASSERT_EQUAL(t, tt);
-    ASSERT_EQUAL_INT(t.pid, tt.pid);
+    AssertEqualInt(t.pid, tt.pid);
 
     [orig release];
 }
@@ -105,27 +104,27 @@
     // 資産間取引を削除 (pid == 4 の取引)
     asset.pid = 2;
     Transaction *t = [journal.entries objectAtIndex:3];
-    ASSERT(![journal deleteTransaction:t withAsset:asset]);
-    ASSERT_EQUAL_INT(6, [journal.entries count]); // 置換されたので消えてないはず
+    Assert(![journal deleteTransaction:t withAsset:asset]);
+    AssertEqualInt(6, [journal.entries count]); // 置換されたので消えてないはず
     
     t = [journal.entries objectAtIndex:2];
-    ASSERT_EQUAL_INT(3, t.pid);
+    AssertEqualInt(3, t.pid);
     t = [journal.entries objectAtIndex:3];
-    ASSERT_EQUAL_INT(4, t.pid); // まだ消えてない
+    AssertEqualInt(4, t.pid); // まだ消えてない
     
     // 置換されていることを確認する
-    ASSERT_EQUAL_INT(1, t.asset);
-    ASSERT_EQUAL_INT(-1, t.dst_asset);
-    ASSERT_EQUAL_DOUBLE(5000, t.value);
+    AssertEqualInt(1, t.asset);
+    AssertEqualInt(-1, t.dst_asset);
+    AssertEqualDouble(5000, t.value);
     
     // 今度は置換された資産間取引を消す
     asset.pid = 1;
-    ASSERT([journal deleteTransaction:t withAsset:asset]);
+    Assert([journal deleteTransaction:t withAsset:asset]);
     
     t = [journal.entries objectAtIndex:2];
-    ASSERT_EQUAL_INT(3, t.pid);
+    AssertEqualInt(3, t.pid);
     t = [journal.entries objectAtIndex:3];
-    ASSERT_EQUAL_INT(5, t.pid);
+    AssertEqualInt(5, t.pid);
 }
 
 - (void)testDeleteTransaction2
@@ -137,21 +136,21 @@
     // 資産間取引を削除 (pid == 4 の取引)、ただし、testDeleteTransaction とは逆方向
     asset.pid = 1;
     Transaction *t = [journal.entries objectAtIndex:3];
-    ASSERT(![journal deleteTransaction:t withAsset:asset]);
+    Assert(![journal deleteTransaction:t withAsset:asset]);
     
     // 置換されていることを確認する
-    ASSERT_EQUAL_INT(2, t.asset);
-    ASSERT_EQUAL_INT(-1, t.dst_asset);
-    ASSERT_EQUAL_DOUBLE(-5000, t.value);
+    AssertEqualInt(2, t.asset);
+    AssertEqualInt(-1, t.dst_asset);
+    AssertEqualDouble(-5000, t.value);
     
     // 置換された資産間取引を消す
     asset.pid = 2;
-    ASSERT([journal deleteTransaction:t withAsset:asset]);
+    Assert([journal deleteTransaction:t withAsset:asset]);
     
     t = [journal.entries objectAtIndex:2];
-    ASSERT_EQUAL_INT(3, t.pid);
+    AssertEqualInt(3, t.pid);
     t = [journal.entries objectAtIndex:3];
-    ASSERT_EQUAL_INT(5, t.pid);
+    AssertEqualInt(5, t.pid);
 }
 
 - (void)testADeleteTransactionWithAsset
@@ -160,30 +159,30 @@
     journal = [DataModel journal];
     Asset *asset = [[[Asset alloc] init] autorelease];
 
-    ASSERT_EQUAL_INT(6, [journal.entries count]);
+    AssertEqualInt(6, [journal.entries count]);
 
     asset.pid = 4; // not exist
     [journal deleteAllTransactionsWithAsset:asset];
-    ASSERT_EQUAL_INT(6, [journal.entries count]);
+    AssertEqualInt(6, [journal.entries count]);
     
     asset.pid = 1;
     [journal deleteAllTransactionsWithAsset:asset];
-    ASSERT_EQUAL_INT(3, [journal.entries count]);
+    AssertEqualInt(3, [journal.entries count]);
     
     asset.pid = 2;
     [journal deleteAllTransactionsWithAsset:asset];
-    ASSERT_EQUAL_INT(1, [journal.entries count]);
+    AssertEqualInt(1, [journal.entries count]);
 
     asset.pid = 3;
     [journal deleteAllTransactionsWithAsset:asset];
-    ASSERT_EQUAL_INT(0, [journal.entries count]);
+    AssertEqualInt(0, [journal.entries count]);
 }
 
 // Journal 上限数チェック
 #if 0
 - (void)testJournalInsertUpperLimit
 {
-    ASSERT([journal.entries count] == 0);
+    Assert([journal.entries count] == 0);
 
     Transaction *t;
     int i;
@@ -194,13 +193,13 @@
         [journal insertTransaction:t];
         [t release];
 
-        ASSERT([journal.entries count] == i + 1);
+        Assert([journal.entries count] == i + 1);
     }
 
     Ledger *ledger = [DataModel ledger];
     [ledger rebuild];
     Asset *asset = [ledger assetAtIndex:0];
-    ASSERT([asset entryCount] == MAX_TRANSACTIONS);
+    Assert([asset entryCount] == MAX_TRANSACTIONS);
     
     // 上限数＋１個目
     t = [[Transaction alloc] init];
@@ -208,7 +207,7 @@
     [journal insertTransaction:t];
     [t release];
 
-    ASSERT([journal.entries count] == MAX_TRANSACTIONS);
+    Assert([journal.entries count] == MAX_TRANSACTIONS);
 }
 #endif
 
