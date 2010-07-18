@@ -66,15 +66,27 @@
     [window makeKeyAndVisible];
 
     // PIN チェック
+    [self checkPin];
+    
+    NSLog(@"applicationDidFinishLaunching: done");
+}
+
+// Background から復帰するときの処理
+- (void)applicationWillEnterForeground:(UIApplication *)application
+{
+    [self checkPin];
+}
+
+- (void)checkPin
+{
     PinController *pinController = [[[PinController alloc] init] autorelease];
     if (IS_IPAD) {
         [pinController firstPinCheck:splitViewController];
     } else {
         [pinController firstPinCheck:navigationController];
-    }
-    
-    NSLog(@"applicationDidFinishLaunching: done");
+    }    
 }
+
 
 //
 // 終了処理 : データ保存

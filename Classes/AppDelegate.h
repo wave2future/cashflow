@@ -54,6 +54,8 @@
 @property (nonatomic, retain) UIWindow *window;
 @property (nonatomic, retain) UINavigationController *navigationController;
 
+- (void)checkPin;
+
 // Utility
 #ifdef NDEBUG
 void AssertFailed(const char *filename, int lineno);
