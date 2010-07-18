@@ -11,7 +11,6 @@
 		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
-		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		3E003BB80F9CB77200521E2B /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BB70F9CB77200521E2B /* AssetListVC.m */; };
 		3E003BC50F9CB7BD00521E2B /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BBE0F9CB7BD00521E2B /* AssetVC.m */; };
 		3E003BC60F9CB7BD00521E2B /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E003BC00F9CB7BD00521E2B /* BackupServer.m */; };
@@ -105,6 +104,10 @@
 		3EA140BC106FC2BA0017A114 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EA140BB106FC2BA0017A114 /* QuartzCore.framework */; };
 		3EAEBCA50F9DE14C00AD3D15 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */; };
 		3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */; };
+		3EB9124211F2BB010007EA15 /* IUTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB9124111F2BB010007EA15 /* IUTAppDelegate.m */; };
+		3EB9124B11F2BB7D0007EA15 /* IUTDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB9124811F2BB7D0007EA15 /* IUTDetailView.xib */; };
+		3EB9124C11F2BB7D0007EA15 /* IUTMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB9124911F2BB7D0007EA15 /* IUTMainWindow.xib */; };
+		3EB9124D11F2BB7D0007EA15 /* IUTTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB9124A11F2BB7D0007EA15 /* IUTTestView.xib */; };
 		3EFD6BBF0F98C7E60060B3BF /* DataModelTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */; };
 		3EFD6BD20F98C8560060B3BF /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD10F98C8560060B3BF /* TestCommon.m */; };
 		3EFD6BD70F98C87A0060B3BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD60F98C87A0060B3BF /* AppDelegate.m */; };
@@ -113,11 +116,8 @@
 		460633A20F55B5F900A33C8B /* isd_logo_60x40_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 460633A10F55B5F900A33C8B /* isd_logo_60x40_w.png */; };
 		4608BDE00F56FA430011302D /* IUTPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 4608BDDF0F56FA430011302D /* IUTPreference.m */; };
 		4617B7F00F57B76100D94BF1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 4617B7EF0F57B76100D94BF1 /* Default.png */; };
-		4620593D0F28CB5700857D87 /* DetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4620593C0F28CB5700857D87 /* DetailView.xib */; };
-		465B04250F2056FF000E8FE2 /* TestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 465B04240F2056FF000E8FE2 /* TestView.xib */; };
 		466AF4DE0F2F02A3004A649A /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 466AF4DD0F2F02A3004A649A /* icon.png */; };
 		466EDC7B0F4094F900D2B9AC /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 466EDC7A0F4094F900D2B9AC /* GTMSenTestCase.m */; };
-		46C6AB570F2DBE7E00BA1B73 /* TestAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6AB3E0F2DBE7E00BA1B73 /* TestAppDelegate.m */; };
 		46C6AB580F2DBE7E00BA1B73 /* UINavigationBarBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6AB420F2DBE7E00BA1B73 /* UINavigationBarBasedTest.m */; };
 		46C6AB590F2DBE7E00BA1B73 /* UITabBarAndNavigationBarBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6AB440F2DBE7E00BA1B73 /* UITabBarAndNavigationBarBasedTest.m */; };
 		46C6AB5A0F2DBE7E00BA1B73 /* UITabBarBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 46C6AB460F2DBE7E00BA1B73 /* UITabBarBasedTest.m */; };
@@ -137,7 +137,6 @@
 		1D6058910D05DD3D006BFB54 /* CashFlowTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlowTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		32CA4F630368D1EE00C91783 /* iUnitTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iUnitTest_Prefix.pch; sourceTree = "<group>"; };
 		3E003BB60F9CB77200521E2B /* AssetListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListVC.h; sourceTree = "<group>"; };
@@ -286,6 +285,11 @@
 		3EAEBCA30F9DE14C00AD3D15 /* GenSelectListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenSelectListVC.h; sourceTree = "<group>"; };
 		3EAEBCA40F9DE14C00AD3D15 /* GenSelectListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GenSelectListVC.m; sourceTree = "<group>"; };
 		3EAEBCA70F9DE16200AD3D15 /* GenSelectListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenSelectListView.xib; sourceTree = "<group>"; };
+		3EB9124011F2BB010007EA15 /* IUTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTAppDelegate.h; sourceTree = "<group>"; };
+		3EB9124111F2BB010007EA15 /* IUTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTAppDelegate.m; sourceTree = "<group>"; };
+		3EB9124811F2BB7D0007EA15 /* IUTDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTDetailView.xib; sourceTree = "<group>"; };
+		3EB9124911F2BB7D0007EA15 /* IUTMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTMainWindow.xib; sourceTree = "<group>"; };
+		3EB9124A11F2BB7D0007EA15 /* IUTTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTTestView.xib; sourceTree = "<group>"; };
 		3EFD6BBE0F98C7E60060B3BF /* DataModelTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTest.m; sourceTree = "<group>"; };
 		3EFD6BCC0F98C83E0060B3BF /* DataModelTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModelTest.h; sourceTree = "<group>"; };
 		3EFD6BD00F98C8560060B3BF /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
@@ -298,15 +302,11 @@
 		4608BDDE0F56FA430011302D /* IUTPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTPreference.h; sourceTree = "<group>"; };
 		4608BDDF0F56FA430011302D /* IUTPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTPreference.m; sourceTree = "<group>"; };
 		4617B7EF0F57B76100D94BF1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		4620593C0F28CB5700857D87 /* DetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailView.xib; sourceTree = "<group>"; };
-		465B04240F2056FF000E8FE2 /* TestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestView.xib; sourceTree = "<group>"; };
 		466AF4DD0F2F02A3004A649A /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		466EDC780F4094DB00D2B9AC /* IUTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTLog.h; sourceTree = "<group>"; };
 		466EDC790F4094F900D2B9AC /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMSenTestCase.h; sourceTree = "<group>"; };
 		466EDC7A0F4094F900D2B9AC /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMSenTestCase.m; sourceTree = "<group>"; };
 		46718C880F38239A00272C9A /* SenTestAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenTestAssertion.h; sourceTree = "<group>"; };
-		46C6AB3D0F2DBE7E00BA1B73 /* TestAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestAppDelegate.h; sourceTree = "<group>"; };
-		46C6AB3E0F2DBE7E00BA1B73 /* TestAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestAppDelegate.m; sourceTree = "<group>"; };
 		46C6AB410F2DBE7E00BA1B73 /* UINavigationBarBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationBarBasedTest.h; sourceTree = "<group>"; };
 		46C6AB420F2DBE7E00BA1B73 /* UINavigationBarBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarBasedTest.m; sourceTree = "<group>"; };
 		46C6AB430F2DBE7E00BA1B73 /* UITabBarAndNavigationBarBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarAndNavigationBarBasedTest.h; sourceTree = "<group>"; };
@@ -388,13 +388,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				3EB9124811F2BB7D0007EA15 /* IUTDetailView.xib */,
+				3EB9124911F2BB7D0007EA15 /* IUTMainWindow.xib */,
+				3EB9124A11F2BB7D0007EA15 /* IUTTestView.xib */,
 				460633A10F55B5F900A33C8B /* isd_logo_60x40_w.png */,
 				466AF4DD0F2F02A3004A649A /* icon.png */,
 				46C6ADC90F2DDFC800BA1B73 /* isd_logo_60x40.png */,
-				4620593C0F28CB5700857D87 /* DetailView.xib */,
-				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
-				465B04240F2056FF000E8FE2 /* TestView.xib */,
 				460633940F55AC9000A33C8B /* Settings.bundle */,
 				4617B7EF0F57B76100D94BF1 /* Default.png */,
 			);
@@ -607,8 +607,8 @@
 		46C6AB3C0F2DBE7E00BA1B73 /* iUnitTest */ = {
 			isa = PBXGroup;
 			children = (
-				46C6AB3D0F2DBE7E00BA1B73 /* TestAppDelegate.h */,
-				46C6AB3E0F2DBE7E00BA1B73 /* TestAppDelegate.m */,
+				3EB9124011F2BB010007EA15 /* IUTAppDelegate.h */,
+				3EB9124111F2BB010007EA15 /* IUTAppDelegate.m */,
 				46C6AB3F0F2DBE7E00BA1B73 /* UnitTest */,
 			);
 			name = iUnitTest;
@@ -723,9 +723,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				465B04250F2056FF000E8FE2 /* TestView.xib in Resources */,
-				4620593D0F28CB5700857D87 /* DetailView.xib in Resources */,
 				46C6ADCA0F2DDFC800BA1B73 /* isd_logo_60x40.png in Resources */,
 				466AF4DE0F2F02A3004A649A /* icon.png in Resources */,
 				460633950F55AC9000A33C8B /* Settings.bundle in Resources */,
@@ -755,6 +752,9 @@
 				3E003D910F9CC25400521E2B /* PiggyBank.png in Resources */,
 				3E003D920F9CC25400521E2B /* redButton.png in Resources */,
 				3EAEBCA80F9DE16200AD3D15 /* GenSelectListView.xib in Resources */,
+				3EB9124B11F2BB7D0007EA15 /* IUTDetailView.xib in Resources */,
+				3EB9124C11F2BB7D0007EA15 /* IUTMainWindow.xib in Resources */,
+				3EB9124D11F2BB7D0007EA15 /* IUTTestView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -766,7 +766,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				46C6AB570F2DBE7E00BA1B73 /* TestAppDelegate.m in Sources */,
 				46C6AB580F2DBE7E00BA1B73 /* UINavigationBarBasedTest.m in Sources */,
 				46C6AB590F2DBE7E00BA1B73 /* UITabBarAndNavigationBarBasedTest.m in Sources */,
 				46C6AB5A0F2DBE7E00BA1B73 /* UITabBarBasedTest.m in Sources */,
@@ -846,6 +845,7 @@
 				3E07B6E611F0831E00F67109 /* UITableViewControllerTest.m in Sources */,
 				3E07B6E711F0831E00F67109 /* UIViewBasedTest.m in Sources */,
 				3E07B6E811F0831E00F67109 /* UIViewControllerTest.m in Sources */,
+				3EB9124211F2BB010007EA15 /* IUTAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
