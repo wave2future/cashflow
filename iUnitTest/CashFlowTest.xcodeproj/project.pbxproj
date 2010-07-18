@@ -111,6 +111,7 @@
 		3ECABCF311F2C7BB00420CA0 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABCF111F2C7BB00420CA0 /* CurrencyManagerTests.m */; };
 		3ECABCF411F2C7BB00420CA0 /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABCF211F2C7BB00420CA0 /* DescLRUManagerTests.m */; };
 		3ECABD4811F2D19400420CA0 /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABD4711F2D19400420CA0 /* AssetListVCTests.m */; };
+		3ECABD5E11F2D25900420CA0 /* EditDescVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECABD5D11F2D25900420CA0 /* EditDescVCTests.m */; };
 		3EFD6BD20F98C8560060B3BF /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD10F98C8560060B3BF /* TestCommon.m */; };
 		3EFD6BD70F98C87A0060B3BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD6BD60F98C87A0060B3BF /* AppDelegate.m */; };
 		3EFD6C170F98CAA60060B3BF /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD6C160F98CAA60060B3BF /* testdata1.sql */; };
@@ -299,6 +300,7 @@
 		3ECABCFC11F2C7E600420CA0 /* DescLRUManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRUManager.h; sourceTree = "<group>"; };
 		3ECABCFD11F2C7E600420CA0 /* EditValueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditValueVC.h; sourceTree = "<group>"; };
 		3ECABD4711F2D19400420CA0 /* AssetListVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVCTests.m; sourceTree = "<group>"; };
+		3ECABD5D11F2D25900420CA0 /* EditDescVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVCTests.m; sourceTree = "<group>"; };
 		3EFD6BD00F98C8560060B3BF /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		3EFD6BD10F98C8560060B3BF /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
 		3EFD6BD50F98C87A0060B3BF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -611,6 +613,7 @@
 				3ECABCDD11F2C75400420CA0 /* TimeTests.m */,
 				3ECABCD711F2C70C00420CA0 /* ReportTests.m */,
 				3ECABD4711F2D19400420CA0 /* AssetListVCTests.m */,
+				3ECABD5D11F2D25900420CA0 /* EditDescVCTests.m */,
 				3EFD6C100F98CA5F0060B3BF /* testdata */,
 			);
 			path = Tests;
@@ -860,6 +863,7 @@
 				3ECABCF311F2C7BB00420CA0 /* CurrencyManagerTests.m in Sources */,
 				3ECABCF411F2C7BB00420CA0 /* DescLRUManagerTests.m in Sources */,
 				3ECABD4811F2D19400420CA0 /* AssetListVCTests.m in Sources */,
+				3ECABD5E11F2D25900420CA0 /* EditDescVCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
