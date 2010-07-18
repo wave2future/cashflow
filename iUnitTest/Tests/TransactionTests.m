@@ -2,7 +2,7 @@
 
 #import "TestCommon.h"
 
-@interface TransactionTest : SenTestCase {
+@interface TransactionTest : IUTTest {
     Transaction *transaction;
 }
 @end

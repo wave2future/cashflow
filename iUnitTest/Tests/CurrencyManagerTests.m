@@ -5,7 +5,7 @@
 #import "Report.h"
 #import "CurrencyManager.h"
 
-@interface CurrencyManagerTests : SenTestCase {
+@interface CurrencyManagerTests : IUTTest {
     CurrencyManager *manager;
 }
 @end

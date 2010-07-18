@@ -4,7 +4,7 @@
 #import "DataModel.h"
 #import "DescLRUManager.h"
 
-@interface DescLRUManagerTests : SenTestCase {
+@interface DescLRUManagerTests : IUTTest {
     DescLRUManager *manager;
 }
 @end
