@@ -333,7 +333,6 @@
 		3ECEF32A11E9C64E00738E69 /* TransactionBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionBase.m; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
-		3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "CashFlowTesting-Info.plist"; sourceTree = SOURCE_ROOT; };
 		3ED8D2F30EC72F9000BC723D /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
 		3ED8D2F40EC72F9E00BC723D /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListVC.h; sourceTree = "<group>"; };
@@ -514,7 +513,6 @@
 				3E7BB12C11539997004B7D03 /* ConfigView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 				3E5A8D7E0EAE34B200118C3C /* Info-free.plist */,
-				3ED1C404119EE6410030B0B2 /* CashFlowTesting-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
