@@ -36,8 +36,8 @@
 {
     NSIndexPath *index = [NSIndexPath indexPathForRow:row inSection:section];
     UITableViewCell *cell = [vc tableView:vc.tableView cellForRowAtIndexPath:index];
-    NSLog(@"'%@'", cell.text);
-    return cell.text;
+    NSLog(@"'%@'", cell.textLabel.text);
+    return cell.textLabel.text;
 }
 
 - (void)testNormal
