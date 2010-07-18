@@ -13,6 +13,7 @@
 - (UIViewController *)rootViewController
 {
     vc = [[[AssetListViewController alloc] initWithNibName:@"AssetListView" bundle:nil] autorelease];
+    //[vc viewDidLoad];
     return vc;
 }
 
@@ -20,12 +21,14 @@
 {
     [TestCommon installDatabase:@"testdata1"];
 
+    //[self rootViewController];
+    
     // AssetView を表示させないようにガードする
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
-    
+
     [super setUp];
- }
+}
 
 - (void)tearDown
 {
@@ -42,14 +45,17 @@
 
 - (void)testNormal
 {
+    NSLog(@"testNormal");
+    
+    AssertEqualInt(1, [vc numberOfSectionsInTableView:vc.tableView]);
+
     // test number of rows
-    ASSERT_EQUAL_INT(3, [vc tableView:vc.tableView numberOfRowsInSection:0]);
+    AssertEqualInt(3, [vc tableView:vc.tableView numberOfRowsInSection:0]);
 
     // test cell
-    ASSERT_EQUAL(@"Cash : ￥9,000", [self cellText:0 section:0]);
-    ASSERT_EQUAL(@"Bank : ￥195,000", [self cellText:1 section:0]);
-    ASSERT_EQUAL(@"Card : -￥12,100", [self cellText:2 section:0]);
-    //ASSERT_EQUAL(@"計 : 10000", [self cellText:0 section:1]);
+    Assert([[self cellText:0 section:0] isEqualToString:@"Cash : ￥9,000"]);
+    Assert([[self cellText:1 section:0] isEqualToString:@"Bank : ￥195,000"]);
+    Assert([[self cellText:2 section:0] isEqualToString:@"Card : -￥12,100"]);
 }
 
 @end
