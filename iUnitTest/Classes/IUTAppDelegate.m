@@ -6,10 +6,10 @@
 //  Copyright 2009 ITO SOFT DESIGN Inc. All rights reserved.
 //
 
-#import "TestAppDelegate.h"
+#import "IUTAppDelegate.h"
 #import "SourceCodeOpener.h"
 
-@implementation TestAppDelegate
+@implementation IUTAppDelegate
 
 @synthesize window, viewController;
 
@@ -23,7 +23,7 @@
     // Override point for customization after application launch
     [window addSubview:viewController.view];
     [window makeKeyAndVisible];
-
+    
     SOURCE_CODE_OPENER_START();
 }
 
