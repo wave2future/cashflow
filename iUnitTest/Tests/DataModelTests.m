@@ -1,24 +1,24 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 
-#import "DataModelTest.h"
+#import "TestCommon.h"
+
+@interface DataModelTest : IUTTest {
+    DataModel *dm;
+}
+@end
+
 
 @implementation DataModelTest
 
 - (void)setUp
 {
-    [super setUp];
     [TestCommon deleteDatabase];
     dm = [DataModel instance];
 }
 
 - (void)tearDown
 {
-    [super tearDown];
 }
-
-#pragma mark -
-#pragma mark Helpers
-
 
 #pragma mark -
 #pragma mark Tests
@@ -27,10 +27,13 @@
 - (void)testInitial
 {
     // 初期データチェック
-    ASSERT(dm != nil);
-    ASSERT(dm.journal != nil);
-    ASSERT(dm.ledger != nil);
-    ASSERT(dm.categories != nil);
+    Assert(dm != nil);
+    AssertEqualInt(0, [dm.journal.entries count]);
+
+    Asset *as = [dm.ledger.assets objectAtIndex:0];
+    Assert([as.name isEqualToString:@"Cash"]); 
+                  
+    AssertEqualInt(0, [dm.categories categoryCount]);
 }
 
 // データベースがあるときに、正常に読み込めること
@@ -39,9 +42,9 @@
     [TestCommon installDatabase:@"testdata1"];
     dm = [DataModel instance];
 
-    ASSERT([dm.journal.entries count] == 6);
-    ASSERT([dm.ledger.assets count] == 3);
-    ASSERT([dm.categories categoryCount] == 3);
+    Assert([dm.journal.entries count] == 6);
+    Assert([dm.ledger.assets count] == 3);
+    Assert([dm.categories categoryCount] == 3);
 }
 
 @end

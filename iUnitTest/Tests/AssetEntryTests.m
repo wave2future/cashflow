@@ -1,17 +1,21 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 
-#import "AssetEntryTest.h"
+#import "TestCommon.h"
+
+@interface AssetEntryTest : IUTTest {
+}
+
+@end
+
 
 @implementation AssetEntryTest
 
 - (void)setUp
 {
-    [super setUp];
 }
 
 - (void)tearDown
 {
-    [super tearDown];
 }
 
 - (void)dealloc
@@ -36,16 +40,16 @@
 
     e = [[[AssetEntry alloc] initWithTransaction:nil withAsset:a] autorelease];
 
-    ASSERT(e.assetKey == 999);
-    ASSERT(e.value == 0.0);
-    ASSERT(e.balance == 0.0);
-    ASSERT(e.transaction.asset == 999);
-    ASSERT(![e isDstAsset]);
+    Assert(e.assetKey == 999);
+    Assert(e.value == 0.0);
+    Assert(e.balance == 0.0);
+    Assert(e.transaction.asset == 999);
+    Assert(![e isDstAsset]);
 
     // 値設定
     e.value = 200.0;
     //[e setupTransaction];
-    ASSERT(e.transaction.value == 200.0);
+    Assert(e.transaction.value == 200.0);
 }
 
 // transaction 指定あり、通常
@@ -61,16 +65,16 @@
 
     AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
 
-    ASSERT(e.assetKey == 111);
-    ASSERT(e.value == 10000.0);
-    ASSERT(e.balance == 0.0);
-    ASSERT(e.transaction.asset == 111);
-    ASSERT(![e isDstAsset]);
+    Assert(e.assetKey == 111);
+    Assert(e.value == 10000.0);
+    Assert(e.balance == 0.0);
+    Assert(e.transaction.asset == 111);
+    Assert(![e isDstAsset]);
 
     // 値設定
     e.value = 200.0;
     //[e setupTransaction];
-    ASSERT(e.transaction.value == 200.0);
+    Assert(e.transaction.value == 200.0);
 }
 
 // transaction 指定あり、逆
@@ -86,16 +90,16 @@
 
     AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
 
-    ASSERT(e.assetKey == 111);
-    ASSERT(e.value == -10000.0);
-    ASSERT(e.balance == 0.0);
-    ASSERT(e.transaction.asset == 222);
-    ASSERT([e isDstAsset]);
+    Assert(e.assetKey == 111);
+    Assert(e.value == -10000.0);
+    Assert(e.balance == 0.0);
+    Assert(e.transaction.asset == 222);
+    Assert([e isDstAsset]);
 
     // 値設定
     e.value = 200.0;
     //[e setupTransaction];
-    ASSERT(e.transaction.value == -200.0);
+    Assert(e.transaction.value == -200.0);
 }
 
 - (void)testEvalueNormal
@@ -111,27 +115,27 @@
 
     t.type = TYPE_INCOME;
     e.value = 10000;
-    ASSERT(e.evalue == 10000);
+    Assert(e.evalue == 10000);
     e.evalue = 20000;
-    ASSERT(e.transaction.value == 20000);    
+    Assert(e.transaction.value == 20000);    
 
     t.type = TYPE_OUTGO;
     e.value = 10000;
-    ASSERT(e.evalue == -10000);
+    Assert(e.evalue == -10000);
     e.evalue = 20000;
-    ASSERT(e.transaction.value = -20000);
+    Assert(e.transaction.value = -20000);
 
     t.type = TYPE_ADJ;
     e.balance = 99999;
-    ASSERT([e evalue] == 99999);
+    Assert([e evalue] == 99999);
     e.evalue = 88888;
-    ASSERT(e.balance == 88888);
+    Assert(e.balance == 88888);
 
     t.type = TYPE_TRANSFER;
     e.value = 10000;
-    ASSERT([e evalue] == -10000);
+    Assert([e evalue] == -10000);
     e.evalue = 20000;
-    ASSERT(e.transaction.value == -20000);
+    Assert(e.transaction.value == -20000);
 }
 
 @end
