@@ -17,7 +17,8 @@
 #define Assert(x) ASSERT(x)
 #define AssertNil(x) ASSERT_FAIL(x)
 #define AssertNotNil(x) ASSERT_NOT_NIL(x)
-#define AssertEqualObjects(a, b) ASSERT_EQUAL(a, b)
+#define AssertEqual(a, b) ASSERT_EQUAL(a, b)
+#define AssertEqualObjects(a, b) ASSERT_SAME(a, b)
 #define AssertEqualInt(a, b) ASSERT_EQUAL_INT(a, b)
 #define AssertEqualDouble(a, b) ASSERT_EQUAL_DOUBLE(a, b)
 
