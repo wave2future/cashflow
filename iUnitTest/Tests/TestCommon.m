@@ -11,7 +11,7 @@
     if (df == nil) {
         df = [[DateFormatter2 alloc] init];
         [df setTimeZone: [NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-        [df setDateFormat: @"yyyyMMddHHmm"];
+        [df setDateFormat: @"yyyyMMddHHmmss"];
     }
     return df;
 }
@@ -38,11 +38,28 @@
 }
 
 // データベースをインストールする
-+ (void)installDatabase:(NSString *)sqlFileName
++ (BOOL)installDatabase:(NSString *)sqlFileName
 {
     [TestCommon deleteDatabase];
 
     NSString *sqlPath = [[NSBundle mainBundle] pathForResource:sqlFileName ofType:@"sql"];
+
+#if 0 // for LogcTests
+    NSString *sqlPath = [[NSBundle bundleForClass:[self class]] pathForResource:sqlFileName ofType:@"sql"];
+    if (sqlPath == NULL) {
+        NSLog(@"FATAL: no SQL data file : %@", sqlFileName);
+        return NO;
+    }
+    
+    // Document ディレクトリを作成する (単体テストだとなぜかできてない)
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *dbdir = [[Database instance] dbPath:@""];
+    if (![fm fileExistsAtPath:dbdir]) {
+        [fm createDirectoryAtPath:dbdir withIntermediateDirectories:NO
+                       attributes:nil error:NULL];
+    }
+#endif
+
     NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
     // load sql
@@ -55,17 +72,53 @@
     if (sqlite3_open([dbPath UTF8String], &handle) != 0) {
         NSLog(@"sqlite3_open failed!");
         // ### ASSERT?
-        return;
+        return NO;
     }
     
     if (sqlite3_exec(handle, sql, NULL, NULL, NULL) != SQLITE_OK) {
         NSLog(@"sqlite3_exec failed");
+        return NO;
         // ### ASSERT?
     }
     
     sqlite3_close(handle);
 
     free(sql);
+    
+    return YES;
 }
 
 @end
+
+#if 0
+#import "Pin.h"
+
+// dummy
+@implementation PinController
+
+@synthesize pin, newPin;
+
+- (void)_allDone;
+{
+}
+
+- (PinViewController *)_getPinViewController
+{
+    return nil;
+}
+
+- (void)firstPinCheck:(UIViewController *)vc
+{
+}
+
+- (void)modifyPin:(UIViewController *)currentVc
+{
+}
+
+- (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel
+{
+}
+
+@end
+#endif
+
