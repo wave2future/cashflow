@@ -7,17 +7,35 @@
 #import "UIViewControllerTest.h"
 
 @interface EditDescViewControllerTest : UIViewControllerTest <EditDescViewDelegate> {
-    EditDescViewController *vc;
     NSString *description;
 }
+
+@property(retain, readonly) EditDescViewController *vc;
+
 @end
 
 @implementation EditDescViewControllerTest
 
-- (UIViewController *)rootViewController
+- (EditDescViewController *)vc
 {
-    vc = [[[EditDescViewController alloc] initWithNibName:@"EditDescView" bundle:nil] autorelease];
-    return vc;
+    return (EditDescViewController *)self.viewController;
+}
+
+#pragma mark UIViewControllerTest methods
+
+- (NSString *)viewControllerName
+{
+    return @"EditDescViewController";
+}
+
+- (NSString *)viewControllerNibName
+{
+    return @"EditDescView";
+}
+
+- (BOOL)hasNavigationController
+{
+    return YES;
 }
 
 #pragma mark EditDescViewDelegate
@@ -47,9 +65,9 @@
     // erase all desc LRU data
     [DescLRU delete_cond:nil];
 
-    vc.description = @"TEST";
-    vc.category = 100;
-    vc.delegate = self;
+    self.vc.description = @"TEST";
+    self.vc.category = 100;
+    self.vc.delegate = self;
 
     //[vc viewDidLoad];
     //[vc viewWillAppear:YES];
@@ -64,25 +82,25 @@
 - (UITableViewCell *)_cellForRow:(int)row section:(int)section
 {
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:section];
-    UITableViewCell *cell = [vc tableView:vc.tableView cellForRowAtIndexPath:indexPath];
+    UITableViewCell *cell = [self.vc tableView:self.vc.tableView cellForRowAtIndexPath:indexPath];
     return cell;
 }
 
 - (void)testDescArea
 {
-    AssertEqualInt(2, [vc numberOfSectionsInTableView:vc.tableView]);
-    AssertEqualInt(1, [vc tableView:vc.tableView numberOfRowsInSection:0]);
+    AssertEqualInt(2, [self.vc numberOfSectionsInTableView:self.vc.tableView]);
+    AssertEqualInt(1, [self.vc tableView:self.vc.tableView numberOfRowsInSection:0]);
     
     UITableViewCell *cell = [self _cellForRow:0 section:0];
     Assert(cell != nil);
 
-    [vc doneAction];
-    Assert([description isEqualToString:@"TEST"]);
+    [self.vc doneAction];
+    AssertEqual(@"TEST", description);
 }
 
 - (void)testEmptyLRU
 {
-    int n = [vc tableView:vc.tableView numberOfRowsInSection:1];
+    int n = [self.vc tableView:self.vc.tableView numberOfRowsInSection:1];
     AssertEqualInt(0, n);
 }
 
@@ -96,17 +114,17 @@
     [DescLRUManager addDescLRU:@"test4" category:1 date:[db dateFromString:@"20100101000004"]];
     [DescLRUManager addDescLRU:@"test5" category:2 date:[db dateFromString:@"20100101000005"]];
 
-    vc.category = -1;
-    [vc viewWillAppear:YES]; // reload descArray
+    self.vc.category = -1;
+    [self.vc viewWillAppear:YES]; // reload descArray
 
-    int n = [vc tableView:vc.tableView numberOfRowsInSection:1];
+    int n = [self.vc tableView:self.vc.tableView numberOfRowsInSection:1];
     AssertEqualInt(6, n);
 
     UITableViewCell *cell;
     cell = [self _cellForRow:0 section:1];
-    Assert([cell.textLabel.text isEqualToString:@"test5"]);
+    AssertEqual(@"test5", cell.textLabel.text);
     cell = [self _cellForRow:5 section:1];
-    Assert([cell.textLabel.text isEqualToString:@"test0"]);
+    AssertEqual(@"test0", cell.textLabel.text);
 }
 
 - (void)testSpecificCategory
@@ -119,17 +137,17 @@
     [DescLRUManager addDescLRU:@"test4" category:1 date:[db dateFromString:@"20100101000004"]];
     [DescLRUManager addDescLRU:@"test5" category:2 date:[db dateFromString:@"20100101000005"]];
 
-    vc.category = 1;
-    [vc viewWillAppear:YES]; // reload descArray
+    self.vc.category = 1;
+    [self.vc viewWillAppear:YES]; // reload descArray
 
-    int n = [vc tableView:vc.tableView numberOfRowsInSection:1];
+    int n = [self.vc tableView:self.vc.tableView numberOfRowsInSection:1];
     AssertEqualInt(2, n);
 
     UITableViewCell *cell;
     cell = [self _cellForRow:0 section:1];
-    Assert([cell.textLabel.text isEqualToString:@"test4"]);
+    AssertEqual(@"test4", cell.textLabel.text);
     cell = [self _cellForRow:1 section:1];
-    Assert([cell.textLabel.text isEqualToString:@"test1"]);
+    AssertEqual(@"test1", cell.textLabel.text);
 }
 
 - (void)testClickCell
@@ -142,12 +160,12 @@
     [DescLRUManager addDescLRU:@"test4" category:1 date:[db dateFromString:@"20100101000004"]];
     [DescLRUManager addDescLRU:@"test5" category:2 date:[db dateFromString:@"20100101000005"]];
 
-    vc.category = -1;
-    [vc viewWillAppear:YES]; // reload descArray
+    self.vc.category = -1;
+    [self.vc viewWillAppear:YES]; // reload descArray
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
-    [vc tableView:vc.tableView didSelectRowAtIndexPath:indexPath];
-    Assert([description isEqualToString:@"test4"]);
+    [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:indexPath];
+    AssertEqual(@"test4", description);
 }
 
 @end
