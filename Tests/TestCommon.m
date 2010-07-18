@@ -34,7 +34,11 @@
 
     NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
-    [[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL];
+    if ([[NSFileManager defaultManager] removeItemAtPath:dbPath error:NULL]) {
+        //NSLog(@"db removed: %@", dbPath);
+    } else {
+        //NSLog(@"deleteDatabase failed!: %@", dbPath);
+    }
 }
 
 // データベースをインストールする
@@ -61,7 +65,8 @@
 #endif
 
     NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
-
+    //NSLog(@"install db: %@", dbPath);
+    
     // load sql
     NSData *data = [NSData dataWithContentsOfFile:sqlPath];
     char *sql = malloc([data length] + 1);
@@ -76,7 +81,7 @@
     }
     
     if (sqlite3_exec(handle, sql, NULL, NULL, NULL) != SQLITE_OK) {
-        NSLog(@"sqlite3_exec failed");
+        NSLog(@"sqlite3_exec failed : %s", sqlite3_errmsg(handle));
         return NO;
         // ### ASSERT?
     }
