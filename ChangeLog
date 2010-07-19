@@ -1,3 +1,6 @@
+2010-07-19: Takuya Murakami
+	* iOS4 対応: background から復帰するときに PIN チェックを実施
+
 2010-07-18: Takuya Murakami
 	* 単体テストを iUnitTest ベースに変更
 	
