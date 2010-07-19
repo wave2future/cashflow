@@ -36,7 +36,7 @@
 #import "TransactionListVC.h"
 #import "DataModel.h"
 #import "Transaction.h"
-#import "Pin.h"
+#import "PinController.h"
 
 @implementation AppDelegate
 

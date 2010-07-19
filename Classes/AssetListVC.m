@@ -42,7 +42,7 @@
 #import "ReportVC.h"
 #import "InfoVC.h"
 #import "Backup.h"
-#import "Pin.h"
+#import "PinController.h"
 #import "ConfigViewController.h"
 
 @implementation AssetListViewController

@@ -32,7 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "Pin.h"
+#import "PinController.h"
 #import "AppDelegate.h"
 
 @implementation PinController

@@ -151,7 +151,6 @@
 		3E8B25B00F348C090007929E /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
 		3E8B25B10F348C090007929E /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
 		3E8B25B20F348C090007929E /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
-		3E8B25B30F348C090007929E /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
 		3E8B25B40F348C090007929E /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
 		3E8B25B60F348C090007929E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
 		3E8B25B70F348C090007929E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -171,7 +170,6 @@
 		3E9A3B390EC47AA0005A4664 /* cash.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B380EC47AA0005A4664 /* cash.png */; };
 		3E9A3B3B0EC47AAB005A4664 /* bank.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3A0EC47AAB005A4664 /* bank.png */; };
 		3E9A3B3D0EC47ABA005A4664 /* card.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E9A3B3C0EC47ABA005A4664 /* card.png */; };
-		3E9B99810F1E0480000288CF /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
 		3E9B99820F1E0480000288CF /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
 		3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
@@ -208,6 +206,9 @@
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
 		3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3EDA8A6C11F3F8DD0041E1C8 /* PinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA8A6B11F3F8DD0041E1C8 /* PinController.m */; };
+		3EDA8A6D11F3F8DD0041E1C8 /* PinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA8A6B11F3F8DD0041E1C8 /* PinController.m */; };
+		3EDA8A6E11F3F8DD0041E1C8 /* PinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDA8A6B11F3F8DD0041E1C8 /* PinController.m */; };
 		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
@@ -314,7 +315,6 @@
 		3EE4034611F3377600171A15 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B35E90FA2A84E00FCF592 /* ReportCatCell.m */; };
 		3EE4034711F3377600171A15 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDADBD0E89280800268AED /* InfoVC.m */; };
 		3EE4034811F3377600171A15 /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EDDAE7D0E8E468700268AED /* ExportVC.m */; };
-		3EE4034911F3377600171A15 /* Pin.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B997F0F1E0480000288CF /* Pin.m */; };
 		3EE4034A11F3377600171A15 /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E9B99800F1E0480000288CF /* PinVC.m */; };
 		3EE4034B11F3377600171A15 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB137115399C5004B7D03 /* ConfigViewController.m */; };
 		3EE629EA10D7E8C500EB7399 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */; };
@@ -417,7 +417,6 @@
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 10; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E8B25C20F348C090007929E /* CashFlowFree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CashFlowFree.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		3E8C35B30F1E074C004AFFCA /* Pin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Pin.h; sourceTree = "<group>"; };
 		3E8C35B40F1E074C004AFFCA /* PinVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinVC.h; sourceTree = "<group>"; };
 		3E8C36150F1E0D82004AFFCA /* PinView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PinView.xib; sourceTree = "<group>"; };
 		3E929479106BBC7900DE6040 /* CalcVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalcVC.h; sourceTree = "<group>"; };
@@ -432,7 +431,6 @@
 		3E9A3B380EC47AA0005A4664 /* cash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cash.png; sourceTree = "<group>"; };
 		3E9A3B3A0EC47AAB005A4664 /* bank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bank.png; sourceTree = "<group>"; };
 		3E9A3B3C0EC47ABA005A4664 /* card.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = card.png; sourceTree = "<group>"; };
-		3E9B997F0F1E0480000288CF /* Pin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Pin.m; sourceTree = "<group>"; };
 		3E9B99800F1E0480000288CF /* PinVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinVC.m; sourceTree = "<group>"; };
 		3EA011310EC344CC008CEEB7 /* AssetListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetListView.xib; sourceTree = "<group>"; };
 		3EA0114C0EC3461A008CEEB7 /* AssetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetVC.h; sourceTree = "<group>"; };
@@ -473,6 +471,8 @@
 		3ED97C140F1A0D8D0063A578 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServer.m; sourceTree = "<group>"; };
 		3ED97C260F1A0E8E0063A578 /* BackupServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupServer.h; sourceTree = "<group>"; };
 		3ED97C270F1A0E8E0063A578 /* BackupServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupServer.m; sourceTree = "<group>"; };
+		3EDA8A6A11F3F8DD0041E1C8 /* PinController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinController.h; sourceTree = "<group>"; };
+		3EDA8A6B11F3F8DD0041E1C8 /* PinController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinController.m; sourceTree = "<group>"; };
 		3EDC72BA0EBB493100366F1E /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
@@ -665,8 +665,8 @@
 				3EDDADBD0E89280800268AED /* InfoVC.m */,
 				3EDDAE7C0E8E468700268AED /* ExportVC.h */,
 				3EDDAE7D0E8E468700268AED /* ExportVC.m */,
-				3E8C35B30F1E074C004AFFCA /* Pin.h */,
-				3E9B997F0F1E0480000288CF /* Pin.m */,
+				3EDA8A6A11F3F8DD0041E1C8 /* PinController.h */,
+				3EDA8A6B11F3F8DD0041E1C8 /* PinController.m */,
 				3E8C35B40F1E074C004AFFCA /* PinVC.h */,
 				3E9B99800F1E0480000288CF /* PinVC.m */,
 				3E7BB136115399C5004B7D03 /* ConfigViewController.h */,
@@ -1259,7 +1259,6 @@
 				3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */,
 				3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */,
 				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
-				3E9B99810F1E0480000288CF /* Pin.m in Sources */,
 				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
 				3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */,
 				3EFD000A0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
@@ -1282,6 +1281,7 @@
 				3E97AEF211EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0011EB272E004296F3 /* DescLRU.m in Sources */,
 				3EC0B7A311EC8B4900AA02A8 /* AdUtil.m in Sources */,
+				3EDA8A6D11F3F8DD0041E1C8 /* PinController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1315,7 +1315,6 @@
 				3E8B25B00F348C090007929E /* EditMemoVC.m in Sources */,
 				3E8B25B10F348C090007929E /* WebServer.m in Sources */,
 				3E8B25B20F348C090007929E /* BackupServer.m in Sources */,
-				3E8B25B30F348C090007929E /* Pin.m in Sources */,
 				3E8B25B40F348C090007929E /* PinVC.m in Sources */,
 				3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */,
 				3EFD000B0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
@@ -1338,6 +1337,7 @@
 				3E97AEF311EB26FA004296F3 /* DescLRUManager.m in Sources */,
 				3E97AF0111EB272E004296F3 /* DescLRU.m in Sources */,
 				3EC0B7A411EC8B4900AA02A8 /* AdUtil.m in Sources */,
+				3EDA8A6E11F3F8DD0041E1C8 /* PinController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1425,9 +1425,9 @@
 				3EE4034611F3377600171A15 /* ReportCatCell.m in Sources */,
 				3EE4034711F3377600171A15 /* InfoVC.m in Sources */,
 				3EE4034811F3377600171A15 /* ExportVC.m in Sources */,
-				3EE4034911F3377600171A15 /* Pin.m in Sources */,
 				3EE4034A11F3377600171A15 /* PinVC.m in Sources */,
 				3EE4034B11F3377600171A15 /* ConfigViewController.m in Sources */,
+				3EDA8A6C11F3F8DD0041E1C8 /* PinController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

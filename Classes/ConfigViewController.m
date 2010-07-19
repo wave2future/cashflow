@@ -37,7 +37,7 @@
 #import "Config.h"
 #import "GenSelectListVC.h"
 #import "CategoryListVC.h"
-#import "Pin.h"
+#import "PinController.h"
 
 @implementation ConfigViewController
 
