@@ -49,7 +49,7 @@
 /*
     テーブルの migration と日付フォーマットのアップグレードを行う
  
-    旧バージョンでは日付フォーマットが yyyyMMddHHmm であったが、
+    ver 3.2.1 以前は日付フォーマットが yyyyMMddHHmm であったが、
     ormapper 導入にあわせて yyyyMMddHHmmss に変更。
  */
 + (BOOL)migrate
