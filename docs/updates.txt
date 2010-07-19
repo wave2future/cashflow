@@ -1,0 +1,17 @@
+ver 3.3
+
+JP:
+以下の機能改善を行いました
+- iOS4: バックグランドから復帰するときにPINを確認するようにした
+- 摘要入力画面のUIを改良
+- 取引を削除しても摘要履歴が残るようにした
+- 資産一覧画面で、資産合計値をツールバーに表示
+- 日本語CSVファイルをShift-JISエンコーディングで出力するようにした
+
+EN:
+- iOS4: Check PIN code when app resumes from background state.
+- Modify UI of description input screen.
+- Keep description histories even if transactions are deleted.
+- Show total balance on toolbar of assets screen.
+- Export Shift-JIS encoded CSV file for Japanese locale.
+
