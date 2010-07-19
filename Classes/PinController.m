@@ -81,15 +81,21 @@
 
     if (pin == nil) return; // do nothing
 
+    // get topmost modal view controller
+    while (currentVc.modalViewController != nil) {
+        currentVc = currentVc.modalViewController;
+    }
+    
     [self retain];
 
+    // create PinViewController
     PinViewController *vc = [self _getPinViewController];
-
     vc.title = NSLocalizedString(@"Enter PIN", @"");
     vc.enableCancel = NO;
 
     state = FIRST_PIN_CHECK;
 
+    // show PinViewController
     navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
     [currentVc presentModalViewController:navigationController animated:NO];
 }
