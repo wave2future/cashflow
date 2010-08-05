@@ -42,6 +42,22 @@ def createTransactions
         type = pkey % 3 + 1
         asset = pkey % MAX_ASSET + 1
         cat = pkey % MAX_CATEGORY + 1
+        min += 1
+        if (min >= 60)
+            min = 0
+            hour += 1
+            if (hour >= 24)
+                hour = 0
+                day += 1
+                if (day >= 31)
+                    day = 0
+                    month += 1
+                    if (month >= 12)
+                        year += 1
+                    end
+                end
+            end
+        end
 
         puts "INSERT INTO \"Transactions\" VALUES(#{pkey},#{asset},-1,#{d},#{type},#{cat},#{pkey*10.0},'hoge','xxx');"
 
