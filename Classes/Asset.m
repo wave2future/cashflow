@@ -107,6 +107,8 @@
             [e release];
         }
     }
+
+    lastBalance = balance;
 }
 
 - (void)updateInitialBalance

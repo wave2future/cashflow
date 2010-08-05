@@ -52,6 +52,7 @@
 // 
 @interface Asset : AssetBase {
     NSMutableArray *entries; // AssetEntry の配列
+    double lastBalance;
 }
 
 - (void)rebuild;

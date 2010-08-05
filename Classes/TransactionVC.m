@@ -113,6 +113,7 @@
 {
     self.editingEntry = nil;
 	
+    [typeArray release];
     [delButton release];
     [delPastButton release];
 	
