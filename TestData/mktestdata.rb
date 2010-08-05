@@ -21,6 +21,17 @@ EOF
 end
 
 def createTransactions
+    pkey = 1
+    asset = 1
+    year = 2010
+    month = 8
+    day = 1
+    hour = 12
+    min = 0
+    sec = 0
+
+    while (pkey < 
+
     puts "INSERT INTO \"Transactions\" VALUES(1,2,1,201004010236,3,-1,-20000.0,'ATM','');"
 end
 
