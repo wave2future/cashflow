@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2010, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -34,7 +34,7 @@
 
 #import "AppDelegate.h"
 #import "InfoVC.h"
-
+#import "SupportMail.h"
 
 @implementation InfoVC
 
@@ -97,6 +97,12 @@
 {
     NSURL *url = [NSURL URLWithString:@"http://phobos.apple.com/WebObjects/MZStore.woa/wa/viewSoftware?id=290776107&mt=8"];
     [[UIApplication sharedApplication] openURL:url];
+}
+
+- (IBAction)sendSupportMail
+{
+    SupportMail *m = [[[SupportMail alloc] init] autorelease];
+    [m sendMail:self];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

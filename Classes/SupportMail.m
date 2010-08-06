@@ -33,22 +33,24 @@
 */
 
 #import "SupportMail.h"
+#import "Ledger.h"
+#import "Journal.h"
 #import "UIDevice-Hardware.h"
 
-@implementation SendMail
+@implementation SupportMail
 
 - (BOOL)sendMail:(UIViewController *)parent
 {
     MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
     vc.mailComposeDelegate = self;
     
-    [vc setSubject:@"CashFlow Support"];
-    [vc setToRecipients:[NSArray arrayWithObject:@"support@tmurakam.org"]];
+    [vc setSubject:@"[CashFlow Support]"];
+    [vc setToRecipients:[NSArray arrayWithObject:@"cashflow-support@tmurakam.org"]];
 
-    NSMutableString *body = [[[NSMutableString alloc] init] autorelease];
+    NSMutableString *body = [NSMutableString stringWithString:@""];
 
-    [body appendString:[NSLocalizedString @"SupportMailBody"]];
-    [body appendString:@"\n\n----\n"];
+    [body appendString:[NSLocalizedString @"(Write an inquiry here.)"]];
+    [body appendString:@"\n\n\n-- Plase do not remove following lines. --\n"];
 #ifdef FREE_VERSION
     [body appendString:@"VERSION: CashFlow Free ver "];
 #else
@@ -56,10 +58,12 @@
 #endif
     [body appendString:[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"]];
     [body appendString:@"\n"];
-    [body appendString:@"DEVICE: "];
-    NSString *devid = [[UIDevice currentDevice] platform];
-    [body appendString:devid];
-    [body appendString:@"\n"];
+
+    UIDevice *device = [UIDevice currentDevice];
+    [body appendFormat:@"DEVICE: %@\n", [device platform]];
+    [body appendFormat:@"OS: %@\n", [device systemVersion]];
+
+    [body appendFormat:@"STAT: %d-%d\n", [Ledger.assets count], [Journal.entries count]];
 
     [vc setMessageBody:body isHTML:NO];
     
