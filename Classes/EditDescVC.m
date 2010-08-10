@@ -143,7 +143,7 @@
 {
     switch (section) {
         case 0:
-            return @""; //NSLocalizedString(@"Description", @"");
+            return NSLocalizedString(@"Name", @"");
         case 1:
             return NSLocalizedString(@"History", @"");
     }
@@ -155,22 +155,34 @@
     UITableViewCell *cell;
 
     if (indexPath.section == 0) {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"textFieldCell"];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textFieldCell"] autorelease];
-
-            [cell.contentView addSubview:textField];
-        }
+        cell = [self _textFieldCell:tv];
     } 
     else {
-        cell = [tableView dequeueReusableCellWithIdentifier:@"descCell"];
-        if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"descCell"] autorelease];
-        }
-        cell.textLabel.text = [descArray objectAtIndex:indexPath.row];
+        cell = [self _descCell:tv row:indexPath.row];
     }
     return cell;
 }
+
+- (UITableViewCell *)_textFieldCell:(UITableView *)tv
+{
+    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"textFieldCell"];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textFieldCell"] autorelease];
+        [cell.contentView addSubview:textField];
+    }
+    return cell;
+}
+
+- (UITableViewCell *)_descCell:(UITableView *)tv row:(int)row
+{   
+    UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"descCell"];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"descCell"] autorelease];
+    }
+    cell.textLabel.text = [descArray objectAtIndex:row];
+    return cell;
+}
+
 
 #pragma mark UITableViewDelegate
 

@@ -64,4 +64,7 @@
 
 - (void)doneAction;
 
+- (UITableViewCell *)_textFieldCell:(UITableView*)tv;
+- (UITableViewCell *)_descCell:(UITableView*)tv row:(int)row;
+
 @end
