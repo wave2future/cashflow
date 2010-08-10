@@ -86,40 +86,7 @@
 	
     asDisplaying = NO;
     
-#if FREE_VERSION
-    CGRect frame = tableView.bounds;
-    
-    // 画面下部固定で広告を作成する
-    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
-    adViewController.adSize = kGADAdSize320x50;
-    
-    NSDictionary *attributes = [AdUtil adAttributes];
-
-    @try {
-        [adViewController loadGoogleAd:attributes];
-    }
-    @catch (NSException * e) {
-        NSLog(@"loadGoogleAd: exception: %@", [e description]);
-    }
-    
-    UIView *adView = adViewController.view;
-    float adViewWidth = [adView bounds].size.width;
-    float adViewHeight = [adView bounds].size.height;
-
-    CGRect aframe = frame;
-    aframe.origin.x = (frame.size.width - adViewWidth) / 2;
-    aframe.origin.y = frame.size.height - adViewHeight;
-    aframe.size.height = adViewHeight;
-    aframe.size.width = adViewWidth;
-    adView.frame = aframe;
-    adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:adView];
-
-    // 広告領域分だけ、tableView の下部をあける
-    CGRect tframe = frame;
-    tframe.size.height -= adViewHeight;
-    tableView.frame = tframe;
-#endif
+    adViewController = nil;
 }
 
 #if FREE_VERSION
@@ -167,6 +134,48 @@
     [self reload];
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+#if FREE_VERSION
+    if (adViewController != nil) return; // already showed
+    
+    CGRect frame = tableView.bounds;
+    
+    // 画面下部固定で広告を作成する
+    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
+    adViewController.adSize = kGADAdSize320x50;
+    
+    NSDictionary *attributes = [AdUtil adAttributes];
+
+    @try {
+        [adViewController loadGoogleAd:attributes];
+    }
+    @catch (NSException * e) {
+        NSLog(@"loadGoogleAd: exception: %@", [e description]);
+    }
+    
+    UIView *adView = adViewController.view;
+    float adViewWidth = [adView bounds].size.width;
+    float adViewHeight = [adView bounds].size.height;
+
+    CGRect aframe = frame;
+    aframe.origin.x = (frame.size.width - adViewWidth) / 2;
+    aframe.origin.y = frame.size.height - adViewHeight;
+    aframe.size.height = adViewHeight;
+    aframe.size.width = adViewWidth;
+    adView.frame = aframe;
+    adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
+    [self.view addSubview:adView];
+
+    // 広告領域分だけ、tableView の下部をあける
+    CGRect tframe = frame;
+    tframe.size.height -= adViewHeight;
+    tableView.frame = tframe;
+#endif
+}
+
 - (void)updateBalance
 {
     double lastBalance = [asset lastBalance];
@@ -182,10 +191,6 @@
     if (IS_IPAD) {
         [splitAssetListViewController reload];
     }
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
