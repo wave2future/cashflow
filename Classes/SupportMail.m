@@ -32,17 +32,49 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import <UIKit/UIKit.h>
+#import "SupportMail.h"
+#import "Ledger.h"
+#import "Journal.h"
+#import "UIDevice-Hardware.h"
 
-@interface InfoVC : UIViewController {
-    IBOutlet UILabel *nameLabel;
-    IBOutlet UILabel *versionLabel;
-    IBOutlet UIButton *purchaseButton;
+@implementation SupportMail
+
+- (BOOL)sendMail:(UIViewController *)parent
+{
+    MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+    vc.mailComposeDelegate = self;
+    
+    [vc setSubject:@"[CashFlow Support]"];
+    [vc setToRecipients:[NSArray arrayWithObject:@"cashflow-support@tmurakam.org"]];
+
+    NSMutableString *body = [NSMutableString stringWithString:@""];
+
+    [body appendString:[NSLocalizedString @"(Write an inquiry here.)"]];
+    [body appendString:@"\n\n\n-- Plase do not remove following lines. --\n"];
+#ifdef FREE_VERSION
+    [body appendString:@"VERSION: CashFlow Free ver "];
+#else
+    [body appendString:@"VERSION: CashFlow Std. ver "];
+#endif
+    [body appendString:[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"]];
+    [body appendString:@"\n"];
+
+    UIDevice *device = [UIDevice currentDevice];
+    [body appendFormat:@"DEVICE: %@\n", [device platform]];
+    [body appendFormat:@"OS: %@\n", [device systemVersion]];
+
+    [body appendFormat:@"STAT: %d-%d\n", [Ledger.assets count], [Journal.entries count]];
+
+    [vc setMessageBody:body isHTML:NO];
+    
+    [parent presentModalViewController:vc animated:YES];
+    [vc release];
+    return YES;
 }
 
-- (void)doneAction:(id)sender;
-- (IBAction)webButtonTapped;
-- (IBAction)purchaseStandardVersion;
-- (IBAction)sendSupportMail;
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
+{
+    [controller dismissModalViewControllerAnimated:YES];
+}
 
 @end

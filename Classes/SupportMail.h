@@ -33,16 +33,12 @@
 */
 
 #import <UIKit/UIKit.h>
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface InfoVC : UIViewController {
-    IBOutlet UILabel *nameLabel;
-    IBOutlet UILabel *versionLabel;
-    IBOutlet UIButton *purchaseButton;
+@interface SupportMail : NSObject <MFMailComposeViewControllerDelegate> {
 }
 
-- (void)doneAction:(id)sender;
-- (IBAction)webButtonTapped;
-- (IBAction)purchaseStandardVersion;
-- (IBAction)sendSupportMail;
+- (BOOL)sendMail:(UIViewController *)parent;
 
 @end
