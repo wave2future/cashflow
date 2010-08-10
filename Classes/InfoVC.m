@@ -101,8 +101,15 @@
 
 - (IBAction)sendSupportMail
 {
-    SupportMail *m = [[[SupportMail alloc] init] autorelease];
-    [m sendMail:self];
+    SupportMail *m = [[SupportMail alloc] init];
+    if (![m sendMail:self]) {
+        UIAlertView *v =
+            [[[UIAlertView alloc]
+             initWithTitle:@"Error" message:@"Can't send email" delegate:nil
+              cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
+        [v show];
+        [m release];
+    }
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

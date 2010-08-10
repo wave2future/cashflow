@@ -54,6 +54,10 @@
         return NO;
     }
     
+    if (![MFMailComposeViewController canSendMail]) {
+        return NO;
+    }
+    
     MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
     vc.mailComposeDelegate = self;
     

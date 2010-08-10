@@ -41,7 +41,11 @@
 
 - (BOOL)sendMail:(UIViewController *)parent
 {
-    MFMailComposeViewController *vc = [[MFMailComposeViewController alloc] init];
+    if (![MFMailComposeViewController canSendMail]) {
+        return NO;
+    }
+    
+    MFMailComposeViewController *vc = [[[MFMailComposeViewController alloc] init] autorelease];
     vc.mailComposeDelegate = self;
     
     [vc setSubject:@"[CashFlow Support]"];
@@ -50,7 +54,7 @@
     NSMutableString *body = [NSMutableString stringWithString:@""];
 
     [body appendString:NSLocalizedString(@"(Write an inquiry here.)", @"")];
-    [body appendString:@"\n\n\n-- Plase do not remove following lines. --\n"];
+    [body appendString:@"\n\n\n-- Plase do not remove following lines.\n"];
 #ifdef FREE_VERSION
     [body appendString:@"VERSION: CashFlow Free ver "];
 #else
@@ -69,13 +73,13 @@
     [vc setMessageBody:body isHTML:NO];
     
     [parent presentModalViewController:vc animated:YES];
-    [vc release];
     return YES;
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
 {
     [controller dismissModalViewControllerAnimated:YES];
+    [self release];
 }
 
 @end
