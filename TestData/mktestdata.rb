@@ -36,7 +36,7 @@ def createTransactions
     min = 0
     sec = 0
 
-    while (pkey < 1000)
+    while (pkey < 10000)
 
         d = sprintf("%04d%02d%02d%02d%02d%02d", year, month, day, hour, min, sec);
         type = pkey % 3 + 1

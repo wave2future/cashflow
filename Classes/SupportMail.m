@@ -32,9 +32,9 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#import <UIKit/UIKit.h>
+#import "DataModel.h"
 #import "SupportMail.h"
-#import "Ledger.h"
-#import "Journal.h"
 #import "UIDevice-Hardware.h"
 
 @implementation SupportMail
@@ -49,7 +49,7 @@
 
     NSMutableString *body = [NSMutableString stringWithString:@""];
 
-    [body appendString:[NSLocalizedString @"(Write an inquiry here.)"]];
+    [body appendString:NSLocalizedString(@"(Write an inquiry here.)", @"")];
     [body appendString:@"\n\n\n-- Plase do not remove following lines. --\n"];
 #ifdef FREE_VERSION
     [body appendString:@"VERSION: CashFlow Free ver "];
@@ -63,7 +63,8 @@
     [body appendFormat:@"DEVICE: %@\n", [device platform]];
     [body appendFormat:@"OS: %@\n", [device systemVersion]];
 
-    [body appendFormat:@"STAT: %d-%d\n", [Ledger.assets count], [Journal.entries count]];
+    DataModel *dm = [DataModel instance];
+    [body appendFormat:@"STAT: %d-%d\n", [dm.ledger assetCount], [dm.journal.entries count]];
 
     [vc setMessageBody:body isHTML:NO];
     
