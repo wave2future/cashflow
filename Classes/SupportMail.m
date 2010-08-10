@@ -50,27 +50,30 @@
     
     [vc setSubject:@"[CashFlow Support]"];
     [vc setToRecipients:[NSArray arrayWithObject:@"cashflow-support@tmurakam.org"]];
-
-    NSMutableString *body = [NSMutableString stringWithString:@""];
-
-    [body appendString:NSLocalizedString(@"(Write an inquiry here.)", @"")];
-    [body appendString:@"\n\n\n-- Plase do not remove following lines.\n"];
+    [vc setMessageBody:@"\n\n" isHTML:NO];
+    
+    NSMutableString *info = [NSMutableString stringWithString:@""];
 #ifdef FREE_VERSION
-    [body appendString:@"VERSION: CashFlow Free ver "];
+    [info appendString:@"Version: CashFlow Free ver "];
 #else
-    [body appendString:@"VERSION: CashFlow Std. ver "];
+    [info appendString:@"Version: CashFlow Std. ver "];
 #endif
-    [body appendString:[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"]];
-    [body appendString:@"\n"];
+    [info appendString:[[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"]];
+    [info appendString:@"\n"];
 
     UIDevice *device = [UIDevice currentDevice];
-    [body appendFormat:@"DEVICE: %@\n", [device platform]];
-    [body appendFormat:@"OS: %@\n", [device systemVersion]];
+    [info appendFormat:@"Device: %@\n", [device platform]];
+    [info appendFormat:@"OS: %@\n", [device systemVersion]];
 
     DataModel *dm = [DataModel instance];
-    [body appendFormat:@"STAT: %d-%d\n", [dm.ledger assetCount], [dm.journal.entries count]];
+    [info appendFormat:@"# Assets: %d\n", [dm.ledger assetCount]];
+    [info appendFormat:@"# Transactions: %d\n", [dm.journal.entries count]];
+    
+    NSMutableData *d = [NSMutableData dataWithLength:0];
+    const char *p = [info UTF8String];
+    [d appendBytes:p length:strlen(p)];
 
-    [vc setMessageBody:body isHTML:NO];
+    [vc addAttachmentData:d mimeType:@"text/plain" fileName:@"SupportInfo.txt"];
     
     [parent presentModalViewController:vc animated:YES];
     return YES;
