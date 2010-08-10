@@ -94,7 +94,13 @@
     adViewController.adSize = kGADAdSize320x50;
     
     NSDictionary *attributes = [AdUtil adAttributes];
-    [adViewController loadGoogleAd:attributes];
+
+    @try {
+        [adViewController loadGoogleAd:attributes];
+    }
+    @catch (NSException * e) {
+        NSLog(@"loadGoogleAd: exception: %@", [e description]);
+    }
     
     UIView *adView = adViewController.view;
     float adViewWidth = [adView bounds].size.width;
