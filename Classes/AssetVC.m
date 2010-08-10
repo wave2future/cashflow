@@ -94,6 +94,7 @@
     if (assetIndex < 0) {
         // 新規
         asset = [[Asset alloc] init];
+        asset.name = @"";
         asset.sorder = 99999;
     } else {
         // 変更
