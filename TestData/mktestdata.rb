@@ -36,9 +36,10 @@ def createTransactions
     min = 0
     sec = 0
 
-    while (pkey < 10000)
+    while (pkey < 5000)
 
-        d = sprintf("%04d%02d%02d%02d%02d%02d", year, month, day, hour, min, sec);
+#        d = sprintf("%04d%02d%02d%02d%02d%02d", year, month, day, hour, min, sec);
+        d = sprintf("%04d%02d%02d%02d%02d", year, month, day, hour, min);
         type = pkey % 3 + 1
         asset = pkey % MAX_ASSET + 1
         cat = pkey % MAX_CATEGORY + 1

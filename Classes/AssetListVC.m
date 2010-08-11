@@ -56,8 +56,6 @@
     pinChecked = NO;
     asDisplaying = NO;
 
-    ledger = [DataModel ledger];
-	
     // title 設定
     self.title = NSLocalizedString(@"Assets", @"");
 	
@@ -90,10 +88,29 @@
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 	
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 600;
+        self.contentSizeForViewInPopover = s;
+    }
+    
+    isLoadDone = false;
+    [[DataModel instance] startLoad:self];
+}
+
+#pragma mark DataModelDelegate
+- (void)dataModelLoaded
+{
+    isLoadDone = YES;
+
+    // initial
+    ledger = [DataModel ledger];
+    [self reload];
+    
     // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
-
+        
     Asset *asset = nil;
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
         asset = [ledger assetAtIndex:firstShowAssetIndex];
@@ -101,22 +118,16 @@
     if (IS_IPAD && asset == nil && [ledger assetCount] > 0) {
         asset = [ledger assetAtIndex:0];
     }
-
+        
     // TransactionListView を表示
     if (IS_IPAD) {
         splitTransactionListViewController.asset = asset;
         [splitTransactionListViewController reload];
     } else if (asset != nil) {
         TransactionListViewController *vc = 
-            [[[TransactionListViewController alloc] init] autorelease];
+        [[[TransactionListViewController alloc] init] autorelease];
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
-    }
- 
-    if (IS_IPAD) {
-        CGSize s = self.contentSizeForViewInPopover;
-        s.height = 600;
-        self.contentSizeForViewInPopover = s;
     }
 }
 
@@ -132,6 +143,8 @@
 
 - (void)reload
 {
+    if (!isLoadDone) return;
+    
     [ledger rebuild];
     [tableView reloadData];
 
@@ -178,6 +191,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (!isLoadDone) return 0;
+    
     switch (section) {
         case 0:
             return [ledger assetCount];
