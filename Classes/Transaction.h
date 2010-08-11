@@ -56,4 +56,6 @@
 //+ (void)createTable;
 //+ (void)deleteDbWithAsset:(int)assetKey;
 
+- (void)updateWithoutUpdateLRU;
+
 @end

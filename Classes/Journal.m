@@ -63,6 +63,16 @@
     }
     entries = [Transaction find_cond:@"ORDER BY date, key"];
     [entries retain];
+    
+    // upgrade data
+    Database *db = [Database instance];
+    if (db.needUpgradeDateFormat) {
+        [db beginTransaction];
+        for (Transaction *t in entries) {
+            [t updateWithoutUpdateLRU];
+        }
+        [db commitTransaction];
+    }
 }
 
 /**

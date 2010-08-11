@@ -132,4 +132,9 @@
     [DescLRUManager addDescLRU:description category:category];
 }
 
+- (void)updateWithoutUpdateLRU
+{
+    [super update];
+}
+
 @end
