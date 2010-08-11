@@ -4,6 +4,7 @@
 	* AdSense ロードタイミングを変更 (viewDidLoad -> viewDidAppear)
 	  起動時タイムアウトにさせないため。
 	* 問い合わせメール送信機能追加
+	* クラッシュレポート送信機能追加
 
 2010-07-19: Takuya Murakami
 	* ver 3.3
