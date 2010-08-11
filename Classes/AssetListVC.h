@@ -40,12 +40,13 @@
 //#import "AdCell.h"
 
 @interface AssetListViewController : UIViewController
-<UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
+<DataModelDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 {
     IBOutlet UITableView *tableView;
     IBOutlet UIBarButtonItem *barActionButton;
     IBOutlet UIBarButtonItem *barSumLabel;
 
+    BOOL isLoadDone;
     Ledger *ledger;
 
     NSArray *iconArray;

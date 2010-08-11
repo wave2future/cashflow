@@ -50,7 +50,7 @@ static DataModel *theDataModel = nil;
 {
     if (!theDataModel) {
         theDataModel = [[DataModel alloc] init];
-        [theDataModel load];
+        //[theDataModel load];
     }
     return theDataModel;
 }
@@ -98,8 +98,20 @@ static DataModel *theDataModel = nil;
     return [DataModel instance].categories;
 }
 
-- (void)load
+- (void)startLoad:(id<DataModelDelegate>)a_delegate
 {
+    delegate = a_delegate;
+    
+    NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadThread:) object:nil];
+    [thread start];
+    [thread release];
+}
+
+- (void)loadThread:(id)dummy
+{
+    NSAutoreleasePool *pool;
+    pool = [[NSAutoreleasePool alloc] init];
+    
     Database *db = [Database instance];
 
     // Load from DB
@@ -122,6 +134,18 @@ static DataModel *theDataModel = nil;
 
     // Load categories
     [categories reload];
+    
+    [self performSelectorOnMainThread:@selector(loadDone:) withObject:nil waitUntilDone:NO];
+    
+    [pool release];
+    [NSThread exit];
+}
+
+- (void)loadDone:(id)dummy
+{
+    if (delegate) {
+        [delegate dataModelLoaded];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////
