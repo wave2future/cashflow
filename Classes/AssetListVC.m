@@ -94,14 +94,44 @@
         self.contentSizeForViewInPopover = s;
     }
     
+    // データロード開始
     isLoadDone = false;
     [[DataModel instance] startLoad:self];
+    
+    // ActivityIndicator を表示させる
+    UIView *parent;
+    if (IS_IPAD) {
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        parent = appDelegate.splitViewController.view;
+    } else {
+        parent = self.navigationController.view;
+    }
+    
+    CGRect frame = [parent frame];
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    loadingView = [[UIView alloc] initWithFrame:frame];
+    [loadingView setBackgroundColor:[UIColor blackColor]];
+    [loadingView setAlpha:0.5];
+    loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [parent addSubview:loadingView];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [loadingView addSubview:activityIndicator];
+    [activityIndicator setFrame:CGRectMake ((frame.size.width / 2) - 20, (frame.size.height/2)-60, 40, 40)];
+    activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
+        UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [activityIndicator startAnimating]; 
 }
 
 #pragma mark DataModelDelegate
 - (void)dataModelLoaded
 {
     isLoadDone = YES;
+    
+    // ActivityIndicator を消す
+    [activityIndicator stopAnimating];
+    [loadingView removeFromSuperview];
 
     // initial
     ledger = [DataModel ledger];
