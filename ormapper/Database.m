@@ -188,7 +188,7 @@
 
 @implementation Database
 
-@synthesize handle, needUpgradeDateFormat;
+@synthesize handle, needFixDateFormat;
 
 static Database *theDatabase = nil;
 
@@ -218,7 +218,7 @@ static Database *theDatabase = nil;
         handle = 0;
     }
     
-    needUpgradeDateFormat = false;
+    needFixDateFormat = false;
 	
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -233,6 +233,11 @@ static Database *theDatabase = nil;
     dateFormatter2 = [[DateFormatter2 alloc] init];
     [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [dateFormatter2 setDateFormat: @"yyyyMMddHHmm"];
+    
+    // for broken data...
+    dateFormatter3 = [[DateFormatter2 alloc] init];
+    [dateFormatter3 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormatter3 setDateFormat: @"yyyyMMdd"];
     
     return self;
 }
@@ -364,13 +369,20 @@ static Database *theDatabase = nil;
 {
     NSDate *date = nil;
     
-    if ([str length] == 14) { // yyyyMMDDHHmmss
+    if ([str length] == 14) { // yyyyMMddHHmmss
         date = [dateFormatter dateFromString:str];
     }
     if (date == nil) {
         // backward compat.
+        needFixDateFormat = true;
         date = [dateFormatter2 dateFromString:str];
-        needUpgradeDateFormat = true;
+
+        if (date == nil) {
+            date = [dateFormatter3 dateFromString:str];
+        }
+        if (date == nil) {
+            date = [dateFormatter dateFromString:@"20000101000000"]; // fallback
+        }
     }
     return date;
 }

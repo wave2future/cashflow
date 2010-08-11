@@ -66,7 +66,7 @@
     
     // upgrade data
     Database *db = [Database instance];
-    if (db.needUpgradeDateFormat) {
+    if (db.needFixDateFormat) {
         [self _sortByDate];
         
         [db beginTransaction];
