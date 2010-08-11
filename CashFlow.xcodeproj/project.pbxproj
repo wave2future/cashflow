@@ -23,6 +23,9 @@
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
 		3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
 		3E13EE70114008E400523938 /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE6F114008E400523938 /* libGoogleAds.a */; };
+		3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
+		3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
+		3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E1AE0B50F97416F00AAB4AC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
 		3E1AE0B60F97416F00AAB4AC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
 		3E1AE0B70F97416F00AAB4AC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
@@ -365,6 +368,8 @@
 		3E13EE6D114008E400523938 /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
 		3E13EE6E114008E400523938 /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
 		3E13EE6F114008E400523938 /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
+		3E197B0E121268CF00105B20 /* CrashReportSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReportSender.h; sourceTree = "<group>"; };
+		3E197B0F121268CF00105B20 /* CrashReportSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReportSender.m; sourceTree = "<group>"; };
 		3E1AE0AF0F97416F00AAB4AC /* AssetEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntry.h; sourceTree = "<group>"; };
 		3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntry.m; sourceTree = "<group>"; };
 		3E1AE0B10F97416F00AAB4AC /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
@@ -682,6 +687,8 @@
 				3EDDADBD0E89280800268AED /* InfoVC.m */,
 				3E7109B2121108ED00C47539 /* SupportMail.h */,
 				3E7109B3121108ED00C47539 /* SupportMail.m */,
+				3E197B0E121268CF00105B20 /* CrashReportSender.h */,
+				3E197B0F121268CF00105B20 /* CrashReportSender.m */,
 				3EDDAE7C0E8E468700268AED /* ExportVC.h */,
 				3EDDAE7D0E8E468700268AED /* ExportVC.m */,
 				3EDA8A6A11F3F8DD0041E1C8 /* PinController.h */,
@@ -1306,6 +1313,7 @@
 				3EDA8A6D11F3F8DD0041E1C8 /* PinController.m in Sources */,
 				3E7109B8121108ED00C47539 /* SupportMail.m in Sources */,
 				3E7109B9121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
+				3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1364,6 +1372,7 @@
 				3EDA8A6E11F3F8DD0041E1C8 /* PinController.m in Sources */,
 				3E7109B6121108ED00C47539 /* SupportMail.m in Sources */,
 				3E7109B7121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
+				3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1456,6 +1465,7 @@
 				3EDA8A6C11F3F8DD0041E1C8 /* PinController.m in Sources */,
 				3E7109BA121108ED00C47539 /* SupportMail.m in Sources */,
 				3E7109BB121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
+				3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

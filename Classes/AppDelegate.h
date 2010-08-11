@@ -44,6 +44,7 @@
 @interface AppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow *window;
     IBOutlet UINavigationController *navigationController;
+    UIApplication *_application;
     
     // iPad
     IBOutlet UISplitViewController *splitViewController;
@@ -55,7 +56,6 @@
 @property (nonatomic, retain) UINavigationController *navigationController;
 
 - (void)checkPin;
-- (void) handleCrashReport;
 
 // Utility
 #ifdef NDEBUG
