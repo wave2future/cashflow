@@ -62,7 +62,7 @@
     NSLog(@"applicationDidFinishLaunching");
     _application = application;
 
-    NSURL *reportUrl = [NSURL URLWithString:@"http://iphone.tmurakam.org/cgi-bin/crashreport.cgi"];
+    NSURL *reportUrl = [NSURL URLWithString:@"http://itemshelf.com/cgi-bin/crashreport.cgi"];
     [[CrashReportSender sharedCrashReportSender] 
         sendCrashReportToURL:reportUrl
         delegate:self 
