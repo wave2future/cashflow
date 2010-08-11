@@ -1,11 +1,12 @@
 2010-08-11: Takuya Murakami
-	* ver 3.3.1
+	* ver 3.3.1 (beta)
 	* loadGoogleAd 内で例外が発生するケースがあったため、例外を無視するようにした
 	* AdSense ロードタイミングを変更 (viewDidLoad -> viewDidAppear)
 	  起動時タイムアウトにさせないため。
 	* 問い合わせメール送信機能追加
 	* クラッシュレポート送信機能追加
-
+	* DateFormatter 周りの処理を修正
+	
 2010-07-19: Takuya Murakami
 	* ver 3.3
 	* iOS4 対応: background から復帰するときに PIN チェックを実施
