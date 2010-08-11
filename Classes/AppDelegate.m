@@ -46,6 +46,7 @@
 
 @synthesize window;
 @synthesize navigationController;
+@synthesize splitViewController;
 
 - (id)init {
     if (self = [super init]) {

@@ -47,6 +47,9 @@
     IBOutlet UIBarButtonItem *barSumLabel;
 
     BOOL isLoadDone;
+    UIView *loadingView;
+    UIActivityIndicatorView *activityIndicator;
+    
     Ledger *ledger;
 
     NSArray *iconArray;
