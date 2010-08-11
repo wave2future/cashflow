@@ -55,122 +55,122 @@
 
 + (CrashReportSender *)sharedCrashReportSender
 {
-	static CrashReportSender *crashReportSender = nil;
+    static CrashReportSender *crashReportSender = nil;
 	
-	if (crashReportSender == nil) {
-		crashReportSender = [[CrashReportSender alloc] init];
-	}
+    if (crashReportSender == nil) {
+        crashReportSender = [[CrashReportSender alloc] init];
+    }
 	
-	return crashReportSender;
+    return crashReportSender;
 }
 
 - (id) init
 {
-	self = [super init];
+    self = [super init];
 
-	if ( self != nil)
-	{
-		_serverResult = -1;
-		_amountCrashes = 0;
-		_crashIdenticalCurrentVersion = YES;
-		_crashReportFeedbackActivated = NO;
-		_delegate = nil;
+    if ( self != nil)
+    {
+        _serverResult = -1;
+        _amountCrashes = 0;
+        _crashIdenticalCurrentVersion = YES;
+        _crashReportFeedbackActivated = NO;
+        _delegate = nil;
 		
-		NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kCrashReportAnalyzerStarted];
-		if (testValue == nil)
-		{
-			_crashReportAnalyzerStarted = 0;		
-		} else {
-			_crashReportAnalyzerStarted = [[NSUserDefaults standardUserDefaults] integerForKey:kCrashReportAnalyzerStarted];
-		}
+        NSString *testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kCrashReportAnalyzerStarted];
+        if (testValue == nil)
+        {
+            _crashReportAnalyzerStarted = 0;		
+        } else {
+            _crashReportAnalyzerStarted = [[NSUserDefaults standardUserDefaults] integerForKey:kCrashReportAnalyzerStarted];
+        }
 		
-		testValue = nil;
-		testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kCrashReportActivated];
-		if (testValue == nil)
-		{
-			_crashReportActivated = YES;
-			[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kCrashReportActivated];
-		} else {
-			_crashReportActivated = [[NSUserDefaults standardUserDefaults] boolForKey:kCrashReportActivated];
-		}
+        testValue = nil;
+        testValue = [[NSUserDefaults standardUserDefaults] stringForKey:kCrashReportActivated];
+        if (testValue == nil)
+        {
+            _crashReportActivated = YES;
+            [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:kCrashReportActivated];
+        } else {
+            _crashReportActivated = [[NSUserDefaults standardUserDefaults] boolForKey:kCrashReportActivated];
+        }
 		
-		if (_crashReportActivated)
-		{
-			_crashFiles = [[NSMutableArray alloc] init];
-			NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
-			_crashesDir = [[NSString stringWithFormat:@"%@", [[paths objectAtIndex:0] stringByAppendingPathComponent:@"/crashes/"]] retain];
+        if (_crashReportActivated)
+        {
+            _crashFiles = [[NSMutableArray alloc] init];
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+            _crashesDir = [[NSString stringWithFormat:@"%@", [[paths objectAtIndex:0] stringByAppendingPathComponent:@"/crashes/"]] retain];
 
-			NSFileManager *fm = [NSFileManager defaultManager];
+            NSFileManager *fm = [NSFileManager defaultManager];
 			
-			if (![fm fileExistsAtPath:_crashesDir])
-			{
-				NSDictionary *attributes = [NSDictionary dictionaryWithObject: [NSNumber numberWithUnsignedLong: 0755] forKey: NSFilePosixPermissions];
-				NSError *theError = NULL;
+            if (![fm fileExistsAtPath:_crashesDir])
+            {
+                NSDictionary *attributes = [NSDictionary dictionaryWithObject: [NSNumber numberWithUnsignedLong: 0755] forKey: NSFilePosixPermissions];
+                NSError *theError = NULL;
 				
-				[fm createDirectoryAtPath:_crashesDir withIntermediateDirectories: YES attributes: attributes error: &theError];
-			}
+                [fm createDirectoryAtPath:_crashesDir withIntermediateDirectories: YES attributes: attributes error: &theError];
+            }
 			
-			PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
-			NSError *error;
+            PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+            NSError *error;
 
-			// Check if we previously crashed
-			if ([crashReporter hasPendingCrashReport])
-				[self handleCrashReport];
+            // Check if we previously crashed
+            if ([crashReporter hasPendingCrashReport])
+                [self handleCrashReport];
 
-			// Enable the Crash Reporter
-			if (![crashReporter enableCrashReporterAndReturnError: &error])
-				NSLog(@"Warning: Could not enable crash reporter: %@", error);
-		}
-	}
-	return self;
+            // Enable the Crash Reporter
+            if (![crashReporter enableCrashReporterAndReturnError: &error])
+                NSLog(@"Warning: Could not enable crash reporter: %@", error);
+        }
+    }
+    return self;
 }
 
 
 - (void) dealloc
 {
-	[super dealloc];
-	[_crashesDir release];
-	[_crashFiles release];
-	if (_submitTimer != nil)
-	{
-		[_submitTimer invalidate];
-		[_submitTimer release];
-	}
+    [super dealloc];
+    [_crashesDir release];
+    [_crashFiles release];
+    if (_submitTimer != nil)
+    {
+        [_submitTimer invalidate];
+        [_submitTimer release];
+    }
 }
 
 
 - (BOOL)hasPendingCrashReport
 {
-	if (_crashReportActivated)
-	{
-		NSFileManager *fm = [NSFileManager defaultManager];
+    if (_crashReportActivated)
+    {
+        NSFileManager *fm = [NSFileManager defaultManager];
 		
-		if ([_crashFiles count] == 0 && [fm fileExistsAtPath:_crashesDir])
-		{
-			NSString *file;
+        if ([_crashFiles count] == 0 && [fm fileExistsAtPath:_crashesDir])
+        {
+            NSString *file;
             NSError *error = nil;
             
-			NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath: _crashesDir];
+            NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath: _crashesDir];
 			
-			while (file = [dirEnum nextObject])
-			{
-				NSDictionary *fileAttributes = [fm attributesOfItemAtPath:[_crashesDir stringByAppendingPathComponent:file] error:&error];
-				if ([[fileAttributes objectForKey:NSFileSize] intValue] > 0)
-				{
-					[_crashFiles addObject:file];
-				}
-			}
-		}
+            while (file = [dirEnum nextObject])
+            {
+                NSDictionary *fileAttributes = [fm attributesOfItemAtPath:[_crashesDir stringByAppendingPathComponent:file] error:&error];
+                if ([[fileAttributes objectForKey:NSFileSize] intValue] > 0)
+                {
+                    [_crashFiles addObject:file];
+                }
+            }
+        }
 		
-		if ([_crashFiles count] > 0)
-		{
-			_amountCrashes = [_crashFiles count];
-			return YES;
-		}
-		else
-			return NO;
-	} else
-		return NO;
+        if ([_crashFiles count] > 0)
+        {
+            _amountCrashes = [_crashFiles count];
+            return YES;
+        }
+        else
+            return NO;
+    } else
+        return NO;
 }
 
 - (void)sendCrashReportToURL:(NSURL *)submissionURL delegate:(id <CrashReportSenderDelegate>)delegate activateFeedback:(BOOL)activateFeedback;
@@ -191,94 +191,94 @@
 
 - (void)registerOnline
 {
-	[[NSNotificationCenter defaultCenter] addObserver:self
-											 selector:@selector(wentOnline:)
-												 name:@"kNetworkReachabilityChangedNotification"
-											   object:nil];            
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                          selector:@selector(wentOnline:)
+                                          name:@"kNetworkReachabilityChangedNotification"
+                                          object:nil];            
 }
 
 - (void)unregisterOnline
 {
-	[[NSNotificationCenter defaultCenter] removeObserver:self
-													name:@"kNetworkReachabilityChangedNotification"
-												  object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                          name:@"kNetworkReachabilityChangedNotification"
+                                          object:nil];
 }
 
 - (void)wentOnline:(NSNotification *)note
 {
-	[self unregisterOnline];
-	[self attemptCrashReportSubmission];
+    [self unregisterOnline];
+    [self attemptCrashReportSubmission];
 }
 
 - (void)attemptCrashReportSubmission
 {
-	_submitTimer = nil;
+    _submitTimer = nil;
 	
-	if (![self _isSubmissionHostReachable]) {
-		[self registerOnline];
-	} else if ([self hasPendingCrashReport]) {
-		[self unregisterOnline];
+    if (![self _isSubmissionHostReachable]) {
+        [self registerOnline];
+    } else if ([self hasPendingCrashReport]) {
+        [self unregisterOnline];
         
-		if (![[NSUserDefaults standardUserDefaults] boolForKey: kAutomaticallySendCrashReports]) {
-			UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CrashDataFoundTitle", @"Title showing in the alert box when crash report data has been found")
-																message:NSLocalizedString(@"CrashDataFoundDescription", @"Description explaining that crash data has been found and ask the user if the data might be uplaoded to the developers server")
-															   delegate:self
-													  cancelButtonTitle:NSLocalizedString(@"No", @"")
-													  otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"Always", @""), nil];
+        if (![[NSUserDefaults standardUserDefaults] boolForKey: kAutomaticallySendCrashReports]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"CrashDataFoundTitle", @"Title showing in the alert box when crash report data has been found")
+                                                          message:NSLocalizedString(@"CrashDataFoundDescription", @"Description explaining that crash data has been found and ask the user if the data might be uplaoded to the developers server")
+                                                          delegate:self
+                                                          cancelButtonTitle:NSLocalizedString(@"No", @"")
+                                                          otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"Always", @""), nil];
 
-			[alertView setTag: CrashAlertTypeSend];
-			[alertView show];
-			[alertView release];
-		} else {
-			[self _sendCrashReports];
-		}
-	}
+            [alertView setTag: CrashAlertTypeSend];
+            [alertView show];
+            [alertView release];
+        } else {
+            [self _sendCrashReports];
+        }
+    }
 }
 
 
 - (void) showCrashStatusMessage
 {
-	UIAlertView *alertView;
+    UIAlertView *alertView;
 	
-	_amountCrashes--;
-	if (_crashReportFeedbackActivated && _amountCrashes == 0 && _serverResult >= CrashReportStatusAssigned && _crashIdenticalCurrentVersion)
-	{
-		// show some feedback to the user about the crash status
+    _amountCrashes--;
+    if (_crashReportFeedbackActivated && _amountCrashes == 0 && _serverResult >= CrashReportStatusAssigned && _crashIdenticalCurrentVersion)
+    {
+        // show some feedback to the user about the crash status
 		
-		switch (_serverResult) {
-			case CrashReportStatusAssigned:
-				alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"CrashResponseTitle", @"Title for the alertview giving feedback about the crash")
-													   message: NSLocalizedString(@"CrashResponseNextRelease", @"Full text telling the bug is fixed and will be available in an upcoming release")
-													  delegate: self
-											 cancelButtonTitle: NSLocalizedString(@"Ok", @"")
-											 otherButtonTitles: nil];
-				break;
-			case CrashReportStatusSubmitted:
-				alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"CrashResponseTitle", @"Title for the alertview giving feedback about the crash")
-													   message: NSLocalizedString(@"CrashResponseWaitingApple", @"Full text telling the bug is fixed and the new release is waiting at Apple for approval")
-													  delegate: self
-											 cancelButtonTitle: NSLocalizedString(@"Ok", @"")
-											 otherButtonTitles: nil];
-				break;
-			case CrashReportStatusAvailable:
-				alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"CrashResponseTitle", @"Title for the alertview giving feedback about the crash")
-													   message: NSLocalizedString(@"CrashResponseAvailable", @"Full text telling the bug is fixed and an update is available in the AppStore for download")
-													  delegate: self
-											 cancelButtonTitle: NSLocalizedString(@"Ok", @"")
-											 otherButtonTitles: nil];
-				break;
-			default:
-				alertView = nil;
-				break;
-		}
+        switch (_serverResult) {
+        case CrashReportStatusAssigned:
+            alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"CrashResponseTitle", @"Title for the alertview giving feedback about the crash")
+                                             message: NSLocalizedString(@"CrashResponseNextRelease", @"Full text telling the bug is fixed and will be available in an upcoming release")
+                                             delegate: self
+                                             cancelButtonTitle: NSLocalizedString(@"Ok", @"")
+                                             otherButtonTitles: nil];
+            break;
+        case CrashReportStatusSubmitted:
+            alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"CrashResponseTitle", @"Title for the alertview giving feedback about the crash")
+                                             message: NSLocalizedString(@"CrashResponseWaitingApple", @"Full text telling the bug is fixed and the new release is waiting at Apple for approval")
+                                             delegate: self
+                                             cancelButtonTitle: NSLocalizedString(@"Ok", @"")
+                                             otherButtonTitles: nil];
+            break;
+        case CrashReportStatusAvailable:
+            alertView = [[UIAlertView alloc] initWithTitle: NSLocalizedString(@"CrashResponseTitle", @"Title for the alertview giving feedback about the crash")
+                                             message: NSLocalizedString(@"CrashResponseAvailable", @"Full text telling the bug is fixed and an update is available in the AppStore for download")
+                                             delegate: self
+                                             cancelButtonTitle: NSLocalizedString(@"Ok", @"")
+                                             otherButtonTitles: nil];
+            break;
+        default:
+            alertView = nil;
+            break;
+        }
 		
-		if (alertView != nil)
-		{
-			[alertView setTag: CrashAlertTypeFeedback];
-			[alertView show];
-			[alertView release];
-		}
-	}
+        if (alertView != nil)
+        {
+            [alertView setTag: CrashAlertTypeFeedback];
+            [alertView show];
+            [alertView release];
+        }
+    }
 }
 
 
@@ -287,22 +287,22 @@
 
 - (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
 {
-	if ([alertView tag] == CrashAlertTypeSend)
-	{
-		switch (buttonIndex) {
-			case 0:
-				[self _cleanCrashReports];
-				break;
-			case 1:
-				[self _sendCrashReports];
-				break;
-			case 2:
-				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAutomaticallySendCrashReports];
+    if ([alertView tag] == CrashAlertTypeSend)
+    {
+        switch (buttonIndex) {
+        case 0:
+            [self _cleanCrashReports];
+            break;
+        case 1:
+            [self _sendCrashReports];
+            break;
+        case 2:
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:kAutomaticallySendCrashReports];
 				
-				[self _sendCrashReports];
-				break;
-		}
-	}
+            [self _sendCrashReports];
+            break;
+        }
+    }
 }
 
 #pragma mark -
@@ -312,65 +312,65 @@
 
 - (void)parseXMLFileAtURL:(NSString *)url parseError:(NSError **)error
 {	
-	NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
-	// Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
-	[parser setDelegate:self];
-	// Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
-	[parser setShouldProcessNamespaces:NO];
-	[parser setShouldReportNamespacePrefixes:NO];
-	[parser setShouldResolveExternalEntities:NO];
+    NSXMLParser *parser = [[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]];
+    // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
+    [parser setDelegate:self];
+    // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
+    [parser setShouldProcessNamespaces:NO];
+    [parser setShouldReportNamespacePrefixes:NO];
+    [parser setShouldResolveExternalEntities:NO];
 	
-	[parser parse];
+    [parser parse];
 	
-	NSError *parseError = [parser parserError];
-	if (parseError && error) {
-		*error = parseError;
-	}
+    NSError *parseError = [parser parserError];
+    if (parseError && error) {
+        *error = parseError;
+    }
 	
-	[parser release];
+    [parser release];
 }
 
 - (void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary *)attributeDict
 {
-	if (qName)
-	{
-		elementName = qName;
-	}
+    if (qName)
+    {
+        elementName = qName;
+    }
 	
-	if ([elementName isEqualToString:@"result"]) {
-		_contentOfProperty = [NSMutableString string];
-	}
+    if ([elementName isEqualToString:@"result"]) {
+        _contentOfProperty = [NSMutableString string];
+    }
 }
 
 - (void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName
 {     
-	if (qName)
-	{
-		elementName = qName;
-	}
+    if (qName)
+    {
+        elementName = qName;
+    }
 	
-	if ([elementName isEqualToString: @"result"]) {
-		if ([_contentOfProperty intValue] > _serverResult) {
-			_serverResult = [_contentOfProperty intValue];
-		} else {
+    if ([elementName isEqualToString: @"result"]) {
+        if ([_contentOfProperty intValue] > _serverResult) {
+            _serverResult = [_contentOfProperty intValue];
+        } else {
             CrashReportStatus errorcode = [_contentOfProperty intValue];
             NSLog(@"CrashReporter ended in error code: %i", errorcode);
         }
-	}
+    }
 }
 
 
 - (void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string
 {
-	if (_contentOfProperty)
-	{
-		// If the current element is one whose content we care about, append 'string'
-		// to the property that holds the content of the current element.
-		if (string != nil)
-		{
-			[_contentOfProperty appendString:string];
-		}
-	}
+    if (_contentOfProperty)
+    {
+        // If the current element is one whose content we care about, append 'string'
+        // to the property that holds the content of the current element.
+        if (string != nil)
+        {
+            [_contentOfProperty appendString:string];
+        }
+    }
 }
 
 #pragma mark -
@@ -378,124 +378,124 @@
 
 - (void)_cleanCrashReports
 {
-	NSError *error;
+    NSError *error;
 	
-	NSFileManager *fm = [NSFileManager defaultManager];
+    NSFileManager *fm = [NSFileManager defaultManager];
 	
-	for (int i=0; i < [_crashFiles count]; i++)
-	{		
-		[fm removeItemAtPath:[_crashesDir stringByAppendingPathComponent:[_crashFiles objectAtIndex:i]] error:&error];
-	}
-	[_crashFiles removeAllObjects];	
+    for (int i=0; i < [_crashFiles count]; i++)
+    {		
+        [fm removeItemAtPath:[_crashesDir stringByAppendingPathComponent:[_crashFiles objectAtIndex:i]] error:&error];
+    }
+    [_crashFiles removeAllObjects];	
 }
 
 - (void)_sendCrashReports
 {
-	NSError *error;
+    NSError *error;
 		
-	NSString *userid = @"";
-	NSString *contact = @"";
-	NSString *description = @"";
+    NSString *userid = @"";
+    NSString *contact = @"";
+    NSString *description = @"";
 	
-	if (_delegate != nil && [_delegate respondsToSelector:@selector(crashReportUserID)])
-	{
-		userid = [_delegate crashReportUserID];
-	}
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(crashReportUserID)])
+    {
+        userid = [_delegate crashReportUserID];
+    }
 
-	if (_delegate != nil && [_delegate respondsToSelector:@selector(crashReportContact)])
-	{
-		contact = [_delegate crashReportContact];
-	}
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(crashReportContact)])
+    {
+        contact = [_delegate crashReportContact];
+    }
 
-	if (_delegate != nil && [_delegate respondsToSelector:@selector(crashReportDescription)])
-	{
-		description = [_delegate crashReportDescription];
-	}
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(crashReportDescription)])
+    {
+        description = [_delegate crashReportDescription];
+    }
 	
 
-	for (int i=0; i < [_crashFiles count]; i++)
-	{
-		NSString *filename = [_crashesDir stringByAppendingPathComponent:[_crashFiles objectAtIndex:i]];
-		NSData *crashData = [NSData dataWithContentsOfFile:filename];
+    for (int i=0; i < [_crashFiles count]; i++)
+    {
+        NSString *filename = [_crashesDir stringByAppendingPathComponent:[_crashFiles objectAtIndex:i]];
+        NSData *crashData = [NSData dataWithContentsOfFile:filename];
 		
-		if ([crashData length] > 0)
-		{
-			PLCrashReport *report = [[[PLCrashReport alloc] initWithData:crashData error:&error] autorelease];
+        if ([crashData length] > 0)
+        {
+            PLCrashReport *report = [[[PLCrashReport alloc] initWithData:crashData error:&error] autorelease];
 			
-			NSString *crashLogString = [self _crashLogStringForReport:report];
+            NSString *crashLogString = [self _crashLogStringForReport:report];
 			
-			if ([report.applicationInfo.applicationVersion compare:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]] != NSOrderedSame)
-			{
-				_crashIdenticalCurrentVersion = NO;
-			}
+            if ([report.applicationInfo.applicationVersion compare:[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"]] != NSOrderedSame)
+            {
+                _crashIdenticalCurrentVersion = NO;
+            }
 			
-			NSString *xml = [NSString stringWithFormat:@"<crash><applicationname>%s</applicationname><bundleidentifier>%@</bundleidentifier><systemversion>%@</systemversion><senderversion>%@</senderversion><version>%@</version><userid>%@</userid><contact>%@</contact><description>%@</description><log><![CDATA[%@]]></log></crash>",
-							 [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"] UTF8String],
-							 report.applicationInfo.applicationIdentifier,
-							 [[UIDevice currentDevice] systemVersion],
-							 [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
-							 report.applicationInfo.applicationVersion,
-							 userid,
-							 contact,
-							 description,
-							 crashLogString];
+            NSString *xml = [NSString stringWithFormat:@"<crash><applicationname>%s</applicationname><bundleidentifier>%@</bundleidentifier><systemversion>%@</systemversion><senderversion>%@</senderversion><version>%@</version><userid>%@</userid><contact>%@</contact><description>%@</description><log><![CDATA[%@]]></log></crash>",
+                                      [[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"] UTF8String],
+                                      report.applicationInfo.applicationIdentifier,
+                                      [[UIDevice currentDevice] systemVersion],
+                                      [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleVersion"],
+                                      report.applicationInfo.applicationVersion,
+                                      userid,
+                                      contact,
+                                      description,
+                                      crashLogString];
 			
-			[self _postXML:xml toURL:_submissionURL];
-		}
-	}
+            [self _postXML:xml toURL:_submissionURL];
+        }
+    }
 	
-	[self _cleanCrashReports];
+    [self _cleanCrashReports];
 }
 
 
 - (NSString *)_crashLogStringForReport:(PLCrashReport *)report
 {
-	NSMutableString *xmlString = [NSMutableString string];
+    NSMutableString *xmlString = [NSMutableString string];
 
-	/* Header */
+    /* Header */
     boolean_t lp64;
 	
-	/* Map to apple style OS nane */
-	const char *osName;
-	switch (report.systemInfo.operatingSystem) {
-		case PLCrashReportOperatingSystemiPhoneOS:
-			osName = "iPhone OS";
-			break;
-		case PLCrashReportOperatingSystemiPhoneSimulator:
-			osName = "Mac OS X";
-			break;
-		default:
-			osName = "iPhone OS";
-			break;
-	}
+    /* Map to apple style OS nane */
+    const char *osName;
+    switch (report.systemInfo.operatingSystem) {
+    case PLCrashReportOperatingSystemiPhoneOS:
+        osName = "iPhone OS";
+        break;
+    case PLCrashReportOperatingSystemiPhoneSimulator:
+        osName = "Mac OS X";
+        break;
+    default:
+        osName = "iPhone OS";
+        break;
+    }
 	
-	/* Map to Apple-style code type */
-	NSString *codeType;
-	switch (report.systemInfo.architecture) {
-		case PLCrashReportArchitectureARM:
-			codeType = @"ARM (Native)";
-            lp64 = false;
-			break;
-        case PLCrashReportArchitectureX86_32:
-            codeType = @"X86";
-            lp64 = false;
-            break;
-        case PLCrashReportArchitectureX86_64:
-            codeType = @"X86-64";
-            lp64 = true;
-            break;
-        case PLCrashReportArchitecturePPC:
-            codeType = @"PPC";
-            lp64 = false;
-            break;
-		default:
-			codeType = @"ARM (Native)";
-            lp64 = false;
-			break;
-	}
+    /* Map to Apple-style code type */
+    NSString *codeType;
+    switch (report.systemInfo.architecture) {
+    case PLCrashReportArchitectureARM:
+        codeType = @"ARM (Native)";
+        lp64 = false;
+        break;
+    case PLCrashReportArchitectureX86_32:
+        codeType = @"X86";
+        lp64 = false;
+        break;
+    case PLCrashReportArchitectureX86_64:
+        codeType = @"X86-64";
+        lp64 = true;
+        break;
+    case PLCrashReportArchitecturePPC:
+        codeType = @"PPC";
+        lp64 = false;
+        break;
+    default:
+        codeType = @"ARM (Native)";
+        lp64 = false;
+        break;
+    }
 	
-	[xmlString appendString:@"Incident Identifier: [TODO]\n"];
-	[xmlString appendString:@"CrashReporter Key:   [TODO]\n"];
+    [xmlString appendString:@"Incident Identifier: [TODO]\n"];
+    [xmlString appendString:@"CrashReporter Key:   [TODO]\n"];
     
     /* Application and process info */
     {
@@ -536,17 +536,17 @@
         [xmlString appendFormat: @"Parent Process:  %@ [%@]\n", parentProcessName, parentProcessId];
     }
     
-	[xmlString appendString:@"\n"];
+    [xmlString appendString:@"\n"];
 	
-	/* System info */
-	[xmlString appendFormat:@"Date/Time:       %s\n", [[report.systemInfo.timestamp description] UTF8String]];
-	[xmlString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
-	[xmlString appendString:@"Report Version:  104\n"];
+    /* System info */
+    [xmlString appendFormat:@"Date/Time:       %s\n", [[report.systemInfo.timestamp description] UTF8String]];
+    [xmlString appendFormat:@"OS Version:      %s %s\n", osName, [report.systemInfo.operatingSystemVersion UTF8String]];
+    [xmlString appendString:@"Report Version:  104\n"];
 	
-	[xmlString appendString:@"\n"];
+    [xmlString appendString:@"\n"];
 	
-	/* Exception code */
-	[xmlString appendFormat:@"Exception Type:  %s\n", [report.signalInfo.name UTF8String]];
+    /* Exception code */
+    [xmlString appendFormat:@"Exception Type:  %s\n", [report.signalInfo.name UTF8String]];
     [xmlString appendFormat:@"Exception Codes: %@ at 0x%" PRIx64 "\n", report.signalInfo.code, report.signalInfo.address];
 
     for (PLCrashReportThreadInfo *thread in report.threads) {
@@ -556,16 +556,16 @@
         }
     }
 	
-	[xmlString appendString:@"\n"];
+    [xmlString appendString:@"\n"];
 	
     if (report.hasExceptionInfo) {
         [xmlString appendString:@"Application Specific Information:\n"];
         [xmlString appendFormat: @"*** Terminating app due to uncaught exception '%@', reason: '%@'\n",
-         report.exceptionInfo.exceptionName, report.exceptionInfo.exceptionReason];
+                   report.exceptionInfo.exceptionName, report.exceptionInfo.exceptionReason];
         [xmlString appendString:@"\n"];
     }
     
-	/* Threads */
+    /* Threads */
     PLCrashReportThreadInfo *crashed_thread = nil;
     for (PLCrashReportThreadInfo *thread in report.threads) {
         if (thread.crashed) {
@@ -592,7 +592,7 @@
             }
             
             [xmlString appendFormat: @"%-4ld%-36s0x%08" PRIx64 " 0x%" PRIx64 " + %" PRId64 "\n", 
-             (long) frame_idx, [imageName UTF8String], frameInfo.instructionPointer, baseAddress, pcOffset];
+                       (long) frame_idx, [imageName UTF8String], frameInfo.instructionPointer, baseAddress, pcOffset];
         }
         [xmlString appendString: @"\n"];
     }
@@ -624,16 +624,16 @@
         [xmlString appendString: @"\n"];
     }
 	
-	/* Images */
-	[xmlString appendFormat:@"Binary Images:\n"];
+    /* Images */
+    [xmlString appendFormat:@"Binary Images:\n"];
 
     for (PLCrashReportBinaryImageInfo *imageInfo in report.images) {
-		NSString *uuid;
-		/* Fetch the UUID if it exists */
-		if (imageInfo.hasImageUUID)
-			uuid = imageInfo.imageUUID;
-		else
-			uuid = @"???";
+        NSString *uuid;
+        /* Fetch the UUID if it exists */
+        if (imageInfo.hasImageUUID)
+            uuid = imageInfo.imageUUID;
+        else
+            uuid = @"???";
 		
         NSString *device = @"\?\?\? (\?\?\?)";
         
@@ -645,107 +645,107 @@
         device = @"armv7";
 #endif
         
-		/* base_address - terminating_address file_name identifier (<version>) <uuid> file_path */
-		[xmlString appendFormat:@"0x%" PRIx64 " - 0x%" PRIx64 "  %@ %@ <%@> %@\n",
-					 imageInfo.imageBaseAddress,
-					 imageInfo.imageBaseAddress + imageInfo.imageSize,
-					 [imageInfo.imageName lastPathComponent],
-					 device,
-					 uuid,
-					 imageInfo.imageName];
-	}
+        /* base_address - terminating_address file_name identifier (<version>) <uuid> file_path */
+        [xmlString appendFormat:@"0x%" PRIx64 " - 0x%" PRIx64 "  %@ %@ <%@> %@\n",
+                   imageInfo.imageBaseAddress,
+                   imageInfo.imageBaseAddress + imageInfo.imageSize,
+                   [imageInfo.imageName lastPathComponent],
+                   device,
+                   uuid,
+                   imageInfo.imageName];
+    }
 	
-	return xmlString;
+    return xmlString;
 }
 
 - (void)_postXML:(NSString*)xml toURL:(NSURL*)url
 {
-	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-	NSString *boundary = @"----FOO";
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSString *boundary = @"----FOO";
 	
-	[request setCachePolicy: NSURLRequestReloadIgnoringLocalCacheData];
-	[request setValue:USER_AGENT forHTTPHeaderField:@"User-Agent"];
-	[request setTimeoutInterval: 15];
-	[request setHTTPMethod:@"POST"];
-	NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-	[request setValue:contentType forHTTPHeaderField:@"Content-type"];
+    [request setCachePolicy: NSURLRequestReloadIgnoringLocalCacheData];
+    [request setValue:USER_AGENT forHTTPHeaderField:@"User-Agent"];
+    [request setTimeoutInterval: 15];
+    [request setHTTPMethod:@"POST"];
+    NSString *contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+    [request setValue:contentType forHTTPHeaderField:@"Content-type"];
 	
-	NSMutableData *postBody =  [NSMutableData data];
-	[postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[postBody appendData:[@"Content-Disposition: form-data; name=\"xmlstring\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-	[postBody appendData:[xml dataUsingEncoding:NSUTF8StringEncoding]];
-	[postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-	[request setHTTPBody:postBody];
+    NSMutableData *postBody =  [NSMutableData data];
+    [postBody appendData:[[NSString stringWithFormat:@"--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[@"Content-Disposition: form-data; name=\"xmlstring\"\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[xml dataUsingEncoding:NSUTF8StringEncoding]];
+    [postBody appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setHTTPBody:postBody];
 	
-	_serverResult = CrashReportStatusUnknown;
-	_statusCode = 200;
+    _serverResult = CrashReportStatusUnknown;
+    _statusCode = 200;
 	
-	//Release when done in the delegate method
-	_responseData = [[NSMutableData alloc] init];
+    //Release when done in the delegate method
+    _responseData = [[NSMutableData alloc] init];
 	
-	if (_delegate != nil && [_delegate respondsToSelector:@selector(connectionOpened)])
-	{
-		[_delegate connectionOpened];
-	}
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(connectionOpened)])
+    {
+        [_delegate connectionOpened];
+    }
 	
-	[[NSURLConnection connectionWithRequest:request delegate:self] retain];
+    [[NSURLConnection connectionWithRequest:request delegate:self] retain];
 }
 
 #pragma mark NSURLConnection Delegate
 
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
-	if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
-		_statusCode = [(NSHTTPURLResponse *)response statusCode];
-	}
+    if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+        _statusCode = [(NSHTTPURLResponse *)response statusCode];
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
-	[_responseData appendData:data];
+    [_responseData appendData:data];
 }
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
-	[_responseData release];
-	_responseData = nil;
-	[connection autorelease];
+    [_responseData release];
+    _responseData = nil;
+    [connection autorelease];
 
-	if (_delegate != nil && [_delegate respondsToSelector:@selector(connectionClosed)])
-	{
-		[_delegate connectionClosed];
-	}
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(connectionClosed)])
+    {
+        [_delegate connectionClosed];
+    }
 	
-	[self showCrashStatusMessage];
+    [self showCrashStatusMessage];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {	
-	if (_statusCode >= 200 && _statusCode < 400)
-	{
-		NSXMLParser *parser = [[NSXMLParser alloc] initWithData:_responseData];
-		// Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
-		[parser setDelegate:self];
-		// Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
-		[parser setShouldProcessNamespaces:NO];
-		[parser setShouldReportNamespacePrefixes:NO];
-		[parser setShouldResolveExternalEntities:NO];
+    if (_statusCode >= 200 && _statusCode < 400)
+    {
+        NSXMLParser *parser = [[NSXMLParser alloc] initWithData:_responseData];
+        // Set self as the delegate of the parser so that it will receive the parser delegate methods callbacks.
+        [parser setDelegate:self];
+        // Depending on the XML document you're parsing, you may want to enable these features of NSXMLParser.
+        [parser setShouldProcessNamespaces:NO];
+        [parser setShouldReportNamespacePrefixes:NO];
+        [parser setShouldResolveExternalEntities:NO];
 		
-		[parser parse];
+        [parser parse];
 		
-		[parser release];
-	}
+        [parser release];
+    }
 	
-	[_responseData release];
-	_responseData = nil;
-	[connection autorelease];
+    [_responseData release];
+    _responseData = nil;
+    [connection autorelease];
 
-	if (_delegate != nil && [_delegate respondsToSelector:@selector(connectionClosed)])
-	{
-		[_delegate connectionClosed];
-	}
+    if (_delegate != nil && [_delegate respondsToSelector:@selector(connectionClosed)])
+    {
+        [_delegate connectionClosed];
+    }
 	
-	[self showCrashStatusMessage];
+    [self showCrashStatusMessage];
 }
 
 #pragma mark PLCrashReporter
@@ -755,70 +755,70 @@
 //
 - (void) handleCrashReport
 {
-	PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
-	NSError *error;
+    PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+    NSError *error;
 	
-	// Try loading the crash report
-	NSData *crashData = [NSData dataWithData:[crashReporter loadPendingCrashReportDataAndReturnError: &error]];
+    // Try loading the crash report
+    NSData *crashData = [NSData dataWithData:[crashReporter loadPendingCrashReportDataAndReturnError: &error]];
 	
-	NSString *cacheFilename = [NSString stringWithFormat: @"%.0f", [NSDate timeIntervalSinceReferenceDate]];
+    NSString *cacheFilename = [NSString stringWithFormat: @"%.0f", [NSDate timeIntervalSinceReferenceDate]];
 	
-	if (crashData == nil) {
-		NSLog(@"Could not load crash report: %@", error);
-		goto finish;
-	} else {
-		[crashData writeToFile:[_crashesDir stringByAppendingPathComponent: cacheFilename] atomically:YES];
-	}
+    if (crashData == nil) {
+        NSLog(@"Could not load crash report: %@", error);
+        goto finish;
+    } else {
+        [crashData writeToFile:[_crashesDir stringByAppendingPathComponent: cacheFilename] atomically:YES];
+    }
 	
-	// check if the next call ran successfully the last time
-	if (_crashReportAnalyzerStarted == 0)
-	{
-		// mark the start of the routine
-		_crashReportAnalyzerStarted = 1;
-		[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:_crashReportAnalyzerStarted] forKey:kCrashReportAnalyzerStarted];
+    // check if the next call ran successfully the last time
+    if (_crashReportAnalyzerStarted == 0)
+    {
+        // mark the start of the routine
+        _crashReportAnalyzerStarted = 1;
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:_crashReportAnalyzerStarted] forKey:kCrashReportAnalyzerStarted];
 		
-		// We could send the report from here, but we'll just print out
-		// some debugging info instead
-		PLCrashReport *report = [[[PLCrashReport alloc] initWithData: [crashData retain] error: &error] autorelease];
-		if (report == nil) {
-			NSLog(@"Could not parse crash report");
-			goto finish;
-		}
-	}
+        // We could send the report from here, but we'll just print out
+        // some debugging info instead
+        PLCrashReport *report = [[[PLCrashReport alloc] initWithData: [crashData retain] error: &error] autorelease];
+        if (report == nil) {
+            NSLog(@"Could not parse crash report");
+            goto finish;
+        }
+    }
 		
-	// Purge the report
+    // Purge the report
 finish:
-	// mark the end of the routine
-	_crashReportAnalyzerStarted = 0;
-	[[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:_crashReportAnalyzerStarted] forKey:kCrashReportAnalyzerStarted];
+    // mark the end of the routine
+    _crashReportAnalyzerStarted = 0;
+    [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithInt:_crashReportAnalyzerStarted] forKey:kCrashReportAnalyzerStarted];
 		
-	[crashReporter purgePendingCrashReport];
-	return;
+    [crashReporter purgePendingCrashReport];
+    return;
 }
 
 #pragma mark Reachability
 		
 - (BOOL)_isSubmissionHostReachable
 {
-	SCNetworkReachabilityFlags flags;
+    SCNetworkReachabilityFlags flags;
     SCNetworkReachabilityRef reachabilityRef = nil;
     
     if (![_submissionURL host] || ![[_submissionURL host] length]) {
-		return NO;
-	}
+        return NO;
+    }
     
     reachabilityRef = SCNetworkReachabilityCreateWithName(NULL, [[_submissionURL host] UTF8String]);
     
-	if (!reachabilityRef) {
-		return NO;
-	}
+    if (!reachabilityRef) {
+        return NO;
+    }
     
-	BOOL gotFlags = SCNetworkReachabilityGetFlags(reachabilityRef, &flags);
+    BOOL gotFlags = SCNetworkReachabilityGetFlags(reachabilityRef, &flags);
     
     if (reachabilityRef != nil)
-		CFRelease(reachabilityRef);
+        CFRelease(reachabilityRef);
     
-	return gotFlags && flags & kSCNetworkReachabilityFlagsReachable && (flags & kSCNetworkReachabilityFlagsIsWWAN || !(flags & kSCNetworkReachabilityFlagsConnectionRequired));
+    return gotFlags && flags & kSCNetworkReachabilityFlagsReachable && (flags & kSCNetworkReachabilityFlagsIsWWAN || !(flags & kSCNetworkReachabilityFlagsConnectionRequired));
 }
 
 @end
