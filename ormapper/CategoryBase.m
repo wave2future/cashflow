@@ -136,7 +136,7 @@
     Database *db = [Database instance];
     dbstmt *stmt;
     
-    [db beginTransaction];
+    //[db beginTransaction];
     stmt = [db prepare:@"INSERT INTO Categories VALUES(NULL,?,?);"];
 
     [stmt bindString:0 val:name];
@@ -145,7 +145,7 @@
 
     self.pid = [db lastInsertRowId];
 
-    [db commitTransaction];
+    //[db commitTransaction];
     isInserted = YES;
 }
 
@@ -156,7 +156,7 @@
     [super update];
 
     Database *db = [Database instance];
-    [db beginTransaction];
+    //[db beginTransaction];
 
     dbstmt *stmt = [db prepare:@"UPDATE Categories SET "
         "name = ?"
@@ -167,7 +167,7 @@
     [stmt bindInt:2 val:pid];
 
     [stmt step];
-    [db commitTransaction];
+    //[db commitTransaction];
 }
 
 #pragma mark Delete operations

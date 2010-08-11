@@ -301,7 +301,7 @@ EOF
     Database *db = [Database instance];
     dbstmt *stmt;
     
-    [db beginTransaction];
+    //[db beginTransaction];
 EOF
 
     fh.print "    stmt = [db prepare:@\"INSERT INTO #{cdef.name} VALUES(NULL"
@@ -323,7 +323,7 @@ EOF
 
     self.pid = [db lastInsertRowId];
 
-    [db commitTransaction];
+    //[db commitTransaction];
     isInserted = YES;
 }
 
@@ -334,7 +334,7 @@ EOF
     [super update];
 
     Database *db = [Database instance];
-    [db beginTransaction];
+    //[db beginTransaction];
 
     dbstmt *stmt = [db prepare:@"UPDATE #{cdef.name} SET "
 EOF
@@ -362,7 +362,7 @@ EOF
     [stmt bindInt:#{i} val:pid];
 
     [stmt step];
-    [db commitTransaction];
+    //[db commitTransaction];
 }
 
 #pragma mark Delete operations

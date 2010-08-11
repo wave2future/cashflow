@@ -142,7 +142,7 @@
     Database *db = [Database instance];
     dbstmt *stmt;
     
-    [db beginTransaction];
+    //[db beginTransaction];
     stmt = [db prepare:@"INSERT INTO Assets VALUES(NULL,?,?,?,?);"];
 
     [stmt bindString:0 val:name];
@@ -153,7 +153,7 @@
 
     self.pid = [db lastInsertRowId];
 
-    [db commitTransaction];
+    //[db commitTransaction];
     isInserted = YES;
 }
 
@@ -164,7 +164,7 @@
     [super update];
 
     Database *db = [Database instance];
-    [db beginTransaction];
+    //[db beginTransaction];
 
     dbstmt *stmt = [db prepare:@"UPDATE Assets SET "
         "name = ?"
@@ -179,7 +179,7 @@
     [stmt bindInt:4 val:pid];
 
     [stmt step];
-    [db commitTransaction];
+    //[db commitTransaction];
 }
 
 #pragma mark Delete operations
