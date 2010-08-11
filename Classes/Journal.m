@@ -67,6 +67,8 @@
     // upgrade data
     Database *db = [Database instance];
     if (db.needUpgradeDateFormat) {
+        [self _sortByDate];
+        
         [db beginTransaction];
         for (Transaction *t in entries) {
             [t updateWithoutUpdateLRU];
