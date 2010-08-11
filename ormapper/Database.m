@@ -32,7 +32,8 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "Database.h"
+#import "AppDelegate.h"
+#import "DateFormatter2.h"
 
 #pragma mark dbstmt implementation
 
@@ -220,12 +221,17 @@ static Database *theDatabase = nil;
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
-
+    
     // Set US locale, because JP locale for date formatter is buggy,
     // especially for 12 hour settings.
     NSLocale *us = [[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease];
     [dateFormatter setLocale:us];
 
+    // backward compat.
+    dateFormatter2 = [[DateFormatter2 alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormatter2 setDateFormat: @"yyyyMMddHHmm"];
+    
     return self;
 }
 
@@ -354,7 +360,15 @@ static Database *theDatabase = nil;
 
 - (NSDate *)dateFromString:(NSString *)str
 {
-    NSDate *date = [dateFormatter dateFromString:str];
+    NSDate *date = nil;
+    
+    if ([str length] == 14) { // yyyyMMDDHHmmss
+        date = [dateFormatter dateFromString:str];
+    }
+    if (date == nil) {
+        // backward compat.
+        date = [dateFormatter2 dateFromString:str];
+    }
     return date;
 }
 

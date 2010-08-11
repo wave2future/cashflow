@@ -57,6 +57,7 @@
     BOOL ret = [super migrate];
 
     // 日付フォーマットをチェックする
+#if 0
     dbstmt *stmt = [[Database instance] prepare:@"SELECT date FROM Transactions LIMIT 1;"];
     if ([stmt step] != SQLITE_ROW) return ret;
     
@@ -66,7 +67,8 @@
         NSString *sql = @"UPDATE Transactions SET date = date * 100;";
         [[Database instance] exec:sql];
     }
-
+#endif
+    
     return ret;
 }
 

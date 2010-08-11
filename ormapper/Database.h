@@ -37,6 +37,8 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
+#import "DateFormatter2.h" // backward compat.
+
 @class Database;
 
 /**
@@ -75,6 +77,7 @@
     sqlite3 *handle; ///< Database handle
 
     NSDateFormatter *dateFormatter;
+    DateFormatter2 *dateFormatter2;
 }
 
 @property(nonatomic,readonly) sqlite3 *handle;

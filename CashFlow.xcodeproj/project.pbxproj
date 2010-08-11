@@ -13,6 +13,9 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2899E5600DE3E45000AC0155 /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
+		3E004CBA1212DFC400776D68 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E004CB91212DFC400776D68 /* DateFormatter2.m */; };
+		3E004CBB1212DFC400776D68 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E004CB91212DFC400776D68 /* DateFormatter2.m */; };
+		3E004CBC1212DFC400776D68 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E004CB91212DFC400776D68 /* DateFormatter2.m */; };
 		3E035E9B1182B6E000711865 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
 		3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
 		3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
@@ -33,8 +36,6 @@
 		3E1AE0B80F97416F00AAB4AC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
 		3E1AE0B90F97416F00AAB4AC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
 		3E1AE0BA0F97416F00AAB4AC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
-		3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
-		3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
 		3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
 		3E2376C51107481F00E4C329 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
@@ -290,7 +291,6 @@
 		3EE4032311F3374000171A15 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
 		3EE4032411F3374000171A15 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3EE4032511F3374000171A15 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
-		3EE4032611F3374000171A15 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1E636A0F7B8A670037C34C /* DateFormatter2.m */; };
 		3EE4032711F3374000171A15 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3EE4032811F3374000171A15 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
 		3EE4032911F3374000171A15 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
@@ -353,6 +353,8 @@
 		28A0AAE50D9B0CCF005BE974 /* CashFlow_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlow_Prefix.pch; sourceTree = "<group>"; };
 		28C286DF0D94DF7D0034E888 /* TransactionListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionListVC.h; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3E004CB81212DFC400776D68 /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
+		3E004CB91212DFC400776D68 /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
 		3E035E9A1182B6E000711865 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3E0519120E6A9D09008F1F65 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
 		3E0519130E6A9D09008F1F65 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
@@ -377,8 +379,6 @@
 		3E1AE0B20F97416F00AAB4AC /* Journal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journal.m; sourceTree = "<group>"; };
 		3E1AE0B30F97416F00AAB4AC /* Ledger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ledger.h; sourceTree = "<group>"; };
 		3E1AE0B40F97416F00AAB4AC /* Ledger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ledger.m; sourceTree = "<group>"; };
-		3E1E63690F7B8A670037C34C /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
-		3E1E636A0F7B8A670037C34C /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3E27103F0EAA196A00E57E51 /* ExportBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportBase.h; sourceTree = "<group>"; };
 		3E2710400EAA196A00E57E51 /* ExportBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportBase.m; sourceTree = "<group>"; };
@@ -851,8 +851,6 @@
 				3ED8D2F40EC72F9E00BC723D /* Category.m */,
 				3E97AEF011EB26FA004296F3 /* DescLRUManager.h */,
 				3E97AEF111EB26FA004296F3 /* DescLRUManager.m */,
-				3E1E63690F7B8A670037C34C /* DateFormatter2.h */,
-				3E1E636A0F7B8A670037C34C /* DateFormatter2.m */,
 				3E4D1CF20EBB45AB006050FE /* Report.h */,
 				3E4D1CF00EBB4599006050FE /* Report.m */,
 				3E7BB134115399C5004B7D03 /* Config.h */,
@@ -892,6 +890,8 @@
 				3ECEF32A11E9C64E00738E69 /* TransactionBase.m */,
 				3E97AEFE11EB272E004296F3 /* DescLRU.h */,
 				3E97AEFF11EB272E004296F3 /* DescLRU.m */,
+				3E004CB81212DFC400776D68 /* DateFormatter2.h */,
+				3E004CB91212DFC400776D68 /* DateFormatter2.m */,
 			);
 			path = ormapper;
 			sourceTree = "<group>";
@@ -1291,7 +1291,6 @@
 				3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */,
 				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
 				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
-				3E1E636B0F7B8A670037C34C /* DateFormatter2.m in Sources */,
 				3EFD000A0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
 				3E1AE0B50F97416F00AAB4AC /* AssetEntry.m in Sources */,
 				3E1AE0B60F97416F00AAB4AC /* Journal.m in Sources */,
@@ -1316,6 +1315,7 @@
 				3E7109B8121108ED00C47539 /* SupportMail.m in Sources */,
 				3E7109B9121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
 				3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */,
+				3E004CBB1212DFC400776D68 /* DateFormatter2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1350,7 +1350,6 @@
 				3E8B25B10F348C090007929E /* WebServer.m in Sources */,
 				3E8B25B20F348C090007929E /* BackupServer.m in Sources */,
 				3E8B25B40F348C090007929E /* PinVC.m in Sources */,
-				3E1E636C0F7B8A670037C34C /* DateFormatter2.m in Sources */,
 				3EFD000B0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
 				3E1AE0B80F97416F00AAB4AC /* AssetEntry.m in Sources */,
 				3E1AE0B90F97416F00AAB4AC /* Journal.m in Sources */,
@@ -1375,6 +1374,7 @@
 				3E7109B6121108ED00C47539 /* SupportMail.m in Sources */,
 				3E7109B7121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
 				3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */,
+				3E004CBC1212DFC400776D68 /* DateFormatter2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1427,7 +1427,6 @@
 				3EE4032311F3374000171A15 /* Transaction.m in Sources */,
 				3EE4032411F3374000171A15 /* Category.m in Sources */,
 				3EE4032511F3374000171A15 /* DescLRUManager.m in Sources */,
-				3EE4032611F3374000171A15 /* DateFormatter2.m in Sources */,
 				3EE4032711F3374000171A15 /* Report.m in Sources */,
 				3EE4032811F3374000171A15 /* Config.m in Sources */,
 				3EE4032911F3374000171A15 /* ExportBase.m in Sources */,
@@ -1468,6 +1467,7 @@
 				3E7109BA121108ED00C47539 /* SupportMail.m in Sources */,
 				3E7109BB121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
 				3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */,
+				3E004CBA1212DFC400776D68 /* DateFormatter2.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
