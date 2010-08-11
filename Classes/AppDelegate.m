@@ -37,6 +37,7 @@
 #import "DataModel.h"
 #import "Transaction.h"
 #import "PinController.h"
+#import "CrashReporter.h"
 
 @implementation AppDelegate
 
@@ -56,6 +57,15 @@
 - (void)applicationDidFinishLaunching:(UIApplication *)application
 {
     NSLog(@"applicationDidFinishLaunching");
+    
+    PLCrashReporter *cr = [PLCrashReporter sharedReporter];
+    if ([cr hasPendingCrashReport]) {
+        [self handleCrashReport];
+    }
+    NSError *error;
+    if (![cr enableCrashReporterAndReturnError:&error]) {
+        NSLog(@"Warning: Could not enable crash reporter: %@", error);
+    }
     
     // Configure and show the window
     if (IS_IPAD) {
@@ -107,6 +117,39 @@
     [navigationController release];
     [window release];
     [super dealloc];
+}
+
+//
+// Called to handle a pending crash report.
+//
+- (void) handleCrashReport {
+    PLCrashReporter *crashReporter = [PLCrashReporter sharedReporter];
+    NSData *crashData;
+    NSError *error;
+    
+    // Try loading the crash report
+    crashData = [crashReporter loadPendingCrashReportDataAndReturnError: &error];
+    if (crashData == nil) {
+        NSLog(@"Could not load crash report: %@", error);
+        goto finish;
+    }
+    
+    // We could send the report from here, but we'll just print out
+    // some debugging info instead
+    PLCrashReport *report = [[[PLCrashReport alloc] initWithData: crashData error: &error] autorelease];
+    if (report == nil) {
+        NSLog(@"Could not parse crash report");
+        goto finish;
+    }
+    
+    NSLog(@"Crashed on %@", report.systemInfo.timestamp);
+    NSLog(@"Crashed with signal %@ (code %@, address=0x%" PRIx64 ")", report.signalInfo.name,
+          report.signalInfo.code, report.signalInfo.address);
+    
+    // Purge the report
+finish:
+    [crashReporter purgePendingCrashReport];
+    return;
 }
 
 void AssertFailed(const char *filename, int lineno)

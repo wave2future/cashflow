@@ -55,6 +55,7 @@
 @property (nonatomic, retain) UINavigationController *navigationController;
 
 - (void)checkPin;
+- (void) handleCrashReport;
 
 // Utility
 #ifdef NDEBUG
