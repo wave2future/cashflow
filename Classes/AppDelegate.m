@@ -37,7 +37,7 @@
 #import "DataModel.h"
 #import "Transaction.h"
 #import "PinController.h"
-#import "CrashReporter.h"
+#import <CrashReporter/CrashReporter.h>
 
 @implementation AppDelegate
 
