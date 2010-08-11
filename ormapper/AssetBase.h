@@ -8,12 +8,14 @@
     int type;
     double initialBalance;
     int sorder;
+    double lastBalance;
 }
 
 @property(nonatomic,retain) NSString* name;
 @property(nonatomic,assign) int type;
 @property(nonatomic,assign) double initialBalance;
 @property(nonatomic,assign) int sorder;
+@property(nonatomic,assign) double lastBalance;
 
 + (BOOL)migrate;
 

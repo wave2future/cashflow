@@ -9,6 +9,7 @@
 @synthesize type;
 @synthesize initialBalance;
 @synthesize sorder;
+@synthesize lastBalance;
 
 - (id)init
 {
@@ -35,6 +36,7 @@
         @"type", @"INTEGER",
         @"initialBalance", @"REAL",
         @"sorder", @"INTEGER",
+        @"lastBalance", @"REAL",
         nil];
 
     return [super migrate:columnTypes];
@@ -129,6 +131,7 @@
     self.type = [stmt colInt:2];
     self.initialBalance = [stmt colDouble:3];
     self.sorder = [stmt colInt:4];
+    self.lastBalance = [stmt colDouble:5];
 
     isInserted = YES;
 }
@@ -143,12 +146,13 @@
     dbstmt *stmt;
     
     [db beginTransaction];
-    stmt = [db prepare:@"INSERT INTO Assets VALUES(NULL,?,?,?,?);"];
+    stmt = [db prepare:@"INSERT INTO Assets VALUES(NULL,?,?,?,?,?);"];
 
     [stmt bindString:0 val:name];
     [stmt bindInt:1 val:type];
     [stmt bindDouble:2 val:initialBalance];
     [stmt bindInt:3 val:sorder];
+    [stmt bindDouble:4 val:lastBalance];
     [stmt step];
 
     self.pid = [db lastInsertRowId];
@@ -171,12 +175,14 @@
         ",type = ?"
         ",initialBalance = ?"
         ",sorder = ?"
+        ",lastBalance = ?"
         " WHERE key = ?;"];
     [stmt bindString:0 val:name];
     [stmt bindInt:1 val:type];
     [stmt bindDouble:2 val:initialBalance];
     [stmt bindInt:3 val:sorder];
-    [stmt bindInt:4 val:pid];
+    [stmt bindDouble:4 val:lastBalance];
+    [stmt bindInt:5 val:pid];
 
     [stmt step];
     [db commitTransaction];

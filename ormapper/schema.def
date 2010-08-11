@@ -3,6 +3,7 @@ Assets:AssetBase
         type :INTEGER
         initialBalance :REAL
         sorder :INTEGER
+        lastBalance :REAL
 
 Transactions:TransactionBase
         asset :INTEGER
