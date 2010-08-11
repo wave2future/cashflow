@@ -52,7 +52,6 @@
 // 
 @interface Asset : AssetBase {
     NSMutableArray *entries; // AssetEntry の配列
-    double lastBalance;
 }
 
 - (void)rebuild;
@@ -66,7 +65,6 @@
 - (void)deleteOldEntriesBefore:(NSDate*)date;
 - (int)firstEntryByDate:(NSDate*)date;
 
-- (double)lastBalance;
 - (void)updateInitialBalance;
 
 @end

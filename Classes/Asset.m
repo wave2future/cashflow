@@ -108,7 +108,10 @@
         }
     }
 
-    lastBalance = balance;
+    if (lastBalance != balance) {
+        lastBalance = balance;
+        [self update];
+    }
 }
 
 - (void)updateInitialBalance
@@ -201,13 +204,19 @@
 ////////////////////////////////////////////////////////////////////////////
 // Balance operations
 
-- (double)lastBalance
+- (void)updateLastBalance
 {
     int max = [entries count];
+    double newLastBalance;
     if (max == 0) {
-        return initialBalance;
+        newLastBalance = initialBalance;
+    } else {
+        newLastBalance = [[entries objectAtIndex:max - 1] balance];
     }
-    return [[entries objectAtIndex:max - 1] balance];
+    if (lastBalance != newLastBalance) {
+        lastBalance = newLastBalance;
+        [self update];
+    }
 }
 
 //
@@ -228,6 +237,5 @@
     }
     return ret;
 }
-
 
 @end
