@@ -78,9 +78,12 @@
 
     NSDateFormatter *dateFormatter;
     DateFormatter2 *dateFormatter2;
+    
+    BOOL needUpgradeDateFormat;
 }
 
 @property(nonatomic,readonly) sqlite3 *handle;
+@property(nonatomic,readonly) BOOL needUpgradeDateFormat;
 
 + (Database*)instance;
 + (void)shutdown;

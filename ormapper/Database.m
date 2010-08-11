@@ -188,7 +188,7 @@
 
 @implementation Database
 
-@synthesize handle;
+@synthesize handle, needUpgradeDateFormat;
 
 static Database *theDatabase = nil;
 
@@ -217,6 +217,8 @@ static Database *theDatabase = nil;
     if (self != nil) {
         handle = 0;
     }
+    
+    needUpgradeDateFormat = false;
 	
     dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
@@ -229,7 +231,7 @@ static Database *theDatabase = nil;
 
     // backward compat.
     dateFormatter2 = [[DateFormatter2 alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+    [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
     [dateFormatter2 setDateFormat: @"yyyyMMddHHmm"];
     
     return self;
@@ -368,6 +370,7 @@ static Database *theDatabase = nil;
     if (date == nil) {
         // backward compat.
         date = [dateFormatter2 dateFromString:str];
+        needUpgradeDateFormat = true;
     }
     return date;
 }

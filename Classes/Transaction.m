@@ -47,28 +47,10 @@
 }
 
 /*
-    テーブルの migration と日付フォーマットのアップグレードを行う
- 
-    ver 3.2.1 以前は日付フォーマットが yyyyMMddHHmm であったが、
-    ormapper 導入にあわせて yyyyMMddHHmmss に変更。
  */
 + (BOOL)migrate
 {
     BOOL ret = [super migrate];
-
-    // 日付フォーマットをチェックする
-#if 0
-    dbstmt *stmt = [[Database instance] prepare:@"SELECT date FROM Transactions LIMIT 1;"];
-    if ([stmt step] != SQLITE_ROW) return ret;
-    
-    NSString *dateStr = [stmt colString:0];
-    if ([dateStr length] == 12) { // yyyyMMDDHHmm
-        // 秒の桁を追加する
-        NSString *sql = @"UPDATE Transactions SET date = date * 100;";
-        [[Database instance] exec:sql];
-    }
-#endif
-    
     return ret;
 }
 
