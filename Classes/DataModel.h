@@ -55,11 +55,13 @@
     Categories *categories;
     
     id<DataModelDelegate> delegate;
+    BOOL isLoadDone;
 }
 
 @property(nonatomic,retain) Journal *journal;
 @property(nonatomic,retain) Ledger *ledger;
 @property(nonatomic,retain) Categories *categories;
+@property(nonatomic,readonly) BOOL isLoadDone;
 
 + (DataModel *)instance;
 + (void)finalize;

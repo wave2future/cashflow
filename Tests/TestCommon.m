@@ -90,6 +90,13 @@
 
     free(sql);
     
+    // load database
+    DataModel *dm = [DataModel instance];
+    [dm startLoad:nil];
+    while (!dm.isLoadDone) {
+        [NSThread sleepForTimeInterval:0.05];
+    }
+    
     return YES;
 }
 
