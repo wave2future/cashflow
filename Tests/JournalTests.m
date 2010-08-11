@@ -153,7 +153,7 @@
     AssertEqualInt(5, t.pid);
 }
 
-- (void)testADeleteTransactionWithAsset
+- (void)testDeleteTransactionWithAsset
 {
     [TestCommon installDatabase:@"testdata1"];
     journal = [DataModel journal];
