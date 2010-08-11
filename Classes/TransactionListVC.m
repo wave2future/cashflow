@@ -85,8 +85,10 @@
     //self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	
     asDisplaying = NO;
-    
+
+#if FREE_VERSION
     adViewController = nil;
+#endif
 }
 
 #if FREE_VERSION
