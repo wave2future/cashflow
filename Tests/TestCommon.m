@@ -92,10 +92,13 @@
     
     // load database
     DataModel *dm = [DataModel instance];
+    [dm load];
+#if 0
     [dm startLoad:nil];
     while (!dm.isLoadDone) {
         [NSThread sleepForTimeInterval:0.05];
     }
+#endif
     
     return YES;
 }

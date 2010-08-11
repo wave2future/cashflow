@@ -113,7 +113,18 @@ static DataModel *theDataModel = nil;
 {
     NSAutoreleasePool *pool;
     pool = [[NSAutoreleasePool alloc] init];
+
+    [self load];
     
+    isLoadDone = YES;
+    [self performSelectorOnMainThread:@selector(loadDone:) withObject:nil waitUntilDone:NO];
+    
+    [pool release];
+    [NSThread exit];
+}
+
+- (void)load
+{
     Database *db = [Database instance];
 
     // Load from DB
@@ -136,12 +147,6 @@ static DataModel *theDataModel = nil;
 
     // Load categories
     [categories reload];
-    
-    isLoadDone = YES;
-    [self performSelectorOnMainThread:@selector(loadDone:) withObject:nil waitUntilDone:NO];
-    
-    [pool release];
-    [NSThread exit];
 }
 
 - (void)loadDone:(id)dummy
