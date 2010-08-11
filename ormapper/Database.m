@@ -48,6 +48,7 @@
     self = [super init];
     if (self != nil) {
         stmt = st;
+        db = [Database instance];
     }
     return self;
 }
@@ -120,7 +121,7 @@
     NSString *str;
     
     if (date != NULL) {
-        str = [[Database instance] stringFromDate:date];
+        str = [db stringFromDate:date];
         sqlite3_bind_text(stmt, idx+1, [str UTF8String], -1, SQLITE_TRANSIENT);
     }
 }
@@ -171,7 +172,7 @@
     NSDate *date = nil;
     NSString *ds = [self colString:idx];
     if (ds && [ds length] > 0) {
-        date = [[Database instance] dateFromString:ds];
+        date = [db dateFromString:ds];
     }
     return date;
 }
