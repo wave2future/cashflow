@@ -39,6 +39,10 @@
 #import "DescLRU.h"
 #import "Database.h"
 
+@protocol DataModelDelegate
+- (void)dataModelLoaded;
+@end
+
 @interface DataModel : NSObject
 {
     // Journal
@@ -49,11 +53,15 @@
 
     // Category
     Categories *categories;
+    
+    id<DataModelDelegate> delegate;
+    BOOL isLoadDone;
 }
 
 @property(nonatomic,retain) Journal *journal;
 @property(nonatomic,retain) Ledger *ledger;
 @property(nonatomic,retain) Categories *categories;
+@property(nonatomic,readonly) BOOL isLoadDone;
 
 + (DataModel *)instance;
 + (void)finalize;
@@ -68,7 +76,10 @@
 - (id)init;
 
 // load/save
+- (void)startLoad:(id<DataModelDelegate>)delegate;
+- (void)loadThread:(id)dummy;
 - (void)load;
+- (void)loadDone:(id)dummy;
 
 // utility operation
 //+ (NSString*)currencyString:(double)x;

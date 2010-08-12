@@ -14,6 +14,7 @@
 {
     [TestCommon deleteDatabase];
     dm = [DataModel instance];
+    [dm load];
 }
 
 - (void)tearDown

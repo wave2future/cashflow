@@ -89,12 +89,57 @@
     ASSERT(icon3 != nil);
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
- 
+
     if (IS_IPAD) {
         CGSize s = self.contentSizeForViewInPopover;
         s.height = 600;
         self.contentSizeForViewInPopover = s;
     }
+    
+    // データロード開始
+    isLoadDone = false;
+    [[DataModel instance] startLoad:self];
+    
+    // ActivityIndicator を表示させる
+    UIView *parent;
+    if (IS_IPAD) {
+        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        parent = appDelegate.splitViewController.view;
+    } else {
+        parent = self.navigationController.view;
+    }
+    
+    CGRect frame = [parent frame];
+    frame.origin.x = 0;
+    frame.origin.y = 0;
+    loadingView = [[UIView alloc] initWithFrame:frame];
+    [loadingView setBackgroundColor:[UIColor blackColor]];
+    [loadingView setAlpha:0.5];
+    loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [parent addSubview:loadingView];
+    
+    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [loadingView addSubview:activityIndicator];
+    [activityIndicator setFrame:CGRectMake ((frame.size.width / 2) - 20, (frame.size.height/2)-60, 40, 40)];
+    activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
+        UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+    [activityIndicator startAnimating]; 
+}
+
+#pragma mark DataModelDelegate
+- (void)dataModelLoaded
+{
+    isLoadDone = YES;
+    
+    // ActivityIndicator を消す
+    [activityIndicator stopAnimating];
+    [loadingView removeFromSuperview];
+
+    // initial
+    ledger = [DataModel ledger];
+    [self reload];
+
+    [self _showInitialAsset];
 }
 
 - (void)_showInitialAsset
@@ -110,7 +155,7 @@
     if (IS_IPAD && asset == nil && [ledger assetCount] > 0) {
         asset = [ledger assetAtIndex:0];
     }
-    
+
     // TransactionListView を表示
     if (IS_IPAD) {
         splitTransactionListViewController.asset = asset;
@@ -135,6 +180,8 @@
 
 - (void)reload
 {
+    if (!isLoadDone) return;
+    
     [ledger rebuild];
     [tableView reloadData];
 
@@ -157,20 +204,16 @@
     static BOOL isInitial = YES;
 
     [super viewDidAppear:animated];
-    
+
     if (isInitial) {
-        // 最初の起動時の場合は、取引一覧画面に遷移する
-        isInitial = NO;
-        [self _showInitialAsset];
-    } 
+         isInitial = NO;
+     } 
     else if (!IS_IPAD) {
         // 初回以外：初期起動する画面を資産一覧画面に戻しておく
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
         [defaults synchronize];
     }
-
-
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -190,6 +233,8 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (!isLoadDone) return 0;
+    
     switch (section) {
         case 0:
             return [ledger assetCount];

@@ -16,12 +16,15 @@
     [super setUp];
     [TestCommon deleteDatabase];
 
-    [DataModel instance]; // re-create DataModel
+    [[DataModel instance] load]; // re-create DataModel
 }
 
 - (void)tearDown
 {
     [super tearDown];
+    
+    [DataModel finalize];
+    [Database shutdown];
 }
 
 - (void)setupTestData

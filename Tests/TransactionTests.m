@@ -13,7 +13,7 @@
 {
     [super setUp];
     [TestCommon deleteDatabase];
-    [DataModel instance];
+    [[DataModel instance] load];
 }
 
 - (void)tearDown
@@ -36,7 +36,7 @@
     
     // Migrate 実行
     [DataModel finalize];
-    [DataModel instance];
+    [[DataModel instance] load];
     
     // チェック
     dbstmt *stmt = [db prepare:@"SELECT date FROM Transactions;"];

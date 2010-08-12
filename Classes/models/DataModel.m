@@ -42,7 +42,7 @@
 
 @implementation DataModel
 
-@synthesize journal, ledger, categories;
+@synthesize journal, ledger, categories, isLoadDone;
 
 static DataModel *theDataModel = nil;
 
@@ -50,7 +50,7 @@ static DataModel *theDataModel = nil;
 {
     if (!theDataModel) {
         theDataModel = [[DataModel alloc] init];
-        [theDataModel load];
+        //[theDataModel load];
     }
     return theDataModel;
 }
@@ -70,6 +70,7 @@ static DataModel *theDataModel = nil;
     journal = [[Journal alloc] init];
     ledger = [[Ledger alloc] init];
     categories = [[Categories alloc] init];
+    isLoadDone = NO;
 	
     return self;
 }
@@ -98,6 +99,30 @@ static DataModel *theDataModel = nil;
     return [DataModel instance].categories;
 }
 
+- (void)startLoad:(id<DataModelDelegate>)a_delegate
+{
+    delegate = a_delegate;
+    isLoadDone = NO;
+    
+    NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadThread:) object:nil];
+    [thread start];
+    [thread release];
+}
+
+- (void)loadThread:(id)dummy
+{
+    NSAutoreleasePool *pool;
+    pool = [[NSAutoreleasePool alloc] init];
+
+    [self load];
+    
+    isLoadDone = YES;
+    [self performSelectorOnMainThread:@selector(loadDone:) withObject:nil waitUntilDone:NO];
+    
+    [pool release];
+    [NSThread exit];
+}
+
 - (void)load
 {
     Database *db = [Database instance];
@@ -122,6 +147,13 @@ static DataModel *theDataModel = nil;
 
     // Load categories
     [categories reload];
+}
+
+- (void)loadDone:(id)dummy
+{
+    if (delegate) {
+        [delegate dataModelLoaded];
+    }
 }
 
 ////////////////////////////////////////////////////////////////////////////

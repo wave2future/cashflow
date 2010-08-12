@@ -30,7 +30,6 @@
 + (void)deleteDatabase
 {
     [DataModel finalize];
-    [Database shutdown];
 
     NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
 
@@ -39,6 +38,8 @@
     } else {
         //NSLog(@"deleteDatabase failed!: %@", dbPath);
     }
+
+    [Database shutdown];
 }
 
 // データベースをインストールする
@@ -89,6 +90,16 @@
     sqlite3_close(handle);
 
     free(sql);
+    
+    // load database
+    DataModel *dm = [DataModel instance];
+    [dm load];
+#if 0
+    [dm startLoad:nil];
+    while (!dm.isLoadDone) {
+        [NSThread sleepForTimeInterval:0.05];
+    }
+#endif
     
     return YES;
 }
