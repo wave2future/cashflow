@@ -15,7 +15,11 @@
 
 + (NSDictionary *)adAttributes
 {
-    NSMutableDictionary *md = [[[NSMutableDictionary alloc] init] autorelease];
+    static NSMutableDictionary *md = nil;
+
+    if (md) return md;
+
+    md = [[NSMutableDictionary alloc] init];
 
     [md setObject:AFMA_CLIENT_ID forKey:kGADAdSenseClientID];
     [md setObject:@"Takuya Murakami" forKey:kGADAdSenseCompanyName];
