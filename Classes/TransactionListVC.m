@@ -134,14 +134,22 @@
 {
     [super viewWillAppear:animated];
     [self reload];
-}
 
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    
 #if FREE_VERSION
     if (adViewController != nil) return; // already showed
+    
+    // Google Adsense バグ暫定対処
+    // AdSense が起動時に正しく表示されずクラッシュする場合があるため、
+    // 前回正しく表示できていない場合は初回表示させない
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    int n = [defaults integerForKey:@"ShowAds"];
+    if (n == 0) {
+        [defaults setInteger:1 forKey:@"ShowAds"]; // show next time
+        [defaults synchronize];
+        return;
+    }
+    [defaults setInteger:0 forKey:@"ShowAds"];
+    [defaults synchronize];
     
     CGRect frame = tableView.bounds;
     
@@ -149,9 +157,9 @@
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
     adViewController.adSize = kGADAdSize320x50;
     adViewController.autoRefreshSeconds = 180;
-
+    
     NSDictionary *attributes = [AdUtil adAttributes];
-
+    
     @try {
         [adViewController loadGoogleAd:attributes];
     }
@@ -162,7 +170,7 @@
     UIView *adView = adViewController.view;
     float adViewWidth = [adView bounds].size.width;
     float adViewHeight = [adView bounds].size.height;
-
+    
     CGRect aframe = frame;
     aframe.origin.x = (frame.size.width - adViewWidth) / 2;
     aframe.origin.y = frame.size.height - adViewHeight;
@@ -171,12 +179,20 @@
     adView.frame = aframe;
     adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     [self.view addSubview:adView];
-
+    
     // 広告領域分だけ、tableView の下部をあける
     CGRect tframe = frame;
     tframe.size.height -= adViewHeight;
     tableView.frame = tframe;
+    
+    [defaults setInteger:1 forKey:@"ShowAds"];
+    [defaults synchronize];
 #endif
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
 }
 
 - (void)updateBalance
