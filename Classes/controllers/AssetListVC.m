@@ -55,7 +55,9 @@
     tableView.rowHeight = 48;
     pinChecked = NO;
     asDisplaying = NO;
-
+    
+    ledger = [DataModel ledger];
+	
     // title 設定
     self.title = NSLocalizedString(@"Assets", @"");
 	
@@ -87,7 +89,7 @@
     ASSERT(icon3 != nil);
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
-	
+
     if (IS_IPAD) {
         CGSize s = self.contentSizeForViewInPopover;
         s.height = 600;
@@ -136,11 +138,16 @@
     // initial
     ledger = [DataModel ledger];
     [self reload];
-    
+
+    [self _showInitialAsset];
+}
+
+- (void)_showInitialAsset
+{
     // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
-        
+    
     Asset *asset = nil;
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
         asset = [ledger assetAtIndex:firstShowAssetIndex];
@@ -148,7 +155,7 @@
     if (IS_IPAD && asset == nil && [ledger assetCount] > 0) {
         asset = [ledger assetAtIndex:0];
     }
-        
+
     // TransactionListView を表示
     if (IS_IPAD) {
         splitTransactionListViewController.asset = asset;
@@ -189,19 +196,24 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self reload];
     [super viewWillAppear:animated];
+    [self reload];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (!IS_IPAD) {
-        // 最初に起動する画面を資産一覧画面にする
+    static BOOL isInitial = YES;
+
+    [super viewDidAppear:animated];
+
+    if (isInitial) {
+         isInitial = NO;
+     } 
+    else if (!IS_IPAD) {
+        // 初回以外：初期起動する画面を資産一覧画面に戻しておく
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
         [defaults synchronize];
     }
-
-    [super viewDidAppear:animated];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

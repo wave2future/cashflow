@@ -69,6 +69,8 @@
 
 @property(nonatomic,retain) UITableView *tableView;
 
+- (void)_showInitialAsset;
+
 - (void)reload;
 
 - (int)_assetIndex:(NSIndexPath*)indexPath;
