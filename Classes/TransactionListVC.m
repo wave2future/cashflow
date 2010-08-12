@@ -91,6 +91,14 @@
 #endif
 }
 
+- (void)viewDidUnload
+{
+#if FREE_VERSION
+    [adViewController release];
+    adViewController = nil;
+#endif
+}
+
 #if FREE_VERSION
 // GADAdViewControllerDelegate
 - (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
@@ -115,7 +123,7 @@
 #if FREE_VERSION
     [adViewController release];
 #endif
-
+    
     [super dealloc];
 }
 
