@@ -17,25 +17,42 @@
 		3E004CBB1212DFC400776D68 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E004CB91212DFC400776D68 /* DateFormatter2.m */; };
 		3E004CBC1212DFC400776D68 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E004CB91212DFC400776D68 /* DateFormatter2.m */; };
 		3E035E9B1182B6E000711865 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
-		3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
 		3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
 		3E0887F60E6EAC8900739AC9 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
 		3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
 		3E0887FE0E6EACF400739AC9 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
 		3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
 		3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
+		3E0AD6B6121415DD00CFDDAC /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A7121415DD00CFDDAC /* Asset.m */; };
+		3E0AD6B7121415DE00CFDDAC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A9121415DD00CFDDAC /* AssetEntry.m */; };
+		3E0AD6B8121415DE00CFDDAC /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AB121415DD00CFDDAC /* Category.m */; };
+		3E0AD6B9121415DE00CFDDAC /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AD121415DD00CFDDAC /* DataModel.m */; };
+		3E0AD6BA121415DE00CFDDAC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AF121415DD00CFDDAC /* Journal.m */; };
+		3E0AD6BB121415DE00CFDDAC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B1121415DD00CFDDAC /* Ledger.m */; };
+		3E0AD6BC121415DE00CFDDAC /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B3121415DD00CFDDAC /* Report.m */; };
+		3E0AD6BD121415DE00CFDDAC /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B5121415DD00CFDDAC /* Transaction.m */; };
+		3E0AD6BE121415DE00CFDDAC /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A7121415DD00CFDDAC /* Asset.m */; };
+		3E0AD6BF121415DE00CFDDAC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A9121415DD00CFDDAC /* AssetEntry.m */; };
+		3E0AD6C0121415DE00CFDDAC /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AB121415DD00CFDDAC /* Category.m */; };
+		3E0AD6C1121415DE00CFDDAC /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AD121415DD00CFDDAC /* DataModel.m */; };
+		3E0AD6C2121415DE00CFDDAC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AF121415DD00CFDDAC /* Journal.m */; };
+		3E0AD6C3121415DE00CFDDAC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B1121415DD00CFDDAC /* Ledger.m */; };
+		3E0AD6C4121415DE00CFDDAC /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B3121415DD00CFDDAC /* Report.m */; };
+		3E0AD6C5121415DE00CFDDAC /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B5121415DD00CFDDAC /* Transaction.m */; };
+		3E0AD6C6121415DE00CFDDAC /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A7121415DD00CFDDAC /* Asset.m */; };
+		3E0AD6C7121415DE00CFDDAC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A9121415DD00CFDDAC /* AssetEntry.m */; };
+		3E0AD6C8121415DE00CFDDAC /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AB121415DD00CFDDAC /* Category.m */; };
+		3E0AD6C9121415DE00CFDDAC /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AD121415DD00CFDDAC /* DataModel.m */; };
+		3E0AD6CA121415DE00CFDDAC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AF121415DD00CFDDAC /* Journal.m */; };
+		3E0AD6CB121415DE00CFDDAC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B1121415DD00CFDDAC /* Ledger.m */; };
+		3E0AD6CC121415DE00CFDDAC /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B3121415DD00CFDDAC /* Report.m */; };
+		3E0AD6CD121415DE00CFDDAC /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B5121415DD00CFDDAC /* Transaction.m */; };
 		3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
 		3E13EE70114008E400523938 /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE6F114008E400523938 /* libGoogleAds.a */; };
 		3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197BF7121271D200105B20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
-		3E1AE0B50F97416F00AAB4AC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
-		3E1AE0B60F97416F00AAB4AC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
-		3E1AE0B70F97416F00AAB4AC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
-		3E1AE0B80F97416F00AAB4AC /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
-		3E1AE0B90F97416F00AAB4AC /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
-		3E1AE0BA0F97416F00AAB4AC /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
 		3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
 		3E2376C51107481F00E4C329 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
@@ -71,7 +88,6 @@
 		3E3FEFED11F3387E00A0FC41 /* icon-ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DDA1F1189908A00542042 /* icon-ipad.png */; };
 		3E3FEFEE11F3387E00A0FC41 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3E3FEFF011F3387E00A0FC41 /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
-		3E4D1CF10EBB4599006050FE /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
 		3E4DD9EA11898E9600542042 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E811898E9600542042 /* Default-Landscape.png */; };
@@ -138,8 +154,6 @@
 		3E8B25930F348C090007929E /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
 		3E8B25950F348C090007929E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
 		3E8B25960F348C090007929E /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
-		3E8B25970F348C090007929E /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
-		3E8B25980F348C090007929E /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 		3E8B25990F348C090007929E /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887F90E6EACEB00739AC9 /* EditDateVC.m */; };
 		3E8B259A0F348C090007929E /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0887FC0E6EACF400739AC9 /* EditDescVC.m */; };
 		3E8B259C0F348C090007929E /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0888110E6EAEEB00739AC9 /* TransactionVC.m */; };
@@ -149,14 +163,11 @@
 		3E8B25A00F348C090007929E /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
 		3E8B25A10F348C090007929E /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
 		3E8B25A20F348C090007929E /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
-		3E8B25A30F348C090007929E /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3E8B25A40F348C090007929E /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1D1B0EBB471E006050FE /* ReportVC.m */; };
-		3E8B25A70F348C090007929E /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3E8B25A80F348C090007929E /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0A9E390EC33894005195A5 /* TransactionListVC.m */; };
 		3E8B25A90F348C090007929E /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
 		3E8B25AA0F348C090007929E /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EA0114D0EC34626008CEEB7 /* AssetVC.m */; };
 		3E8B25AB0F348C090007929E /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5B83AD0EC359730035AF05 /* GenEditTextVC.m */; };
-		3E8B25AD0F348C090007929E /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3E8B25AE0F348C090007929E /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3E8B25AF0F348C090007929E /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
 		3E8B25B00F348C090007929E /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E5868280EEFFCAF00951C2F /* EditMemoVC.m */; };
@@ -191,7 +202,6 @@
 		3EAEBC880F9DE0C700AD3D15 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */; };
 		3EB2FCDE0EC7314100F356A3 /* CategoryListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */; };
 		3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */; };
-		3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
 		3EB554B4103B92D700BA13D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
 		3EB554B5103B92D700BA13D4 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
 		3EB5552E103B930D00BA13D4 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
@@ -213,7 +223,6 @@
 		3ECEF33911E9C64E00738E69 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32811E9C64E00738E69 /* ORRecord.m */; };
 		3ECEF33A11E9C64E00738E69 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECEF32A11E9C64E00738E69 /* TransactionBase.m */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
-		3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
 		3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
@@ -282,16 +291,8 @@
 		3EE4030D11F336A200171A15 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3EE4030E11F336A200171A15 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
 		3EE4031C11F3374000171A15 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
-		3EE4031D11F3374000171A15 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 		3EE4031E11F3374000171A15 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
-		3EE4031F11F3374000171A15 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B20F97416F00AAB4AC /* Journal.m */; };
-		3EE4032011F3374000171A15 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B40F97416F00AAB4AC /* Ledger.m */; };
-		3EE4032111F3374000171A15 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EB35B270EC302DD0008FAF0 /* Asset.m */; };
-		3EE4032211F3374000171A15 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */; };
-		3EE4032311F3374000171A15 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0519130E6A9D09008F1F65 /* Transaction.m */; };
-		3EE4032411F3374000171A15 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED8D2F40EC72F9E00BC723D /* Category.m */; };
 		3EE4032511F3374000171A15 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E97AEF111EB26FA004296F3 /* DescLRUManager.m */; };
-		3EE4032711F3374000171A15 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4D1CF00EBB4599006050FE /* Report.m */; };
 		3EE4032811F3374000171A15 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
 		3EE4032911F3374000171A15 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
 		3EE4032A11F3374000171A15 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
@@ -335,7 +336,6 @@
 		3EF054831182DCB200411C71 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
 		3EF054841182DCB200411C71 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
 		3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */; };
-		3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EF914FE0E6C1F8800E31816 /* DataModel.m */; };
 		3EFD000A0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
 		3EFD000B0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */; };
 		3EFD00340F95E31D00F4B4C4 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
@@ -356,8 +356,6 @@
 		3E004CB81212DFC400776D68 /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
 		3E004CB91212DFC400776D68 /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
 		3E035E9A1182B6E000711865 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		3E0519120E6A9D09008F1F65 /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
-		3E0519130E6A9D09008F1F65 /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDescView.xib; sourceTree = "<group>"; };
 		3E0887F50E6EAC8900739AC9 /* EditDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDateView.xib; sourceTree = "<group>"; };
 		3E0887F90E6EACEB00739AC9 /* EditDateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDateVC.m; sourceTree = "<group>"; };
@@ -367,18 +365,28 @@
 		3E0888100E6EAEE200739AC9 /* TransactionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionVC.h; sourceTree = "<group>"; };
 		3E0888110E6EAEEB00739AC9 /* TransactionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionVC.m; sourceTree = "<group>"; };
 		3E0A9E390EC33894005195A5 /* TransactionListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionListVC.m; sourceTree = "<group>"; };
+		3E0AD6A6121415DD00CFDDAC /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
+		3E0AD6A7121415DD00CFDDAC /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
+		3E0AD6A8121415DD00CFDDAC /* AssetEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntry.h; sourceTree = "<group>"; };
+		3E0AD6A9121415DD00CFDDAC /* AssetEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntry.m; sourceTree = "<group>"; };
+		3E0AD6AA121415DD00CFDDAC /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
+		3E0AD6AB121415DD00CFDDAC /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
+		3E0AD6AC121415DD00CFDDAC /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
+		3E0AD6AD121415DD00CFDDAC /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
+		3E0AD6AE121415DD00CFDDAC /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
+		3E0AD6AF121415DD00CFDDAC /* Journal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journal.m; sourceTree = "<group>"; };
+		3E0AD6B0121415DD00CFDDAC /* Ledger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ledger.h; sourceTree = "<group>"; };
+		3E0AD6B1121415DD00CFDDAC /* Ledger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ledger.m; sourceTree = "<group>"; };
+		3E0AD6B2121415DD00CFDDAC /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
+		3E0AD6B3121415DD00CFDDAC /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
+		3E0AD6B4121415DD00CFDDAC /* Transaction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Transaction.h; sourceTree = "<group>"; };
+		3E0AD6B5121415DD00CFDDAC /* Transaction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Transaction.m; sourceTree = "<group>"; };
 		3E13EE58114007D600523938 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		3E13EE6D114008E400523938 /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
 		3E13EE6E114008E400523938 /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
 		3E13EE6F114008E400523938 /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
 		3E197B0E121268CF00105B20 /* CrashReportSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReportSender.h; sourceTree = "<group>"; };
 		3E197B0F121268CF00105B20 /* CrashReportSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReportSender.m; sourceTree = "<group>"; };
-		3E1AE0AF0F97416F00AAB4AC /* AssetEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetEntry.h; sourceTree = "<group>"; };
-		3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntry.m; sourceTree = "<group>"; };
-		3E1AE0B10F97416F00AAB4AC /* Journal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Journal.h; sourceTree = "<group>"; };
-		3E1AE0B20F97416F00AAB4AC /* Journal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Journal.m; sourceTree = "<group>"; };
-		3E1AE0B30F97416F00AAB4AC /* Ledger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Ledger.h; sourceTree = "<group>"; };
-		3E1AE0B40F97416F00AAB4AC /* Ledger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Ledger.m; sourceTree = "<group>"; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3E27103F0EAA196A00E57E51 /* ExportBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportBase.h; sourceTree = "<group>"; };
 		3E2710400EAA196A00E57E51 /* ExportBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportBase.m; sourceTree = "<group>"; };
@@ -397,8 +405,6 @@
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E40E98811F33C95001E91B5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3E4D1CF00EBB4599006050FE /* Report.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Report.m; sourceTree = "<group>"; };
-		3E4D1CF20EBB45AB006050FE /* Report.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Report.h; sourceTree = "<group>"; };
 		3E4D1D1A0EBB471E006050FE /* ReportVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportVC.h; sourceTree = "<group>"; };
 		3E4D1D1B0EBB471E006050FE /* ReportVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportVC.m; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
@@ -461,8 +467,6 @@
 		3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryListView.xib; sourceTree = "<group>"; };
 		3EB2FCF10EC7338D00F356A3 /* ReportCatVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatVC.h; sourceTree = "<group>"; };
 		3EB2FCF20EC7339600F356A3 /* ReportCatVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatVC.m; sourceTree = "<group>"; };
-		3EB35B270EC302DD0008FAF0 /* Asset.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Asset.m; sourceTree = "<group>"; };
-		3EB35B290EC302E90008FAF0 /* Asset.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Asset.h; sourceTree = "<group>"; };
 		3EB554B3103B92D700BA13D4 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		3EB5552D103B930D00BA13D4 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 		3EB55574103B96CE00BA13D4 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -482,8 +486,6 @@
 		3ECEF32A11E9C64E00738E69 /* TransactionBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionBase.m; sourceTree = "<group>"; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
-		3ED8D2F30EC72F9000BC723D /* Category.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Category.h; sourceTree = "<group>"; };
-		3ED8D2F40EC72F9E00BC723D /* Category.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Category.m; sourceTree = "<group>"; };
 		3ED8D2F80EC72FBE00BC723D /* CategoryListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryListVC.h; sourceTree = "<group>"; };
 		3ED8D2F90EC72FC800BC723D /* CategoryListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryListVC.m; sourceTree = "<group>"; };
 		3ED97C130F1A0D8D0063A578 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServer.h; sourceTree = "<group>"; };
@@ -576,8 +578,6 @@
 		3EF054821182DCB200411C71 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
 		3EF1BE050EC33CF0000F2EF0 /* AssetListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AssetListVC.h; sourceTree = "<group>"; };
 		3EF1BE060EC33CFA000F2EF0 /* AssetListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVC.m; sourceTree = "<group>"; };
-		3EF914FD0E6C1F8300E31816 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
-		3EF914FE0E6C1F8800E31816 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
 		3EFD00080F95E17B00F4B4C4 /* EditTypeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditTypeVC.h; sourceTree = "<group>"; };
 		3EFD00090F95E17B00F4B4C4 /* EditTypeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditTypeVC.m; sourceTree = "<group>"; };
 		3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditTypeView.xib; sourceTree = "<group>"; };
@@ -792,6 +792,36 @@
 			path = System/Library/Frameworks;
 			sourceTree = SDKROOT;
 		};
+		3E0AD6A5121415C300CFDDAC /* models */ = {
+			isa = PBXGroup;
+			children = (
+				3E0AD6A6121415DD00CFDDAC /* Asset.h */,
+				3E0AD6A7121415DD00CFDDAC /* Asset.m */,
+				3E0AD6A8121415DD00CFDDAC /* AssetEntry.h */,
+				3E0AD6A9121415DD00CFDDAC /* AssetEntry.m */,
+				3E0AD6AA121415DD00CFDDAC /* Category.h */,
+				3E0AD6AB121415DD00CFDDAC /* Category.m */,
+				3E0AD6AC121415DD00CFDDAC /* DataModel.h */,
+				3E0AD6AD121415DD00CFDDAC /* DataModel.m */,
+				3E0AD6AE121415DD00CFDDAC /* Journal.h */,
+				3E0AD6AF121415DD00CFDDAC /* Journal.m */,
+				3E0AD6B0121415DD00CFDDAC /* Ledger.h */,
+				3E0AD6B1121415DD00CFDDAC /* Ledger.m */,
+				3E0AD6B2121415DD00CFDDAC /* Report.h */,
+				3E0AD6B3121415DD00CFDDAC /* Report.m */,
+				3E0AD6B4121415DD00CFDDAC /* Transaction.h */,
+				3E0AD6B5121415DD00CFDDAC /* Transaction.m */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		3E0AD6D21214160600CFDDAC /* controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = controllers;
+			sourceTree = "<group>";
+		};
 		3E13EE661140085000523938 /* GoogleAds */ = {
 			isa = PBXGroup;
 			children = (
@@ -831,28 +861,14 @@
 		3EB540870E8E921700608B77 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				3E0AD6D21214160600CFDDAC /* controllers */,
+				3E0AD6A5121415C300CFDDAC /* models */,
 				3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */,
 				3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */,
-				3EF914FD0E6C1F8300E31816 /* DataModel.h */,
-				3EF914FE0E6C1F8800E31816 /* DataModel.m */,
 				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
 				3E98A66811E8368800B7F289 /* CurrencyManager.m */,
-				3E1AE0B10F97416F00AAB4AC /* Journal.h */,
-				3E1AE0B20F97416F00AAB4AC /* Journal.m */,
-				3E1AE0B30F97416F00AAB4AC /* Ledger.h */,
-				3E1AE0B40F97416F00AAB4AC /* Ledger.m */,
-				3EB35B290EC302E90008FAF0 /* Asset.h */,
-				3EB35B270EC302DD0008FAF0 /* Asset.m */,
-				3E1AE0AF0F97416F00AAB4AC /* AssetEntry.h */,
-				3E1AE0B00F97416F00AAB4AC /* AssetEntry.m */,
-				3E0519120E6A9D09008F1F65 /* Transaction.h */,
-				3E0519130E6A9D09008F1F65 /* Transaction.m */,
-				3ED8D2F30EC72F9000BC723D /* Category.h */,
-				3ED8D2F40EC72F9E00BC723D /* Category.m */,
 				3E97AEF011EB26FA004296F3 /* DescLRUManager.h */,
 				3E97AEF111EB26FA004296F3 /* DescLRUManager.m */,
-				3E4D1CF20EBB45AB006050FE /* Report.h */,
-				3E4D1CF00EBB4599006050FE /* Report.m */,
 				3E7BB134115399C5004B7D03 /* Config.h */,
 				3E7BB135115399C5004B7D03 /* Config.m */,
 				3E27103F0EAA196A00E57E51 /* ExportBase.h */,
@@ -1265,8 +1281,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
-				3E0519140E6A9D09008F1F65 /* Transaction.m in Sources */,
-				3EF914FF0E6C1F8800E31816 /* DataModel.m in Sources */,
 				3E0887FB0E6EACEB00739AC9 /* EditDateVC.m in Sources */,
 				3E0887FE0E6EACF400739AC9 /* EditDescVC.m in Sources */,
 				3E0888120E6EAEEB00739AC9 /* TransactionVC.m in Sources */,
@@ -1276,15 +1290,12 @@
 				3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */,
 				3E2710460EAA196A00E57E51 /* ExportCsv.m in Sources */,
 				3E2710470EAA196A00E57E51 /* ExportOfx.m in Sources */,
-				3E4D1CF10EBB4599006050FE /* Report.m in Sources */,
 				3E4D1D1C0EBB471E006050FE /* ReportVC.m in Sources */,
 				1D3623260D0F684500981E51 /* AppDelegate.m in Sources */,
-				3EB35B280EC302DD0008FAF0 /* Asset.m in Sources */,
 				3E0A9E3A0EC33894005195A5 /* TransactionListVC.m in Sources */,
 				3EF1BE070EC33CFA000F2EF0 /* AssetListVC.m in Sources */,
 				3EA0114E0EC34626008CEEB7 /* AssetVC.m in Sources */,
 				3E5B83AE0EC359730035AF05 /* GenEditTextVC.m in Sources */,
-				3ED8D2F50EC72F9E00BC723D /* Category.m in Sources */,
 				3ED8D2FA0EC72FC800BC723D /* CategoryListVC.m in Sources */,
 				3EB2FCF30EC7339600F356A3 /* ReportCatVC.m in Sources */,
 				3E5868290EEFFCAF00951C2F /* EditMemoVC.m in Sources */,
@@ -1292,9 +1303,6 @@
 				3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */,
 				3E9B99820F1E0480000288CF /* PinVC.m in Sources */,
 				3EFD000A0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
-				3E1AE0B50F97416F00AAB4AC /* AssetEntry.m in Sources */,
-				3E1AE0B60F97416F00AAB4AC /* Journal.m in Sources */,
-				3E1AE0B70F97416F00AAB4AC /* Ledger.m in Sources */,
 				3EAEBC5D0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B35EA0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365D0FA2DD8700FCF592 /* ReportCell.m in Sources */,
@@ -1316,6 +1324,14 @@
 				3E7109B9121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
 				3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */,
 				3E004CBB1212DFC400776D68 /* DateFormatter2.m in Sources */,
+				3E0AD6BE121415DE00CFDDAC /* Asset.m in Sources */,
+				3E0AD6BF121415DE00CFDDAC /* AssetEntry.m in Sources */,
+				3E0AD6C0121415DE00CFDDAC /* Category.m in Sources */,
+				3E0AD6C1121415DE00CFDDAC /* DataModel.m in Sources */,
+				3E0AD6C2121415DE00CFDDAC /* Journal.m in Sources */,
+				3E0AD6C3121415DE00CFDDAC /* Ledger.m in Sources */,
+				3E0AD6C4121415DE00CFDDAC /* Report.m in Sources */,
+				3E0AD6C5121415DE00CFDDAC /* Transaction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,8 +1341,6 @@
 			files = (
 				3E8B25950F348C090007929E /* main.m in Sources */,
 				3E8B25960F348C090007929E /* AppDelegate.m in Sources */,
-				3E8B25970F348C090007929E /* Transaction.m in Sources */,
-				3E8B25980F348C090007929E /* DataModel.m in Sources */,
 				3E8B25990F348C090007929E /* EditDateVC.m in Sources */,
 				3E8B259A0F348C090007929E /* EditDescVC.m in Sources */,
 				3E8B259C0F348C090007929E /* TransactionVC.m in Sources */,
@@ -1336,14 +1350,11 @@
 				3E8B25A00F348C090007929E /* ExportBase.m in Sources */,
 				3E8B25A10F348C090007929E /* ExportCsv.m in Sources */,
 				3E8B25A20F348C090007929E /* ExportOfx.m in Sources */,
-				3E8B25A30F348C090007929E /* Report.m in Sources */,
 				3E8B25A40F348C090007929E /* ReportVC.m in Sources */,
-				3E8B25A70F348C090007929E /* Asset.m in Sources */,
 				3E8B25A80F348C090007929E /* TransactionListVC.m in Sources */,
 				3E8B25A90F348C090007929E /* AssetListVC.m in Sources */,
 				3E8B25AA0F348C090007929E /* AssetVC.m in Sources */,
 				3E8B25AB0F348C090007929E /* GenEditTextVC.m in Sources */,
-				3E8B25AD0F348C090007929E /* Category.m in Sources */,
 				3E8B25AE0F348C090007929E /* CategoryListVC.m in Sources */,
 				3E8B25AF0F348C090007929E /* ReportCatVC.m in Sources */,
 				3E8B25B00F348C090007929E /* EditMemoVC.m in Sources */,
@@ -1351,9 +1362,6 @@
 				3E8B25B20F348C090007929E /* BackupServer.m in Sources */,
 				3E8B25B40F348C090007929E /* PinVC.m in Sources */,
 				3EFD000B0F95E17B00F4B4C4 /* EditTypeVC.m in Sources */,
-				3E1AE0B80F97416F00AAB4AC /* AssetEntry.m in Sources */,
-				3E1AE0B90F97416F00AAB4AC /* Journal.m in Sources */,
-				3E1AE0BA0F97416F00AAB4AC /* Ledger.m in Sources */,
 				3EAEBC5E0F9DE02700AD3D15 /* GenSelectListVC.m in Sources */,
 				3E6B35EB0FA2A84E00FCF592 /* ReportCatCell.m in Sources */,
 				3E6B365E0FA2DD8700FCF592 /* ReportCell.m in Sources */,
@@ -1375,6 +1383,14 @@
 				3E7109B7121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
 				3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */,
 				3E004CBC1212DFC400776D68 /* DateFormatter2.m in Sources */,
+				3E0AD6C6121415DE00CFDDAC /* Asset.m in Sources */,
+				3E0AD6C7121415DE00CFDDAC /* AssetEntry.m in Sources */,
+				3E0AD6C8121415DE00CFDDAC /* Category.m in Sources */,
+				3E0AD6C9121415DE00CFDDAC /* DataModel.m in Sources */,
+				3E0AD6CA121415DE00CFDDAC /* Journal.m in Sources */,
+				3E0AD6CB121415DE00CFDDAC /* Ledger.m in Sources */,
+				3E0AD6CC121415DE00CFDDAC /* Report.m in Sources */,
+				3E0AD6CD121415DE00CFDDAC /* Transaction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1418,16 +1434,8 @@
 				3EE401A711F335F400171A15 /* UIViewControllerTest.m in Sources */,
 				3EE401AB11F3362800171A15 /* main.m in Sources */,
 				3EE4031C11F3374000171A15 /* AdUtil.m in Sources */,
-				3EE4031D11F3374000171A15 /* DataModel.m in Sources */,
 				3EE4031E11F3374000171A15 /* CurrencyManager.m in Sources */,
-				3EE4031F11F3374000171A15 /* Journal.m in Sources */,
-				3EE4032011F3374000171A15 /* Ledger.m in Sources */,
-				3EE4032111F3374000171A15 /* Asset.m in Sources */,
-				3EE4032211F3374000171A15 /* AssetEntry.m in Sources */,
-				3EE4032311F3374000171A15 /* Transaction.m in Sources */,
-				3EE4032411F3374000171A15 /* Category.m in Sources */,
 				3EE4032511F3374000171A15 /* DescLRUManager.m in Sources */,
-				3EE4032711F3374000171A15 /* Report.m in Sources */,
 				3EE4032811F3374000171A15 /* Config.m in Sources */,
 				3EE4032911F3374000171A15 /* ExportBase.m in Sources */,
 				3EE4032A11F3374000171A15 /* ExportCsv.m in Sources */,
@@ -1468,6 +1476,14 @@
 				3E7109BB121108ED00C47539 /* UIDevice-Hardware.m in Sources */,
 				3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */,
 				3E004CBA1212DFC400776D68 /* DateFormatter2.m in Sources */,
+				3E0AD6B6121415DD00CFDDAC /* Asset.m in Sources */,
+				3E0AD6B7121415DE00CFDDAC /* AssetEntry.m in Sources */,
+				3E0AD6B8121415DE00CFDDAC /* Category.m in Sources */,
+				3E0AD6B9121415DE00CFDDAC /* DataModel.m in Sources */,
+				3E0AD6BA121415DE00CFDDAC /* Journal.m in Sources */,
+				3E0AD6BB121415DE00CFDDAC /* Ledger.m in Sources */,
+				3E0AD6BC121415DE00CFDDAC /* Report.m in Sources */,
+				3E0AD6BD121415DE00CFDDAC /* Transaction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
