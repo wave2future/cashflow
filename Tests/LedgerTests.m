@@ -12,6 +12,7 @@
 - (void)setUp
 {
     [TestCommon deleteDatabase];
+    [[DataModel instance] load];
     ledger = [DataModel ledger];
 }
 
