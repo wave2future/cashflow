@@ -46,6 +46,7 @@
     IBOutlet UIBarButtonItem *barActionButton;
     IBOutlet UIBarButtonItem *barSumLabel;
 
+    BOOL isInitial;
     Ledger *ledger;
 
     NSArray *iconArray;
@@ -64,6 +65,8 @@
 }
 
 @property(nonatomic,retain) UITableView *tableView;
+
+- (BOOL)_showInitialAsset;
 
 - (void)reload;
 

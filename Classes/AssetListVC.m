@@ -55,7 +55,8 @@
     tableView.rowHeight = 48;
     pinChecked = NO;
     asDisplaying = NO;
-
+    isInitial = YES;
+    
     ledger = [DataModel ledger];
 	
     // title 設定
@@ -89,11 +90,20 @@
     ASSERT(icon3 != nil);
     
     iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
-	
+ 
+    if (IS_IPAD) {
+        CGSize s = self.contentSizeForViewInPopover;
+        s.height = 600;
+        self.contentSizeForViewInPopover = s;
+    }
+}
+
+- (void)_showInitialAsset
+{
     // 最後に使った Asset に遷移する
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
-
+    
     Asset *asset = nil;
     if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
         asset = [ledger assetAtIndex:firstShowAssetIndex];
@@ -101,22 +111,16 @@
     if (IS_IPAD && asset == nil && [ledger assetCount] > 0) {
         asset = [ledger assetAtIndex:0];
     }
-
+    
     // TransactionListView を表示
     if (IS_IPAD) {
         splitTransactionListViewController.asset = asset;
         [splitTransactionListViewController reload];
     } else if (asset != nil) {
         TransactionListViewController *vc = 
-            [[[TransactionListViewController alloc] init] autorelease];
+        [[[TransactionListViewController alloc] init] autorelease];
         vc.asset = asset;
         [self.navigationController pushViewController:vc animated:NO];
-    }
- 
-    if (IS_IPAD) {
-        CGSize s = self.contentSizeForViewInPopover;
-        s.height = 600;
-        self.contentSizeForViewInPopover = s;
     }
 }
 
@@ -146,19 +150,26 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    [self reload];
     [super viewWillAppear:animated];
+    [self reload];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    if (!IS_IPAD) {
-        // 最初に起動する画面を資産一覧画面にする
+    [super viewDidAppear:animated];
+    
+    if (isInitial) {
+        // 最初の起動時の場合は、取引一覧画面に遷移する
+        isInitial = NO;
+        [self _showInitialAsset];
+    } 
+    else if (!IS_IPAD) {
+        // 初回以外：初期起動する画面を資産一覧画面に戻しておく
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
         [defaults synchronize];
     }
 
-    [super viewDidAppear:animated];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
