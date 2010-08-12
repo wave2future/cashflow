@@ -2,6 +2,8 @@
 	* GoogleAds attributes を autorelease しない (mutateError 対策)
 	* 前回、広告をロードできなかった場合はロードしないようにした
 	* AdSense ロードタイミングを変更 (->viewWillAppear)
+	* バグ修正: 最初のTransactionListVC のロードを、AssetListVC の
+	  viewDidApppear 内に移動。
 
 2010-08-11: Takuya Murakami
 	* ver 3.3.1 (beta)
