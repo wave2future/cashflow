@@ -1,6 +1,8 @@
 2010-08-12: Takuya Murakami
 	* GoogleAds attributes を autorelease しない (mutateError 対策)
-	
+	* 前回、広告をロードできなかった場合はロードしないようにした
+	* AdSense ロードタイミングを変更 (->viewWillAppear)
+
 2010-08-11: Takuya Murakami
 	* ver 3.3.1 (beta)
 	* loadGoogleAd 内で例外が発生するケースがあったため、例外を無視するようにした
