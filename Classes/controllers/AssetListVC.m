@@ -55,7 +55,6 @@
     tableView.rowHeight = 48;
     pinChecked = NO;
     asDisplaying = NO;
-    isInitial = YES;
     
     ledger = [DataModel ledger];
 	
@@ -155,6 +154,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    static BOOL isInitial = YES;
+
     [super viewDidAppear:animated];
     
     if (isInitial) {
