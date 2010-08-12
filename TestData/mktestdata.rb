@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-MAX_ASSET = 4
+MAX_ASSET = 13
 MAX_CATEGORY = 5
 
 def initTable
@@ -12,9 +12,18 @@ end
 def initAssets
     puts <<EOF
 INSERT INTO "Assets" VALUES(1,'現金',0,7000.0,99999);
-INSERT INTO "Assets" VALUES(2,'ABC銀行',1,500000.0,99999);
-INSERT INTO "Assets" VALUES(3,'XYZカード',1,-30000.0,99999);
-INSERT INTO "Assets" VALUES(4,'xxxカード',1,-20000.0,99999);
+INSERT INTO "Assets" VALUES(2,'A銀行',1,500000.0,99999);
+INSERT INTO "Assets" VALUES(3,'B銀行',1,500000.0,99999);
+INSERT INTO "Assets" VALUES(4,'C銀行',1,500000.0,99999);
+INSERT INTO "Assets" VALUES(5,'D銀行',1,500000.0,99999);
+INSERT INTO "Assets" VALUES(6,'E銀行',1,500000.0,99999);
+INSERT INTO "Assets" VALUES(7,'F銀行',1,500000.0,99999);
+INSERT INTO "Assets" VALUES(8,'Gカード',2,-30000.0,99999);
+INSERT INTO "Assets" VALUES(9,'Hカード',2,-30000.0,99999);
+INSERT INTO "Assets" VALUES(10,'Iカード',2,-30000.0,99999);
+INSERT INTO "Assets" VALUES(11,'Jカード',2,-30000.0,99999);
+INSERT INTO "Assets" VALUES(12,'Kカード',2,-30000.0,99999);
+INSERT INTO "Assets" VALUES(13,'Lカード',2,-30000.0,99999);
 EOF
 end
 
@@ -59,7 +68,9 @@ def createTransactions
             end
         end
 
-        puts "INSERT INTO \"Transactions\" VALUES(#{pkey},#{asset},-1,#{d},#{type},#{cat},#{pkey*10.0},'hoge','xxx');"
+	desc = "Desc:#{pkey}"
+	memo = "Transaction has #{pkey} primary key."
+        puts "INSERT INTO \"Transactions\" VALUES(#{pkey},#{asset},-1,#{d},#{type},#{cat},#{pkey*10.0},'#{desc}','#{memo}');"
 
         pkey += 1
     end
