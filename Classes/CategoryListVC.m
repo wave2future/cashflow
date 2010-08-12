@@ -120,27 +120,19 @@
     } else {
         Category *c = [[DataModel instance].categories categoryAtIndex:indexPath.row];
         cell.textLabel.text = c.name;
-
     }
-	
-    return cell;
-}
 
-// アクセサリタイプを返す
-- (UITableViewCellAccessoryType)tableView:(UITableView *)aTableView accessoryTypeForRowWithIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCellAccessoryType type;
-	
     if (isSelectMode && !self.editing) {
         if (indexPath.row == selectedIndex) {
-            type = UITableViewCellAccessoryCheckmark;
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
-            type = UITableViewCellAccessoryNone;
+            cell.accessoryType = UITableViewCellAccessoryNone;
         }
     } else {
-        type = UITableViewCellAccessoryDisclosureIndicator;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     } 
-    return type;
+	
+    return cell;
 }
 
 //
