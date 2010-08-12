@@ -4,7 +4,8 @@
 	* AdSense ロードタイミングを変更 (->viewWillAppear)
 	* バグ修正: 最初のTransactionListVC のロードを、AssetListVC の
 	  viewDidApppear 内に移動。
-
+	* データロードを別スレッドで実行するようにした
+	
 2010-08-11: Takuya Murakami
 	* ver 3.3.1 (beta)
 	* loadGoogleAd 内で例外が発生するケースがあったため、例外を無視するようにした
