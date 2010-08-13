@@ -91,12 +91,14 @@
 
 - (void)checkPin
 {
-    PinController *pinController = [[[PinController alloc] init] autorelease];
-    if (IS_IPAD) {
-        [pinController firstPinCheck:splitViewController];
-    } else {
-        [pinController firstPinCheck:navigationController];
-    }    
+    PinController *pinController = [PinController pinController];
+    if (pinController != nil) {
+        if (IS_IPAD) {
+            [pinController firstPinCheck:splitViewController];
+        } else {
+            [pinController firstPinCheck:navigationController];
+        }    
+    }
 }
 
 

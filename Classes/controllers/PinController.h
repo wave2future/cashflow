@@ -49,6 +49,8 @@
 @property(nonatomic,retain) NSString *pin;
 @property(nonatomic,retain) NSString *newPin;
 
++ (PinController *)pinController;
+
 - (void)firstPinCheck:(UIViewController *)currentVc;
 - (void)modifyPin:(UIViewController *)currentVc;
 

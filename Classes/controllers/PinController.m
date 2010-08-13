@@ -43,6 +43,17 @@
 #define ENTER_NEW_PIN1 2
 #define ENTER_NEW_PIN2 3
 
+static PinController *thePinController = nil;
+
++ (PinController *)pinController
+{
+    if (thePinController == nil) {
+        thePinController = [[PinController alloc] init];
+        return thePinController;
+    }
+    return nil;
+}
+
 - (id)init
 {
     self = [super init];
@@ -73,6 +84,7 @@
 {
     [navigationController dismissModalViewControllerAnimated:YES];
     [self autorelease];
+    thePinController = nil;
 }
 
 - (void)firstPinCheck:(UIViewController *)currentVc
