@@ -61,6 +61,8 @@
 
 - (void)viewDidLoad
 {
+    //NSLog(@"TransactionListViewController:viewDidLoad");
+
     [super viewDidLoad];
 	
     // title 設定
@@ -93,6 +95,8 @@
 
 - (void)viewDidUnload
 {
+    //NSLog(@"TransactionListViewController:viewDidUnload");
+
 #if FREE_VERSION
     [adViewController release];
     adViewController = nil;
@@ -140,6 +144,8 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    //NSLog(@"TransactionListViewController:viewWillAppear");
+
     [super viewWillAppear:animated];
     [self reload];
 
@@ -200,6 +206,8 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    //NSLog(@"TransactionListViewController:viewDidAppear");
+
     [super viewDidAppear:animated];
 }
 

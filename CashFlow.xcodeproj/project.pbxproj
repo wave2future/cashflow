@@ -771,6 +771,10 @@
 				3E0AD6E51214169700CFDDAC /* AssetListVC.m */,
 				3E0AD6E61214169700CFDDAC /* AssetVC.h */,
 				3E0AD6E71214169700CFDDAC /* AssetVC.m */,
+				3E0AD70C1214169700CFDDAC /* TransactionListVC.h */,
+				3E0AD70D1214169700CFDDAC /* TransactionListVC.m */,
+				3E0AD70E1214169700CFDDAC /* TransactionVC.h */,
+				3E0AD70F1214169700CFDDAC /* TransactionVC.m */,
 				3E0AD6E81214169700CFDDAC /* CalcVC.h */,
 				3E0AD6E91214169700CFDDAC /* CalcVC.m */,
 				3E0AD6EA1214169700CFDDAC /* CategoryListVC.h */,
@@ -807,10 +811,6 @@
 				3E0AD7091214169700CFDDAC /* ReportCell.m */,
 				3E0AD70A1214169700CFDDAC /* ReportVC.h */,
 				3E0AD70B1214169700CFDDAC /* ReportVC.m */,
-				3E0AD70C1214169700CFDDAC /* TransactionListVC.h */,
-				3E0AD70D1214169700CFDDAC /* TransactionListVC.m */,
-				3E0AD70E1214169700CFDDAC /* TransactionVC.h */,
-				3E0AD70F1214169700CFDDAC /* TransactionVC.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";

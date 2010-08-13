@@ -51,6 +51,8 @@
 
 - (void)viewDidLoad
 {
+    //NSLog(@"AssetListViewController:viewDidLoad");
+
     [super viewDidLoad];
     tableView.rowHeight = 48;
     pinChecked = NO;
@@ -129,6 +131,8 @@
 #pragma mark DataModelDelegate
 - (void)dataModelLoaded
 {
+    //NSLog(@"AssetListViewController:dataModelLoaded");
+
     isLoadDone = YES;
     ledger = [DataModel ledger];
     
@@ -172,6 +176,7 @@
 }
 
 - (void)didReceiveMemoryWarning {
+    NSLog(@"AssetListViewController:didReceiveMemoryWarning");
     //[super didReceiveMemoryWarning];
 }
 
@@ -199,11 +204,16 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    //NSLog(@"AssetListViewController:viewWillAppear");
+    
     [super viewWillAppear:animated];
     [self reload];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated
+{
+    //NSLog(@"AssetListViewController:viewDidAppear");
+
     static BOOL isInitial = YES;
 
     [super viewDidAppear:animated];
