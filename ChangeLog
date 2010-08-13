@@ -1,4 +1,7 @@
 2010-08-13 : Takuya Murakami
+	* PIN UI 表示中にサスペンド/レジュームしたときに UI が二重になるバグを修正
+
+2010-08-13 : Takuya Murakami
 	* ver 3.3.1-beta-100813
 	
 2010-08-12: Takuya Murakami
