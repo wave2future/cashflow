@@ -6,6 +6,9 @@
 @interface AssetListViewControllerTest : UINavigationBarBasedTest {
     AssetListViewController *vc;
 }
+
+- (void)waitUntilDataLoaded;
+
 @end
 
 @implementation AssetListViewControllerTest
@@ -27,12 +30,22 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setInteger:-1 forKey:@"firstShowAssetIndex"];
 
-    [super setUp];
+    [super setUp]; // ここで rootViewController が生成される
 }
 
 - (void)tearDown
 {
     [super tearDown];
+}
+
+- (void)waitUntilDataLoaded
+{
+    // AssetListViewController では、データロードは別スレッドで行われる
+    // ここでデータロード完了を待つようにする
+    // ただし、setUp からは呼べない(ViewController のハンドラがまだ呼ばれていない)
+    while (![DataModel instance].isLoadDone) {
+        [NSThread sleepForTimeInterval:0.01];
+    }
 }
 
 - (NSString *)cellText:(int)row section:(int)section
@@ -46,6 +59,8 @@
 - (void)testNormal
 {
     NSLog(@"testNormal");
+
+    [self waitUntilDataLoaded];
     
     AssertEqualInt(1, [vc numberOfSectionsInTableView:vc.tableView]);
 
