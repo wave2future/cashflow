@@ -130,15 +130,18 @@
 - (void)dataModelLoaded
 {
     isLoadDone = YES;
+    ledger = [DataModel ledger];
     
+    [self performSelectorOnMainThread:@selector(_dataModelLoadedOnMainThread:) withObject:nil waitUntilDone:NO];
+}
+
+- (void)_dataModelLoadedOnMainThread:(id)dummy
+{
     // ActivityIndicator を消す
     [activityIndicator stopAnimating];
     [loadingView removeFromSuperview];
 
-    // initial
-    ledger = [DataModel ledger];
     [self reload];
-
     [self _showInitialAsset];
 }
 

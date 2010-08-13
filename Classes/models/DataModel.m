@@ -117,7 +117,9 @@ static DataModel *theDataModel = nil;
     [self load];
     
     isLoadDone = YES;
-    [self performSelectorOnMainThread:@selector(loadDone:) withObject:nil waitUntilDone:NO];
+    if (delegate) {
+        [delegate dataModelLoaded];
+    }
     
     [pool release];
     [NSThread exit];
@@ -147,13 +149,6 @@ static DataModel *theDataModel = nil;
 
     // Load categories
     [categories reload];
-}
-
-- (void)loadDone:(id)dummy
-{
-    if (delegate) {
-        [delegate dataModelLoaded];
-    }
 }
 
 ////////////////////////////////////////////////////////////////////////////

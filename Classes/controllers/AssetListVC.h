@@ -69,6 +69,7 @@
 
 @property(nonatomic,retain) UITableView *tableView;
 
+- (void)_dataModelLoadedOnMainThread:(id)dummy;
 - (void)_showInitialAsset;
 
 - (void)reload;

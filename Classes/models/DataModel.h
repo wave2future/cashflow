@@ -79,7 +79,6 @@
 - (void)startLoad:(id<DataModelDelegate>)delegate;
 - (void)loadThread:(id)dummy;
 - (void)load;
-- (void)loadDone:(id)dummy;
 
 // utility operation
 //+ (NSString*)currencyString:(double)x;
