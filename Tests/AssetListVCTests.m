@@ -20,7 +20,6 @@
 - (void)setUp
 {
     [TestCommon installDatabase:@"testdata1"];
-    [[DataModel instance] load];
 
     //[self rootViewController];
     

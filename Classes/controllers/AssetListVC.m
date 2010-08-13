@@ -56,7 +56,7 @@
     pinChecked = NO;
     asDisplaying = NO;
     
-    ledger = [DataModel ledger];
+    ledger = nil;
 	
     // title 設定
     self.title = NSLocalizedString(@"Assets", @"");
@@ -97,7 +97,7 @@
     }
     
     // データロード開始
-    isLoadDone = false;
+    isLoadDone = NO;
     [[DataModel instance] startLoad:self];
     
     // ActivityIndicator を表示させる
