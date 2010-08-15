@@ -61,7 +61,7 @@
 @property(nonatomic,retain) Journal *journal;
 @property(nonatomic,retain) Ledger *ledger;
 @property(nonatomic,retain) Categories *categories;
-@property(nonatomic,readonly) BOOL isLoadDone;
+@property(readonly) BOOL isLoadDone;
 
 + (DataModel *)instance;
 + (void)finalize;
