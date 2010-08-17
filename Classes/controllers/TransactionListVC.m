@@ -169,7 +169,11 @@
     
     // 画面下部固定で広告を作成する
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
-    adViewController.adSize = kGADAdSize320x50;
+    if (IS_IPAD) {
+        adViewController.adSize = kGADAdSize728x90;
+    } else {
+        adViewController.adSize = kGADAdSize320x50;
+    }
     adViewController.autoRefreshSeconds = 180;
     
     NSDictionary *attributes = [AdUtil adAttributes];
