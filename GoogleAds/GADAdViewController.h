@@ -15,16 +15,24 @@ typedef struct {
   NSUInteger height;
 } GADAdSize;
 
-// Supported ad sizes.
+// Supported ad sizes for all platforms.
 static GADAdSize const kGADAdSize320x50 = { 320, 50 };
 static GADAdSize const kGADAdSize300x250 = { 300, 250 };
 
+// Supported ad sizes for iPad only.
+static GADAdSize const kGADAdSize468x60 = { 468, 60 };
+static GADAdSize const kGADAdSize728x90 = { 728, 90 };
+
 // Ad click actions
 typedef enum {
-  // Launch the advertiser's website in Safari
-  GAD_ACTION_LAUNCH_SAFARI,
-  // Display the advertiser's website in the app (as a subview of the window)
+  // Display the advertiser's website in the app (as a subview of the window).
+  // This is the default behavior.
   GAD_ACTION_DISPLAY_INTERNAL_WEBSITE_VIEW,
+
+  // Don't take any action other than to register the click.
+  // NOTE: This is only available for DoubleClick ads.  It will be ignored for
+  // AdSense ads.
+  GAD_ACTION_DISPLAY_NONE
 } GADAdClickAction;
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -88,7 +96,7 @@ typedef enum {
          withError:(NSError *) error;
 
 // |adControllerActionModelForAdClick:| will be called when a user taps on an
-// ad. The delegate can override the default behavior (opening in Safari).
+// ad. The delegate can override the default behavior.
 - (GADAdClickAction)adControllerActionModelForAdClick:
     (GADAdViewController *)adController;
 
