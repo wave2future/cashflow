@@ -47,6 +47,7 @@
     self = [super initWithNibName:@"EditDescView" bundle:nil];
     if (self) {
         category = -1;
+        descArray = nil;
     }
     return self;
 }
@@ -85,6 +86,7 @@
     [tableView release];
     [textField release];
     [description release];
+    [descArray release];
     [super dealloc];
 }
 
@@ -95,6 +97,7 @@
     textField.text = self.description;
     [super viewWillAppear:animated];
 
+    [descArray release];
     descArray = [DescLRUManager getDescLRUStrings:category];
     [descArray retain];
 
@@ -104,11 +107,10 @@
     [tableView reloadData];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [super viewWillDisappear:animated];
-    [descArray release];
-}
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [super viewWillDisappear:animated];
+//}
 
 - (void)doneAction
 {
