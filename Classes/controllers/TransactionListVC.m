@@ -149,9 +149,11 @@
     [super viewWillAppear:animated];
     [self reload];
 
+#if FREE_VERSION
     if (adViewController == nil) {
         [self _replaceAd];
     }
+#endif
 }
 
 - (void)_replaceAd
