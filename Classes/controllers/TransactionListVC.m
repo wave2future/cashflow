@@ -149,9 +149,14 @@
     [super viewWillAppear:animated];
     [self reload];
 
+    if (adViewController == nil) {
+        [self _replaceAd];
+    }
+}
+
+- (void)_replaceAd
+{
 #if FREE_VERSION
-    if (adViewController != nil) return; // already showed
-    
     // Google Adsense バグ暫定対処
     // AdSense が起動時に正しく表示されずクラッシュする場合があるため、
     // 前回正しく表示できていない場合は初回表示させない
@@ -165,12 +170,19 @@
     [defaults setInteger:0 forKey:@"ShowAds"];
     [defaults synchronize];
     
+    if (adViewController != nil) {
+        [adViewController.view removeFromSuperview];
+        [adViewController release];
+        adViewController = nil;
+    }
+    
     CGRect frame = tableView.bounds;
     
     // 画面下部固定で広告を作成する
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
     if (IS_IPAD) {
-        adViewController.adSize = kGADAdSize728x90;
+        //adViewController.adSize = kGADAdSize468x60;
+        adViewController.adSize = kGADAdSize320x50;
     } else {
         adViewController.adSize = kGADAdSize320x50;
     }
@@ -625,7 +637,10 @@
     self.popoverController = nil;
 }
 
+#pragma mark Rotation
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+    return YES;
     if (IS_IPAD) return YES;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
