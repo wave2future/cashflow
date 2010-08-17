@@ -1,7 +1,8 @@
 2010-08-17 : Takuya Murakami
 	* Google AFMA SDK 3.0 から 3.1 に更新
-	* iPad 向け広告サイズ変更
-
+	* iPad 向け広告サイズ変更(だが元に戻す)
+	* EditDescVC メモリ破壊バグを修正?
+	
 2010-08-13 : Takuya Murakami
 	* ver 3.3.1
 	* PIN UI 表示中にサスペンド/レジュームしたときに UI が二重になるバグを修正
