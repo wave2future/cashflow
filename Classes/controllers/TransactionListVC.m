@@ -137,7 +137,7 @@
     [self updateBalance];
     [self.tableView reloadData];
 
-    if (popoverController != nil) {
+    if (popoverController != nil && [popoverController isPopoverVisible]) {
         [popoverController dismissPopoverAnimated:YES];
     }
 }    

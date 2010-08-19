@@ -1,3 +1,6 @@
+2010-08-19 : Takuya Murakami
+	* バグ修正 : iPad, portrait モードで PIN View が表示されない
+
 2010-08-17 : Takuya Murakami
 	* Google AFMA SDK 3.0 から 3.1 に更新
 	* iPad 向け広告サイズ変更(だが元に戻す)
