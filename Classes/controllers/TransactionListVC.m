@@ -642,7 +642,6 @@
 #pragma mark Rotation
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return YES;
     if (IS_IPAD) return YES;
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
