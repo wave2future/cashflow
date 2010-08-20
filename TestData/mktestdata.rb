@@ -39,7 +39,7 @@ def createTransactions
     pkey = 1
     asset = 1
     year = 2010
-    month = 8
+    month = 1
     day = 1
     hour = 12
     min = 0
@@ -52,19 +52,23 @@ def createTransactions
         type = pkey % 3 + 1
         asset = pkey % MAX_ASSET + 1
         cat = pkey % MAX_CATEGORY + 1
+
+	sec += 1;
+	sec = 0 if (sec >= 60);
+
         min += 1
-        if (min >= 60)
-            min = 0
-            hour += 1
-            if (hour >= 24)
-                hour = 0
-                day += 1
-                if (day >= 31)
-                    day = 0
-                    month += 1
-                    if (month >= 12)
-                        year += 1
-                    end
+        min = 0 if (min >= 60);
+
+        hour += 1
+        if (hour >= 24)
+            hour = 0
+            day += 1
+            if (day >= 29)
+                day = 1
+                month += 1
+                if (month >= 12)
+		    month = 1
+                    year += 1
                 end
             end
         end
