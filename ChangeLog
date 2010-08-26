@@ -1,5 +1,6 @@
 2010-08-26 : Takuya Murakami
 	* 適用の履歴(LRU)を削除する処理を追加
+	* 保存確認機能を追加
 
 2010-08-20 : Takuya Murakami
 	* ver 3.3.2

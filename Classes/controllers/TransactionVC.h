@@ -55,10 +55,15 @@
     AssetEntry *editingEntry;
     Asset *asset;
 
+    BOOL isModified;
+
     NSArray *typeArray;
 	
     UIButton *delButton;
     UIButton *delPastButton;
+
+    UIActionSheet *asDelPast;
+    UIActionSheet *asCancelTransaction;
     
     UIPopoverController *currentPopoverController;
 }
@@ -68,11 +73,15 @@
 
 - (void)setTransactionIndex:(int)n;
 - (void)saveAction;
+- (void)cancelAction;
 
 - (void)delButtonTapped;
 - (void)delPastButtonTapped;
 
 // private
+- (void)_asDelPast:(int)buttonIndex;
+- (void)_asCancelTransaction:(int)buttonIndex;
+
 - (UITableViewCell *)getCellForField:(NSIndexPath*)indexPath tableView:(UITableView *)tableView;
 //- (UITableViewCell *)getCellForDelButton:(UITableView *)tableView isDeleteAll:(Boolean)flag;
 

@@ -57,11 +57,17 @@
 
 - (void)viewDidLoad
 {
+    isModified = NO;
+
     self.title = NSLocalizedString(@"Transaction", @"");
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                   target:self
                                                   action:@selector(saveAction)] autorelease];
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc]
+                                                  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+                                                  target:self
+                                                  action:@selector(cancelAction)] autorelease];
 
     typeArray = [[NSArray alloc] initWithObjects:
                                      NSLocalizedString(@"Payment", @""),
@@ -364,12 +370,16 @@
 // delegate : 下位 ViewController からの変更通知
 - (void)editDateViewChanged:(EditDateViewController *)vc
 {
+    isModified = YES;
+
     editingEntry.transaction.date = vc.date;
     [self _dismissPopover];
 }
 
 - (void)editTypeViewChanged:(EditTypeViewController*)vc
 {
+    isModified = YES;
+
     // autoPop == NO なので、自分で pop する
     [self.navigationController popToViewController:self animated:YES];
 
@@ -403,12 +413,16 @@
 
 - (void)calculatorViewChanged:(CalculatorViewController *)vc
 {
+    isModified = YES;
+
     [editingEntry setEvalue:vc.value];
     [self _dismissPopover];
 }
 
 - (void)editDescViewChanged:(EditDescViewController *)vc
 {
+    isModified = YES;
+
     editingEntry.transaction.description = vc.description;
 
     if (editingEntry.transaction.category < 0) {
@@ -420,12 +434,16 @@
 
 - (void)editMemoViewChanged:(EditMemoViewController*)vc identifier:(int)id
 {
+    isModified = YES;
+
     editingEntry.transaction.memo = vc.text;
     [self _dismissPopover];
 }
 
 - (void)categoryListViewChanged:(CategoryListViewController*)vc;
 {
+    isModified = YES;
+
     if (vc.selectedIndex < 0) {
         editingEntry.transaction.category = -1;
     } else {
@@ -450,21 +468,20 @@
 
 - (void)delPastButtonTapped
 {
-    UIActionSheet *as = [[UIActionSheet alloc]
-                            initWithTitle:nil delegate:self
-                            cancelButtonTitle:@"Cancel"
-                            destructiveButtonTitle:NSLocalizedString(@"Delete with all past transactions", @"")
-                            otherButtonTitles:nil];
-    as.actionSheetStyle = UIActionSheetStyleDefault;
-    [as showInView:self.view];
-    [as release];
+    asDelPast = [[UIActionSheet alloc]
+                    initWithTitle:nil delegate:self
+                    cancelButtonTitle:@"Cancel"
+                    destructiveButtonTitle:NSLocalizedString(@"Delete with all past transactions", @"")
+                    otherButtonTitles:nil];
+    asDelPast.actionSheetStyle = UIActionSheetStyleDefault;
+    [asDelPast showInView:self.view];
+    [asDelPast release];
 }
 
-- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+- (void)_asDelPast:(NSInteger)buttonIndex
 {
     if (buttonIndex != 0) {
-        //[self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:NO];
-        return; // cancelled;
+         return; // cancelled;
     }
 
     AssetEntry *e = [asset entryAt:transactionIndex];
@@ -496,6 +513,55 @@
     self.editingEntry = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)cancelAction
+{
+    if (isModified) {
+        asCancelTransaction =
+            [[UIActionSheet alloc]
+                initWithTitle:NSLocalizedString(@"Save this transaction?", @"")
+                delegate:self
+                cancelButtonTitle:@"Cancel"
+                destructiveButtonTitle:nil
+                otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"No", @""), nil];
+        asCancelTransaction.actionSheetStyle = UIActionSheetStyleDefault;
+        [asCancelTransaction showInView:self.view];
+        [asCancelTransaction release];
+    } else {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+- (void)_asCancelTransaction:(int)buttonIndex
+{
+    switch (buttonIndex) {
+    case 0:
+        // save
+        [self saveAction];
+        break;
+
+    case 1:
+        // do not save
+        [self.navigationController popViewControllerAnimated:YES];
+        break;
+
+    case 2:
+        // cancel
+        break;
+    }
+}
+
+#pragma mark ActionSheetDelegate
+
+- (void)actionSheet:(UIActionSheet*)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (actionSheet == asDelPast) {
+        [self _asDelPast:buttonIndex];
+    }
+    else if (actionSheet == asCancelTransaction) {
+        [self _asCancelTransaction:buttonIndex];
+    }
 }
 
 #pragma mark Rotation support
