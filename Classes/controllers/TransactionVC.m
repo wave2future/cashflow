@@ -522,7 +522,7 @@
             [[UIActionSheet alloc]
                 initWithTitle:NSLocalizedString(@"Save this transaction?", @"")
                 delegate:self
-                cancelButtonTitle:@"Cancel"
+             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
                 destructiveButtonTitle:nil
                 otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"No", @""), nil];
         asCancelTransaction.actionSheetStyle = UIActionSheetStyleDefault;
