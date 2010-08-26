@@ -25,6 +25,10 @@
 
 "Type" = "Type";
 "Category" = "Category";
+
+/* Transaction */
+"Save this transaction?" = "Save this transaction?";
+
 /* Category list */
 "Categories" = "Categories";
 "No category" = "No category";
