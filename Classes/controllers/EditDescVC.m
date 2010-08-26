@@ -98,7 +98,7 @@
     [super viewWillAppear:animated];
 
     [descArray release];
-    descArray = [DescLRUManager getDescLRUStrings:category];
+    descArray = [DescLRUManager getDescLRUs:category];
     [descArray retain];
 
     // キーボードを消す ###
@@ -181,10 +181,9 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"descCell"] autorelease];
     }
-    cell.textLabel.text = [descArray objectAtIndex:row];
+    cell.textLabel.text = [descArray objectAtIndex:row].description;
     return cell;
 }
-
 
 #pragma mark UITableViewDelegate
 
@@ -196,10 +195,36 @@
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 
     if (indexPath.section == 1) {
-        NSString *desc = [descArray objectAtIndex:indexPath.row];
+        NSString *desc = [descArray objectAtIndex:indexPath.row].description;
         textField.text = desc;
         [self doneAction];
     }
+}
+
+// 編集スタイルを返す
+- (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0) {
+        return UITableViewCellEditingStyleNone;
+    }
+    // 適用は削除可能
+    return UITableViewCellEditingStyleDelete;
+}
+
+// 削除処理
+- (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section != 1 ||
+        style != UITableViewCellEditingStyleDelete) {
+        return; // do nothing
+    }
+
+    DescLRU *lru = [descArray objectAtIndex:indexPath.row];
+    [lru delete]; // delete from DB
+
+    [descArray deleteObjectAtIndex:indexPath.row];
+
+    [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }
 
 #pragma mark -

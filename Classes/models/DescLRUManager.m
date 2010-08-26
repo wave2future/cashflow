@@ -98,19 +98,6 @@
     return ary;
 }
 
-+ (NSMutableArray *)getDescLRUStrings:(int)category
-{
-    NSMutableArray *ary = [self getDescLRUs:category];
-
-    // 文字列配列に変換
-    NSMutableArray *ss = [[[NSMutableArray alloc] init] autorelease];
-    for (DescLRU *lru in ary) {
-        [ss addObject:lru.description];
-    }
-
-    return ss;
-}
-
 #if 0
 + (void)gc
 {
