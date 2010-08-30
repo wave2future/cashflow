@@ -134,6 +134,13 @@ static PinController *thePinController = nil;
     [currentVc presentModalViewController:navigationController animated:YES];
 }
 
+#pragma mark PinViewDelegate
+
+- (BOOL)pinViewCheckPin:(PinViewController *)vc
+{
+    return [vc.value isEqualToString:pin];
+}
+
 - (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel
 {
     if (isCancel) {

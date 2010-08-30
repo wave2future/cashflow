@@ -126,6 +126,10 @@
     }
     valueLabel.text = p;
     [p release];
+
+    if ([delegate pinViewCheckPin:self]) {
+        [self doneAction:nil];
+    }
 }
 
 - (void)doneAction:(id)sender
