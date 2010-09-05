@@ -1115,6 +1115,7 @@
 			isa = PBXProject;
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "CashFlow" */;
 			compatibilityVersion = "Xcode 3.1";
+			developmentRegion = English;
 			hasScannedForEncodings = 1;
 			knownRegions = (
 				English,
@@ -1532,7 +1533,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1556,7 +1557,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1574,7 +1575,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -1598,7 +1599,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -1617,7 +1618,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad hoc distribution";
@@ -1643,7 +1644,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6020BB8D-8A9F-4FE6-90D0-D6D14B965EC4";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad hoc distribution";
@@ -1663,7 +1664,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = DebugCoverage;
@@ -1690,7 +1691,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = DebugCoverage;
@@ -1724,7 +1725,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = DebugCoverage;
@@ -1757,7 +1758,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = DebugCoverage;
 		};
@@ -1790,7 +1791,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1818,7 +1819,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1846,7 +1847,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -1876,7 +1877,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8571685E-D4FD-45DA-9971-98D2D61BA9C6";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad hoc distribution";
@@ -1907,7 +1908,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Debug;
 		};
@@ -1935,7 +1936,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1961,7 +1962,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = Distribution;
 		};
@@ -1986,7 +1987,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 			};
 			name = "Ad hoc distribution";
 		};
@@ -2005,7 +2006,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2023,7 +2024,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				SDKROOT = iphoneos4.0;
+				SDKROOT = iphoneos4.1;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
