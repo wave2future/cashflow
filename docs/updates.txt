@@ -1,3 +1,14 @@
+ver 3.3.2
+
+JP:
+- バグ修正 : 広告表示時にクラッシュすることがあったのを修正
+- バグ修正 : iPad で PIN 入力画面が表示されない問題を修正
+
+EN:
+- Bug fix: crashes with google ads.
+- Bug fix: PIN view is not showed on iPad.
+
+---
 ver 3.3
 
 JP:
