@@ -139,7 +139,7 @@ EOF
         SQLiteDatabase db = Database.instance();
 
         String[] param = { Integer.toString(pid) };
-        Cursor cursor = db.rawQuery("SELECT * FROM #{cdef.name} WHERE #{pkey} = ?;", param);
+        Cursor cursor = db.rawQuery("SELECT * FROM #{cdef.name} WHERE key = ?;", param);
 
         #{cdef.bcname} e = null;
         cursor.moveToFirst();
@@ -196,7 +196,7 @@ EOF
 
         SQLiteDatabase db = Database.instance();
 
-        this.pid = db.insert(#{cdef.name}, #{pkey}, getContentValues());
+        this.pid = db.insert(#{cdef.name}, key, getContentValues());
 
         //[db commitTransaction];
         isInserted = true;
@@ -213,14 +213,14 @@ EOF
         ContentValues cv = getContentValues();
 
         String[] whereArgs = { Long.toString(pid) };
-        db.update(#{cdef.bcname}, cv, "WHERE #{pkey} = ?", whereArgs);
+        db.update(#{cdef.bcname}, cv, "WHERE key = ?", whereArgs);
 
         //[db commitTransaction];
     }
 
     private ContentValues getContentValues()
     {
-        ContentValues cv = new ContentValues(#{cdef.count});
+        ContentValues cv = new ContentValues(#{cdef.members.length});
 EOF
 
     i = 1
@@ -228,7 +228,7 @@ EOF
         fh.puts "    cv.put(\"#{m}\", m);"
     end
 
-    fh.puts << EOF
+    fh.puts <<EOF
 
         return cv;
     }
@@ -242,7 +242,7 @@ EOF
         SQLiteDatabase db = Database.instance();
 
         String[] whereArgs = { Long.toString(pid) };
-        db.delete(#{cdef.bcname}, "WHERE #{pkey} = ?", whereArgs);
+        db.delete(#{cdef.bcname}, "WHERE key = ?", whereArgs);
     }
 
     /**
@@ -254,14 +254,14 @@ EOF
         if (cond == null) {
             cond = "";
         }
-        String sql = "DELETE FROM #{bc.name} " + cond;
+        String sql = "DELETE FROM #{cdef.bcname} " + cond;
         db.execSQL(sql);
     }
 
     // Internal functions
 
     public static String tableName() {
-        return "#{bc.name}";
+        return "#{cdef.bcname}";
     }
 }
 EOF
