@@ -43,13 +43,13 @@ PKEY = "key"
 def getJavaType(type)
     case type
     when "INTEGER"
-        return "int", "assign"
+        return "int";
     when "REAL"
-        return "double", "assign"
+        return "double";
     when "TEXT"
-        return "string", "retain"
+        return "String";
     when "DATE"
-        return "date", "retain"
+        return "Date";
     else
         puts "#{type} is not supported."
         exit 1
@@ -81,6 +81,7 @@ def generateImplementation(cdef, fh)
 
 package org.tmurakam.cashflow.ormapper;
 
+import java.util.Date;
 import java.util.ArrayList;
 import android.content.ContentValues;
 import android.database.*;
@@ -88,13 +89,13 @@ import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.ORRecord;
 
-public class #{cdef.bcname} extend ORRecord {
+public class #{cdef.bcname} extends ORRecord {
     public long pid;
     private boolean isInserted = false;
 
 EOF
     cdef.members.each do |m|
-        type, mem = getJavaType(cdef.types[m])
+        type = getJavaType(cdef.types[m])
         fh.puts "    public #{type} #{m};"
     end
     fh.puts
@@ -124,7 +125,6 @@ EOF
     */
     public static #{cdef.bcname} allocator() {
         return new #{cdef.bcname}();
-        return e;
     }
 
     // Read operations
@@ -175,7 +175,7 @@ EOF
         ArrayList<#{cdef.bcname}> array = new ArrayList<#{cdef.bcname}>();
 
         while (!cursor.isAfterLast()) {
-            Template e = allocator();
+            #{cdef.bcname} e = allocator();
             e._loadRow(cursor);
             array.add(e);
         }
@@ -184,7 +184,21 @@ EOF
 
     private void _loadRow(Cursor cursor) {
         this.pid = cursor.getInt(0);
-        // TBD
+EOF
+
+    i = 1
+    cdef.members.each do |m|
+        type = cdef.types[m];
+        if (type == "DATE")
+            fh.puts "        this.#{m} = str2date(cursor.getString(#{i}));"
+        else    
+            method = getMethodType(type);
+            fh.puts "        this.#{m} = cursor.get#{method}(#{i});"
+        end
+        i+=1
+    end
+
+    fh.puts <<EOF
 
         isInserted = true;
     }
@@ -196,7 +210,7 @@ EOF
 
         SQLiteDatabase db = Database.instance();
 
-        this.pid = db.insert(#{cdef.name}, key, getContentValues());
+        this.pid = db.insert("#{cdef.name}", "key"/*TBD*/, getContentValues());
 
         //[db commitTransaction];
         isInserted = true;
@@ -213,7 +227,7 @@ EOF
         ContentValues cv = getContentValues();
 
         String[] whereArgs = { Long.toString(pid) };
-        db.update(#{cdef.bcname}, cv, "WHERE key = ?", whereArgs);
+        db.update("#{cdef.name}", cv, "WHERE key = ?", whereArgs);
 
         //[db commitTransaction];
     }
@@ -225,7 +239,11 @@ EOF
 
     i = 1
     cdef.members.each do |m|
-        fh.puts "    cv.put(\"#{m}\", m);"
+        if (cdef.types[m] == "DATE")
+            fh.puts "        cv.put(\"#{m}\", date2str(this.#{m}));"
+        else
+            fh.puts "        cv.put(\"#{m}\", this.#{m});"
+        end
     end
 
     fh.puts <<EOF
@@ -242,7 +260,7 @@ EOF
         SQLiteDatabase db = Database.instance();
 
         String[] whereArgs = { Long.toString(pid) };
-        db.delete(#{cdef.bcname}, "WHERE key = ?", whereArgs);
+        db.delete("#{cdef.name}", "WHERE key = ?", whereArgs);
     }
 
     /**
@@ -254,14 +272,14 @@ EOF
         if (cond == null) {
             cond = "";
         }
-        String sql = "DELETE FROM #{cdef.bcname} " + cond;
+        String sql = "DELETE FROM #{cdef.name} " + cond;
         db.execSQL(sql);
     }
 
     // Internal functions
 
     public static String tableName() {
-        return "#{cdef.bcname}";
+        return "#{cdef.name}";
     }
 }
 EOF
