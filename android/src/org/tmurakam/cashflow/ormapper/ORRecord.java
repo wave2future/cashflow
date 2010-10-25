@@ -3,8 +3,12 @@
 package org.tmurakam.cashflow.ormapper;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.text.*;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
+
+import org.tmurakam.cashflow.ormapper.Database;
 
 public class ORRecord {
     private static final String pkey = "key";
@@ -132,4 +136,18 @@ public class ORRecord {
     public static void delete_all() {
         // must be override
     }
+    
+    /**
+     * 	utilities
+     */
+    public String date2str(Date d) {
+    	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+    	return df.format(d);
+    }
+    
+    public Date str2date(String d) {
+    	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+    	return df.parse(d);
+    }
+     
 }
