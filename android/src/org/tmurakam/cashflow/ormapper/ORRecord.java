@@ -2,11 +2,12 @@
 
 package org.tmurakam.cashflow.ormapper;
 
+import java.util.ArrayList;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
 public class ORRecord {
-    public final String pkey = "key";
+    private static final String pkey = "key";
 
     private int pid; // primary key
     private boolean isInserted;
@@ -26,15 +27,15 @@ public class ORRecord {
     /**
        @brief Migrate database table
     */
-    static public boolean migrate(ArrayList array) {
-        Database db = Database.instance();
+    static public boolean migrate(String[] array) {
+        SQLiteDatabase db = Database.instance();
         boolean ret;
         String tablesql;
 
         // check if table exists.
-        String sql = "SELECT sql FROM sqlite_master WHERE type='table' AND name='" + 
-            tableName() + "';";
-        Cursor cursor = db.rawQuery(sql);
+        String sql = "SELECT sql FROM sqlite_master WHERE type='table' AND name='?'";
+        String[] params = {tableName()};
+        Cursor cursor = db.rawQuery(sql, params);
         cursor.moveToFirst();
 
         // create table
@@ -52,11 +53,11 @@ public class ORRecord {
         cursor.close();
 
         // add columns
-        int count = array.size() / 2;
+        int count = array.length / 2;
 
         for (int i = 0; i < count; i++) {
-            String column = array.get(i * 2);
-            String type = array.get(i * 2 + 1);
+            String column = array[i * 2];
+            String type = array[i * 2 + 1];
 
             if (tablesql.indexOf(" " + column + " ") < 0) {
                 sql = "ALTER TABLE " + tableName() + " ADD COLUMN " + 
@@ -72,7 +73,7 @@ public class ORRecord {
        @return array of all record
     */
     public static ArrayList find_all() {
-        return find_cond(nil);
+        return find_cond(null);
     }
 
     /**
@@ -84,7 +85,7 @@ public class ORRecord {
        You must override this.
     */
     public static ArrayList find_cond(String cond) {
-        return nil;
+        return null;
     }
 
     /**
@@ -94,7 +95,7 @@ public class ORRecord {
        @return record
     */
     public static ORRecord find(int pid) {
-        return nil;
+        return null;
     }
 
     /**
@@ -109,7 +110,7 @@ public class ORRecord {
     }
 
     public static String tableName() {
-        return nil; // must be override
+        return null; // must be override
     }
 
     public void insert() {
