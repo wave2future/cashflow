@@ -14,6 +14,8 @@ public class Database extends SQLiteOpenHelper {
 
     private static SQLiteDatabase db = null;
 
+    private static SimpleDateFormat dateFormat = null;
+
     public static void initialize(Context context) {
         db = (new Database(context)).getWritableDatabase();
     }
@@ -48,11 +50,10 @@ public class Database extends SQLiteOpenHelper {
     }
 
     private static SimpleDateFormat dateFormat() {
-    	static SimpleDateFormat df = null;
-        if (df == null) {
-            df = new SimpleDateFormat("yyyyMMddHHmmss");
+        if (dateFormat == null) {
+            dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+            dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"));
         }
-        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-        return df;
+        return dateFormat;
     }
 }
