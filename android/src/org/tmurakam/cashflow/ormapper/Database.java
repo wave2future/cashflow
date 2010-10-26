@@ -40,12 +40,19 @@ public class Database extends SQLiteOpenHelper {
      * 	utilities
      */
     public String date2str(Date d) {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-    	return df.format(d);
+    	return dateFormat().format(d);
     }
     
     public Date str2date(String d) {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-    	return df.parse(d);
+        return dateFormat().parse(d);
+    }
+
+    private static SimpleDateFormat dateFormat() {
+    	static SimpleDateFormat df = null;
+        if (df == null) {
+            df = new SimpleDateFormat("yyyyMMddHHmmss");
+        }
+        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+        return df;
     }
 }
