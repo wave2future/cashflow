@@ -63,9 +63,8 @@ static int compareCatReport(id x, id y, void *context)
 	
         reports = new ArrayList<Report>();
 
-        NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
-	
-        //	NSDate *firstDate = [[asset transactionAt:0] date];
+        Calendar cal = Calendar.getCalendar(); // local calendar
+
         int assetKey;
         if (asset == null) {
             assetKey = -1;
@@ -77,61 +76,61 @@ static int compareCatReport(id x, id y, void *context)
         Date lastDate = lastDateOfAsset(assetKey);
 
         // レポート周期の開始時間および間隔を求める
-        NSDateComponents *dc, *steps;
-        NSDate *dd = nil;
-	
-        steps = [[[NSDateComponents alloc] init] autorelease];
+        cal.setTime(firstDate);
+        cal.set(Calendar.HOUR, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+
         switch (type) {
         case MONTHLY:
-            dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
-
             // 締め日設定
             int cutoffDate = Config.instance().cutoffDate;
             if (cutoffDate == 0) {
                 // 月末締め ⇒ 開始は同月1日から。
-                [dc setDay:1];
+                cal.set(Calendar.DATE, 1);
             }
             else {
                 // 一つ前の月の締め日翌日から開始
-                int year = [dc year];
-                int month = [dc month];
+                int year = cal.get(Calendar.YEAR);
+                int month = cal.get(Calendar.MONTH);
                 month--;
                 if (month < 1) {
                     month = 12;
                     year--;
                 }
-                [dc setYear:year];
-                [dc setMonth:month];
-                [dc setDay:cutoffDate + 1];
+                cal.set(Calendar.YEAR, year);
+                cal.set(Calendar.MONTH, month);
+                cal.set(Calendar.DATE, cutoffDate + 1);
             }
-
-            dd = [greg dateFromComponents:dc];
-            [steps setMonth:1];
             break;
 			
-        case REPORT_WEEKLY:
-            dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
-            dd = [greg dateFromComponents:dc];
-            int weekday = [dc weekday];
-            [steps setDay:-weekday+1];
-            dd = [greg dateByAddingComponents:steps toDate:dd options:0];
-            [steps setDay:7];
+        case WEEKLY:
+            int weekday = cal.get(Calendar.DAY_OF_WEEK);
+            cal.add(Calendar.DAY_OF_YEAR, -weekday + 1); // 日曜日開始にする
+            // TBD: 前年になる場合は正しく動作する？
             break;
         }
 	
         int numCategories = DataModel.categories.categoryCount();
 	
-        while (dd <= lastDate) {
+        while (cal.getTime() <= lastDate) {
             // Report 生成
             Report r = new Report();
             reports.add(r);
 
             // 日付設定
-            r.date = dd;
+            r.date = cal.getTime();
 		
             // 次の期間開始時期を計算する
-            dd = [greg dateByAddingComponents:steps toDate:dd options:0];
-            r.endDate = dd;
+            switch (type) {
+            case MONTHLY:
+                cal.add(Calendar.MONTH, 1);
+                break;
+            case WEEKLY:
+                cal.add(Calendar.DAY_OF_YEAR, 7);
+                break;
+            }
+            r.endDate = cal.getTime();
 
             // 集計
             Filter filter;
