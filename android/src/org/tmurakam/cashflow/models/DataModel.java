@@ -15,6 +15,10 @@ public class DataModel {
     private Ledger ledger;
     private Categories categories;
 
+    public static Journal getJournal() { return instance().journal; }
+    public static Ledger  getLedger() { return instance().ledger; }
+    public static Categories getCategories() { return instance().categories; }
+
     // singleton
     private static DataModel theDataModel = null;
 

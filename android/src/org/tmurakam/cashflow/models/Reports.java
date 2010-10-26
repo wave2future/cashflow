@@ -63,8 +63,6 @@ static int compareCatReport(id x, id y, void *context)
 	
         reports = new ArrayList<Report>();
 
-        Calendar cal = Calendar.getCalendar(); // local calendar
-
         int assetKey;
         if (asset == null) {
             assetKey = -1;
@@ -76,6 +74,7 @@ static int compareCatReport(id x, id y, void *context)
         Date lastDate = lastDateOfAsset(assetKey);
 
         // レポート周期の開始時間および間隔を求める
+        Calendar cal = Calendar.getCalendar(); // local calendar
         cal.setTime(firstDate);
         cal.set(Calendar.HOUR, 0);
         cal.set(Calendar.MINUTE, 0);
@@ -91,27 +90,17 @@ static int compareCatReport(id x, id y, void *context)
             }
             else {
                 // 一つ前の月の締め日翌日から開始
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                month--;
-                if (month < 1) {
-                    month = 12;
-                    year--;
-                }
-                cal.set(Calendar.YEAR, year);
-                cal.set(Calendar.MONTH, month);
+                cal.add(Calendar.MONTH, -1);
                 cal.set(Calendar.DATE, cutoffDate + 1);
             }
             break;
 			
         case WEEKLY:
-            int weekday = cal.get(Calendar.DAY_OF_WEEK);
-            cal.add(Calendar.DAY_OF_YEAR, -weekday + 1); // 日曜日開始にする
-            // TBD: 前年になる場合は正しく動作する？
+            cal.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY); // 日曜日開始にする
             break;
         }
 	
-        int numCategories = DataModel.categories.categoryCount();
+        int numCategories = DataModel.getCategories().categoryCount();
 	
         while (cal.getTime() <= lastDate) {
             // Report 生成
@@ -127,7 +116,7 @@ static int compareCatReport(id x, id y, void *context)
                 cal.add(Calendar.MONTH, 1);
                 break;
             case WEEKLY:
-                cal.add(Calendar.DAY_OF_YEAR, 7);
+                cal.add(Calendar.DATE, 7);
                 break;
             }
             r.endDate = cal.getTime();
@@ -138,7 +127,7 @@ static int compareCatReport(id x, id y, void *context)
 
             filter.asset = assetKey;
             filter.start = r.date;
-            filter.end = dd;
+            filter.end = r.endDate;
 
             filter.isIncome = true;
             filter.isOutgo = false;
@@ -157,7 +146,7 @@ static int compareCatReport(id x, id y, void *context)
             filter.asset = assetKey;
 
             for (i = 0; i < numCategories; i++) {
-                Category c = DataModel.instance().categories.categoryAtIndex(i);
+                Category c = DataModel.getCategories().categoryAtIndex(i);
                 CatReport cr = new CatReport();
 
                 cr.catkey = c.pid;
@@ -197,7 +186,7 @@ static int compareCatReport(id x, id y, void *context)
 
     private Date firstDateOfAsset(int asset) {
         Transaction t;
-        for (t in DataModel.journal().entries) {
+        for (t in DataModel.getJournal().entries) {
             if (asset < 0) break;
             if (t.asset == asset || t.dst_asset == asset) break;
         }
@@ -208,7 +197,7 @@ static int compareCatReport(id x, id y, void *context)
     }
 
     private Date lastDateOfAsset(int asset) {
-        ArrayList<Transaction> entries = DataModel.journal().entries;
+        ArrayList<Transaction> entries = DataModel.getJournal().entries;
         Transaction t = nil;
         int i;
 
@@ -227,7 +216,7 @@ static int compareCatReport(id x, id y, void *context)
         double sum = 0.0;
         double value;
 
-        for (t in DataModel.journal().entries) {
+        for (t in DataModel.getJournal().entries) {
             // match filter
             if (filter.start) {
                 if (t.date < filter.start) continue;
