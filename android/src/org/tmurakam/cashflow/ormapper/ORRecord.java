@@ -137,17 +137,4 @@ public class ORRecord {
         // must be override
     }
     
-    /**
-     * 	utilities
-     */
-    public String date2str(Date d) {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-    	return df.format(d);
-    }
-    
-    public Date str2date(String d) {
-    	SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
-    	return df.parse(d);
-    }
-     
 }

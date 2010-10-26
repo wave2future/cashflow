@@ -81,8 +81,7 @@ def generateImplementation(cdef, fh)
 
 package org.tmurakam.cashflow.ormapper;
 
-import java.util.Date;
-import java.util.ArrayList;
+import java.util.*;
 import android.content.ContentValues;
 import android.database.*;
 import android.database.sqlite.*;
@@ -190,7 +189,7 @@ EOF
     cdef.members.each do |m|
         type = cdef.types[m];
         if (type == "DATE")
-            fh.puts "        this.#{m} = str2date(cursor.getString(#{i}));"
+            fh.puts "        this.#{m} = Database.str2date(cursor.getString(#{i}));"
         else    
             method = getMethodType(type);
             fh.puts "        this.#{m} = cursor.get#{method}(#{i});"
@@ -240,7 +239,7 @@ EOF
     i = 1
     cdef.members.each do |m|
         if (cdef.types[m] == "DATE")
-            fh.puts "        cv.put(\"#{m}\", date2str(this.#{m}));"
+            fh.puts "        cv.put(\"#{m}\", Database.date2str(this.#{m}));"
         else
             fh.puts "        cv.put(\"#{m}\", this.#{m});"
         end
