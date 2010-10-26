@@ -12,10 +12,14 @@ import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
 public class Journal {
-    public ArrayList<Transaction> entries;
+    private ArrayList<Transaction> entries;
 
     public void Journal() {
         entries = null;
+    }
+
+    public ArrayList<Transaction> getEntries() {
+        return entries;
     }
 
     public void reload() {

@@ -186,7 +186,7 @@ static int compareCatReport(id x, id y, void *context)
 
     private Date firstDateOfAsset(int asset) {
         Transaction t;
-        for (t in DataModel.getJournal().entries) {
+        for (t in DataModel.getJournal().getEntries()) {
             if (asset < 0) break;
             if (t.asset == asset || t.dst_asset == asset) break;
         }
@@ -197,7 +197,7 @@ static int compareCatReport(id x, id y, void *context)
     }
 
     private Date lastDateOfAsset(int asset) {
-        ArrayList<Transaction> entries = DataModel.getJournal().entries;
+        ArrayList<Transaction> entries = DataModel.getJournal().getEntries();
         Transaction t = nil;
         int i;
 
@@ -216,7 +216,7 @@ static int compareCatReport(id x, id y, void *context)
         double sum = 0.0;
         double value;
 
-        for (t in DataModel.getJournal().entries) {
+        for (t in DataModel.getJournal().getEntries()) {
             // match filter
             if (filter.start) {
                 if (t.date < filter.start) continue;

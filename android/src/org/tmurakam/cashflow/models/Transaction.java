@@ -11,11 +11,11 @@ import android.database.sqlite.*;
 import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
-class Transaction extends TransactionBase implements Cloneable {
-    public final static int TYPE_OUTGO = 0;
-    public final static int TYPE_INCOME = 1;
-    public final static int TYPE_ADJ = 2;
-    public final static int TYPE_TRANSFER = 3;
+public  class Transaction extends TransactionBase implements Cloneable {
+    public final static int OUTGO = 0;
+    public final static int INCOME = 1;
+    public final static int ADJ = 2;
+    public final static int TRANSFER = 3;
 
     private boolean hasBalance;
     private double balance;

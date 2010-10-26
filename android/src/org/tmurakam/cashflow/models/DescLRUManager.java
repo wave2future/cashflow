@@ -12,12 +12,12 @@ import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
 class DescLRUManager {
-    public void addDescLRU(String description, int category) {
+    public static void addDescLRU(String description, int category) {
         Date now = new Date();
         addDescLRU(description, category, now);
     }
 
-    public void addDescLRU(String description, int category, Date date) {
+    public static void addDescLRU(String description, int category, Date date) {
         if (description == null || description.length() == 0) {
             return;
         }
@@ -39,7 +39,7 @@ class DescLRUManager {
         lru.save();
     }
 
-    public ArrayList<DescLRU> getDescLRUs(int category) {
+    public static ArrayList<DescLRU> getDescLRUs(int category) {
         ArrayList<DescLRU> ary;
 
         if (category < 0) {
@@ -53,7 +53,7 @@ class DescLRUManager {
     }
 
     /*
-    public void gc() {
+    public static void gc() {
         ArrayList<DescLRU> ary;
 
         ary = DescLRU.find_cond("ORDER BY lastUse DESC LIMIT 1 OFFSET 100", null);
