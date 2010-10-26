@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 package org.tmurakam.cashflow.models;
 
@@ -53,15 +53,15 @@ class DescLRUManager {
     }
 
     /*
-    public static void gc() {
-        ArrayList<DescLRU> ary;
+	  public static void gc() {
+	  ArrayList<DescLRU> ary;
 
-        ary = DescLRU.find_cond("ORDER BY lastUse DESC LIMIT 1 OFFSET 100", null);
-        if (ary.size() > 0) {
-            DescLRU lru = ary.get(0);
-            String[] param = { date2str(lru.date) };
-            DescLRU.delete_cond("WHERE lastUse < ?", param);
-        }
-    }
+	  ary = DescLRU.find_cond("ORDER BY lastUse DESC LIMIT 1 OFFSET 100", null);
+	  if (ary.size() > 0) {
+	  DescLRU lru = ary.get(0);
+	  String[] param = { date2str(lru.date) };
+	  DescLRU.delete_cond("WHERE lastUse < ?", param);
+	  }
+	  }
     */
 }

@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 package org.tmurakam.cashflow.models;
 
@@ -42,21 +42,21 @@ public class Reports {
         reports = null;
     }
 
-/*
-static int compareCatReport(id x, id y, void *context)
-{
-    CatReport *xr = (CatReport *)x;
-    CatReport *yr = (CatReport *)y;
+	/*
+	  static int compareCatReport(id x, id y, void *context)
+	  {
+	  CatReport *xr = (CatReport *)x;
+	  CatReport *yr = (CatReport *)y;
 	
-    if (xr.value == yr.value) {
-        return NSOrderedSame;
-    }
-    if (xr.value > yr.value) {
-        return NSOrderedDescending;
-    }
-    return NSOrderedAscending;
-}
-*/
+	  if (xr.value == yr.value) {
+	  return NSOrderedSame;
+	  }
+	  if (xr.value > yr.value) {
+	  return NSOrderedDescending;
+	  }
+	  return NSOrderedAscending;
+	  }
+	*/
 
     public void generate(int a_type, Asset asset) {
         type = a_type;
@@ -170,15 +170,15 @@ static int compareCatReport(id x, id y, void *context)
 		
         // ソート
         Collection.sort(r.catReports, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                CatReport xr = (CatReport)o1;
-                CatReport yr = (CatReport)o2;
+				public int compare(Object o1, Object o2) {
+					CatReport xr = (CatReport)o1;
+					CatReport yr = (CatReport)o2;
 
-                if (xr.value > yr.value) return 1;
-                if (xr.value < yr.value) return -1;
-                return 0;
-            }
-        });
+					if (xr.value > yr.value) return 1;
+					if (xr.value < yr.value) return -1;
+					return 0;
+				}
+			});
     }
 
     //////////////////////////////////////////////////////////////////////////////////

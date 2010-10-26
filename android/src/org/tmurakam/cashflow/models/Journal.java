@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 package org.tmurakam.cashflow.models;
 
@@ -72,14 +72,14 @@ public class Journal {
     // sort
     private void _sortByDate() {
         Collections.sort(entries, new Comparator() {
-            public int compare(Object o1, Object o2) {
-                Transaction t1 = (Transaction)o1;
-                Transaction t2 = (Transaction)o2;
-                if (t1.date < t2.date) return -1;
-                if (t1.date > t2.date) return 1;
-                return 0;
-            }
-        });
+				public int compare(Object o1, Object o2) {
+					Transaction t1 = (Transaction)o1;
+					Transaction t2 = (Transaction)o2;
+					if (t1.date < t2.date) return -1;
+					if (t1.date > t2.date) return 1;
+					return 0;
+				}
+			});
     }
 
     /**
@@ -145,6 +145,3 @@ public class Journal {
         // rebuild が必要!
     }
 }
-
-    
-    

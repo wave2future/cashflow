@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 package org.tmurakam.cashflow.models;
 
@@ -187,6 +187,3 @@ class AssetEntry implements Cloneable {
         return e;
     }
 }
-            
-        
-    

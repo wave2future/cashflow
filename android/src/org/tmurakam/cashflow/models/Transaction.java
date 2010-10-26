@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 package org.tmurakam.cashflow.models;
 
@@ -21,58 +21,55 @@ public  class Transaction extends TransactionBase implements Cloneable {
     private double balance;
 
     public static TransactionBase allocator() {
-	return new Transaction();
+		return new Transaction();
     }
 
     public Transaction() {
         this(new Date(), "", 0.0);
 
-	if (Config.instance().dateTimeMode == Config.DateTimeModeDateOnly) {
-	    // 時刻を 0:00:00 に設定
-	    this.date.setHours(0);
-	    this.date.setMinutes(0);
-	    this.date.setSeconds(0);
-	}
+		if (Config.instance().dateTimeMode == Config.DateTimeModeDateOnly) {
+			// 時刻を 0:00:00 に設定
+			this.date.setHours(0);
+			this.date.setMinutes(0);
+			this.date.setSeconds(0);
+		}
     }
 
     public Transaction(Date date, String description, double value) {
-	this.asset = -1;
-	this.dst_asset = -1;
-	this.date = date;
-	this.description = description;
-	this.memo = "";
-	this.value = value;
-	this.type = 0;
-	this.category = -1;
-	this.pid = 0; // init
-	this.hasBalance = false;
+		this.asset = -1;
+		this.dst_asset = -1;
+		this.date = date;
+		this.description = description;
+		this.memo = "";
+		this.value = value;
+		this.type = 0;
+		this.category = -1;
+		this.pid = 0; // init
+		this.hasBalance = false;
     }
 
     // deep copy
     @Override
-    public Object clone() {
-	try {
-	    return super.clone();
-	}
-	catch (CloneNotSupportedException e) {
-	    throw new InternalError(e.toString());
-	}
+		public Object clone() {
+		try {
+			return super.clone();
+		}
+		catch (CloneNotSupportedException e) {
+			throw new InternalError(e.toString());
+		}
     }
 
     public void insert() {
-	super.insert();
-	DescLRUManager.addDescLRU(description, category);
+		super.insert();
+		DescLRUManager.addDescLRU(description, category);
     }
 
     public void update() {
-	super.update();
-	DescLRUManager.addDescLRU(description, category);
+		super.update();
+		DescLRUManager.addDescLRU(description, category);
     }
 
     public void updateWithoutUpdateLRU() {
-	super.update();
+		super.update();
     }
 }
-
-	
-	

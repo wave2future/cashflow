@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 // Ledger : 総勘定元帳
 
@@ -87,5 +87,3 @@ public class Ledger {
         db.commitTransaction();
     }
 }
-
-

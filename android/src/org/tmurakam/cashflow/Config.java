@@ -14,10 +14,10 @@ import android.database.sqlite.*;
 import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
-class Config {
-    public static final int DateTimeModeWithTime 0  // 日＋時
-    public static final int DateTimeModeWithTime5min 1  // 日＋時
-    public static final int DateTimeModeDateOnly 2  // 日のみ
+public class Config {
+    public static final int DateTimeModeWithTime = 0;  // 日＋時
+    public static final int DateTimeModeWithTime5min = 1;  // 日＋時
+    public static final int DateTimeModeDateOnly = 2;  // 日のみ
 
     public int dateTimeMode;
 
@@ -43,8 +43,8 @@ class Config {
 
     public void save() {
         SharedPreferences.Editor e = pref.edit();
-        e.putInteger("dateTimeMode", dateTimeMode);
-        e.putInteger("cutoffDate", cutoffDate);
+        e.putInt("dateTimeMode", dateTimeMode);
+        e.putInt("cutoffDate", cutoffDate);
         e.commit();
     }
 }

@@ -1,4 +1,4 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
 package org.tmurakam.cashflow.models;
 
@@ -81,7 +81,7 @@ public class Categories {
         categories.remove(from);
         categories.add(to, c);
 
-	renumber();
+		renumber();
     }
 
     private void renumber() {
