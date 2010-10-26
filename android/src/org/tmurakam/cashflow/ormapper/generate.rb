@@ -105,7 +105,7 @@ EOF
       @brief Migrate database table
       @return YES - table was newly created, NO - table already exists
     */
-    static boolean migrate() {
+    public static boolean migrate() {
         String[] columnTypes = {
 EOF
 
@@ -265,7 +265,7 @@ EOF
     /**
        @brief Delete all records
     */
-    public void delete_cond(String cond) {
+    public static void delete_cond(String cond) {
         SQLiteDatabase db = Database.instance();
 
         if (cond == null) {
