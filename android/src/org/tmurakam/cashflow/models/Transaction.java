@@ -25,25 +25,14 @@ class Transaction extends TransactionBase implements Cloneable {
     }
 
     public Transaction() {
-	this.asset = -1;
-	this.dst_asset = -1;
+        this(new Date(), "", 0.0);
 
-	this.date = new Date();
-
-	if (Config.instance().dateTimeMode = Config.DateTimeModeDateOnly) {
+	if (Config.instance().dateTimeMode == Config.DateTimeModeDateOnly) {
 	    // 時刻を 0:00:00 に設定
 	    this.date.setHours(0);
 	    this.date.setMinutes(0);
 	    this.date.setSeconds(0);
 	}
-
-	this.description = "";
-	this.memo = "";
-	this.value = 0.0;	
-	this.type = 0;
-	this.category = -1;
-	this.pid = 0; // init
-	this.hasBalance = false;
     }
 
     public Transaction(Date date, String description, double value) {
