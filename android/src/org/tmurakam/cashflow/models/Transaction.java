@@ -2,14 +2,10 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
 
-import android.database.*;
-import android.database.sqlite.*;
-
+import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 public  class Transaction extends TransactionBase implements Cloneable {
     public final static int OUTGO = 0;
@@ -17,8 +13,8 @@ public  class Transaction extends TransactionBase implements Cloneable {
     public final static int ADJ = 2;
     public final static int TRANSFER = 3;
 
-    private boolean hasBalance;
-    private double balance;
+    public boolean hasBalance;
+    public double balance;
 
     public static TransactionBase allocator() {
 		return new Transaction();

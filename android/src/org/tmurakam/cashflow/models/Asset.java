@@ -25,7 +25,7 @@ class Asset extends AssetBase {
         return new Asset();
     }
 
-    public void Asset() {
+    public Asset() {
         entries = new ArrayList<AssetEntry>();
         type = CASH;
     }
@@ -33,13 +33,13 @@ class Asset extends AssetBase {
     //
     // 仕訳帳(journal)から転記しなおす
     //
-    public void rebuild{
+    public void rebuild() {
         entries = new ArrayList<AssetEntry>();
 
         double balance = initialBalance;
 
         AssetEntry e;
-        for (Transaction t in DataModel.journal.entries) {
+        for (Transaction t : DataModel.getJournal().getEntries()) {
             if (t.asset == this.pid || t.dst_asset == this.pid) {
                 e = new AssetEntry(t, this);
 
@@ -74,7 +74,7 @@ class Asset extends AssetBase {
         lastBalance = balance;
     }
 
-    public void updateInitialBalance {
+    public void updateInitialBalance() {
         update();
     }
 
@@ -90,15 +90,15 @@ class Asset extends AssetBase {
     }
 
     public void insertEntry(AssetEntry e) {
-        DataModel.journal.insertTransaction(e.transaction);
-        DataModel.ledger.rebuild();
+        DataModel.getJournal().insertTransaction(e.transaction);
+        DataModel.getLedger().rebuild();
     }
 
     public void replaceEntryAtIndex(int index, AssetEntry e) {
         AssetEntry orig = entryAt(index);
 
-        DataModel.journal.replaceTransaction(orig.transaction, e.transaction);
-        DataModel.ledger.rebuild();
+        DataModel.getJournal().replaceTransaction(orig.transaction, e.transaction);
+        DataModel.getLedger().rebuild();
     }
 
     // エントリ削除
@@ -112,7 +112,7 @@ class Asset extends AssetBase {
 
         // エントリ削除
         AssetEntry e = entryAt(index);
-        DataModel.journal.deleteTransaction(e.transaction, this);
+        DataModel.getJournal().deleteTransaction(e.transaction, this);
     }
 
     // エントリ削除
@@ -120,7 +120,7 @@ class Asset extends AssetBase {
         _deleteEntryAt(index);
     
         // 転記し直す
-        DataModel.ledger.rebuild();
+        DataModel.getLedger().rebuild();
     }
 
     // 指定日以前の取引をまとめて削除
@@ -130,22 +130,22 @@ class Asset extends AssetBase {
         db.beginTransaction();
         while (entries.size() > 0) {
             AssetEntry e = entries.get(0);
-            if (e.transaction.date >= date) {
+            if (e.transaction.date.compareTo(date) >= 0) {
                 break;
             }
 
             _deleteEntryAt(0);
-            entries.removeObjectAtIndex(0);
+            entries.remove(0);
         }
-        db.commitTransaction();
+        db.endTransaction();
 
-        DataModel.ledger.rebuild();
+        DataModel.getLedger().rebuild();
     }
 
     public int firstEntryByDate(Date date) {
         for (int i = 0; i < entries.size(); i++) {
             AssetEntry e = entries.get(i);
-            if (e.transaction.date >= date) {
+            if (e.transaction.date.compareTo(date) >= 0) {
                 return i;
             }
         }
@@ -166,12 +166,12 @@ class Asset extends AssetBase {
     // Database operations
     //
     public static boolean migrate() {
-        boolean ret = super.migrate();
+        boolean ret = AssetBase.migrate();
     
         if (ret) {
             // newly created...
             Asset as = new Asset();
-            as.name = NSLocalizedString("Cash", "");
+            as.name = "Cash"; // TBD: localize
             as.type = CASH;
             as.initialBalance = 0;
             as.sorder = 0;
