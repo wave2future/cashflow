@@ -1,10 +1,13 @@
 // -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 
-package org.tmurakam.cashflow.models;
+package org.tmurakam.cashflow;
 
 import java.lang.*;
 import java.util.*;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.database.*;
 import android.database.sqlite.*;
 
@@ -22,19 +25,26 @@ class Config {
     public int cutoffDate;
 
     private static Config theConfig = null;
+    private SharedPreferences pref;
 
     public Config instance() {
-        if (theConfig == null) {
-            theConfig = new Config();
-        }
         return theConfig;
     }
 
-    private Config() {
-        throw new exception("TBD");
+    public void init(Context context) {
+        theConfig = new Config(context);
+    }
+
+    private Config(Context context) {
+        pref = PreferenceManager.getDefaultSharedPreferences(context);
+        dateTimeMode = pref.getInt("dateTimeMode", DateTimeModeWithTime);
+        cutoffDate = pref.getInt("cutoffDate", 0);
     }
 
     public void save() {
-        throw new exception("TBD");
+        SharedPreferences.Editor e = pref.edit();
+        e.putInteger("dateTimeMode", dateTimeMode);
+        e.putInteger("cutoffDate", cutoffDate);
+        e.commit();
     }
 }
