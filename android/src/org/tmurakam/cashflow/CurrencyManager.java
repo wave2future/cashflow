@@ -92,20 +92,14 @@ public class CurrencyManager {
         
         [[NSUserDefaults standardUserDefaults] setObject:baseCurrency forKey:@"BaseCurrency"];
     }
-}
 
-+ (NSString *)formatCurrency:(double)value
-{
-    return [[CurrencyManager instance] _formatCurrency:value];
-}
+    public static String formatCurrency(double value) {
+        return CurrencyManager.instance()._formatCurrency(value);
+    }
 
-- (NSString *)_formatCurrency:(double)value
-{
-    NSNumber *n = [NSNumber numberWithDouble:value];
-    return [numberFormatter stringFromNumber:n];
+    private String _formatCurrency(double value) {
+        return numberFormat.format(value);
+    }
 }
-
-@end
-        
 
     
