@@ -90,7 +90,7 @@ import org.tmurakam.cashflow.ormapper.ORRecord;
 
 public class #{cdef.bcname} extends ORRecord {
     public long pid;
-    private boolean isInserted = false;
+    protected boolean isInserted = false;
 
 EOF
     cdef.members.each do |m|

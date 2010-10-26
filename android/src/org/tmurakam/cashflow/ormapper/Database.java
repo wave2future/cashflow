@@ -2,8 +2,8 @@
 
 package org.tmurakam.cashflow.ormapper;
 
-import java.lang.*;
-import java.util.*
+import java.util.*;
+import java.text.*;
 
 import android.content.Context;
 import android.database.sqlite.*;
@@ -41,12 +41,17 @@ public class Database extends SQLiteOpenHelper {
     /**
      * 	utilities
      */
-    public String date2str(Date d) {
+    public static String date2str(Date d) {
     	return dateFormat().format(d);
     }
     
-    public Date str2date(String d) {
-        return dateFormat().parse(d);
+    public static Date str2date(String d) {
+    	try {
+    		return dateFormat().parse(d);
+    	}
+    	catch (ParseException ex) {
+    		return null; // TBD
+    	}
     }
 
     private static SimpleDateFormat dateFormat() {

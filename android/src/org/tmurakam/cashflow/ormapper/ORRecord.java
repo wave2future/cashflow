@@ -3,8 +3,6 @@
 package org.tmurakam.cashflow.ormapper;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.text.*;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
