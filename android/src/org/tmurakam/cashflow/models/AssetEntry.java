@@ -20,18 +20,18 @@ class AssetEntry implements Cloneable {
     public double value;
     public double balance;
 
-    private Transaction transaction;
+    public Transaction transaction;
 
-    public void AssetEntry() {
+    public AssetEntry() {
         transaction = null;
         assetKey = -1;
         value = 0.0;
         balance = 0.0;
     }
 
-    public void AssetEntry(Transaction t, Asset asset) {
+    public AssetEntry(Transaction t, Asset asset) {
         assetKey = asset.pid;
-        if (t == nil) {
+        if (t == null) {
             // 新規エントリ生成
             transaction = new Transaction();
             transaction.asset = assetKey;
@@ -132,7 +132,7 @@ class AssetEntry implements Cloneable {
     //   type のほか、transaction の dst_asset, asset, value も調整する
     public boolean changeType(int type, int assetKey, int dstAssetKey) {
         if (type == Transaction.TRANSFER) {
-            if (dstAssetKey == self.assetKey) {
+            if (dstAssetKey == this.assetKey) {
                 // 自分あて転送は許可しない
                 // ### TBD
                 return false;
@@ -154,7 +154,7 @@ class AssetEntry implements Cloneable {
     // 転送先資産のキーを返す
     public int dstAsset() {
         if (transaction.type != Transaction.TRANSFER) {
-            ASSERT(false);
+            //ASSERT(false);
             return -1;
         }
 
@@ -167,7 +167,7 @@ class AssetEntry implements Cloneable {
 
     public void setDstAsset(int assetKey) {
         if (transaction.type != Transaction.TRANSFER) {
-            ASSERT(false);
+            //ASSERT(false);
             return;
         }
 
@@ -183,7 +183,7 @@ class AssetEntry implements Cloneable {
         e.assetKey = assetKey;
         e.value = value;
         e.balance = balance;
-        e.transaction = transaction.clone();
+        e.transaction = (Transaction)transaction.clone();
         return e;
     }
 }

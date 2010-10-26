@@ -27,11 +27,11 @@ public class Config {
     private static Config theConfig = null;
     private SharedPreferences pref;
 
-    public Config instance() {
+    public static Config instance() {
         return theConfig;
     }
 
-    public void init(Context context) {
+    public static void init(Context context) {
         theConfig = new Config(context);
     }
 

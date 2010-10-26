@@ -89,7 +89,7 @@ import android.database.sqlite.*;
 import org.tmurakam.cashflow.ormapper.ORRecord;
 
 public class #{cdef.bcname} extends ORRecord {
-    public long pid;
+    public int pid;
     protected boolean isInserted = false;
 
 EOF
@@ -209,7 +209,8 @@ EOF
 
         SQLiteDatabase db = Database.instance();
 
-        this.pid = db.insert("#{cdef.name}", "key"/*TBD*/, getContentValues());
+	// TBD: pid should be long?
+        this.pid = (int)db.insert("#{cdef.name}", "key"/*TBD*/, getContentValues());
 
         //[db commitTransaction];
         isInserted = true;
