@@ -57,6 +57,16 @@ public class TransactionListActivity extends Activity
 		for (int i = 0; i < count; i++) {
 			arrayAdapter.add(asset.entryAt(i));
 		}
+		
+		// test
+		Transaction t = new Transaction();
+		t.description = "dinner";
+		t.value = 2000;
+		t.balance = 8000;
+		t.date = new Date();
+		AssetEntry e = new AssetEntry();
+		e.transaction = t;
+		arrayAdapter.add(e);
 	}
 	
 	@Override
@@ -78,7 +88,7 @@ public class TransactionListActivity extends Activity
 
 		public View getView(final int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.assetlist_row, parent, false);
+				convertView = inflater.inflate(R.layout.transactionlist_row, parent, false);
 			}
 
 			final AssetEntry e = this.getItem(position);
