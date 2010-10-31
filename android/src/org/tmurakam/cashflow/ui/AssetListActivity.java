@@ -11,6 +11,7 @@ import android.content.*;
 import android.view.*;
 import android.view.LayoutInflater;
 import android.widget.*;
+import android.graphics.drawable.*;
 //import android.widget.AdapterView.*;
 
 import org.tmurakam.cashflow.*;
@@ -21,7 +22,11 @@ public class AssetListActivity extends Activity
 	implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener 
 {
 	private ListView listView = null;
-	AssetArrayAdapter arrayAdapter;
+	private AssetArrayAdapter arrayAdapter;
+	
+	private Drawable iconCash;
+	private Drawable iconBank;
+	private Drawable iconCard;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,6 +48,11 @@ public class AssetListActivity extends Activity
 		listView.setOnItemClickListener(this);
 		listView.setOnItemLongClickListener(this);
 
+		// load icons
+		iconCash = getResources().getDrawable(R.drawable.cash);
+		iconBank = getResources().getDrawable(R.drawable.bank);
+		iconCard = getResources().getDrawable(R.drawable.card);
+		
 		// setup menu
 		// TBD
 
@@ -86,6 +96,21 @@ public class AssetListActivity extends Activity
 
 					tv = (TextView)convertView.findViewById(R.id.AssetListRowText);
 					tv.setText(as.name);
+					
+					ImageView iv = (ImageView)convertView.findViewById(R.id.AssetListRowIcon);
+					Drawable d = iconCash;
+					switch (as.type) {
+					case Asset.CASH:
+						d = iconCash;
+						break;
+					case Asset.BANK:
+						d = iconBank;
+						break;
+					case Asset.CARD:
+						d = iconCard;
+						break;
+					}
+					iv.setImageDrawable(d);
 				
 					//...
 				}
