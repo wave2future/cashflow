@@ -103,6 +103,18 @@ EOF
 
 	fh.puts <<EOF
 
+	private static #{cdef.bcname} theInstance = null;
+
+	/**
+	  @brief get singleton
+	*/
+	public static #{cdef.bcname} instance() {
+		if (theInstance == null) {
+			theInstance = new #{cdef.bcname}();
+		}
+		return theInstance;
+	}
+
 	/**
 	  @brief Migrate database table
 	  @return YES - table was newly created, NO - table already exists
