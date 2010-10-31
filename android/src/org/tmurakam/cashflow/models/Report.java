@@ -6,16 +6,16 @@ import java.util.*;
 
 // レポート(一件分)
 public class Report {
-    public Date date;
-    public Date endDate;
-    double totalIncome;
-    double totalOutgo;
+	public Date date;
+	public Date endDate;
+	double totalIncome;
+	double totalOutgo;
 
-    ArrayList<CatReport> catReports;
+	ArrayList<CatReport> catReports;
 
-    public Report() {
-        date = null;
-        totalIncome = 0.0;
-        totalOutgo = 0.0;
-    }
+	public Report() {
+		date = null;
+		totalIncome = 0.0;
+		totalOutgo = 0.0;
+	}
 }

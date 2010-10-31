@@ -8,59 +8,59 @@ import android.content.Context;
 import org.tmurakam.cashflow.ormapper.*;
 
 public class DataModel {
-    private Journal journal;
-    private Ledger ledger;
-    private Categories categories;
+	private Journal journal;
+	private Ledger ledger;
+	private Categories categories;
 
-    public static Journal getJournal() { return instance.journal; }
-    public static Ledger  getLedger() { return instance.ledger; }
-    public static Categories getCategories() { return instance.categories; }
+	public static Journal getJournal() { return instance.journal; }
+	public static Ledger  getLedger() { return instance.ledger; }
+	public static Categories getCategories() { return instance.categories; }
 
-    // singleton
-    private static DataModel instance = new DataModel();
+	// singleton
+	private static DataModel instance = new DataModel();
 
-    private DataModel() {
-        journal = new Journal();
-        ledger = new Ledger();
-        categories = new Categories();
-    }
+	private DataModel() {
+		journal = new Journal();
+		ledger = new Ledger();
+		categories = new Categories();
+	}
 
-    public void load(Context context) {
-    	Database.initialize(context);
+	public void load(Context context) {
+		Database.initialize(context);
 
-        // migrate
-        Transaction.migrate();
-        Asset.migrate();
-        Category.migrate();
-        DescLRU.migrate();
+		// migrate
+		Transaction.migrate();
+		Asset.migrate();
+		Category.migrate();
+		DescLRU.migrate();
 
-        // Load all transactions
-        journal.reload();
+		// Load all transactions
+		journal.reload();
 
-        // Load ledger
-        ledger.load();
-        ledger.rebuild();
+		// Load ledger
+		ledger.load();
+		ledger.rebuild();
 
-        // Load categories
-        categories.reload();
-    }
+		// Load categories
+		categories.reload();
+	}
 
-    ////////////////////////////////////////////////////////////////////////////
-    // Utility
+	////////////////////////////////////////////////////////////////////////////
+	// Utility
 
-    // 摘要からカテゴリを推定する
-    //
-    // note: 本メソッドは Asset ではなく DataModel についているべき
-    //
-    int categoryWithDescription(String desc) {
-        String[] param = { desc };
-        ArrayList<Object> ary = Transaction.instance.find_cond("WHERE description = ? ORDER BY date DESC LIMIT 1", param);
-    
-        int category = -1;
-        if (ary.size() > 0) {
-            Transaction t = (Transaction)ary.get(0);
-            category = t.category;
-        }
-        return category;
-    }
+	// 摘要からカテゴリを推定する
+	//
+	// note: 本メソッドは Asset ではなく DataModel についているべき
+	//
+	int categoryWithDescription(String desc) {
+		String[] param = { desc };
+		ArrayList<Object> ary = Transaction.instance.find_cond("WHERE description = ? ORDER BY date DESC LIMIT 1", param);
+	
+		int category = -1;
+		if (ary.size() > 0) {
+			Transaction t = (Transaction)ary.get(0);
+			category = t.category;
+		}
+		return category;
+	}
 }

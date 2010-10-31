@@ -3,6 +3,6 @@
 package org.tmurakam.cashflow.models;
 
 public class CatReport {
-    public int catkey; // カテゴリキー
-    public double value; // 合計値
+	public int catkey; // カテゴリキー
+	public double value; // 合計値
 }

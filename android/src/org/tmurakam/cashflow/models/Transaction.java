@@ -8,23 +8,23 @@ import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
 
 public  class Transaction extends TransactionBase implements Cloneable {
-    public final static int OUTGO = 0;
-    public final static int INCOME = 1;
-    public final static int ADJ = 2;
-    public final static int TRANSFER = 3;
+	public final static int OUTGO = 0;
+	public final static int INCOME = 1;
+	public final static int ADJ = 2;
+	public final static int TRANSFER = 3;
 
-    public boolean hasBalance;
-    public double balance;
+	public boolean hasBalance;
+	public double balance;
 
-    public final static Transaction instance = new Transaction();
-        
-    @Override
-    public Object allocator() {
+	public final static Transaction instance = new Transaction();
+		
+	@Override
+	public Object allocator() {
 		return new Transaction();
-    }
+	}
 
-    public Transaction() {
-        this(new Date(), "", 0.0);
+	public Transaction() {
+		this(new Date(), "", 0.0);
 
 		if (Config.instance().dateTimeMode == Config.DateTimeModeDateOnly) {
 			// 時刻を 0:00:00 に設定
@@ -32,9 +32,9 @@ public  class Transaction extends TransactionBase implements Cloneable {
 			this.date.setMinutes(0);
 			this.date.setSeconds(0);
 		}
-    }
+	}
 
-    public Transaction(Date date, String description, double value) {
+	public Transaction(Date date, String description, double value) {
 		this.asset = -1;
 		this.dst_asset = -1;
 		this.date = date;
@@ -45,10 +45,10 @@ public  class Transaction extends TransactionBase implements Cloneable {
 		this.category = -1;
 		this.pid = 0; // init
 		this.hasBalance = false;
-    }
+	}
 
-    // deep copy
-    @Override
+	// deep copy
+	@Override
 		public Object clone() {
 		try {
 			return super.clone();
@@ -56,19 +56,19 @@ public  class Transaction extends TransactionBase implements Cloneable {
 		catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
 		}
-    }
+	}
 
-    public void insert() {
+	public void insert() {
 		super.insert();
 		DescLRUManager.addDescLRU(description, category);
-    }
+	}
 
-    public void update() {
+	public void update() {
 		super.update();
 		DescLRUManager.addDescLRU(description, category);
-    }
+	}
 
-    public void updateWithoutUpdateLRU() {
+	public void updateWithoutUpdateLRU() {
 		super.update();
-    }
+	}
 }
