@@ -60,20 +60,26 @@ public class TransactionListActivity extends Activity
 		for (int i = 0; i < count; i++) {
 			arrayAdapter.add(asset.entryAt(i));
 		}
-
-		// 初期残高
-		// TBD
-
 		// test
-		Transaction t = new Transaction();
-		t.description = "dinner";
-		t.value = 2000;
-		t.balance = 8000;
-		t.date = new Date();
+		if (true) {
+			Transaction t = new Transaction();
+			t.description = "dinner";
+			t.value = 2000;
+			t.balance = 8000;
+			t.date = new Date();
+			AssetEntry e = new AssetEntry();
+			e.transaction = t;
+			e.value = 2000;
+			e.balance = 8000;
+			for (int i = 0; i < 30; i++) {
+				arrayAdapter.add(e);
+			}
+		}
+		
+		// 初期残高セル
 		AssetEntry e = new AssetEntry();
-		e.transaction = t;
-		e.value = 2000;
-		e.balance = 8000;
+		e.transaction = null;
+		e.value = asset.initialBalance;
 		arrayAdapter.add(e);
 	}
 	
@@ -104,10 +110,18 @@ public class TransactionListActivity extends Activity
 			
 			TextView tv;
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowText);
-			tv.setText(e.transaction.description);
+			if (e.transaction == null) {
+				tv.setText("Initial balance");
+			} else {
+				tv.setText(e.transaction.description);
+			}
 
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowDate);
-			tv.setText(dateFormat.format(e.transaction.date));
+			if (e.transaction == null) {
+				tv.setText("");
+			} else {
+				tv.setText(dateFormat.format(e.transaction.date));
+			}
 					
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowValue);
 			if (e.value >= 0) {
@@ -118,7 +132,11 @@ public class TransactionListActivity extends Activity
 			tv.setText(CurrencyManager.formatCurrency(e.value));
 			
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowBalance);
-			tv.setText("balance " + CurrencyManager.formatCurrency(e.balance));
+			if (e.transaction == null) {
+				tv.setText("");
+			} else {
+				tv.setText("balance " + CurrencyManager.formatCurrency(e.balance));
+			}
 
 			return convertView;
 		}
