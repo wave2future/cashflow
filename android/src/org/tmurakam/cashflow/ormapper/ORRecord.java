@@ -35,7 +35,7 @@ public abstract class ORRecord {
 		String tablesql;
 
 		// check if table exists.
-		String sql = "SELECT sql FROM sqlite_master WHERE type='table' AND name='?'";
+		String sql = "SELECT sql FROM sqlite_master WHERE type='table' AND name=?";
 		String[] params = {tableName};
 		Cursor cursor = db.rawQuery(sql, params);
 		cursor.moveToFirst();
