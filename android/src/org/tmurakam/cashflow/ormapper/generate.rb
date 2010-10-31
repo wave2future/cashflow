@@ -181,6 +181,7 @@ EOF
 			#{cdef.bcname} e = (#{cdef.bcname})allocator();
 			e._loadRow(cursor);
 			array.add(e);
+			cursor.moveToNext();
 		}
 		cursor.close();
 
