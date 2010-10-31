@@ -2,15 +2,10 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
-
-import android.database.*;
-import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 class Filter {
     public Date start;
@@ -38,7 +33,7 @@ public class Reports {
     public static final int WEEKLY = 0;
     public static final int MONTHLY = 1;
 
-    public void Reports() {
+    public Reports() {
         type = MONTHLY;
         reports = null;
     }
@@ -75,7 +70,7 @@ public class Reports {
         Date lastDate = lastDateOfAsset(assetKey);
 
         // レポート周期の開始時間および間隔を求める
-        Calendar cal = Calendar.getCalendar(); // local calendar
+        Calendar cal = Calendar.getInstance(); // local calendar
         cal.setTime(firstDate);
         cal.set(Calendar.HOUR, 0);
         cal.set(Calendar.MINUTE, 0);
@@ -123,7 +118,7 @@ public class Reports {
             r.endDate = cal.getTime();
 
             // 集計
-            Filter filter;
+            Filter filter = new Filter();
             filter.init();
 
             filter.asset = assetKey;
@@ -161,70 +156,57 @@ public class Reports {
 
                 r.catReports.add(cr);
             }
-        }
-		
-        // 未分類項目
-        CatReport cr = new CatReport();
-        cr.catkey = -1;
-        cr.value = remain;
-        r.catReports.add(cr);
-		
-        // ソート
-        Collection.sort(r.catReports, new Comparator() {
-				public int compare(Object o1, Object o2) {
-					CatReport xr = (CatReport)o1;
-					CatReport yr = (CatReport)o2;
 
+            // 未分類項目
+            CatReport cr = new CatReport();
+            cr.catkey = -1;
+            cr.value = remain;
+            r.catReports.add(cr);
+		
+            // ソート
+            Collections.sort(r.catReports, new Comparator<CatReport>() {
+				public int compare(CatReport xr, CatReport yr) {
 					if (xr.value > yr.value) return 1;
 					if (xr.value < yr.value) return -1;
 					return 0;
 				}
 			});
+        }
     }
 
     //////////////////////////////////////////////////////////////////////////////////
     // Report 処理
 
     private Date firstDateOfAsset(int asset) {
-        Transaction t;
-        for (t in DataModel.getJournal().getEntries()) {
-            if (asset < 0) break;
-            if (t.asset == asset || t.dst_asset == asset) break;
+        for (Transaction t : DataModel.getJournal().getEntries()) {
+            if (asset < 0) return t.date;
+            if (t.asset == asset || t.dst_asset == asset) return t.date;
         }
-        if (t == nil) {
-            return nil;
-        }
-        return t.date;
+        return null;
     }
 
     private Date lastDateOfAsset(int asset) {
         ArrayList<Transaction> entries = DataModel.getJournal().getEntries();
-        Transaction t = nil;
-        int i;
-
-        for (i = entries.size() - 1; i >= 0; i--) {
-            t = entries.get(i);
-            if (asset < 0) break;
-            if (t.asset == asset || t.dst_asset == asset) break;
+        for (int i = entries.size() - 1; i >= 0; i--) {
+        	Transaction t = entries.get(i);
+            if (asset < 0) return t.date;
+            if (t.asset == asset || t.dst_asset == asset) return t.date;
         }
-        if (i < 0) return nil;
-        return t.date;
+        return null;
     }
 
     private double calculateSum(Filter filter) {
-        Transaction t;
-
         double sum = 0.0;
         double value;
 
-        for (t in DataModel.getJournal().getEntries()) {
+        for (Transaction t : DataModel.getJournal().getEntries()) {
             // match filter
-            if (filter.start) {
-                if (t.date < filter.start) continue;
-            }
-            if (filter.end) {
-                if (filter.end <= t.date) continue;
-            }
+            if (filter.start != null &&
+                t.date.compareTo(filter.start) < 0) continue;
+            
+            if (filter.end != null &&
+                filter.end.compareTo(t.date) <= 0) continue;
+            
             if (filter.category >= 0 && t.category != filter.category) {
                 continue;
             }
