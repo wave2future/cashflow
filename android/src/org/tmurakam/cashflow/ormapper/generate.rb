@@ -158,11 +158,11 @@ EOF
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public static ArrayList<#{cdef.bcname}> find_cond(String cond) {
+	public static ArrayList<Object> find_cond(String cond) {
 		return find_cond(cond, null);
 	}
 
-	public static ArrayList<#{cdef.bcname}> find_cond(String cond, String[] param) {
+	public static ArrayList<Object> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -173,7 +173,7 @@ EOF
 		Cursor cursor = db.rawQuery(sql, param);
 		cursor.moveToFirst();
 
-		ArrayList<#{cdef.bcname}> array = new ArrayList<#{cdef.bcname}>();
+		ArrayList<Object> array = new ArrayList<Object>();
 
 		while (!cursor.isAfterLast()) {
 			#{cdef.bcname} e = allocator();
@@ -204,7 +204,7 @@ EOF
 		isInserted = true;
 	}
 
-	public static ArrayList<#{cdef.bcname}> find_all() {
+	public static ArrayList<Object> find_all() {
 		return find_cond(null);
 	}
 		   
