@@ -1,86 +1,94 @@
-// -*-  Mode:java; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
+// -*-  Mode:java; c-basic-offset:4; tab-width:4; indent-tabs-mode:t -*-
 
-package org.tmurakam.cashflow.models;
+package org.tmurakam.cashflow.ui;
 
 import java.lang.*;
 import java.util.*;
 
 import android.app.*;
 import android.os.*;
+import android.content.*;
+import android.view.*;
+import android.view.LayoutInflater;
+import android.widget.*;
+//import android.widget.AdapterView.*;
 
 import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
 public class AssetListActivity extends Activity
-    implements AdapterView.OnItemClickListner, AdapterView.OnItemLongClickListener 
+	implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener 
 {
-    private ListView listView = null;
+	private ListView listView = null;
+	AssetArrayAdapter arrayAdapter;
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.assetlist);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.assetList);
+		// initialization
+		Config.init(getApplicationContext());
+		DataModel.instance.load(getApplicationContext());
 
-        // initialization
-        Config.initialize(this);
-        DataModel.load();
+		// setup ListView
+		listView = (ListView)findViewById(R.id.AssetList);
+		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
 
+		arrayAdapter = new AssetArrayAdapter(this);
+		listView.setAdapter(arrayAdapter);
+		listView.setOnItemClickListener(this);
+		listView.setOnItemLongClickListener(this);
 
-        // setup ListView
-        listView = (ListView)findViewById(R.id.listView);
-        listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		// setup menu
+		// TBD
 
-        arrayAdapter = new AssetArrayAdapter(this, hogelayout);
-        listView.setAdapter(arrayAdapter);
-        listView.setOnItemClickListenr(this);
-        listView.setOnItemLongClickListener(this);
+		reload();
+	}
 
-        // setup menu
-        // TBD
+	public void reload() {
+		DataModel.getLedger().rebuild();
 
-        reload();
-    }
+		arrayAdapter.clear();
+		for (Asset as : DataModel.getLedger().assets) { 
+			arrayAdapter.add(as);
+		}
+	}
 
-    public void reload() {
-        DataModel.getLedger().rebuild();
+	// OnItemClickListener
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+	}
 
-        arrayAdapter.clear();
-        for (Asset as in DataModel.getLedger().assets) { 
-            arrayAdapter.add(as);
-        }
-    }
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+		return true;
+	}
 
-    // OnItemClickListener
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-    }
+	class AssetArrayAdapter extends ArrayAdapter<Asset> {
+		private LayoutInflater inflater;
 
-    public void OnItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-    }
-}
+		public AssetArrayAdapter(Context context){
+			super(context, R.layout.assetlist_row);
+			inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		}
 
-class AssetArrayAdapter extends ArrayAdapter<Asset> {
-    private LayoutInflater inflater;
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			if (convertView == null) {
+				convertView = inflater.inflate(R.layout.assetlist_row, null);
 
-    public AssetArrayAdapter(Context context, List<Asset> items) {
-        super(context, 0, items);
-        inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-    }
+				final Asset as = this.getItem(position);
+				if (as != null) {
+					TextView tv;
 
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        if (convertView == null) {
-            convertView = inflater.inflate(R.layout.xxx, null);
-
-            final Asset as = this.getItem(position);
-            if (as != null) {
-                TextView tv;
-
-                tv = (TextView)convertView.findViewById(R.id.assetRowName);
-                tv.setText(as.name);
-                
-                // ...
-            }
-        }
-        return convertView;
-    }
+					tv = (TextView)convertView.findViewById(R.id.AssetListRowText);
+					tv.setText(as.name);
+				
+					//...
+				}
+			}
+			return convertView;
+		}
+	}
 }
