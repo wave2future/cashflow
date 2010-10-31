@@ -2,6 +2,7 @@
 
 package org.tmurakam.cashflow.ormapper;
 
+import java.util.ArrayList;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
@@ -28,7 +29,7 @@ public abstract class ORRecord {
 	/**
 	   @brief Migrate database table
 	*/
-	static public boolean migrate(String tableName, String[] array) {
+	static protected boolean migrate(String tableName, String[] array) {
 		SQLiteDatabase db = Database.instance();
 		boolean ret;
 		String tablesql;
@@ -73,9 +74,9 @@ public abstract class ORRecord {
 	   @brief get all records
 	   @return array of all record
 	*/
-	/*public static ArrayList<Object> find_all() {
+	public ArrayList<Object> find_all() {
 		return find_cond(null);
-	}*/
+	}
 
 	/**
 	   @brief get all records matches the conditions
@@ -85,9 +86,7 @@ public abstract class ORRecord {
 
 	   You must override this.
 	*/
-	/*public static ArrayList<Object> find_cond(String cond) {
-		return null;
-	}*/
+	public abstract ArrayList<Object> find_cond(String cond);
 
 	/**
 	   @brief get the record matches the id
@@ -95,9 +94,7 @@ public abstract class ORRecord {
 	   @param id Primary key of the record
 	   @return record
 	*/
-	/*public static ORRecord find(int pid) {
-		return null;
-	}*/
+	public abstract ORRecord find(int pid);
 
 	/**
 	   @brief Save record
@@ -122,11 +119,8 @@ public abstract class ORRecord {
 	/**
 	   @brief Delete record
 	*/
-	public void delete() {
-		return;
-	}
-
-	/*public static void delete_all() {
-		// must be override
-	}*/
+	public abstract void delete();
+	public abstract void delete_cond(String cond);
+	
+	public void delete_all() { delete_cond(null); }
 }

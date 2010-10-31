@@ -124,7 +124,7 @@ EOF
 	/**
 	  @brief allocate entry
 	*/
-	public static #{cdef.bcname} allocator() {
+	public #{cdef.bcname} allocator() {
 		return new #{cdef.bcname}();
 	}
 
@@ -136,7 +136,7 @@ EOF
 	  @param pid Primary key of the record
 	  @return record
 	*/
-	public static #{cdef.bcname} find(int pid) {
+	public #{cdef.bcname} find(int pid) {
 		SQLiteDatabase db = Database.instance();
 
 		String[] param = { Integer.toString(pid) };
@@ -158,11 +158,11 @@ EOF
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public static ArrayList<Object> find_cond(String cond) {
+	public ArrayList<Object> find_cond(String cond) {
 		return find_cond(cond, null);
 	}
 
-	public static ArrayList<Object> find_cond(String cond, String[] param) {
+	public ArrayList<Object> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -204,10 +204,6 @@ EOF
 		isInserted = true;
 	}
 
-	public static ArrayList<Object> find_all() {
-		return find_cond(null);
-	}
-		   
 	// Create operations
 
 	public void insert() {
@@ -271,7 +267,7 @@ EOF
 	/**
 	   @brief Delete all records
 	*/
-	public static void delete_cond(String cond) {
+	public void delete_cond(String cond) {
 		SQLiteDatabase db = Database.instance();
 
 		if (cond == null) {
