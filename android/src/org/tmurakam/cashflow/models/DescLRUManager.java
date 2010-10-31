@@ -6,7 +6,7 @@ import java.util.*;
 
 import org.tmurakam.cashflow.ormapper.*;
 
-class DescLRUManager {
+public class DescLRUManager {
 	public static void addDescLRU(String description, int category) {
 		Date now = new Date();
 		addDescLRU(description, category, now);

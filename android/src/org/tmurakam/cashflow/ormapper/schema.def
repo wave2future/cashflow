@@ -14,7 +14,7 @@ Transactions:TransactionBase
         description :TEXT
         memo :TEXT
 
-Categories:CategoryBase
+Categories:Category
         name :TEXT
         sorder :INTEGER
 

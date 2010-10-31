@@ -103,19 +103,7 @@ EOF
 
 	fh.puts <<EOF
 
-//	private static #{cdef.bcname} theInstance = null;
-
-	/**
-	  @brief get singleton
-	*/
-	/*
-	public static #{cdef.bcname} instance() {
-		if (theInstance == null) {
-			theInstance = new #{cdef.bcname}();
-		}
-		return theInstance;
-	}
-	*/
+	public static #{cdef.bcname} instance = new #{cdef.bcname}();
 
 	/**
 	  @brief Migrate database table

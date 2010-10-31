@@ -8,7 +8,7 @@ import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.*;
 
-class Asset extends AssetBase {
+public class Asset extends AssetBase {
 	public static final int CASH = 0;
 	public static final int BANK = 1;
 	public static final int CARD = 2;

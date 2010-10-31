@@ -6,7 +6,7 @@ package org.tmurakam.cashflow.models;
 // 各資産（勘定）のエントリ
 //
 
-class AssetEntry implements Cloneable {
+public class AssetEntry implements Cloneable {
 	public int assetKey;
 	public double value;
 	public double balance;

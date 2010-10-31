@@ -10,7 +10,6 @@ import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.*;
 
-
 public class Ledger {
 	public ArrayList<Asset> assets = null;
 

@@ -17,7 +17,7 @@ public class DataModel {
 	public static Categories getCategories() { return instance.categories; }
 
 	// singleton
-	private static DataModel instance = new DataModel();
+	public static DataModel instance = new DataModel();
 
 	private DataModel() {
 		journal = new Journal();
