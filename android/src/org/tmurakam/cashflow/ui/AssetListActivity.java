@@ -82,39 +82,39 @@ public class AssetListActivity extends Activity
 		private LayoutInflater inflater;
 
 		public AssetArrayAdapter(Context context){
-			super(context, R.layout.assetlist_row);
+			super(context, R.layout.assetlist_row, R.id.AssetListRowText, new ArrayList<Asset>());
 			inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		}
 
 		public View getView(final int position, View convertView, ViewGroup parent) {
 			if (convertView == null) {
-				convertView = inflater.inflate(R.layout.assetlist_row, null);
-
-				final Asset as = this.getItem(position);
-				if (as != null) {
-					TextView tv;
-
-					tv = (TextView)convertView.findViewById(R.id.AssetListRowText);
-					tv.setText(as.name);
-					
-					ImageView iv = (ImageView)convertView.findViewById(R.id.AssetListRowIcon);
-					Drawable d = iconCash;
-					switch (as.type) {
-					case Asset.CASH:
-						d = iconCash;
-						break;
-					case Asset.BANK:
-						d = iconBank;
-						break;
-					case Asset.CARD:
-						d = iconCard;
-						break;
-					}
-					iv.setImageDrawable(d);
-				
-					//...
-				}
+				convertView = inflater.inflate(R.layout.assetlist_row, parent, false);
 			}
+
+			final Asset as = this.getItem(position);
+			if (as == null) return convertView; // TBD
+			
+			TextView tv = (TextView)convertView.findViewById(R.id.AssetListRowText);
+			tv.setText(as.name);
+					
+			ImageView iv = (ImageView)convertView.findViewById(R.id.AssetListRowIcon);
+			Drawable d = iconCash;
+			switch (as.type) {
+			case Asset.CASH:
+				d = iconCash;
+				break;
+			case Asset.BANK:
+				d = iconBank;
+				break;
+			case Asset.CARD:
+				d = iconCard;
+				break;
+			}
+			iv.setImageDrawable(d);
+			
+			tv = (TextView)convertView.findViewById(R.id.AssetListRowBalance);
+			tv.setText("¥0");
+
 			return convertView;
 		}
 	}
