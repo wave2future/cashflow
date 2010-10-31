@@ -71,6 +71,10 @@ public class AssetListActivity extends Activity
 	// OnItemClickListener
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		Intent intent = new Intent(getApplicationContext(), TransactionListActivity.class);
+		Asset as = DataModel.getLedger().assets.get(position);
+		intent.putExtra("AssetIndex", as.pid);
+		startActivity(intent);
 	}
 
 	@Override
