@@ -182,6 +182,8 @@ EOF
 			e._loadRow(cursor);
 			array.add(e);
 		}
+		cursor.close();
+
 		return array;
 	}
 
