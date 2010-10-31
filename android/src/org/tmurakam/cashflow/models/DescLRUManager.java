@@ -2,14 +2,9 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
 
-import android.database.*;
-import android.database.sqlite.*;
-
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 class DescLRUManager {
     public static void addDescLRU(String description, int category) {

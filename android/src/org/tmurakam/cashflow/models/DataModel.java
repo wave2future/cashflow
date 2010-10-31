@@ -2,14 +2,10 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
 import android.content.Context;
-import android.database.*;
-import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 public class DataModel {
     private Journal journal;
@@ -37,8 +33,6 @@ public class DataModel {
         Asset.migrate();
         Category.migrate();
         DescLRU.migrate();
-
-        DescLRUManager.migrate();
 
         // Load all transactions
         journal.reload();

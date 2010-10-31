@@ -2,14 +2,11 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
 
-import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 class Asset extends AssetBase {
     public static final int CASH = 0;
@@ -77,6 +74,10 @@ class Asset extends AssetBase {
         lastBalance = balance;
     }
 
+    public double getLastBalance() {
+    	return lastBalance;
+    }
+    
     public void updateInitialBalance() {
         update();
     }

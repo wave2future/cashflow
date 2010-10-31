@@ -2,14 +2,7 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
-
-import android.database.*;
-import android.database.sqlite.*;
-
-import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 // レポート(一件分)
 public class Report {
@@ -20,7 +13,7 @@ public class Report {
 
     ArrayList<CatReport> catReports;
 
-    public void Report() {
+    public Report() {
         date = null;
         totalIncome = 0.0;
         totalOutgo = 0.0;

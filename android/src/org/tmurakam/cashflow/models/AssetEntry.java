@@ -2,15 +2,6 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
-import java.util.*;
-
-import android.database.*;
-import android.database.sqlite.*;
-
-import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
-
 //
 // 各資産（勘定）のエントリ
 //
