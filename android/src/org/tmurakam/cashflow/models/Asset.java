@@ -21,7 +21,10 @@ class Asset extends AssetBase {
     private ArrayList<AssetEntry> entries;
     private double lastBalance;
 
-    public static AssetBase allocator() {
+    public static Asset instance = new Asset();
+    
+    @Override
+    public AssetBase allocator() {
         return new Asset();
     }
 

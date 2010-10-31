@@ -2,19 +2,12 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
-
-import android.database.*;
-import android.database.sqlite.*;
-
-import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 public class Journal {
     private ArrayList<Transaction> entries;
 
-    public void Journal() {
+    public Journal() {
         entries = null;
     }
 
@@ -23,7 +16,11 @@ public class Journal {
     }
 
     public void reload() {
-        entries = Transaction.find_cond("ORDER BY date, key");
+    	ArrayList<Object> a = Transaction.instance.find_cond("ORDER BY date, key");
+    	entries = new ArrayList<Transaction>();
+    	for (Object o : a) {
+    		entries.add((Transaction)o);
+    	}
     }
 
     public void insertTransaction(Transaction tr) {
@@ -34,7 +31,7 @@ public class Journal {
         // 挿入位置を探す
         for (i = 0; i < max; i++) {
             t = entries.get(i);
-            if (tr.date < t.date) {
+            if (tr.date.compareTo(t.date) < 0) {
                 break;
             }
         }
@@ -44,11 +41,11 @@ public class Journal {
         tr.insert();
 
         // 上限チェック
-        if (entries.size() > MAX_TRANSACTIONS) {
+        if (entries.size() > Asset.MAX_TRANSACTIONS) {
             // 最も古い取引を削除する
             // Note: 初期残高を調整するため、Asset 側で削除させる
-            Transaction t = entries.get(0);
-            Asset asset = DataModel.ledger.assetWithKey(t.asset);
+            t = entries.get(0);
+            Asset asset = DataModel.getLedger().assetWithKey(t.asset);
             asset.deleteEntryAt(0);
         }
     }
@@ -71,15 +68,11 @@ public class Journal {
 
     // sort
     private void _sortByDate() {
-        Collections.sort(entries, new Comparator() {
-				public int compare(Object o1, Object o2) {
-					Transaction t1 = (Transaction)o1;
-					Transaction t2 = (Transaction)o2;
-					if (t1.date < t2.date) return -1;
-					if (t1.date > t2.date) return 1;
-					return 0;
-				}
-			});
+        Collections.sort(entries, new Comparator<Transaction>() {
+        	public int compare(Transaction t1, Transaction t2) {
+				return t1.date.compareTo(t2.date);
+			}
+		});
     }
 
     /**

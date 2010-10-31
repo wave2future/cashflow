@@ -2,24 +2,20 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
 
-import android.database.*;
-import android.database.sqlite.*;
-
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
 
 public class Categories {
-    private ArrayList<Category> categories = null;
+	private ArrayList<Object> categories = null;
+	private static Category instance = new Category();
 
-    publci void Categories() {
+    public Categories() {
         categories = null;
     }
 
     public void reload() {
-        categories = Category.find_cond("ORDER BY sorder");
+        categories = instance.find_cond("ORDER BY sorder");
     }
 
     public int categoryCount() {
@@ -28,14 +24,14 @@ public class Categories {
 
 
     public Category categoryAtIndex(int n) {
-        return categories.get(n);
+        return (Category)categories.get(n);
     }
 
     public int categoryIndexWithKey(int key) {
         int i, max = categories.size();
 
         for (i = 0; i < max; i++) {
-            Category c = categories.get(i);
+            Category c = (Category)categories.get(i);
             if (c.pid == key) {
                 return i;
             }
@@ -49,7 +45,7 @@ public class Categories {
         if (idx < 0) {
             return "";
         }
-        Category c = categories.get(idx);
+        Category c = (Category)categories.get(idx);
         return c.name;
     }
 
@@ -70,14 +66,14 @@ public class Categories {
     }
 
     public void deleteCategoryAtIndex(int index) {
-        Category c = categories.get(index);
+        Category c = (Category)categories.get(index);
         c.delete();
 
         categories.remove(index);
     }
 
     public void reorderCategory(int from, int to) {
-        Category c = categories.get(from);
+        Category c = (Category)categories.get(from);
         categories.remove(from);
         categories.add(to, c);
 
@@ -88,7 +84,7 @@ public class Categories {
         int i, max = categories.size();
 
         for (i = 0; i < max; i++) {
-            Category c = categories.get(i);
+            Category c = (Category)categories.get(i);
             c.sorder = i;
             c.update();
         }

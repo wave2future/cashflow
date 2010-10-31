@@ -4,6 +4,7 @@ package org.tmurakam.cashflow.models;
 
 import java.lang.*;
 import java.util.*;
+import android.content.Context;
 import android.database.*;
 import android.database.sqlite.*;
 
@@ -15,19 +16,12 @@ public class DataModel {
     private Ledger ledger;
     private Categories categories;
 
-    public static Journal getJournal() { return instance().journal; }
-    public static Ledger  getLedger() { return instance().ledger; }
-    public static Categories getCategories() { return instance().categories; }
+    public static Journal getJournal() { return instance.journal; }
+    public static Ledger  getLedger() { return instance.ledger; }
+    public static Categories getCategories() { return instance.categories; }
 
     // singleton
-    private static DataModel theDataModel = null;
-
-    public static DataModel instance() {
-        if (theDataModel == null) {
-            theDataModel = new DataModel();
-        }
-        return theDataModel;
-    }
+    private static DataModel instance = new DataModel();
 
     private DataModel() {
         journal = new Journal();
@@ -35,9 +29,8 @@ public class DataModel {
         categories = new Categories();
     }
 
-    public load(Context context) {
-        Database db = Database.instance();
-        db.initialize(context);
+    public void load(Context context) {
+    	Database.initialize(context);
 
         // migrate
         Transaction.migrate();
@@ -67,11 +60,11 @@ public class DataModel {
     //
     int categoryWithDescription(String desc) {
         String[] param = { desc };
-        ArrayList<Transaction> ary = Transaction.find_cond("WHERE description = ? ORDER BY date DESC LIMIT 1", param);
+        ArrayList<Object> ary = Transaction.instance.find_cond("WHERE description = ? ORDER BY date DESC LIMIT 1", param);
     
         int category = -1;
-        if (ary.size > 0) {
-            Transaction t = ary[0];
+        if (ary.size() > 0) {
+            Transaction t = (Transaction)ary.get(0);
             category = t.category;
         }
         return category;

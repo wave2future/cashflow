@@ -16,7 +16,10 @@ public  class Transaction extends TransactionBase implements Cloneable {
     public boolean hasBalance;
     public double balance;
 
-    public static TransactionBase allocator() {
+    public final static Transaction instance = new Transaction();
+        
+    @Override
+    public Object allocator() {
 		return new Transaction();
     }
 

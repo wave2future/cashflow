@@ -8,6 +8,7 @@ import java.util.*;
 import android.database.*;
 import android.database.sqlite.*;
 
+import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
@@ -102,7 +103,7 @@ public class Reports {
 	
         int numCategories = DataModel.getCategories().categoryCount();
 	
-        while (cal.getTime() <= lastDate) {
+        while (cal.getTime().compareTo(lastDate) <= 0) {
             // Report 生成
             Report r = new Report();
             reports.add(r);

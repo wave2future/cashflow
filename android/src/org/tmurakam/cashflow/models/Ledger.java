@@ -4,26 +4,26 @@
 
 package org.tmurakam.cashflow.models;
 
-import java.lang.*;
 import java.util.*;
 
-import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.models.*;
-
 
 
 public class Ledger {
     public ArrayList<Asset> assets = null;
 
     public void load() {
-        assets = Asset.find_cond("ORDER BY sorder");
+    	ArrayList<Object> a = Asset.instance.find_cond("ORDER BY sorder");
+    	assets = new ArrayList<Asset>();
+    	for (Object o : a) {
+    		assets.add((Asset)o);
+    	}
     }
 
     public void rebuild() {
-        for (Asset as in assets) {
+        for (Asset as : assets) {
             as.rebuild();
         }
     }
@@ -37,7 +37,7 @@ public class Ledger {
     }
 
     public Asset assetWithKey(int pid) {
-        for (Asset as in assets) {
+        for (Asset as : assets) {
             if (as.pid == pid) return as;
         }
         return null;
@@ -61,7 +61,7 @@ public class Ledger {
     public void deleteAsset(Asset as) {
         as.delete();
 
-        DataModel.journal.deleteAllTransactionsWithAsset(as);
+        DataModel.getJournal().deleteAllTransactionsWithAsset(as);
 
         assets.remove(as);
         rebuild();
@@ -84,6 +84,6 @@ public class Ledger {
             as.sorder = i;
             as.update();
         }
-        db.commitTransaction();
+        db.endTransaction();
     }
 }
