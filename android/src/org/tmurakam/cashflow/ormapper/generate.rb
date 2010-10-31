@@ -103,17 +103,19 @@ EOF
 
 	fh.puts <<EOF
 
-	private static #{cdef.bcname} theInstance = null;
+//	private static #{cdef.bcname} theInstance = null;
 
 	/**
 	  @brief get singleton
 	*/
+	/*
 	public static #{cdef.bcname} instance() {
 		if (theInstance == null) {
 			theInstance = new #{cdef.bcname}();
 		}
 		return theInstance;
 	}
+	*/
 
 	/**
 	  @brief Migrate database table
@@ -136,7 +138,7 @@ EOF
 	/**
 	  @brief allocate entry
 	*/
-	public #{cdef.bcname} allocator() {
+	public Object allocator() {
 		return new #{cdef.bcname}();
 	}
 
@@ -157,7 +159,7 @@ EOF
 		#{cdef.bcname} e = null;
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
-			e = allocator();
+			e = (#{cdef.bcname})allocator();
 			e._loadRow(cursor);
 		}
 		cursor.close();
@@ -188,7 +190,7 @@ EOF
 		ArrayList<Object> array = new ArrayList<Object>();
 
 		while (!cursor.isAfterLast()) {
-			#{cdef.bcname} e = allocator();
+			#{cdef.bcname} e = (#{cdef.bcname})allocator();
 			e._loadRow(cursor);
 			array.add(e);
 		}
