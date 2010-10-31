@@ -83,15 +83,6 @@ public class TransactionListActivity extends Activity
 		arrayAdapter.add(e);
 	}
 	
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-	}
-
-	@Override
-	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-		return true;
-	}
-	
 	class AssetEntryArrayAdapter extends ArrayAdapter<AssetEntry> {
 		private LayoutInflater inflater;
 
@@ -157,102 +148,71 @@ public class TransactionListActivity extends Activity
 		[nc release];
 		*/
 	}
+
+	@Override
+	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+		return true;
+	}
+	
+	//
+	// セルをクリックしたときの処理
+	//
+	@Override
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		/*
+	    int idx = [self entryIndexWithIndexPath:indexPath];
+	    if (idx == -1) {
+	        // initial balance cell
+	        CalculatorViewController *v = [[[CalculatorViewController alloc] init] autorelease];
+	        v.delegate = self;
+	        v.value = asset.initialBalance;
+
+	        UINavigationController *nv = [[[UINavigationController alloc] initWithRootViewController:v] autorelease];
+	        
+	        if (!IS_IPAD) {
+	            [self presentModalViewController:nv animated:YES];
+	        } else {
+	            if (self.popoverController) {
+	                [self.popoverController dismissPopoverAnimated:YES];
+	            }
+	            self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:nv] autorelease];
+	            [self.popoverController presentPopoverFromRect:[tv cellForRowAtIndexPath:indexPath].frame inView:self.view
+	               permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+	        }
+	    } else if (idx >= 0) {
+	        // transaction view を表示
+	        TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
+	        vc.asset = self.asset;
+	        [vc setTransactionIndex:idx];
+	        [self.navigationController pushViewController:vc animated:YES];
+	    }
+	    */
+	}
+
+	// 初期残高変更処理
+	private void calculatorViewChanged() {
+		/*
+		asset.initialBalance = vc.value;
+		[asset updateInitialBalance];
+		[asset rebuild];
+		[self reload];
+		*/
+	}
+
+	// 新規トランザクション追加
+	private void addTransaction() {
+		if (asset == null) return;
+
+		/*
+		TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
+		vc.asset = self.asset;
+		[vc setTransactionIndex:-1];
+		[self.navigationController pushViewController:vc animated:YES];
+		*/
+	}
 }
 
 /*
-// 初期残高セルの生成 (private)
-- (UITableViewCell *)initialBalanceCell
-{
-    NSString *cellid = @"initialBalanceCell";
-
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-    UILabel *descLabel, *balanceLabel;
-
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
-        descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-        descLabel.font = [UIFont systemFontOfSize: 18.0];
-        descLabel.textColor = [UIColor blackColor];
-        descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        descLabel.text = NSLocalizedString(@"Initial Balance", @"");
-        [cell.contentView addSubview:descLabel];
-
-        balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
-        balanceLabel.tag = TAG_BALANCE;
-        balanceLabel.font = [UIFont systemFontOfSize: 14.0];
-        balanceLabel.textAlignment = UITextAlignmentRight;
-        balanceLabel.textColor = [UIColor grayColor];
-        balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:balanceLabel];
-    } else {
-        balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
-    }
-
-    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                                  [CurrencyManager formatCurrency:asset.initialBalance]];
-
-    return cell;
-}
-
-#pragma mark UITableViewDelegate
-
-//
-// セルをクリックしたときの処理
-//
-- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tv deselectRowAtIndexPath:indexPath animated:NO];
-	
-    int idx = [self entryIndexWithIndexPath:indexPath];
-    if (idx == -1) {
-        // initial balance cell
-        CalculatorViewController *v = [[[CalculatorViewController alloc] init] autorelease];
-        v.delegate = self;
-        v.value = asset.initialBalance;
-
-        UINavigationController *nv = [[[UINavigationController alloc] initWithRootViewController:v] autorelease];
-        
-        if (!IS_IPAD) {
-            [self presentModalViewController:nv animated:YES];
-        } else {
-            if (self.popoverController) {
-                [self.popoverController dismissPopoverAnimated:YES];
-            }
-            self.popoverController = [[[UIPopoverController alloc] initWithContentViewController:nv] autorelease];
-            [self.popoverController presentPopoverFromRect:[tv cellForRowAtIndexPath:indexPath].frame inView:self.view
-               permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        }
-    } else if (idx >= 0) {
-        // transaction view を表示
-        TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
-        vc.asset = self.asset;
-        [vc setTransactionIndex:idx];
-        [self.navigationController pushViewController:vc animated:YES];
-    }
-}
-
-// 初期残高変更処理
-- (void)calculatorViewChanged:(CalculatorViewController *)vc
-{
-    asset.initialBalance = vc.value;
-    [asset updateInitialBalance];
-    [asset rebuild];
-    [self reload];
-}
-
-// 新規トランザクション追加
-- (void)addTransaction
-{
-    if (asset == nil) return;
-    
-    TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
-    vc.asset = self.asset;
-    [vc setTransactionIndex:-1];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
@@ -268,16 +228,6 @@ public class TransactionListActivity extends Activity
     } else {
         self.navigationItem.rightBarButtonItem.enabled = YES;
     }
-}
-
-// 編集スタイルを返す
-- (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    int entryIndex = [self entryIndexWithIndexPath:indexPath];
-    if (entryIndex < 0) {
-        return UITableViewCellEditingStyleNone;
-    } 
-    return UITableViewCellEditingStyleDelete;
 }
 
 // 削除処理
@@ -387,25 +337,5 @@ public class TransactionListActivity extends Activity
     [self.navigationController presentModalViewController:nv animated:YES];
     [nv release];
 }
-
-#pragma mark Split View Delegate
-
-- (void)splitViewController: (UISplitViewController*)svc willHideViewController:(UIViewController *)aViewController
-          withBarButtonItem:(UIBarButtonItem*)barButtonItem forPopoverController: (UIPopoverController*)pc
-{
-    barButtonItem.title = NSLocalizedString(@"Assets", @"");
-    self.navigationItem.leftBarButtonItem = barButtonItem;
-    self.popoverController = pc;
-}
-
-
-// Called when the view is shown again in the split view, invalidating the button and popover controller.
-- (void)splitViewController: (UISplitViewController*)svc willShowViewController:(UIViewController *)aViewController
-  invalidatingBarButtonItem:(UIBarButtonItem *)barButtonItem
-{
-    self.navigationItem.leftBarButtonItem = nil;
-    self.popoverController = nil;
-}
-
-@end
 */
+
