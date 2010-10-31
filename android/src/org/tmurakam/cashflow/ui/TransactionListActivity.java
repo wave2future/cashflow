@@ -8,8 +8,10 @@ import java.util.*;
 import android.app.*;
 import android.os.*;
 import android.content.*;
+import android.text.format.DateFormat;
 import android.view.*;
 import android.widget.*;
+import android.graphics.*;
 import android.graphics.drawable.*;
 //import android.widget.AdapterView.*;
 
@@ -24,6 +26,7 @@ public class TransactionListActivity extends Activity
 	private ListView listView;
 	private Asset asset;
 	private AssetEntryArrayAdapter arrayAdapter;
+	private java.text.DateFormat dateFormat; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -34,7 +37,9 @@ public class TransactionListActivity extends Activity
 		asset = DataModel.getLedger().assetWithKey(assetId);
 
 		setTitle(asset.name);
-		
+	
+		dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
+ 		
 		// setup ListView
 		listView = (ListView)findViewById(R.id.TransactionList);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -48,16 +53,17 @@ public class TransactionListActivity extends Activity
 	}
 	
 	public void reload() {
-		//self.title = self.asset.name;
-		//[self updateBalance];
-	    //[self.tableView reloadData];
+		updateBalance();
 
 		int count = asset.entryCount();
 		arrayAdapter.clear();
 		for (int i = 0; i < count; i++) {
 			arrayAdapter.add(asset.entryAt(i));
 		}
-		
+
+		// 初期残高
+		// TBD
+
 		// test
 		Transaction t = new Transaction();
 		t.description = "dinner";
@@ -66,6 +72,8 @@ public class TransactionListActivity extends Activity
 		t.date = new Date();
 		AssetEntry e = new AssetEntry();
 		e.transaction = t;
+		e.value = 2000;
+		e.balance = 8000;
 		arrayAdapter.add(e);
 	}
 	
@@ -94,178 +102,46 @@ public class TransactionListActivity extends Activity
 			final AssetEntry e = this.getItem(position);
 			if (e == null) return convertView; // TBD
 			
-			TextView tv = (TextView)convertView.findViewById(R.id.TransactionListRowText);
+			TextView tv;
+			tv = (TextView)convertView.findViewById(R.id.TransactionListRowText);
 			tv.setText(e.transaction.description);
+
+			tv = (TextView)convertView.findViewById(R.id.TransactionListRowDate);
+			tv.setText(dateFormat.format(e.transaction.date));
+					
+			tv = (TextView)convertView.findViewById(R.id.TransactionListRowValue);
+			if (e.value >= 0) {
+				tv.setTextColor(Color.BLUE);
+			} else {
+				tv.setTextColor(Color.RED);
+			}
+			tv.setText(CurrencyManager.formatCurrency(e.value));
+			
+			tv = (TextView)convertView.findViewById(R.id.TransactionListRowBalance);
+			tv.setText("balance " + CurrencyManager.formatCurrency(e.balance));
 
 			return convertView;
 		}
 	}
+
+	private void updateBalance() {
+		double lastBalance = asset.getLastBalance();
+		//barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
+    }
+
+	private void showHelp() {
+		/*
+		InfoVC *v = [[[InfoVC alloc] init] autorelease];
+		//[self.navigationController pushViewController:v animated:YES];
+
+		UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:v];
+		[self presentModalViewController:nc animated:YES];
+		[nc release];
+		*/
+	}
 }
 
 /*
-- (void)updateBalance
-{
-    double lastBalance = [asset lastBalance];
-    NSString *bstr = [CurrencyManager formatCurrency:lastBalance];
-
-#if 0
-    UILabel *tableTitle = (UILabel *)[self.tableView tableHeaderView];
-    tableTitle.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
-#endif
-	
-    barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
-    
-    if (IS_IPAD) {
-        [splitAssetListViewController reload];
-    }
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-}
-
-- (IBAction)showHelp:(id)sender
-{
-    InfoVC *v = [[[InfoVC alloc] init] autorelease];
-    //[self.navigationController pushViewController:v animated:YES];
-
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:v];
-    if (IS_IPAD) {
-        nc.modalPresentationStyle = UIModalPresentationFormSheet;
-    }
-    [self presentModalViewController:nc animated:YES];
-    [nc release];
-}
-
-
-#pragma mark TableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (asset == nil) return 0;
-    
-    int n = [asset entryCount] + 1;
-    return n;
-}
-
-- (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return tableView.rowHeight;
-}
-
-// 指定セル位置に該当する entry Index を返す
-- (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
-{
-    int idx = ([asset entryCount] - 1) - indexPath.row;
-    return idx;
-}
-
-// 指定セル位置の Entry を返す
-- (AssetEntry *)entryWithIndexPath:(NSIndexPath *)indexPath
-{
-    int idx = [self entryIndexWithIndexPath:indexPath];
-
-    if (idx < 0) {
-        return nil;  // initial balance
-    } 
-    AssetEntry *e = [asset entryAt:idx];
-    return e;
-}
-
-//
-// セルの内容を返す
-//
-#define TAG_DESC 1
-#define TAG_DATE 2
-#define TAG_VALUE 3
-#define TAG_BALANCE 4
-
-- (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell;
-	
-    AssetEntry *e = [self entryWithIndexPath:indexPath];
-    if (e) {
-        cell = [self _entryCell:e];
-    }
-    else {
-        cell = [self initialBalanceCell];
-    }
-
-    return cell;
-}
-
-// Entry セルの生成 (private)
-- (UITableViewCell *)_entryCell:(AssetEntry *)e
-{
-    NSString *cellid = @"transactionCell";
-
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
-    UILabel *descLabel, *dateLabel, *valueLabel, *balanceLabel;
-
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        //cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-		
-        descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 220, 24)] autorelease];
-        descLabel.tag = TAG_DESC;
-        descLabel.font = [UIFont systemFontOfSize: 18.0];
-        descLabel.textColor = [UIColor blackColor];
-        descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:descLabel];
-		
-        valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(190, 0, 120, 24)] autorelease];
-        valueLabel.tag = TAG_VALUE;
-        valueLabel.font = [UIFont systemFontOfSize: 18.0];
-        valueLabel.textAlignment = UITextAlignmentRight;
-        valueLabel.textColor = [UIColor blueColor];
-        valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:valueLabel];
-		
-        dateLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 24, 160, 20)] autorelease];
-        dateLabel.tag = TAG_DATE;
-        dateLabel.font = [UIFont systemFontOfSize: 14.0];
-        dateLabel.textColor = [UIColor grayColor];
-        dateLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:dateLabel];
-		
-        balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
-        balanceLabel.tag = TAG_BALANCE;
-        balanceLabel.font = [UIFont systemFontOfSize: 14.0];
-        balanceLabel.textAlignment = UITextAlignmentRight;
-        balanceLabel.textColor = [UIColor grayColor];
-        balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:balanceLabel];
-    } else {
-        descLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DESC];
-        dateLabel = (UILabel *)[cell.contentView viewWithTag:TAG_DATE];
-        valueLabel = (UILabel *)[cell.contentView viewWithTag:TAG_VALUE];
-        balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
-    }
-
-    descLabel.text = e.transaction.description;
-    dateLabel.text = [[DataModel dateFormatter] stringFromDate:e.transaction.date];
-	
-    double v = e.value;
-    if (v >= 0) {
-        valueLabel.textColor = [UIColor blueColor];
-    } else {
-        v = -v;
-        valueLabel.textColor = [UIColor redColor];
-    }
-    valueLabel.text = [CurrencyManager formatCurrency:v];
-    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                         [CurrencyManager formatCurrency:e.balance]];
-	
-    return cell;
-}
-
 // 初期残高セルの生成 (private)
 - (UITableViewCell *)initialBalanceCell
 {
