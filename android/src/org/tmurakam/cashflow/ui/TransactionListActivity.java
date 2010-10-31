@@ -15,20 +15,48 @@ import android.graphics.drawable.*;
 
 import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
+import org.tmurakam.cashflow.ui.AssetListActivity.AssetArrayAdapter;
 import org.tmurakam.cashflow.models.*;
 
-class TransactionListActivity extends Activity
+public class TransactionListActivity extends Activity
 	implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener 
 {
+	private ListView listView;
 	private Asset asset;
+	private AssetEntryArrayAdapter arrayAdapter;
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.transactionlist);
 		
-		int assetIndex = getIntent().getIntExtra("AssetIndex", 0);
-		asset = DataModel.getLedger().assets.get(assetIndex);
+		int assetId = getIntent().getIntExtra("AssetIndex", -1);
+		asset = DataModel.getLedger().assetWithKey(assetId);
+
+		setTitle(asset.name);
+		
+		// setup ListView
+		listView = (ListView)findViewById(R.id.TransactionList);
+		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+		
+		arrayAdapter = new AssetEntryArrayAdapter(this);
+		listView.setAdapter(arrayAdapter);
+		listView.setOnItemClickListener(this);
+		listView.setOnItemLongClickListener(this);
+		
+		reload();
+	}
+	
+	public void reload() {
+		//self.title = self.asset.name;
+		//[self updateBalance];
+	    //[self.tableView reloadData];
+
+		int count = asset.entryCount();
+		arrayAdapter.clear();
+		for (int i = 0; i < count; i++) {
+			arrayAdapter.add(asset.entryAt(i));
+		}
 	}
 	
 	@Override
@@ -39,176 +67,32 @@ class TransactionListActivity extends Activity
 	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 		return true;
 	}
+	
+	class AssetEntryArrayAdapter extends ArrayAdapter<AssetEntry> {
+		private LayoutInflater inflater;
+
+		public AssetEntryArrayAdapter(Context context){
+			super(context, R.layout.transactionlist_row, R.id.TransactionListRowText, new ArrayList<AssetEntry>());
+			inflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		}
+
+		public View getView(final int position, View convertView, ViewGroup parent) {
+			if (convertView == null) {
+				convertView = inflater.inflate(R.layout.assetlist_row, parent, false);
+			}
+
+			final AssetEntry e = this.getItem(position);
+			if (e == null) return convertView; // TBD
+			
+			TextView tv = (TextView)convertView.findViewById(R.id.TransactionListRowText);
+			tv.setText(e.transaction.description);
+
+			return convertView;
+		}
+	}
 }
+
 /*
-    //NSLog(@"TransactionListViewController:viewDidLoad");
-
-    [super viewDidLoad];
-	
-    // title 設定
-    //self.title = NSLocalizedString(@"Transactions", @"");
-    if (asset == nil) {
-        self.title = @"";
-    } else {
-        self.title = asset.name;
-    }
-	
-    // "+" ボタンを追加
-    UIBarButtonItem *plusButton = [[UIBarButtonItem alloc]
-                                      initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-                                      target:self
-                                      action:@selector(addTransaction)];
-	
-    self.navigationItem.rightBarButtonItem = plusButton;
-    [plusButton release];
-	
-    // Edit ボタンを追加
-    // TBD
-    //self.navigationItem.leftBarButtonItem = [self editButtonItem];
-	
-    asDisplaying = NO;
-
-#if FREE_VERSION
-    adViewController = nil;
-#endif
-}
-
-- (void)viewDidUnload
-{
-    //NSLog(@"TransactionListViewController:viewDidUnload");
-
-#if FREE_VERSION
-    [adViewController release];
-    adViewController = nil;
-#endif
-}
-
-#if FREE_VERSION
-// GADAdViewControllerDelegate
-- (UIViewController *)viewControllerForModalPresentation:(GADAdViewController *)adController
-{
-    return self.navigationController;
-}
-
-- (GADAdClickAction)adControllerActionModelForAdClick:(GADAdViewController *)adController
-{
-    return GAD_ACTION_DISPLAY_INTERNAL_WEBSITE_VIEW;
-}
-
-#endif
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-}
-
-- (void)dealloc {
-    [tableView release];
-    [popoverController release];
-#if FREE_VERSION
-    [adViewController release];
-#endif
-    
-    [super dealloc];
-}
-
-- (void)reload
-{
-    self.title = self.asset.name;
-    [self updateBalance];
-    [self.tableView reloadData];
-
-    if (popoverController != nil && [popoverController isPopoverVisible]) {
-        [popoverController dismissPopoverAnimated:YES];
-    }
-}    
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    //NSLog(@"TransactionListViewController:viewWillAppear");
-
-    [super viewWillAppear:animated];
-    [self reload];
-
-#if FREE_VERSION
-    if (adViewController == nil) {
-        [self _replaceAd];
-    }
-#endif
-}
-
-- (void)_replaceAd
-{
-#if FREE_VERSION
-    // Google Adsense バグ暫定対処
-    // AdSense が起動時に正しく表示されずクラッシュする場合があるため、
-    // 前回正しく表示できていない場合は初回表示させない
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    int n = [defaults integerForKey:@"ShowAds"];
-    if (n == 0) {
-        [defaults setInteger:1 forKey:@"ShowAds"]; // show next time
-        [defaults synchronize];
-        return;
-    }
-    [defaults setInteger:0 forKey:@"ShowAds"];
-    [defaults synchronize];
-    
-    if (adViewController != nil) {
-        [adViewController.view removeFromSuperview];
-        [adViewController release];
-        adViewController = nil;
-    }
-    
-    CGRect frame = tableView.bounds;
-    
-    // 画面下部固定で広告を作成する
-    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
-    if (IS_IPAD) {
-        //adViewController.adSize = kGADAdSize468x60;
-        adViewController.adSize = kGADAdSize320x50;
-    } else {
-        adViewController.adSize = kGADAdSize320x50;
-    }
-    adViewController.autoRefreshSeconds = 180;
-    
-    NSDictionary *attributes = [AdUtil adAttributes];
-    
-    @try {
-        [adViewController loadGoogleAd:attributes];
-    }
-    @catch (NSException * e) {
-        NSLog(@"loadGoogleAd: exception: %@", [e description]);
-    }
-    
-    UIView *adView = adViewController.view;
-    float adViewWidth = [adView bounds].size.width;
-    float adViewHeight = [adView bounds].size.height;
-    
-    CGRect aframe = frame;
-    aframe.origin.x = (frame.size.width - adViewWidth) / 2;
-    aframe.origin.y = frame.size.height - adViewHeight;
-    aframe.size.height = adViewHeight;
-    aframe.size.width = adViewWidth;
-    adView.frame = aframe;
-    adView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
-    [self.view addSubview:adView];
-    
-    // 広告領域分だけ、tableView の下部をあける
-    CGRect tframe = frame;
-    tframe.size.height -= adViewHeight;
-    tableView.frame = tframe;
-    
-    [defaults setInteger:1 forKey:@"ShowAds"];
-    [defaults synchronize];
-#endif
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    //NSLog(@"TransactionListViewController:viewDidAppear");
-
-    [super viewDidAppear:animated];
-}
-
 - (void)updateBalance
 {
     double lastBalance = [asset lastBalance];
