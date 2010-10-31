@@ -79,7 +79,7 @@ public class Reports {
 		switch (type) {
 		case MONTHLY:
 			// 締め日設定
-			int cutoffDate = Config.instance().cutoffDate;
+			int cutoffDate = AppConfig.instance().cutoffDate;
 			if (cutoffDate == 0) {
 				// 月末締め ⇒ 開始は同月1日から。
 				cal.set(Calendar.DATE, 1);

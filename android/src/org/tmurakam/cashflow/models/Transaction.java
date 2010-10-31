@@ -26,7 +26,8 @@ public  class Transaction extends TransactionBase implements Cloneable {
 	public Transaction() {
 		this(new Date(), "", 0.0);
 
-		if (Config.instance().dateTimeMode == Config.DateTimeModeDateOnly) {
+		AppConfig cfg = AppConfig.instance();
+		if (cfg.dateTimeMode == AppConfig.DateTimeModeDateOnly) {
 			// 時刻を 0:00:00 に設定
 			this.date.setHours(0);
 			this.date.setMinutes(0);

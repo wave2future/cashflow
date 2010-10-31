@@ -70,7 +70,7 @@ public class CurrencyManager {
 		numberFormat = NumberFormat.getCurrencyInstance();
 
 		// TBD
-		baseCurrency = Config.instance().baseCurrency;
+		baseCurrency = AppConfig.instance().baseCurrency;
 		setBaseCurrency(baseCurrency);
     }
 
@@ -89,7 +89,7 @@ public class CurrencyManager {
 		}
 		numberFormat.setCurrency(currency);
         
-		Config cfg = Config.instance();
+		AppConfig cfg = AppConfig.instance();
 		cfg.baseCurrency = baseCurrency;
 		cfg.save();
     }

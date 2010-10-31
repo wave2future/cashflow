@@ -29,9 +29,11 @@ public class AssetListActivity extends Activity
 		setContentView(R.layout.assetlist);
 
 		// initialization
-		Config.init(getApplicationContext());
-		DataModel.instance.load(getApplicationContext());
-
+		Context ctx = getApplicationContext();
+		AppConfig.init(ctx);
+		Database.initialize(ctx);
+		DataModel.instance.load(ctx);
+		
 		// setup ListView
 		listView = (ListView)findViewById(R.id.AssetList);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
