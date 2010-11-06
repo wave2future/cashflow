@@ -8,6 +8,7 @@ import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.ORRecord;
+import org.tmurakam.cashflow.models.*;
 
 public class TransactionBase extends ORRecord {
     public final static String tableName = "Transactions";
@@ -46,13 +47,6 @@ public class TransactionBase extends ORRecord {
 		return migrate(tableName, columnTypes);
 	}
 
-	/**
-	  @brief allocate entry
-	*/
-	public Object allocator() {
-		return new TransactionBase();
-	}
-
 	// Read operations
 
 	/**
@@ -61,33 +55,48 @@ public class TransactionBase extends ORRecord {
 	  @param pid Primary key of the record
 	  @return record
 	*/
-	public TransactionBase find(int pid) {
+	public Transaction find(int pid) {
 		SQLiteDatabase db = Database.instance();
 
 		String[] param = { Integer.toString(pid) };
 		Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " WHERE key = ?;", param);
 
-		TransactionBase e = null;
+		Transaction e = null;
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
-			e = (TransactionBase)allocator();
+			e = new Transaction();
 			e._loadRow(cursor);
 		}
 		cursor.close();
  
 		return e;
 	}
+
+	/**
+	   @brief get all records
+	   @return array of all record
+	*/
+	public ArrayList<Transaction> find_all() {
+		return find_cond(null, null);
+	}
+
+	/**
+	   @brief get all records matches the conditions
+
+	   @param cond Conditions (WHERE phrase and so on)
+	   @return array of records
+	*/
+	public ArrayList<Transaction> find_cond(String cond) {
+		return find_cond(cond, null);
+	}
+
 	/**
 	   @brief get all records match the conditions
 
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Object> find_cond(String cond) {
-		return find_cond(cond, null);
-	}
-
-	public ArrayList<Object> find_cond(String cond, String[] param) {
+	public ArrayList<Transaction> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -98,10 +107,10 @@ public class TransactionBase extends ORRecord {
 		Cursor cursor = db.rawQuery(sql, param);
 		cursor.moveToFirst();
 
-		ArrayList<Object> array = new ArrayList<Object>();
+		ArrayList<Transaction> array = new ArrayList<Transaction>();
 
 		while (!cursor.isAfterLast()) {
-			TransactionBase e = (TransactionBase)allocator();
+			Transaction e = new Transaction();
 			e._loadRow(cursor);
 			array.add(e);
 			cursor.moveToNext();
@@ -111,7 +120,7 @@ public class TransactionBase extends ORRecord {
 		return array;
 	}
 
-	private void _loadRow(Cursor cursor) {
+	protected void _loadRow(Cursor cursor) {
 		this.pid = cursor.getInt(0);
 		this.asset = cursor.getInt(1);
 		this.dst_asset = cursor.getInt(2);

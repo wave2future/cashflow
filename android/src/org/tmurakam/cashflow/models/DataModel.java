@@ -54,12 +54,11 @@ public class DataModel {
 	//
 	int categoryWithDescription(String desc) {
 		String[] param = { desc };
-		ArrayList<Object> ary = Transaction.instance.find_cond("WHERE description = ? ORDER BY date DESC LIMIT 1", param);
+		ArrayList<Transaction> ary = Transaction.instance.find_cond("WHERE description = ? ORDER BY date DESC LIMIT 1", param);
 	
 		int category = -1;
 		if (ary.size() > 0) {
-			Transaction t = (Transaction)ary.get(0);
-			category = t.category;
+			category = ary.get(0).category;
 		}
 		return category;
 	}

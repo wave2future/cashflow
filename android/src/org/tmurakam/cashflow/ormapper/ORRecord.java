@@ -2,7 +2,6 @@
 
 package org.tmurakam.cashflow.ormapper;
 
-import java.util.ArrayList;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
 
@@ -21,10 +20,7 @@ public abstract class ORRecord {
 		this.pid = pid;
 	}
 
-	// constructor
-	ORRecord() {
-		isInserted = false;
-	}
+	// no constructor needed
 
 	/**
 	   @brief Migrate database table
@@ -69,32 +65,6 @@ public abstract class ORRecord {
 		}
 		return ret;
 	}
-
-	/**
-	   @brief get all records
-	   @return array of all record
-	*/
-	public ArrayList<Object> find_all() {
-		return find_cond(null);
-	}
-
-	/**
-	   @brief get all records matches the conditions
-
-	   @param cond Conditions (WHERE phrase and so on)
-	   @return array of records
-
-	   You must override this.
-	*/
-	public abstract ArrayList<Object> find_cond(String cond);
-
-	/**
-	   @brief get the record matches the id
-	   
-	   @param id Primary key of the record
-	   @return record
-	*/
-	public abstract ORRecord find(int pid);
 
 	/**
 	   @brief Save record

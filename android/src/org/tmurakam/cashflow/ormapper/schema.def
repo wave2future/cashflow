@@ -1,10 +1,10 @@
-Assets:AssetBase
+Assets:Asset,AssetBase
 	name :TEXT
         type :INTEGER
         initialBalance :REAL
         sorder :INTEGER
 
-Transactions:TransactionBase
+Transactions:Transaction,TransactionBase
         asset :INTEGER
         dst_asset :INTEGER
         date :DATE

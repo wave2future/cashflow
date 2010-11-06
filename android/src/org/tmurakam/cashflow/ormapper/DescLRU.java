@@ -8,6 +8,7 @@ import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.ORRecord;
+import org.tmurakam.cashflow.models.*;
 
 public class DescLRU extends ORRecord {
     public final static String tableName = "DescLRUs";
@@ -36,13 +37,6 @@ public class DescLRU extends ORRecord {
 		return migrate(tableName, columnTypes);
 	}
 
-	/**
-	  @brief allocate entry
-	*/
-	public Object allocator() {
-		return new DescLRU();
-	}
-
 	// Read operations
 
 	/**
@@ -60,24 +54,39 @@ public class DescLRU extends ORRecord {
 		DescLRU e = null;
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
-			e = (DescLRU)allocator();
+			e = new DescLRU();
 			e._loadRow(cursor);
 		}
 		cursor.close();
  
 		return e;
 	}
+
+	/**
+	   @brief get all records
+	   @return array of all record
+	*/
+	public ArrayList<DescLRU> find_all() {
+		return find_cond(null, null);
+	}
+
+	/**
+	   @brief get all records matches the conditions
+
+	   @param cond Conditions (WHERE phrase and so on)
+	   @return array of records
+	*/
+	public ArrayList<DescLRU> find_cond(String cond) {
+		return find_cond(cond, null);
+	}
+
 	/**
 	   @brief get all records match the conditions
 
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Object> find_cond(String cond) {
-		return find_cond(cond, null);
-	}
-
-	public ArrayList<Object> find_cond(String cond, String[] param) {
+	public ArrayList<DescLRU> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -88,10 +97,10 @@ public class DescLRU extends ORRecord {
 		Cursor cursor = db.rawQuery(sql, param);
 		cursor.moveToFirst();
 
-		ArrayList<Object> array = new ArrayList<Object>();
+		ArrayList<DescLRU> array = new ArrayList<DescLRU>();
 
 		while (!cursor.isAfterLast()) {
-			DescLRU e = (DescLRU)allocator();
+			DescLRU e = new DescLRU();
 			e._loadRow(cursor);
 			array.add(e);
 			cursor.moveToNext();
@@ -101,7 +110,7 @@ public class DescLRU extends ORRecord {
 		return array;
 	}
 
-	private void _loadRow(Cursor cursor) {
+	protected void _loadRow(Cursor cursor) {
 		this.pid = cursor.getInt(0);
 		this.description = cursor.getString(1);
 		this.lastUse = Database.str2date(cursor.getString(2));

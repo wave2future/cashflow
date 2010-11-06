@@ -20,11 +20,6 @@ public class Asset extends AssetBase {
 
 	public static Asset instance = new Asset();
 	
-	@Override
-	public AssetBase allocator() {
-		return new Asset();
-	}
-
 	public Asset() {
 		entries = new ArrayList<AssetEntry>();
 		type = CASH;

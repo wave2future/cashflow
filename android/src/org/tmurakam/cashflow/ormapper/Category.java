@@ -8,6 +8,7 @@ import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.ORRecord;
+import org.tmurakam.cashflow.models.*;
 
 public class Category extends ORRecord {
     public final static String tableName = "Categories";
@@ -34,13 +35,6 @@ public class Category extends ORRecord {
 		return migrate(tableName, columnTypes);
 	}
 
-	/**
-	  @brief allocate entry
-	*/
-	public Object allocator() {
-		return new Category();
-	}
-
 	// Read operations
 
 	/**
@@ -58,24 +52,39 @@ public class Category extends ORRecord {
 		Category e = null;
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
-			e = (Category)allocator();
+			e = new Category();
 			e._loadRow(cursor);
 		}
 		cursor.close();
  
 		return e;
 	}
+
+	/**
+	   @brief get all records
+	   @return array of all record
+	*/
+	public ArrayList<Category> find_all() {
+		return find_cond(null, null);
+	}
+
+	/**
+	   @brief get all records matches the conditions
+
+	   @param cond Conditions (WHERE phrase and so on)
+	   @return array of records
+	*/
+	public ArrayList<Category> find_cond(String cond) {
+		return find_cond(cond, null);
+	}
+
 	/**
 	   @brief get all records match the conditions
 
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Object> find_cond(String cond) {
-		return find_cond(cond, null);
-	}
-
-	public ArrayList<Object> find_cond(String cond, String[] param) {
+	public ArrayList<Category> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -86,10 +95,10 @@ public class Category extends ORRecord {
 		Cursor cursor = db.rawQuery(sql, param);
 		cursor.moveToFirst();
 
-		ArrayList<Object> array = new ArrayList<Object>();
+		ArrayList<Category> array = new ArrayList<Category>();
 
 		while (!cursor.isAfterLast()) {
-			Category e = (Category)allocator();
+			Category e = new Category();
 			e._loadRow(cursor);
 			array.add(e);
 			cursor.moveToNext();
@@ -99,7 +108,7 @@ public class Category extends ORRecord {
 		return array;
 	}
 
-	private void _loadRow(Cursor cursor) {
+	protected void _loadRow(Cursor cursor) {
 		this.pid = cursor.getInt(0);
 		this.name = cursor.getString(1);
 		this.sorder = cursor.getInt(2);

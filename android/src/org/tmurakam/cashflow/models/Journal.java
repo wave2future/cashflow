@@ -16,11 +16,7 @@ public class Journal {
 	}
 
 	public void reload() {
-		ArrayList<Object> a = Transaction.instance.find_cond("ORDER BY date, key");
-		entries = new ArrayList<Transaction>();
-		for (Object o : a) {
-			entries.add((Transaction)o);
-		}
+		entries = Transaction.instance.find_cond("ORDER BY date, key");
 	}
 
 	public void insertTransaction(Transaction tr) {

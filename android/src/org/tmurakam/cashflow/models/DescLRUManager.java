@@ -19,12 +19,12 @@ public class DescLRUManager {
 
 		// find desc LRU from history
 		String[] param = { description };
-		ArrayList<Object> ary = DescLRU.instance.find_cond("WHERE description = ?", param);
+		ArrayList<DescLRU> ary = (ArrayList<DescLRU>)DescLRU.instance.find_cond("WHERE description = ?", param);
 
 		DescLRU lru;
 		if (ary.size() > 0) {
 			// update date
-			lru = (DescLRU)ary.get(0);
+			lru = ary.get(0);
 		} else {
 			lru = new DescLRU();
 			lru.description = description;
@@ -35,18 +35,14 @@ public class DescLRUManager {
 	}
 
 	public static ArrayList<DescLRU> getDescLRUs(int category) {
-		ArrayList<Object> a;
+		ArrayList<DescLRU> ary;
 
 		if (category < 0) {
 			// 全検索
-			a = DescLRU.instance.find_cond("ORDER BY lastUse DESC LIMIT 100", null);
+			ary = (ArrayList<DescLRU>)DescLRU.instance.find_cond("ORDER BY lastUse DESC LIMIT 100", null);
 		} else {
 			String[] param = { Integer.toString(category) };
-			a = DescLRU.instance.find_cond("WHERE category = ? ORDER BY lastUse DESC LIMIT 100", param);
-		}
-		ArrayList<DescLRU> ary = new ArrayList<DescLRU>();
-		for (Object o : a) {
-			ary.add((DescLRU)o);
+			ary = (ArrayList<DescLRU>)DescLRU.instance.find_cond("WHERE category = ? ORDER BY lastUse DESC LIMIT 100", param);
 		}
 		return ary;
 	}

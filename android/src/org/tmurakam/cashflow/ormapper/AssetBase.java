@@ -8,6 +8,7 @@ import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.ORRecord;
+import org.tmurakam.cashflow.models.*;
 
 public class AssetBase extends ORRecord {
     public final static String tableName = "Assets";
@@ -38,13 +39,6 @@ public class AssetBase extends ORRecord {
 		return migrate(tableName, columnTypes);
 	}
 
-	/**
-	  @brief allocate entry
-	*/
-	public Object allocator() {
-		return new AssetBase();
-	}
-
 	// Read operations
 
 	/**
@@ -53,33 +47,48 @@ public class AssetBase extends ORRecord {
 	  @param pid Primary key of the record
 	  @return record
 	*/
-	public AssetBase find(int pid) {
+	public Asset find(int pid) {
 		SQLiteDatabase db = Database.instance();
 
 		String[] param = { Integer.toString(pid) };
 		Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " WHERE key = ?;", param);
 
-		AssetBase e = null;
+		Asset e = null;
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
-			e = (AssetBase)allocator();
+			e = new Asset();
 			e._loadRow(cursor);
 		}
 		cursor.close();
  
 		return e;
 	}
+
+	/**
+	   @brief get all records
+	   @return array of all record
+	*/
+	public ArrayList<Asset> find_all() {
+		return find_cond(null, null);
+	}
+
+	/**
+	   @brief get all records matches the conditions
+
+	   @param cond Conditions (WHERE phrase and so on)
+	   @return array of records
+	*/
+	public ArrayList<Asset> find_cond(String cond) {
+		return find_cond(cond, null);
+	}
+
 	/**
 	   @brief get all records match the conditions
 
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Object> find_cond(String cond) {
-		return find_cond(cond, null);
-	}
-
-	public ArrayList<Object> find_cond(String cond, String[] param) {
+	public ArrayList<Asset> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -90,10 +99,10 @@ public class AssetBase extends ORRecord {
 		Cursor cursor = db.rawQuery(sql, param);
 		cursor.moveToFirst();
 
-		ArrayList<Object> array = new ArrayList<Object>();
+		ArrayList<Asset> array = new ArrayList<Asset>();
 
 		while (!cursor.isAfterLast()) {
-			AssetBase e = (AssetBase)allocator();
+			Asset e = new Asset();
 			e._loadRow(cursor);
 			array.add(e);
 			cursor.moveToNext();
@@ -103,7 +112,7 @@ public class AssetBase extends ORRecord {
 		return array;
 	}
 
-	private void _loadRow(Cursor cursor) {
+	protected void _loadRow(Cursor cursor) {
 		this.pid = cursor.getInt(0);
 		this.name = cursor.getString(1);
 		this.type = cursor.getInt(2);

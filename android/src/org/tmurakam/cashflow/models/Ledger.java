@@ -14,11 +14,7 @@ public class Ledger {
 	public ArrayList<Asset> assets = null;
 
 	public void load() {
-		ArrayList<Object> a = Asset.instance.find_cond("ORDER BY sorder");
-		assets = new ArrayList<Asset>();
-		for (Object o : a) {
-			assets.add((Asset)o);
-		}
+		assets = Asset.instance.find_cond("ORDER BY sorder");
 	}
 
 	public void rebuild() {

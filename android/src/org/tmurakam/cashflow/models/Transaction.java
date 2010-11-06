@@ -18,11 +18,6 @@ public  class Transaction extends TransactionBase implements Cloneable {
 
 	public final static Transaction instance = new Transaction();
 		
-	@Override
-	public Object allocator() {
-		return new Transaction();
-	}
-
 	public Transaction() {
 		this(0, "", 0.0);
 

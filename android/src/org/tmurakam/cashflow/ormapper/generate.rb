@@ -87,6 +87,7 @@ import android.database.*;
 import android.database.sqlite.*;
 
 import org.tmurakam.cashflow.ormapper.ORRecord;
+import org.tmurakam.cashflow.models.*;
 
 public class #{cdef.bcname} extends ORRecord {
     public final static String tableName = "#{cdef.name}";
@@ -123,13 +124,6 @@ EOF
 		return migrate(tableName, columnTypes);
 	}
 
-	/**
-	  @brief allocate entry
-	*/
-	public Object allocator() {
-		return new #{cdef.bcname}();
-	}
-
 	// Read operations
 
 	/**
@@ -138,33 +132,48 @@ EOF
 	  @param pid Primary key of the record
 	  @return record
 	*/
-	public #{cdef.bcname} find(int pid) {
+	public #{cdef.rcname} find(int pid) {
 		SQLiteDatabase db = Database.instance();
 
 		String[] param = { Integer.toString(pid) };
 		Cursor cursor = db.rawQuery("SELECT * FROM " + tableName + " WHERE key = ?;", param);
 
-		#{cdef.bcname} e = null;
+		#{cdef.rcname} e = null;
 		cursor.moveToFirst();
 		if (!cursor.isAfterLast()) {
-			e = (#{cdef.bcname})allocator();
+			e = new #{cdef.rcname}();
 			e._loadRow(cursor);
 		}
 		cursor.close();
  
 		return e;
 	}
+
+	/**
+	   @brief get all records
+	   @return array of all record
+	*/
+	public ArrayList<#{cdef.rcname}> find_all() {
+		return find_cond(null, null);
+	}
+
+	/**
+	   @brief get all records matches the conditions
+
+	   @param cond Conditions (WHERE phrase and so on)
+	   @return array of records
+	*/
+	public ArrayList<#{cdef.rcname}> find_cond(String cond) {
+		return find_cond(cond, null);
+	}
+
 	/**
 	   @brief get all records match the conditions
 
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Object> find_cond(String cond) {
-		return find_cond(cond, null);
-	}
-
-	public ArrayList<Object> find_cond(String cond, String[] param) {
+	public ArrayList<#{cdef.rcname}> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
@@ -175,10 +184,10 @@ EOF
 		Cursor cursor = db.rawQuery(sql, param);
 		cursor.moveToFirst();
 
-		ArrayList<Object> array = new ArrayList<Object>();
+		ArrayList<#{cdef.rcname}> array = new ArrayList<#{cdef.rcname}>();
 
 		while (!cursor.isAfterLast()) {
-			#{cdef.bcname} e = (#{cdef.bcname})allocator();
+			#{cdef.rcname} e = new #{cdef.rcname}();
 			e._loadRow(cursor);
 			array.add(e);
 			cursor.moveToNext();
@@ -188,7 +197,7 @@ EOF
 		return array;
 	}
 
-	private void _loadRow(Cursor cursor) {
+	protected void _loadRow(Cursor cursor) {
 		this.pid = cursor.getInt(0);
 EOF
 

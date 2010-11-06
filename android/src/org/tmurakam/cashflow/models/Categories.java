@@ -7,7 +7,7 @@ import java.util.*;
 import org.tmurakam.cashflow.ormapper.*;
 
 public class Categories {
-	private ArrayList<Object> categories = null;
+	private ArrayList<Category> categories = null;
 	private static Category instance = new Category();
 
 	public Categories() {
@@ -15,7 +15,7 @@ public class Categories {
 	}
 
 	public void reload() {
-		categories = instance.find_cond("ORDER BY sorder");
+		categories = (ArrayList<Category>)instance.find_cond("ORDER BY sorder");
 	}
 
 	public int categoryCount() {
