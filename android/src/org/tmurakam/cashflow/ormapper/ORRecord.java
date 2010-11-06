@@ -8,8 +8,6 @@ import android.database.Cursor;
 import org.tmurakam.cashflow.ormapper.Database;
 
 public abstract class ORRecord {
-	private static final String pkey = "key";
-
 	private int pid; // primary key
 	private boolean isInserted;
 
@@ -38,8 +36,7 @@ public abstract class ORRecord {
 
 		// create table
 		if (cursor.getCount() == 0) {
-			sql = "CREATE TABLE " + tableName + " (" + pkey + 
-				" INTEGER PRIMARY KEY);";
+			sql = "CREATE TABLE " + tableName + " ( key INTEGER PRIMARY KEY );";
 			db.execSQL(sql);
 			tablesql = sql;
 			ret = true;
@@ -69,7 +66,7 @@ public abstract class ORRecord {
 	/**
 	   @brief Save record
 	*/
-	public void save() {
+	final public void save() {
 		if (isInserted) {
 			update();
 		} else {
@@ -82,9 +79,7 @@ public abstract class ORRecord {
 		return;
 	}
 
-	public void update() {
-		return;
-	}
+	public abstract void update();
 
 	/**
 	   @brief Delete record
@@ -92,5 +87,5 @@ public abstract class ORRecord {
 	public abstract void delete();
 	public abstract void delete_cond(String cond);
 	
-	public void delete_all() { delete_cond(null); }
+	final public void delete_all() { delete_cond(null); }
 }

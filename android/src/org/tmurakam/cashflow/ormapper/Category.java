@@ -122,7 +122,7 @@ public class Category extends ORRecord {
 		SQLiteDatabase db = Database.instance();
 
 		// TBD: pid should be long?
-		this.pid = (int)db.insert(tableName, "key"/*TBD*/, getContentValues());
+		this.pid = (int)db.insert(tableName, "key", getContentValues());
 
 		isInserted = true;
 	}
@@ -130,8 +130,6 @@ public class Category extends ORRecord {
 	// Update operations
 
 	public void update() {
-		super.update();
-
 		SQLiteDatabase db = Database.instance();
 		db.beginTransaction();
 
