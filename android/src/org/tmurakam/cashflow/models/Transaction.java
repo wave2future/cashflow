@@ -16,8 +16,6 @@ public  class Transaction extends TransactionBase implements Cloneable {
 	public boolean hasBalance;
 	public double balance;
 
-	public final static Transaction instance = new Transaction();
-		
 	public Transaction() {
 		this(0, "", 0.0);
 

@@ -22,8 +22,6 @@ public class AssetBase extends ORRecord {
 	public int sorder;
 
 
-	public static AssetBase instance = new AssetBase();
-
 	/**
 	  @brief Migrate database table
 	  @return YES - table was newly created, NO - table already exists
@@ -68,7 +66,7 @@ public class AssetBase extends ORRecord {
 	   @brief get all records
 	   @return array of all record
 	*/
-	public ArrayList<Asset> find_all() {
+	public static ArrayList<Asset> find_all() {
 		return find_cond(null, null);
 	}
 
@@ -78,7 +76,7 @@ public class AssetBase extends ORRecord {
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Asset> find_cond(String cond) {
+	public static ArrayList<Asset> find_cond(String cond) {
 		return find_cond(cond, null);
 	}
 
@@ -88,7 +86,7 @@ public class AssetBase extends ORRecord {
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Asset> find_cond(String cond, String[] param) {
+	public static ArrayList<Asset> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {

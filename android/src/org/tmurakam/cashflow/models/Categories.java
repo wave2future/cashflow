@@ -8,20 +8,14 @@ import org.tmurakam.cashflow.ormapper.*;
 
 public class Categories {
 	private ArrayList<Category> categories = null;
-	private static Category instance = new Category();
-
-	public Categories() {
-		categories = null;
-	}
 
 	public void reload() {
-		categories = (ArrayList<Category>)instance.find_cond("ORDER BY sorder");
+		categories = Category.find_cond("ORDER BY sorder");
 	}
 
 	public int categoryCount() {
 		return categories.size();
 	}
-
 
 	public Category categoryAtIndex(int n) {
 		return (Category)categories.get(n);
@@ -59,7 +53,6 @@ public class Categories {
 		c.insert();
 		return c;
 	}
-
 
 	public void updateCategory(Category category) {
 		category.update();

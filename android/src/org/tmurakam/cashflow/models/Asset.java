@@ -18,8 +18,6 @@ public class Asset extends AssetBase {
 	private ArrayList<AssetEntry> entries;
 	private double lastBalance;
 
-	public static Asset instance = new Asset();
-	
 	public Asset() {
 		entries = new ArrayList<AssetEntry>();
 		type = CASH;

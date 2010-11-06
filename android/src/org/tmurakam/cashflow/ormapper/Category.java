@@ -20,8 +20,6 @@ public class Category extends ORRecord {
 	public int sorder;
 
 
-	public static Category instance = new Category();
-
 	/**
 	  @brief Migrate database table
 	  @return YES - table was newly created, NO - table already exists
@@ -64,7 +62,7 @@ public class Category extends ORRecord {
 	   @brief get all records
 	   @return array of all record
 	*/
-	public ArrayList<Category> find_all() {
+	public static ArrayList<Category> find_all() {
 		return find_cond(null, null);
 	}
 
@@ -74,7 +72,7 @@ public class Category extends ORRecord {
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Category> find_cond(String cond) {
+	public static ArrayList<Category> find_cond(String cond) {
 		return find_cond(cond, null);
 	}
 
@@ -84,7 +82,7 @@ public class Category extends ORRecord {
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<Category> find_cond(String cond, String[] param) {
+	public static ArrayList<Category> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {

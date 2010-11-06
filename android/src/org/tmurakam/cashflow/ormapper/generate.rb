@@ -104,8 +104,6 @@ EOF
 
 	fh.puts <<EOF
 
-	public static #{cdef.bcname} instance = new #{cdef.bcname}();
-
 	/**
 	  @brief Migrate database table
 	  @return YES - table was newly created, NO - table already exists
@@ -153,7 +151,7 @@ EOF
 	   @brief get all records
 	   @return array of all record
 	*/
-	public ArrayList<#{cdef.rcname}> find_all() {
+	public static ArrayList<#{cdef.rcname}> find_all() {
 		return find_cond(null, null);
 	}
 
@@ -163,7 +161,7 @@ EOF
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<#{cdef.rcname}> find_cond(String cond) {
+	public static ArrayList<#{cdef.rcname}> find_cond(String cond) {
 		return find_cond(cond, null);
 	}
 
@@ -173,7 +171,7 @@ EOF
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<#{cdef.rcname}> find_cond(String cond, String[] param) {
+	public static ArrayList<#{cdef.rcname}> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {

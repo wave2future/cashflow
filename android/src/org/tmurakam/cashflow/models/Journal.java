@@ -16,7 +16,7 @@ public class Journal {
 	}
 
 	public void reload() {
-		entries = Transaction.instance.find_cond("ORDER BY date, key");
+		entries = Transaction.find_cond("ORDER BY date, key");
 	}
 
 	public void insertTransaction(Transaction tr) {

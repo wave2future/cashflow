@@ -21,8 +21,6 @@ public class DescLRU extends ORRecord {
 	public int category;
 
 
-	public static DescLRU instance = new DescLRU();
-
 	/**
 	  @brief Migrate database table
 	  @return YES - table was newly created, NO - table already exists
@@ -66,7 +64,7 @@ public class DescLRU extends ORRecord {
 	   @brief get all records
 	   @return array of all record
 	*/
-	public ArrayList<DescLRU> find_all() {
+	public static ArrayList<DescLRU> find_all() {
 		return find_cond(null, null);
 	}
 
@@ -76,7 +74,7 @@ public class DescLRU extends ORRecord {
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<DescLRU> find_cond(String cond) {
+	public static ArrayList<DescLRU> find_cond(String cond) {
 		return find_cond(cond, null);
 	}
 
@@ -86,7 +84,7 @@ public class DescLRU extends ORRecord {
 	   @param cond Conditions (WHERE phrase and so on)
 	   @return array of records
 	*/
-	public ArrayList<DescLRU> find_cond(String cond, String[] param) {
+	public static ArrayList<DescLRU> find_cond(String cond, String[] param) {
 		String sql;
 		sql = "SELECT * FROM " + tableName;
 		if (cond != null) {
