@@ -17,7 +17,7 @@ public class TransactionBase extends ORRecord {
 
 	public int asset;
 	public int dst_asset;
-	public Date date;
+	public long date;
 	public int type;
 	public int category;
 	public double value;

@@ -16,7 +16,7 @@ public class DescLRU extends ORRecord {
 	protected boolean isInserted = false;
 
 	public String description;
-	public Date lastUse;
+	public long lastUse;
 	public int category;
 
 

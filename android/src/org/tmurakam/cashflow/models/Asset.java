@@ -128,13 +128,13 @@ public class Asset extends AssetBase {
 	}
 
 	// 指定日以前の取引をまとめて削除
-	public void deleteOldEntriesBefore(Date date) {
+	public void deleteOldEntriesBefore(long date) {
 		SQLiteDatabase db = Database.instance();
 
 		db.beginTransaction();
 		while (entries.size() > 0) {
 			AssetEntry e = entries.get(0);
-			if (e.transaction.date.compareTo(date) >= 0) {
+			if (e.transaction.date >= date) {
 				break;
 			}
 
@@ -146,10 +146,10 @@ public class Asset extends AssetBase {
 		DataModel.getLedger().rebuild();
 	}
 
-	public int firstEntryByDate(Date date) {
+	public int firstEntryByDate(long date) {
 		for (int i = 0; i < entries.size(); i++) {
 			AssetEntry e = entries.get(i);
-			if (e.transaction.date.compareTo(date) >= 0) {
+			if (e.transaction.date >= date) {
 				return i;
 			}
 		}

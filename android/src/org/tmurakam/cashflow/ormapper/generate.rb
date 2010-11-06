@@ -49,7 +49,7 @@ def getJavaType(type)
 	when "TEXT"
 		return "String";
 	when "DATE"
-		return "Date";
+		return "long";
 	else
 		puts "#{type} is not supported."
 		exit 1

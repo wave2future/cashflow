@@ -6,15 +6,15 @@ import java.util.*;
 
 // レポート(一件分)
 public class Report {
-	public Date date;
-	public Date endDate;
+	public long date;
+	public long endDate;
 	double totalIncome;
 	double totalOutgo;
 
 	ArrayList<CatReport> catReports;
 
 	public Report() {
-		date = null;
+		date = 0;
 		totalIncome = 0.0;
 		totalOutgo = 0.0;
 	}

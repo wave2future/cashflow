@@ -39,7 +39,7 @@ public class AppConfig {
     private AppConfig(Context context) {
         pref = PreferenceManager.getDefaultSharedPreferences(context);
         baseCurrency = pref.getString("baseCurrency", null);
-        dateTimeMode = pref.getInt("dateTimeMode", DateTimeModeWithTime);
+        dateTimeMode = pref.getInt("dateTimeMode", DateTimeModeDateOnly);
         cutoffDate = pref.getInt("cutoffDate", 0);
     }
 

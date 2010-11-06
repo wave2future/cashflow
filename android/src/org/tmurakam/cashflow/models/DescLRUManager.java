@@ -8,11 +8,11 @@ import org.tmurakam.cashflow.ormapper.*;
 
 public class DescLRUManager {
 	public static void addDescLRU(String description, int category) {
-		Date now = new Date();
+		long now = new Date().getTime();
 		addDescLRU(description, category, now);
 	}
 
-	public static void addDescLRU(String description, int category, Date date) {
+	public static void addDescLRU(String description, int category, long date) {
 		if (description == null || description.length() == 0) {
 			return;
 		}

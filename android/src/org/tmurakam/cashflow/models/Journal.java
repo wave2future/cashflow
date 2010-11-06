@@ -31,7 +31,7 @@ public class Journal {
 		// 挿入位置を探す
 		for (i = 0; i < max; i++) {
 			t = entries.get(i);
-			if (tr.date.compareTo(t.date) < 0) {
+			if (tr.date < t.date) {
 				break;
 			}
 		}
@@ -70,7 +70,7 @@ public class Journal {
 	private void _sortByDate() {
 		Collections.sort(entries, new Comparator<Transaction>() {
 			public int compare(Transaction t1, Transaction t2) {
-				return t1.date.compareTo(t2.date);
+				return (int)(t1.date - t2.date);
 			}
 		});
 	}

@@ -149,7 +149,6 @@ public class TransactionListActivity extends Activity
 		*/
 	}
 
-	@Override
 	public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 		return true;
 	}
@@ -157,7 +156,6 @@ public class TransactionListActivity extends Activity
 	//
 	// セルをクリックしたときの処理
 	//
-	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 		/*
 	    int idx = [self entryIndexWithIndexPath:indexPath];

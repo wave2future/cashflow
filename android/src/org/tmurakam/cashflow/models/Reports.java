@@ -8,16 +8,16 @@ import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
 
 class Filter {
-	public Date start;
-	public Date end;
+	public long start;
+	public long end;
 	public int asset;
 	public int category;
 	public boolean isOutgo;
 	public boolean isIncome;
 
 	public void init() {
-		start = null;
-		end = null;
+		start = 0;
+		end = 0;
 		asset = -1;
 		isOutgo = false;
 		isIncome = false;
@@ -65,16 +65,17 @@ public class Reports {
 		} else {
 			assetKey = asset.pid;
 		}
-		Date firstDate = firstDateOfAsset(assetKey);
-		if (firstDate == null) return; // no data
-		Date lastDate = lastDateOfAsset(assetKey);
+		long firstDate = firstDateOfAsset(assetKey);
+		if (firstDate == 0) return; // no data
+		long lastDate = lastDateOfAsset(assetKey);
 
 		// レポート周期の開始時間および間隔を求める
 		Calendar cal = Calendar.getInstance(); // local calendar
-		cal.setTime(firstDate);
-		cal.set(Calendar.HOUR, 0);
+		cal.setTimeInMillis(firstDate);
+		cal.set(Calendar.HOUR_OF_DAY, 0);
 		cal.set(Calendar.MINUTE, 0);
 		cal.set(Calendar.SECOND, 0);
+		cal.set(Calendar.MILLISECOND, 0);
 
 		switch (type) {
 		case MONTHLY:
@@ -98,13 +99,13 @@ public class Reports {
 	
 		int numCategories = DataModel.getCategories().categoryCount();
 	
-		while (cal.getTime().compareTo(lastDate) <= 0) {
+		while (cal.getTimeInMillis() <= lastDate) {
 			// Report 生成
 			Report r = new Report();
 			reports.add(r);
 
 			// 日付設定
-			r.date = cal.getTime();
+			r.date = cal.getTimeInMillis();
 		
 			// 次の期間開始時期を計算する
 			switch (type) {
@@ -115,7 +116,7 @@ public class Reports {
 				cal.add(Calendar.DATE, 7);
 				break;
 			}
-			r.endDate = cal.getTime();
+			r.endDate = cal.getTimeInMillis();
 
 			// 集計
 			Filter filter = new Filter();
@@ -177,22 +178,22 @@ public class Reports {
 	//////////////////////////////////////////////////////////////////////////////////
 	// Report 処理
 
-	private Date firstDateOfAsset(int asset) {
+	private long firstDateOfAsset(int asset) {
 		for (Transaction t : DataModel.getJournal().getEntries()) {
 			if (asset < 0) return t.date;
 			if (t.asset == asset || t.dst_asset == asset) return t.date;
 		}
-		return null;
+		return 0;
 	}
 
-	private Date lastDateOfAsset(int asset) {
+	private long lastDateOfAsset(int asset) {
 		ArrayList<Transaction> entries = DataModel.getJournal().getEntries();
 		for (int i = entries.size() - 1; i >= 0; i--) {
 			Transaction t = entries.get(i);
 			if (asset < 0) return t.date;
 			if (t.asset == asset || t.dst_asset == asset) return t.date;
 		}
-		return null;
+		return 0;
 	}
 
 	private double calculateSum(Filter filter) {
@@ -201,11 +202,11 @@ public class Reports {
 
 		for (Transaction t : DataModel.getJournal().getEntries()) {
 			// match filter
-			if (filter.start != null &&
-				t.date.compareTo(filter.start) < 0) continue;
+			if (filter.start != 0 &&
+				t.date < filter.start) continue;
 			
-			if (filter.end != null &&
-				filter.end.compareTo(t.date) <= 0) continue;
+			if (filter.end != 0 &&
+				filter.end <= t.date) continue;
 			
 			if (filter.category >= 0 && t.category != filter.category) {
 				continue;

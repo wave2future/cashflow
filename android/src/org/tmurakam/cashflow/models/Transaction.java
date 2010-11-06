@@ -24,18 +24,23 @@ public  class Transaction extends TransactionBase implements Cloneable {
 	}
 
 	public Transaction() {
-		this(new Date(), "", 0.0);
+		this(0, "", 0.0);
 
+		// 現在時刻をセット
+		Calendar cal = new GregorianCalendar();
 		AppConfig cfg = AppConfig.instance();
 		if (cfg.dateTimeMode == AppConfig.DateTimeModeDateOnly) {
 			// 時刻を 0:00:00 に設定
-			this.date.setHours(0);
-			this.date.setMinutes(0);
-			this.date.setSeconds(0);
+			cal.setTimeInMillis(this.date);
+			cal.set(Calendar.HOUR_OF_DAY, 0);
+			cal.set(Calendar.MINUTE, 0);
+			cal.set(Calendar.SECOND, 0);
+			cal.set(Calendar.MILLISECOND, 0);
 		}
+		this.date = cal.getTimeInMillis();
 	}
 
-	public Transaction(Date date, String description, double value) {
+	public Transaction(long date, String description, double value) {
 		this.asset = -1;
 		this.dst_asset = -1;
 		this.date = date;
