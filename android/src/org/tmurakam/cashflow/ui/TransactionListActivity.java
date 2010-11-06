@@ -66,7 +66,7 @@ public class TransactionListActivity extends Activity
 			t.description = "dinner";
 			t.value = 2000;
 			t.balance = 8000;
-			t.date = new Date();
+			t.date = new Date().getTime();
 			AssetEntry e = new AssetEntry();
 			e.transaction = t;
 			e.value = 2000;
