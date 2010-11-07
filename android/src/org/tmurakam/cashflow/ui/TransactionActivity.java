@@ -58,7 +58,8 @@ public class TransactionActivity extends Activity
 		
 		// category adapter
 		String[] cs = DataModel.getCategories().getCategoryStrings();
-		ArrayAdapter<String> aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cs); 
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cs);
+		aa.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		categorySpinner.setAdapter(aa);
 		
 		// TBD
@@ -127,7 +128,7 @@ public class TransactionActivity extends Activity
 	/**
 	 * 種別 / 費目(カテゴリ)選択コールバック
 	 */
-	public void OnItemSelected(AdapterView<?> parent, View v, int position, long id) {
+	public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 		if (v == typeSpinner) {
 			// 種別
 			editingEntry.transaction.type = position;
@@ -157,6 +158,9 @@ public class TransactionActivity extends Activity
 			editingEntry.transaction.category = c.pid;
 			isModified = true;
 		}
+	}
+	public void onNothingSelected(AdapterView<?> parent) {
+		// do nothing
 	}
 	
 	/**
