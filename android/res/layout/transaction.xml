@@ -5,35 +5,35 @@
 <TableLayout android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="wrap_content" android:stretchColumns="1" android:layout_weight="1" android:layout_margin="5px">
 
   <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:gravity="center_vertical" android:textColor="#000" android:text="Date" android:layout_height="fill_parent" android:layout_marginRight="5px"></TextView>
+    <TextView android:gravity="center_vertical" android:textColor="#000" android:layout_height="fill_parent" android:layout_marginRight="5px" android:text="@string/date"></TextView>
     
     <Button android:layout_height="wrap_content" android:text="2010/1/1" android:id="@+id/DateButton" android:gravity="left|center_vertical" android:layout_width="fill_parent" android:onClick="onClickDate"></Button>
   </TableRow>
 
   <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Type" android:layout_marginRight="5px"></TextView>
-    <Spinner android:id="@+id/TypeSpinner" android:layout_height="wrap_content" android:entries="@array/type_strings" android:layout_width="fill_parent" android:prompt="Type"></Spinner>
+    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:layout_marginRight="5px" android:text="@string/type"></TextView>
+    <Spinner android:id="@+id/TypeSpinner" android:layout_height="wrap_content" android:entries="@array/type_strings" android:layout_width="fill_parent"></Spinner>
   </TableRow>
   <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Amount" android:layout_marginRight="5px"></TextView>
+    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:layout_marginRight="5px" android:text="@string/amount"></TextView>
     <Button android:text="0" android:id="@+id/AmountButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:gravity="left|center_vertical" android:onClick="onClickAmount"></Button>
   </TableRow>
   <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Description" android:layout_marginRight="5px"></TextView>
+    <TextView android:layout_height="wrap_content" android:textColor="#000" android:layout_marginRight="5px" android:text="@string/name"></TextView>
     <AutoCompleteTextView android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/DescEdit"></AutoCompleteTextView>
   </TableRow>
     <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Category" android:layout_marginRight="5px"></TextView>
-    <Spinner android:id="@+id/CategorySpinner" android:layout_height="wrap_content" android:layout_width="fill_parent" android:prompt="Category"></Spinner>
+    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:layout_marginRight="5px" android:text="@string/category"></TextView>
+    <Spinner android:id="@+id/CategorySpinner" android:layout_height="wrap_content" android:layout_width="fill_parent"></Spinner>
   </TableRow>
   <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
-    <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Memo" android:layout_marginRight="5px"></TextView>
+    <TextView android:layout_height="wrap_content" android:textColor="#000" android:layout_marginRight="5px" android:text="@string/memo"></TextView>
     <AutoCompleteTextView android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/MemoEdit"></AutoCompleteTextView>
   </TableRow>
 </TableLayout>
 
 <LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="#fff" android:orientation="horizontal" android:layout_margin="5px">
-  <Button android:text="OK" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4"></Button>
-  <Button android:text="Cancel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4"></Button>
+  <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4" android:text="@string/ok"></Button>
+  <Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4" android:text="@string/cancel"></Button>
 </LinearLayout>
 </LinearLayout>

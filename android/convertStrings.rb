@@ -10,10 +10,19 @@ ARGF.each do |line|
         tag = $1
         value = $2
         
-        tag.gsub!(/ /, "_")
         tag.downcase!
+        if (tag =~ /^[0-9]/)
+            tag = "_" + tag
+        end
+        tag.gsub!(/ /, "_")
+        tag.gsub!(/\?/, "")
+        tag.gsub!(/\(/, "")
+        tag.gsub!(/\)/, "")
+        tag.gsub!(/\./, "")
         
         value.gsub!(/&/, "&amp;")
+        value.gsub!(/'/, "\'")
+
         puts "  <string name=\"#{tag}\">#{value}</string>"
     end
 end

@@ -8,6 +8,7 @@ import java.util.*;
 import android.app.*;
 import android.os.*;
 import android.content.*;
+import android.content.res.*;
 import android.text.format.DateFormat;
 import android.view.*;
 import android.widget.*;
@@ -74,6 +75,8 @@ public class TransactionListActivity extends Activity
 		}
 
 		public View getView(final int position, View convertView, ViewGroup parent) {
+			Resources res = getResources();
+			
 			if (convertView == null) {
 				convertView = inflater.inflate(R.layout.transactionlist_row, parent, false);
 			}
@@ -84,7 +87,7 @@ public class TransactionListActivity extends Activity
 			TextView tv;
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowText);
 			if (e.transaction == null) {
-				tv.setText("Initial balance");
+				tv.setText(res.getText(R.string.initial_balance));
 			} else {
 				tv.setText(e.transaction.description);
 			}
@@ -108,7 +111,7 @@ public class TransactionListActivity extends Activity
 			if (e.transaction == null) {
 				tv.setText("");
 			} else {
-				tv.setText("balance " + CurrencyManager.formatCurrency(e.balance));
+				tv.setText(res.getString(R.string.balance) + " " + CurrencyManager.formatCurrency(e.balance));
 			}
 
 			return convertView;
