@@ -2,35 +2,37 @@
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
   android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#fff" android:orientation="vertical">
-<ScrollView android:id="@+id/ScrollView01" android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_weight="1">
+<TableLayout android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="wrap_content" android:stretchColumns="1" android:layout_weight="1" android:layout_margin="5px">
 
-<LinearLayout android:layout_width="fill_parent" android:orientation="vertical" android:layout_height="wrap_content">
-
-  <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:id="@+id/TextView01" android:gravity="center_vertical" android:textColor="#000" android:text="Date" android:layout_height="fill_parent" android:layout_width="80px"></TextView>
+  <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+    <TextView android:gravity="center_vertical" android:textColor="#000" android:text="Date" android:layout_height="fill_parent" android:layout_marginRight="5px"></TextView>
     
-  <Button android:layout_height="wrap_content" android:layout_width="fill_parent" android:text="2010/1/1" android:id="@+id/DateButton" android:gravity="left|center_vertical"></Button>
-</LinearLayout>
+    <Button android:layout_height="wrap_content" android:text="2010/1/1" android:id="@+id/DateButton" android:gravity="left|center_vertical" android:layout_width="fill_parent" android:onClick="onClickDate"></Button>
+  </TableRow>
 
-  <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:id="@+id/TextView01" android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Type" android:layout_width="80px"></TextView>
+  <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Type" android:layout_marginRight="5px"></TextView>
     <Spinner android:id="@+id/TypeSpinner" android:layout_height="wrap_content" android:entries="@array/type_strings" android:layout_width="fill_parent"></Spinner>
-  </LinearLayout>
-  <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:id="@+id/TextView01" android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Amount" android:layout_width="80px"></TextView>
-    <EditText android:text="0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/EditAmount" android:layout_weight="1"></EditText>
-    <Button android:text=" C " android:id="@+id/CalcButton" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
-  </LinearLayout>
-  <LinearLayout android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
-    <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Description" android:layout_width="80px"></TextView>
+  </TableRow>
+  <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+    <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Amount" android:layout_marginRight="5px"></TextView>
+    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+      <EditText android:text="0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/EditAmount" android:layout_weight="1"></EditText>
+      <Button android:text=" C " android:id="@+id/CalcButton" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
+    </LinearLayout>
+  </TableRow>
+  <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
+    <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Description" android:layout_marginRight="5px"></TextView>
     <AutoCompleteTextView android:text="" android:id="@+id/DescTextView" android:layout_width="fill_parent" android:layout_height="wrap_content"></AutoCompleteTextView>
-  </LinearLayout>
+  </TableRow>
+  <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
+    <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Memo" android:layout_marginRight="5px"></TextView>
+    <AutoCompleteTextView android:text="" android:id="@+id/MemoTextView" android:layout_width="fill_parent" android:layout_height="wrap_content"></AutoCompleteTextView>
+  </TableRow>
+</TableLayout>
 
-</LinearLayout>
-</ScrollView>
-
-<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="#fff" android:orientation="horizontal">
-  <Button android:text="OK" android:id="@+id/Button03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4"></Button>
-  <Button android:text="Cancel" android:id="@+id/Button03" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4"></Button>
+<LinearLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="#fff" android:orientation="horizontal" android:layout_margin="5px">
+  <Button android:text="OK" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4"></Button>
+  <Button android:text="Cancel" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="0.4"></Button>
 </LinearLayout>
 </LinearLayout>

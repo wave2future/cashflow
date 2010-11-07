@@ -29,4 +29,9 @@ public class TransactionActivity extends Activity
 		int assetId = intent.getIntExtra("AssetId", -1);
 		int transactionIndex = intent.getIntExtra("TransactionIndex", -1);
 	}
+	
+	public void onClickDate(View view) {
+		DatePickerDialog d = new DatePickerDialog(this, null, 2010, 1, 1);
+		d.show();
+	}
 }
