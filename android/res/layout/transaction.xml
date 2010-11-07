@@ -17,17 +17,17 @@
   <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
     <TextView android:gravity="center_vertical" android:layout_height="fill_parent" android:textColor="#000" android:text="Amount" android:layout_marginRight="5px"></TextView>
     <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
-      <EditText android:text="0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/EditAmount" android:layout_weight="1"></EditText>
+      <EditText android:text="0" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_weight="1" android:id="@+id/AmountEdit"></EditText>
       <Button android:text=" C " android:id="@+id/CalcButton" android:layout_width="wrap_content" android:layout_height="wrap_content"></Button>
     </LinearLayout>
   </TableRow>
   <TableRow android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="horizontal">
     <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Description" android:layout_marginRight="5px"></TextView>
-    <AutoCompleteTextView android:text="" android:id="@+id/DescTextView" android:layout_width="fill_parent" android:layout_height="wrap_content"></AutoCompleteTextView>
+    <AutoCompleteTextView android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/DescEdit"></AutoCompleteTextView>
   </TableRow>
   <TableRow android:layout_width="wrap_content" android:layout_height="wrap_content">
     <TextView android:layout_height="wrap_content" android:textColor="#000" android:text="Memo" android:layout_marginRight="5px"></TextView>
-    <AutoCompleteTextView android:text="" android:id="@+id/MemoTextView" android:layout_width="fill_parent" android:layout_height="wrap_content"></AutoCompleteTextView>
+    <AutoCompleteTextView android:text="" android:layout_width="fill_parent" android:layout_height="wrap_content" android:id="@+id/MemoEdit"></AutoCompleteTextView>
   </TableRow>
 </TableLayout>
 

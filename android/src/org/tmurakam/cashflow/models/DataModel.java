@@ -13,6 +13,8 @@ public class DataModel {
 	private Journal journal;
 	private Ledger ledger;
 	private Categories categories;
+	
+	public static java.text.DateFormat dateFormat;
 
 	public static Journal getJournal() { return instance.journal; }
 	public static Ledger  getLedger() { return instance.ledger; }
@@ -31,7 +33,9 @@ public class DataModel {
 		Database.initialize(context);
 
 		// For test
-		Database.installSqlFromResource(context, R.raw.testdata1);
+		//Database.installSqlFromResource(context, R.raw.testdata1);
+		
+		dateFormat = android.text.format.DateFormat.getDateFormat(context);
 		
 		// migrate
 		Transaction.migrate();

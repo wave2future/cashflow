@@ -169,7 +169,7 @@ public class AssetEntry implements Cloneable {
 		}
 	}
 
-	public Object clone() {
+	public AssetEntry clone() {
 		AssetEntry e = new AssetEntry();
 		e.assetKey = assetKey;
 		e.value = value;

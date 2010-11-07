@@ -26,7 +26,6 @@ public class TransactionListActivity extends Activity
 	private ListView listView;
 	private Asset asset;
 	private AssetEntryArrayAdapter arrayAdapter;
-	private java.text.DateFormat dateFormat; 
 	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,8 +37,6 @@ public class TransactionListActivity extends Activity
 
 		setTitle(asset.name);
 	
-		dateFormat = android.text.format.DateFormat.getDateFormat(getApplicationContext());
- 		
 		// setup ListView
 		listView = (ListView)findViewById(R.id.TransactionList);
 		listView.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
@@ -96,7 +93,7 @@ public class TransactionListActivity extends Activity
 			if (e.transaction == null) {
 				tv.setText("");
 			} else {
-				tv.setText(dateFormat.format(e.transaction.date));
+				tv.setText(DataModel.dateFormat.format(e.transaction.date));
 			}
 					
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowValue);

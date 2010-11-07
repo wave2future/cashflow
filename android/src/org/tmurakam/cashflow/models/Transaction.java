@@ -48,9 +48,9 @@ public  class Transaction extends TransactionBase implements Cloneable {
 
 	// deep copy
 	@Override
-		public Object clone() {
+	public Transaction clone() {
 		try {
-			return super.clone();
+			return (Transaction)super.clone();
 		}
 		catch (CloneNotSupportedException e) {
 			throw new InternalError(e.toString());
