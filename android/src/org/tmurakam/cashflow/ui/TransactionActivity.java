@@ -26,8 +26,9 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 	
 	private Button dateButton;
 	private Spinner typeSpinner;
-	private EditText amountEdit;
+	private Button amountButton;
 	private AutoCompleteTextView descEdit;
+	private Spinner categorySpinner;
 	private AutoCompleteTextView memoEdit;
 
 	@Override
@@ -45,9 +46,15 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 		// UI components
 		dateButton = (Button)findViewById(R.id.DateButton);
 		typeSpinner = (Spinner)findViewById(R.id.TypeSpinner);
-		amountEdit = (EditText)findViewById(R.id.AmountEdit);
+		amountButton = (Button)findViewById(R.id.AmountButton);
 		descEdit = (AutoCompleteTextView)findViewById(R.id.DescEdit);
 		memoEdit = (AutoCompleteTextView)findViewById(R.id.MemoEdit);
+		
+		// category adapter
+		// TBD
+		
+		
+		
 		updateUI();
 	}
 	
@@ -73,13 +80,13 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 		
 		// value
 		double evalue = editingEntry.evalue();
-		amountEdit.setText(CurrencyManager.formatCurrency(evalue));
+		amountButton.setText(CurrencyManager.formatCurrency(evalue));
 			
 		// desc
 		descEdit.setText(editingEntry.transaction.description);
 				
 	    // category
-		// DataModel.getCategories().categoryStringWithKey(editingEntry.transaction.category);
+		//categorySpinner.setSelection(editingEntry.transaction.category);
 
 	    // memo
 		memoEdit.setText(editingEntry.transaction.memo);
@@ -105,6 +112,13 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 		editingEntry.transaction.date = cal.getTimeInMillis();
 
 		updateUI();
+	}
+	
+	/**
+	 * 金額設定
+	 */
+	public void onClickAmount(View view) {
+		// TBD
 	}
 }
 
