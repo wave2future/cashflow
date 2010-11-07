@@ -3,12 +3,21 @@
 package org.tmurakam.cashflow.ormapper;
 
 import java.util.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.*;
+
+import org.tmurakam.cashflow.models.DataModel;
 
 import android.content.Context;
 import android.database.sqlite.*;
+import android.util.Log;
 
 public class Database extends SQLiteOpenHelper {
+	private static final String TAG = "cashflow";
+
 	private static final String DATABASE_NAME = "CashFlow";
 	private static final int VERSION = 1;
 
@@ -61,5 +70,29 @@ public class Database extends SQLiteOpenHelper {
 		catch (ParseException ex) {
 			return 0; // 1970/1/1 0:00:00 GMT
 		}
+	}
+	
+	/// For test
+	
+	public static boolean installSqlFromResource(Context context, int sqlResourceId) {
+		// open SQL raw resource
+		InputStream in = context.getResources().openRawResource(sqlResourceId);
+		BufferedReader b = new BufferedReader(new InputStreamReader(in));
+		
+		// execute each sql
+		SQLiteDatabase db = instance;
+		String sql;
+		try {
+			while ((sql = b.readLine()) != null) {
+				db.execSQL(sql);
+			}
+			b.close();
+			in.close();
+		}
+		catch (IOException e) {
+			Log.d(TAG, "instalLSqlFromResource failed : " + e.getMessage());
+			return false;
+		}
+		return true;
 	}
 }

@@ -33,7 +33,7 @@ public class TransactionListActivity extends Activity
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.transactionlist);
 		
-		int assetId = getIntent().getIntExtra("AssetIndex", -1);
+		int assetId = getIntent().getIntExtra("AssetId", -1);
 		asset = DataModel.getLedger().assetWithKey(assetId);
 
 		setTitle(asset.name);
@@ -57,23 +57,8 @@ public class TransactionListActivity extends Activity
 
 		int count = asset.entryCount();
 		arrayAdapter.clear();
-		for (int i = 0; i < count; i++) {
+		for (int i = count - 1; i >= 0; i--) { // 逆順
 			arrayAdapter.add(asset.entryAt(i));
-		}
-		// test
-		if (true) {
-			Transaction t = new Transaction();
-			t.description = "dinner";
-			t.value = 2000;
-			t.balance = 8000;
-			t.date = new Date().getTime();
-			AssetEntry e = new AssetEntry();
-			e.transaction = t;
-			e.value = 2000;
-			e.balance = 8000;
-			for (int i = 0; i < 30; i++) {
-				arrayAdapter.add(e);
-			}
 		}
 		
 		// 初期残高セル
@@ -157,10 +142,11 @@ public class TransactionListActivity extends Activity
 	// セルをクリックしたときの処理
 	//
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		/*
-	    int idx = [self entryIndexWithIndexPath:indexPath];
-	    if (idx == -1) {
+		int count = asset.entryCount();
+
+		if (position >= count) {
 	        // initial balance cell
+			/*
 	        CalculatorViewController *v = [[[CalculatorViewController alloc] init] autorelease];
 	        v.delegate = self;
 	        v.value = asset.initialBalance;
@@ -177,16 +163,23 @@ public class TransactionListActivity extends Activity
 	            [self.popoverController presentPopoverFromRect:[tv cellForRowAtIndexPath:indexPath].frame inView:self.view
 	               permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
 	        }
-	    } else if (idx >= 0) {
+	        */
+	    } else  {
+	    	int transactionIndex = count - 1 - position;
+	    	
 	        // transaction view を表示
-	        TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
-	        vc.asset = self.asset;
-	        [vc setTransactionIndex:idx];
-	        [self.navigationController pushViewController:vc animated:YES];
+	    	Intent intent = new Intent(this, TransactionActivity.class);
+	    	intent.putExtra("AssetId", this.asset.pid);
+	    	intent.putExtra("TransactionIndex", transactionIndex);
+	    	startActivityForResult(intent, 0);
 	    }
-	    */
 	}
 
+	@Override
+	protected void onActivityResult(int request, int result, Intent intent) {
+		
+	}
+	
 	// 初期残高変更処理
 	private void calculatorViewChanged() {
 		/*

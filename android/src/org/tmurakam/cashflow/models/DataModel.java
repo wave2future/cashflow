@@ -3,8 +3,10 @@
 package org.tmurakam.cashflow.models;
 
 import java.util.*;
+
 import android.content.Context;
 
+import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
 
 public class DataModel {
@@ -28,6 +30,9 @@ public class DataModel {
 	public void load(Context context) {
 		Database.initialize(context);
 
+		// For test
+		Database.installSqlFromResource(context, R.raw.testdata1);
+		
 		// migrate
 		Transaction.migrate();
 		Asset.migrate();

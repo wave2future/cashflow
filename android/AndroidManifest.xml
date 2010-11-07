@@ -11,8 +11,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.TransactionListActivity">
-        </activity>
+        <activity android:name=".ui.TransactionListActivity"/>
+        <activity android:name=".ui.TransactionActivity"/>
     </application>
 <uses-sdk android:targetSdkVersion="4" android:minSdkVersion="4"></uses-sdk>
 </manifest> 

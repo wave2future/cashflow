@@ -4,6 +4,7 @@ package org.tmurakam.cashflow.ormapper;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.database.Cursor;
+import java.util.regex.*;
 
 import org.tmurakam.cashflow.ormapper.Database;
 
@@ -54,7 +55,10 @@ public abstract class ORRecord {
 			String column = array[i * 2];
 			String type = array[i * 2 + 1];
 
-			if (tablesql.indexOf(" " + column + " ") < 0) {
+			String regex = String.format(", *%s ", column);
+			Pattern pattern = Pattern.compile(regex);
+			Matcher matcher = pattern.matcher(tablesql);
+			if (!matcher.find()) {
 				sql = "ALTER TABLE " + tableName + " ADD COLUMN " + 
 					column + " " + type + ";";
 				db.execSQL(sql);
