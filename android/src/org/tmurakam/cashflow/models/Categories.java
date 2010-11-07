@@ -13,6 +13,16 @@ public class Categories {
 		categories = Category.find_cond("ORDER BY sorder");
 	}
 
+	public String[] getCategoryStrings() {
+		int n = categories.size();
+		String[] a = new String[n];
+		int i = 0;
+		for (Category c : categories) {
+			a[i++] = c.name;
+		}
+		return a;
+	}
+	
 	public int categoryCount() {
 		return categories.size();
 	}
@@ -22,13 +32,12 @@ public class Categories {
 	}
 
 	public int categoryIndexWithKey(int key) {
-		int i, max = categories.size();
-
-		for (i = 0; i < max; i++) {
-			Category c = (Category)categories.get(i);
+		int i = 0;
+		for (Category c : categories) {
 			if (c.pid == key) {
 				return i;
 			}
+			i++;
 		}
 		return -1;
 	}

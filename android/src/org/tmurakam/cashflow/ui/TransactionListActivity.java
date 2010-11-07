@@ -2,23 +2,23 @@
 
 package org.tmurakam.cashflow.ui;
 
-import java.lang.*;
+//import java.lang.*;
 import java.util.*;
 
 import android.app.*;
 import android.os.*;
 import android.content.*;
 import android.content.res.*;
-import android.text.format.DateFormat;
+//import android.text.format.DateFormat;
 import android.view.*;
 import android.widget.*;
 import android.graphics.*;
-import android.graphics.drawable.*;
+//import android.graphics.drawable.*;
 //import android.widget.AdapterView.*;
 
 import org.tmurakam.cashflow.*;
-import org.tmurakam.cashflow.ormapper.*;
-import org.tmurakam.cashflow.ui.AssetListActivity.AssetArrayAdapter;
+//import org.tmurakam.cashflow.ormapper.*;
+//import org.tmurakam.cashflow.ui.AssetListActivity.AssetArrayAdapter;
 import org.tmurakam.cashflow.models.*;
 
 public class TransactionListActivity extends Activity

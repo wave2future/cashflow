@@ -2,27 +2,32 @@
 
 package org.tmurakam.cashflow.ui;
 
-import java.lang.*;
+//import java.lang.*;
 import java.util.*;
 
 import android.app.*;
 import android.os.*;
 import android.content.*;
-import android.text.format.DateFormat;
+//import android.text.format.DateFormat;
 import android.view.*;
 import android.widget.*;
-import android.graphics.*;
-import android.graphics.drawable.*;
+//import android.graphics.*;
+//import android.graphics.drawable.*;
 
 import org.tmurakam.cashflow.*;
 import org.tmurakam.cashflow.ormapper.*;
 import org.tmurakam.cashflow.models.*;
 
-public class TransactionActivity extends Activity implements DatePickerDialog.OnDateSetListener
+public class TransactionActivity extends Activity 
+	implements DatePickerDialog.OnDateSetListener,
+	AdapterView.OnItemSelectedListener
+	
 {
 	private Asset asset;
 	private int transactionIndex;
 	private AssetEntry editingEntry;
+	
+	private boolean isModified;
 	
 	private Button dateButton;
 	private Spinner typeSpinner;
@@ -48,12 +53,15 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 		typeSpinner = (Spinner)findViewById(R.id.TypeSpinner);
 		amountButton = (Button)findViewById(R.id.AmountButton);
 		descEdit = (AutoCompleteTextView)findViewById(R.id.DescEdit);
+		categorySpinner = (Spinner)findViewById(R.id.CategorySpinner);
 		memoEdit = (AutoCompleteTextView)findViewById(R.id.MemoEdit);
 		
 		// category adapter
+		String[] cs = DataModel.getCategories().getCategoryStrings();
+		ArrayAdapter<String> aa = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cs); 
+		categorySpinner.setAdapter(aa);
+		
 		// TBD
-		
-		
 		
 		updateUI();
 	}
@@ -86,7 +94,8 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 		descEdit.setText(editingEntry.transaction.description);
 				
 	    // category
-		//categorySpinner.setSelection(editingEntry.transaction.category);
+		int categoryIndex = DataModel.getCategories().categoryIndexWithKey(editingEntry.transaction.category);
+		categorySpinner.setSelection(categoryIndex);
 
 	    // memo
 		memoEdit.setText(editingEntry.transaction.memo);
@@ -111,7 +120,43 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 		cal.set(Calendar.DATE, dd);
 		editingEntry.transaction.date = cal.getTimeInMillis();
 
+		isModified = true;
 		updateUI();
+	}
+	
+	/**
+	 * 種別 / 費目(カテゴリ)選択コールバック
+	 */
+	public void OnItemSelected(AdapterView<?> parent, View v, int position, long id) {
+		if (v == typeSpinner) {
+			// 種別
+			editingEntry.transaction.type = position;
+			switch (editingEntry.transaction.type) {
+			case Transaction.ADJ:
+				editingEntry.transaction.description = getResources().getString(R.string.adjustment);
+				break;
+				
+			case Transaction.TRANSFER:
+				// TBD : この場で移動先選択用のダイアログを出す必要がある。
+				// 以下の処理は、そのあとで実施すべきもの
+				/*
+				Ledger ledger = DataModel.getLedger();
+				Asset from = ledger.assetWithKey(editingEntry.transaction.asset);
+	            Asset to = ledger.assetWithKey(editingEntry.transaction.dst_asset);
+
+	            editingEntry.transaction.description =
+	            	String.format("%s/%s", from.name, to.name);
+	            	*/
+	            break;
+			}
+			isModified = true;
+		}
+		else if (v == categorySpinner) {
+			// カテゴリ
+			Category c = DataModel.getCategories().categoryAtIndex(position);
+			editingEntry.transaction.category = c.pid;
+			isModified = true;
+		}
 	}
 	
 	/**
@@ -120,179 +165,48 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 	public void onClickAmount(View view) {
 		// TBD
 	}
+	
+	/**
+	 * 保存処理
+	 */
+	public void onSave(View v) {
+	    //editingEntry.transaction.asset = asset.pkey;
+
+	    if (transactionIndex < 0) {
+	    	asset.insertEntry(editingEntry);
+	    } else {
+	    	asset.replaceEntryAtIndex(transactionIndex, editingEntry);
+	        //[asset sortByDate];
+	    }
+
+	    editingEntry = null;
+	    setResult(0); // ok
+	}
+
+	public void onCancel(View v) {
+	    if (isModified) {
+	    	// TBD
+	    	/*
+	        asCancelTransaction =
+	            [[UIActionSheet alloc]
+	                initWithTitle:NSLocalizedString(@"Save this transaction?", @"")
+	                delegate:self
+	             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
+	                destructiveButtonTitle:nil
+	                otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"No", @""), nil];
+	        asCancelTransaction.actionSheetStyle = UIActionSheetStyleDefault;
+	        [asCancelTransaction showInView:self.view];
+	        [asCancelTransaction release];
+	        */
+	    	setResult(-1);
+	    } else {
+	    	setResult(-1);
+	    }
+	}
 }
 
 /*
-    typeArray = [[NSArray alloc] initWithObjects:
-                                     NSLocalizedString(@"Payment", @""),
-                                 NSLocalizedString(@"Deposit", @""),
-                                 NSLocalizedString(@"Adjustment", @"Balance adjustment"),
-                                 NSLocalizedString(@"Transfer", @""),
-                                 nil];
-
-// 表示前の処理
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    BOOL hideDelButton = (transactionIndex >= 0) ? NO : YES;
-	
-    delButton.hidden = hideDelButton;
-    delPastButton.hidden = hideDelButton;
-		
-    [[self tableView] reloadData];
-}
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
-// 値変更処理
-
-#pragma mark UITableViewDelegate
-
-// セルをクリックしたときの処理
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UINavigationController *nc = self.navigationController;
-
-    UIViewController *vc = nil;
-    EditDateViewController *editDateVC;
-    EditTypeViewController *editTypeVC; // type
-    CalculatorViewController *calcVC;
-    EditDescViewController *editDescVC;
-    EditMemoViewController *editMemoVC; // memo
-    CategoryListViewController *editCategoryVC;
-
-    // view を表示
-
-    switch (indexPath.row) {
-    case ROW_DATE:
-        editDateVC = [[[EditDateViewController alloc] init] autorelease];
-        editDateVC.delegate = self;
-        editDateVC.date = editingEntry.transaction.date;
-        vc = editDateVC;
-        break;
-
-    case ROW_TYPE:
-        editTypeVC = [[[EditTypeViewController alloc] init] autorelease];
-        editTypeVC.delegate = self;
-        editTypeVC.type = editingEntry.transaction.type;
-        editTypeVC.dst_asset = [editingEntry dstAsset];
-        vc = editTypeVC;
-        break;
-
-    case ROW_VALUE:
-        calcVC = [[[CalculatorViewController alloc] init] autorelease];
-        calcVC.delegate = self;
-        calcVC.value = editingEntry.evalue;
-        vc = calcVC;
-        break;
-
-    case ROW_DESC:
-        editDescVC = [[[EditDescViewController alloc] init] autorelease];
-        editDescVC.delegate = self;
-        editDescVC.description = editingEntry.transaction.description;
-        editDescVC.category = editingEntry.transaction.category;
-        vc = editDescVC;
-        break;
-
-    case ROW_MEMO:
-        editMemoVC = [EditMemoViewController
-                         editMemoViewController:self
-                         title:NSLocalizedString(@"Memo", @"") 
-                         identifier:0];
-        editMemoVC.text = editingEntry.transaction.memo;
-        vc = editMemoVC;
-        break;
-
-    case ROW_CATEGORY:
-        editCategoryVC = [[[CategoryListViewController alloc] init] autorelease];
-        editCategoryVC.isSelectMode = YES;
-        editCategoryVC.delegate = self;
-        editCategoryVC.selectedIndex = [[DataModel categories] categoryIndexWithKey:editingEntry.transaction.category];
-        vc = editCategoryVC;
-        break;
-    }
-    
-    if (IS_IPAD) { // TBD
-        nc = [[[UINavigationController alloc] initWithRootViewController:vc] autorelease];
-        
-        if (currentPopoverController != nil) {
-            [currentPopoverController release];
-        }
-        currentPopoverController = [[UIPopoverController alloc] initWithContentViewController:nc];
-        
-        UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-        CGRect rect = cell.frame;
-        [currentPopoverController presentPopoverFromRect:rect inView:self.view permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-    } else {
-        [nc pushViewController:vc animated:YES];
-    }
-}
-
-- (void)popoverControllerDidDismissPopover:(UIPopoverController *)popoverController
-{
-    if (IS_IPAD && currentPopoverController != nil) {
-        [currentPopoverController release];
-        currentPopoverController = nil;
-    }
-}
-
-- (void)_dismissPopover
-{
-    if (IS_IPAD) {
-        if (currentPopoverController != nil) {
-            [currentPopoverController dismissPopoverAnimated:YES];
-        }
-        [self.tableView reloadData];
-    }
-}
-
 #pragma mark EditView delegates
-
-// delegate : 下位 ViewController からの変更通知
-- (void)editDateViewChanged:(EditDateViewController *)vc
-{
-    isModified = YES;
-
-    editingEntry.transaction.date = vc.date;
-    [self _dismissPopover];
-}
-
-- (void)editTypeViewChanged:(EditTypeViewController*)vc
-{
-    isModified = YES;
-
-    // autoPop == NO なので、自分で pop する
-    [self.navigationController popToViewController:self animated:YES];
-
-    if (![editingEntry changeType:vc.type assetKey:asset.pid dstAssetKey:vc.dst_asset]) {
-        return;
-    }
-
-    switch (editingEntry.transaction.type) {
-    case TYPE_ADJ:
-        editingEntry.transaction.description = [typeArray objectAtIndex:editingEntry.transaction.type];
-        break;
-
-    case TYPE_TRANSFER:
-        {
-            Asset *from, *to;
-            Ledger *ledger = [DataModel ledger];
-            from = [ledger assetWithKey:editingEntry.transaction.asset];
-            to = [ledger assetWithKey:editingEntry.transaction.dst_asset];
-
-            editingEntry.transaction.description = 
-                [NSString stringWithFormat:@"%@/%@", from.name, to.name];
-        }
-        break;
-
-    default:
-        break;
-    }
-
-    [self _dismissPopover];
-}
 
 - (void)calculatorViewChanged:(CalculatorViewController *)vc
 {
@@ -320,19 +234,6 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
     isModified = YES;
 
     editingEntry.transaction.memo = vc.text;
-    [self _dismissPopover];
-}
-
-- (void)categoryListViewChanged:(CategoryListViewController*)vc;
-{
-    isModified = YES;
-
-    if (vc.selectedIndex < 0) {
-        editingEntry.transaction.category = -1;
-    } else {
-        Category *c = [[DataModel categories] categoryAtIndex:vc.selectedIndex];
-        editingEntry.transaction.category = c.pid;
-    }
     [self _dismissPopover];
 }
 
@@ -382,39 +283,7 @@ public class TransactionActivity extends Activity implements DatePickerDialog.On
 
 #pragma mark Save action
 
-- (void)saveAction
-{
-    //editingEntry.transaction.asset = asset.pkey;
 
-    if (transactionIndex < 0) {
-        [asset insertEntry:editingEntry];
-    } else {
-        [asset replaceEntryAtIndex:transactionIndex withObject:editingEntry];
-        //[asset sortByDate];
-    }
-
-    self.editingEntry = nil;
-	
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (void)cancelAction
-{
-    if (isModified) {
-        asCancelTransaction =
-            [[UIActionSheet alloc]
-                initWithTitle:NSLocalizedString(@"Save this transaction?", @"")
-                delegate:self
-             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-                destructiveButtonTitle:nil
-                otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"No", @""), nil];
-        asCancelTransaction.actionSheetStyle = UIActionSheetStyleDefault;
-        [asCancelTransaction showInView:self.view];
-        [asCancelTransaction release];
-    } else {
-        [self.navigationController popViewControllerAnimated:YES];
-    }
-}
 
 - (void)_asCancelTransaction:(int)buttonIndex
 {
