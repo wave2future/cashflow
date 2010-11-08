@@ -2,28 +2,22 @@
 
 package org.tmurakam.cashflow.ui;
 
-//import java.lang.*;
-import java.util.*;
 import java.lang.Math;
 
 import android.app.*;
 import android.os.*;
 import android.content.*;
-//import android.text.format.DateFormat;
 import android.view.*;
 import android.widget.*;
-//import android.graphics.*;
-//import android.graphics.drawable.*;
 
 import org.tmurakam.cashflow.*;
-import org.tmurakam.cashflow.models.*;
 
 public class CalculatorActivity extends Activity 
 {
-	public final String TAG_VALUE = "value";
+	public static final String TAG_VALUE = "value";
 
 	// operation
-	enum Oerator {
+	enum Operator {
 		NONE,
 		EQUAL,
 		PLUS,
@@ -96,7 +90,7 @@ public class CalculatorActivity extends Activity
 				decimalPlace--;
 				roundInputValue(); // TBD
 			} else {
-				value = floor(value / 10);
+				value = Math.floor(value / 10);
 			}
 
 			updateLabel();
@@ -121,19 +115,19 @@ public class CalculatorActivity extends Activity
 			// あるいは = が押された場合 (5x= など)
 			// メモリしてある式を計算する
 			switch (storedOperator) {
-			case Operator.PLUS:
+			case PLUS:
 				value = storedValue + value;
 				break;
 
-			case Operator.MINUS:
+			case MINUS:
 				value = storedValue - value;
 				break;
 
-			case Operator.MULTIPLY:
+			case MULTIPLY:
 				value = storedValue * value;
 				break;
 
-			case Operator.DIVIDE:
+			case DIVIDE:
 				if (value == 0.0) {
 					// divided by zero error
 					value = 0.0;
@@ -195,7 +189,7 @@ public class CalculatorActivity extends Activity
 				value = value * 10 + num;
 			} else {
 				// 小数入力
-				double v = (double)num * pow(10, -decimalPlace);
+				double v = (double)num * Math.pow(10, -decimalPlace);
 				value += v;
 
 				decimalPlace++;
@@ -238,11 +232,11 @@ public class CalculatorActivity extends Activity
 		double vtmp;
 
 		switch (state) {
-		case State.INPUT:
+		case INPUT:
 			dp = decimalPlace - 1;
 			break;
 
-		case State.DISPLAY:
+		case DISPLAY:
 			dp = -1;
 			vtmp = value;
 			if (vtmp < 0) vtmp = -vtmp;
@@ -266,7 +260,7 @@ public class CalculatorActivity extends Activity
 		// カンマを３桁ごとに挿入
 		int i = numstr.indexOf(".");
 		if (i < 0) { // not found
-			i = numstr.length;
+			i = numstr.length();
 		}
 
 		for (i -= 3 ; i > 0; i -= 3) {
