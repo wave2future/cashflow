@@ -1,48 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
   xmlns:android="http://schemas.android.com/apk/res/android"
-  android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#fff" android:orientation="vertical">
+  android:layout_width="fill_parent" android:layout_height="fill_parent" android:orientation="vertical" android:background="#ccc">
 
   <!-- number label -->
   <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
-            android:background="#000" android:textColor="#fff"/>
+            android:textSize="18pt" android:gravity="right" android:text="$9,999,999.00" android:layout_marginTop="15px" android:layout_marginBottom="10px" android:layout_marginLeft="10px" android:layout_marginRight="10px" android:background="#fff" android:textColor="#000"/>
 
   <!-- number pad -->
-  <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="5px">
+  <TableLayout android:layout_width="fill_parent" android:layout_margin="5px" android:layout_height="fill_parent">
 
-    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-      <Button android:text="AC"  android:onClick="onClickClear" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="+/-" android:onClick="onClickInv" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="BS"  android:onClick="onClickBS" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="÷" a ndroid:onClick="onClickPlus" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_weight="0.2">
+      <Button android:text="AC"  android:onClick="onClickClear" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="+/-" android:onClick="onClickInv" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="BS"  android:onClick="onClickBS" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="÷" android:onClick="onClickPlus" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
     </TableRow>
 
-    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-      <Button android:text="7" android:onClick="onClick7" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="8" android:onClick="onClick8" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="9" android:onClick="onClick9" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="×" android:onClick="onClickMultiply" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_weight="0.2">
+      <Button android:text="7" android:onClick="onClick7" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="8" android:onClick="onClick8" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="9" android:onClick="onClick9" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="×" android:onClick="onClickMultiply" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
     </TableRow>
 
-    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-      <Button android:text="4" android:onClick="onClick4" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="5" android:onClick="onClick5" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="6" android:onClick="onClick6" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="-" android:onClick="onClickMinus" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_weight="0.2">
+      <Button android:text="4" android:onClick="onClick4" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="5" android:onClick="onClick5" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="6" android:onClick="onClick6" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="-" android:onClick="onClickMinus" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
     </TableRow>
 
-    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-      <Button android:text="1" android:onClick="onClick1" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="2" android:onClick="onClick2" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="3" android:onClick="onClick3" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="+" android:onClick="onClickPlus" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_weight="0.2">
+      <Button android:text="1" android:onClick="onClick1" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="2" android:onClick="onClick2" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="3" android:onClick="onClick3" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="+" android:onClick="onClickPlus" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
     </TableRow>
 
-    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
-      <Button android:text="0" android:onClick="onClick0" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="." android:onClick="onClickPeriod" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="=" android:onClick="onClickEqual" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
-      <Button android:text="Enter" android:onClick="onClickDone" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_weight="0.2">
+      <Button android:onClick="onClick0" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25" android:text="  0  "/>
+      <Button android:onClick="onClickPeriod" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25" android:text="  .  "/>
+      <Button android:onClick="onClickEqual" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25" android:text="  =  "/>
+      <Button android:onClick="onClickDone" android:layout_height="fill_parent" android:layout_width="wrap_content" android:text="Enter" android:layout_weight="0.25"/>
     </TableRow>
   </TableLayout>
 
