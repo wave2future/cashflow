@@ -13,6 +13,7 @@
         </activity>
         <activity android:name=".ui.TransactionListActivity"/>
         <activity android:name=".ui.TransactionActivity"/>
+        <activity android:name=".ui.CalculatorActivity"/>
     </application>
 <uses-sdk android:targetSdkVersion="4" android:minSdkVersion="4"></uses-sdk>
 </manifest> 

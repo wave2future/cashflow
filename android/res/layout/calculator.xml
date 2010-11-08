@@ -14,7 +14,7 @@
       <Button android:text="AC"  android:onClick="onClickClear" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
       <Button android:text="+/-" android:onClick="onClickInv" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
       <Button android:text="BS"  android:onClick="onClickBS" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
-      <Button android:text="÷" android:onClick="onClickPlus" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
+      <Button android:text="÷" android:onClick="onClickDivide" android:layout_height="fill_parent" android:layout_width="wrap_content" android:layout_weight="0.25"/>
     </TableRow>
 
     <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_weight="0.2">

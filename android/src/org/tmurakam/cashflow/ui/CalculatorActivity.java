@@ -42,7 +42,7 @@ public class CalculatorActivity extends Activity
 
 	private TextView numLabel;
 
-	CalculatorActivity() {
+	public CalculatorActivity() {
 		super();
 		allClear();
 	}
