@@ -46,6 +46,11 @@ public class CalculatorActivity extends Activity
 
 	private TextView numLabel;
 
+	CalculatorActivity() {
+		super();
+		allClear();
+	}
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,20 +58,8 @@ public class CalculatorActivity extends Activity
 
 		numLabel = (TextView)findViewById(R.id.calcNumLabel);
 
-		allClear();
+		value = getIntent().getDoubleExtra("value", 0);
 		updateLabel();
-	}
-
-	public double value() {
-		return this.value;
-	}
-
-	public void setValue(value) {
-		this.value = value;
-	}
-
-	public void onDone(View v) {
-		// TBD
 	}
 
 	private void allClear() {
@@ -78,6 +71,16 @@ public class CalculatorActivity extends Activity
 	}
 
 	///- Button event handlers
+
+	public void onClickDone(View v) {
+		onInputOperator(Operator.EQUAL);
+
+		Intent i = getIntent();
+		i.putExtra("value", value);
+
+		setResult(RESULT_OK);
+		finish();
+	}
 
 	public void onClickClear(View v) {
 		allClear();
@@ -110,7 +113,7 @@ public class CalculatorActivity extends Activity
 	public void onClickDivide(View v)   { onInputOperator(Operator.DIVIDE); }
 	public void onClickEqual(View v)	{ onInputOperator(Operator.EQUAL); }
 
-	private void onInputOperator(calcOperator)op {
+	private void onInputOperator(Operator op) {
 		if (state == State.INPUT || op == Operator.EQUAL) {
 			// 数値入力中に演算ボタンが押された場合、
 			// あるいは = が押された場合 (5x= など)
