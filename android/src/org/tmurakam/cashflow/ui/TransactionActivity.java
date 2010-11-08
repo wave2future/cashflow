@@ -36,6 +36,10 @@ public class TransactionActivity extends Activity
 	private Spinner categorySpinner;
 	private AutoCompleteTextView memoEdit;
 
+	private final int SET_AMOUNT = 0;
+	private final int SET_DESC = 1;
+	private final int SET_MEMO = 2;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -167,9 +171,32 @@ public class TransactionActivity extends Activity
 	 * 金額設定
 	 */
 	public void onClickAmount(View view) {
-		// TBD
+		Intent i = new Intent(this, CalculatorActivity.class);
+		i.putExtra(CalculatorActivity.TAG_VALUE, editingEntry.evalue());
+		startActivityForResult(i, SET_AMOUNT);
 	}
-	
+
+	/**
+	 * 子 Activity の修了通知
+	 */
+	protected void onActivityResult(int req, int result, Intent data) {
+		if (result != RESULT_OK) return;
+
+		switch (req) {
+		case SET_AMOUNT:
+			isModified = true;
+			editingEntry.setEvalue(data.getDoubleExtra(CalculatorActivity.TAG_VALUE, 0));
+			break;
+
+		case SET_DESC:
+		case SET_MEMO:
+			// not yet
+			break;
+		}
+
+		updateUI();
+	}
+
 	/**
 	 * 保存処理
 	 */
@@ -211,14 +238,6 @@ public class TransactionActivity extends Activity
 
 /*
 #pragma mark EditView delegates
-
-- (void)calculatorViewChanged:(CalculatorViewController *)vc
-{
-    isModified = YES;
-
-    [editingEntry setEvalue:vc.value];
-    [self _dismissPopover];
-}
 
 - (void)editDescViewChanged:(EditDescViewController *)vc
 {

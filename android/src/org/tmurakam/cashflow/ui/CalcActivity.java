@@ -20,6 +20,8 @@ import org.tmurakam.cashflow.models.*;
 
 public class CalculatorActivity extends Activity 
 {
+	public final String TAG_VALUE = "value";
+
 	// operation
 	enum Oerator {
 		NONE,
@@ -58,7 +60,7 @@ public class CalculatorActivity extends Activity
 
 		numLabel = (TextView)findViewById(R.id.calcNumLabel);
 
-		value = getIntent().getDoubleExtra("value", 0);
+		value = getIntent().getDoubleExtra(TAG_VALUE, 0);
 		updateLabel();
 	}
 
@@ -76,7 +78,7 @@ public class CalculatorActivity extends Activity
 		onInputOperator(Operator.EQUAL);
 
 		Intent i = getIntent();
-		i.putExtra("value", value);
+		i.putExtra(TAG_VALUE, value);
 
 		setResult(RESULT_OK);
 		finish();
