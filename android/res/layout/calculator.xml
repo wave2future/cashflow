@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#fff" android:orientation="vertical">
+
+  <!-- number label -->
+  <TextView android:layout_width="fill_parent" android:layout_height="wrap_content"
+            android:background="#000" android:textColor="#fff"/>
+
+  <!-- number pad -->
+  <TableLayout android:layout_width="fill_parent" android:layout_height="wrap_content" android:layout_margin="5px">
+
+    <TableRow android:layout_width="fill_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+      <Button android:text="7" android:onClick="onClick7" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+      <Button android:text="8" android:onClick="onClick8" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+      <Button android:text="9" android:onClick="onClick9" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+      <Button android:text="+" android:onClick="onClickPlus" android:layout_height="wrap_content" android:layout_width="wrap_content" android:layout_weight=0.25/>
+    </TableRow>
+
+  </TableLayout>
+
+  <!-- done button -->
+</LinearLayout>
