@@ -55,6 +55,8 @@ public class AssetEntry implements Cloneable {
 
 	// 値を Transaction に書き戻す
 	private void _setupTransaction() {
+		if (transaction == null) return;
+		
 		if (transaction.type == Transaction.ADJ) {
 			transaction.balance = balance;
 			transaction.hasBalance = true;
