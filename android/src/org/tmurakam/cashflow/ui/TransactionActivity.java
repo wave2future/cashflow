@@ -85,45 +85,50 @@ public class TransactionActivity extends Activity
     }
 
 	private void updateUI() {
+		Transaction t = editingEntry.transaction();
+		
 		// date
-		dateButton.setText(DataModel.dateFormat.format(editingEntry.transaction.date));
+		dateButton.setText(DataModel.dateFormat.format(t.date));
 
 		// type
-		typeSpinner.setSelection(editingEntry.transaction.type);
+		typeSpinner.setSelection(t.type);
 		
 		// value
 		double evalue = editingEntry.evalue();
 		amountButton.setText(CurrencyManager.formatCurrency(evalue));
 			
 		// desc
-		descEdit.setText(editingEntry.transaction.description);
+		descEdit.setText(t.description);
 				
 	    // category
-		int categoryIndex = DataModel.getCategories().categoryIndexWithKey(editingEntry.transaction.category);
+		int categoryIndex = DataModel.getCategories().categoryIndexWithKey(t.category);
 		categorySpinner.setSelection(categoryIndex);
 
 	    // memo
-		memoEdit.setText(editingEntry.transaction.memo);
+		memoEdit.setText(t.memo);
 	}
 	
 	/**
 	 * 日付設定
 	 */
 	public void onClickDate(View view) {
+		Transaction t = editingEntry.transaction();
 		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(editingEntry.transaction.date);
+		cal.setTimeInMillis(t.date);
 		
 		DatePickerDialog d = new DatePickerDialog(this, this, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DATE));
 		d.show();
 	}
 	
 	public void onDateSet(DatePicker view, int yy, int mm, int dd) {
+		Transaction t = editingEntry.transaction();
+		
 		Calendar cal = Calendar.getInstance();
-		cal.setTimeInMillis(editingEntry.transaction.date);
+		cal.setTimeInMillis(t.date);
 		cal.set(Calendar.YEAR, yy);
 		cal.set(Calendar.MONTH, mm);
 		cal.set(Calendar.DATE, dd);
-		editingEntry.transaction.date = cal.getTimeInMillis();
+		t.date = cal.getTimeInMillis();
 
 		isModified = true;
 		updateUI();
@@ -135,10 +140,11 @@ public class TransactionActivity extends Activity
 	public void onItemSelected(AdapterView<?> parent, View v, int position, long id) {
 		if (v == typeSpinner) {
 			// 種別
-			editingEntry.transaction.type = position;
-			switch (editingEntry.transaction.type) {
+			Transaction t = editingEntry.transaction();
+			t.type = position;
+			switch (t.type) {
 			case Transaction.ADJ:
-				editingEntry.transaction.description = getResources().getString(R.string.adjustment);
+				t.description = getResources().getString(R.string.adjustment);
 				break;
 				
 			case Transaction.TRANSFER:
@@ -159,7 +165,7 @@ public class TransactionActivity extends Activity
 		else if (v == categorySpinner) {
 			// カテゴリ
 			Category c = DataModel.getCategories().categoryAtIndex(position);
-			editingEntry.transaction.category = c.pid;
+			editingEntry.transaction().category = c.pid;
 			isModified = true;
 		}
 	}
@@ -177,7 +183,7 @@ public class TransactionActivity extends Activity
 	}
 
 	/**
-	 * 子 Activity の修了通知
+	 * 子 Activity の終了通知
 	 */
 	protected void onActivityResult(int req, int result, Intent data) {
 		if (result != RESULT_OK) return;
@@ -211,7 +217,8 @@ public class TransactionActivity extends Activity
 	    }
 
 	    editingEntry = null;
-	    setResult(0); // ok
+	    setResult(RESULT_OK);
+	    finish();
 	}
 
 	public void onCancel(View v) {
@@ -229,10 +236,11 @@ public class TransactionActivity extends Activity
 	        [asCancelTransaction showInView:self.view];
 	        [asCancelTransaction release];
 	        */
-	    	setResult(-1);
+	    	setResult(RESULT_CANCELED);
 	    } else {
-	    	setResult(-1);
+	    	setResult(RESULT_CANCELED);
 	    }
+	    finish();
 	}
 }
 

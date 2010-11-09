@@ -87,14 +87,14 @@ public class Asset extends AssetBase {
 	}
 
 	public void insertEntry(AssetEntry e) {
-		DataModel.getJournal().insertTransaction(e.transaction);
+		DataModel.getJournal().insertTransaction(e.transaction());
 		DataModel.getLedger().rebuild();
 	}
 
 	public void replaceEntryAtIndex(int index, AssetEntry e) {
 		AssetEntry orig = entryAt(index);
 
-		DataModel.getJournal().replaceTransaction(orig.transaction, e.transaction);
+		DataModel.getJournal().replaceTransaction(orig.transaction(), e.transaction());
 		DataModel.getLedger().rebuild();
 	}
 
@@ -109,7 +109,7 @@ public class Asset extends AssetBase {
 
 		// エントリ削除
 		AssetEntry e = entryAt(index);
-		DataModel.getJournal().deleteTransaction(e.transaction, this);
+		DataModel.getJournal().deleteTransaction(e.transaction(), this);
 	}
 
 	// エントリ削除
@@ -127,7 +127,7 @@ public class Asset extends AssetBase {
 		db.beginTransaction();
 		while (entries.size() > 0) {
 			AssetEntry e = entries.get(0);
-			if (e.transaction.date >= date) {
+			if (e.transaction().date >= date) {
 				break;
 			}
 
@@ -142,7 +142,7 @@ public class Asset extends AssetBase {
 	public int firstEntryByDate(long date) {
 		for (int i = 0; i < entries.size(); i++) {
 			AssetEntry e = entries.get(i);
-			if (e.transaction.date >= date) {
+			if (e.transaction().date >= date) {
 				return i;
 			}
 		}

@@ -154,7 +154,7 @@ public class TransactionBase extends ORRecord {
 		ContentValues cv = getContentValues();
 
 		String[] whereArgs = { Long.toString(pid) };
-		db.update(tableName, cv, "WHERE key = ?", whereArgs);
+		db.update(tableName, cv, "key = ?", whereArgs);
 
 		db.endTransaction();
 	}

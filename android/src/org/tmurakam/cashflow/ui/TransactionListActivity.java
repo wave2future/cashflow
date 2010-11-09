@@ -61,7 +61,6 @@ public class TransactionListActivity extends Activity
 		
 		// 初期残高セル
 		AssetEntry e = new AssetEntry();
-		e.transaction = null;
 		e.value = asset.initialBalance;
 		arrayAdapter.add(e);
 	}
@@ -86,17 +85,17 @@ public class TransactionListActivity extends Activity
 			
 			TextView tv;
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowText);
-			if (e.transaction == null) {
+			if (e.transaction() == null) {
 				tv.setText(res.getText(R.string.initial_balance));
 			} else {
-				tv.setText(e.transaction.description);
+				tv.setText(e.transaction().description);
 			}
 
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowDate);
-			if (e.transaction == null) {
+			if (e.transaction() == null) {
 				tv.setText("");
 			} else {
-				tv.setText(DataModel.dateFormat.format(e.transaction.date));
+				tv.setText(DataModel.dateFormat.format(e.transaction().date));
 			}
 					
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowValue);
@@ -108,7 +107,7 @@ public class TransactionListActivity extends Activity
 			tv.setText(CurrencyManager.formatCurrency(e.value));
 			
 			tv = (TextView)convertView.findViewById(R.id.TransactionListRowBalance);
-			if (e.transaction == null) {
+			if (e.transaction() == null) {
 				tv.setText("");
 			} else {
 				tv.setText(res.getString(R.string.balance) + " " + CurrencyManager.formatCurrency(e.balance));
@@ -177,7 +176,9 @@ public class TransactionListActivity extends Activity
 
 	@Override
 	protected void onActivityResult(int request, int result, Intent intent) {
-		
+		if (result == RESULT_OK) {
+			reload();
+		}
 	}
 	
 	// 初期残高変更処理

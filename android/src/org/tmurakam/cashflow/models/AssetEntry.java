@@ -11,7 +11,7 @@ public class AssetEntry implements Cloneable {
 	public double value;
 	public double balance;
 
-	public Transaction transaction;
+	private Transaction transaction;
 
 	public AssetEntry() {
 		transaction = null;
@@ -47,7 +47,7 @@ public class AssetEntry implements Cloneable {
 		return false;
 	}
 
-	public Transaction getTransaction() {
+	public Transaction transaction() {
 		_setupTransaction();
 		return transaction;
 	}
