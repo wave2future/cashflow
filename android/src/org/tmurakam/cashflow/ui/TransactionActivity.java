@@ -8,6 +8,7 @@ import java.util.*;
 import android.app.*;
 import android.os.*;
 import android.content.*;
+import android.content.res.*;
 //import android.text.format.DateFormat;
 import android.view.*;
 import android.widget.*;
@@ -207,7 +208,7 @@ public class TransactionActivity extends Activity
 	 * 保存処理
 	 */
 	public void onSave(View v) {
-	    //editingEntry.transaction.asset = asset.pkey;
+		getTextField();
 
 	    if (transactionIndex < 0) {
 	    	asset.insertEntry(editingEntry);
@@ -222,25 +223,57 @@ public class TransactionActivity extends Activity
 	}
 
 	public void onCancel(View v) {
-	    if (isModified) {
-	    	// TBD
-	    	/*
-	        asCancelTransaction =
-	            [[UIActionSheet alloc]
-	                initWithTitle:NSLocalizedString(@"Save this transaction?", @"")
-	                delegate:self
-	             cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
-	                destructiveButtonTitle:nil
-	                otherButtonTitles:NSLocalizedString(@"Yes", @""), NSLocalizedString(@"No", @""), nil];
-	        asCancelTransaction.actionSheetStyle = UIActionSheetStyleDefault;
-	        [asCancelTransaction showInView:self.view];
-	        [asCancelTransaction release];
-	        */
-	    	setResult(RESULT_CANCELED);
+		getTextField();
+
+		if (isModified) {
+			// 保存確認
+			Resources res = getResources();
+
+			AlertDialog.Builder b = new AlertDialog.Builder(this);
+			//b.setTitle("");
+			b.setMessage(res.getText(R.string.save_this_transaction));
+			b.setPositiveButton(res.getText(R.string.yes), new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					setResult(RESULT_OK);
+					finish();
+				}
+			});
+			b.setNegativeButton(res.getText(R.string.no), new DialogInterface.OnClickListener() {
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					setResult(RESULT_CANCELED);
+					finish();
+				}
+			});
+			b.setCancelable(true);
+			b.show();
 	    } else {
 	    	setResult(RESULT_CANCELED);
+		    finish();
 	    }
-	    finish();
+	}
+	
+	// back ボタンで閉じようとする場合の処理
+	//@Override  // this requires API level 5!
+	//public void onBackPressed() {  
+	//	onCancel(null);
+	//}
+	
+	private void getTextField() {
+		Transaction t = editingEntry.transaction();
+
+		String desc = descEdit.getText().toString();
+		if (!desc.equals(t.description)) {
+			t.description = desc;
+			isModified = true;
+		}
+				
+		String memo = memoEdit.getText().toString();
+		if (!memo.equals(t.memo)) {
+			t.memo = memo;
+			isModified = true;
+		}
 	}
 }
 
@@ -257,14 +290,6 @@ public class TransactionActivity extends Activity
         // set category from description
         editingEntry.transaction.category = [[DataModel instance] categoryWithDescription:editingEntry.transaction.description];
     }
-    [self _dismissPopover];
-}
-
-- (void)editMemoViewChanged:(EditMemoViewController*)vc identifier:(int)id
-{
-    isModified = YES;
-
-    editingEntry.transaction.memo = vc.text;
     [self _dismissPopover];
 }
 
@@ -346,13 +371,4 @@ public class TransactionActivity extends Activity
         [self _asCancelTransaction:buttonIndex];
     }
 }
-
-#pragma mark Rotation support
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    if (IS_IPAD) return YES;
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-@end
 */
