@@ -71,10 +71,10 @@ public class CalculatorActivity extends Activity
 	public void onClickDone(View v) {
 		onInputOperator(Operator.EQUAL);
 
-		Intent i = getIntent();
+		Intent i = new Intent();
 		i.putExtra(TAG_VALUE, value);
 
-		setResult(RESULT_OK);
+		setResult(RESULT_OK, i);
 		finish();
 	}
 
