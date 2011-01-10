@@ -144,6 +144,12 @@
 		3E2CBDA00F1615470025A682 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E2CBD9F0F1615470025A682 /* Localizable.strings */; };
 		3E35661A1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
 		3E35661B1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
+		3E3A91B912DAC5F6003A0D25 /* icon-free.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3A91B612DAC5F6003A0D25 /* icon-free.png */; };
+		3E3A91BA12DAC5F6003A0D25 /* icon-free@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3A91B712DAC5F6003A0D25 /* icon-free@2x.png */; };
+		3E3A91BB12DAC5F6003A0D25 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3A91B812DAC5F6003A0D25 /* icon@2x.png */; };
+		3E3A91BC12DAC5F6003A0D25 /* icon-free.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3A91B612DAC5F6003A0D25 /* icon-free.png */; };
+		3E3A91BD12DAC5F6003A0D25 /* icon-free@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3A91B712DAC5F6003A0D25 /* icon-free@2x.png */; };
+		3E3A91BE12DAC5F6003A0D25 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E3A91B812DAC5F6003A0D25 /* icon@2x.png */; };
 		3E3FEFC011F3385F00A0FC41 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
 		3E3FEFC111F3385F00A0FC41 /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
 		3E3FEFC211F3385F00A0FC41 /* GenSelectListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */; };
@@ -457,6 +463,9 @@
 		3E2CBDA90F1615880025A682 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
+		3E3A91B612DAC5F6003A0D25 /* icon-free.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-free.png"; sourceTree = "<group>"; };
+		3E3A91B712DAC5F6003A0D25 /* icon-free@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon-free@2x.png"; sourceTree = "<group>"; };
+		3E3A91B812DAC5F6003A0D25 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		3E40E98811F33C95001E91B5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3E4DD9E811898E9600542042 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
@@ -857,6 +866,9 @@
 		3EB5406B0E8E907B00608B77 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				3E3A91B612DAC5F6003A0D25 /* icon-free.png */,
+				3E3A91B712DAC5F6003A0D25 /* icon-free@2x.png */,
+				3E3A91B812DAC5F6003A0D25 /* icon@2x.png */,
 				3E4DDA80118994AA00542042 /* icon.png */,
 				3E4DD9E811898E9600542042 /* Default-Landscape.png */,
 				3E4DD9E911898E9600542042 /* Default-Portrait.png */,
@@ -1185,6 +1197,9 @@
 				3E4DD9ED11898E9600542042 /* Default-Portrait.png in Resources */,
 				3E4DDA211189908A00542042 /* icon-ipad.png in Resources */,
 				3E4DDA82118994AA00542042 /* icon.png in Resources */,
+				3E3A91BC12DAC5F6003A0D25 /* icon-free.png in Resources */,
+				3E3A91BD12DAC5F6003A0D25 /* icon-free@2x.png in Resources */,
+				3E3A91BE12DAC5F6003A0D25 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1226,6 +1241,9 @@
 				3E4DD9EB11898E9600542042 /* Default-Portrait.png in Resources */,
 				3E4DDA201189908A00542042 /* icon-ipad.png in Resources */,
 				3E4DDA81118994AA00542042 /* icon.png in Resources */,
+				3E3A91B912DAC5F6003A0D25 /* icon-free.png in Resources */,
+				3E3A91BA12DAC5F6003A0D25 /* icon-free@2x.png in Resources */,
+				3E3A91BB12DAC5F6003A0D25 /* icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1533,7 +1551,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1557,7 +1575,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1575,7 +1593,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -1599,7 +1617,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -1618,7 +1636,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad hoc distribution";
@@ -1644,7 +1662,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "6020BB8D-8A9F-4FE6-90D0-D6D14B965EC4";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad hoc distribution";
@@ -1664,7 +1682,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = DebugCoverage;
@@ -1691,7 +1709,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = DebugCoverage;
@@ -1725,7 +1743,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = DebugCoverage;
@@ -1758,7 +1776,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = DebugCoverage;
 		};
@@ -1791,7 +1809,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1819,7 +1837,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -1847,7 +1865,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Distribution;
@@ -1877,7 +1895,7 @@
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_NAME = CashFlowFree;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8571685E-D4FD-45DA-9971-98D2D61BA9C6";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = "Ad hoc distribution";
@@ -1908,7 +1926,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = Debug;
 		};
@@ -1936,7 +1954,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				ZERO_LINK = NO;
 			};
 			name = Release;
@@ -1962,7 +1980,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = Distribution;
 		};
@@ -1987,7 +2005,7 @@
 				);
 				PREBINDING = NO;
 				PRODUCT_NAME = "CashFlow-iUnitTest";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 			};
 			name = "Ad hoc distribution";
 		};
@@ -2006,7 +2024,7 @@
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -2024,7 +2042,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PREBINDING = NO;
 				PRODUCT_NAME = CashFlow;
-				SDKROOT = iphoneos4.1;
+				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
