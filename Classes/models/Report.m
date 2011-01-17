@@ -44,6 +44,8 @@ static void init_filter(Filter *filter);
 @synthesize catkey, value;
 @end
 
+/////////////////////////////////////////////////////////////////////
+
 @implementation Report
 @synthesize date, endDate, totalIncome, totalOutgo, catReports;
 
@@ -63,6 +65,116 @@ static void init_filter(Filter *filter);
     [endDate release];
     [catReports release];
     [super dealloc];
+}
+
+- (void)generate:(int)assetKey
+{
+    int numCategories = [[DataModel instance].categories categoryCount];
+
+    // 集計
+    Filter filter;
+    init_filter(&filter);
+
+    filter.asset = assetKey;
+    filter.start = self.date;
+    filter.end = endDate;
+
+    filter.isIncome = YES;
+    filter.isOutgo = NO;
+    self.totalIncome = [self calculateSum:&filter];
+
+    filter.isIncome = NO;
+    filter.isOutgo = YES;
+    self.totalOutgo = [self calculateSum:&filter];
+
+    // カテゴリ毎の集計
+    int i;
+    self.catReports = [[NSMutableArray alloc] init];
+    double remain = self.totalIncome + self.totalOutgo;
+
+    init_filter(&filter);
+    filter.asset = assetKey;
+
+    for (i = 0; i < numCategories; i++) {
+        Category *c = [[DataModel instance].categories categoryAtIndex:i];
+        CatReport *cr = [[CatReport alloc] init];
+
+        cr.catkey = c.pid;
+
+        filter.category = c.pid;
+        filter.start = self.date;
+        filter.end = self.endDate;
+        cr.value = [self calculateSum:&filter];
+
+        remain -= cr.value;
+
+        [self.catReports addObject:cr];
+        [cr release];
+    }
+		
+    // 未分類項目
+    CatReport *cr = [[CatReport alloc] init];
+    cr.catkey = -1;
+    cr.value = remain;
+    [self.catReports addObject:cr];
+    [cr release];
+		
+    // ソート
+    [self.catReports sortUsingFunction:compareCatReport context:nil];
+}
+
+- (double)calculateSum:(Filter *)filter
+{
+    Transaction *t;
+
+    double sum = 0.0;
+    double value;
+
+    for (t in [DataModel journal]) {
+        // match filter
+        NSComparisonResult cpr;
+        if (filter->start) {
+            cpr = [t.date compare:filter->start];
+            if (cpr == NSOrderedAscending) continue;
+        }
+        if (filter->end) {
+            cpr = [t.date compare:filter->end];
+            if (cpr == NSOrderedSame || cpr == NSOrderedDescending) {
+                continue;
+            }
+        }
+        if (filter->category >= 0 && t.category != filter->category) {
+            continue;
+        }
+
+        if (filter->asset < 0) {
+            // 資産指定なしの資産間移動は計上しない
+            if (t.type == TYPE_TRANSFER) {
+                continue;
+            }
+            value = t.value;
+        }
+        else {
+            if (t.asset == filter->asset) {
+                value = t.value;
+            }
+            else if (t.dst_asset == filter->asset) {
+                value = -t.value;
+            }
+            else {
+                continue;
+            }
+        }
+            
+        if (filter->isOutgo && value >= 0) {
+            continue;
+        }
+        if (filter->isIncome && value <= 0) {
+            continue;
+        }
+        sum += value;
+    }
+    return sum;
 }
 
 @end
@@ -165,8 +277,6 @@ static int compareCatReport(id x, id y, void *context)
         break;
     }
 	
-    int numCategories = [[DataModel instance].categories categoryCount];
-	
     while ([dd compare:lastDate] != NSOrderedDescending) {
         // Report 生成
         Report *r = [[Report alloc] init];
@@ -180,56 +290,7 @@ static int compareCatReport(id x, id y, void *context)
         dd = [greg dateByAddingComponents:steps toDate:dd options:0];
         r.endDate = dd;
 
-        // 集計
-        Filter filter;
-        init_filter(&filter);
-
-        filter.asset = assetKey;
-        filter.start = r.date;
-        filter.end = dd;
-
-        filter.isIncome = YES;
-        filter.isOutgo = NO;
-        r.totalIncome = [self calculateSum:&filter];
-
-        filter.isIncome = NO;
-        filter.isOutgo = YES;
-        r.totalOutgo = [self calculateSum:&filter];
-
-        // カテゴリ毎の集計
-        int i;
-        r.catReports = [[NSMutableArray alloc] init];
-        double remain = r.totalIncome + r.totalOutgo;
-
-        init_filter(&filter);
-        filter.asset = assetKey;
-
-        for (i = 0; i < numCategories; i++) {
-            Category *c = [[DataModel instance].categories categoryAtIndex:i];
-            CatReport *cr = [[CatReport alloc] init];
-
-            cr.catkey = c.pid;
-
-            filter.category = c.pid;
-            filter.start = r.date;
-            filter.end = r.endDate;
-            cr.value = [self calculateSum:&filter];
-
-            remain -= cr.value;
-
-            [r.catReports addObject:cr];
-            [cr release];
-        }
-		
-        // 未分類項目
-        CatReport *cr = [[CatReport alloc] init];
-        cr.catkey = -1;
-        cr.value = remain;
-        [r.catReports addObject:cr];
-        [cr release];
-		
-        // ソート
-        [r.catReports sortUsingFunction:compareCatReport context:nil];
+        [r generate:assetKey];
     }
 }
 
@@ -274,60 +335,6 @@ static void init_filter(Filter *filter)
     filter->isOutgo = NO;
     filter->isIncome = NO;
     filter->category = -1;
-}
-
-- (double)calculateSum:(Filter *)filter
-{
-    Transaction *t;
-
-    double sum = 0.0;
-    double value;
-
-    for (t in [DataModel journal]) {
-        // match filter
-        NSComparisonResult cpr;
-        if (filter->start) {
-            cpr = [t.date compare:filter->start];
-            if (cpr == NSOrderedAscending) continue;
-        }
-        if (filter->end) {
-            cpr = [t.date compare:filter->end];
-            if (cpr == NSOrderedSame || cpr == NSOrderedDescending) {
-                continue;
-            }
-        }
-        if (filter->category >= 0 && t.category != filter->category) {
-            continue;
-        }
-
-        if (filter->asset < 0) {
-            // 資産指定なしの資産間移動は計上しない
-            if (t.type == TYPE_TRANSFER) {
-                continue;
-            }
-            value = t.value;
-        }
-        else {
-            if (t.asset == filter->asset) {
-                value = t.value;
-            }
-            else if (t.dstAsset == filter->asset) {
-                value = -t.value;
-            }
-            else {
-                continue;
-            }
-        }
-            
-        if (filter->isOutgo && value >= 0) {
-            continue;
-        }
-        if (filter->isIncome && value <= 0) {
-            continue;
-        }
-        sum += value;
-    }
-    return sum;
 }
 
 @end
