@@ -67,8 +67,11 @@ static void init_filter(Filter *filter);
     [super dealloc];
 }
 
-- (void)generate:(int)assetKey
+- (void)generate:(int)assetKey start:(NSDate *)start end:(NSDate *)end
 {
+    self.date = start;
+    self.endDate = end;
+
     int numCategories = [[DataModel instance].categories categoryCount];
 
     // 集計
@@ -278,19 +281,17 @@ static int compareCatReport(id x, id y, void *context)
     }
 	
     while ([dd compare:lastDate] != NSOrderedDescending) {
-        // Report 生成
-        Report *r = [[Report alloc] init];
-        [reports addObject:r];
-        [r release];
+        NSDate *start = dd;
 
-        // 日付設定
-        r.date = dd;
-		
         // 次の期間開始時期を計算する
         dd = [greg dateByAddingComponents:steps toDate:dd options:0];
-        r.endDate = dd;
 
-        [r generate:assetKey];
+        // Report 生成
+        Report *r = [[Report alloc] init];
+        [r generate:assetKey start:start end:dd];
+
+        [reports addObject:r];
+        [r release];
     }
 }
 
