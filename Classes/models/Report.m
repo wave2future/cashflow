@@ -144,7 +144,7 @@ static int compareCatReport(id x, id y, void *context)
 
         // Report 生成
         Report *r = [[Report alloc] init];
-        [r generate:assetKey start:start end:dd];
+        [r totalUp:assetKey start:start end:dd];
 
         [reports addObject:r];
         [r release];
@@ -196,6 +196,8 @@ static int compareCatReport(id x, id y, void *context)
     totalIncome = 0.0;
     totalOutgo = 0.0;
 
+    catReports = [[NSMutableArray alloc] init];
+
     return self;
 }
 
@@ -207,35 +209,33 @@ static int compareCatReport(id x, id y, void *context)
     [super dealloc];
 }
 
-- (void)generate:(int)assetKey start:(NSDate *)start end:(NSDate *)end
+- (void)totalUp:(int)assetKey start:(NSDate *)start end:(NSDate *)end
 {
-    self.date = start;
-    self.endDate = end;
-
-    int numCategories = [[DataModel instance].categories categoryCount];
+    date = [start retain];
+    endDate = [end retain];
 
     // カテゴリ毎の集計
     int i;
-    self.catReports = [[[NSMutableArray alloc] init] autorelease];
+    int numCategories = [[DataModel instance].categories categoryCount];
 
     for (i = 0; i < numCategories; i++) {
         Category *c = [[DataModel instance].categories categoryAtIndex:i];
         CatReport *cr = [[CatReport alloc] init];
 
-        [cr generate:c.pid asset:assetKey start:self.date end:self.endDate];
+        [cr totalUp:c.pid asset:assetKey start:self.date end:self.endDate];
 
-        [self.catReports addObject:cr];
+        [catReports addObject:cr];
         [cr release];
     }
 		
     // 未分類項目
     CatReport *cr = [[CatReport alloc] init];
-    [cr generate:-1 asset:assetKey start:self.date end:self.endDate];
-    [self.catReports addObject:cr];
+    [cr generate:-1 asset:assetKey start:date end:endDate];
+    [catReports addObject:cr];
     [cr release];
 		
     // ソート
-    [self.catReports sortUsingFunction:compareCatReport context:nil];
+    [catReports sortUsingFunction:compareCatReport context:nil];
 
     // 集計
     totalIncome = 0.0;
@@ -258,24 +258,25 @@ static int compareCatReport(id x, id y, void *context)
 
 @synthesize catkey, sum;
 
+- (void)init
+{
+    transactions = [[NSMutableArray alloc] init];
+}
+
 - (void)dealloc
 {
     [transactions release];
     [super dealloc];
 }
 
-- (void)generate:(int)key asset:(int)asset start:(NSDate*)start end:(NSDate*)end
+- (void)totalUp:(int)key asset:(int)assetKey start:(NSDate*)start end:(NSDate*)end
 {
-    Transaction *t;
-
-    self.transactions = [[[NSMutableArray alloc] init] autorelease];
-
-    self.catkey = key;
-
+    catkey = key;
     sum = 0.0;
+
     double value;
 
-    for (t in [DataModel journal]) {
+    for (Transaction *t in [DataModel journal]) {
         // match filter
         NSComparisonResult cpr;
         if (start) {
@@ -288,11 +289,11 @@ static int compareCatReport(id x, id y, void *context)
                 continue;
             }
         }
-        if (t.category != self.catkey) {
+        if (t.category != catkey) {
             continue;
         }
 
-        if (asset < 0) {
+        if (assetKey < 0) {
             // 資産指定なしレポートの場合、資産間移動は計上しない
             if (t.type == TYPE_TRANSFER) {
                 continue;
@@ -300,10 +301,10 @@ static int compareCatReport(id x, id y, void *context)
             value = t.value;
         }
         else {
-            if (t.asset == asset) {
+            if (t.asset == assetKey) {
                 value = t.value;
             }
-            else if (t.dst_asset == asset) {
+            else if (t.dst_asset == assetKey) {
                 value = -t.value;
             }
             else {
@@ -314,6 +315,5 @@ static int compareCatReport(id x, id y, void *context)
         sum += value;
     }
 }
-
 
 @end

@@ -73,11 +73,13 @@
     NSMutableArray *catReports; // CatReport の配列
 }
 
-@property(nonatomic,retain) NSDate *date;
-@property(nonatomic,retain) NSDate *endDate;
-@property(nonatomic,assign) double totalIncome;
-@property(nonatomic,assign) double totalOutgo;
-@property(nonatomic,retain) NSMutableArray *catReports;
+@property(nonatomic,readonly) NSDate *date;
+@property(nonatomic,readonly) NSDate *endDate;
+@property(nonatomic,readonly) double totalIncome;
+@property(nonatomic,readonly) double totalOutgo;
+@property(nonatomic,readonly) NSMutableArray *catReports;
+
+- (void)totalUp:(int)assetKey start:(NSDate *)start end:(NSDate *)end;
 
 @end
 // レポート(カテゴリ毎)
@@ -88,9 +90,12 @@
     NSMutableArray *transactions; // Transaction の配列
 }
 
-@property(nonatomic,assign) int catkey;
-@property(nonatomic,assign) double sum;
-@property(nonatomic,retain) NSMutableArray *transactions;
+@property(nonatomic,readonly) int catkey;
+@property(nonatomic,readonly) double sum;
+@property(nonatomic,readonly) NSMutableArray *transactions;
+
+- (void)totalUp:(int)key asset:(int)asset start:(NSDate*)start end:(NSDate*)end;
+
 @end
 
 
