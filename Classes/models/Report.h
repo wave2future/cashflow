@@ -59,7 +59,6 @@
 // private
 - (NSDate*)firstDateOfAsset:(int)asset;
 - (NSDate*)lastDateOfAsset:(int)asset;
-- (double)calculateSum:(Filter *)filter;
 
 @end
 

@@ -62,10 +62,10 @@ static int compareCatReport(id x, id y, void *context)
     CatReport *xr = (CatReport *)x;
     CatReport *yr = (CatReport *)y;
 	
-    if (xr.value == yr.value) {
+    if (xr.sum == yr.sum) {
         return NSOrderedSame;
     }
-    if (xr.value > yr.value) {
+    if (xr.sum > yr.sum) {
         return NSOrderedDescending;
     }
     return NSOrderedAscending;
@@ -230,7 +230,7 @@ static int compareCatReport(id x, id y, void *context)
 		
     // 未分類項目
     CatReport *cr = [[CatReport alloc] init];
-    [cr generate:-1 asset:assetKey start:date end:endDate];
+    [cr totalUp:-1 asset:assetKey start:date end:endDate];
     [catReports addObject:cr];
     [cr release];
 		
@@ -256,11 +256,14 @@ static int compareCatReport(id x, id y, void *context)
 
 @implementation CatReport
 
-@synthesize catkey, sum;
+@synthesize catkey, sum, transactions;
 
-- (void)init
+- (id)init
 {
+    [super init];
     transactions = [[NSMutableArray alloc] init];
+
+    return self;
 }
 
 - (void)dealloc
@@ -311,7 +314,7 @@ static int compareCatReport(id x, id y, void *context)
                 continue;
             }
         }
-        transactions.add(t);
+        [transactions addObject:t];
         sum += value;
     }
 }

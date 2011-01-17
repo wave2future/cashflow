@@ -84,10 +84,10 @@
             maxAbsValue = -cr.value;
         }
 #endif
-        if (cr.value >= 0.0) {
-            maxAbsValue += cr.value;
+        if (cr.sum >= 0.0) {
+            maxAbsValue += cr.sum;
         } else {
-            maxAbsValue -= cr.value;
+            maxAbsValue -= cr.sum;
         }
     }
 }
@@ -113,7 +113,7 @@
         cell.name = NSLocalizedString(@"No category", @"");
     }
 
-    cell.value = cr.value;
+    cell.value = cr.sum;
     cell.maxAbsValue = maxAbsValue;
 
     return cell;
