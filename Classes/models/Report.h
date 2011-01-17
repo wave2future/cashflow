@@ -39,31 +39,28 @@
 #define REPORT_WEEKLY 0
 #define REPORT_MONTHLY 1
 
-typedef struct _filter
-{
-    NSDate *start;
-    NSDate *end;
-    int asset;
-    int category;
-    BOOL isOutgo;
-    BOOL isIncome;
-} Filter;
-
 /*
   レポートの構造
 
   Reports -> Report -> CatReport
  */
 
-
-// レポート(カテゴリ毎)
-@interface CatReport : NSObject {
-    int catkey; // カテゴリキー
-    double value; // 合計値
+// レポート(集合)
+@interface Reports : NSObject {
+    int type;
+    NSMutableArray *reports;  // Report の配列
 }
 
-@property(nonatomic,assign) int catkey;
-@property(nonatomic,assign) double value;
+@property(nonatomic,assign) int type;
+@property(nonatomic,retain) NSMutableArray *reports;
+
+- (void)generate:(int)type asset:(Asset *)asset;
+
+// private
+- (NSDate*)firstDateOfAsset:(int)asset;
+- (NSDate*)lastDateOfAsset:(int)asset;
+- (double)calculateSum:(Filter *)filter;
+
 @end
 
 // レポート（１件分)
@@ -83,21 +80,17 @@ typedef struct _filter
 @property(nonatomic,retain) NSMutableArray *catReports;
 
 @end
+// レポート(カテゴリ毎)
+@interface CatReport : NSObject {
+    int catkey; // カテゴリキー
+    double sum; // 合計値
 
-// レポート(集合)
-@interface Reports : NSObject {
-    int type;
-    NSMutableArray *reports;  // Report の配列
+    NSMutableArray *transactions; // Transaction の配列
 }
 
-@property(nonatomic,assign) int type;
-@property(nonatomic,retain) NSMutableArray *reports;
-
-- (void)generate:(int)type asset:(Asset *)asset;
-
-// private
-- (NSDate*)firstDateOfAsset:(int)asset;
-- (NSDate*)lastDateOfAsset:(int)asset;
-- (double)calculateSum:(Filter *)filter;
-
+@property(nonatomic,assign) int catkey;
+@property(nonatomic,assign) double sum;
+@property(nonatomic,retain) NSMutableArray *transactions;
 @end
+
+
