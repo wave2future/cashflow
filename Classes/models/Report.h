@@ -84,12 +84,16 @@
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
     int catkey; // カテゴリキー
+    double income;
+    double outgo;    
     double sum; // 合計値
 
     NSMutableArray *transactions; // Transaction の配列
 }
 
 @property(nonatomic,readonly) int catkey;
+@property(nonatomic,readonly) double income;
+@property(nonatomic,readonly) double outgo;
 @property(nonatomic,readonly) double sum;
 @property(nonatomic,readonly) NSMutableArray *transactions;
 

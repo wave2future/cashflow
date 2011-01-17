@@ -241,11 +241,8 @@ static int compareCatReport(id x, id y, void *context)
     totalIncome = 0.0;
     totalOutgo = 0.0;
     for (cr in self.catReports) {
-        if (cr.sum >= 0) {
-            totalIncome += cr.sum;
-        } else {
-            totalOutgo += cr.sum;
-        }
+        totalIncome += cr.income;
+        totalOutgo += cr.outgo;
     }
 }
 
@@ -256,7 +253,7 @@ static int compareCatReport(id x, id y, void *context)
 
 @implementation CatReport
 
-@synthesize catkey, sum, transactions;
+@synthesize catkey, income, outgo, sum, transactions;
 
 - (id)init
 {
@@ -315,6 +312,12 @@ static int compareCatReport(id x, id y, void *context)
             }
         }
         [transactions addObject:t];
+        
+        if (value >= 0) {
+            income += value;
+        } else {
+            outgo += value;
+        }
         sum += value;
     }
 }
