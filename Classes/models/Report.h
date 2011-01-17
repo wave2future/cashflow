@@ -49,6 +49,13 @@ typedef struct _filter
     BOOL isIncome;
 } Filter;
 
+/*
+  レポートの構造
+
+  Reports -> Report -> CatReport
+ */
+
+
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
     int catkey; // カテゴリキー
@@ -66,7 +73,7 @@ typedef struct _filter
     double totalIncome;
     double totalOutgo;
 
-    NSMutableArray *catReports;
+    NSMutableArray *catReports; // CatReport の配列
 }
 
 @property(nonatomic,retain) NSDate *date;
@@ -80,7 +87,7 @@ typedef struct _filter
 // レポート(集合)
 @interface Reports : NSObject {
     int type;
-    NSMutableArray *reports;
+    NSMutableArray *reports;  // Report の配列
 }
 
 @property(nonatomic,assign) int type;
