@@ -66,6 +66,7 @@
 "Delete Transactions" = "Delete Transactions";
 "Delete with all past transactions" = "Delete all older transactions";
 
+"Dismiss" = "Dismiss";
 "Cancel" = "Cancel";
 
 /* PIN */
@@ -101,6 +102,9 @@
 "Cutoff date" = "Cutoff date";
 "End of month" = "End of month";
 "Currency" = "Currency";
+
+/* Support mail */
+"(Write an inquiry here.)" = "(Write an inquiry here.)"
 
 /* CrashReportSender */
 /* For dialogs yes buttons */
