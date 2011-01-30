@@ -1,5 +1,5 @@
 #!/bin/sh
-locales="de es fr it ja ko zh-Hans zh-Hant"
+locales="de es fr it ja ko zh-Hans zh-Hant ru"
 
 for i in $locales; do
     echo $i
