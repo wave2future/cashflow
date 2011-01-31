@@ -49,6 +49,9 @@
     self = [super initWithNibName:@"CalculatorView" bundle:nil];
     if (self) {
         [self allClear];
+        numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [numberFormatter setLocale:[NSLocale currentLocale]];
     }
     return self;
 }
@@ -69,6 +72,7 @@
 
 - (void)dealloc
 {
+    [numberFormatter release];
     [super dealloc];
 }
 
@@ -279,8 +283,6 @@
 
 - (void)updateLabel
 {
-    NSMutableString *numstr = [[NSMutableString alloc] initWithCapacity:16];
-
     // 表示すべき小数点以下の桁数を求める
     int dp = 0;
     double vtmp;
@@ -303,6 +305,17 @@
         }
         break;
     }
+
+#if 1
+    if (dp < 0) dp = 0;
+    [numberFormatter setMinimumFractionDigits:dp];
+    [numberFormatter setMaximumFractionDigits:dp];
+
+    NSString *numstr = [numberFormatter stringFromNumber:value];
+    numLabel.text = numstr;
+
+#else
+    NSMutableString *numstr = [[NSMutableString alloc] initWithCapacity:16];
 
     if (dp <= 0) {
         [numstr appendFormat:@"%.0f", value];
@@ -327,6 +340,7 @@
 	
     numLabel.text = numstr;
     [numstr release];
+#endif
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

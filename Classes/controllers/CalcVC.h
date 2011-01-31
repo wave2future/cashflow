@@ -87,6 +87,8 @@ typedef enum {
     calcState state;
     int decimalPlace; // 現在入力中の小数位
 
+    NSNumberFormatter *numberFormatter;
+
     double storedValue;
     calcOperator storedOperator;
 }
