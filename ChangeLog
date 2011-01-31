@@ -1,3 +1,11 @@
+2011-01-31 : Takuya Murakami
+	* Russian 対応
+	* CalcVC : ラベル数値表示修正(i18n)
+
+2010-01-10 : Takuya Murakami
+	* ver 3.4
+	* Retina icon 対応
+
 2010-08-30 : Takuya Murakami
 	* PIN入力: Done キー押しを不要にした
 
