@@ -4,7 +4,6 @@
 "Amount" = "Somma";
 "Balance" = "Bilancio";
 "Date" = "Data";
-"Delete Transaction" = "Cancella transazione";
 "Deposit" = "Deposito";
 "Info" = "Info";
 "Name" = "None";
@@ -62,7 +61,8 @@
 "Delete Asset" = "Cancella Assetto";
 "ReallyDeleteAsset" = "Vuoi cancellare l'account?";
 
-"Delete transaction" = "Cancella transazioni";
+"Delete transaction" = "Cancella transazione";
+/*"Delete transactions" = "Cancella transazioni";*/
 "Delete with all past transactions" = "Cancella le vecchie transazioni";
 
 "Dismiss" = "Dismiss";

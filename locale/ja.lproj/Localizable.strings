@@ -4,7 +4,6 @@
 "Amount" = "金額";
 "Balance" = "残高";
 "Date" = "日付";
-"Delete Transaction" = "取引の削除";
 "Deposit" = "入金";
 "Info" = "情報";
 "Name" = "摘要";
@@ -63,7 +62,8 @@
 "Delete Asset" = "口座を削除";
 "ReallyDeleteAsset" = "本当に口座を削除しますか？";
 
-"Delete transaction" = "取引を削除";
+"Delete transaction" = "取引の削除";
+/*"Delete transactions" = "取引を削除";*/
 "Delete with all past transactions" = "これ以前の取引を一括削除";
 
 "Dismiss" = "閉じる";

@@ -4,7 +4,6 @@
 "Amount" = "Amount";
 "Balance" = "Balance";
 "Date" = "Date";
-"Delete Transaction" = "Delete Transaction";
 "Deposit" = "Deposit";
 "Info" = "Info";
 "Name" = "Name";
@@ -64,6 +63,7 @@
 "ReallyDeleteAsset" = "Really delete this account?";
 
 "Delete transaction" = "Delete transaction";
+/*"Delete transactions" = "Delete transactions";*/
 "Delete with all past transactions" = "Delete all older transactions";
 
 "Dismiss" = "Dismiss";

@@ -4,7 +4,6 @@
 "Amount" = "Abstimmung";
 "Balance" = "Balance";
 "Date" = "Datum";
-"Delete Transaction" = "Transaktion Löschen";
 "Deposit" = "Depot";
 "Info" = "Info";
 "Name" = "Name";
@@ -64,6 +63,7 @@
 "ReallyDeleteAsset" = "Wirklich Löschen?";
 
 "Delete transaction" = "Transaktion Löschen";
+/*"Delete transactions" = "Transaktion Löschen";*/
 "Delete with all past transactions" = "Alle älteren Transaktionen Löschen";
 
 "Dismiss" = "Dismiss";

@@ -4,7 +4,6 @@
 "Amount" = "Сумма";
 "Balance" = "Баланс";
 "Date" = "Дата";
-"Delete Transaction" = "Удалить операцию";
 "Deposit" = "Пополнить";
 "Info" = "Информация";
 "Name" = "Название";
@@ -63,7 +62,8 @@
 "Delete Asset" = "Удалить счет";
 "ReallyDeleteAsset" = "Действительно удалить этот счет?";
 
-"Delete transaction" = "Удалить операции";
+"Delete transaction" = "Удалить операцию";
+/*"Delete transactions" = "Удалить операции";*/
 "Delete with all past transactions" = "Удалить все более старые операции";
 
 "Dismiss" = "Завершить";

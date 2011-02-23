@@ -4,7 +4,6 @@
 "Amount" = "금액";
 "Balance" = "잔액";
 "Date" = "날짜";
-"Delete Transaction" = "내역 삭제";
 "Deposit" = "입금";
 "Info" = "정보";
 "Name" = "내용";
@@ -63,7 +62,8 @@
 "Delete Asset" = "자산 제거";
 "ReallyDeleteAsset" = "정말로 자산을 제거하시겠습니까?";
 
-"Delete transaction" = "내역을 제거";
+"Delete transaction" = "내역 삭제";
+/*"Delete transactions" = "내역을 제거";*/
 "Delete with all past transactions" = "이 내역 이전의 모든 내역을 제거";
 
 "Dismiss" = "닫기";

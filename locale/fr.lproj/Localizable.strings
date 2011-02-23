@@ -4,7 +4,6 @@
 "Amount" = "Montant";
 "Balance" = "Solde";
 "Date" = "Date";
-"Delete Transaction" = "Supprimer la Transaction";
 "Deposit" = "dépot";
 "Info" = "Info";
 "Name" = "Nom";
@@ -63,7 +62,8 @@
 "Delete Asset" = "Supprimer le capital";
 "ReallyDeleteAsset" = "Etes vous sur de vouloir supprimer ce compte?";
 
-"Delete transactions" = "Supprimer les transactions";
+"Delete transaction" = "Supprimer la Transaction";
+/*"Delete transactions" = "Supprimer les transactions";*/
 "Delete with all past transactions" = "Supprimer toutes les transactions plus anciennes";
 
 "Dismiss" = "Dismiss";
