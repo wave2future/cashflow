@@ -62,7 +62,7 @@
 "Delete Asset" = "Cancella Assetto";
 "ReallyDeleteAsset" = "Vuoi cancellare l'account?";
 
-"Delete Transactions" = "Cancella transazioni";
+"Delete transaction" = "Cancella transazioni";
 "Delete with all past transactions" = "Cancella le vecchie transazioni";
 
 "Dismiss" = "Dismiss";

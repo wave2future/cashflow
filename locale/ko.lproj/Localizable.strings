@@ -63,7 +63,7 @@
 "Delete Asset" = "자산 제거";
 "ReallyDeleteAsset" = "정말로 자산을 제거하시겠습니까?";
 
-"Delete Transactions" = "내역을 제거";
+"Delete transaction" = "내역을 제거";
 "Delete with all past transactions" = "이 내역 이전의 모든 내역을 제거";
 
 "Dismiss" = "닫기";

@@ -63,7 +63,7 @@
 "Delete Asset" = "Eliminar activos";
 "ReallyDeleteAsset" = "Realmente eliminar activos?";
 
-"Delete Transactions" = "Eliminar las transacciones";
+"Delete transaction" = "Eliminar las transacciones";
 "Delete with all past transactions" = "Eliminar todos los anteriores con trasactions";
 
 "Dismiss" = "Dismiss";

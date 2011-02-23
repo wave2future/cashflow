@@ -63,7 +63,7 @@
 "Delete Asset" = "Delete Asset";
 "ReallyDeleteAsset" = "Really delete this account?";
 
-"Delete Transactions" = "Delete Transactions";
+"Delete transaction" = "Delete transaction";
 "Delete with all past transactions" = "Delete all older transactions";
 
 "Dismiss" = "Dismiss";

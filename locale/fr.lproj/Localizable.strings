@@ -63,7 +63,7 @@
 "Delete Asset" = "Supprimer le capital";
 "ReallyDeleteAsset" = "Etes vous sur de vouloir supprimer ce compte?";
 
-"Delete Transactions" = "Supprimer les transactions";
+"Delete transactions" = "Supprimer les transactions";
 "Delete with all past transactions" = "Supprimer toutes les transactions plus anciennes";
 
 "Dismiss" = "Dismiss";

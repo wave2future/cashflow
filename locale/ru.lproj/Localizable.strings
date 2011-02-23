@@ -63,7 +63,7 @@
 "Delete Asset" = "Удалить счет";
 "ReallyDeleteAsset" = "Действительно удалить этот счет?";
 
-"Delete Transactions" = "Удалить операции";
+"Delete transaction" = "Удалить операции";
 "Delete with all past transactions" = "Удалить все более старые операции";
 
 "Dismiss" = "Завершить";
