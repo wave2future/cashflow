@@ -1,131 +1,131 @@
 /* Adjustment of amount */
-"Adjustment" = "조정";
+"Adjustment" = "잔액조정";
 
-"Amount" = "총액";
-"Balance" = "균형";
+"Amount" = "금액";
+"Balance" = "잔액";
 "Date" = "날짜";
-"Delete Transaction" = "거래해약";
-"Deposit" = "맡기다";
+"Delete Transaction" = "내역 삭제";
+"Deposit" = "입금";
 "Info" = "정보";
-"Name" = "이름";
+"Name" = "내용";
 "Memo" = "메모";
-"Payment" = "임금";
-"History" = "History";
+"Payment" = "지출";
+"History" = "이력";
 
-"Asset" = "재산";
+"Asset" = "자산";
 /* Asset list */
-"Assets" = "재산";
-"Asset Name" = "재산이름";
-"Asset Type" = "재산타입";
-"Total" = "Total";
+"Assets" = "자산 목록";
+"Asset Name" = "이름";
+"Asset Type" = "종류";
+"Total" = "총액";
 
-"Transaction" = "거래";
+"Transaction" = "내역";
 /* Transaction list */
-"Transactions" = "거래";
+"Transactions" = "내역 목록";
 
-"Type" = "타입";
-"Category" = "카테고리";
+"Type" = "종류";
+"Category" = "분류";
 
 /* Transaction */
-"Save this transaction?" = "Save this transaction?";
+"Save this transaction?" = "이 내역을 저장하시겠습니까?";
 
 /* Category list */
-"Categories" = "카테고리";
-"No category" = "카테고리 없음";
-"Edit Categories" = "카테고리 편집";
-"Add category" = "카테고리 추가";
+"Categories" = "분류";
+"No category" = "미분류";
+"Edit Categories" = "분류 편집";
+"Add category" = "분류 추가";
 
-"Initial Balance" = "최초 균형";
+"Initial Balance" = "최초 차액";
 
 "Income" = "수입";
-"Outgo" = "수출";
+"Outgo" = "지출";
+"Transfer" = "이체";
 
-"Report" = "보고서";
-"Monthly Report" = "월간 보고서";
-"Weekly Report" = "주간 보고서";
+"Report" = "통계";
+"Monthly Report" = "월별 통계";
+"Weekly Report" = "주간 통계";
 
 /* No need to translate HelpURL */
-"HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
+"HelpURL" = "http://iphone.tmurakam.org/cashflow/help-j.html";
 
-"Export" = "수출";
-"Backup" = "Backup";
-"WebExportNotation" = "PC로 URL과 브라우저로:\n%@\n파일 다운로드 후, 위쪽에 해산 버튼.";
-"BackupNotation" = "PC로 URL과 브라우저로:\n%@\n파일 다운로드 후, 위쪽에 해산 버튼.";
-"Network is unreachable." = "Network is unreachable.";
-"Cannot start web server." = "웹서버를 시작할수 없음.";
+"Export" = "내보내기";
+"Backup" = "백업";
+"WebExportNotation" = "아래의 URL로 PC의 브라우저로 접속해주세요:\n%@\n다운로드가 완료되면 닫기 버튼을 누르세요.";
+"BackupNotation" = "아래의 URL로 PC의 브라우저로 접속해주세요:\n%@\n다운로드가 완료되면 닫기 버튼을 누르세요.";
+"Network is unreachable." = "네트워크에 접속되어있지 않습니다.";
+"Cannot start web server." = "웹 서버를 기동할 수 없습니다.";
 
-"OFXHeadString" = "시작과 끝라인 텍스트 사이에 자르기 &붙이기, 편집과함께 UTF-8텍스트 파일과 같이 저장한다 .ofx 확장파일도.";
+"OFXHeadString" = "BEGIN 과 END 에 사이의 텍스트를 메모장등의 프로그램으로 복사&붙여넣기하여 파일로 저장하세요. 이 때 인코딩을 반드시 'UTF-8' 로 하고 확장자는 .ofx 로 하세요.";
 
-"No data" = "데이터 없음";
-"No data to be exported." = "수출 데이터 없음.";
+"No data" = "데이타 없음";
+"No data to be exported." = "내보내기할 데이터가 없습니다";
 
-"Delete Asset" = "재산 해지";
-"ReallyDeleteAsset" = "정말 이거래를 해지하겠습니까?";
+"Delete Asset" = "자산 제거";
+"ReallyDeleteAsset" = "정말로 자산을 제거하시겠습니까?";
 
-"Delete Transactions" = "계약 해지";
-"Delete with all past transactions" = "오래된 모든 계약을 해지";
+"Delete Transactions" = "내역을 제거";
+"Delete with all past transactions" = "이 내역 이전의 모든 내역을 제거";
 
-"Dismiss" = "Dismiss";
+"Dismiss" = "닫기";
 "Cancel" = "취소";
 
 /* PIN */
-"Set PIN Code" = "Set PIN Code";
-"Enter PIN" = "Enter PIN";
-"Enter new PIN" = "Enter new PIN";
-"Retype new PIN" = "Retype new PIN";
-"Invalid PIN" = "Invalid PIN";
-"PIN code does not match." = "PIN code does not match.";
+"Set PIN Code" = "PIN 설정";
+"Enter PIN" = "PIN 입력";
+"Enter new PIN" = "새로운 PIN";
+"Retype new PIN" = "새로운 PIN(재입력)";
+"Invalid PIN" = "인식할 수 없는 PIN";
+"PIN code does not match." = "PIN이 일치하지 않습니다.";
 
 /* Asset types */
-"Cash" = "캐쉬";
-"Bank Account" = "은행계좌";
+"Cash" = "현금";
+"Bank Account" = "은행 계좌";
 "Credit Card" = "신용카드";
 
 /* export view */
-"Data format" = "데이터 포멧";
+"Data format" = "데이터 포맷";
 "OFX" = "OFX";
-"Export data within" = "수출 데이터";
+"Export data within" = "내보내기 기한";
 "7 days" = "7일";
 "30 days" = "30일";
 "90 days" = "90일";
-"All" = "모두";
-"Export method" = "수출방식";
+"All" = "전체";
+"Export method" = "내보내기 방식";
 "Mail" = "메일";
 
 /* Config */
-"Config" = "Config";
-"Date style" = "Date style";
-"Date and time (1 min)" = "Date and time (1 min)";
-"Date and time (5 min)" = "Date and time (5 min)";
-"Date only" = "Date only";
-"Cutoff date" = "Cutoff date";
-"End of month" = "End of month";
-"Currency" = "Currency";
+"Config" = "설정";
+"Date style" = "날짜 표시";
+"Date and time (1 min)" = "날짜&시간 (1분 단위)";
+"Date and time (5 min)" = "날짜&시간 (5분 단위)";
+"Date only" = "날짜만 표시";
+"Cutoff date" = "월말 기준일";
+"End of month" = "매월 말일";
+"Currency" = "통화";
 
 /* Support mail */
-"(Write an inquiry here.)" = "(Write an inquiry here.)";
+"(Write an inquiry here.)" = "(여기에 문의 사항을 적어주세요)";
 
 /* CrashReportSender */
 /* For dialogs yes buttons */
-"Yes" = "Yes";
+"Yes" = "예";
 
 /* For dialogs no buttons */
-"No" = "No";
+"No" = "아니오";
 
 /* For dialogs ok buttons */
-"Ok" = "Ok";
+"Ok" = "OK";
 
 /* Crash dialog */
 
 /* Title showing in the alert box when crash report data has been found */
-"CrashDataFoundTitle" = "Crash data found";
+"CrashDataFoundTitle" = "오류 데이터를 발견했습니다";
 
 /* Description explaining that crash data has been found and ask the user if the data might be uplaoded to the developers server */
-"CrashDataFoundDescription" = "The app crashed previously. Would you like to provide the developer the anonymous crash data so they can try to fix the problem?";
+"CrashDataFoundDescription" = "프로그램에 오류가 발생했습니다. 오류 데이터를 익명으로 개발자에게 보내어 버그 수정에 도움을 주시겠습니까?";
 
 /* Alert box button if the users wants to send crash data always automatically */
-"Always" = "Always";
+"Always" = "항상";
 
 /* Text showing in a processing box that the crash data is being uploaded to the server */
-"Sending" = "Sending ...";
-
+"Sending" = "송신중...";
