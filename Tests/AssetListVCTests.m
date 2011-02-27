@@ -68,9 +68,9 @@
     AssertEqualInt(3, [vc tableView:vc.tableView numberOfRowsInSection:0]);
 
     // test cell
-    Assert([[self cellText:0 section:0] isEqualToString:@"Cash : ￥9,000"]);
-    Assert([[self cellText:1 section:0] isEqualToString:@"Bank : ￥195,000"]);
-    Assert([[self cellText:2 section:0] isEqualToString:@"Card : -￥12,100"]);
+    AssertEqual(@"Cash : ￥9,000", [self cellText:0 section:0]);
+    AssertEqual(@"Bank : ￥195,000", [self cellText:1 section:0]);
+    AssertEqual(@"Card : -￥12,100", [self cellText:2 section:0]);
 }
 
 @end
