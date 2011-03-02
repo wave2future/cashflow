@@ -4,8 +4,8 @@
 #import "ORRecord.h"
 
 @interface CategoryBase : ORRecord {
-    NSString* name;
-    int sorder;
+    NSString* mName;
+    int mSorder;
 }
 
 @property(nonatomic,retain) NSString* name;

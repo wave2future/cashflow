@@ -6,8 +6,8 @@
 
 @interface ORRecord : NSObject
 {
-    int pid;
-    BOOL isInserted;
+    int mPid;
+    BOOL mIsInserted;
 }
 
 @property(nonatomic,assign) int pid;

@@ -4,10 +4,10 @@
 #import "ORRecord.h"
 
 @interface AssetBase : ORRecord {
-    NSString* name;
-    int type;
-    double initialBalance;
-    int sorder;
+    NSString* mName;
+    int mType;
+    double mInitialBalance;
+    int mSorder;
 }
 
 @property(nonatomic,retain) NSString* name;

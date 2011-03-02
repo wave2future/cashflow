@@ -4,9 +4,9 @@
 #import "ORRecord.h"
 
 @interface DescLRU : ORRecord {
-    NSString* description;
-    NSDate* lastUse;
-    int category;
+    NSString* mDescription;
+    NSDate* mLastUse;
+    int mCategory;
 }
 
 @property(nonatomic,retain) NSString* description;

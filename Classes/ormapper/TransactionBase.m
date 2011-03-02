@@ -5,14 +5,14 @@
 
 @implementation TransactionBase
 
-@synthesize asset;
-@synthesize dst_asset;
-@synthesize date;
-@synthesize type;
-@synthesize category;
-@synthesize value;
-@synthesize description;
-@synthesize memo;
+@synthesize asset = mAsset;
+@synthesize dst_asset = mDstAsset;
+@synthesize date = mDate;
+@synthesize type = mType;
+@synthesize category = mCategory;
+@synthesize value = mValue;
+@synthesize description = mDescription;
+@synthesize memo = mMemo;
 
 - (id)init
 {
@@ -144,7 +144,7 @@
     self.description = [stmt colString:7];
     self.memo = [stmt colString:8];
 
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Create operations
@@ -159,20 +159,20 @@
     //[db beginTransaction];
     stmt = [db prepare:@"INSERT INTO Transactions VALUES(NULL,?,?,?,?,?,?,?,?);"];
 
-    [stmt bindInt:0 val:asset];
-    [stmt bindInt:1 val:dst_asset];
-    [stmt bindDate:2 val:date];
-    [stmt bindInt:3 val:type];
-    [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
-    [stmt bindString:6 val:description];
-    [stmt bindString:7 val:memo];
+    [stmt bindInt:0 val:mAsset];
+    [stmt bindInt:1 val:mDstAsset];
+    [stmt bindDate:2 val:mDate];
+    [stmt bindInt:3 val:mType];
+    [stmt bindInt:4 val:mCategory];
+    [stmt bindDouble:5 val:mValue];
+    [stmt bindString:6 val:mDescription];
+    [stmt bindString:7 val:mMemo];
     [stmt step];
 
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Update operations
@@ -194,15 +194,15 @@
         ",description = ?"
         ",memo = ?"
         " WHERE key = ?;"];
-    [stmt bindInt:0 val:asset];
-    [stmt bindInt:1 val:dst_asset];
-    [stmt bindDate:2 val:date];
-    [stmt bindInt:3 val:type];
-    [stmt bindInt:4 val:category];
-    [stmt bindDouble:5 val:value];
-    [stmt bindString:6 val:description];
-    [stmt bindString:7 val:memo];
-    [stmt bindInt:8 val:pid];
+    [stmt bindInt:0 val:mAsset];
+    [stmt bindInt:1 val:mDstAsset];
+    [stmt bindDate:2 val:mDate];
+    [stmt bindInt:3 val:mType];
+    [stmt bindInt:4 val:mCategory];
+    [stmt bindDouble:5 val:mValue];
+    [stmt bindString:6 val:mDescription];
+    [stmt bindString:7 val:mMemo];
+    [stmt bindInt:8 val:mPid];
 
     [stmt step];
     //[db commitTransaction];
@@ -218,7 +218,7 @@
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"DELETE FROM Transactions WHERE key = ?;"];
-    [stmt bindInt:0 val:pid];
+    [stmt bindInt:0 val:mPid];
     [stmt step];
 }
 

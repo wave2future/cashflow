@@ -4,14 +4,14 @@
 #import "ORRecord.h"
 
 @interface TransactionBase : ORRecord {
-    int asset;
-    int dst_asset;
-    NSDate* date;
-    int type;
-    int category;
-    double value;
-    NSString* description;
-    NSString* memo;
+    int mAsset;
+    int mDstAsset;
+    NSDate* mDate;
+    int mType;
+    int mCategory;
+    double mValue;
+    NSString* mDescription;
+    NSString* mMemo;
 }
 
 @property(nonatomic,assign) int asset;

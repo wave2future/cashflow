@@ -5,8 +5,8 @@
 
 @implementation CategoryBase
 
-@synthesize name;
-@synthesize sorder;
+@synthesize name = mName;
+@synthesize sorder = mSorder;
 
 - (id)init
 {
@@ -124,7 +124,7 @@
     self.name = [stmt colString:1];
     self.sorder = [stmt colInt:2];
 
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Create operations
@@ -139,14 +139,14 @@
     //[db beginTransaction];
     stmt = [db prepare:@"INSERT INTO Categories VALUES(NULL,?,?);"];
 
-    [stmt bindString:0 val:name];
-    [stmt bindInt:1 val:sorder];
+    [stmt bindString:0 val:mName];
+    [stmt bindInt:1 val:mSorder];
     [stmt step];
 
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Update operations
@@ -162,9 +162,9 @@
         "name = ?"
         ",sorder = ?"
         " WHERE key = ?;"];
-    [stmt bindString:0 val:name];
-    [stmt bindInt:1 val:sorder];
-    [stmt bindInt:2 val:pid];
+    [stmt bindString:0 val:mName];
+    [stmt bindInt:1 val:mSorder];
+    [stmt bindInt:2 val:mPid];
 
     [stmt step];
     //[db commitTransaction];
@@ -180,7 +180,7 @@
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"DELETE FROM Categories WHERE key = ?;"];
-    [stmt bindInt:0 val:pid];
+    [stmt bindInt:0 val:mPid];
     [stmt step];
 }
 

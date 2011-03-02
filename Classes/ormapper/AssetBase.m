@@ -5,10 +5,10 @@
 
 @implementation AssetBase
 
-@synthesize name;
-@synthesize type;
-@synthesize initialBalance;
-@synthesize sorder;
+@synthesize name = mName;
+@synthesize type = mType;
+@synthesize initialBalance = mInitialBalance;
+@synthesize sorder = mSorder;
 
 - (id)init
 {
@@ -130,7 +130,7 @@
     self.initialBalance = [stmt colDouble:3];
     self.sorder = [stmt colInt:4];
 
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Create operations
@@ -145,16 +145,16 @@
     //[db beginTransaction];
     stmt = [db prepare:@"INSERT INTO Assets VALUES(NULL,?,?,?,?);"];
 
-    [stmt bindString:0 val:name];
-    [stmt bindInt:1 val:type];
-    [stmt bindDouble:2 val:initialBalance];
-    [stmt bindInt:3 val:sorder];
+    [stmt bindString:0 val:mName];
+    [stmt bindInt:1 val:mType];
+    [stmt bindDouble:2 val:mInitialBalance];
+    [stmt bindInt:3 val:mSorder];
     [stmt step];
 
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Update operations
@@ -172,11 +172,11 @@
         ",initialBalance = ?"
         ",sorder = ?"
         " WHERE key = ?;"];
-    [stmt bindString:0 val:name];
-    [stmt bindInt:1 val:type];
-    [stmt bindDouble:2 val:initialBalance];
-    [stmt bindInt:3 val:sorder];
-    [stmt bindInt:4 val:pid];
+    [stmt bindString:0 val:mName];
+    [stmt bindInt:1 val:mType];
+    [stmt bindDouble:2 val:mInitialBalance];
+    [stmt bindInt:3 val:mSorder];
+    [stmt bindInt:4 val:mPid];
 
     [stmt step];
     //[db commitTransaction];
@@ -192,7 +192,7 @@
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"DELETE FROM Assets WHERE key = ?;"];
-    [stmt bindInt:0 val:pid];
+    [stmt bindInt:0 val:mPid];
     [stmt step];
 }
 

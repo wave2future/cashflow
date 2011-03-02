@@ -5,9 +5,9 @@
 
 @implementation DescLRU
 
-@synthesize description;
-@synthesize lastUse;
-@synthesize category;
+@synthesize description = mDescription;
+@synthesize lastUse = mLastUse;
+@synthesize category = mCategory;
 
 - (id)init
 {
@@ -128,7 +128,7 @@
     self.lastUse = [stmt colDate:2];
     self.category = [stmt colInt:3];
 
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Create operations
@@ -143,15 +143,15 @@
     //[db beginTransaction];
     stmt = [db prepare:@"INSERT INTO DescLRUs VALUES(NULL,?,?,?);"];
 
-    [stmt bindString:0 val:description];
-    [stmt bindDate:1 val:lastUse];
-    [stmt bindInt:2 val:category];
+    [stmt bindString:0 val:mDescription];
+    [stmt bindDate:1 val:mLastUse];
+    [stmt bindInt:2 val:mCategory];
     [stmt step];
 
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Update operations
@@ -168,10 +168,10 @@
         ",lastUse = ?"
         ",category = ?"
         " WHERE key = ?;"];
-    [stmt bindString:0 val:description];
-    [stmt bindDate:1 val:lastUse];
-    [stmt bindInt:2 val:category];
-    [stmt bindInt:3 val:pid];
+    [stmt bindString:0 val:mDescription];
+    [stmt bindDate:1 val:mLastUse];
+    [stmt bindInt:2 val:mCategory];
+    [stmt bindInt:3 val:mPid];
 
     [stmt step];
     //[db commitTransaction];
@@ -187,7 +187,7 @@
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"DELETE FROM DescLRUs WHERE key = ?;"];
-    [stmt bindInt:0 val:pid];
+    [stmt bindInt:0 val:mPid];
     [stmt step];
 }
 

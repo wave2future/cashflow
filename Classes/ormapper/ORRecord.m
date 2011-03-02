@@ -3,13 +3,13 @@
 
 @implementation ORRecord
 
-@synthesize pid;
+@synthesize pid = mPid;
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        isInserted = NO;
+        mIsInserted = NO;
     }
         
     return self;
@@ -102,7 +102,7 @@
 */
 - (void)save
 {
-    if (isInserted) {
+    if (mIsInserted) {
         [self update];
     } else {
         [self insert];
@@ -116,7 +116,7 @@
 
 - (void)insert
 {
-    isInserted = YES;
+    mIsInserted = YES;
     return;
 }
 
