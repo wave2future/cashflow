@@ -40,7 +40,7 @@
 
 @implementation EditDateViewController
 
-@synthesize delegate, date;
+@synthesize delegate = mDelegate, date = mDate;
 
 - (id)init
 {
@@ -63,34 +63,34 @@
                                                   action:@selector(doneAction)] autorelease];
 
     if ([Config instance].dateTimeMode == DateTimeModeDateOnly) {
-        datePicker.datePickerMode = UIDatePickerModeDate;
+        mDatePicker.datePickerMode = UIDatePickerModeDate;
     } else {
-        datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-        datePicker.minuteInterval = 1;
+        mDatePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        mDatePicker.minuteInterval = 1;
         if ([Config instance].dateTimeMode == DateTimeModeWithTime5min) {
-            datePicker.minuteInterval = 5;
+            mDatePicker.minuteInterval = 5;
         }
     }
     
-    [datePicker setTimeZone:[NSTimeZone systemTimeZone]];
+    [mDatePicker setTimeZone:[NSTimeZone systemTimeZone]];
 }
 
 - (void)dealloc
 {
-    [date release];
+    [mDate release];
     [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    datePicker.date = self.date;
+    mDatePicker.date = self.date;
     [super viewWillAppear:animated];
 }
 
 - (void)doneAction
 {
-    self.date = datePicker.date;
-    [delegate editDateViewChanged:self];
+    self.date = mDatePicker.date;
+    [mDelegate editDateViewChanged:self];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

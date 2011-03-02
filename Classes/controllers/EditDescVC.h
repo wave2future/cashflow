@@ -46,14 +46,14 @@
 @interface EditDescViewController : UIViewController
   <UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate>
 {
-    IBOutlet UITableView *tableView;
+    IBOutlet UITableView *mTableView;
 
-    UITextField *textField;
-    NSMutableArray *descArray;
+    UITextField *mTextField;
+    NSMutableArray *mDescArray;
 
-    id<EditDescViewDelegate> delegate;
-    NSString *description;
-    int category;
+    id<EditDescViewDelegate> mDelegate;
+    NSString *mDescription;
+    int mCategory;
 }
 
 @property(nonatomic,assign) id<EditDescViewDelegate> delegate;

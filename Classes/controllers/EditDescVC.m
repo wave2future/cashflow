@@ -40,14 +40,14 @@
 
 @implementation EditDescViewController
 
-@synthesize delegate, description, category, tableView;
+@synthesize delegate = mDelegate, description = mDescription, category = mCategory, tableView = mTableView;
 
 - (id)init
 {
     self = [super initWithNibName:@"EditDescView" bundle:nil];
     if (self) {
-        category = -1;
-        descArray = nil;
+        mCategory = -1;
+        mDescArray = nil;
     }
     return self;
 }
@@ -69,11 +69,11 @@
              action:@selector(doneAction)] autorelease];
 
     // ここで textField を生成する
-    textField = [[UITextField alloc] initWithFrame:CGRectMake(12, 12, 300, 24)];
-    textField.placeholder = NSLocalizedString(@"Description", @"");
-    textField.returnKeyType = UIReturnKeyDone;
-    textField.delegate = self;
-    [textField addTarget:self action:@selector(onTextChange:)
+    mTextField = [[UITextField alloc] initWithFrame:CGRectMake(12, 12, 300, 24)];
+    mTextField.placeholder = NSLocalizedString(@"Description", @"");
+    mTextField.returnKeyType = UIReturnKeyDone;
+    mTextField.delegate = self;
+    [mTextField addTarget:self action:@selector(onTextChange:)
                forControlEvents:UIControlEventEditingDidEndOnExit];
 }
 
@@ -83,10 +83,10 @@
 
 - (void)dealloc
 {
-    [tableView release];
-    [textField release];
-    [description release];
-    [descArray release];
+    [mTableView release];
+    [mTextField release];
+    [mDescription release];
+    [mDescArray release];
     [super dealloc];
 }
 
@@ -94,17 +94,17 @@
 //  処理するトランザクションをロードしておく
 - (void)viewWillAppear:(BOOL)animated
 {
-    textField.text = self.description;
+    mTextField.text = self.description;
     [super viewWillAppear:animated];
 
-    [descArray release];
-    descArray = [DescLRUManager getDescLRUs:category];
-    [descArray retain];
+    [mDescArray release];
+    mDescArray = [DescLRUManager getDescLRUs:mCategory];
+    [mDescArray retain];
 
     // キーボードを消す ###
-    [textField resignFirstResponder];
+    [mTextField resignFirstResponder];
 
-    [tableView reloadData];
+    [mTableView reloadData];
 }
 
 //- (void)viewWillDisappear:(BOOL)animated
@@ -114,8 +114,8 @@
 
 - (void)doneAction
 {
-    self.description = textField.text;
-    [delegate editDescViewChanged:self];
+    self.description = mTextField.text;
+    [mDelegate editDescViewChanged:self];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -138,7 +138,7 @@
         return 1; // テキスト入力欄
     }
 
-    return [descArray count];
+    return [mDescArray count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -170,7 +170,7 @@
     UITableViewCell *cell = [tv dequeueReusableCellWithIdentifier:@"textFieldCell"];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"textFieldCell"] autorelease];
-        [cell.contentView addSubview:textField];
+        [cell.contentView addSubview:mTextField];
     }
     return cell;
 }
@@ -181,7 +181,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"descCell"] autorelease];
     }
-    DescLRU *lru = [descArray objectAtIndex:row];
+    DescLRU *lru = [mDescArray objectAtIndex:row];
     cell.textLabel.text = lru.description;
     return cell;
 }
@@ -196,8 +196,8 @@
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 
     if (indexPath.section == 1) {
-        DescLRU *lru = [descArray objectAtIndex:indexPath.row];
-        textField.text = lru.description;
+        DescLRU *lru = [mDescArray objectAtIndex:indexPath.row];
+        mTextField.text = lru.description;
         [self doneAction];
     }
 }
@@ -220,10 +220,10 @@
         return; // do nothing
     }
 
-    DescLRU *lru = [descArray objectAtIndex:indexPath.row];
+    DescLRU *lru = [mDescArray objectAtIndex:indexPath.row];
     [lru delete]; // delete from DB
 
-    [descArray removeObjectAtIndex:indexPath.row];
+    [mDescArray removeObjectAtIndex:indexPath.row];
 
     [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
 }

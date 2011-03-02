@@ -44,10 +44,10 @@
 @end
 
 @interface EditDateViewController : UIViewController {
-    IBOutlet UIDatePicker *datePicker;
+    IBOutlet UIDatePicker *mDatePicker;
 
-    id<EditDateViewDelegate> delegate;
-    NSDate *date;
+    id<EditDateViewDelegate> mDelegate;
+    NSDate *mDate;
 }
 
 @property(nonatomic,assign) id<EditDateViewDelegate> delegate;
