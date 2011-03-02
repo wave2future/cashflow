@@ -42,8 +42,8 @@
 #import "Asset.h"
 
 @interface ExportOfx : ExportBase <UIAlertViewDelegate> {
-    NSDateFormatter *df;
-    NSCalendar *greg;
+    NSDateFormatter *mDateFormatter;
+    NSCalendar *mGregCalendar;
 }
 
 - (BOOL)sendMail:(UIViewController*)parent;

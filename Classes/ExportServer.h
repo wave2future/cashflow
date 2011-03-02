@@ -39,9 +39,9 @@
 
 @interface ExportServer : WebServer
 {
-    NSString *contentType;
-    NSData *contentBody;
-    NSString *filename;
+    NSString *mContentType;
+    NSData *mContentBody;
+    NSString *mFilename;
 }
 
 @property(nonatomic,retain) NSString* contentType;

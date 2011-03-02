@@ -38,16 +38,16 @@
 
 @implementation ExportServer
 
-@synthesize contentBody, contentType, filename;
+@synthesize contentBody = mContentBody, contentType = mContentType, filename = mFilename;
 
 
 #define BUFSZ   4096
 
 - (void)dealloc
 {
-    [contentType release];
-    [contentBody release];
-    [filename release];
+    [mContentType release];
+    [mContentBody release];
+    [mFilename release];
     [super dealloc];
 }
 
@@ -63,7 +63,7 @@
         p = [outcontent UTF8String];
         write(s, p, strlen(p));
 		
-        outcontent = [NSString stringWithFormat:@"<html><head><meta http-equiv=\"refresh\" content=\"0;url=%@\"></head></html>", filename];
+        outcontent = [NSString stringWithFormat:@"<html><head><meta http-equiv=\"refresh\" content=\"0;url=%@\"></head></html>", mFilename];
         p = [outcontent UTF8String];
         write(s, p, strlen(p));
 		
@@ -72,13 +72,13 @@
 		
     // Ad hoc...
     // No need to read request... Just send only one file!
-    NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", contentType];
+    NSString *content = [NSString stringWithFormat:@"HTTP/1.0 200 OK\r\nContent-Type: %@\r\n\r\n", mContentType];
     p = [content UTF8String];
     write(s, p, strlen(p));
 	
-    int clen = [contentBody length];
+    int clen = [mContentBody length];
     if (clen > 0) {
-        write(s, [contentBody bytes], clen);
+        write(s, [mContentBody bytes], clen);
     }
 
 }

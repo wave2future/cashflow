@@ -42,10 +42,10 @@
     BOOL result = NO;
     NSString *message = nil;
     
-    backupServer = [[BackupServer alloc] init];
-    NSString *url = [backupServer serverUrl];
+    mBackupServer = [[BackupServer alloc] init];
+    NSString *url = [mBackupServer serverUrl];
     if (url != nil) {
-        result = [backupServer startServer];
+        result = [mBackupServer startServer];
     } else {
         message = NSLocalizedString(@"Network is unreachable.", @"");
     }
@@ -56,7 +56,7 @@
             message = NSLocalizedString(@"Cannot start web server.", @"");
         }
         
-        [backupServer release];
+        [mBackupServer release];
         v = [[UIAlertView alloc]
              initWithTitle:@"Error"
              message:message
@@ -77,9 +77,9 @@
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [backupServer stopServer];
-    [backupServer release];
-    backupServer = nil;
+    [mBackupServer stopServer];
+    [mBackupServer release];
+    mBackupServer = nil;
 
     [self release];
 }

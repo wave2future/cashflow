@@ -41,8 +41,8 @@
 
 - (void)dealloc
 {
-    [df release];
-    [greg release];
+    [mDateFormatter release];
+    [mGregCalendar release];
     [super dealloc];
 }
 
@@ -247,13 +247,13 @@
 
 - (NSString*)dateStr:(AssetEntry *)e
 {
-    if (greg == nil) {
-        greg = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
-        df = [[NSDateFormatter alloc] init];
+    if (mGregCalendar == nil) {
+        mGregCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
+        mDateFormatter = [[NSDateFormatter alloc] init];
     }
-    NSTimeZone *tz = [df timeZone];
+    NSTimeZone *tz = [mDateFormatter timeZone];
 			  
-    NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit 
+    NSDateComponents *c = [mGregCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit 
                                             | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)
                                 fromDate:e.transaction.date];
 
@@ -264,7 +264,7 @@
 
 - (NSString*)fitId:(AssetEntry*)e
 {
-    NSDateComponents *c = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:e.transaction.date];
+    NSDateComponents *c = [mGregCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:e.transaction.date];
     NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], e.transaction.pid];
     return f;
 }

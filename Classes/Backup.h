@@ -36,7 +36,7 @@
 #import "BackupServer.h"
 
 @interface Backup : NSObject <UIAlertViewDelegate> {
-    BackupServer *backupServer;
+    BackupServer *mBackupServer;
 }
 
 - (void)execute;
