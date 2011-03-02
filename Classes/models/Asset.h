@@ -51,8 +51,8 @@
 // 資産 (総勘定元帳の勘定に相当)
 // 
 @interface Asset : AssetBase {
-    NSMutableArray *entries; // AssetEntry の配列
-    double lastBalance;
+    NSMutableArray *mEntries; // AssetEntry の配列
+    //double mLastBalance;
 }
 
 - (void)rebuild;

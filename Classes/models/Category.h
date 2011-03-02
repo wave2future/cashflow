@@ -41,7 +41,7 @@
 @end
 
 @interface Categories : NSObject {
-    NSMutableArray *categories;
+    NSMutableArray *mCategories;
 }
 
 - (void)reload;

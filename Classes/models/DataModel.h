@@ -46,16 +46,16 @@
 @interface DataModel : NSObject
 {
     // Journal
-    Journal *journal;
+    Journal *mJournal;
 
     // Ledger
-    Ledger *ledger;
+    Ledger *mLedger;
 
     // Category
-    Categories *categories;
+    Categories *mCategories;
     
-    id<DataModelDelegate> delegate;
-    BOOL isLoadDone;
+    id<DataModelDelegate> mDelegate;
+    BOOL mIsLoadDone;
 }
 
 @property(nonatomic,retain) Journal *journal;

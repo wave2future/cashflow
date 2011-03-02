@@ -49,15 +49,15 @@
 {
     [super init];
 
-    entries = [[NSMutableArray alloc] init];
-    type = ASSET_CASH;
+    mEntries = [[NSMutableArray alloc] init];
+    mType = ASSET_CASH;
 	
     return self;
 }
 
 - (void)dealloc 
 {
-    [entries release];
+    [mEntries release];
     [super dealloc];
 }
 
@@ -66,13 +66,13 @@
 //
 - (void)rebuild
 {
-    if (entries != nil) {
-        [entries release];
+    if (mEntries != nil) {
+        [mEntries release];
     }
 
-    entries = [[NSMutableArray alloc] init];
+    mEntries = [[NSMutableArray alloc] init];
 
-    double balance = initialBalance;
+    double balance = mInitialBalance;
 
     AssetEntry *e;
     for (Transaction *t in [DataModel journal]) {
@@ -103,12 +103,12 @@
                 }
             }
 
-            [entries addObject:e];
+            [mEntries addObject:e];
             [e release];
         }
     }
 
-    lastBalance = balance;
+    //mLastBalance = balance;
 }
 
 - (void)updateInitialBalance
@@ -121,12 +121,12 @@
 
 - (int)entryCount
 {
-    return entries.count;
+    return mEntries.count;
 }
 
 - (AssetEntry*)entryAt:(int)n
 {
-    return [entries objectAtIndex:n];
+    return [mEntries objectAtIndex:n];
 }
 
 - (void)insertEntry:(AssetEntry *)e
@@ -149,7 +149,7 @@
 {
     // 先頭エントリ削除の場合は、初期残高を変更する
     if (index == 0) {
-        initialBalance = [[self entryAt:0] balance];
+        mInitialBalance = [[self entryAt:0] balance];
         [self updateInitialBalance];
     }
 
@@ -173,14 +173,14 @@
     Database *db = [Database instance];
 
     [db beginTransaction];
-    while (entries.count > 0) {
-        AssetEntry *e = [entries objectAtIndex:0];
+    while (mEntries.count > 0) {
+        AssetEntry *e = [mEntries objectAtIndex:0];
         if ([e.transaction.date compare:date] != NSOrderedAscending) {
             break;
         }
 
         [self _deleteEntryAt:0];
-        [entries removeObjectAtIndex:0];
+        [mEntries removeObjectAtIndex:0];
     }
     [db commitTransaction];
 
@@ -189,8 +189,8 @@
 
 - (int)firstEntryByDate:(NSDate*)date
 {
-    for (int i = 0; i < entries.count; i++) {
-        AssetEntry *e = [entries objectAtIndex:i];
+    for (int i = 0; i < mEntries.count; i++) {
+        AssetEntry *e = [mEntries objectAtIndex:i];
         if ([e.transaction.date compare:date] != NSOrderedAscending) {
             return i;
         }
@@ -203,11 +203,11 @@
 
 - (double)lastBalance
 {
-    int max = [entries count];
+    int max = [mEntries count];
     if (max == 0) {
-        return initialBalance;
+        return mInitialBalance;
     }
-    return [[entries objectAtIndex:max - 1] balance];
+    return [[mEntries objectAtIndex:max - 1] balance];
 }
 
 //
@@ -228,6 +228,5 @@
     }
     return ret;
 }
-
 
 @end

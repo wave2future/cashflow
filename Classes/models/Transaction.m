@@ -39,7 +39,8 @@
 
 @implementation Transaction
 
-@synthesize hasBalance, balance;
+@synthesize hasBalance = mHasBalance;
+@synthesize balance = mBalance;
 
 + (id)allocator
 {
@@ -58,8 +59,8 @@
 {
     [super init];
 
-    asset = -1;
-    dst_asset = -1;
+    self.asset = -1;
+    self.dst_asset = -1;
     
     // 現在時刻で作成
     NSDate *dt = [[[NSDate alloc] init] autorelease];
@@ -74,10 +75,10 @@
     self.date = dt;
     self.description = @"";
     self.memo = @"";
-    value = 0.0;
-    type = 0;
-    category = -1;
-    hasBalance = NO;
+    self.value = 0.0;
+    self.type = 0;
+    self.category = -1;
+    self.hasBalance = NO;
     return self;
 }
 
@@ -90,16 +91,16 @@
 {
     [super init];
 
-    asset = -1;
-    dst_asset = -1;
+    self.asset = -1;
+    self.dst_asset = -1;
     self.date = dt;
     self.description = desc;
     self.memo = @"";
-    value = v;
-    type = 0;
-    category = -1;
-    pid = 0; // init
-    hasBalance = NO;
+    self.value = v;
+    self.type = 0;
+    self.category = -1;
+    self.pid = 0; // init
+    self.hasBalance = NO;
     return self;
 }
 
@@ -123,13 +124,13 @@
 - (void)insert
 {
     [super insert];
-    [DescLRUManager addDescLRU:description category:category];
+    [DescLRUManager addDescLRU:self.description category:self.category];
 }
 
 - (void)update
 {
     [super update];
-    [DescLRUManager addDescLRU:description category:category];
+    [DescLRUManager addDescLRU:self.description category:self.category];
 }
 
 - (void)updateWithoutUpdateLRU

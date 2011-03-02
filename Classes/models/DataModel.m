@@ -42,7 +42,10 @@
 
 @implementation DataModel
 
-@synthesize journal, ledger, categories, isLoadDone;
+@synthesize journal = mJournal;
+@synthesize ledger = mLedger;
+@synthesize categories = mCategories;
+@synthesize isLoadDone = mIsLoadDone;
 
 static DataModel *theDataModel = nil;
 
@@ -67,19 +70,19 @@ static DataModel *theDataModel = nil;
 {
     [super init];
 
-    journal = [[Journal alloc] init];
-    ledger = [[Ledger alloc] init];
-    categories = [[Categories alloc] init];
-    isLoadDone = NO;
+    mJournal = [[Journal alloc] init];
+    mLedger = [[Ledger alloc] init];
+    mCategories = [[Categories alloc] init];
+    mIsLoadDone = NO;
 	
     return self;
 }
 
 - (void)dealloc 
 {
-    [journal release];
-    [ledger release];
-    [categories release];
+    [mJournal release];
+    [mLedger release];
+    [mCategories release];
 
     [super dealloc];
 }
@@ -99,10 +102,10 @@ static DataModel *theDataModel = nil;
     return [DataModel instance].categories;
 }
 
-- (void)startLoad:(id<DataModelDelegate>)a_delegate
+- (void)startLoad:(id<DataModelDelegate>)delegate
 {
-    delegate = a_delegate;
-    isLoadDone = NO;
+    mDelegate = delegate;
+    mIsLoadDone = NO;
     
     NSThread *thread = [[NSThread alloc] initWithTarget:self selector:@selector(loadThread:) object:nil];
     [thread start];
@@ -116,9 +119,9 @@ static DataModel *theDataModel = nil;
 
     [self load];
     
-    isLoadDone = YES;
-    if (delegate) {
-        [delegate dataModelLoaded];
+    mIsLoadDone = YES;
+    if (mDelegate) {
+        [mDelegate dataModelLoaded];
     }
     
     [pool release];
@@ -141,14 +144,14 @@ static DataModel *theDataModel = nil;
     [DescLRUManager migrate];
 	
     // Load all transactions
-    [journal reload];
+    [mJournal reload];
 
     // Load ledger
-    [ledger load];
-    [ledger rebuild];
+    [mLedger load];
+    [mLedger rebuild];
 
     // Load categories
-    [categories reload];
+    [mCategories reload];
 }
 
 ////////////////////////////////////////////////////////////////////////////

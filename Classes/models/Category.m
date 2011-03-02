@@ -49,40 +49,40 @@
 -(id)init
 {
     [super init];
-    categories = nil;
+    mCategories = nil;
 
     return self;
 }
 
 -(void)dealloc
 {
-    [categories release];
+    [mCategories release];
     [super dealloc];
 }
 
 -(void)reload
 {
-    [categories release];
-    categories = [Category find_cond:@"ORDER BY sorder"];
-    [categories retain];
+    [mCategories release];
+    mCategories = [Category find_cond:@"ORDER BY sorder"];
+    [mCategories retain];
 }
 
 -(int)categoryCount
 {
-    return [categories count];
+    return [mCategories count];
 }
 
 -(Category*)categoryAtIndex:(int)n
 {
-    ASSERT(categories != nil);
-    return [categories objectAtIndex:n];
+    ASSERT(mCategories != nil);
+    return [mCategories objectAtIndex:n];
 }
 
 - (int)categoryIndexWithKey:(int)key
 {
-    int i, max = [categories count];
+    int i, max = [mCategories count];
     for (i = 0; i < max; i++) {
-        Category *c = [categories objectAtIndex:i];
+        Category *c = [mCategories objectAtIndex:i];
         if (c.pid == key) {
             return i;
         }
@@ -96,7 +96,7 @@
     if (idx < 0) {
         return @"";
     }
-    Category *c = [categories objectAtIndex:idx];
+    Category *c = [mCategories objectAtIndex:idx];
     return c.name;
 }
 
@@ -104,7 +104,7 @@
 {
     Category *c = [[Category alloc] init];
     c.name = name;
-    [categories addObject:c];
+    [mCategories addObject:c];
     [c release];
 
     [self renumber];
@@ -120,17 +120,17 @@
 
 -(void)deleteCategoryAtIndex:(int)index
 {
-    Category *c = [categories objectAtIndex:index];
+    Category *c = [mCategories objectAtIndex:index];
     [c delete];
 
-    [categories removeObjectAtIndex:index];
+    [mCategories removeObjectAtIndex:index];
 }
 
 - (void)reorderCategory:(int)from to:(int)to
 {
-    Category *c = [[categories objectAtIndex:from] retain];
-    [categories removeObjectAtIndex:from];
-    [categories insertObject:c atIndex:to];
+    Category *c = [[mCategories objectAtIndex:from] retain];
+    [mCategories removeObjectAtIndex:from];
+    [mCategories insertObject:c atIndex:to];
     [c release];
 	
     [self renumber];
@@ -138,10 +138,10 @@
 
 -(void)renumber
 {
-    int i, max = [categories count];
+    int i, max = [mCategories count];
 
     for (i = 0; i < max; i++) {
-        Category *c = [categories objectAtIndex:i];
+        Category *c = [mCategories objectAtIndex:i];
         c.sorder = i;
         [c update];
     }

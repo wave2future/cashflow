@@ -40,29 +40,29 @@
 
 @implementation Journal
 
-@synthesize entries;
+@synthesize entries = mEntries;
 
 - (id)init
 {
     if (self = [super init]) {
-        entries = nil;
+        mEntries = nil;
     }
     return self;
 }
 
 - (void)dealloc 
 {
-    [entries release];
+    [mEntries release];
     [super dealloc];
 }
 
 - (void)reload
 {
-    if (entries) {
-        [entries release];
+    if (mEntries) {
+        [mEntries release];
     }
-    entries = [Transaction find_cond:@"ORDER BY date, key"];
-    [entries retain];
+    mEntries = [Transaction find_cond:@"ORDER BY date, key"];
+    [mEntries retain];
     
     // upgrade data
     Database *db = [Database instance];
@@ -70,7 +70,7 @@
         [self _sortByDate];
         
         [db beginTransaction];
-        for (Transaction *t in entries) {
+        for (Transaction *t in mEntries) {
             [t updateWithoutUpdateLRU];
         }
         [db commitTransaction];
@@ -82,32 +82,32 @@
 */
 - (NSUInteger)countByEnumeratingWithState:(NSFastEnumerationState *)state objects:(id *)stackbuf count:(NSUInteger)len
 {
-    return [entries countByEnumeratingWithState:state objects:stackbuf count:len];
+    return [mEntries countByEnumeratingWithState:state objects:stackbuf count:len];
 }
 
 - (void)insertTransaction:(Transaction*)tr
 {
     int i;
-    int max = [entries count];
+    int max = [mEntries count];
     Transaction *t = nil;
 
     // 挿入位置を探す
     for (i = 0; i < max; i++) {
-        t = [entries objectAtIndex:i];
+        t = [mEntries objectAtIndex:i];
         if ([tr.date compare:t.date] == NSOrderedAscending) {
             break;
         }
     }
 
     // 挿入
-    [entries insertObject:tr atIndex:i];
+    [mEntries insertObject:tr atIndex:i];
     [tr insert];
 
     // 上限チェック
-    if ([entries count] > MAX_TRANSACTIONS) {
+    if ([mEntries count] > MAX_TRANSACTIONS) {
         // 最も古い取引を削除する
         // Note: 初期残高を調整するため、Asset 側で削除させる
-        Transaction *t = [entries objectAtIndex:0];
+        Transaction *t = [mEntries objectAtIndex:0];
         Asset *asset = [[DataModel ledger] assetWithKey:t.asset];
         [asset deleteEntryAt:0];
     }
@@ -121,8 +121,8 @@
     // update DB
     [to update];
 
-    int idx = [entries indexOfObject:from];
-    [entries replaceObjectAtIndex:idx withObject:to];
+    int idx = [mEntries indexOfObject:from];
+    [mEntries replaceObjectAtIndex:idx withObject:to];
     [self _sortByDate];
 }
 
@@ -134,7 +134,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     
 - (void)_sortByDate
 {
-    [entries sortUsingFunction:compareByDate context:NULL];
+    [mEntries sortUsingFunction:compareByDate context:NULL];
 }
     
 /**
@@ -152,7 +152,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     if (t.type != TYPE_TRANSFER) {
         // 資産間移動取引以外の場合
         [t delete];
-        [entries removeObject:t];
+        [mEntries removeObject:t];
         return YES;
     }
 
@@ -184,10 +184,10 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 - (void)deleteAllTransactionsWithAsset:(Asset *)asset
 {
     Transaction *t;
-    int max = [entries count];
+    int max = [mEntries count];
 
     for (int i = 0; i < max; i++) {
-        t = [entries objectAtIndex:i];
+        t = [mEntries objectAtIndex:i];
         if (t.asset != asset.pid && t.dst_asset != asset.pid) {
             continue;
         }

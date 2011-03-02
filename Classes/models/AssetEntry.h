@@ -39,11 +39,11 @@
 // 各資産（勘定）のエントリ
 //
 @interface AssetEntry : NSObject {
-    int assetKey;
-    double value;
-    double balance;
+    int mAssetKey;
+    double mValue;
+    double mBalance;
 
-    Transaction *transaction;
+    Transaction *mTransaction;
 }
 
 @property(nonatomic,assign) int assetKey;

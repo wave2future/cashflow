@@ -43,7 +43,7 @@
 // 仕訳帳
 // 
 @interface Journal : NSObject <NSFastEnumeration> {
-    NSMutableArray *entries;
+    NSMutableArray *mEntries;
 }
 
 @property(nonatomic,readonly) NSMutableArray *entries;

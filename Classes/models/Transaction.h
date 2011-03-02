@@ -44,8 +44,8 @@
 
 @interface Transaction : TransactionBase <NSCopying> {
     // for balance adjustment
-    BOOL hasBalance;
-    double balance;
+    BOOL mHasBalance;
+    double mBalance;
 }
 
 @property(nonatomic,assign) BOOL hasBalance;

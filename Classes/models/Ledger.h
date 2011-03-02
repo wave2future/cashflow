@@ -43,7 +43,7 @@
 @interface Ledger : NSObject
 {
     // Asset
-    NSMutableArray *assets;
+    NSMutableArray *mAssets;
 }
 
 @property(nonatomic,retain) NSMutableArray *assets;

@@ -39,7 +39,7 @@
 
 @implementation Ledger
 
-@synthesize assets;
+@synthesize assets = mAssets;
 
 - (void)load
 {
@@ -48,24 +48,24 @@
 
 - (void)rebuild
 {
-    for (Asset *as in assets) {
+    for (Asset *as in mAssets) {
         [as rebuild];
     }
 }
 
 - (int)assetCount
 {
-    return [assets count];
+    return [mAssets count];
 }
 
 - (Asset*)assetAtIndex:(int)n
 {
-    return [assets objectAtIndex:n];
+    return [mAssets objectAtIndex:n];
 }
 
 - (Asset*)assetWithKey:(int)pid
 {
-    for (Asset *as in assets) {
+    for (Asset *as in mAssets) {
         if (as.pid == pid) return as;
     }
     return nil;
@@ -74,8 +74,8 @@
 - (int)assetIndexWithKey:(int)pid
 {
     int i;
-    for (i = 0; i < [assets count]; i++) {
-        Asset *as = [assets objectAtIndex:i];
+    for (i = 0; i < [mAssets count]; i++) {
+        Asset *as = [mAssets objectAtIndex:i];
         if (as.pid == pid) return i;
     }
     return -1;
@@ -83,7 +83,7 @@
 
 - (void)addAsset:(Asset *)as
 {
-    [assets addObject:as];
+    [mAssets addObject:as];
     [as insert];
 }
 
@@ -93,7 +93,7 @@
 
     [[DataModel journal] deleteAllTransactionsWithAsset:as];
 
-    [assets removeObject:as];
+    [mAssets removeObject:as];
 
     [self rebuild];
 }
@@ -105,16 +105,16 @@
 
 - (void)reorderAsset:(int)from to:(int)to
 {
-    Asset *as = [[assets objectAtIndex:from] retain];
-    [assets removeObjectAtIndex:from];
-    [assets insertObject:as atIndex:to];
+    Asset *as = [[mAssets objectAtIndex:from] retain];
+    [mAssets removeObjectAtIndex:from];
+    [mAssets insertObject:as atIndex:to];
     [as release];
 	
     // renumbering sorder
     Database *db = [Database instance];
     [db beginTransaction];
-    for (int i = 0; i < [assets count]; i++) {
-        as = [assets objectAtIndex:i];
+    for (int i = 0; i < [mAssets count]; i++) {
+        as = [mAssets objectAtIndex:i];
         as.sorder = i;
         [as update];
     }
