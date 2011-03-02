@@ -40,7 +40,9 @@
 
 @implementation CategoryListViewController
 
-@synthesize isSelectMode, selectedIndex, delegate;
+@synthesize isSelectMode = mIsSelectMode;
+@synthesize selectedIndex = mSelectedIndex;
+@synthesize delegate = mDelegate;
 
 - (id)init
 {
@@ -122,8 +124,8 @@
         cell.textLabel.text = c.name;
     }
 
-    if (isSelectMode && !self.editing) {
-        if (indexPath.row == selectedIndex) {
+    if (mIsSelectMode && !self.editing) {
+        if (indexPath.row == mSelectedIndex) {
             cell.accessoryType = UITableViewCellAccessoryCheckmark;
         } else {
             cell.accessoryType = UITableViewCellAccessoryNone;
@@ -140,12 +142,12 @@
 //
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (isSelectMode && !self.editing) {
+    if (mIsSelectMode && !self.editing) {
         [tv deselectRowAtIndexPath:indexPath animated:NO];
 		
-        selectedIndex = indexPath.row;
+        mSelectedIndex = indexPath.row;
         ASSERT(delegate);
-        [delegate categoryListViewChanged:self];
+        [mDelegate categoryListViewChanged:self];
 		
         [self.navigationController popViewControllerAnimated:YES];
         return;

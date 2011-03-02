@@ -42,16 +42,17 @@
 
 @implementation CalculatorViewController
 
-@synthesize delegate, value;
+@synthesize delegate = mDelegate;
+@synthesize value = mValue;
 
 - (id)init
 {
     self = [super initWithNibName:@"CalculatorView" bundle:nil];
     if (self) {
         [self allClear];
-        numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [numberFormatter setLocale:[NSLocale currentLocale]];
+        mNumberFormatter = [[NSNumberFormatter alloc] init];
+        [mNumberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [mNumberFormatter setLocale:[NSLocale currentLocale]];
     }
     return self;
 }
@@ -72,7 +73,7 @@
 
 - (void)dealloc
 {
-    [numberFormatter release];
+    [mNumberFormatter release];
     [super dealloc];
 }
 
@@ -90,7 +91,7 @@
 
 -(void)doneAction
 {
-    [delegate calculatorViewChanged:self];
+    [mDelegate calculatorViewChanged:self];
 
     if (!IS_IPAD && [self.navigationController.viewControllers count] == 1) {
         // I am modal view!
@@ -102,11 +103,11 @@
 
 - (void)allClear
 {
-    value = 0.0;
-    state = ST_DISPLAY;
-    decimalPlace = 0;
-    storedOperator = OP_NONE;
-    storedValue = 0.0;
+    mValue = 0.0;
+    mState = ST_DISPLAY;
+    mDecimalPlace = 0;
+    mStoredOperator = OP_NONE;
+    mStoredValue = 0.0;
 }
 
 - (IBAction)onButtonDown:(id)sender
@@ -125,12 +126,12 @@
 
     if (sender == button_BS) {
         // バックスペース
-        if (state == ST_INPUT) {
-            if (decimalPlace > 0) {
-                decimalPlace--;
+        if (mState == ST_INPUT) {
+            if (mDecimalPlace > 0) {
+                mDecimalPlace--;
                 [self roundInputValue]; // TBD
             } else {
-                value = floor(value / 10);
+                mValue = floor(mValue / 10);
             }
 
             [self updateLabel];
@@ -139,7 +140,7 @@
     }
 
     if (sender == button_inv) {
-        value = -value;
+        mValue = -mValue;
         [self updateLabel];
         return;
     }
@@ -178,38 +179,38 @@
 
 - (void)onInputOperator:(calcOperator)op
 {
-    if (state == ST_INPUT || op == OP_EQUAL) {
+    if (mState == ST_INPUT || op == OP_EQUAL) {
         // 数値入力中に演算ボタンが押された場合、
         // あるいは = が押された場合 (5x= など)
         // メモリしてある式を計算する
-        switch (storedOperator) {
+        switch (mStoredOperator) {
         case OP_PLUS:
-            value = storedValue + value;
+            mValue = mStoredValue + mValue;
             break;
 
         case OP_MINUS:
-            value = storedValue - value;
+            mValue = mStoredValue - mValue;
             break;
 
         case OP_MULTIPLY:
-            value = storedValue * value;
+            mValue = mStoredValue * mValue;
             break;
 
         case OP_DIVIDE:
-            if (value == 0.0) {
+            if (mValue == 0.0) {
                 // divided by zero error
-                value = 0.0;
+                mValue = 0.0;
             } else {
-                value = storedValue / value;
+                mValue = mStoredValue / mValue;
             }
             break;
         }
 
         // 表示中の値を記憶
-        storedValue = value;
+        mStoredValue = mValue;
 
         // 表示状態に遷移
-        state = ST_DISPLAY;
+        mState = ST_DISPLAY;
         [self updateLabel];
     }
         
@@ -217,38 +218,38 @@
 
     if (op == OP_EQUAL) {
         // '=' を押したら演算終了
-        storedOperator = OP_NONE;
+        mStoredOperator = OP_NONE;
     } else {
-        storedOperator = op;
+        mStoredOperator = op;
     }
 }
 
 - (void)onInputNumeric:(int)num
 {
-    if (state == ST_DISPLAY) {
-        state = ST_INPUT; // 入力状態に遷移
+    if (mState == ST_DISPLAY) {
+        mState = ST_INPUT; // 入力状態に遷移
 
-        storedValue = value;
+        mStoredValue = mValue;
 
-        value = 0; // 表示中の値をリセット
-        decimalPlace = 0;
+        mValue = 0; // 表示中の値をリセット
+        mDecimalPlace = 0;
     }
 
     if (num == -1) { // 小数点
-        if (decimalPlace == 0) {
-            decimalPlace = 1;
+        if (mDecimalPlace == 0) {
+            mDecimalPlace = 1;
         }
     }
     else { // 数値
-        if (decimalPlace == 0) {
+        if (mDecimalPlace == 0) {
             // 整数入力
-            value = value * 10 + num;
+            mValue = mValue * 10 + num;
         } else {
             // 小数入力
-            double v = (double)num * pow(10, -decimalPlace);
-            value += v;
+            double v = (double)num * pow(10, -mDecimalPlace);
+            mValue += v;
 
-            decimalPlace++;
+            mDecimalPlace++;
         }
     }
          
@@ -260,24 +261,24 @@
     double v;
     BOOL isMinus = NO;
 
-    v = value;
+    v = mValue;
     if (v < 0.0) {
         isMinus = YES;
         v = -v;
     }
 
-    value = floor(v);
-    v -= value; // 小数点以下
+    mValue = floor(v);
+    v -= mValue; // 小数点以下
 
-    if (decimalPlace >= 2) {
+    if (mDecimalPlace >= 2) {
         // decimalPlace 桁以下を落とす
-        double k = pow(10, decimalPlace - 1);
+        double k = pow(10, mDecimalPlace - 1);
         v = floor(v * k) / (double)k;
-        value += v;
+        mValue += v;
     }
 
     if (isMinus) {
-        value = -value;
+        mValue = -mValue;
     }
 }
 
@@ -287,14 +288,14 @@
     int dp = 0;
     double vtmp;
 
-    switch (state) {
+    switch (mState) {
     case ST_INPUT:
-        dp = decimalPlace - 1;
+        dp = mDecimalPlace - 1;
         break;
 
     case ST_DISPLAY:
         dp = -1;
-        vtmp = value;
+        vtmp = mValue;
         if (vtmp < 0) vtmp = -vtmp;
         vtmp -= (int)vtmp;
         for (int i = 1; i <= 6; i++) {
@@ -308,20 +309,20 @@
 
 #if 1
     if (dp < 0) dp = 0;
-    [numberFormatter setMinimumFractionDigits:dp];
-    [numberFormatter setMaximumFractionDigits:dp];
+    [mNumberFormatter setMinimumFractionDigits:dp];
+    [mNumberFormatter setMaximumFractionDigits:dp];
 
-    NSString *numstr = [numberFormatter stringFromNumber:[NSNumber numberWithDouble:value]];
+    NSString *numstr = [mNumberFormatter stringFromNumber:[NSNumber numberWithDouble:mValue]];
     numLabel.text = numstr;
 
 #else
     NSMutableString *numstr = [[NSMutableString alloc] initWithCapacity:16];
 
     if (dp <= 0) {
-        [numstr appendFormat:@"%.0f", value];
+        [numstr appendFormat:@"%.0f", mValue];
     } else {
         NSString *fmt = [NSString stringWithFormat:@"%%.%df", dp];
-        [numstr appendFormat:fmt, value];
+        [numstr appendFormat:fmt, mValue];
     }
 
     // カンマを３桁ごとに挿入
@@ -334,7 +335,7 @@
     }
 
     for (i -= 3 ; i > 0; i -= 3) {
-        if (value < 0 && i <= 1) break;
+        if (mValue < 0 && i <= 1) break;
         [numstr insertString:@"," atIndex:i];
     }
 	

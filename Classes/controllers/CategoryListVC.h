@@ -46,10 +46,10 @@
 @interface CategoryListViewController : UITableViewController
     <GenEditTextViewDelegate>
 {
-    BOOL isSelectMode;
-    int selectedIndex;
+    BOOL mIsSelectMode;
+    int mSelectedIndex;
 	
-    id<CategoryListViewDelegate> delegate;
+    id<CategoryListViewDelegate> mDelegate;
 }
 
 @property(nonatomic,assign) BOOL isSelectMode;
