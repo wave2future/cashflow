@@ -53,20 +53,20 @@
 #endif
 >
 {
-    IBOutlet UITableView *tableView;
-    IBOutlet UIBarButtonItem *barBalanceLabel;
-    IBOutlet UIBarButtonItem *barActionButton;
+    IBOutlet UITableView *mTableView;
+    IBOutlet UIBarButtonItem *mBarBalanceLabel;
+    IBOutlet UIBarButtonItem *mBarActionButton;
 	
-    Asset *asset;
+    Asset *mAsset;
 #if FREE_VERSION
     GADAdViewController *adViewController;
 #endif
     
-    BOOL asDisplaying;
+    BOOL mAsDisplaying;
     
     // for Split view
     IBOutlet AssetListViewController *splitAssetListViewController;
-    UIPopoverController *popoverController;
+    UIPopoverController *mPopoverController;
 }
 
 //- (UITableView*)tableView;

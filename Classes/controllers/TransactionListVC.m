@@ -49,9 +49,9 @@
 
 @implementation TransactionListViewController
 
-@synthesize tableView;
-@synthesize asset;
-@synthesize popoverController;
+@synthesize tableView = mTableView;
+@synthesize asset = mAsset;
+@synthesize popoverController = mPopoverController;
 
 - (id)init
 {
@@ -67,10 +67,10 @@
 	
     // title 設定
     //self.title = NSLocalizedString(@"Transactions", @"");
-    if (asset == nil) {
+    if (mAsset == nil) {
         self.title = @"";
     } else {
-        self.title = asset.name;
+        self.title = mAsset.name;
     }
 	
     // "+" ボタンを追加
@@ -86,7 +86,7 @@
     // TBD
     //self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	
-    asDisplaying = NO;
+    mAsDisplaying = NO;
 
 #if FREE_VERSION
     adViewController = nil;
@@ -122,8 +122,8 @@
 }
 
 - (void)dealloc {
-    [tableView release];
-    [popoverController release];
+    [mTableView release];
+    [mPopoverController release];
 #if FREE_VERSION
     [adViewController release];
 #endif
@@ -137,8 +137,8 @@
     [self updateBalance];
     [self.tableView reloadData];
 
-    if (popoverController != nil && [popoverController isPopoverVisible]) {
-        [popoverController dismissPopoverAnimated:YES];
+    if (mPopoverController != nil && [mPopoverController isPopoverVisible]) {
+        [mPopoverController dismissPopoverAnimated:YES];
     }
 }    
 
@@ -178,7 +178,7 @@
         adViewController = nil;
     }
     
-    CGRect frame = tableView.bounds;
+    CGRect frame = mTableView.bounds;
     
     // 画面下部固定で広告を作成する
     adViewController= [[GADAdViewController alloc] initWithDelegate:self];
@@ -215,7 +215,7 @@
     // 広告領域分だけ、tableView の下部をあける
     CGRect tframe = frame;
     tframe.size.height -= adViewHeight;
-    tableView.frame = tframe;
+    mTableView.frame = tframe;
     
     [defaults setInteger:1 forKey:@"ShowAds"];
     [defaults synchronize];
@@ -231,7 +231,7 @@
 
 - (void)updateBalance
 {
-    double lastBalance = [asset lastBalance];
+    double lastBalance = [mAsset lastBalance];
     NSString *bstr = [CurrencyManager formatCurrency:lastBalance];
 
 #if 0
@@ -239,7 +239,7 @@
     tableTitle.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
 #endif
 	
-    barBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
+    mBarBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
     
     if (IS_IPAD) {
         [splitAssetListViewController reload];
@@ -273,21 +273,21 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (asset == nil) return 0;
+    if (mAsset == nil) return 0;
     
-    int n = [asset entryCount] + 1;
+    int n = [mAsset entryCount] + 1;
     return n;
 }
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return tableView.rowHeight;
+    return mTableView.rowHeight;
 }
 
 // 指定セル位置に該当する entry Index を返す
 - (int)entryIndexWithIndexPath:(NSIndexPath *)indexPath
 {
-    int idx = ([asset entryCount] - 1) - indexPath.row;
+    int idx = ([mAsset entryCount] - 1) - indexPath.row;
     return idx;
 }
 
@@ -299,7 +299,7 @@
     if (idx < 0) {
         return nil;  // initial balance
     } 
-    AssetEntry *e = [asset entryAt:idx];
+    AssetEntry *e = [mAsset entryAt:idx];
     return e;
 }
 
@@ -331,7 +331,7 @@
 {
     NSString *cellid = @"transactionCell";
 
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
+    UITableViewCell *cell = [mTableView dequeueReusableCellWithIdentifier:cellid];
     UILabel *descLabel, *dateLabel, *valueLabel, *balanceLabel;
 
     if (cell == nil) {
@@ -397,7 +397,7 @@
 {
     NSString *cellid = @"initialBalanceCell";
 
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:cellid];
+    UITableViewCell *cell = [mTableView dequeueReusableCellWithIdentifier:cellid];
     UILabel *descLabel, *balanceLabel;
 
     if (cell == nil) {
@@ -423,7 +423,7 @@
     }
 
     balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                                  [CurrencyManager formatCurrency:asset.initialBalance]];
+                                  [CurrencyManager formatCurrency:mAsset.initialBalance]];
 
     return cell;
 }
@@ -442,7 +442,7 @@
         // initial balance cell
         CalculatorViewController *v = [[[CalculatorViewController alloc] init] autorelease];
         v.delegate = self;
-        v.value = asset.initialBalance;
+        v.value = mAsset.initialBalance;
 
         UINavigationController *nv = [[[UINavigationController alloc] initWithRootViewController:v] autorelease];
         
@@ -468,16 +468,16 @@
 // 初期残高変更処理
 - (void)calculatorViewChanged:(CalculatorViewController *)vc
 {
-    asset.initialBalance = vc.value;
-    [asset updateInitialBalance];
-    [asset rebuild];
+    mAsset.initialBalance = vc.value;
+    [mAsset updateInitialBalance];
+    [mAsset rebuild];
     [self reload];
 }
 
 // 新規トランザクション追加
 - (void)addTransaction
 {
-    if (asset == nil) return;
+    if (mAsset == nil) return;
     
     TransactionViewController *vc = [[[TransactionViewController alloc] init] autorelease];
     vc.asset = self.asset;
@@ -488,12 +488,12 @@
 // Editボタン処理
 - (void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    if (asset == nil) return;
+    if (mAsset == nil) return;
     
     [super setEditing:editing animated:animated];
 	
     // tableView に通知
-    [tableView setEditing:editing animated:animated];
+    [mTableView setEditing:editing animated:animated];
 	
     if (editing) {
         self.navigationItem.rightBarButtonItem.enabled = NO;
@@ -523,11 +523,11 @@
     }
 	
     if (style == UITableViewCellEditingStyleDelete) {
-        [asset deleteEntryAt:entryIndex];
+        [mAsset deleteEntryAt:entryIndex];
 	
         [tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
         [self updateBalance];
-        [self.tableView reloadData];
+        [mTableView reloadData];
     }
 
     if (IS_IPAD) {
@@ -540,8 +540,8 @@
 // action sheet
 - (void)doAction:(id)sender
 {
-    if (asDisplaying) return;
-    asDisplaying = YES;
+    if (mAsDisplaying) return;
+    mAsDisplaying = YES;
     
     UIActionSheet *as = 
         [[UIActionSheet alloc]
@@ -556,7 +556,7 @@
          NSLocalizedString(@"Config", @""),
          nil];
     if (IS_IPAD) {
-        [as showFromBarButtonItem:barActionButton animated:YES];
+        [as showFromBarButtonItem:mBarActionButton animated:YES];
     } else {
         [as showInView:[self view]];
     }
@@ -573,7 +573,7 @@
     UIViewController *vc;
     UIModalPresentationStyle modalPresentationStyle = UIModalPresentationPageSheet;
     
-    asDisplaying = NO;
+    mAsDisplaying = NO;
     
     switch (buttonIndex) {
         case 0:
@@ -581,16 +581,16 @@
             reportVC = [[[ReportViewController alloc] init] autorelease];
             if (buttonIndex == 0) {
                 reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-                [reportVC generateReport:REPORT_WEEKLY asset:asset];
+                [reportVC generateReport:REPORT_WEEKLY asset:mAsset];
             } else {
                 reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-                [reportVC generateReport:REPORT_MONTHLY asset:asset];
+                [reportVC generateReport:REPORT_MONTHLY asset:mAsset];
             }
             vc = reportVC;
             break;
 			
         case 2:
-            exportVC = [[[ExportVC alloc] initWithAsset:asset] autorelease];
+            exportVC = [[[ExportVC alloc] initWithAsset:mAsset] autorelease];
             vc = exportVC;
             modalPresentationStyle = UIModalPresentationFormSheet;
             break;

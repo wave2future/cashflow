@@ -2,17 +2,15 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.iPad.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">800</int>
-		<string key="IBDocument.SystemVersion">10F569</string>
-		<string key="IBDocument.InterfaceBuilderVersion">788</string>
-		<string key="IBDocument.AppKitVersion">1038.29</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.SystemVersion">10J567</string>
+		<string key="IBDocument.InterfaceBuilderVersion">823</string>
+		<string key="IBDocument.AppKitVersion">1038.35</string>
+		<string key="IBDocument.HIToolboxVersion">462.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">117</string>
+			<string key="NS.object.0">132</string>
 		</object>
-		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs">
-			<integer value="13"/>
-		</array>
+		<array class="NSMutableArray" key="IBDocument.EditedObjectIDs"/>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 		</array>
@@ -77,7 +75,6 @@
 					<array class="NSMutableArray" key="IBUIViewControllers">
 						<object class="IBUIViewController" id="619226028">
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="394667715">
-								<reference key="IBUINavigationBar"/>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
 							<reference key="IBUIParentViewController" ref="292438712"/>
@@ -112,7 +109,6 @@
 					<array class="NSMutableArray" key="IBUIViewControllers">
 						<object class="IBUIViewController" id="625651060">
 							<object class="IBUINavigationItem" key="IBUINavigationItem" id="830952600">
-								<reference key="IBUINavigationBar"/>
 								<string key="IBUITitle">Item</string>
 								<string key="targetRuntimeIdentifier">IBIPadFramework</string>
 							</object>
@@ -432,26 +428,26 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="barActionButton">UIBarButtonItem</string>
-						<string key="barBalanceLabel">UIBarButtonItem</string>
+						<string key="mBarActionButton">UIBarButtonItem</string>
+						<string key="mBarBalanceLabel">UIBarButtonItem</string>
 						<string key="mSplitAssetListViewController">AssetListViewController</string>
-						<string key="tableView">UITableView</string>
+						<string key="mTableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="barActionButton">
-							<string key="name">barActionButton</string>
+						<object class="IBToOneOutletInfo" key="mBarActionButton">
+							<string key="name">mBarActionButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="barBalanceLabel">
-							<string key="name">barBalanceLabel</string>
+						<object class="IBToOneOutletInfo" key="mBarBalanceLabel">
+							<string key="name">mBarBalanceLabel</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="mSplitAssetListViewController">
 							<string key="name">mSplitAssetListViewController</string>
 							<string key="candidateClassName">AssetListViewController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="tableView">
-							<string key="name">tableView</string>
+						<object class="IBToOneOutletInfo" key="mTableView">
+							<string key="name">mTableView</string>
 							<string key="candidateClassName">UITableView</string>
 						</object>
 					</dictionary>
@@ -732,6 +728,6 @@
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<string key="IBDocument.LastKnownRelativeProjectPath">../CashFlow.xcodeproj</string>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<string key="IBCocoaTouchPluginVersion">117</string>
+		<string key="IBCocoaTouchPluginVersion">132</string>
 	</data>
 </archive>
