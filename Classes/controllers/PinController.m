@@ -36,7 +36,7 @@
 #import "AppDelegate.h"
 
 @implementation PinController
-@synthesize pin, newPin;
+@synthesize pin = mPin, newPin = mNewPin;
 
 #define FIRST_PIN_CHECK 0
 #define ENTER_CURRENT_PIN 1
@@ -58,14 +58,14 @@ static PinController *thePinController = nil;
 {
     self = [super init];
     if (self) {
-        state = -1;
+        mState = -1;
         self.newPin = nil;
-        navigationController = nil;
+        mNavigationController = nil;
 
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         self.pin = [defaults stringForKey:@"PinCode"];
 
-        if (pin && pin.length == 0) {
+        if (mPin && mPin.length == 0) {
             self.pin = nil;
         }
     }
@@ -74,15 +74,15 @@ static PinController *thePinController = nil;
 
 - (void)dealloc
 {
-    [pin release];
-    [newPin release];
-    [navigationController release];
+    [mPin release];
+    [mNewPin release];
+    [mNavigationController release];
     [super dealloc];
 }
     
 - (void)_allDone
 {
-    [navigationController dismissModalViewControllerAnimated:YES];
+    [mNavigationController dismissModalViewControllerAnimated:YES];
     [self autorelease];
     thePinController = nil;
 }
@@ -91,7 +91,7 @@ static PinController *thePinController = nil;
 {
     ASSERT(state == -1);
 
-    if (pin == nil) return; // do nothing
+    if (mPin == nil) return; // do nothing
 
     // get topmost modal view controller
     while (currentVc.modalViewController != nil) {
@@ -105,11 +105,11 @@ static PinController *thePinController = nil;
     vc.title = NSLocalizedString(@"Enter PIN", @"");
     vc.enableCancel = NO;
 
-    state = FIRST_PIN_CHECK;
+    mState = FIRST_PIN_CHECK;
 
     // show PinViewController
-    navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-    [currentVc presentModalViewController:navigationController animated:NO];
+    mNavigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [currentVc presentModalViewController:mNavigationController animated:NO];
 }
 
 - (void)modifyPin:(UIViewController *)currentVc
@@ -120,25 +120,25 @@ static PinController *thePinController = nil;
 
     PinViewController *vc = [self _getPinViewController];
     
-    if (pin != nil) {
+    if (mPin != nil) {
         // check current pin
-        state = ENTER_CURRENT_PIN;
+        mState = ENTER_CURRENT_PIN;
         vc.title = NSLocalizedString(@"Enter PIN", @"");
     } else {
         // enter 1st pin
-        state = ENTER_NEW_PIN1;
+        mState = ENTER_NEW_PIN1;
         vc.title = NSLocalizedString(@"Enter new PIN", @"");
     }
         
-    navigationController = [[UINavigationController alloc] initWithRootViewController:vc];
-    [currentVc presentModalViewController:navigationController animated:YES];
+    mNavigationController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [currentVc presentModalViewController:mNavigationController animated:YES];
 }
 
 #pragma mark PinViewDelegate
 
 - (BOOL)pinViewCheckPin:(PinViewController *)vc
 {
-    return [vc.value isEqualToString:pin];
+    return [vc.value isEqualToString:mPin];
 }
 
 - (void)pinViewFinished:(PinViewController *)vc isCancel:(BOOL)isCancel
@@ -152,16 +152,16 @@ static PinController *thePinController = nil;
     BOOL isBadPin = NO;
     PinViewController *newvc = nil;
 
-    switch (state) {
+    switch (mState) {
     case FIRST_PIN_CHECK:
     case ENTER_CURRENT_PIN:
         ASSERT(pin != nil);
-        if (![vc.value isEqualToString:pin]) {
+        if (![vc.value isEqualToString:mPin]) {
             isBadPin = YES;
             retry = YES;
         }
-        else if (state == ENTER_CURRENT_PIN) {
-            state = ENTER_NEW_PIN1;
+        else if (mState == ENTER_CURRENT_PIN) {
+            mState = ENTER_NEW_PIN1;
             newvc = [self _getPinViewController];        
             newvc.title = NSLocalizedString(@"Enter new PIN", @"");
         }
@@ -169,17 +169,17 @@ static PinController *thePinController = nil;
 
     case ENTER_NEW_PIN1:
         self.newPin = [NSString stringWithString:vc.value]; // TBD
-        state = ENTER_NEW_PIN2;
+        mState = ENTER_NEW_PIN2;
         newvc = [self _getPinViewController];        
         newvc.title = NSLocalizedString(@"Retype new PIN", @"");
         break;
 
     case ENTER_NEW_PIN2:
-        NSLog(@"%@", newPin);
-        if ([vc.value isEqualToString:newPin]) {
+        NSLog(@"%@", mNewPin);
+        if ([vc.value isEqualToString:mNewPin]) {
             // set new pin
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-            [defaults setObject:newPin forKey:@"PinCode"];
+            [defaults setObject:mNewPin forKey:@"PinCode"];
             [defaults synchronize];
         } else {
             isBadPin = YES;
@@ -204,7 +204,7 @@ static PinController *thePinController = nil;
 
     // Show new vc if needed, otherwise all done.
     if (newvc) {
-        [navigationController pushViewController:newvc animated:YES];
+        [mNavigationController pushViewController:newvc animated:YES];
     } else {
         [self _allDone];
     }

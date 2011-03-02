@@ -121,18 +121,18 @@
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
 
-    int max = [asset entryCount];
+    int max = [mAsset entryCount];
 
     int firstIndex = 0;
-    if (firstDate != nil) {
-        firstIndex = [asset firstEntryByDate:firstDate];
+    if (mFirstDate != nil) {
+        firstIndex = [mAsset firstEntryByDate:mFirstDate];
         if (firstIndex < 0) {
             return nil;
         }
     }
 	
-    AssetEntry *first = [asset entryAt:firstIndex];
-    AssetEntry *last  = [asset entryAt:max-1];
+    AssetEntry *first = [mAsset entryAt:firstIndex];
+    AssetEntry *last  = [mAsset entryAt:max-1];
 
     [data appendString:@"OFXHEADER:100\n"];
     [data appendString:@"DATA:OFXSGML\n"];
@@ -184,7 +184,7 @@
     [data appendString:@"<BANKACCTFROM>\n"];
     [data appendString:@"<BANKID>CashFlow\n"];
     [data appendString:@"<BRANCHID>000\n"];
-    [data appendFormat:@"<ACCTID>%d\n", asset.pid];
+    [data appendFormat:@"<ACCTID>%d\n", mAsset.pid];
     [data appendString:@"<ACCTTYPE>SAVINGS\n"]; // ### Use asset.type?
     [data appendString:@"</BANKACCTFROM>\n"];
 
@@ -199,7 +199,7 @@
     /* トランザクション */
     int i;
     for (i = firstIndex; i < max; i++) {
-        AssetEntry *e = [asset entryAt:i];
+        AssetEntry *e = [mAsset entryAt:i];
 		
         [data appendString:@"<STMTTRN>\n"];
         [data appendFormat:@"<TRNTYPE>%@\n", [self typeString:e]];

@@ -64,13 +64,13 @@
       action:@selector(doneAction:)] autorelease];
 
 #ifdef FREE_VERSION
-    [nameLabel setText:@"CashFlow Free"];
+    [mNameLabel setText:@"CashFlow Free"];
 #else
     purchaseButton.hidden = YES;
 #endif
 	
     NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
-    [versionLabel setText:[NSString stringWithFormat:@"Version %@", version]];
+    [mVersionLabel setText:[NSString stringWithFormat:@"Version %@", version]];
 }
 
 - (void)didReceiveMemoryWarning {

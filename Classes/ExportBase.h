@@ -45,14 +45,14 @@
   options:NSLiteralSearch range:NSMakeRange(0, [str length])]
 	
 @interface ExportBase : NSObject <UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
-    NSDate *firstDate;
-    Asset *asset;
+    NSDate *mFirstDate;
+    Asset *mAsset;
 
-    ExportServer *webServer;
+    ExportServer *mWebServer;
 }
 
-@property(nonatomic,retain) NSDate *firstDate;
-@property(nonatomic,assign) Asset *asset;
+@property(nonatomic,retain) NSDate *mFirstDate;
+@property(nonatomic,assign) Asset *mAsset;
 
 - (NSData*)generateBody;
 - (BOOL)sendMail:(UIViewController*)parent;

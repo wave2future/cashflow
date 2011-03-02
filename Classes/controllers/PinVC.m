@@ -38,7 +38,7 @@
 #import "AppDelegate.h"
 
 @implementation PinViewController
-@synthesize value, enableCancel, delegate;
+@synthesize value = mValue, enableCancel = mEnableCancel, delegate = mDelegate;
 
 - (id)init
 {
@@ -52,7 +52,7 @@
 
 - (void)viewDidLoad
 {
-    value = [[NSMutableString alloc] init];
+    mValue = [[NSMutableString alloc] init];
 
     //self.title = NSLocalizedString(@"PIN", @"");
     self.navigationItem.rightBarButtonItem = 
@@ -62,7 +62,7 @@
              action:@selector(doneAction:)] autorelease];
 
     self.navigationItem.leftBarButtonItem = nil;
-    if (enableCancel) {
+    if (mEnableCancel) {
         self.navigationItem.leftBarButtonItem = 
             [[[UIBarButtonItem alloc]
                  initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
@@ -78,7 +78,7 @@
 
 - (void)dealloc
 {
-    [value release];
+    [mValue release];
     [super dealloc];
 }
 
@@ -94,13 +94,13 @@
     int len;
 
     if (sender == button_Clear) {
-        [value setString:@""];
+        [mValue setString:@""];
     }
     else if (sender == button_BS) {
         // バックスペース
-        len = value.length;
+        len = mValue.length;
         if (len > 0) {
-            [value deleteCharactersInRange:NSMakeRange(len-1, 1)];
+            [mValue deleteCharactersInRange:NSMakeRange(len-1, 1)];
         }
     }
 		
@@ -116,36 +116,36 @@
     else if (sender == button_9) ch = @"9";
 
     if (ch != nil) {
-        [value appendString:ch];
+        [mValue appendString:ch];
     }
 	
-    len = value.length;
+    len = mValue.length;
     NSMutableString *p = [[NSMutableString alloc] initWithCapacity:len];
     for (int i = 0; i < len; i++) {
         [p appendString:@"●"];
     }
-    valueLabel.text = p;
+    mValueLabel.text = p;
     [p release];
 
-    if ([delegate pinViewCheckPin:self]) {
+    if ([mDelegate pinViewCheckPin:self]) {
         [self doneAction:nil];
     }
 }
 
 - (void)doneAction:(id)sender
 {
-    [delegate pinViewFinished:self isCancel:NO];
+    [mDelegate pinViewFinished:self isCancel:NO];
 
-    [value setString:@""];
-    valueLabel.text = @"";
+    [mValue setString:@""];
+    mValueLabel.text = @"";
 }
 
 - (void)cancelAction:(id)sender
 {
-    [delegate pinViewFinished:self isCancel:YES];
+    [mDelegate pinViewFinished:self isCancel:YES];
 
-    [value setString:@""];
-    valueLabel.text = @"";
+    [mValue setString:@""];
+    mValueLabel.text = @"";
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

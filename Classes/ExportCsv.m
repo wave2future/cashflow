@@ -76,20 +76,20 @@
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
     [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
     
-    int max = [asset entryCount];
+    int max = [mAsset entryCount];
 
     /* トランザクション */
     int i = 0;
-    if (firstDate != nil) {
-        i = [asset firstEntryByDate:firstDate];
+    if (mFirstDate != nil) {
+        i = [mAsset firstEntryByDate:mFirstDate];
         if (i < 0) {
             return nil;
         }
     }
     for (; i < max; i++) {
-        AssetEntry *e = [asset entryAt:i];
+        AssetEntry *e = [mAsset entryAt:i];
 
-        if (firstDate != nil && [e.transaction.date compare:firstDate] == NSOrderedAscending) continue;
+        if (mFirstDate != nil && [e.transaction.date compare:mFirstDate] == NSOrderedAscending) continue;
 		
         NSMutableString *d = [[NSMutableString alloc] init];
         [d appendFormat:@"%d,", e.transaction.pid];

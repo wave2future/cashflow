@@ -40,10 +40,10 @@
 
 @interface PinController : NSObject <PinViewDelegate>
 {
-    int state;
-    NSString *pin;
-    NSString *newPin;
-    UINavigationController *navigationController;
+    int mState;
+    NSString *mPin;
+    NSString *mNewPin;
+    UINavigationController *mNavigationController;
 }
 
 @property(nonatomic,retain) NSString *pin;

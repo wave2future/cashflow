@@ -35,9 +35,9 @@
 #import <UIKit/UIKit.h>
 
 @interface InfoVC : UIViewController {
-    IBOutlet UILabel *nameLabel;
-    IBOutlet UILabel *versionLabel;
-    IBOutlet UIButton *purchaseButton;
+    IBOutlet UILabel *mNameLabel;
+    IBOutlet UILabel *mVersionLabel;
+    IBOutlet UIButton *mPurchaseButton;
 }
 
 - (void)doneAction:(id)sender;

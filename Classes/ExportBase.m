@@ -36,7 +36,7 @@
 
 @implementation ExportBase
 
-@synthesize firstDate, asset;
+@synthesize mFirstDate, mAsset;
 
 - (BOOL)sendMail:(UIViewController*)parent { return NO; }
 - (BOOL)sendWithWebServer { return NO; }
@@ -44,8 +44,8 @@
 
 - (void)dealloc
 {
-    [firstDate release];
-    [webServer release];
+    [mFirstDate release];
+    [mWebServer release];
     [super dealloc];
 }
 
@@ -97,16 +97,16 @@
     BOOL result = NO;
     NSString *message = nil;
 
-    if (webServer == nil) {
-        webServer = [[ExportServer alloc] init];
+    if (mWebServer == nil) {
+        mWebServer = [[ExportServer alloc] init];
     }
-    webServer.contentBody = contentBody;
-    webServer.contentType = contentType;
-    webServer.filename = filename;
+    mWebServer.contentBody = contentBody;
+    mWebServer.contentType = contentType;
+    mWebServer.filename = filename;
 	
-    NSString *url = [webServer serverUrl];
+    NSString *url = [mWebServer serverUrl];
     if (url != nil) {
-        result = [webServer startServer];
+        result = [mWebServer startServer];
     } else {
         message = NSLocalizedString(@"Network is unreachable.", @"");
     }
@@ -137,7 +137,7 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [webServer stopServer];
+    [mWebServer stopServer];
 }
 
 @end

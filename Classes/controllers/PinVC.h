@@ -46,7 +46,7 @@
 
 @interface PinViewController : UIViewController 
 {
-    IBOutlet UILabel *valueLabel;
+    IBOutlet UILabel *mValueLabel;
 
     IBOutlet UIButton *button_Clear;
     IBOutlet UIButton *button_BS;
@@ -61,9 +61,9 @@
     IBOutlet UIButton *button_8;
     IBOutlet UIButton *button_9;
 
-    NSMutableString *value;
-    BOOL enableCancel;
-    id<PinViewDelegate> delegate;
+    NSMutableString *mValue;
+    BOOL mEnableCancel;
+    id<PinViewDelegate> mDelegate;
 }
 
 @property(nonatomic,assign) id<PinViewDelegate> delegate;
