@@ -72,6 +72,7 @@ def getMethodType(type)
     end
 end
 
+###############################################################
 # generate header
 def generateHeader(cdef, fh)
     fh.puts <<EOF
@@ -85,7 +86,7 @@ EOF
 
     cdef.members.each do |m|
         type, mem = getObjcType(cdef.types[m])
-        fh.puts "    #{type} #{m};"
+        fh.puts "    #{type} #{cdef.memberName(m)};"
     end
 
     fh.puts <<EOF
@@ -132,6 +133,7 @@ EOF
 
 end
 
+###############################################################
 # generate implementation
 def generateImplementation(cdef, fh)
     fh.puts <<EOF
@@ -145,7 +147,7 @@ def generateImplementation(cdef, fh)
 EOF
 
     cdef.members.each do |m|
-        fh.puts "@synthesize #{m};"
+        fh.puts "@synthesize #{m} = #{cdef.memberName(m)};"
     end
     fh.puts
 
@@ -289,7 +291,7 @@ EOF
     
     fh.puts <<EOF
 
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Create operations
@@ -314,7 +316,7 @@ EOF
     i = 0
     cdef.members.each do |m|
         method = "bind" + getMethodType(cdef.types[m])
-        fh.puts "    [stmt #{method}:#{i} val:#{m}];"
+        fh.puts "    [stmt #{method}:#{i} val:#{cdef.memberName(m)}];"
         i += 1
     end
 
@@ -324,7 +326,7 @@ EOF
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    isInserted = YES;
+    mIsInserted = YES;
 }
 
 #pragma mark Update operations
@@ -355,11 +357,11 @@ EOF
     i = 0
     cdef.members.each do |m|
         method = "bind" + getMethodType(cdef.types[m])
-        fh.puts "    [stmt #{method}:#{i} val:#{m}];"
+        fh.puts "    [stmt #{method}:#{i} val:#{cdef.memberName(m)}];"
         i += 1
     end
     fh.puts <<EOF
-    [stmt bindInt:#{i} val:pid];
+    [stmt bindInt:#{i} val:mPid];
 
     [stmt step];
     //[db commitTransaction];
@@ -375,7 +377,7 @@ EOF
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"DELETE FROM #{cdef.name} WHERE #{PKEY} = ?;"];
-    [stmt bindInt:0 val:pid];
+    [stmt bindInt:0 val:mPid];
     [stmt step];
 }
 
