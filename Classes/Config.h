@@ -40,10 +40,10 @@
 #define DateTimeModeWithTime 0  // 日＋時
 #define DateTimeModeWithTime5min 1  // 日＋時
 #define DateTimeModeDateOnly 2  // 日のみ
-    int dateTimeMode;
+    int mDateTimeMode;
 
     // 締め日 (1～29)、月末を指定する場合は 0
-    int cutoffDate;
+    int mCutoffDate;
 }
 
 @property(nonatomic,assign) int dateTimeMode;

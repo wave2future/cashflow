@@ -36,7 +36,8 @@
 
 @implementation Config
 
-@synthesize dateTimeMode, cutoffDate;
+@synthesize dateTimeMode = mDateTimeMode;
+@synthesize cutoffDate = mCutoffDate;
 
 static Config *theConfig = nil;
 
@@ -56,16 +57,16 @@ static Config *theConfig = nil;
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];    
     
-    self.dateTimeMode = [defaults integerForKey:@"DateTimeMode"];
-    if (self.dateTimeMode != DateTimeModeDateOnly &&
-        self.dateTimeMode != DateTimeModeWithTime &&
-        self.dateTimeMode != DateTimeModeWithTime5min) {
-        self.dateTimeMode = DateTimeModeWithTime;
+    mDateTimeMode = [defaults integerForKey:@"DateTimeMode"];
+    if (mDateTimeMode != DateTimeModeDateOnly &&
+        mDateTimeMode != DateTimeModeWithTime &&
+        mDateTimeMode != DateTimeModeWithTime5min) {
+        mDateTimeMode = DateTimeModeWithTime;
     }
 
-    self.cutoffDate = [defaults integerForKey:@"CutoffDate"];
-    if (self.cutoffDate < 0 || self.cutoffDate > 28) {
-        self.cutoffDate = 0;
+    mCutoffDate = [defaults integerForKey:@"CutoffDate"];
+    if (mCutoffDate < 0 || mCutoffDate > 28) {
+        mCutoffDate = 0;
     }
     return self;
 }
@@ -74,8 +75,8 @@ static Config *theConfig = nil;
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults setInteger:self.dateTimeMode forKey:@"DateTimeMode"];
-    [defaults setInteger:self.cutoffDate   forKey:@"CutoffDate"];
+    [defaults setInteger:mDateTimeMode forKey:@"DateTimeMode"];
+    [defaults setInteger:mCutoffDate   forKey:@"CutoffDate"];
 
     [defaults synchronize];
 }

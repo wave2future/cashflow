@@ -41,10 +41,10 @@
 */
 @interface WebServer : NSObject
 {
-    int listen_sock;
-    struct sockaddr_in serv_addr;
+    int mListenSock;
+    struct sockaddr_in mServAddr;
 	
-    NSThread *thread;
+    NSThread *mThread;
 }
 
 - (BOOL)startServer;

@@ -4,10 +4,10 @@
 
 @interface CurrencyManager : NSObject
 {
-    NSString *baseCurrency;
-    NSArray *currencies;
+    NSString *mBaseCurrency;
+    NSArray *mCurrencies;
 
-    NSNumberFormatter *numberFormatter;
+    NSNumberFormatter *mNumberFormatter;
 }
 
 @property(nonatomic,retain) NSString *baseCurrency;

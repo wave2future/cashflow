@@ -56,38 +56,38 @@
     int on;
     struct sockaddr_in addr;
 
-    listen_sock = socket(AF_INET, SOCK_STREAM, 0);
-    if (listen_sock < 0) {
+    mListenSock = socket(AF_INET, SOCK_STREAM, 0);
+    if (mListenSock < 0) {
         return NO;
     }
 
     on = 1;
-    setsockopt(listen_sock, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
+    setsockopt(mListenSock, SOL_SOCKET, SO_REUSEADDR, &on, sizeof(on));
 
     addr.sin_family = AF_INET;
     addr.sin_addr.s_addr = htonl(INADDR_ANY);
     addr.sin_port = htons(PORT_NUMBER);
 
-    if (bind(listen_sock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
-        close(listen_sock);
+    if (bind(mListenSock, (struct sockaddr *)&addr, sizeof(addr)) < 0) {
+        close(mListenSock);
         return NO;
     }
 	
-    socklen_t len = sizeof(serv_addr);
-    if (getsockname(listen_sock, (struct sockaddr *)&serv_addr, &len)  < 0) {
-        close(listen_sock);
+    socklen_t len = sizeof(mServAddr);
+    if (getsockname(mListenSock, (struct sockaddr *)&mServAddr, &len)  < 0) {
+        close(mListenSock);
         return NO;
     }
 
-    if (listen(listen_sock, 16) < 0) {
-        close(listen_sock);
+    if (listen(mListenSock, 16) < 0) {
+        close(mListenSock);
         return NO;
     }
 
     [self retain];
-    thread = [[NSThread alloc] initWithTarget:self selector:@selector(threadMain:) object:nil];
-    [thread start];
-    [thread release]; // ###
+    mThread = [[NSThread alloc] initWithTarget:self selector:@selector(threadMain:) object:nil];
+    [mThread start];
+    [mThread release]; // ###
 	
     return YES;
 }
@@ -97,10 +97,10 @@
 */
 - (void)stopServer
 {
-    if (listen_sock >= 0) {
-        close(listen_sock);
+    if (mListenSock >= 0) {
+        close(mListenSock);
     }
-    listen_sock = -1;
+    mListenSock = -1;
 }
 
 /**
@@ -154,7 +154,7 @@
 	
     for (;;) {
         len = sizeof(caddr);
-        s = accept(listen_sock, (struct sockaddr *)&caddr, &len);
+        s = accept(mListenSock, (struct sockaddr *)&caddr, &len);
         if (s < 0) {
             break;
         }
@@ -164,10 +164,10 @@
         close(s);
     }
 
-    if (listen_sock >= 0) {
-        close(listen_sock);
+    if (mListenSock >= 0) {
+        close(mListenSock);
     }
-    listen_sock = -1;
+    mListenSock = -1;
 	
     [pool release];
 

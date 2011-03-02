@@ -4,8 +4,8 @@
 
 @implementation CurrencyManager
 
-@synthesize baseCurrency;
-@synthesize currencies;
+@synthesize baseCurrency = mBaseCurrency;
+@synthesize currencies = mCurrencies;
 
 + (CurrencyManager *)instance
 {
@@ -25,7 +25,7 @@
     nf = [[NSNumberFormatter alloc] init];
     [nf setNumberStyle:NSNumberFormatterCurrencyStyle];
     [nf setLocale:[NSLocale currentLocale]];
-    numberFormatter = nf;
+    mNumberFormatter = nf;
 
     self.currencies =
         [NSArray arrayWithObjects:
@@ -89,17 +89,17 @@
 
 - (void)setBaseCurrency:(NSString *)currency
 {
-    if (baseCurrency != currency) {
-        [baseCurrency release];
-        baseCurrency = currency;
-        [baseCurrency retain];
+    if (mBaseCurrency != currency) {
+        [mBaseCurrency release];
+        mBaseCurrency = currency;
+        [mBaseCurrency retain];
         
         if (currency == nil) {
             currency = [CurrencyManager systemCurrency];
         }
-        [numberFormatter setCurrencyCode:currency];
+        [mNumberFormatter setCurrencyCode:currency];
         
-        [[NSUserDefaults standardUserDefaults] setObject:baseCurrency forKey:@"BaseCurrency"];
+        [[NSUserDefaults standardUserDefaults] setObject:mBaseCurrency forKey:@"BaseCurrency"];
     }
 }
 
@@ -111,7 +111,7 @@
 - (NSString *)_formatCurrency:(double)value
 {
     NSNumber *n = [NSNumber numberWithDouble:value];
-    return [numberFormatter stringFromNumber:n];
+    return [mNumberFormatter stringFromNumber:n];
 }
 
 @end
