@@ -42,29 +42,29 @@
 @interface AssetListViewController : UIViewController
 <DataModelDelegate, UITableViewDelegate, UITableViewDataSource, UIActionSheetDelegate, UIAlertViewDelegate>
 {
-    IBOutlet UITableView *tableView;
-    IBOutlet UIBarButtonItem *barActionButton;
-    IBOutlet UIBarButtonItem *barSumLabel;
+    IBOutlet UITableView *mTableView;
+    IBOutlet UIBarButtonItem *mBarActionButton;
+    IBOutlet UIBarButtonItem *mBarSumLabel;
 
-    BOOL isLoadDone;
-    UIView *loadingView;
-    UIActivityIndicatorView *activityIndicator;
+    BOOL mIsLoadDone;
+    UIView *mLoadingView;
+    UIActivityIndicatorView *mActivityIndicator;
     
-    Ledger *ledger;
+    Ledger *mLedger;
 
-    NSArray *iconArray;
-    BackupServer *backupServer;
+    NSArray *mIconArray;
+    BackupServer *mBackupServer;
 
-    BOOL asDisplaying;
-    UIActionSheet *asActionButton;
-    UIActionSheet *asDelete;
+    BOOL mAsDisplaying;
+    UIActionSheet *mAsActionButton;
+    UIActionSheet *mAsDelete;
 
-    Asset *assetToBeDelete;
+    Asset *mAssetToBeDelete;
     
-    BOOL pinChecked;
+    BOOL mPinChecked;
     
     // for iPad (Split View)
-    IBOutlet TransactionListViewController *splitTransactionListViewController;
+    IBOutlet TransactionListViewController *mSplitTransactionListViewController;
 }
 
 @property(nonatomic,retain) UITableView *tableView;

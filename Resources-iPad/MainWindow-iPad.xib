@@ -175,7 +175,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">splitTransactionListViewController</string>
+						<string key="label">mSplitTransactionListViewController</string>
 						<reference key="source" ref="619226028"/>
 						<reference key="destination" ref="625651060"/>
 					</object>
@@ -392,7 +392,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="barActionButton">UIBarButtonItem</string>
-						<string key="splitTransactionListViewController">TransactionListViewController</string>
+						<string key="mSplitTransactionListViewController">TransactionListViewController</string>
 						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -400,8 +400,8 @@
 							<string key="name">barActionButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="splitTransactionListViewController">
-							<string key="name">splitTransactionListViewController</string>
+						<object class="IBToOneOutletInfo" key="mSplitTransactionListViewController">
+							<string key="name">mSplitTransactionListViewController</string>
 							<string key="candidateClassName">TransactionListViewController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableView">
@@ -434,7 +434,7 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="barActionButton">UIBarButtonItem</string>
 						<string key="barBalanceLabel">UIBarButtonItem</string>
-						<string key="splitAssetListViewController">AssetListViewController</string>
+						<string key="mSplitAssetListViewController">AssetListViewController</string>
 						<string key="tableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -446,8 +446,8 @@
 							<string key="name">barBalanceLabel</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="splitAssetListViewController">
-							<string key="name">splitAssetListViewController</string>
+						<object class="IBToOneOutletInfo" key="mSplitAssetListViewController">
+							<string key="name">mSplitAssetListViewController</string>
 							<string key="candidateClassName">AssetListViewController</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tableView">

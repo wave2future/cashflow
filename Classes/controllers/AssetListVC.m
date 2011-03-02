@@ -47,18 +47,18 @@
 
 @implementation AssetListViewController
 
-@synthesize tableView;
+@synthesize tableView = mTableView;
 
 - (void)viewDidLoad
 {
     //NSLog(@"AssetListViewController:viewDidLoad");
 
     [super viewDidLoad];
-    tableView.rowHeight = 48;
-    pinChecked = NO;
-    asDisplaying = NO;
+    mTableView.rowHeight = 48;
+    mPinChecked = NO;
+    mAsDisplaying = NO;
     
-    ledger = nil;
+    mLedger = nil;
 	
     // title 設定
     self.title = NSLocalizedString(@"Assets", @"");
@@ -90,7 +90,7 @@
     UIImage *icon3 = [UIImage imageWithContentsOfFile:imagePath];
     ASSERT(icon3 != nil);
     
-    iconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
+    mIconArray = [[NSArray alloc] initWithObjects:icon1, icon2, icon3, nil];
 
     if (IS_IPAD) {
         CGSize s = self.contentSizeForViewInPopover;
@@ -99,7 +99,7 @@
     }
     
     // データロード開始
-    isLoadDone = NO;
+    mIsLoadDone = NO;
     [[DataModel instance] startLoad:self];
     
     // ActivityIndicator を表示させる
@@ -114,18 +114,18 @@
     CGRect frame = [parent frame];
     frame.origin.x = 0;
     frame.origin.y = 0;
-    loadingView = [[UIView alloc] initWithFrame:frame];
-    [loadingView setBackgroundColor:[UIColor blackColor]];
-    [loadingView setAlpha:0.5];
-    loadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [parent addSubview:loadingView];
+    mLoadingView = [[UIView alloc] initWithFrame:frame];
+    [mLoadingView setBackgroundColor:[UIColor blackColor]];
+    [mLoadingView setAlpha:0.5];
+    mLoadingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [parent addSubview:mLoadingView];
     
-    activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    [loadingView addSubview:activityIndicator];
-    [activityIndicator setFrame:CGRectMake ((frame.size.width / 2) - 20, (frame.size.height/2)-60, 40, 40)];
-    activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
+    mActivityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    [mLoadingView addSubview:mActivityIndicator];
+    [mActivityIndicator setFrame:CGRectMake ((frame.size.width / 2) - 20, (frame.size.height/2)-60, 40, 40)];
+    mActivityIndicator.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin |
         UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-    [activityIndicator startAnimating]; 
+    [mActivityIndicator startAnimating]; 
 }
 
 #pragma mark DataModelDelegate
@@ -133,8 +133,8 @@
 {
     //NSLog(@"AssetListViewController:dataModelLoaded");
 
-    isLoadDone = YES;
-    ledger = [DataModel ledger];
+    mIsLoadDone = YES;
+    mLedger = [DataModel ledger];
     
     [self performSelectorOnMainThread:@selector(_dataModelLoadedOnMainThread:) withObject:nil waitUntilDone:NO];
 }
@@ -142,8 +142,8 @@
 - (void)_dataModelLoadedOnMainThread:(id)dummy
 {
     // ActivityIndicator を消す
-    [activityIndicator stopAnimating];
-    [loadingView removeFromSuperview];
+    [mActivityIndicator stopAnimating];
+    [mLoadingView removeFromSuperview];
 
     [self reload];
     [self _showInitialAsset];
@@ -156,17 +156,17 @@
     int firstShowAssetIndex = [defaults integerForKey:@"firstShowAssetIndex"];
     
     Asset *asset = nil;
-    if (firstShowAssetIndex >= 0 && [ledger assetCount] > firstShowAssetIndex) {
-        asset = [ledger assetAtIndex:firstShowAssetIndex];
+    if (firstShowAssetIndex >= 0 && [mLedger assetCount] > firstShowAssetIndex) {
+        asset = [mLedger assetAtIndex:firstShowAssetIndex];
     }
-    if (IS_IPAD && asset == nil && [ledger assetCount] > 0) {
-        asset = [ledger assetAtIndex:0];
+    if (IS_IPAD && asset == nil && [mLedger assetCount] > 0) {
+        asset = [mLedger assetAtIndex:0];
     }
 
     // TransactionListView を表示
     if (IS_IPAD) {
-        splitTransactionListViewController.asset = asset;
-        [splitTransactionListViewController reload];
+        mSplitTransactionListViewController.asset = asset;
+        [mSplitTransactionListViewController reload];
     } else if (asset != nil) {
         TransactionListViewController *vc = 
         [[[TransactionListViewController alloc] init] autorelease];
@@ -181,25 +181,25 @@
 }
 
 - (void)dealloc {
-    [tableView release];
-    [iconArray release];
+    [mTableView release];
+    [mIconArray release];
     [super dealloc];
 }
 
 - (void)reload
 {
-    if (!isLoadDone) return;
+    if (!mIsLoadDone) return;
     
-    [ledger rebuild];
-    [tableView reloadData];
+    [mLedger rebuild];
+    [mTableView reloadData];
 
     // 合計欄
     double value = 0.0;
-    for (int i = 0; i < [ledger assetCount]; i++) {
-        value += [[ledger assetAtIndex:i] lastBalance];
+    for (int i = 0; i < [mLedger assetCount]; i++) {
+        value += [[mLedger assetAtIndex:i] lastBalance];
     }
     NSString *lbl = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Total", @""), [CurrencyManager formatCurrency:value]];
-    barSumLabel.title = lbl;
+    mBarSumLabel.title = lbl;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -246,11 +246,11 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (!isLoadDone) return 0;
+    if (!mIsLoadDone) return 0;
     
     switch (section) {
         case 0:
-            return [ledger assetCount];
+            return [mLedger assetCount];
             
         //case 1:
         //    return 1; // 合計欄
@@ -291,13 +291,13 @@
     NSString *label = nil;
 
     if (indexPath.section == 0) {
-        Asset *asset = [ledger assetAtIndex:[self _assetIndex:indexPath]];
+        Asset *asset = [mLedger assetAtIndex:[self _assetIndex:indexPath]];
     
         label = asset.name;
         value = [asset lastBalance];
 
         cell.accessoryType = UITableViewCellAccessoryDetailDisclosureButton;
-        cell.imageView.image = [iconArray objectAtIndex:asset.type];
+        cell.imageView.image = [mIconArray objectAtIndex:asset.type];
     }
 #if 0
     else if (indexPath.section == 1) {
@@ -345,12 +345,12 @@
     [defaults setInteger:assetIndex forKey:@"firstShowAssetIndex"];
     [defaults synchronize];
 	
-    Asset *asset = [ledger assetAtIndex:assetIndex];
+    Asset *asset = [mLedger assetAtIndex:assetIndex];
 
     // TransactionListView を表示
     if (IS_IPAD) {
-        splitTransactionListViewController.asset = asset;
-        [splitTransactionListViewController reload];
+        mSplitTransactionListViewController.asset = asset;
+        [mSplitTransactionListViewController reload];
     } else {
         TransactionListViewController *vc = 
             [[[TransactionListViewController alloc] init] autorelease];
@@ -415,18 +415,18 @@
 {
     if (style == UITableViewCellEditingStyleDelete) {
         int assetIndex = [self _assetIndex:indexPath];
-        assetToBeDelete = [ledger assetAtIndex:assetIndex];
+        mAssetToBeDelete = [mLedger assetAtIndex:assetIndex];
 
-        asDelete =
+        mAsDelete =
             [[UIActionSheet alloc]
                 initWithTitle:NSLocalizedString(@"ReallyDeleteAsset", @"")
                 delegate:self
                 cancelButtonTitle:@"Cancel"
                 destructiveButtonTitle:NSLocalizedString(@"Delete Asset", @"")
                 otherButtonTitles:nil];
-        asDelete.actionSheetStyle = UIActionSheetStyleDefault;
-        [asDelete showInView:self.view];
-        [asDelete release];
+        mAsDelete.actionSheetStyle = UIActionSheetStyleDefault;
+        [mAsDelete showInView:self.view];
+        [mAsDelete release];
     }
 }
 
@@ -436,12 +436,12 @@
         return; // cancelled;
     }
 	
-    [ledger deleteAsset:assetToBeDelete];
+    [mLedger deleteAsset:mAssetToBeDelete];
     
     if (IS_IPAD) {
-        if (splitTransactionListViewController.asset == assetToBeDelete) {
-            splitTransactionListViewController.asset = nil;
-            [splitTransactionListViewController reload];
+        if (mSplitTransactionListViewController.asset == mAssetToBeDelete) {
+            mSplitTransactionListViewController.asset = nil;
+            [mSplitTransactionListViewController reload];
         }
     }
 
@@ -482,10 +482,10 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
 - (void)doAction:(id)sender
 {
-    if (asDisplaying) return;
-    asDisplaying = YES;
+    if (mAsDisplaying) return;
+    mAsDisplaying = YES;
     
-    asActionButton = 
+    mAsActionButton = 
         [[UIActionSheet alloc]
          initWithTitle:@"" delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
@@ -496,11 +496,11 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
          NSLocalizedString(@"Config", @""),
          nil];
     if (IS_IPAD) {
-        [asActionButton showFromBarButtonItem:barActionButton animated:YES];
+        [mAsActionButton showFromBarButtonItem:mBarActionButton animated:YES];
     } else {
-        [asActionButton showInView:[self view]];
+        [mAsActionButton showInView:[self view]];
     }
-    [asActionButton release];
+    [mAsActionButton release];
 }
 
 - (void)_actionActionButton:(NSInteger)buttonIndex
@@ -510,7 +510,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     Backup *backup;
     UIViewController *vc;
     
-    asDisplaying = NO;
+    mAsDisplaying = NO;
     
     switch (buttonIndex) {
         case 0:
@@ -551,12 +551,12 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 // actionSheet ハンドラ
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (as == asActionButton) {
-        asActionButton = nil;
+    if (as == mAsActionButton) {
+        mAsActionButton = nil;
         [self _actionActionButton:buttonIndex];
     }
-    else if (as == asDelete) {
-        asDelete = nil;
+    else if (as == mAsDelete) {
+        mAsDelete = nil;
         [self _actionDelete:buttonIndex];
     }
     else {

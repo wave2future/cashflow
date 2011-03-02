@@ -127,7 +127,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">tableView</string>
+						<string key="label">mTableView</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="188382249"/>
 					</object>
@@ -143,7 +143,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">barActionButton</string>
+						<string key="label">mBarActionButton</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="1036565278"/>
 					</object>
@@ -151,7 +151,7 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">barSumLabel</string>
+						<string key="label">mBarSumLabel</string>
 						<reference key="source" ref="372490531"/>
 						<reference key="destination" ref="507327809"/>
 					</object>
@@ -262,26 +262,26 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="barActionButton">UIBarButtonItem</string>
-						<string key="barSumLabel">UIBarButtonItem</string>
-						<string key="splitTransactionListViewController">TransactionListViewController</string>
-						<string key="tableView">UITableView</string>
+						<string key="mBarActionButton">UIBarButtonItem</string>
+						<string key="mBarSumLabel">UIBarButtonItem</string>
+						<string key="mSplitTransactionListViewController">TransactionListViewController</string>
+						<string key="mTableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="barActionButton">
-							<string key="name">barActionButton</string>
+						<object class="IBToOneOutletInfo" key="mBarActionButton">
+							<string key="name">mBarActionButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="barSumLabel">
-							<string key="name">barSumLabel</string>
+						<object class="IBToOneOutletInfo" key="mBarSumLabel">
+							<string key="name">mBarSumLabel</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="splitTransactionListViewController">
-							<string key="name">splitTransactionListViewController</string>
+						<object class="IBToOneOutletInfo" key="mSplitTransactionListViewController">
+							<string key="name">mSplitTransactionListViewController</string>
 							<string key="candidateClassName">TransactionListViewController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="tableView">
-							<string key="name">tableView</string>
+						<object class="IBToOneOutletInfo" key="mTableView">
+							<string key="name">mTableView</string>
 							<string key="candidateClassName">UITableView</string>
 						</object>
 					</dictionary>
@@ -308,14 +308,14 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="barActionButton">UIBarButtonItem</string>
+						<string key="mBarActionButton">UIBarButtonItem</string>
 						<string key="barBalanceLabel">UIBarButtonItem</string>
 						<string key="splitAssetListViewController">AssetListViewController</string>
-						<string key="tableView">UITableView</string>
+						<string key="mTableView">UITableView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="barActionButton">
-							<string key="name">barActionButton</string>
+						<object class="IBToOneOutletInfo" key="mBarActionButton">
+							<string key="name">mBarActionButton</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="barBalanceLabel">
@@ -326,8 +326,8 @@
 							<string key="name">splitAssetListViewController</string>
 							<string key="candidateClassName">AssetListViewController</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="tableView">
-							<string key="name">tableView</string>
+						<object class="IBToOneOutletInfo" key="mTableView">
+							<string key="name">mTableView</string>
 							<string key="candidateClassName">UITableView</string>
 						</object>
 					</dictionary>
