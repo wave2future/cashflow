@@ -37,7 +37,7 @@
 
 @implementation EditMemoViewController
 
-@synthesize delegate, identifier, text;
+@synthesize delegate = mDelegate, identifier = mIdentifier, text = mText;
 
 + (EditMemoViewController *)editMemoViewController:(id<EditMemoViewDelegate>)delegate title:(NSString*)title identifier:(int)id
 {
@@ -62,7 +62,7 @@
     }
     
     //textView.placeholder = self.title;
-    textView.backgroundColor = [UIColor whiteColor];
+    mTextView.backgroundColor = [UIColor whiteColor];
 	
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -75,14 +75,14 @@
 }
 
 - (void)dealloc {
-    [text release];
+    [mText release];
     [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    textView.text = text;
-    [textView becomeFirstResponder];
+    mTextView.text = mText;
+    [mTextView becomeFirstResponder];
     [super viewWillAppear:animated];
 }
 
@@ -93,8 +93,8 @@
 
 - (void)doneAction
 {
-    self.text = textView.text;
-    [delegate editMemoViewChanged:self identifier:identifier];
+    self.text = mTextView.text;
+    [mDelegate editMemoViewChanged:self identifier:mIdentifier];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

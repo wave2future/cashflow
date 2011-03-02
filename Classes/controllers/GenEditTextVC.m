@@ -37,7 +37,7 @@
 
 @implementation GenEditTextViewController
 
-@synthesize delegate, identifier, text;
+@synthesize delegate = mDelegate, identifier = mIdentifier, text = mText;
 
 + (GenEditTextViewController *)genEditTextViewController:(id<GenEditTextViewDelegate>)delegate title:(NSString*)title identifier:(int)id
 {
@@ -62,7 +62,7 @@
         self.contentSizeForViewInPopover = s;
     }
     
-    textField.placeholder = self.title;
+    mTextField.placeholder = self.title;
 	
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc]
                                                   initWithBarButtonSystemItem:UIBarButtonSystemItemDone
@@ -75,13 +75,13 @@
 }
 
 - (void)dealloc {
-    [text release];
+    [mText release];
     [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
-    textField.text = text;
+    mTextField.text = mText;
     [super viewWillAppear:animated];
 }
 
@@ -92,8 +92,8 @@
 
 - (void)doneAction
 {
-    self.text = textField.text;
-    [delegate genEditTextViewChanged:self identifier:identifier];
+    self.text = mTextField.text;
+    [mDelegate genEditTextViewChanged:self identifier:mIdentifier];
 
     [self.navigationController popViewControllerAnimated:YES];
 }

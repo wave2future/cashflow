@@ -42,11 +42,11 @@
 @end
 
 @interface GenEditTextViewController : UIViewController {
-    IBOutlet UITextField *textField;
+    IBOutlet UITextField *mTextField;
 	
-    id<GenEditTextViewDelegate> delegate;
-    NSString *text;
-    int identifier;
+    id<GenEditTextViewDelegate> mDelegate;
+    NSString *mText;
+    int mIdentifier;
 }
 
 @property(nonatomic,assign) id<GenEditTextViewDelegate> delegate;

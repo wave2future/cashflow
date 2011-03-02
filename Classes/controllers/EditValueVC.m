@@ -32,6 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#if 0 // NOT IN USE
 
 #import <AudioToolbox/AudioToolbox.h>
 
@@ -41,7 +42,7 @@
 
 @implementation EditValueViewController
 
-@synthesize delegate, value;
+@synthesize delegate = mDelegate, value = mValue;
 
 - (id)init
 {
@@ -79,12 +80,12 @@
     [super viewWillAppear:animated];
 	
     NSString *n;
-    if (value == 0.0) {
+    if (mValue == 0.0) {
         n = @"";
-    } else if (value - (int)value == 0.0) {
-        n = [NSString stringWithFormat:@"%.0f", value];
+    } else if (mValue - (int)mValue == 0.0) {
+        n = [NSString stringWithFormat:@"%.0f", mValue];
     } else {
-        n = [NSString stringWithFormat:@"%.2f", value];
+        n = [NSString stringWithFormat:@"%.2f", mValue];
     }
     [numstr setString:n];
 	
@@ -98,8 +99,8 @@
 
 -(void)doneAction
 {
-    value = [numstr doubleValue];
-    [delegate editValueViewChanged:self];
+    mValue = [numstr doubleValue];
+    [mDelegate editValueViewChanged:self];
 
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -215,3 +216,6 @@
 }
 
 @end
+
+#endif
+

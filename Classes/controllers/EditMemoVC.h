@@ -42,11 +42,11 @@
 @end
 
 @interface EditMemoViewController : UIViewController {
-    IBOutlet UITextView *textView;
+    IBOutlet UITextView *mTextView;
 	
-    id<EditMemoViewDelegate> delegate;
-    NSString *text;
-    int identifier;
+    id<EditMemoViewDelegate> mDelegate;
+    NSString *mText;
+    int mIdentifier;
 }
 
 @property(nonatomic,assign) id<EditMemoViewDelegate> delegate;

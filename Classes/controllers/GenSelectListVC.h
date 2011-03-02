@@ -44,11 +44,11 @@
 
 @interface GenSelectListViewController : UITableViewController
 {
-    id<GenSelectListViewDelegate> delegate;
-    int identifier;
+    id<GenSelectListViewDelegate> mDelegate;
+    int mIdentifier;
 	
-    NSArray *items;
-    int selectedIndex;
+    NSArray *mItems;
+    int mSelectedIndex;
 }
 
 @property(nonatomic,assign) id<GenSelectListViewDelegate> delegate;

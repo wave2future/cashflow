@@ -45,14 +45,14 @@
 
 @interface EditTypeViewController : UITableViewController <GenSelectListViewDelegate>
 {
-    id<EditTypeViewDelegate> delegate;
+    id<EditTypeViewDelegate> mDelegate;
 
-    int type;
-    int dst_asset;
+    int mType;
+    int mDstAsset;
 }
 
 @property(nonatomic,assign) id<EditTypeViewDelegate> delegate;
 @property(nonatomic,assign) int type;
-@property(nonatomic,assign) int dst_asset;
+@property(nonatomic,assign) int dstAsset;
 
 @end

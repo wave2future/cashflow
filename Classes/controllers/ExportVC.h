@@ -52,7 +52,7 @@
     ExportCsv *csv;
     ExportOfx *ofx;
 
-    Asset *asset;
+    Asset *mAsset;
 }
 
 @property(nonatomic,assign) Asset *asset;

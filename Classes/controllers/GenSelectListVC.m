@@ -37,7 +37,7 @@
 
 @implementation GenSelectListViewController
 
-@synthesize delegate, items, selectedIndex, identifier;
+@synthesize delegate = mDelegate, items = mItems, selectedIndex = mSelectedIndex, identifier = mIdentifier;
 
 + (GenSelectListViewController *)genSelectListViewController:(id<GenSelectListViewDelegate>)delegate items:(NSArray*)ary title:(NSString*)title identifier:(int)id
 {
@@ -54,7 +54,7 @@
 
 - (void)dealloc
 {
-    [items release];
+    [mItems release];
     [super dealloc];
 }
 
@@ -80,7 +80,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [items count];
+    return [mItems count];
 }
 
 // 行の内容
@@ -98,7 +98,7 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
 		
-    cell.textLabel.text = [items objectAtIndex:indexPath.row];
+    cell.textLabel.text = [mItems objectAtIndex:indexPath.row];
 
     return cell;
 }
@@ -107,7 +107,7 @@
 {
     self.selectedIndex = indexPath.row;
 
-    if ([delegate genSelectListViewChanged:self identifier:identifier]) {
+    if ([mDelegate genSelectListViewChanged:self identifier:mIdentifier]) {
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

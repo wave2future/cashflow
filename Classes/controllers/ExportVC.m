@@ -38,7 +38,7 @@
 
 @implementation ExportVC
 
-@synthesize asset;
+@synthesize asset = mAsset;
 
 - (id)initWithAsset:(Asset *)as
 {
@@ -161,7 +161,7 @@
         if (csv == nil) {
             csv = [[ExportCsv alloc] init];
         }
-        csv.asset = asset;
+        csv.asset = mAsset;
         ex = csv;
         break;
 
@@ -170,7 +170,7 @@
         if (ofx == nil) {
             ofx = [[ExportOfx alloc] init];
         }
-        ofx.asset = asset;
+        ofx.asset = mAsset;
         ex = ofx;
         break;
 //#endif

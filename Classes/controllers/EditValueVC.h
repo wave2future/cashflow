@@ -32,6 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
+#if 0 // NOT IN USE
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -63,8 +64,8 @@
     IBOutlet UIButton *button_8;
     IBOutlet UIButton *button_9;
 
-    id<EditValueViewDelegate> delegate;
-    double value;
+    id<EditValueViewDelegate> mDelegate;
+    double mValue;
 }
 
 @property(nonatomic,assign) id<EditValueViewDelegate> delegate;
@@ -78,3 +79,4 @@
 - (void)updateLabel;
 
 @end
+#endif

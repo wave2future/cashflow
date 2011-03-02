@@ -295,7 +295,7 @@
         editTypeVC = [[[EditTypeViewController alloc] init] autorelease];
         editTypeVC.delegate = self;
         editTypeVC.type = mEditingEntry.transaction.type;
-        editTypeVC.dst_asset = [mEditingEntry dstAsset];
+        editTypeVC.dstAsset = [mEditingEntry dstAsset];
         vc = editTypeVC;
         break;
 
@@ -384,7 +384,7 @@
     // autoPop == NO なので、自分で pop する
     [self.navigationController popToViewController:self animated:YES];
 
-    if (![mEditingEntry changeType:vc.type assetKey:mAsset.pid dstAssetKey:vc.dst_asset]) {
+    if (![mEditingEntry changeType:vc.type assetKey:mAsset.pid dstAssetKey:vc.dstAsset]) {
         return;
     }
 
