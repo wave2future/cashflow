@@ -22,9 +22,9 @@
 
 - (void)dealloc
 {
-    [date release];
-    [description release];
-    [memo release];
+    [mDate release];
+    [mDescription release];
+    [mMemo release];
     [super dealloc];
 }
 

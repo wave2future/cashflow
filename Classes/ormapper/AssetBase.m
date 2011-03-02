@@ -18,7 +18,7 @@
 
 - (void)dealloc
 {
-    [name release];
+    [mName release];
     [super dealloc];
 }
 

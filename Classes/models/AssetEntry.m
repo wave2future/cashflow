@@ -113,9 +113,9 @@
     } else {
         mTransaction.hasBalance = NO;
         if ([self isDstAsset]) {
-            mTransaction.value = -value;
+            mTransaction.value = -mValue;
         } else {
-            mTransaction.value = value;
+            mTransaction.value = mValue;
         }
     }
 }

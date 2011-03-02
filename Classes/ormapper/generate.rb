@@ -165,7 +165,7 @@ EOF
     cdef.members.each do |m|
         type, mem = getObjcType(cdef.types[m])
         if (mem == "retain")
-            fh.puts "    [#{m} release];"
+            fh.puts "    [#{cdef.memberName(m)} release];"
         end
     end
     

@@ -17,8 +17,8 @@
 
 - (void)dealloc
 {
-    [description release];
-    [lastUse release];
+    [mDescription release];
+    [mLastUse release];
     [super dealloc];
 }
 
