@@ -51,21 +51,21 @@
     EditDescViewDelegate, CategoryListViewDelegate,
     UIPopoverControllerDelegate>
 {
-    int transactionIndex;
-    AssetEntry *editingEntry;
-    Asset *asset;
+    int mTransactionIndex;
+    AssetEntry *mEditingEntry;
+    Asset *mAsset;
 
-    BOOL isModified;
+    BOOL mIsModified;
 
-    NSArray *typeArray;
+    NSArray *mTypeArray;
 	
-    UIButton *delButton;
-    UIButton *delPastButton;
+    UIButton *mDelButton;
+    UIButton *mDelPastButton;
 
-    UIActionSheet *asDelPast;
-    UIActionSheet *asCancelTransaction;
+    UIActionSheet *mAsDelPast;
+    UIActionSheet *mAsCancelTransaction;
     
-    UIPopoverController *currentPopoverController;
+    UIPopoverController *mCurrentPopoverController;
 }
 
 @property(nonatomic,assign) Asset *asset;

@@ -39,7 +39,7 @@
 
 @implementation AssetViewController
 
-@synthesize asset;
+//@synthesize asset = mAsset;
 
 #define ROW_NAME  0
 #define ROW_TYPE  1
@@ -78,7 +78,7 @@
 
 - (void)dealloc
 {
-    [delButton release];
+    [mDelButton release];
 	
     [super dealloc];
 }
@@ -86,19 +86,19 @@
 // 処理するトランザクションをロードしておく
 - (void)setAssetIndex:(int)n
 {
-    assetIndex = n;
+    mAssetIndex = n;
 
-    if (asset != nil) {
-        [asset release];
+    if (mAsset != nil) {
+        [mAsset release];
     }
-    if (assetIndex < 0) {
+    if (mAssetIndex < 0) {
         // 新規
-        asset = [[Asset alloc] init];
-        asset.name = @"";
-        asset.sorder = 99999;
+        mAsset = [[Asset alloc] init];
+        mAsset.name = @"";
+        mAsset.sorder = 99999;
     } else {
         // 変更
-        asset = [[DataModel ledger] assetAtIndex:assetIndex];
+        mAsset = [[DataModel ledger] assetAtIndex:mAssetIndex];
     }
 }
 
@@ -107,8 +107,8 @@
 {
     [super viewWillAppear:animated];
 	
-    if (assetIndex >= 0) {
-        [self.view addSubview:delButton];
+    if (mAssetIndex >= 0) {
+        [self.view addSubview:mDelButton];
     }
 		
     [[self tableView] reloadData];
@@ -124,8 +124,8 @@
 {
     [super viewDidDisappear:animated];
 	
-    if (assetIndex >= 0) {
-        [delButton removeFromSuperview];
+    if (mAssetIndex >= 0) {
+        [mDelButton removeFromSuperview];
     }
 }
 
@@ -185,12 +185,12 @@
     switch (indexPath.row) {
     case ROW_NAME:
         name.text = NSLocalizedString(@"Asset Name", @"");
-        value.text = asset.name;
+        value.text = mAsset.name;
         break;
 
     case ROW_TYPE:
         name.text = NSLocalizedString(@"Asset Type", @"");
-        switch (asset.type) {
+        switch (mAsset.type) {
         case ASSET_CASH:
             value.text = NSLocalizedString(@"Cash", @"");
             break;
@@ -224,7 +224,7 @@
     switch (indexPath.row) {
     case ROW_NAME:
         ge = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Asset Name", @"") identifier:0];
-        ge.text = asset.name;
+        ge.text = mAsset.name;
         vc = ge;
         break;
 
@@ -238,7 +238,7 @@
                                         items:typeArray 
                                         title:NSLocalizedString(@"Asset Type", @"")
                                         identifier:0];
-        gt.selectedIndex = asset.type;
+        gt.selectedIndex = mAsset.type;
         vc = gt;
         break;
     }
@@ -251,12 +251,12 @@
 // delegate : 下位 ViewController からの変更通知
 - (void)genEditTextViewChanged:(GenEditTextViewController *)vc identifier:(int)id
 {
-    asset.name = vc.text;
+    mAsset.name = vc.text;
 }
 
 - (BOOL)genSelectListViewChanged:(GenSelectListViewController *)vc identifier:(int)id
 {
-    asset.type = vc.selectedIndex;
+    mAsset.type = vc.selectedIndex;
     return YES;
 }
 
@@ -294,13 +294,13 @@
 {
     Ledger *ledger = [DataModel ledger];
 
-    if (assetIndex < 0) {
-        [ledger addAsset:asset];
-        [asset release];
+    if (mAssetIndex < 0) {
+        [ledger addAsset:mAsset];
+        [mAsset release];
     } else {
-        [ledger updateAsset:asset];
+        [ledger updateAsset:mAsset];
     }
-    asset = nil;
+    mAsset = nil;
 	
     [self.navigationController popViewControllerAnimated:YES];
 }

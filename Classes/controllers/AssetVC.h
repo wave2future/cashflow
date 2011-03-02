@@ -43,13 +43,13 @@
 @interface AssetViewController : UITableViewController 
     <GenEditTextViewDelegate, GenSelectListViewDelegate, UIActionSheetDelegate>
 {
-    int assetIndex;
-    Asset *asset;
+    int mAssetIndex;
+    Asset *mAsset;
 
-    UIButton *delButton;
+    UIButton *mDelButton;
 }
 
-@property(nonatomic,assign) Asset *asset;
+//@property(nonatomic,assign) Asset *asset;
 
 - (void)setAssetIndex:(int)n;
 - (void)saveAction;

@@ -59,7 +59,7 @@
 	
     Asset *mAsset;
 #if FREE_VERSION
-    GADAdViewController *adViewController;
+    GADAdViewController *mAdViewController;
 #endif
     
     BOOL mAsDisplaying;

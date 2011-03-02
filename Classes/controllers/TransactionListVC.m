@@ -89,7 +89,7 @@
     mAsDisplaying = NO;
 
 #if FREE_VERSION
-    adViewController = nil;
+    mAdViewController = nil;
 #endif
 }
 
@@ -98,8 +98,8 @@
     //NSLog(@"TransactionListViewController:viewDidUnload");
 
 #if FREE_VERSION
-    [adViewController release];
-    adViewController = nil;
+    [mAdViewController release];
+    mAdViewController = nil;
 #endif
 }
 
@@ -125,7 +125,7 @@
     [mTableView release];
     [mPopoverController release];
 #if FREE_VERSION
-    [adViewController release];
+    [mAdViewController release];
 #endif
     
     [super dealloc];
@@ -150,7 +150,7 @@
     [self reload];
 
 #if FREE_VERSION
-    if (adViewController == nil) {
+    if (mAdViewController == nil) {
         [self _replaceAd];
     }
 #endif
@@ -172,34 +172,34 @@
     [defaults setInteger:0 forKey:@"ShowAds"];
     [defaults synchronize];
     
-    if (adViewController != nil) {
-        [adViewController.view removeFromSuperview];
-        [adViewController release];
-        adViewController = nil;
+    if (mAdViewController != nil) {
+        [mAdViewController.view removeFromSuperview];
+        [mAdViewController release];
+        mAdViewController = nil;
     }
     
     CGRect frame = mTableView.bounds;
     
     // 画面下部固定で広告を作成する
-    adViewController= [[GADAdViewController alloc] initWithDelegate:self];
+    mAdViewController= [[GADAdViewController alloc] initWithDelegate:self];
     if (IS_IPAD) {
         //adViewController.adSize = kGADAdSize468x60;
-        adViewController.adSize = kGADAdSize320x50;
+        mAdViewController.adSize = kGADAdSize320x50;
     } else {
-        adViewController.adSize = kGADAdSize320x50;
+        mAdViewController.adSize = kGADAdSize320x50;
     }
-    adViewController.autoRefreshSeconds = 180;
+    mAdViewController.autoRefreshSeconds = 180;
     
     NSDictionary *attributes = [AdUtil adAttributes];
     
     @try {
-        [adViewController loadGoogleAd:attributes];
+        [mAdViewController loadGoogleAd:attributes];
     }
     @catch (NSException * e) {
         NSLog(@"loadGoogleAd: exception: %@", [e description]);
     }
     
-    UIView *adView = adViewController.view;
+    UIView *adView = mAdViewController.view;
     float adViewWidth = [adView bounds].size.width;
     float adViewHeight = [adView bounds].size.height;
     
