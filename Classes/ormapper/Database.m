@@ -32,8 +32,6 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "AppDelegate.h"
-#import "DateFormatter2.h"
 #import "Database.h"
 
 @implementation Database

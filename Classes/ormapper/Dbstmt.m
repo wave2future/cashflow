@@ -32,9 +32,7 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#import "AppDelegate.h"
-#import "DateFormatter2.h"
-#import "Dbstmt.h"
+#import "Database.h"
 
 @implementation dbstmt
 
