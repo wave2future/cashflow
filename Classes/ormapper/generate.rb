@@ -37,7 +37,7 @@ $LOAD_PATH.push(File.expand_path(File.dirname($0)))
 
 require "schema.rb"
 
-VER = "0.1(cashflow)"
+VER = "0.2"
 PKEY = "key"
 
 def getObjcType(type)
@@ -85,8 +85,8 @@ def generateHeader(cdef, fh)
 EOF
 
     cdef.members.each do |m|
-        type, mem = getObjcType(cdef.types[m])
-        fh.puts "    #{type} #{cdef.memberName(m)};"
+        type, mem = getObjcType(m.type)
+        fh.puts "    #{type} #{m.memberName};"
     end
 
     fh.puts <<EOF
@@ -95,8 +95,8 @@ EOF
 EOF
     
     cdef.members.each do |m|
-        type, mem = getObjcType(cdef.types[m])
-        fh.puts "@property(nonatomic,#{mem}) #{type} #{m};"
+        type, mem = getObjcType(m.type)
+        fh.puts "@property(nonatomic,#{mem}) #{type} #{m.propertyName};"
     end
 
     fh.puts <<EOF
@@ -147,7 +147,7 @@ def generateImplementation(cdef, fh)
 EOF
 
     cdef.members.each do |m|
-        fh.puts "@synthesize #{m} = #{cdef.memberName(m)};"
+        fh.puts "@synthesize #{m.propertyName} = #{m.memberName};"
     end
     fh.puts
 
@@ -163,9 +163,9 @@ EOF
 EOF
     
     cdef.members.each do |m|
-        type, mem = getObjcType(cdef.types[m])
+        type, mem = getObjcType(m.type)
         if (mem == "retain")
-            fh.puts "    [#{cdef.memberName(m)} release];"
+            fh.puts "    [#{m.memberName} release];"
         end
     end
     
@@ -185,7 +185,7 @@ EOF
 EOF
 
     cdef.members.each do |m|
-        fh.puts "        @\"#{m}\", @\"#{cdef.types[m]}\","
+        fh.puts "        @\"#{m.columnName}\", @\"#{m.type}\","
     end
 
     fh.puts <<EOF
@@ -283,9 +283,9 @@ EOF
 
     i = 1
     cdef.members.each do |m|
-        type = cdef.types[m]
+        type = m.type
         method = "col" + getMethodType(type)
-        fh.puts "    self.#{m} = [stmt #{method}:#{i}];"
+        fh.puts "    self.#{m.propertyName} = [stmt #{method}:#{i}];"
         i += 1
     end
     
@@ -315,8 +315,8 @@ EOF
 
     i = 0
     cdef.members.each do |m|
-        method = "bind" + getMethodType(cdef.types[m])
-        fh.puts "    [stmt #{method}:#{i} val:#{cdef.memberName(m)}];"
+        method = "bind" + getMethodType(m.type)
+        fh.puts "    [stmt #{method}:#{i} val:#{m.memberName}];"
         i += 1
     end
 
@@ -349,15 +349,15 @@ EOF
         else
             fh.print ","
         end
-        fh.puts "#{m} = ?\""
+        fh.puts "#{m.columnName} = ?\""
     end
     
     fh.puts "        \" WHERE #{PKEY} = ?;\"];"
 
     i = 0
     cdef.members.each do |m|
-        method = "bind" + getMethodType(cdef.types[m])
-        fh.puts "    [stmt #{method}:#{i} val:#{cdef.memberName(m)}];"
+        method = "bind" + getMethodType(m.type)
+        fh.puts "    [stmt #{method}:#{i} val:#{m.memberName}];"
         i += 1
     end
     fh.puts <<EOF
