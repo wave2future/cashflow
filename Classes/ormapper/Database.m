@@ -38,53 +38,149 @@
 
 @implementation Database
 
-@synthesize needFixDateFormat;
+@synthesize handle;
+
+/** Singleton */
+static Database *sDatabase = nil;
 
 /**
    Return the database instance (singleton)
 */
 + (Database *)instance
 {
-    Database *db = (Database *)[super instance];
-    if (db == nil) {
-        db = [[Database alloc] init];
-        [super setSingletonInstance:db];
-    }
-    return db;
+    return sDatabase;
+}
+
++ (void)shutdown
+{
+    [sDatabase release];
+    sDatabase = nil;
 }
 
 - (id)init
 {
     self = [super init];
-    
-    needFixDateFormat = false;
-	
-    dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
-    
-    // Set US locale, because JP locale for date formatter is buggy,
-    // especially for 12 hour settings.
-    NSLocale *us = [[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease];
-    [dateFormatter setLocale:us];
-
-    // backward compat.
-    dateFormatter2 = [[DateFormatter2 alloc] init];
-    [dateFormatter2 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter2 setDateFormat: @"yyyyMMddHHmm"];
-    
-    // for broken data...
-    dateFormatter3 = [[DateFormatter2 alloc] init];
-    [dateFormatter3 setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
-    [dateFormatter3 setDateFormat: @"yyyyMMdd"];
-    
+    if (self != nil) {
+        mHandle = nil;
+    }
     return self;
 }
 
 - (void)dealloc
 {
-    [dateFormatter release];
+    //ASSERT(self == theDatabase);
+    sDatabase = nil;
+
+    if (mHandle != nil) {
+        sqlite3_close(mHandle);
+    }
     [super dealloc];
+}
+
+/**
+   Open database
+
+   @return Returns YES if database exists, otherwise create database and returns NO.
+*/
+- (BOOL)open:(NSString *)dbname
+{
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+
+    // Load from DB
+    NSString *dbPath = [self dbPath:dbname];
+    BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
+
+    if (sqlite3_open([dbPath UTF8String], &mHandle) != 0) {
+        // ouch!
+        // re-create database
+        [fileManager removeItemAtPath:dbPath error:NULL];
+        sqlite3_open([dbPath UTF8String], &mHandle);
+
+        isExistedDb = NO;
+    }
+
+    NSLog(@"Database:open: %d", isExistedDb);
+    return isExistedDb;
+}
+
+/**
+   Execute SQL statement
+*/
+- (void)exec:(NSString *)sql
+{
+    //ASSERT(mHandle != 0);
+
+    //LOG(@"SQL: %s", sql);
+    int result = sqlite3_exec(mHandle, [sql UTF8String], NULL, NULL, NULL);
+    if (result != SQLITE_OK) {
+        //LOG(@"sqlite3: %s", sqlite3_errmsg(mHandle));
+    }
+}
+
+/**
+   Prepare statement
+
+   @param[in] sql SQL statement
+   @return dbstmt instance
+*/
+- (dbstmt *)prepare:(NSString *)sql
+{
+    sqlite3_stmt *stmt;
+    int result = sqlite3_prepare_v2(mHandle, [sql UTF8String], -1, &stmt, NULL);
+    if (result != SQLITE_OK) {
+        //LOG(@"sqlite3: %s", sqlite3_errmsg(mHandle));
+        //ASSERT(0);
+    }
+
+    dbstmt *dbs = [[[dbstmt alloc] initWithStmt:stmt] autorelease];
+    dbs.mHandle = self.mHandle;
+    return dbs;
+}
+
+/**
+   Get last inserted row id
+*/
+- (int)lastInsertRowId
+{
+    return sqlite3_last_insert_rowid(mHandle);
+}
+
+/**
+   Start transaction
+*/
+- (void)beginTransaction
+{
+    [self exec:@"BEGIN;"];
+}
+
+/**
+   Commit transaction
+*/
+- (void)commitTransaction
+{
+    [self exec:@"COMMIT;"];
+}
+
+/**
+   Rollback transaction
+*/
+- (void)rollbackTransaction
+{
+    [self exec:@"ROLLBACK;"];
+}
+
+/**
+   Return database file name
+*/
+- (NSString*)dbPath:(NSString *)dbname
+{
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    
+    NSString *dataDir = [paths objectAtIndex:0];
+    NSString *dbPath = [dataDir stringByAppendingPathComponent:dbname];
+    NSLog(@"dbPath = %@", dbPath);
+
+    return dbPath;
 }
 
 #pragma mark -
@@ -92,30 +188,14 @@
 
 - (NSDate *)dateFromString:(NSString *)str
 {
-    NSDate *date = nil;
-    
-    if ([str length] == 14) { // yyyyMMddHHmmss
-        date = [dateFormatter dateFromString:str];
-    }
-    if (date == nil) {
-        // backward compat.
-        needFixDateFormat = true;
-        date = [dateFormatter2 dateFromString:str];
-
-        if (date == nil) {
-            date = [dateFormatter3 dateFromString:str];
-        }
-        if (date == nil) {
-            date = [dateFormatter dateFromString:@"20000101000000"]; // fallback
-        }
-    }
-    return date;
+    // You must override this!
+    return nil;
 }
 
 - (NSString *)stringFromDate:(NSDate *)date
 {
-    NSString *str = [dateFormatter stringFromDate:date];
-    return str;
+    // You must override this!
+    return nil;
 }
 
 @end
