@@ -38,35 +38,24 @@
 
 @implementation Database
 
-@synthesize handle, needFixDateFormat;
-
-static Database *theDatabase = nil;
+@synthesize needFixDateFormat;
 
 /**
    Return the database instance (singleton)
 */
 + (Database *)instance
 {
-    if (!theDatabase) {
-        theDatabase = [[Database alloc] init];
+    Database *db = (Database *)[super instance];
+    if (db == nil) {
+        db = [[Database alloc] init];
+        [super setSingletonInstance:db];
     }
-    return theDatabase;
-}
-
-+ (void)shutdown
-{
-    [theDatabase release];
-    theDatabase = nil;
-
-    //sqlite3_shutdown();
+    return db;
 }
 
 - (id)init
 {
     self = [super init];
-    if (self != nil) {
-        handle = 0;
-    }
     
     needFixDateFormat = false;
 	
@@ -94,122 +83,8 @@ static Database *theDatabase = nil;
 
 - (void)dealloc
 {
-    //ASSERT(self == theDatabase);
-    theDatabase = nil;
-
-    if (handle != nil) {
-        sqlite3_close(handle);
-    }
-
     [dateFormatter release];
-
     [super dealloc];
-}
-
-/**
-   Open database
-
-   @return Returns YES if database exists, otherwise create database and returns NO.
-*/
-- (BOOL)open:(NSString *)dbname
-{
-    NSFileManager *fileManager = [NSFileManager defaultManager];
-
-    // Load from DB
-    NSString *dbPath = [self dbPath:dbname];
-    BOOL isExistedDb = [fileManager fileExistsAtPath:dbPath];
-
-    if (sqlite3_open([dbPath UTF8String], &handle) != 0) {
-        // ouch!
-        // re-create database
-        [fileManager removeItemAtPath:dbPath error:NULL];
-        sqlite3_open([dbPath UTF8String], &handle);
-
-        isExistedDb = NO;
-    }
-
-    NSLog(@"Database:open: %d", isExistedDb);
-    return isExistedDb;
-}
-
-/**
-   Execute SQL statement
-*/
-- (void)exec:(NSString *)sql
-{
-    //ASSERT(handle != 0);
-
-    //LOG(@"SQL: %s", sql);
-    int result = sqlite3_exec(handle, [sql UTF8String], NULL, NULL, NULL);
-    if (result != SQLITE_OK) {
-        //LOG(@"sqlite3: %s", sqlite3_errmsg(handle));
-    }
-}
-
-/**
-   Prepare statement
-
-   @param[in] sql SQL statement
-   @return dbstmt instance
-*/
-- (dbstmt *)prepare:(NSString *)sql
-{
-    sqlite3_stmt *stmt;
-    int result = sqlite3_prepare_v2(handle, [sql UTF8String], -1, &stmt, NULL);
-    if (result != SQLITE_OK) {
-        //LOG(@"sqlite3: %s", sqlite3_errmsg(handle));
-        //ASSERT(0);
-    }
-
-    dbstmt *dbs = [[[dbstmt alloc] initWithStmt:stmt] autorelease];
-    dbs.handle = self.handle;
-    return dbs;
-}
-
-/**
-   Get last inserted row id
-*/
-- (int)lastInsertRowId
-{
-    return sqlite3_last_insert_rowid(handle);
-}
-
-/**
-   Start transaction
-*/
-- (void)beginTransaction
-{
-    [self exec:@"BEGIN;"];
-}
-
-/**
-   Commit transaction
-*/
-- (void)commitTransaction
-{
-    [self exec:@"COMMIT;"];
-}
-
-/**
-   Rollback transaction
-*/
-- (void)rollbackTransaction
-{
-    [self exec:@"ROLLBACK;"];
-}
-
-/**
-   Return database file name
-*/
-- (NSString*)dbPath:(NSString *)dbname
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    
-    NSString *dataDir = [paths objectAtIndex:0];
-    NSString *dbPath = [dataDir stringByAppendingPathComponent:dbname];
-    NSLog(@"dbPath = %@", dbPath);
-
-    return dbPath;
 }
 
 #pragma mark -

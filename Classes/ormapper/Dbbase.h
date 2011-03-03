@@ -38,22 +38,34 @@
 #import <sqlite3.h>
 
 #import "DateFormatter2.h" // backward compat.
-#import "Dbbase.h"
+#import "Dbstmt.h"
 
 /**
-   Wrapper class of sqlite3 database
+   Wrapper class of sqlite3 database (base class)
 */
-@interface Database : Dbbase {
-    NSDateFormatter *dateFormatter;
-    DateFormatter2 *dateFormatter2;
-    NSDateFormatter *dateFormatter3;
-    
-    BOOL needFixDateFormat;
+@interface Dbbase : NSObject {
+    sqlite3 *mHandle; ///< Database handle
 }
 
-@property(nonatomic,readonly) BOOL needFixDateFormat;
+@property(nonatomic,readonly) sqlite3 *handle;
 
-+ (Database*)instance;
++ (Dbbase*)instance;
++ (void)setSingletonInstance:(Dbbase*)db;
++ (void)shutdown;
+
+- (id)init;
+- (void)dealloc;
+
+- (void)exec:(NSString *)sql;
+- (dbstmt*)prepare:(NSString *)sql;
+- (int)lastInsertRowId;
+
+- (void)beginTransaction;
+- (void)commitTransaction;
+- (void)rollbackTransaction;
+
+- (NSString *)dbPath:(NSString *)dbname;
+- (BOOL)open:(NSString *)dbname;
 
 // utilities
 - (NSDate*)dateFromString:(NSString *)str;

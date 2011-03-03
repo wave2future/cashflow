@@ -46,7 +46,7 @@
     self = [super init];
     if (self != nil) {
         mStmt = stmt;
-        mDb = [Database instance];
+        mDb = [Dbbase instance];
     }
     return self;
 }
