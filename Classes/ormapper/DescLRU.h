@@ -24,11 +24,15 @@
 - (void)_insert;
 - (void)_update;
 
-// Read operations
+// Read operations (Finder)
 + (DescLRU *)find:(int)pid;
-+ (NSMutableArray *)find_cond:(NSString *)cond;
+//+ (DescLRU *)find_first:(NSString *)cond;
+
++ (NSMutableArray *)find_all:(NSString *)cond;
+
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (NSMutableArray *)find_stmt:(dbstmt *)cond;
++ (DescLRU *)find_first_stmt:(dbstmt *)cond;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
 
 // Delete operations
 - (void)delete;

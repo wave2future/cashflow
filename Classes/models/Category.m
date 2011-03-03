@@ -63,7 +63,7 @@
 -(void)reload
 {
     [mCategories release];
-    mCategories = [Category find_cond:@"ORDER BY sorder"];
+    mCategories = [Category find_all:@"ORDER BY sorder"];
     [mCategories retain];
 }
 

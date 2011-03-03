@@ -26,11 +26,15 @@
 - (void)_insert;
 - (void)_update;
 
-// Read operations
+// Read operations (Finder)
 + (AssetBase *)find:(int)pid;
-+ (NSMutableArray *)find_cond:(NSString *)cond;
+//+ (AssetBase *)find_first:(NSString *)cond;
+
++ (NSMutableArray *)find_all:(NSString *)cond;
+
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (NSMutableArray *)find_stmt:(dbstmt *)cond;
++ (AssetBase *)find_first_stmt:(dbstmt *)cond;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
 
 // Delete operations
 - (void)delete;

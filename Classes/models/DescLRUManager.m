@@ -49,7 +49,7 @@
     }
     
     // okay, we need to migrate...
-    ary = [Transaction find_cond:@"ORDER BY date DESC LIMIT 100"];
+    ary = [Transaction find_all:@"ORDER BY date DESC LIMIT 100"];
     for (Transaction *t in ary) {
         [self addDescLRU:t.description category:t.category date:t.date];
     }
@@ -68,7 +68,7 @@
     // find desc LRU from history
     dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ?"];
     [stmt bindString:0 val:description];
-    NSMutableArray *ary = [DescLRU find_stmt:stmt];
+    NSMutableArray *ary = [DescLRU find_all_stmt:stmt];
 
     DescLRU *lru;
     if ([ary count] > 0) {
@@ -89,11 +89,11 @@
 
     if (category < 0) {
         // 全検索
-        ary = [DescLRU find_cond:@"ORDER BY lastUse DESC LIMIT 100"];
+        ary = [DescLRU find_all:@"ORDER BY lastUse DESC LIMIT 100"];
     } else {
         dbstmt *stmt = [DescLRU gen_stmt:@"WHERE category = ? ORDER BY lastUse DESC LIMIT 100"];
         [stmt bindInt:0 val:category];
-        ary = [DescLRU find_stmt:stmt];
+        ary = [DescLRU find_all_stmt:stmt];
     }
     return ary;
 }

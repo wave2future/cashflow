@@ -62,7 +62,7 @@
     if (mEntries) {
         [mEntries release];
     }
-    mEntries = [Transaction find_cond:@"ORDER BY date, key"];
+    mEntries = [Transaction find_all:@"ORDER BY date, key"];
     [mEntries retain];
     
     // upgrade data

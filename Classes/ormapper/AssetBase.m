@@ -63,27 +63,32 @@
 
     dbstmt *stmt = [db prepare:@"SELECT * FROM Assets WHERE key = ?;"];
     [stmt bindInt:0 val:pid];
-    if ([stmt step] != SQLITE_ROW) {
-        return nil;
-    }
 
-    AssetBase *e = [self allocator];
-    [e _loadRow:stmt];
- 
-    return e;
+    return [self find_first_stmt:stmt];
 }
 
 /**
-  @brief get all records matche the conditions
+  Get first record matches the conditions
 
   @param cond Conditions (WHERE phrase and so on)
   @return array of records
 */
-+ (NSMutableArray *)find_cond:(NSString *)cond
++ (AssetBase *)find_first:(NSString *)cond
 {
     dbstmt *stmt = [self gen_stmt:cond];
-    NSMutableArray *array = [self find_stmt:stmt];
-    return array;
+    return  [self find_first_stmt:stmt];
+}
+
+/**
+  Get all records match the conditions
+
+  @param cond Conditions (WHERE phrase and so on)
+  @return array of records
+*/
++ (NSMutableArray *)find_all:(NSString *)cond
+{
+    dbstmt *stmt = [self gen_stmt:cond];
+    return  [self find_all_stmt:stmt];
 }
 
 /**
@@ -105,12 +110,28 @@
 }
 
 /**
-  @brief get all records matche the conditions
+  Get first record matches the conditions
 
   @param stmt Statement
   @return array of records
 */
-+ (NSMutableArray *)find_stmt:(dbstmt *)stmt
++ (AssetBase *)find_first_stmt:(dbstmt *)stmt
+{
+    if ([stmt step] == SQLITE_ROW) {
+        AssetBase *e = [self allocator];
+        [e _loadRow:stmt];
+        return e;
+    }
+    return nil;
+}
+
+/**
+  Get all records match the conditions
+
+  @param stmt Statement
+  @return array of records
+*/
++ (NSMutableArray *)find_all_stmt:(dbstmt *)stmt
 {
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 

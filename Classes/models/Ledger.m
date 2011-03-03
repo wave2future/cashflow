@@ -43,7 +43,7 @@
 
 - (void)load
 {
-    self.assets = [Asset find_cond:@"ORDER BY sorder"];
+    self.assets = [Asset find_all:@"ORDER BY sorder"];
 }
 
 - (void)rebuild

@@ -111,7 +111,7 @@
 */
 + (NSMutableArray *)find_all
 {
-    return [self find_cond:nil];
+    return [self find_all:nil];
 }
 
 /**
@@ -122,7 +122,7 @@
 
    @note You must override this.
 */
-+ (NSMutableArray *)find_cond:(NSString *)cond
++ (NSMutableArray *)find_all:(NSString *)cond
 {
     return nil;
 }

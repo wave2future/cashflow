@@ -34,11 +34,15 @@
 - (void)_insert;
 - (void)_update;
 
-// Read operations
+// Read operations (Finder)
 + (TransactionBase *)find:(int)pid;
-+ (NSMutableArray *)find_cond:(NSString *)cond;
+//+ (TransactionBase *)find_first:(NSString *)cond;
+
++ (NSMutableArray *)find_all:(NSString *)cond;
+
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (NSMutableArray *)find_stmt:(dbstmt *)cond;
++ (TransactionBase *)find_first_stmt:(dbstmt *)cond;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
 
 // Delete operations
 - (void)delete;
