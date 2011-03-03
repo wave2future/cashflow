@@ -186,16 +186,28 @@ static Database *sDatabase = nil;
 #pragma mark -
 #pragma mark Utilities
 
+- (NSDateFormatter *)dateFormatter
+{
+    static NSDateFormatter *dateFormatter = nil;
+    if (dateFormatter == nil) {
+        dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"]];
+        [dateFormatter setDateFormat: @"yyyyMMddHHmmss"];
+        [dateFormatter setLocale:[[[NSLocale alloc] initWithLocaleIdentifier:@"US"] autorelease]];
+    }
+    return dateFormatter;
+}
+
 - (NSDate *)dateFromString:(NSString *)str
 {
-    // You must override this!
-    return nil;
+    // default impl.
+    return [[self dateFormatter] dateFromString:str];
 }
 
 - (NSString *)stringFromDate:(NSDate *)date
 {
-    // You must override this!
-    return nil;
+    // default impl.
+    return [[self dateFormatter] dateFormatter stringFromDate:str];
 }
 
 @end

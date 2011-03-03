@@ -44,7 +44,7 @@
 */
 @interface dbstmt : NSObject {
     sqlite3_stmt *mStmt;	///< sqlite3_stmt handle.
-    Dbbase *mDb; ///< Database class handle
+    Database *mDb; ///< Database class handle
 }
 
 - (id)initWithStmt:(sqlite3_stmt *)st;

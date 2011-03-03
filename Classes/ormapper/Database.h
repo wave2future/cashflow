@@ -37,7 +37,6 @@
 #import <UIKit/UIKit.h>
 #import <sqlite3.h>
 
-#import "DateFormatter2.h" // backward compat.
 #import "Dbstmt.h"
 
 /**
@@ -68,6 +67,7 @@
 - (BOOL)open:(NSString *)dbname;
 
 // utilities
+- (NSDateFormatter *)dateFormatter;
 - (NSDate*)dateFromString:(NSString *)str;
 - (NSString *)stringFromDate:(NSDate*)date;
 
