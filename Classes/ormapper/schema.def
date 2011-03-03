@@ -1,3 +1,5 @@
+PKEY = key
+
 Assets:AssetBase
 	name :TEXT
         type :INTEGER

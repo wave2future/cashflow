@@ -1,7 +1,7 @@
 #!/usr/bin/ruby
 
 =begin
-  O/R Mapper library for iPhone
+  O/R Mapper library for Android
 
   Copyright (c) 2010, Takuya Murakami. All rights reserved.
 
@@ -34,28 +34,40 @@
 =end
 
 class MemberVar
-    attr_reader :type, :columnName, :propertyName, :memberName
+    attr_reader :type, :fieldName, :memberName
+    attr_reader :getter, :setter, :propName
 
-    def initialize(type, propertyName, columnName = nil)
+    def initialize(type, name, fieldName = nil)
         @type = type
-        @propertyName = propertyName
-        if (columnName != nil)
-            @columnName = columnName
+
+        @getter = camelCase(name)
+        @setter = "set" + CamelCase(name)
+        @propName = @getter
+
+        @memberName = "m" + CamelCase(name)
+
+        if (fieldName != nil)
+            @fieldName = fieldName
         else
-            @columnName = @propertyName
-        end	
-        @memberName = "m" + camelCase(@propertyName)
+            @fieldName = name
+        end
+
     end
 
     private
     def camelCase(name)
+        name = name.gsub(/_./) { |x| x.gsub(/_/, "").upcase }
+        return name
+    end 
+
+    def CamelCase(name)
         name = name.gsub(/^./) { |x| x.upcase }
         name = name.gsub(/_./) { |x| x.gsub(/_/, "").upcase }
         return name
     end 
 
     def dump
-        puts "  #{@type}: #{@columnName} => #{@propertyName}"
+        puts "  #{@type}: #{@fieldName} => #{@propertyName}"
     end
 end
 
@@ -79,9 +91,11 @@ end
 
 class Schema
     attr_reader :defs
+    attr_reader :vers
 
     def initialize
         @defs = Array.new
+        @vers = Hash.new
     end
 
     def loadFromFile(filename)
@@ -91,8 +105,22 @@ class Schema
 
             fh.each do |line|
                 line.chop!
-                
-                if (line =~ /^\S/)
+
+                # remove comment
+                line.gsub!(/#.*$/, "")
+
+                if (line =~ /^\s*$/)
+                   # empty line
+                   next                   
+
+                elsif (line =~ /^(\S+)\s*=\s*(\S+)/)
+                    # variable def.
+                    name = $1
+                    value = $2
+                    @vers[name] = value
+
+                elsif (line =~ /^\S/)
+                    # start class def
                     name = bcname = rcname = nil
                     if (line =~ /(.*)\s*:\s*(.*)\s*,\s*(.*)/)
                         name = $1
@@ -138,3 +166,5 @@ class Schema
         end
     end
 end
+
+        
