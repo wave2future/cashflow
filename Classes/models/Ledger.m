@@ -84,7 +84,7 @@
 - (void)addAsset:(Asset *)as
 {
     [mAssets addObject:as];
-    [as insert];
+    [as save];
 }
 
 - (void)deleteAsset:(Asset *)as
@@ -100,7 +100,7 @@
 
 - (void)updateAsset:(Asset*)asset
 {
-    [asset update];
+    [asset save];
 }
 
 - (void)reorderAsset:(int)from to:(int)to
@@ -116,7 +116,7 @@
     for (int i = 0; i < [mAssets count]; i++) {
         as = [mAssets objectAtIndex:i];
         as.sorder = i;
-        [as update];
+        [as save];
     }
     [db commitTransaction];
 }

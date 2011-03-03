@@ -86,7 +86,7 @@
                 t.value = t.balance - balance;
                 if (t.value != oldval) {
                     // 金額が変更された場合、DBを更新
-                    [t update];
+                    [t save];
                 }
                 balance = t.balance;
 
@@ -113,7 +113,7 @@
 
 - (void)updateInitialBalance
 {
-    [self update];
+    [self save];
 }
 
 ////////////////////////////////////////////////////////////////////////////
@@ -224,7 +224,7 @@
         as.type = ASSET_CASH;
         as.initialBalance = 0;
         as.sorder = 0;
-        [as insert];
+        [as save];
     }
     return ret;
 }

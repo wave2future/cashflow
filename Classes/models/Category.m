@@ -109,13 +109,13 @@
 
     [self renumber];
 
-    [c insert];
+    [c save];
     return c;
 }
 
 -(void)updateCategory:(Category*)category
 {
-    [category update];
+    [category save];
 }
 
 -(void)deleteCategoryAtIndex:(int)index
@@ -143,7 +143,7 @@
     for (i = 0; i < max; i++) {
         Category *c = [mCategories objectAtIndex:i];
         c.sorder = i;
-        [c update];
+        [c save];
     }
 }
 

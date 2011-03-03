@@ -121,21 +121,21 @@
     return n;
 }
 
-- (void)insert
+- (void)_insert
 {
-    [super insert];
+    [super _insert];
     [DescLRUManager addDescLRU:self.description category:self.category];
 }
 
-- (void)update
+- (void)_update
 {
-    [super update];
+    [super _update];
     [DescLRUManager addDescLRU:self.description category:self.category];
 }
 
 - (void)updateWithoutUpdateLRU
 {
-    [super update];
+    [super _update];
 }
 
 @end

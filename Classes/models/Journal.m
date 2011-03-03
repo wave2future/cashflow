@@ -101,7 +101,7 @@
 
     // 挿入
     [mEntries insertObject:tr atIndex:i];
-    [tr insert];
+    [tr save];
 
     // 上限チェック
     if ([mEntries count] > MAX_TRANSACTIONS) {
@@ -119,7 +119,7 @@
     to.pid = from.pid;
 
     // update DB
-    [to update];
+    [to save];
 
     int idx = [mEntries indexOfObject:from];
     [mEntries replaceObjectAtIndex:idx withObject:to];
@@ -174,7 +174,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     }
 
     // データベース書き換え
-    [t update];
+    [t save];
     return NO;
 }
 
