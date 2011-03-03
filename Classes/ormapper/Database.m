@@ -201,7 +201,11 @@ static Database *sDatabase = nil;
 - (NSDate *)dateFromString:(NSString *)str
 {
     // default impl.
-    return [[self dateFormatter] dateFromString:str];
+    NSDate *date = [[self dateFormatter] dateFromString:str];
+    if (date == nil) {
+        date = [dateFormatter dateFromString:@"20000101000000"]; // fallback
+    }
+    return date;
 }
 
 - (NSString *)stringFromDate:(NSDate *)date

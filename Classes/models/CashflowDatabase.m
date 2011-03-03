@@ -33,21 +33,11 @@
 */
 
 #import "AppDelegate.h"
-#import "DateFormatter2.h"
-#import "Database.h"
+#import "CashflowDatabase.h"
 
 @implementation CashflowDatabase
 
 @synthesize needFixDateFormat;
-
-/**
-   Return the database instance (singleton)
-*/
-+ (void)initialize
-{
-    CashflowDatabase *db = [[CashflowDatabase alloc] init];
-    [super setSingletonInstance:db];
-}
 
 - (id)init
 {
@@ -86,6 +76,7 @@
 #pragma mark -
 #pragma mark Utilities
 
+// Override
 - (NSDate *)dateFromString:(NSString *)str
 {
     NSDate *date = nil;
@@ -108,6 +99,7 @@
     return date;
 }
 
+// Override
 - (NSString *)stringFromDate:(NSDate *)date
 {
     NSString *str = [dateFormatter stringFromDate:date];

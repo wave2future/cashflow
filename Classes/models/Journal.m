@@ -65,7 +65,7 @@
     [mEntries retain];
     
     // upgrade data
-    Database *db = [Database instance];
+    CashflowDatabase *db = (CashflowDatabase *)[Database instance];
     if (db.needFixDateFormat) {
         [self _sortByDate];
         

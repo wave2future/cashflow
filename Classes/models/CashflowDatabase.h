@@ -38,7 +38,7 @@
 #import <sqlite3.h>
 
 #import "DateFormatter2.h" // backward compat.
-#import "Dbbase.h"
+#import "Database.h"
 
 /**
    Wrapper class of sqlite3 database

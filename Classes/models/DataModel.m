@@ -37,6 +37,7 @@
 
 #import "AppDelegate.h"
 #import "DataModel.h"
+#import "CashflowDatabase.h"
 #import "Config.h"
 #import "DescLRUManager.h"
 
@@ -130,7 +131,8 @@ static DataModel *theDataModel = nil;
 
 - (void)load
 {
-    Database *db = [Database instance];
+    Database *db = [[CashflowDatabase alloc] init];
+    [Database setSingletonInstance:db];
 
     // Load from DB
     if (![db open:DBNAME]) {
