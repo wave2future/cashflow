@@ -91,7 +91,7 @@
 //
 - (BOOL)isDstAsset
 {
-    if (mTransaction.type == TYPE_TRANSFER && mAssetKey == mTransaction.dst_asset) {
+    if (mTransaction.type == TYPE_TRANSFER && mAssetKey == mTransaction.dstAsset) {
         return YES;
     }
 
@@ -191,7 +191,7 @@
         double ev = self.evalue;
         mTransaction.type = type;
         mTransaction.asset = as;
-        mTransaction.dst_asset = -1;
+        mTransaction.dstAsset = -1;
         self.evalue = ev;
     }
     return YES;
@@ -209,7 +209,7 @@
         return mTransaction.asset;
     }
 
-    return mTransaction.dst_asset;
+    return mTransaction.dstAsset;
 }
 
 - (void)setDstAsset:(int)as
@@ -222,7 +222,7 @@
     if ([self isDstAsset]) {
         mTransaction.asset = as;
     } else {
-        mTransaction.dst_asset = as;
+        mTransaction.dstAsset = as;
     }
 }
 

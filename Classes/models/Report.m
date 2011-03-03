@@ -243,7 +243,7 @@ static int compareCatReport(id x, id y, void *context)
 
     for (t in entries) {
         if (asset < 0) break;
-        if (t.asset == asset || t.dst_asset == asset) break;
+        if (t.asset == asset || t.dstAsset == asset) break;
     }
     if (t == nil) {
         return nil;
@@ -260,7 +260,7 @@ static int compareCatReport(id x, id y, void *context)
     for (i = [entries count] - 1; i >= 0; i--) {
         t = [entries objectAtIndex:i];
         if (asset < 0) break;
-        if (t.asset == asset || t.dst_asset == asset) break;
+        if (t.asset == asset || t.dstAsset == asset) break;
     }
     if (i < 0) return nil;
     return t.date;
@@ -311,7 +311,7 @@ static void init_filter(Filter *filter)
             if (t.asset == filter->asset) {
                 value = t.value;
             }
-            else if (t.dst_asset == filter->asset) {
+            else if (t.dstAsset == filter->asset) {
                 value = -t.value;
             }
             else {

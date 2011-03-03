@@ -112,21 +112,18 @@
 		3E0AD78D1214173500CFDDAC /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7801214173500CFDDAC /* AssetBase.m */; };
 		3E0AD78E1214173500CFDDAC /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7821214173500CFDDAC /* CategoryBase.m */; };
 		3E0AD78F1214173500CFDDAC /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7841214173500CFDDAC /* Database.m */; };
-		3E0AD7901214173500CFDDAC /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7861214173500CFDDAC /* DateFormatter2.m */; };
 		3E0AD7911214173500CFDDAC /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7881214173500CFDDAC /* DescLRU.m */; };
 		3E0AD7921214173500CFDDAC /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78A1214173500CFDDAC /* ORRecord.m */; };
 		3E0AD7931214173500CFDDAC /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78C1214173500CFDDAC /* TransactionBase.m */; };
 		3E0AD7941214173500CFDDAC /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7801214173500CFDDAC /* AssetBase.m */; };
 		3E0AD7951214173500CFDDAC /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7821214173500CFDDAC /* CategoryBase.m */; };
 		3E0AD7961214173500CFDDAC /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7841214173500CFDDAC /* Database.m */; };
-		3E0AD7971214173500CFDDAC /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7861214173500CFDDAC /* DateFormatter2.m */; };
 		3E0AD7981214173500CFDDAC /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7881214173500CFDDAC /* DescLRU.m */; };
 		3E0AD7991214173500CFDDAC /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78A1214173500CFDDAC /* ORRecord.m */; };
 		3E0AD79A1214173500CFDDAC /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78C1214173500CFDDAC /* TransactionBase.m */; };
 		3E0AD79B1214173500CFDDAC /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7801214173500CFDDAC /* AssetBase.m */; };
 		3E0AD79C1214173500CFDDAC /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7821214173500CFDDAC /* CategoryBase.m */; };
 		3E0AD79D1214173500CFDDAC /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7841214173500CFDDAC /* Database.m */; };
-		3E0AD79E1214173500CFDDAC /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7861214173500CFDDAC /* DateFormatter2.m */; };
 		3E0AD79F1214173500CFDDAC /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7881214173500CFDDAC /* DescLRU.m */; };
 		3E0AD7A01214173500CFDDAC /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78A1214173500CFDDAC /* ORRecord.m */; };
 		3E0AD7A11214173500CFDDAC /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78C1214173500CFDDAC /* TransactionBase.m */; };
@@ -170,6 +167,15 @@
 		3E3FEFEB11F3387E00A0FC41 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E911898E9600542042 /* Default-Portrait.png */; };
 		3E3FEFEE11F3387E00A0FC41 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3E3FEFF011F3387E00A0FC41 /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
+		3E4A7D25131FB94B0008C37D /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
+		3E4A7D26131FB94B0008C37D /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D24131FB94B0008C37D /* DateFormatter2.m */; };
+		3E4A7D27131FB94B0008C37D /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
+		3E4A7D28131FB94B0008C37D /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D24131FB94B0008C37D /* DateFormatter2.m */; };
+		3E4A7D29131FB94B0008C37D /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
+		3E4A7D2A131FB94B0008C37D /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D24131FB94B0008C37D /* DateFormatter2.m */; };
+		3E4A7D2D131FB9680008C37D /* Dbstmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D2C131FB9680008C37D /* Dbstmt.m */; };
+		3E4A7D2E131FB9680008C37D /* Dbstmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D2C131FB9680008C37D /* Dbstmt.m */; };
+		3E4A7D2F131FB9680008C37D /* Dbstmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D2C131FB9680008C37D /* Dbstmt.m */; };
 		3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
 		3E4DD9EA11898E9600542042 /* Default-Landscape.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E811898E9600542042 /* Default-Landscape.png */; };
 		3E4DD9EB11898E9600542042 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E911898E9600542042 /* Default-Portrait.png */; };
@@ -427,8 +433,6 @@
 		3E0AD7821214173500CFDDAC /* CategoryBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryBase.m; sourceTree = "<group>"; };
 		3E0AD7831214173500CFDDAC /* Database.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Database.h; sourceTree = "<group>"; };
 		3E0AD7841214173500CFDDAC /* Database.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Database.m; sourceTree = "<group>"; };
-		3E0AD7851214173500CFDDAC /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
-		3E0AD7861214173500CFDDAC /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
 		3E0AD7871214173500CFDDAC /* DescLRU.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescLRU.h; sourceTree = "<group>"; };
 		3E0AD7881214173500CFDDAC /* DescLRU.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRU.m; sourceTree = "<group>"; };
 		3E0AD7891214173500CFDDAC /* ORRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ORRecord.h; sourceTree = "<group>"; };
@@ -458,6 +462,12 @@
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E40E98811F33C95001E91B5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E4A7D21131FB94B0008C37D /* CashflowDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashflowDatabase.h; sourceTree = "<group>"; };
+		3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashflowDatabase.m; sourceTree = "<group>"; };
+		3E4A7D23131FB94B0008C37D /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
+		3E4A7D24131FB94B0008C37D /* DateFormatter2.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateFormatter2.m; sourceTree = "<group>"; };
+		3E4A7D2B131FB9680008C37D /* Dbstmt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Dbstmt.h; sourceTree = "<group>"; };
+		3E4A7D2C131FB9680008C37D /* Dbstmt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Dbstmt.m; sourceTree = "<group>"; };
 		3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Entitlements.plist; sourceTree = "<group>"; };
 		3E4DD9E811898E9600542042 /* Default-Landscape.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape.png"; sourceTree = "<group>"; };
 		3E4DD9E911898E9600542042 /* Default-Portrait.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait.png"; sourceTree = "<group>"; };
@@ -748,6 +758,10 @@
 		3E0AD6A5121415C300CFDDAC /* models */ = {
 			isa = PBXGroup;
 			children = (
+				3E4A7D21131FB94B0008C37D /* CashflowDatabase.h */,
+				3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */,
+				3E4A7D23131FB94B0008C37D /* DateFormatter2.h */,
+				3E4A7D24131FB94B0008C37D /* DateFormatter2.m */,
 				3E0AD775121416CB00CFDDAC /* DescLRUManager.h */,
 				3E0AD776121416CB00CFDDAC /* DescLRUManager.m */,
 				3E0AD6A6121415DD00CFDDAC /* Asset.h */,
@@ -830,8 +844,8 @@
 				3E0AD7821214173500CFDDAC /* CategoryBase.m */,
 				3E0AD7831214173500CFDDAC /* Database.h */,
 				3E0AD7841214173500CFDDAC /* Database.m */,
-				3E0AD7851214173500CFDDAC /* DateFormatter2.h */,
-				3E0AD7861214173500CFDDAC /* DateFormatter2.m */,
+				3E4A7D2B131FB9680008C37D /* Dbstmt.h */,
+				3E4A7D2C131FB9680008C37D /* Dbstmt.m */,
 				3E0AD7871214173500CFDDAC /* DescLRU.h */,
 				3E0AD7881214173500CFDDAC /* DescLRU.m */,
 				3E0AD7891214173500CFDDAC /* ORRecord.h */,
@@ -1356,10 +1370,12 @@
 				3E0AD7941214173500CFDDAC /* AssetBase.m in Sources */,
 				3E0AD7951214173500CFDDAC /* CategoryBase.m in Sources */,
 				3E0AD7961214173500CFDDAC /* Database.m in Sources */,
-				3E0AD7971214173500CFDDAC /* DateFormatter2.m in Sources */,
 				3E0AD7981214173500CFDDAC /* DescLRU.m in Sources */,
 				3E0AD7991214173500CFDDAC /* ORRecord.m in Sources */,
 				3E0AD79A1214173500CFDDAC /* TransactionBase.m in Sources */,
+				3E4A7D27131FB94B0008C37D /* CashflowDatabase.m in Sources */,
+				3E4A7D28131FB94B0008C37D /* DateFormatter2.m in Sources */,
+				3E4A7D2E131FB9680008C37D /* Dbstmt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1416,10 +1432,12 @@
 				3E0AD79B1214173500CFDDAC /* AssetBase.m in Sources */,
 				3E0AD79C1214173500CFDDAC /* CategoryBase.m in Sources */,
 				3E0AD79D1214173500CFDDAC /* Database.m in Sources */,
-				3E0AD79E1214173500CFDDAC /* DateFormatter2.m in Sources */,
 				3E0AD79F1214173500CFDDAC /* DescLRU.m in Sources */,
 				3E0AD7A01214173500CFDDAC /* ORRecord.m in Sources */,
 				3E0AD7A11214173500CFDDAC /* TransactionBase.m in Sources */,
+				3E4A7D25131FB94B0008C37D /* CashflowDatabase.m in Sources */,
+				3E4A7D26131FB94B0008C37D /* DateFormatter2.m in Sources */,
+				3E4A7D2D131FB9680008C37D /* Dbstmt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1510,10 +1528,12 @@
 				3E0AD78D1214173500CFDDAC /* AssetBase.m in Sources */,
 				3E0AD78E1214173500CFDDAC /* CategoryBase.m in Sources */,
 				3E0AD78F1214173500CFDDAC /* Database.m in Sources */,
-				3E0AD7901214173500CFDDAC /* DateFormatter2.m in Sources */,
 				3E0AD7911214173500CFDDAC /* DescLRU.m in Sources */,
 				3E0AD7921214173500CFDDAC /* ORRecord.m in Sources */,
 				3E0AD7931214173500CFDDAC /* TransactionBase.m in Sources */,
+				3E4A7D29131FB94B0008C37D /* CashflowDatabase.m in Sources */,
+				3E4A7D2A131FB94B0008C37D /* DateFormatter2.m in Sources */,
+				3E4A7D2F131FB9680008C37D /* Dbstmt.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

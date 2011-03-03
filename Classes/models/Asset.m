@@ -76,7 +76,7 @@
 
     AssetEntry *e;
     for (Transaction *t in [DataModel journal]) {
-        if (t.asset == self.pid || t.dst_asset == self.pid) {
+        if (t.asset == self.pid || t.dstAsset == self.pid) {
             e = [[AssetEntry alloc] initWithTransaction:t withAsset:self];
 
             // 残高計算

@@ -398,7 +398,7 @@
             Asset *from, *to;
             Ledger *ledger = [DataModel ledger];
             from = [ledger assetWithKey:mEditingEntry.transaction.asset];
-            to = [ledger assetWithKey:mEditingEntry.transaction.dst_asset];
+            to = [ledger assetWithKey:mEditingEntry.transaction.dstAsset];
 
             mEditingEntry.transaction.description = 
                 [NSString stringWithFormat:@"%@/%@", from.name, to.name];

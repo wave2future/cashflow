@@ -53,8 +53,6 @@
 
 @property(nonatomic,readonly) BOOL needFixDateFormat;
 
-+ (void)initialize;
-
 // utilities
 - (NSDate*)dateFromString:(NSString *)str;
 - (NSString *)stringFromDate:(NSDate*)date;

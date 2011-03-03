@@ -58,7 +58,7 @@
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"SELECT * FROM Categories WHERE key = ?;"];
-    [stmt bindInt:0 val:mPid];
+    [stmt bindInt:0 val:pid];
     if ([stmt step] != SQLITE_ROW) {
         return nil;
     }

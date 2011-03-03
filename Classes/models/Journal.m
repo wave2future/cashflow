@@ -37,6 +37,7 @@
 #import "AppDelegate.h"
 #import "DataModel.h"
 #import "Journal.h"
+#import "CashflowDatabase.h"
 
 @implementation Journal
 
@@ -161,10 +162,10 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
     if (t.asset == asset.pid) {
         // 自分が移動元の場合、移動方向を逆にする
         // (金額も逆転する）
-        t.asset = t.dst_asset;
+        t.asset = t.dstAsset;
         t.value = -t.value;
     }
-    t.dst_asset = -1;
+    t.dstAsset = -1;
 
     // 取引タイプを変更
     if (t.value >= 0) {
@@ -188,7 +189,7 @@ static int compareByDate(Transaction *t1, Transaction *t2, void *context)
 
     for (int i = 0; i < max; i++) {
         t = [mEntries objectAtIndex:i];
-        if (t.asset != asset.pid && t.dst_asset != asset.pid) {
+        if (t.asset != asset.pid && t.dstAsset != asset.pid) {
             continue;
         }
 

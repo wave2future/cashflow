@@ -60,7 +60,7 @@
     [super init];
 
     self.asset = -1;
-    self.dst_asset = -1;
+    self.dstAsset = -1;
     
     // 現在時刻で作成
     NSDate *dt = [[[NSDate alloc] init] autorelease];
@@ -92,7 +92,7 @@
     [super init];
 
     self.asset = -1;
-    self.dst_asset = -1;
+    self.dstAsset = -1;
     self.date = dt;
     self.description = desc;
     self.memo = @"";
@@ -109,7 +109,7 @@
     Transaction *n = [[Transaction alloc] init];
     n.pid = self.pid;
     n.asset = self.asset;
-    n.dst_asset = self.dst_asset;
+    n.dstAsset = self.dstAsset;
     n.date = self.date;
     n.description = self.description;
     n.memo = self.memo;
