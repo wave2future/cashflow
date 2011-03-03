@@ -9,7 +9,7 @@
 {
     self = [super init];
     if (self) {
-        mIsInserted = NO;
+        mIsNew = YES;
     }
         
     return self;
@@ -102,27 +102,25 @@
 */
 - (void)save
 {
-    if (mIsInserted) {
-        [self update];
+    if (mIsNew) {
+        [self _insert];
     } else {
-        [self insert];
+        [self _update];
     }
+}
+
+- (void)_insert
+{
+    mIsNew = NO;
+}
+
+- (void)_update
+{
 }
 
 + (NSString *)tableName
 {
     return nil; // must be override
-}
-
-- (void)insert
-{
-    mIsInserted = YES;
-    return;
-}
-
-- (void)update
-{
-    return;
 }
 
 /**

@@ -144,14 +144,14 @@
     self.description = [stmt colString:7];
     self.memo = [stmt colString:8];
 
-    mIsInserted = YES;
+    mIsNew = NO;
 }
 
 #pragma mark Create operations
 
-- (void)insert
+- (void)_insert
 {
-    [super insert];
+    [super _insert];
 
     Database *db = [Database instance];
     dbstmt *stmt;
@@ -172,14 +172,14 @@
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    mIsInserted = YES;
+    mIsNew = NO;
 }
 
 #pragma mark Update operations
 
-- (void)update
+- (void)_update
 {
-    [super update];
+    [super _update];
 
     Database *db = [Database instance];
     //[db beginTransaction];

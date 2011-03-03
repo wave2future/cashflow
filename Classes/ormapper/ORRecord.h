@@ -7,7 +7,7 @@
 @interface ORRecord : NSObject
 {
     int mPid;
-    BOOL mIsInserted;
+    BOOL mIsNew;
 }
 
 @property(nonatomic,assign) int pid;
@@ -18,8 +18,8 @@
 + (id)find:(int)id;
 
 - (void)save;
-- (void)insert;
-- (void)update;
+- (void)_insert;
+- (void)_update;
 - (void)delete;
 + (void)delete_all;
 

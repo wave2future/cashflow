@@ -29,17 +29,16 @@
 
 // CRUD (Create/Read/Update/Delete) operations
 
-// Create operations
-- (void)insert;
+// Create/update operations
+// Note: You should use 'save' method
+- (void)_insert;
+- (void)_update;
 
 // Read operations
 + (TransactionBase *)find:(int)pid;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (dbstmt *)gen_stmt:(NSString *)cond;
 + (NSMutableArray *)find_stmt:(dbstmt *)cond;
-
-// Update operations
-- (void)update;
 
 // Delete operations
 - (void)delete;

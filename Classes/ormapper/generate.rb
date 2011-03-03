@@ -107,17 +107,16 @@ EOF
 
 // CRUD (Create/Read/Update/Delete) operations
 
-// Create operations
-- (void)insert;
+// Create/update operations
+// Note: You should use 'save' method
+- (void)_insert;
+- (void)_update;
 
 // Read operations
 + (#{cdef.bcname} *)find:(int)pid;
 + (NSMutableArray *)find_cond:(NSString *)cond;
 + (dbstmt *)gen_stmt:(NSString *)cond;
 + (NSMutableArray *)find_stmt:(dbstmt *)cond;
-
-// Update operations
-- (void)update;
 
 // Delete operations
 - (void)delete;
@@ -291,14 +290,14 @@ EOF
     
     fh.puts <<EOF
 
-    mIsInserted = YES;
+    mIsNew = NO;
 }
 
 #pragma mark Create operations
 
-- (void)insert
+- (void)_insert
 {
-    [super insert];
+    [super _insert];
 
     Database *db = [Database instance];
     dbstmt *stmt;
@@ -326,14 +325,14 @@ EOF
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    mIsInserted = YES;
+    mIsNew = NO;
 }
 
 #pragma mark Update operations
 
-- (void)update
+- (void)_update
 {
-    [super update];
+    [super _update];
 
     Database *db = [Database instance];
     //[db beginTransaction];
