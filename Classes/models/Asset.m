@@ -48,7 +48,7 @@
 - (id)init
 {
     [super init];
-
+    
     mEntries = [[NSMutableArray alloc] init];
     mType = ASSET_CASH;
 	
