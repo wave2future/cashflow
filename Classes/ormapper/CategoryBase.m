@@ -53,7 +53,7 @@
   @param pid Primary key of the record
   @return record
 */
-+ (CategoryBase *)find:(int)pid
++ (Category *)find:(int)pid
 {
     Database *db = [Database instance];
 
@@ -63,14 +63,67 @@
     return [self find_first_stmt:stmt];
 }
 
+
+/**
+  finder with name
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Category*)find_by_name:(NSString*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE name = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE name = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindString:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Category*)find_by_name:(NSString*)key
+{
+    return [self find_by_name:key cond:nil];
+}
+
+/**
+  finder with sorder
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Category*)find_by_sorder:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE sorder = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE sorder = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Category*)find_by_sorder:(int)key
+{
+    return [self find_by_sorder:key cond:nil];
+}
 /**
   Get first record matches the conditions
 
   @param cond Conditions (WHERE phrase and so on)
   @return array of records
 */
-+ (CategoryBase *)find_first:(NSString *)cond
++ (Category *)find_first:(NSString *)cond
 {
+    if (cond == nil) {
+        cond = @"LIMIT 1";
+    } else {
+        cond = [cond stringByAppendingString:@" LIMIT 1"];
+    }
     dbstmt *stmt = [self gen_stmt:cond];
     return  [self find_first_stmt:stmt];
 }
@@ -111,12 +164,12 @@
   @param stmt Statement
   @return array of records
 */
-+ (CategoryBase *)find_first_stmt:(dbstmt *)stmt
++ (Category *)find_first_stmt:(dbstmt *)stmt
 {
     if ([stmt step] == SQLITE_ROW) {
         CategoryBase *e = [self allocator];
         [e _loadRow:stmt];
-        return e;
+        return (Category *)e;
     }
     return nil;
 }

@@ -66,6 +66,78 @@
     return [self find_first_stmt:stmt];
 }
 
+
+/**
+  finder with description
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (DescLRU*)find_by_description:(NSString*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE description = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE description = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindString:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (DescLRU*)find_by_description:(NSString*)key
+{
+    return [self find_by_description:key cond:nil];
+}
+
+/**
+  finder with lastUse
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (DescLRU*)find_by_lastUse:(NSDate*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE lastUse = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE lastUse = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindDate:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (DescLRU*)find_by_lastUse:(NSDate*)key
+{
+    return [self find_by_lastUse:key cond:nil];
+}
+
+/**
+  finder with category
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (DescLRU*)find_by_category:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE category = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE category = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (DescLRU*)find_by_category:(int)key
+{
+    return [self find_by_category:key cond:nil];
+}
 /**
   Get first record matches the conditions
 
@@ -74,6 +146,11 @@
 */
 + (DescLRU *)find_first:(NSString *)cond
 {
+    if (cond == nil) {
+        cond = @"LIMIT 1";
+    } else {
+        cond = [cond stringByAppendingString:@" LIMIT 1"];
+    }
     dbstmt *stmt = [self gen_stmt:cond];
     return  [self find_first_stmt:stmt];
 }
@@ -119,7 +196,7 @@
     if ([stmt step] == SQLITE_ROW) {
         DescLRU *e = [self allocator];
         [e _loadRow:stmt];
-        return e;
+        return (DescLRU *)e;
     }
     return nil;
 }

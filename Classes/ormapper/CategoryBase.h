@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #import "ORRecord.h"
 
+@class Category;
+
 @interface CategoryBase : ORRecord {
     NSString* mName;
     int mSorder;
@@ -23,14 +25,17 @@
 - (void)_update;
 
 // Read operations (Finder)
-+ (CategoryBase *)find:(int)pid;
-//+ (CategoryBase *)find_first:(NSString *)cond;
++ (Category *)find:(int)pid;
++ (Category *)find_by_name:(NSString*)key cond:(NSString*)cond;
++ (Category *)find_by_name:(NSString*)key;
++ (Category *)find_by_sorder:(int)key cond:(NSString*)cond;
++ (Category *)find_by_sorder:(int)key;
 
 + (NSMutableArray *)find_all:(NSString *)cond;
 
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (Category *)find_first_stmt:(dbstmt *)cond;
-+ (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
++ (Category *)find_first_stmt:(dbstmt *)stmt;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)stmt;
 
 // Delete operations
 - (void)delete;

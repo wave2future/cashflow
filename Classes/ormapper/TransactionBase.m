@@ -67,7 +67,7 @@
   @param pid Primary key of the record
   @return record
 */
-+ (TransactionBase *)find:(int)pid
++ (Transaction *)find:(int)pid
 {
     Database *db = [Database instance];
 
@@ -77,14 +77,211 @@
     return [self find_first_stmt:stmt];
 }
 
+
+/**
+  finder with asset
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_asset:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE asset = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE asset = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_asset:(int)key
+{
+    return [self find_by_asset:key cond:nil];
+}
+
+/**
+  finder with dst_asset
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_dst_asset:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE dst_asset = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE dst_asset = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_dst_asset:(int)key
+{
+    return [self find_by_dst_asset:key cond:nil];
+}
+
+/**
+  finder with date
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_date:(NSDate*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE date = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE date = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindDate:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_date:(NSDate*)key
+{
+    return [self find_by_date:key cond:nil];
+}
+
+/**
+  finder with type
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_type:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE type = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE type = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_type:(int)key
+{
+    return [self find_by_type:key cond:nil];
+}
+
+/**
+  finder with category
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_category:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE category = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE category = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_category:(int)key
+{
+    return [self find_by_category:key cond:nil];
+}
+
+/**
+  finder with value
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_value:(double)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE value = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE value = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindDouble:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_value:(double)key
+{
+    return [self find_by_value:key cond:nil];
+}
+
+/**
+  finder with description
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_description:(NSString*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE description = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE description = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindString:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_description:(NSString*)key
+{
+    return [self find_by_description:key cond:nil];
+}
+
+/**
+  finder with memo
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Transaction*)find_by_memo:(NSString*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE memo = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE memo = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindString:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Transaction*)find_by_memo:(NSString*)key
+{
+    return [self find_by_memo:key cond:nil];
+}
 /**
   Get first record matches the conditions
 
   @param cond Conditions (WHERE phrase and so on)
   @return array of records
 */
-+ (TransactionBase *)find_first:(NSString *)cond
++ (Transaction *)find_first:(NSString *)cond
 {
+    if (cond == nil) {
+        cond = @"LIMIT 1";
+    } else {
+        cond = [cond stringByAppendingString:@" LIMIT 1"];
+    }
     dbstmt *stmt = [self gen_stmt:cond];
     return  [self find_first_stmt:stmt];
 }
@@ -125,12 +322,12 @@
   @param stmt Statement
   @return array of records
 */
-+ (TransactionBase *)find_first_stmt:(dbstmt *)stmt
++ (Transaction *)find_first_stmt:(dbstmt *)stmt
 {
     if ([stmt step] == SQLITE_ROW) {
         TransactionBase *e = [self allocator];
         [e _loadRow:stmt];
-        return e;
+        return (Transaction *)e;
     }
     return nil;
 }

@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #import "ORRecord.h"
 
+@class DescLRU;
+
 @interface DescLRU : ORRecord {
     NSString* mDescription;
     NSDate* mLastUse;
@@ -26,13 +28,18 @@
 
 // Read operations (Finder)
 + (DescLRU *)find:(int)pid;
-//+ (DescLRU *)find_first:(NSString *)cond;
++ (DescLRU *)find_by_description:(NSString*)key cond:(NSString*)cond;
++ (DescLRU *)find_by_description:(NSString*)key;
++ (DescLRU *)find_by_lastUse:(NSDate*)key cond:(NSString*)cond;
++ (DescLRU *)find_by_lastUse:(NSDate*)key;
++ (DescLRU *)find_by_category:(int)key cond:(NSString*)cond;
++ (DescLRU *)find_by_category:(int)key;
 
 + (NSMutableArray *)find_all:(NSString *)cond;
 
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (DescLRU *)find_first_stmt:(dbstmt *)cond;
-+ (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
++ (DescLRU *)find_first_stmt:(dbstmt *)stmt;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)stmt;
 
 // Delete operations
 - (void)delete;

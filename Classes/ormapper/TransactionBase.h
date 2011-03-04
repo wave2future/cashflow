@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #import "ORRecord.h"
 
+@class Transaction;
+
 @interface TransactionBase : ORRecord {
     int mAsset;
     int mDstAsset;
@@ -35,14 +37,29 @@
 - (void)_update;
 
 // Read operations (Finder)
-+ (TransactionBase *)find:(int)pid;
-//+ (TransactionBase *)find_first:(NSString *)cond;
++ (Transaction *)find:(int)pid;
++ (Transaction *)find_by_asset:(int)key cond:(NSString*)cond;
++ (Transaction *)find_by_asset:(int)key;
++ (Transaction *)find_by_dst_asset:(int)key cond:(NSString*)cond;
++ (Transaction *)find_by_dst_asset:(int)key;
++ (Transaction *)find_by_date:(NSDate*)key cond:(NSString*)cond;
++ (Transaction *)find_by_date:(NSDate*)key;
++ (Transaction *)find_by_type:(int)key cond:(NSString*)cond;
++ (Transaction *)find_by_type:(int)key;
++ (Transaction *)find_by_category:(int)key cond:(NSString*)cond;
++ (Transaction *)find_by_category:(int)key;
++ (Transaction *)find_by_value:(double)key cond:(NSString*)cond;
++ (Transaction *)find_by_value:(double)key;
++ (Transaction *)find_by_description:(NSString*)key cond:(NSString*)cond;
++ (Transaction *)find_by_description:(NSString*)key;
++ (Transaction *)find_by_memo:(NSString*)key cond:(NSString*)cond;
++ (Transaction *)find_by_memo:(NSString*)key;
 
 + (NSMutableArray *)find_all:(NSString *)cond;
 
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (Transaction *)find_first_stmt:(dbstmt *)cond;
-+ (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
++ (Transaction *)find_first_stmt:(dbstmt *)stmt;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)stmt;
 
 // Delete operations
 - (void)delete;
