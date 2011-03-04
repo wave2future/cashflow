@@ -40,6 +40,11 @@
 #import "DateFormatter2.h" // backward compat.
 #import "Database.h"
 
+@interface Database (cashflow)
++ (void)initialize;
+@end
+
+
 /**
    Wrapper class of sqlite3 database
 */

@@ -42,11 +42,6 @@
 @synthesize hasBalance = mHasBalance;
 @synthesize balance = mBalance;
 
-+ (id)allocator
-{
-    return [[[Transaction alloc] init] autorelease];
-}
-
 /*
  */
 + (BOOL)migrate

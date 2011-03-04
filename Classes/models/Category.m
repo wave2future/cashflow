@@ -37,11 +37,6 @@
 
 @implementation Category
 
-+(id)allocator
-{
-    return [[[Category alloc] init] autorelease];
-}
-
 @end
 
 @implementation Categories

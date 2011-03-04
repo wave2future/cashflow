@@ -36,15 +36,6 @@
     return [super migrate:columnTypes primaryKey:@"key"];
 }
 
-/**
-  @brief allocate entry
-*/
-+ (id)allocator
-{
-    id e = [[[CategoryBase alloc] init] autorelease];
-    return e;
-}
-
 #pragma mark Read operations
 
 /**
@@ -167,7 +158,7 @@
 + (Category *)find_first_stmt:(dbstmt *)stmt
 {
     if ([stmt step] == SQLITE_ROW) {
-        CategoryBase *e = [self allocator];
+        CategoryBase *e = [[[[self class] alloc] init] autorelease];
         [e _loadRow:stmt];
         return (Category *)e;
     }
@@ -185,9 +176,10 @@
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 
     while ([stmt step] == SQLITE_ROW) {
-        CategoryBase *e = [self allocator];
+        CategoryBase *e = [[[self class] alloc] init];
         [e _loadRow:stmt];
         [array addObject:e];
+        [e release];
     }
     return array;
 }

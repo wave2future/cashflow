@@ -27,8 +27,6 @@
 
 + (BOOL)migrate;
 
-+ (id)allocator;
-
 // CRUD (Create/Read/Update/Delete) operations
 
 // Create/update operations

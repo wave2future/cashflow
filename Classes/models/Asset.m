@@ -40,11 +40,6 @@
 
 @implementation Asset
 
-+ (id)allocator
-{
-    return [[[Asset alloc] init] autorelease];
-}
-
 - (id)init
 {
     [super init];

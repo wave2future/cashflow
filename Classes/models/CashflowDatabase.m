@@ -35,6 +35,15 @@
 #import "AppDelegate.h"
 #import "CashflowDatabase.h"
 
+@implementation Database(cashflow)
++ (void)initialize
+{
+    CashflowDatabase *db = [[[CashflowDatabase alloc] init] autorelease];
+    [self setInstance:db];
+}
+
+@end
+
 @implementation CashflowDatabase
 
 @synthesize needFixDateFormat;
