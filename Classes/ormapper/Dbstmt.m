@@ -11,14 +11,6 @@
   1. Redistributions of source code must retain the above copyright notice,
   this list of conditions and the following disclaimer. 
 
-  2. Redistributions in binary form must reproduce the above copyright
-  notice, this list of conditions and the following disclaimer in the
-  documentation and/or other materials provided with the distribution. 
-
-  3. Neither the name of the project nor the names of its contributors
-  may be used to endorse or promote products derived from this software
-  without specific prior written permission. 
-
   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
@@ -62,7 +54,7 @@
 */
 - (int)step
 {
-    int ret = sqlite3_step(stmt);
+    int ret = sqlite3_step(mStmt);
     if (ret != SQLITE_OK && ret != SQLITE_ROW && ret != SQLITE_DONE) {
         NSLog(@"sqlite3_step error:%d (%s)", ret, sqlite3_errmsg(mDb.handle));
     }
@@ -74,7 +66,7 @@
 */
 - (void)reset
 {
-    sqlite3_reset(stmt);
+    sqlite3_reset(mStmt);
 }
 
 /**
@@ -82,7 +74,7 @@
 */
 - (void)bindInt:(int)idx val:(int)val
 {
-    sqlite3_bind_int(stmt, idx+1, val);
+    sqlite3_bind_int(mStmt, idx+1, val);
 }
 
 /**
@@ -90,7 +82,7 @@
 */
 - (void)bindDouble:(int)idx val:(double)val
 {
-    sqlite3_bind_double(stmt, idx+1, val);
+    sqlite3_bind_double(mStmt, idx+1, val);
 }
 
 /**
@@ -98,7 +90,7 @@
 */
 - (void)bindCString:(int)idx val:(const char *)val
 {
-    sqlite3_bind_text(stmt, idx+1, val, -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(mStmt, idx+1, val, -1, SQLITE_TRANSIENT);
 }
 
 /**
@@ -106,7 +98,7 @@
 */
 - (void)bindString:(int)idx val:(NSString*)val
 {
-    sqlite3_bind_text(stmt, idx+1, [val UTF8String], -1, SQLITE_TRANSIENT);
+    sqlite3_bind_text(mStmt, idx+1, [val UTF8String], -1, SQLITE_TRANSIENT);
 }
 
 /**
@@ -118,7 +110,7 @@
     
     if (date != NULL) {
         str = [mDb stringFromDate:date];
-        sqlite3_bind_text(stmt, idx+1, [str UTF8String], -1, SQLITE_TRANSIENT);
+        sqlite3_bind_text(mStmt, idx+1, [str UTF8String], -1, SQLITE_TRANSIENT);
     }
 }
 
@@ -127,7 +119,7 @@
 */
 - (int)colInt:(int)idx
 {
-    return sqlite3_column_int(stmt, idx);
+    return sqlite3_column_int(mStmt, idx);
 }
 
 /**
@@ -135,7 +127,7 @@
 */
 - (double)colDouble:(int)idx
 {
-    return sqlite3_column_double(stmt, idx);
+    return sqlite3_column_double(mStmt, idx);
 }
 
 /**
@@ -143,7 +135,7 @@
 */
 - (const char *)colCString:(int)idx
 {
-    const char *s = (const char*)sqlite3_column_text(stmt, idx);
+    const char *s = (const char*)sqlite3_column_text(mStmt, idx);
     return s;
 }
 
@@ -152,7 +144,7 @@
 */
 - (NSString*)colString:(int)idx
 {
-    const char *s = (const char*)sqlite3_column_text(stmt, idx);
+    const char *s = (const char*)sqlite3_column_text(mStmt, idx);
     if (!s) {
         return @"";
     }

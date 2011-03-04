@@ -3,6 +3,8 @@
 #import <UIKit/UIKit.h>
 #import "ORRecord.h"
 
+@class Asset;
+
 @interface AssetBase : ORRecord {
     NSString* mName;
     int mType;
@@ -26,11 +28,22 @@
 - (void)_insert;
 - (void)_update;
 
-// Read operations
-+ (AssetBase *)find:(int)pid;
-+ (NSMutableArray *)find_cond:(NSString *)cond;
+// Read operations (Finder)
++ (Asset *)find:(int)pid;
++ (Asset *)find_by_name:(NSString*)key cond:(NSString*)cond;
++ (Asset *)find_by_name:(NSString*)key;
++ (Asset *)find_by_type:(int)key cond:(NSString*)cond;
++ (Asset *)find_by_type:(int)key;
++ (Asset *)find_by_initialBalance:(double)key cond:(NSString*)cond;
++ (Asset *)find_by_initialBalance:(double)key;
++ (Asset *)find_by_sorder:(int)key cond:(NSString*)cond;
++ (Asset *)find_by_sorder:(int)key;
+
++ (NSMutableArray *)find_all:(NSString *)cond;
+
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (NSMutableArray *)find_stmt:(dbstmt *)cond;
++ (Asset *)find_first_stmt:(dbstmt *)stmt;
++ (NSMutableArray *)find_all_stmt:(dbstmt *)stmt;
 
 // Delete operations
 - (void)delete;

@@ -53,33 +53,91 @@
   @param pid Primary key of the record
   @return record
 */
-+ (CategoryBase *)find:(int)pid
++ (Category *)find:(int)pid
 {
     Database *db = [Database instance];
 
     dbstmt *stmt = [db prepare:@"SELECT * FROM Categories WHERE key = ?;"];
-    [stmt bindInt:0 val:mPid];
-    if ([stmt step] != SQLITE_ROW) {
-        return nil;
-    }
+    [stmt bindInt:0 val:pid];
 
-    CategoryBase *e = [self allocator];
-    [e _loadRow:stmt];
- 
-    return e;
+    return [self find_first_stmt:stmt];
+}
+
+
+/**
+  finder with name
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Category*)find_by_name:(NSString*)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE name = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE name = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindString:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Category*)find_by_name:(NSString*)key
+{
+    return [self find_by_name:key cond:nil];
 }
 
 /**
-  @brief get all records matche the conditions
+  finder with sorder
+
+  @param key Key value
+  @param cond Conditions (ORDER BY etc)
+  @note If you specify WHERE conditions, you must start cond with "AND" keyword.
+*/
++ (Category*)find_by_sorder:(int)key cond:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"WHERE sorder = ? LIMIT 1";
+    } else {
+        cond = [NSString stringWithFormat:@"WHERE sorder = ? %@ LIMIT 1", cond];
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    [stmt bindInt:0 val:key];
+    return [self find_first_stmt:stmt];
+}
+
++ (Category*)find_by_sorder:(int)key
+{
+    return [self find_by_sorder:key cond:nil];
+}
+/**
+  Get first record matches the conditions
 
   @param cond Conditions (WHERE phrase and so on)
   @return array of records
 */
-+ (NSMutableArray *)find_cond:(NSString *)cond
++ (Category *)find_first:(NSString *)cond
+{
+    if (cond == nil) {
+        cond = @"LIMIT 1";
+    } else {
+        cond = [cond stringByAppendingString:@" LIMIT 1";
+    }
+    dbstmt *stmt = [self gen_stmt:cond];
+    return  [self find_first_stmt:stmt];
+}
+
+/**
+  Get all records match the conditions
+
+  @param cond Conditions (WHERE phrase and so on)
+  @return array of records
+*/
++ (NSMutableArray *)find_all:(NSString *)cond
 {
     dbstmt *stmt = [self gen_stmt:cond];
-    NSMutableArray *array = [self find_stmt:stmt];
-    return array;
+    return  [self find_all_stmt:stmt];
 }
 
 /**
@@ -101,12 +159,28 @@
 }
 
 /**
-  @brief get all records matche the conditions
+  Get first record matches the conditions
 
   @param stmt Statement
   @return array of records
 */
-+ (NSMutableArray *)find_stmt:(dbstmt *)stmt
++ (Category *)find_first_stmt:(dbstmt *)stmt
+{
+    if ([stmt step] == SQLITE_ROW) {
+        CategoryBase *e = [self allocator];
+        [e _loadRow:stmt];
+        return (Category *)e;
+    }
+    return nil;
+}
+
+/**
+  Get all records match the conditions
+
+  @param stmt Statement
+  @return array of records
+*/
++ (NSMutableArray *)find_all_stmt:(dbstmt *)stmt
 {
     NSMutableArray *array = [[[NSMutableArray alloc] init] autorelease];
 
