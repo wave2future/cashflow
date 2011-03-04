@@ -66,7 +66,7 @@
 #ifdef FREE_VERSION
     [mNameLabel setText:@"CashFlow Free"];
 #else
-    purchaseButton.hidden = YES;
+    mPurchaseButton.hidden = YES;
 #endif
 	
     NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];

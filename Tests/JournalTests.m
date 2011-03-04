@@ -114,7 +114,7 @@
     
     // 置換されていることを確認する
     AssertEqualInt(1, t.asset);
-    AssertEqualInt(-1, t.dst_asset);
+    AssertEqualInt(-1, t.dstAsset);
     AssertEqualDouble(5000, t.value);
     
     // 今度は置換された資産間取引を消す
@@ -140,7 +140,7 @@
     
     // 置換されていることを確認する
     AssertEqualInt(2, t.asset);
-    AssertEqualInt(-1, t.dst_asset);
+    AssertEqualInt(-1, t.dstAsset);
     AssertEqualDouble(-5000, t.value);
     
     // 置換された資産間取引を消す

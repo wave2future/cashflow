@@ -60,7 +60,7 @@
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.type = TYPE_TRANSFER;
     t.asset = 111;
-    t.dst_asset = 222;
+    t.dstAsset = 222;
     t.value = 10000.0;
 
     AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
@@ -85,7 +85,7 @@
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.type = TYPE_TRANSFER;
     t.asset = 222;
-    t.dst_asset = 111;
+    t.dstAsset = 111;
     t.value = 10000.0;
 
     AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
@@ -108,7 +108,7 @@
     a.pid = 111;
     Transaction *t = [[[Transaction alloc] init] autorelease];
     t.asset = 111;
-    t.dst_asset = -1;
+    t.dstAsset = -1;
 
     AssetEntry *e = [[[AssetEntry alloc] initWithTransaction:t withAsset:a] autorelease];
     e.balance = 99999.0;
