@@ -29,7 +29,7 @@
 + (NSMutableArray *)find_all:(NSString *)cond;
 
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (CategoryBase *)find_first_stmt:(dbstmt *)cond;
++ (Category *)find_first_stmt:(dbstmt *)cond;
 + (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
 
 // Delete operations

@@ -33,7 +33,7 @@
 + (NSMutableArray *)find_all:(NSString *)cond;
 
 + (dbstmt *)gen_stmt:(NSString *)cond;
-+ (AssetBase *)find_first_stmt:(dbstmt *)cond;
++ (Asset *)find_first_stmt:(dbstmt *)cond;
 + (NSMutableArray *)find_all_stmt:(dbstmt *)cond;
 
 // Delete operations

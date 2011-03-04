@@ -111,7 +111,7 @@
 */
 + (NSMutableArray *)find_all
 {
-    return [self find_all:nil];
+    return [self find_cond:nil];
 }
 
 /**

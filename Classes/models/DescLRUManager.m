@@ -66,15 +66,10 @@
     if ([description length] == 0) return;
 
     // find desc LRU from history
-    dbstmt *stmt = [DescLRU gen_stmt:@"WHERE description = ?"];
-    [stmt bindString:0 val:description];
-    NSMutableArray *ary = [DescLRU find_all_stmt:stmt];
+    DescLRU *lru = [DescLRU find_by_description:description];
 
-    DescLRU *lru;
-    if ([ary count] > 0) {
-        // update date
-        lru = [ary objectAtIndex:0];
-    } else {
+    if (lru == nil) {
+        // create new LRU
         lru = [[[DescLRU alloc] init] autorelease];
         lru.description = description;
     }

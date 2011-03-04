@@ -1,12 +1,12 @@
 PKEY = key
 
-Assets:AssetBase
+Assets: Asset, AssetBase
 	name :TEXT
         type :INTEGER
         initialBalance :REAL
         sorder :INTEGER
 
-Transactions:TransactionBase
+Transactions: Transaction, TransactionBase
         asset :INTEGER
         dst_asset :INTEGER
         date :DATE
@@ -16,11 +16,11 @@ Transactions:TransactionBase
         description :TEXT
         memo :TEXT
 
-Categories:CategoryBase
+Categories: Category, CategoryBase
         name :TEXT
         sorder :INTEGER
 
-DescLRUs:DescLRU
+DescLRUs: DescLRU
         description :TEXT
         lastUse :DATE
         category :INTEGER

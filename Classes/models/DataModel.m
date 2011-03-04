@@ -190,15 +190,12 @@ static DataModel *theDataModel = nil;
 //
 - (int)categoryWithDescription:(NSString *)desc
 {
-    dbstmt *stmt = [Transaction gen_stmt:@"WHERE description = ? ORDER BY date DESC LIMIT 1"];
-    [stmt bindString:0 val:desc];
-    Transaction *t = (Transaction*)[Transaction find_first_stmt:stmt];
-    
-    int category = -1;
-    if (t != nil) {
-        category = t.category;
+    Transaction *t = [Transaction find_by_description:desc cond:@"ORDER BY date DESC"];
+
+    if (t == nil) {
+        return -1;
     }
-    return category;
+    return t.category;
 }
 
 @end
