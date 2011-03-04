@@ -36,10 +36,15 @@
 #import "CashflowDatabase.h"
 
 @implementation Database(cashflow)
-+ (void)initialize
+
++ (Database *)instance
 {
-    CashflowDatabase *db = [[[CashflowDatabase alloc] init] autorelease];
-    [self setInstance:db];
+    Database *db = [self _instance];
+    if (db == nil) {
+        db = [[[CashflowDatabase alloc] init] autorelease];
+        [self _setInstance:db];
+    }
+    return db;
 }
 
 @end

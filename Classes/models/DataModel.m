@@ -131,8 +131,7 @@ static DataModel *theDataModel = nil;
 
 - (void)load
 {
-    Database *db = [[CashflowDatabase alloc] init];
-    [Database setInstance:db];
+    Database *db = [Database instance];
 
     // Load from DB
     if (![db open:DBNAME]) {

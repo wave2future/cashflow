@@ -41,7 +41,6 @@
 #import "Database.h"
 
 @interface Database (cashflow)
-+ (void)initialize;
 @end
 
 
