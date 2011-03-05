@@ -43,6 +43,7 @@
 "Report" = "통계";
 "Monthly Report" = "월별 통계";
 "Weekly Report" = "주간 통계";
+"Daily Report" = "Daily Report";
 
 /* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help-j.html";

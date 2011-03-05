@@ -43,6 +43,7 @@
 "Report" = "レポート";
 "Monthly Report" = "月別レポート";
 "Weekly Report" = "週別レポート";
+"Daily Report" = "日別レポート";
 
 /* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help-j.html";

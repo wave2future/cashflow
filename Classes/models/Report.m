@@ -314,6 +314,9 @@ static int compareCatReport(id x, id y, void *context)
 
     for (Transaction *t in [DataModel journal]) {
         // match filter
+        if (t.category != mCatkey) {
+            continue;
+        }
         NSComparisonResult cpr;
         if (start) {
             cpr = [t.date compare:start];
@@ -324,9 +327,6 @@ static int compareCatReport(id x, id y, void *context)
             if (cpr == NSOrderedSame || cpr == NSOrderedDescending) {
                 continue;
             }
-        }
-        if (t.category != mCatkey) {
-            continue;
         }
 
         if (assetKey < 0) {
