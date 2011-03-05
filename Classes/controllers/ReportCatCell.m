@@ -27,6 +27,7 @@
     self = [super initWithStyle:style reuseIdentifier:identifier];
     
     self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
     graphView = [[[UIView alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
     graphView.backgroundColor = [UIColor greenColor];

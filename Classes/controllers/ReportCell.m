@@ -71,7 +71,7 @@
     [super dealloc];
 }
 
-- (void)setMName:(NSString *)n
+- (void)setName:(NSString *)n
 {
     if (mName == n) return;
 
@@ -81,21 +81,21 @@
     mNameLabel.text = mName;
 }
 
-- (void)setMIncome:(double)v
+- (void)setIncome:(double)v
 {
     mIncome = v;
     mIncomeLabel.text = [CurrencyManager formatCurrency:mIncome];
     [self updateGraph];
 }
 
-- (void)setMOutgo:(double)v
+- (void)setOutgo:(double)v
 {
     mOutgo = v;
     mOutgoLabel.text = [CurrencyManager formatCurrency:mOutgo];
     [self updateGraph];
 }
 
-- (void)setMMaxAbsValue:(double)mav
+- (void)setMaxAbsValue:(double)mav
 {
     mMaxAbsValue = mav;
     if (mMaxAbsValue < 0.0000001) {

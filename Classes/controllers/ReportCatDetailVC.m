@@ -81,15 +81,21 @@
     Transaction *t = [mCatReport.transactions objectAtIndex:indexPath.row];
     double value;
     if (mCatReport.assetKey < 0) {
-        // 全資産
+        // 全資産指定の場合
         value = t.value;
     } else {
+        // 資産指定の場合
+        // この場合、CatReportVC 側で資産間移動は計上しないようになっているが、一応
         if (t.asset == mCatReport.assetKey) {
             value = t.value;
         } else {
             value = -t.value;
         }
     }
+    [cell setDescriptionLabel:t.description];
+    [cell setDateLabel:t.date];
+    [cell setValueLabel:value];
+    [cell clearBalanceLabel];
     
     return cell;
 }

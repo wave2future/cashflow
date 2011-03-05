@@ -36,6 +36,7 @@
 #import "DataModel.h"
 #import "ReportCatVC.h"
 #import "ReportCatCell.h"
+#import "ReportCatDetailVC.h"
 
 @implementation CatReportViewController
 
@@ -66,7 +67,7 @@
     [super dealloc];
 }
 
-- (void)setMReport:(ReporEntry *)rep
+- (void)setReport:(ReporEntry *)rep
 {
     if (mReport != rep) {
         [mReport release];
@@ -117,6 +118,19 @@
     cell.maxAbsValue = mMaxAbsValue;
 
     return cell;
+}
+
+- (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tv deselectRowAtIndexPath:indexPath animated:NO];
+	
+    CatReport *cr = [mReport.catReports objectAtIndex:indexPath.row];
+
+    CatReportDetailViewController *vc = [[[CatReportDetailViewController alloc] init] autorelease];
+    vc.title = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
+    vc.catReport = cr;
+    
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
