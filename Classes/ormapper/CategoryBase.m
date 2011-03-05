@@ -189,8 +189,6 @@
     self.pid = [stmt colInt:0];
     self.name = [stmt colString:1];
     self.sorder = [stmt colInt:2];
-
-    mIsNew = NO;
 }
 
 #pragma mark Create operations
@@ -212,7 +210,6 @@
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    mIsNew = NO;
 }
 
 #pragma mark Update operations

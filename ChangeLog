@@ -1,5 +1,7 @@
 2011-03-05 : Takuya Murakami
 	* Report 関連のクラスのリファクタリング
+	* 日別レポート機能を追加
+	* カテゴリレポート内の取引を確認できるようにした
 
 2011-03-04 : Takuya Murakami
 	* ormapper 以下を mb-ormapper に入れ替えた

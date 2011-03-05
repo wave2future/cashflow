@@ -353,8 +353,6 @@
     self.value = [stmt colDouble:6];
     self.description = [stmt colString:7];
     self.memo = [stmt colString:8];
-
-    mIsNew = NO;
 }
 
 #pragma mark Create operations
@@ -382,7 +380,6 @@
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    mIsNew = NO;
 }
 
 #pragma mark Update operations

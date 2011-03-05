@@ -243,8 +243,6 @@
     self.type = [stmt colInt:2];
     self.initialBalance = [stmt colDouble:3];
     self.sorder = [stmt colInt:4];
-
-    mIsNew = NO;
 }
 
 #pragma mark Create operations
@@ -268,7 +266,6 @@
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    mIsNew = NO;
 }
 
 #pragma mark Update operations

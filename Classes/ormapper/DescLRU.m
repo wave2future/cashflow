@@ -217,8 +217,6 @@
     self.description = [stmt colString:1];
     self.lastUse = [stmt colDate:2];
     self.category = [stmt colInt:3];
-
-    mIsNew = NO;
 }
 
 #pragma mark Create operations
@@ -241,7 +239,6 @@
     self.pid = [db lastInsertRowId];
 
     //[db commitTransaction];
-    mIsNew = NO;
 }
 
 #pragma mark Update operations

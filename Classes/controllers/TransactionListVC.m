@@ -243,7 +243,7 @@
     mBarBalanceLabel.title = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), bstr];
     
     if (IS_IPAD) {
-        [splitAssetListViewController reload];
+        [mSplitAssetListViewController reload];
     }
 }
 
@@ -466,7 +466,7 @@
     }
 
     if (IS_IPAD) {
-        [splitAssetListViewController reload];
+        [mSplitAssetListViewController reload];
     }
 }
 

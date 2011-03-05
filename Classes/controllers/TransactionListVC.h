@@ -65,7 +65,7 @@
     BOOL mAsDisplaying;
     
     // for Split view
-    IBOutlet AssetListViewController *splitAssetListViewController;
+    IBOutlet AssetListViewController *mSplitAssetListViewController;
     UIPopoverController *mPopoverController;
 }
 

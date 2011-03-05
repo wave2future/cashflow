@@ -362,8 +362,8 @@
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="mBarActionButton">UIBarButtonItem</string>
 						<string key="mBarBalanceLabel">UIBarButtonItem</string>
+						<string key="mSplitAssetListViewController">AssetListViewController</string>
 						<string key="mTableView">UITableView</string>
-						<string key="splitAssetListViewController">AssetListViewController</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="mBarActionButton">
@@ -374,13 +374,13 @@
 							<string key="name">mBarBalanceLabel</string>
 							<string key="candidateClassName">UIBarButtonItem</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="mSplitAssetListViewController">
+							<string key="name">mSplitAssetListViewController</string>
+							<string key="candidateClassName">AssetListViewController</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="mTableView">
 							<string key="name">mTableView</string>
 							<string key="candidateClassName">UITableView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="splitAssetListViewController">
-							<string key="name">splitAssetListViewController</string>
-							<string key="candidateClassName">AssetListViewController</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
