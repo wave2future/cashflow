@@ -304,7 +304,7 @@ static int compareCatReport(id x, id y, void *context)
             if (t.asset == assetKey) {
                 value = t.value;
             }
-            else if (t.dst_asset == assetKey) {
+            else if (t.dstAsset == assetKey) {
                 value = -t.value;
             }
             else {
