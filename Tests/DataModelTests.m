@@ -34,7 +34,7 @@
     Asset *as = [dm.ledger.assets objectAtIndex:0];
     Assert([as.name isEqualToString:@"Cash"]); 
                   
-    AssertEqualInt(0, [dm.categories categoryCount]);
+    AssertEqualInt(0, [dm.categories count]);
 }
 
 // データベースがあるときに、正常に読み込めること
@@ -45,7 +45,7 @@
 
     Assert([dm.journal.entries count] == 6);
     Assert([dm.ledger.assets count] == 3);
-    Assert([dm.categories categoryCount] == 3);
+    Assert([dm.categories count] == 3);
 }
 
 @end

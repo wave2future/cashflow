@@ -57,23 +57,15 @@
     [super dealloc];
 }
 
-static int compareCatReport(id x, id y, void *context)
-{
-    CatReport *xr = (CatReport *)x;
-    CatReport *yr = (CatReport *)y;
-	
-    if (xr.sum == yr.sum) {
-        return NSOrderedSame;
-    }
-    if (xr.sum > yr.sum) {
-        return NSOrderedDescending;
-    }
-    return NSOrderedAscending;
-}
+/**
+ レポート生成
 
-- (void)generate:(int)t asset:(Asset*)asset
+ @param type タイプ (REPORT_DAILY/WEEKLY/MONTHLY)
+ @param asset 対象資産 (nil の場合は全資産)
+ */
+- (void)generate:(int)type asset:(Asset*)asset
 {
-    self.type = t;
+    mType = type;
 	
     if (mReportEntries != nil) {
         [mReportEntries release];
@@ -82,7 +74,7 @@ static int compareCatReport(id x, id y, void *context)
 
     NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
-    //	NSDate *firstDate = [[asset transactionAt:0] date];
+    // レポートの開始日と終了日を取得
     int assetKey;
     if (asset == nil) {
         assetKey = -1;
@@ -94,63 +86,72 @@ static int compareCatReport(id x, id y, void *context)
     NSDate *lastDate = [self lastDateOfAsset:assetKey];
 
     // レポート周期の開始時間および間隔を求める
-    NSDateComponents *dc, *steps;
-    NSDate *dd = nil;
+    NSDateComponents *dateComponents, *steps;
+    NSDate *nextStartDay = nil;
 	
     steps = [[[NSDateComponents alloc] init] autorelease];
     switch (mType) {
-    case REPORT_MONTHLY:
-        dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+        case REPORT_MONTHLY:
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
 
-        // 締め日設定
-        int cutoffDate = [Config instance].cutoffDate;
-        if (cutoffDate == 0) {
-            // 月末締め ⇒ 開始は同月1日から。
-            [dc setDay:1];
-        }
-        else {
-            // 一つ前の月の締め日翌日から開始
-            int year = [dc year];
-            int month = [dc month];
-            month--;
-            if (month < 1) {
-                month = 12;
-                year--;
+            // 締め日設定
+            int cutoffDate = [Config instance].cutoffDate;
+            if (cutoffDate == 0) {
+                // 月末締め ⇒ 開始は同月1日から。
+                [dateComponents setDay:1];
             }
-            [dc setYear:year];
-            [dc setMonth:month];
-            [dc setDay:cutoffDate + 1];
-        }
+            else {
+                // 一つ前の月の締め日翌日から開始
+                int year = [dateComponents year];
+                int month = [dateComponents month];
+                month--;
+                if (month < 1) {
+                    month = 12;
+                    year--;
+                }
+                [dateComponents setYear:year];
+                [dateComponents setMonth:month];
+                [dateComponents setDay:cutoffDate + 1];
+            }
 
-        dd = [greg dateFromComponents:dc];
-        [steps setMonth:1];
-        break;
+            nextStartDay = [greg dateFromComponents:dateComponents];
+            [steps setMonth:1];
+            break;
 			
-    case REPORT_WEEKLY:
-        dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
-        dd = [greg dateFromComponents:dc];
-        int weekday = [dc weekday];
-        [steps setDay:-weekday+1];
-        dd = [greg dateByAddingComponents:steps toDate:dd options:0];
-        [steps setDay:7];
-        break;
+        case REPORT_WEEKLY:
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+            nextStartDay = [greg dateFromComponents:dateComponents];
+            int weekday = [dateComponents weekday];
+            [steps setDay:-weekday+1];
+            nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
+            [steps setDay:7];
+            break;
+            
+        case REPORT_DAILY:;
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+            nextStartDay = [greg dateFromComponents:dateComponents];
+            [steps setDay:1];
+            break;
     }
 	
-    while ([dd compare:lastDate] != NSOrderedDescending) {
-        NSDate *start = dd;
+    while ([nextStartDay compare:lastDate] != NSOrderedDescending) {
+        NSDate *start = nextStartDay;
 
         // 次の期間開始時期を計算する
-        dd = [greg dateByAddingComponents:steps toDate:dd options:0];
+        nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
 
         // Report 生成
         ReporEntry *r = [[ReporEntry alloc] init];
-        [r totalUp:assetKey start:start end:dd];
+        [r totalUp:assetKey start:start end:nextStartDay];
 
         [mReportEntries addObject:r];
         [r release];
     }
 }
 
+/**
+ 指定された資産の最初の取引日を取得
+ */
 - (NSDate*)firstDateOfAsset:(int)asset
 {
     NSMutableArray *entries = [DataModel journal].entries;
@@ -166,6 +167,9 @@ static int compareCatReport(id x, id y, void *context)
     return t.date;
 }
 
+/**
+ 指定された資産の最後の取引日を取得
+ */
 - (NSDate*)lastDateOfAsset:(int)asset
 {
     NSMutableArray *entries = [DataModel journal].entries;
@@ -187,14 +191,14 @@ static int compareCatReport(id x, id y, void *context)
 // Report
 
 @implementation ReporEntry
-@synthesize date = mDate, endDate = mEndDate;
+@synthesize start = mStart, end = mEnd;
 @synthesize totalIncome = mTotalIncome, totalOutgo = mTotalOutgo;
 @synthesize catReports = mCatReports;
 
 - (id)init
 {
     [super init];
-    mDate = nil;
+    mStart = nil;
     mTotalIncome = 0.0;
     mTotalOutgo = 0.0;
 
@@ -205,26 +209,47 @@ static int compareCatReport(id x, id y, void *context)
 
 - (void)dealloc 
 {
-    [mDate release];
-    [mEndDate release];
+    [mStart release];
+    [mEnd release];
     [mCatReports release];
     [super dealloc];
 }
 
-- (void)totalUp:(int)assetKey start:(NSDate *)start end:(NSDate *)end
+static int compareCatReport(id x, id y, void *context)
 {
-    mDate = [start retain];
-    mEndDate = [end retain];
+    CatReport *xr = (CatReport *)x;
+    CatReport *yr = (CatReport *)y;
+	
+    if (xr.sum == yr.sum) {
+        return NSOrderedSame;
+    }
+    if (xr.sum > yr.sum) {
+        return NSOrderedDescending;
+    }
+    return NSOrderedAscending;
+}
+
+/**
+ 集計
+ 
+ @param assetKey 資産キー (-1の場合は全資産)
+ @param start 開始日
+ @param end 終了日
+ */
+- (void)totalUp:(int)assetKey start:(NSDate *)a_start end:(NSDate *)a_end
+{
+    mStart = [a_start retain];
+    mEnd = [a_end retain];
 
     // カテゴリ毎の集計
-    int i;
-    int numCategories = [[DataModel instance].categories categoryCount];
+    Categories *categories = [DataModel instance].categories;
+    int numCategories = [categories count];
 
-    for (i = 0; i < numCategories; i++) {
-        Category *c = [[DataModel instance].categories categoryAtIndex:i];
+    for (int i = 0; i < numCategories; i++) {
+        Category *c = [categories categoryAtIndex:i];
         CatReport *cr = [[CatReport alloc] init];
 
-        [cr totalUp:c.pid asset:assetKey start:self.date end:self.endDate];
+        [cr totalUp:c.pid asset:assetKey start:self.start end:self.end];
 
         [mCatReports addObject:cr];
         [cr release];
@@ -232,7 +257,7 @@ static int compareCatReport(id x, id y, void *context)
 		
     // 未分類項目
     CatReport *cr = [[CatReport alloc] init];
-    [cr totalUp:-1 asset:assetKey start:mDate end:mEndDate];
+    [cr totalUp:-1 asset:assetKey start:mStart end:mEnd];
     [mCatReports addObject:cr];
     [cr release];
 		
@@ -272,6 +297,14 @@ static int compareCatReport(id x, id y, void *context)
     [super dealloc];
 }
 
+/**
+ 集計
+ 
+ @param key カテゴリID
+ @param assetKey 資産ID (-1の場合は全資産)
+ @param start 開始日
+ @param end 終了日
+ */
 - (void)totalUp:(int)key asset:(int)assetKey start:(NSDate*)start end:(NSDate*)end
 {
     mCatkey = key;

@@ -45,7 +45,7 @@
 }
 
 - (void)reload;
-- (int)categoryCount;
+- (int)count;
 - (Category*)categoryAtIndex:(int)n;
 - (int)categoryIndexWithKey:(int)key;
 - (NSString*)categoryStringWithKey:(int)key;

@@ -65,16 +65,16 @@
 
 // レポートエントリ
 @interface ReporEntry : NSObject {
-    NSDate *mDate;
-    NSDate *mEndDate;
+    NSDate *mStart;
+    NSDate *mEnd;
     double mTotalIncome;
     double mTotalOutgo;
 
     NSMutableArray *mCatReports; // CatReport の配列
 }
 
-@property(nonatomic,readonly) NSDate *date;
-@property(nonatomic,readonly) NSDate *endDate;
+@property(nonatomic,readonly) NSDate *start;
+@property(nonatomic,readonly) NSDate *end;
 @property(nonatomic,readonly) double totalIncome;
 @property(nonatomic,readonly) double totalOutgo;
 @property(nonatomic,readonly) NSMutableArray *catReports;

@@ -62,7 +62,7 @@
     [mCategories retain];
 }
 
--(int)categoryCount
+-(int)count
 {
     return [mCategories count];
 }

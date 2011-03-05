@@ -100,7 +100,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    int count = [[DataModel instance].categories categoryCount];
+    int count = [[DataModel instance].categories count];
     if (self.editing) {
         count++;	// insert cell
     }
@@ -117,7 +117,7 @@
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
     }
 
-    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories count]) {
         cell.textLabel.text = NSLocalizedString(@"Add category", @"");
     } else {
         Category *c = [[DataModel instance].categories categoryAtIndex:indexPath.row];
@@ -154,7 +154,7 @@
     }
 
     int idx = indexPath.row;
-    if (idx >= [[DataModel instance].categories categoryCount]) {
+    if (idx >= [[DataModel instance].categories count]) {
         idx = -1; // insert row
     }
     GenEditTextViewController *vc = [GenEditTextViewController
@@ -189,7 +189,7 @@
     [super setEditing:editing animated:animated];
 	
     // Insert ボタン用の行
-    int insButtonIndex = [[DataModel instance].categories categoryCount];
+    int insButtonIndex = [[DataModel instance].categories count];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:insButtonIndex inSection:0];
     NSArray *iary = [NSArray arrayWithObject:indexPath];
 	
@@ -211,7 +211,7 @@
 // 編集スタイルを返す
 - (UITableViewCellEditingStyle)tableView:(UITableView*)tv editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories count]) {
         return UITableViewCellEditingStyleInsert;
     }
     return UITableViewCellEditingStyleDelete;
@@ -220,7 +220,7 @@
 // 編集処理
 - (void)tableView:(UITableView *)tv commitEditingStyle:(UITableViewCellEditingStyle)style forRowAtIndexPath:(NSIndexPath*)indexPath
 {
-    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories count]) {
         // add
         GenEditTextViewController *vc = [GenEditTextViewController genEditTextViewController:self title:NSLocalizedString(@"Category", @"") identifier:-1];
         [self.navigationController pushViewController:vc animated:YES];
@@ -236,7 +236,7 @@
 // 並べ替え処理
 - (BOOL)tableView:(UITableView *)tv canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row >= [[DataModel instance].categories categoryCount]) {
+    if (indexPath.row >= [[DataModel instance].categories count]) {
         return NO;
     }
     return YES;
