@@ -9,7 +9,7 @@
 
 @implementation ReportCatCell
 
-@synthesize name, value, maxAbsValue;
+@synthesize name = mName, value = mValue, maxAbsValue = mMaxAbsValue;
 
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView
 {
@@ -29,60 +29,60 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    graphView = [[[UIView alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
-    graphView.backgroundColor = [UIColor greenColor];
-    graphView.opaque = YES;
-    [self.contentView addSubview:graphView];
+    mGraphView = [[[UIView alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
+    mGraphView.backgroundColor = [UIColor greenColor];
+    mGraphView.opaque = YES;
+    [self.contentView addSubview:mGraphView];
 
-    nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, 44)] autorelease];
-    nameLabel.font = [UIFont systemFontOfSize: 14.0];
-    nameLabel.textColor = [UIColor blackColor];
-    nameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:nameLabel];
+    mNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, 44)] autorelease];
+    mNameLabel.font = [UIFont systemFontOfSize: 14.0];
+    mNameLabel.textColor = [UIColor blackColor];
+    mNameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:mNameLabel];
 
-    valueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, 23, 130, 20)] autorelease];
-    valueLabel.font = [UIFont systemFontOfSize: 13.0];
+    mValueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, 23, 130, 20)] autorelease];
+    mValueLabel.font = [UIFont systemFontOfSize: 13.0];
     //valueLabel.textAlignment = UITextAlignmentRight;
-    valueLabel.textAlignment = UITextAlignmentLeft;
-    valueLabel.textColor = [UIColor blackColor];
-    valueLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:valueLabel];
+    mValueLabel.textAlignment = UITextAlignmentLeft;
+    mValueLabel.textColor = [UIColor blackColor];
+    mValueLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.contentView addSubview:mValueLabel];
 
     return self;
 }
 
 - (void)dealloc {
-    [name release];
+    [mName release];
     [super dealloc];
 }
 
 - (void)setName:(NSString *)n
 {
-    if (name == n) return;
+    if (mName == n) return;
 
-    [name release];
-    name = [n retain];
+    [mName release];
+    mName = [n retain];
 
-    nameLabel.text = name;
+    mNameLabel.text = mName;
 }
 
 - (void)setValue:(double)v
 {
-    value = v;
-    valueLabel.text = [CurrencyManager formatCurrency:value];
-    if (value >= 0) {
-        valueLabel.textColor = [UIColor blackColor];
+    mValue = v;
+    mValueLabel.text = [CurrencyManager formatCurrency:mValue];
+    if (mValue >= 0) {
+        mValueLabel.textColor = [UIColor blackColor];
     } else {
-        valueLabel.textColor = [UIColor blackColor];
+        mValueLabel.textColor = [UIColor blackColor];
     }
     [self updateGraph];
 }
 
 - (void)setMaxAbsValue:(double)mav
 {
-    maxAbsValue = mav;
-    if (maxAbsValue < 0.0000001) {
-        maxAbsValue = 0.0000001; // for safety
+    mMaxAbsValue = mav;
+    if (mMaxAbsValue < 0.0000001) {
+        mMaxAbsValue = 0.0000001; // for safety
     }
     [self updateGraph];
 }
@@ -94,21 +94,21 @@
     if (IS_IPAD) {
         fullWidth = 500;
     } else {
-        fullWidth = 200;
+        fullWidth = 170;
     }
     
-    ratio = value / maxAbsValue;
+    ratio = mValue / mMaxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
 
     if (ratio > 0.0) {
-        graphView.backgroundColor = [UIColor blueColor];
+        mGraphView.backgroundColor = [UIColor blueColor];
     } else {
-        graphView.backgroundColor = [UIColor redColor];        
+        mGraphView.backgroundColor = [UIColor redColor];        
         ratio = -ratio;
     }
     int width = fullWidth * ratio + 6;
 
-    graphView.frame = CGRectMake(100, 2, width, 20);
+    mGraphView.frame = CGRectMake(100, 2, width, 20);
 }
 
 @end

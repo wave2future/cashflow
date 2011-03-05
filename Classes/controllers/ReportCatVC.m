@@ -40,8 +40,6 @@
 
 @implementation CatReportViewController
 
-@synthesize reportEntry = mReport;
-
 - (id)init
 {
     self = [super initWithNibName:@"ReportView" bundle:nil];
@@ -60,23 +58,28 @@
 
 - (void)dealloc
 {
-    if (mReport) {
-        [mReport release];
+    if (mReportEntry) {
+        [mReportEntry release];
     }
     //[dateFormatter release];
     [super dealloc];
 }
 
-- (void)setReport:(ReporEntry *)rep
+- (id)reportEntry
 {
-    if (mReport != rep) {
-        [mReport release];
-        mReport = [rep retain];
+    return mReportEntry;
+}
+
+- (void)setReportEntry:(ReporEntry *)rep
+{
+    if (mReportEntry != rep) {
+        [mReportEntry release];
+        mReportEntry = [rep retain];
     }
 
     // 合計値を計算
     mMaxAbsValue = 0.0;
-    for (CatReport *cr in mReport.catReports) {
+    for (CatReport *cr in mReportEntry.catReports) {
 #if 0
         if (cr.value > maxAbsValue) {
             maxAbsValue = cr.value;
@@ -100,14 +103,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [mReport.catReports count];
+    return [mReportEntry.catReports count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReportCatCell *cell = [ReportCatCell reportCatCell:tv];
 
-    CatReport *cr = [mReport.catReports objectAtIndex:indexPath.row];
+    CatReport *cr = [mReportEntry.catReports objectAtIndex:indexPath.row];
     if (cr.catkey >= 0) {
         cell.name = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
     } else {
@@ -124,7 +127,7 @@
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-    CatReport *cr = [mReport.catReports objectAtIndex:indexPath.row];
+    CatReport *cr = [mReportEntry.catReports objectAtIndex:indexPath.row];
 
     CatReportDetailViewController *vc = [[[CatReportDetailViewController alloc] init] autorelease];
     vc.title = [[DataModel instance].categories categoryStringWithKey:cr.catkey];

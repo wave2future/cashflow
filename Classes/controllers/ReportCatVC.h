@@ -8,7 +8,7 @@
 
 @interface CatReportViewController : UITableViewController
 {
-    ReporEntry *mReport;
+    ReporEntry *mReportEntry;
     double mMaxAbsValue;
 }
 

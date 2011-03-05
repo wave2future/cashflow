@@ -6,13 +6,13 @@
 #import <UIKit/UIKit.h>
 
 @interface ReportCatCell : UITableViewCell {
-    NSString *name;
-    double value;
-    double maxAbsValue;
+    NSString *mName;
+    double mValue;
+    double mMaxAbsValue;
 
-    UILabel *nameLabel;
-    UILabel *valueLabel;
-    UIView *graphView;
+    UILabel *mNameLabel;
+    UILabel *mValueLabel;
+    UIView *mGraphView;
 }
 
 @property(nonatomic,retain) NSString *name;
