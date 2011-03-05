@@ -1,3 +1,9 @@
+2011-03-05 : Takuya Murakami
+	* Report 関連のクラスのリファクタリング
+
+2011-03-04 : Takuya Murakami
+	* ormapper 以下を mb-ormapper に入れ替えた
+
 2011-02-24 : Takuya Murakami
 	* ver 3.4.1
 	* Korean locale 修正

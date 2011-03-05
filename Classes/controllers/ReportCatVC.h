@@ -4,7 +4,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ReporEntry.h"
+#import "Report.h"
 
 @interface CatReportViewController : UITableViewController
 {

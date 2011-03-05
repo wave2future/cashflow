@@ -97,7 +97,7 @@
     }
 
     maxAbsValue = 1;
-    for (ReporEntry *rep in reports.reports) {
+    for (ReporEntry *rep in reports.reportEntries) {
         if (rep.totalIncome > maxAbsValue) maxAbsValue = rep.totalIncome;
         if (-rep.totalOutgo > maxAbsValue) maxAbsValue = -rep.totalOutgo;
     }
@@ -128,7 +128,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [reports.reports count];
+    return [reports.reportEntries count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,8 +138,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int count = [reports.reports count];
-    ReporEntry *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
+    int count = [reports.reportEntries count];
+    ReporEntry *report = [reports.reportEntries objectAtIndex:count - indexPath.row - 1];
 	
     ReportCell *cell = [ReportCell reportCell:tv];
     cell.name = [self _reportTitle:report];
@@ -154,8 +154,8 @@
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-    int count = [reports.reports count];
-    ReporEntry *r = [reports.reports objectAtIndex:count - indexPath.row - 1];
+    int count = [reports.reportEntries count];
+    ReporEntry *r = [reports.reportEntries objectAtIndex:count - indexPath.row - 1];
 
     CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
     vc.title = [self _reportTitle:r];

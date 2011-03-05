@@ -38,10 +38,10 @@
 #import "Config.h"
 
 /////////////////////////////////////////////////////////////////////
-// Reports
+// Report
 
 @implementation Report
-@synthesize reports = mReportEntries, type = mType;
+@synthesize reportEntries = mReportEntries, type = mType;
 
 - (id)init
 {
