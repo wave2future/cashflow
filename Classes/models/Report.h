@@ -85,6 +85,7 @@
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
     int mCatkey; // カテゴリキー
+    int mAssetKey; // 資産キー
     double mIncome;
     double mOutgo;    
     double mSum; // 合計値
@@ -93,6 +94,7 @@
 }
 
 @property(nonatomic,readonly) int catkey;
+@property(nonatomic,readonly) int assetKey;
 @property(nonatomic,readonly) double income;
 @property(nonatomic,readonly) double outgo;
 @property(nonatomic,readonly) double sum;

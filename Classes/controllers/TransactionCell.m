@@ -63,20 +63,43 @@
 
 - (TransactionCell *)updateWithAssetEntry:(AssetEntry *)entry
 {
-    mDescLabel.text = entry.transaction.description;
-    mDateLabel.text = [[DataModel dateFormatter] stringFromDate:entry.transaction.date];
-	
-    double v = entry.value;
-    if (v >= 0) {
+    [self setDescriptionLabel:entry.transaction.description];
+    [self setDateLabel:entry.transaction.date];
+    [self setValueLabel:entry.value];
+    [self setBalanceLabel:entry.balance];
+    return self;
+}
+
+- (void)setDescriptionLabel:(NSString *)desc
+{
+    mDescLabel.text = desc;
+}
+
+- (void)setDateLabel:(NSDate *)date
+{
+    mDateLabel.text = [[DataModel dateFormatter] stringFromDate:date];
+}
+
+- (void)setValueLabel:(double)value
+{
+    if (value >= 0) {
         mValueLabel.textColor = [UIColor blueColor];
     } else {
-        v = -v;
+        value = -value;
         mValueLabel.textColor = [UIColor redColor];
     }
-    mValueLabel.text = [CurrencyManager formatCurrency:v];
+    mValueLabel.text = [CurrencyManager formatCurrency:value];
+}
+
+- (void)setBalanceLabel:(double)balance
+{
     mBalanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                          [CurrencyManager formatCurrency:entry.balance]];
-    return self;
+                          [CurrencyManager formatCurrency:balance]];
+}
+
+- (void)clearBalanceLabel
+{
+    mBalanceLabel.text = @"";
 }
 
 @end

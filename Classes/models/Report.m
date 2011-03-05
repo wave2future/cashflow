@@ -280,7 +280,8 @@ static int compareCatReport(id x, id y, void *context)
 
 @implementation CatReport
 
-@synthesize catkey = mCatkey, income = mIncome, outgo = mOutgo, sum = mSum;
+@synthesize catkey = mCatkey, assetKey = mAssetKey;
+@synthesize income = mIncome, outgo = mOutgo, sum = mSum;
 @synthesize transactions = mTransactions;
 
 - (id)init
@@ -308,6 +309,7 @@ static int compareCatReport(id x, id y, void *context)
 - (void)totalUp:(int)key asset:(int)assetKey start:(NSDate*)start end:(NSDate*)end
 {
     mCatkey = key;
+    mAssetKey = assetKey;
     mSum = 0.0;
 
     double value;

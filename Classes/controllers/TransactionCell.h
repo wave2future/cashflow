@@ -17,5 +17,10 @@
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier;
 - (TransactionCell *)updateWithAssetEntry:(AssetEntry *)entry;
+- (void)setDescriptionLabel:(NSString *)desc;
+- (void)setDateLabel:(NSDate *)date;
+- (void)setValueLabel:(double)value;
+- (void)setBalanceLabel:(double)balance;
+- (void)clearBalanceLabel;
 
 @end
