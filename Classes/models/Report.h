@@ -36,19 +36,20 @@
 #import "Transaction.h"
 #import "DataModel.h"
 
-#define REPORT_WEEKLY 0
-#define REPORT_MONTHLY 1
+#define REPORT_DAILY 0
+#define REPORT_WEEKLY 1
+#define REPORT_MONTHLY 2
 
 /*
   レポートの構造
 
-  Reports -> Report -> CatReport
+  Report -> ReportEntry -> CatReport
  */
 
-// レポート(集合)
-@interface Reports : NSObject {
-    int type;
-    NSMutableArray *reports;  // Report の配列
+// レポート
+@interface Report : NSObject {
+    int mType;
+    NSMutableArray *mReportEntries;  // Report の配列
 }
 
 @property(nonatomic,assign) int type;
@@ -62,14 +63,14 @@
 
 @end
 
-// レポート（１件分)
-@interface Report : NSObject {
-    NSDate *date;
-    NSDate *endDate;
-    double totalIncome;
-    double totalOutgo;
+// レポートエントリ
+@interface ReporEntry : NSObject {
+    NSDate *mDate;
+    NSDate *mEndDate;
+    double mTotalIncome;
+    double mTotalOutgo;
 
-    NSMutableArray *catReports; // CatReport の配列
+    NSMutableArray *mCatReports; // CatReport の配列
 }
 
 @property(nonatomic,readonly) NSDate *date;
@@ -83,12 +84,12 @@
 @end
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
-    int catkey; // カテゴリキー
-    double income;
-    double outgo;    
-    double sum; // 合計値
+    int mCatkey; // カテゴリキー
+    double mIncome;
+    double mOutgo;    
+    double mSum; // 合計値
 
-    NSMutableArray *transactions; // Transaction の配列
+    NSMutableArray *mTransactions; // Transaction の配列
 }
 
 @property(nonatomic,readonly) int catkey;

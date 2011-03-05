@@ -78,7 +78,7 @@
 - (void)generateReport:(int)type asset:(Asset*)asset
 {
     if (reports == nil) {
-        reports = [[Reports alloc] init];
+        reports = [[Report alloc] init];
     }
     [reports generate:type asset:asset];
 	
@@ -97,14 +97,14 @@
     }
 
     maxAbsValue = 1;
-    for (Report *rep in reports.reports) {
+    for (ReporEntry *rep in reports.reports) {
         if (rep.totalIncome > maxAbsValue) maxAbsValue = rep.totalIncome;
         if (-rep.totalOutgo > maxAbsValue) maxAbsValue = -rep.totalOutgo;
     }
 }
 
 // レポートのタイトルを得る
-- (NSString *)_reportTitle:(Report *)report
+- (NSString *)_reportTitle:(ReporEntry *)report
 {
     if (reports.type == REPORT_MONTHLY) {
         // 終了日の時刻の１分前の時刻から年月を得る
@@ -139,7 +139,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int count = [reports.reports count];
-    Report *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
+    ReporEntry *report = [reports.reports objectAtIndex:count - indexPath.row - 1];
 	
     ReportCell *cell = [ReportCell reportCell:tv];
     cell.name = [self _reportTitle:report];
@@ -155,7 +155,7 @@
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
     int count = [reports.reports count];
-    Report *r = [reports.reports objectAtIndex:count - indexPath.row - 1];
+    ReporEntry *r = [reports.reports objectAtIndex:count - indexPath.row - 1];
 
     CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
     vc.title = [self _reportTitle:r];

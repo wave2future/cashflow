@@ -4,11 +4,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Report.h"
+#import "ReporEntry.h"
 
 @interface ReportViewController : UITableViewController
 {
-    Reports *reports;
+    Report *reports;
     double maxAbsValue;
 
     NSDateFormatter *dateFormatter;
@@ -16,6 +16,6 @@
 
 - (void)doneAction:(id)sender;
 - (void)generateReport:(int)type asset:(Asset*)asset;
-- (NSString *)_reportTitle:(Report *)report;
+- (NSString *)_reportTitle:(ReporEntry *)report;
 
 @end

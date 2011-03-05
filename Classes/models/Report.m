@@ -40,20 +40,20 @@
 /////////////////////////////////////////////////////////////////////
 // Reports
 
-@implementation Reports
-@synthesize reports, type;
+@implementation Report
+@synthesize reports = mReportEntries, type = mType;
 
 - (id)init
 {
     [super init];
-    type = REPORT_MONTHLY;
-    reports = nil;
+    mType = REPORT_MONTHLY;
+    mReportEntries = nil;
     return self;
 }
 
 - (void)dealloc
 {
-    [reports release];
+    [mReportEntries release];
     [super dealloc];
 }
 
@@ -75,10 +75,10 @@ static int compareCatReport(id x, id y, void *context)
 {
     self.type = t;
 	
-    if (reports != nil) {
-        [reports release];
+    if (mReportEntries != nil) {
+        [mReportEntries release];
     }
-    reports = [[NSMutableArray alloc] init];
+    mReportEntries = [[NSMutableArray alloc] init];
 
     NSCalendar *greg = [[[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar] autorelease];
 	
@@ -98,7 +98,7 @@ static int compareCatReport(id x, id y, void *context)
     NSDate *dd = nil;
 	
     steps = [[[NSDateComponents alloc] init] autorelease];
-    switch (type) {
+    switch (mType) {
     case REPORT_MONTHLY:
         dc = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
 
@@ -143,10 +143,10 @@ static int compareCatReport(id x, id y, void *context)
         dd = [greg dateByAddingComponents:steps toDate:dd options:0];
 
         // Report 生成
-        Report *r = [[Report alloc] init];
+        ReporEntry *r = [[ReporEntry alloc] init];
         [r totalUp:assetKey start:start end:dd];
 
-        [reports addObject:r];
+        [mReportEntries addObject:r];
         [r release];
     }
 }
@@ -186,33 +186,35 @@ static int compareCatReport(id x, id y, void *context)
 /////////////////////////////////////////////////////////////////////
 // Report
 
-@implementation Report
-@synthesize date, endDate, totalIncome, totalOutgo, catReports;
+@implementation ReporEntry
+@synthesize date = mDate, endDate = mEndDate;
+@synthesize totalIncome = mTotalIncome, totalOutgo = mTotalOutgo;
+@synthesize catReports = mCatReports;
 
 - (id)init
 {
     [super init];
-    date = nil;
-    totalIncome = 0.0;
-    totalOutgo = 0.0;
+    mDate = nil;
+    mTotalIncome = 0.0;
+    mTotalOutgo = 0.0;
 
-    catReports = [[NSMutableArray alloc] init];
+    mCatReports = [[NSMutableArray alloc] init];
 
     return self;
 }
 
 - (void)dealloc 
 {
-    [date release];
-    [endDate release];
-    [catReports release];
+    [mDate release];
+    [mEndDate release];
+    [mCatReports release];
     [super dealloc];
 }
 
 - (void)totalUp:(int)assetKey start:(NSDate *)start end:(NSDate *)end
 {
-    date = [start retain];
-    endDate = [end retain];
+    mDate = [start retain];
+    mEndDate = [end retain];
 
     // カテゴリ毎の集計
     int i;
@@ -224,25 +226,25 @@ static int compareCatReport(id x, id y, void *context)
 
         [cr totalUp:c.pid asset:assetKey start:self.date end:self.endDate];
 
-        [catReports addObject:cr];
+        [mCatReports addObject:cr];
         [cr release];
     }
 		
     // 未分類項目
     CatReport *cr = [[CatReport alloc] init];
-    [cr totalUp:-1 asset:assetKey start:date end:endDate];
-    [catReports addObject:cr];
+    [cr totalUp:-1 asset:assetKey start:mDate end:mEndDate];
+    [mCatReports addObject:cr];
     [cr release];
 		
     // ソート
-    [catReports sortUsingFunction:compareCatReport context:nil];
+    [mCatReports sortUsingFunction:compareCatReport context:nil];
 
     // 集計
-    totalIncome = 0.0;
-    totalOutgo = 0.0;
+    mTotalIncome = 0.0;
+    mTotalOutgo = 0.0;
     for (cr in self.catReports) {
-        totalIncome += cr.income;
-        totalOutgo += cr.outgo;
+        mTotalIncome += cr.income;
+        mTotalOutgo += cr.outgo;
     }
 }
 
@@ -253,26 +255,27 @@ static int compareCatReport(id x, id y, void *context)
 
 @implementation CatReport
 
-@synthesize catkey, income, outgo, sum, transactions;
+@synthesize catkey = mCatkey, income = mIncome, outgo = mOutgo, sum = mSum;
+@synthesize transactions = mTransactions;
 
 - (id)init
 {
     [super init];
-    transactions = [[NSMutableArray alloc] init];
+    mTransactions = [[NSMutableArray alloc] init];
 
     return self;
 }
 
 - (void)dealloc
 {
-    [transactions release];
+    [mTransactions release];
     [super dealloc];
 }
 
 - (void)totalUp:(int)key asset:(int)assetKey start:(NSDate*)start end:(NSDate*)end
 {
-    catkey = key;
-    sum = 0.0;
+    mCatkey = key;
+    mSum = 0.0;
 
     double value;
 
@@ -289,7 +292,7 @@ static int compareCatReport(id x, id y, void *context)
                 continue;
             }
         }
-        if (t.category != catkey) {
+        if (t.category != mCatkey) {
             continue;
         }
 
@@ -311,14 +314,14 @@ static int compareCatReport(id x, id y, void *context)
                 continue;
             }
         }
-        [transactions addObject:t];
+        [mTransactions addObject:t];
         
         if (value >= 0) {
-            income += value;
+            mIncome += value;
         } else {
-            outgo += value;
+            mOutgo += value;
         }
-        sum += value;
+        mSum += value;
     }
 }
 

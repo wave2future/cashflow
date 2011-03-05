@@ -66,7 +66,7 @@
     [super dealloc];
 }
 
-- (void)setReport:(Report *)rep
+- (void)setReport:(ReporEntry *)rep
 {
     if (report != rep) {
         [report release];

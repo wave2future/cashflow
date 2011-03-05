@@ -4,14 +4,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Report.h"
+#import "ReporEntry.h"
 
 @interface CatReportViewController : UITableViewController
 {
-    Report *report;
+    ReporEntry *report;
     double maxAbsValue;
 }
 
-@property(nonatomic,retain) Report *report;
+@property(nonatomic,retain) ReporEntry *report;
 
 @end
