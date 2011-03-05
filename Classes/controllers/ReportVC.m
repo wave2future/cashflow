@@ -68,45 +68,45 @@
 
 - (void)dealloc
 {
-    if (reports) {
-        [reports release];
+    if (mReports) {
+        [mReports release];
     }
-    [dateFormatter release];
+    [mDateFormatter release];
     [super dealloc];
 }
 
 - (void)generateReport:(int)type asset:(Asset*)asset
 {
-    if (reports == nil) {
-        reports = [[Report alloc] init];
+    if (mReports == nil) {
+        mReports = [[Report alloc] init];
     }
-    [reports generate:type asset:asset];
+    [mReports generate:type asset:asset];
 	
-    if (dateFormatter == nil) {
-        dateFormatter = [[NSDateFormatter alloc] init];
+    if (mDateFormatter == nil) {
+        mDateFormatter = [[NSDateFormatter alloc] init];
     }
 	
     switch (type) {
     case REPORT_WEEKLY:
-        [dateFormatter setDateFormat:@"yyyy/MM/dd~"];
+        [mDateFormatter setDateFormat:@"yyyy/MM/dd~"];
         break;
     case REPORT_MONTHLY:
         //[dateFormatter setDateFormat:@"yyyy/MM"];
-        [dateFormatter setDateFormat:@"~yyyy/MM/dd"];
+        [mDateFormatter setDateFormat:@"~yyyy/MM/dd"];
         break;
     }
 
-    maxAbsValue = 1;
-    for (ReporEntry *rep in reports.reportEntries) {
-        if (rep.totalIncome > maxAbsValue) maxAbsValue = rep.totalIncome;
-        if (-rep.totalOutgo > maxAbsValue) maxAbsValue = -rep.totalOutgo;
+    mMaxAbsValue = 1;
+    for (ReporEntry *rep in mReports.reportEntries) {
+        if (rep.totalIncome > mMaxAbsValue) mMaxAbsValue = rep.totalIncome;
+        if (-rep.totalOutgo > mMaxAbsValue) mMaxAbsValue = -rep.totalOutgo;
     }
 }
 
 // レポートのタイトルを得る
 - (NSString *)_reportTitle:(ReporEntry *)report
 {
-    if (reports.type == REPORT_MONTHLY) {
+    if (mReports.type == REPORT_MONTHLY) {
         // 終了日の時刻の１分前の時刻から年月を得る
         //
         // 1) 締め日が月末の場合、endDate は翌月1日0:00を指しているので、
@@ -114,9 +114,9 @@
         // 2) 締め日が任意の日、例えば25日の場合、endDate は当月25日を
         //    指している。そのまま年月を得る。
         NSDate *d = [report.end addTimeInterval:-60];
-        return [dateFormatter stringFromDate:d];
+        return [mDateFormatter stringFromDate:d];
     } else {
-        return [dateFormatter stringFromDate:report.start];
+        return [mDateFormatter stringFromDate:report.start];
     }
 }
 
@@ -128,7 +128,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [reports.reportEntries count];
+    return [mReports.reportEntries count];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -138,14 +138,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int count = [reports.reportEntries count];
-    ReporEntry *report = [reports.reportEntries objectAtIndex:count - indexPath.row - 1];
+    int count = [mReports.reportEntries count];
+    ReporEntry *report = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
 	
     ReportCell *cell = [ReportCell reportCell:tv];
     cell.name = [self _reportTitle:report];
     cell.income = report.totalIncome;
     cell.outgo = report.totalOutgo;
-    cell.maxAbsValue = maxAbsValue;
+    cell.maxAbsValue = mMaxAbsValue;
 
     return cell;
 }
@@ -154,12 +154,12 @@
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-    int count = [reports.reportEntries count];
-    ReporEntry *r = [reports.reportEntries objectAtIndex:count - indexPath.row - 1];
+    int count = [mReports.reportEntries count];
+    ReporEntry *re = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
 
     CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
-    vc.title = [self _reportTitle:r];
-    vc.report = r;
+    vc.title = [self _reportTitle:re];
+    vc.reportEntry = re;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

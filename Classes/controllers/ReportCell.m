@@ -9,7 +9,7 @@
 
 @implementation ReportCell
 
-@synthesize name, income, outgo, maxAbsValue;
+@synthesize name = mName, income = mIncome, outgo = mOutgo, maxAbsValue = mMaxAbsValue;
 
 + (ReportCell *)reportCell:(UITableView *)tableView
 {
@@ -29,77 +29,77 @@
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
-    nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-    nameLabel.font = [UIFont systemFontOfSize: 14.0];
-    nameLabel.textColor = [UIColor grayColor];
-    nameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
-    [self.contentView addSubview:nameLabel];
+    mNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
+    mNameLabel.font = [UIFont systemFontOfSize: 14.0];
+    mNameLabel.textColor = [UIColor grayColor];
+    mNameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
+    [self.contentView addSubview:mNameLabel];
 
-    incomeGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 22, 170, 16)] autorelease];
-    incomeGraph.backgroundColor = [UIColor blueColor];
-    incomeGraph.opaque = YES;
-    [self.contentView addSubview:incomeGraph];
+    mIncomeGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 22, 170, 16)] autorelease];
+    mIncomeGraph.backgroundColor = [UIColor blueColor];
+    mIncomeGraph.opaque = YES;
+    [self.contentView addSubview:mIncomeGraph];
 
-    incomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 20, 130, 20)] autorelease];
-    incomeLabel.font = [UIFont systemFontOfSize: 14.0];
-    incomeLabel.textAlignment = UITextAlignmentRight;
-    incomeLabel.textColor = [UIColor blueColor];
+    mIncomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 20, 130, 20)] autorelease];
+    mIncomeLabel.font = [UIFont systemFontOfSize: 14.0];
+    mIncomeLabel.textAlignment = UITextAlignmentRight;
+    mIncomeLabel.textColor = [UIColor blueColor];
     //incomeLabel.lineBreakMode = UILineBreakModeWordWrap;
-    incomeLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
-    [self.contentView addSubview:incomeLabel];
+    mIncomeLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
+    [self.contentView addSubview:mIncomeLabel];
 
-    outgoGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 42, 170, 16)] autorelease];
-    outgoGraph.backgroundColor = [UIColor redColor];
-    outgoGraph.opaque = YES;
-    [self.contentView addSubview:outgoGraph];
+    mOutgoGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 42, 170, 16)] autorelease];
+    mOutgoGraph.backgroundColor = [UIColor redColor];
+    mOutgoGraph.opaque = YES;
+    [self.contentView addSubview:mOutgoGraph];
 
-    outgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 40, 130, 20)] autorelease];
-    outgoLabel.font = [UIFont systemFontOfSize: 14.0];
-    outgoLabel.textAlignment = UITextAlignmentRight;
-    outgoLabel.textColor = [UIColor redColor];
+    mOutgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 40, 130, 20)] autorelease];
+    mOutgoLabel.font = [UIFont systemFontOfSize: 14.0];
+    mOutgoLabel.textAlignment = UITextAlignmentRight;
+    mOutgoLabel.textColor = [UIColor redColor];
     //outgoLabel.lineBreakMode = UILineBreakModeWordWrap;
-    outgoLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
-    [self.contentView addSubview:outgoLabel];
+    mOutgoLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
+    [self.contentView addSubview:mOutgoLabel];
     
-    maxAbsValue = 0.000001;
+    mMaxAbsValue = 0.000001;
 
     return self;
 }
 
 - (void)dealloc {
-    [name release];
+    [mName release];
     [super dealloc];
 }
 
-- (void)setName:(NSString *)n
+- (void)setMName:(NSString *)n
 {
-    if (name == n) return;
+    if (mName == n) return;
 
-    [name release];
-    name = [n retain];
+    [mName release];
+    mName = [n retain];
 
-    nameLabel.text = name;
+    mNameLabel.text = mName;
 }
 
-- (void)setIncome:(double)v
+- (void)setMIncome:(double)v
 {
-    income = v;
-    incomeLabel.text = [CurrencyManager formatCurrency:income];
+    mIncome = v;
+    mIncomeLabel.text = [CurrencyManager formatCurrency:mIncome];
     [self updateGraph];
 }
 
-- (void)setOutgo:(double)v
+- (void)setMOutgo:(double)v
 {
-    outgo = v;
-    outgoLabel.text = [CurrencyManager formatCurrency:outgo];
+    mOutgo = v;
+    mOutgoLabel.text = [CurrencyManager formatCurrency:mOutgo];
     [self updateGraph];
 }
 
-- (void)setMaxAbsValue:(double)mav
+- (void)setMMaxAbsValue:(double)mav
 {
-    maxAbsValue = mav;
-    if (maxAbsValue < 0.0000001) {
-        maxAbsValue = 0.0000001; // for safety
+    mMaxAbsValue = mav;
+    if (mMaxAbsValue < 0.0000001) {
+        mMaxAbsValue = 0.0000001; // for safety
     }
     [self updateGraph];
 }
@@ -116,15 +116,15 @@
         fullWidth = 170;
     }
 
-    ratio = income / maxAbsValue;
+    ratio = mIncome / mMaxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
     width = fullWidth * ratio + 1;
-    incomeGraph.frame = CGRectMake(120, 22, width, 16);
+    mIncomeGraph.frame = CGRectMake(120, 22, width, 16);
 
-    ratio = -outgo / maxAbsValue;
+    ratio = -mOutgo / mMaxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
     width = fullWidth * ratio + 1;
-    outgoGraph.frame = CGRectMake(120, 42, width, 16);
+    mOutgoGraph.frame = CGRectMake(120, 42, width, 16);
 }
 
 @end

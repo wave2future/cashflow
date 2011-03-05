@@ -8,10 +8,10 @@
 
 @interface ReportViewController : UITableViewController
 {
-    Report *reports;
-    double maxAbsValue;
+    Report *mReports;
+    double mMaxAbsValue;
 
-    NSDateFormatter *dateFormatter;
+    NSDateFormatter *mDateFormatter;
 }
 
 - (void)doneAction:(id)sender;

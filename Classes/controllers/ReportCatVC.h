@@ -8,10 +8,10 @@
 
 @interface CatReportViewController : UITableViewController
 {
-    ReporEntry *report;
-    double maxAbsValue;
+    ReporEntry *mReport;
+    double mMaxAbsValue;
 }
 
-@property(nonatomic,retain) ReporEntry *report;
+@property(nonatomic,retain) ReporEntry *reportEntry;
 
 @end

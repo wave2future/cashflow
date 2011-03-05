@@ -39,7 +39,7 @@
 
 @implementation CatReportViewController
 
-@synthesize report;
+@synthesize reportEntry = mReport;
 
 - (id)init
 {
@@ -59,23 +59,23 @@
 
 - (void)dealloc
 {
-    if (report) {
-        [report release];
+    if (mReport) {
+        [mReport release];
     }
     //[dateFormatter release];
     [super dealloc];
 }
 
-- (void)setReport:(ReporEntry *)rep
+- (void)setMReport:(ReporEntry *)rep
 {
-    if (report != rep) {
-        [report release];
-        report = [rep retain];
+    if (mReport != rep) {
+        [mReport release];
+        mReport = [rep retain];
     }
 
     // 合計値を計算
-    maxAbsValue = 0.0;
-    for (CatReport *cr in report.catReports) {
+    mMaxAbsValue = 0.0;
+    for (CatReport *cr in mReport.catReports) {
 #if 0
         if (cr.value > maxAbsValue) {
             maxAbsValue = cr.value;
@@ -85,9 +85,9 @@
         }
 #endif
         if (cr.sum >= 0.0) {
-            maxAbsValue += cr.sum;
+            mMaxAbsValue += cr.sum;
         } else {
-            maxAbsValue -= cr.sum;
+            mMaxAbsValue -= cr.sum;
         }
     }
 }
@@ -99,14 +99,14 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [report.catReports count];
+    return [mReport.catReports count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReportCatCell *cell = [ReportCatCell reportCatCell:tv];
 
-    CatReport *cr = [report.catReports objectAtIndex:indexPath.row];
+    CatReport *cr = [mReport.catReports objectAtIndex:indexPath.row];
     if (cr.catkey >= 0) {
         cell.name = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
     } else {
@@ -114,7 +114,7 @@
     }
 
     cell.value = cr.sum;
-    cell.maxAbsValue = maxAbsValue;
+    cell.maxAbsValue = mMaxAbsValue;
 
     return cell;
 }

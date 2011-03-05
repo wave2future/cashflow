@@ -6,16 +6,16 @@
 #import <UIKit/UIKit.h>
 
 @interface ReportCell : UITableViewCell {
-    NSString *name;
-    double income;
-    double outgo;
-    double maxAbsValue;
+    NSString *mName;
+    double mIncome;
+    double mOutgo;
+    double mMaxAbsValue;
 
-    UILabel *nameLabel;
-    UILabel *incomeLabel;
-    UILabel *outgoLabel;
-    UIView *incomeGraph;
-    UIView *outgoGraph;
+    UILabel *mNameLabel;
+    UILabel *mIncomeLabel;
+    UILabel *mOutgoLabel;
+    UIView *mIncomeGraph;
+    UIView *mOutgoGraph;
 }
 
 @property(nonatomic,retain) NSString *name;
