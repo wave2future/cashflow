@@ -43,7 +43,7 @@
 "Report" = "Report";
 "Monthly Report" = "Report mensuel";
 "Weekly Report" = "Report hebdomadaire";
-"Daily Report" = "Daily Report";
+"Daily Report" = "Report quotidien";
 
 /* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
