@@ -87,13 +87,16 @@
     }
 	
     switch (type) {
-    case REPORT_WEEKLY:
-        [mDateFormatter setDateFormat:@"yyyy/MM/dd~"];
-        break;
-    case REPORT_MONTHLY:
-        //[dateFormatter setDateFormat:@"yyyy/MM"];
-        [mDateFormatter setDateFormat:@"~yyyy/MM/dd"];
-        break;
+        case REPORT_DAILY:
+            [mDateFormatter setDateFormat:@"yyyy/MM/dd"];
+            break;
+        case REPORT_WEEKLY:
+            [mDateFormatter setDateFormat:@"yyyy/MM/dd~"];
+            break;
+        case REPORT_MONTHLY:
+            //[dateFormatter setDateFormat:@"yyyy/MM"];
+            [mDateFormatter setDateFormat:@"~yyyy/MM/dd"];
+            break;
     }
 
     mMaxAbsValue = 1;

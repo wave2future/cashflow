@@ -490,7 +490,8 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
          initWithTitle:@"" delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil
-         otherButtonTitles:NSLocalizedString(@"Weekly Report", @""),
+         otherButtonTitles:NSLocalizedString(@"Daily Report", @""),
+         NSLocalizedString(@"Weekly Report", @""),
          NSLocalizedString(@"Monthly Report", @""),
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
@@ -514,24 +515,32 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     
     switch (buttonIndex) {
         case 0:
+            reportVC = [[[ReportViewController alloc] init] autorelease];
+            reportVC.title = NSLocalizedString(@"Daily Report", @"");
+            [reportVC generateReport:REPORT_DAILY asset:nil];
+            vc = reportVC;
+            break;
+            
         case 1:
             reportVC = [[[ReportViewController alloc] init] autorelease];
-            if (buttonIndex == 0) {
-                reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-                [reportVC generateReport:REPORT_WEEKLY asset:nil];
-            } else {
-                reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-                [reportVC generateReport:REPORT_MONTHLY asset:nil];
-            }
+            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+            [reportVC generateReport:REPORT_WEEKLY asset:nil];
+            vc = reportVC;
+            break;
+            
+        case 2:
+            reportVC = [[[ReportViewController alloc] init] autorelease];
+            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+            [reportVC generateReport:REPORT_MONTHLY asset:nil];
             vc = reportVC;
             break;
 
-        case 2:
+        case 3:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release backup instance here!
             
-        case 3:
+        case 4:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
             break;

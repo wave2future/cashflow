@@ -484,6 +484,7 @@
          delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil otherButtonTitles:
+         NSLocalizedString(@"Daily Report", @""),
          NSLocalizedString(@"Weekly Report", @""),
          NSLocalizedString(@"Monthly Report", @""),
          NSLocalizedString(@"Export", @""),
@@ -512,30 +513,38 @@
     
     switch (buttonIndex) {
         case 0:
+            reportVC = [[[ReportViewController alloc] init] autorelease];
+            reportVC.title = NSLocalizedString(@"Daily Report", @"");
+            [reportVC generateReport:REPORT_DAILY asset:mAsset];
+            vc = reportVC;
+            break;
+            
         case 1:
             reportVC = [[[ReportViewController alloc] init] autorelease];
-            if (buttonIndex == 0) {
-                reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-                [reportVC generateReport:REPORT_WEEKLY asset:mAsset];
-            } else {
-                reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-                [reportVC generateReport:REPORT_MONTHLY asset:mAsset];
-            }
+            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
+            [reportVC generateReport:REPORT_WEEKLY asset:mAsset];
+            vc = reportVC;
+            break;
+            
+        case 2:
+            reportVC = [[[ReportViewController alloc] init] autorelease];
+            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
+            [reportVC generateReport:REPORT_MONTHLY asset:mAsset];
             vc = reportVC;
             break;
 			
-        case 2:
+        case 3:
             exportVC = [[[ExportVC alloc] initWithAsset:mAsset] autorelease];
             vc = exportVC;
             modalPresentationStyle = UIModalPresentationFormSheet;
             break;
             
-        case 3:
+        case 4:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release back instance here!
             
-        case 4:
+        case 5:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
             modalPresentationStyle = UIModalPresentationFormSheet;
