@@ -13,6 +13,9 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2892E4100DC94CBA00A64D0F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
 		2899E5600DE3E45000AC0155 /* TransactionListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2899E55F0DE3E45000AC0155 /* TransactionListView.xib */; };
+		3E02EB9313226A600086F492 /* TransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EB9213226A600086F492 /* TransactionCell.m */; };
+		3E02EB9413226A600086F492 /* TransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EB9213226A600086F492 /* TransactionCell.m */; };
+		3E02EB9513226A600086F492 /* TransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EB9213226A600086F492 /* TransactionCell.m */; };
 		3E035E9B1182B6E000711865 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
 		3E0887F00E6EAC5C00739AC9 /* EditDescView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */; };
 		3E0887F60E6EAC8900739AC9 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
@@ -362,6 +365,8 @@
 		2899E55F0DE3E45000AC0155 /* TransactionListView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionListView.xib; sourceTree = "<group>"; };
 		28A0AAE50D9B0CCF005BE974 /* CashFlow_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashFlow_Prefix.pch; sourceTree = "<group>"; };
 		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3E02EB9113226A600086F492 /* TransactionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransactionCell.h; sourceTree = "<group>"; };
+		3E02EB9213226A600086F492 /* TransactionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionCell.m; sourceTree = "<group>"; };
 		3E035E9A1182B6E000711865 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDescView.xib; sourceTree = "<group>"; };
 		3E0887F50E6EAC8900739AC9 /* EditDateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditDateView.xib; sourceTree = "<group>"; };
@@ -793,6 +798,8 @@
 				3E0AD6E71214169700CFDDAC /* AssetVC.m */,
 				3E0AD70C1214169700CFDDAC /* TransactionListVC.h */,
 				3E0AD70D1214169700CFDDAC /* TransactionListVC.m */,
+				3E02EB9113226A600086F492 /* TransactionCell.h */,
+				3E02EB9213226A600086F492 /* TransactionCell.m */,
 				3E0AD70E1214169700CFDDAC /* TransactionVC.h */,
 				3E0AD70F1214169700CFDDAC /* TransactionVC.m */,
 				3E0AD6E81214169700CFDDAC /* CalcVC.h */,
@@ -1376,6 +1383,7 @@
 				3E4A7D27131FB94B0008C37D /* CashflowDatabase.m in Sources */,
 				3E4A7D28131FB94B0008C37D /* DateFormatter2.m in Sources */,
 				3E4A7D2E131FB9680008C37D /* Dbstmt.m in Sources */,
+				3E02EB9413226A600086F492 /* TransactionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1438,6 +1446,7 @@
 				3E4A7D25131FB94B0008C37D /* CashflowDatabase.m in Sources */,
 				3E4A7D26131FB94B0008C37D /* DateFormatter2.m in Sources */,
 				3E4A7D2D131FB9680008C37D /* Dbstmt.m in Sources */,
+				3E02EB9313226A600086F492 /* TransactionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1534,6 +1543,7 @@
 				3E4A7D29131FB94B0008C37D /* CashflowDatabase.m in Sources */,
 				3E4A7D2A131FB94B0008C37D /* DateFormatter2.m in Sources */,
 				3E4A7D2F131FB9680008C37D /* Dbstmt.m in Sources */,
+				3E02EB9513226A600086F492 /* TransactionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

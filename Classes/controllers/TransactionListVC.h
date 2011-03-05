@@ -83,7 +83,6 @@
 - (IBAction)doAction:(id)sender;
 - (IBAction)showHelp:(id)sender;
 
-- (UITableViewCell *)_entryCell:(AssetEntry *)e;
 - (void)_replaceAd;
 
 @end
