@@ -98,7 +98,7 @@
 							<object class="IBUILabel" id="152436725">
 								<reference key="NSNextResponder" ref="707069057"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{5, 24}, {160, 20}}</string>
+								<string key="NSFrame">{{5, 24}, {173, 20}}</string>
 								<reference key="NSSuperview" ref="707069057"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -106,12 +106,12 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Date</string>
-								<object class="NSFont" key="IBUIFont" id="103884590">
+								<object class="NSFont" key="IBUIFont" id="774737585">
 									<string key="NSName">Helvetica</string>
 									<double key="NSSize">14</double>
 									<int key="NSfFlags">16</int>
 								</object>
-								<object class="NSColor" key="IBUITextColor" id="6521073">
+								<object class="NSColor" key="IBUITextColor" id="508646332">
 									<int key="NSColorSpace">1</int>
 									<bytes key="NSRGB">MC40IDAuNCAwLjQAA</bytes>
 								</object>
@@ -122,7 +122,7 @@
 							<object class="IBUILabel" id="702450631">
 								<reference key="NSNextResponder" ref="707069057"/>
 								<int key="NSvFlags">307</int>
-								<string key="NSFrame">{{150, 24}, {160, 20}}</string>
+								<string key="NSFrame">{{180, 24}, {130, 20}}</string>
 								<reference key="NSSuperview" ref="707069057"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -130,8 +130,8 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">¥999,999,999</string>
-								<reference key="IBUIFont" ref="103884590"/>
-								<reference key="IBUITextColor" ref="6521073"/>
+								<reference key="IBUIFont" ref="774737585"/>
+								<reference key="IBUITextColor" ref="508646332"/>
 								<reference key="IBUIHighlightedColor" ref="311210943"/>
 								<int key="IBUIBaselineAdjustment">1</int>
 								<float key="IBUIMinimumFontSize">10</float>
