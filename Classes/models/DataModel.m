@@ -167,14 +167,10 @@ static DataModel *theDataModel = nil;
     static NSDateFormatter *dfDateOnly = nil;
 
     if (!dfDateTime) {
-        dfDateTime = [[NSDateFormatter alloc] init];
-        [dfDateTime setDateStyle:NSDateFormatterMediumStyle];
-        [dfDateTime setTimeStyle:NSDateFormatterShortStyle];
+        dfDateTime = [self _dateFormatterWithDayOfWeek:NSDateFormatterShortStyle];
     }
     if (!dfDateOnly) {
-        dfDateOnly = [[NSDateFormatter alloc] init];
-        [dfDateOnly setDateStyle:NSDateFormatterMediumStyle];
-        [dfDateOnly setTimeStyle:NSDateFormatterNoStyle];
+        dfDateOnly = [self _dateFormatterWithDayOfWeek:NSDateFormatterNoStyle];
     }
 
     if ([Config instance].dateTimeMode == DateTimeModeDateOnly) {
@@ -182,6 +178,23 @@ static DataModel *theDataModel = nil;
     }
     return dfDateTime;
 }
+
++ (NSDateFormatter *)_dateFormatterWithDayOfWeek:(NSDateFormatterStyle)timeStyle
+{
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateStyle:NSDateFormatterMediumStyle];
+    [df setTimeStyle:timeStyle];
+    
+    NSMutableString *s = [NSMutableString stringWithCapacity:30];
+    [s setString:[df dateFormat]];
+
+    [s replaceOccurrencesOfString:@"MMM d, y" withString:@"EEE, MMM d, y" options:NSLiteralSearch range:NSMakeRange(0, [s length])];
+    [s replaceOccurrencesOfString:@"yyyy/MM/dd" withString:@"yyyy/MM/dd(EEEEE)" options:NSLiteralSearch range:NSMakeRange(0, [s length])];
+    
+    [df setDateFormat:s];
+    return df;
+}
+
 
 // 摘要からカテゴリを推定する
 //

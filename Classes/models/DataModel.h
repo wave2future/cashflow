@@ -71,6 +71,8 @@
 + (Categories *)categories;
 
 + (NSDateFormatter *)dateFormatter;
++ (NSDateFormatter *)_dateFormatterWithDayOfWeek:(NSDateFormatterStyle)timeStyle;
+
 
 // initializer
 - (id)init;

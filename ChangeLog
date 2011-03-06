@@ -1,3 +1,7 @@
+2011-03-06 : Takuya Murakami
+	* TransactionCell を修正。文字サイズを自動修正。
+	* 曜日を表示追加
+
 2011-03-05 : Takuya Murakami
 	* Report 関連のクラスのリファクタリング
 	* 日別レポート機能を追加
@@ -35,14 +39,14 @@
 	* Google AFMA SDK 3.0 から 3.1 に更新
 	* iPad 向け広告サイズ変更(だが元に戻す)
 	* EditDescVC メモリ破壊バグを修正?
-	
+
 2010-08-13 : Takuya Murakami
 	* ver 3.3.1
 	* PIN UI 表示中にサスペンド/レジュームしたときに UI が二重になるバグを修正
 
 2010-08-13 : Takuya Murakami
 	* ver 3.3.1-beta-100813
-	
+
 2010-08-12: Takuya Murakami
 	* GoogleAds attributes を autorelease しない (mutateError 対策)
 	* 前回、広告をロードできなかった場合はロードしないようにした
@@ -50,7 +54,7 @@
 	* バグ修正: 最初のTransactionListVC のロードを、AssetListVC の
 	  viewDidApppear 内に移動。
 	* データロードを別スレッドで実行するようにした
-	
+
 2010-08-11: Takuya Murakami
 	* ver 3.3.1-beta-100812-1, 3.3.1-beta-100812-2
 	* loadGoogleAd 内で例外が発生するケースがあったため、例外を無視するようにした
@@ -59,17 +63,17 @@
 	* 問い合わせメール送信機能追加
 	* クラッシュレポート送信機能追加
 	* DateFormatter 周りの処理を修正
-	
+
 2010-07-19: Takuya Murakami
 	* ver 3.3
 	* iOS4 対応: background から復帰するときに PIN チェックを実施
 
 2010-07-18: Takuya Murakami
 	* 単体テストを iUnitTest ベースに変更
-	
+
 2010-07-15: Takuya Murakami
 	* 日本語 CSV ファイルのエンコーディングを SJIS に変更
-	
+
 2010-07-14: Takuya Murakami
 	* 資産合計値をツールバーに表示するようにした
 
@@ -86,11 +90,11 @@
 
 2010-06-30: Takuya Murakami
 	* ver 3.2.1
-	
+
 2010-06-28: Takuya Murakami
 	* バグ修正: UIDatePicker の TimeZone がシステムのものに問題を修正
 	* Deployment Target を 3.1.3 から 3.0 に変更
-	
+
 2010-06-19: Takuya Murakami
 	* バグ修正: 締め日当日の取引が前月のレポートに表示されるバグを修正
 	* バグ修正: 資産間を頻繁に移動すると落ちるバグを修正(メモリリーク)
@@ -100,13 +104,13 @@
 2010-05-11: Takuya Murakami
 	* バグ修正: 残高調整ウィンドウが閉じない (iPad以外）問題を修正
 	* ver 3.1
-	
+
 2010-04-29: Takuya Murakami
 	* ver 3.0
 	* iPad 対応
 	* 日付モード:1/5分単位モードを追加
 	* CSV ファイルの拡張子を txt に変更
-	
+
 2010-04-01: Takuya Murakami
 	* CSV ファイルの先頭に BOM をつけるようにした
 
@@ -137,27 +141,27 @@
 2009-09-14: Takuya Murakami
 	* トランザクション削除時に落ちる問題を修正（広告位置)
 	* ver 2.0.2
-	
+
 2009-09-13: Takuya Murakami
 	* 広告の表示箇所を変更
 	* ver 2.0.2 -> self reject
-	
+
 2009-08-22: Takuya Murakami
 	* Free version に広告 (AdMob, TG ad) を追加
 	* Free version に PIN 機能を追加
 	* ver 2.0.1 (r2.0.1) : Free version only
-	
+
 2009-04-25: Takuya Murakami
 	* レポートグラフ表示機能を追加
 	* ver 2.0 (r2.0)
-	
+
 2009-04-19: Takuya Murakami
 	* OFX で ><& をエスケープするように修正
 
 2009-04-18: Takuya Murakami
 	* データ構造を作り直した (Journal, Ledger などの追加)
 	* iUnitTest 単体テストを追加
-	
+
 2009-04-15: Takuya Murakami
 	* 資産間移動を実装
 
@@ -165,11 +169,11 @@
 	* 摘要を入力したときに、履歴から費目を自動選択するようにした。
 	* 摘要のヒストリ(LRU)を、選択されたカテゴリで優先順位付けするようにした。
 	* Database の bindXXX を 0 origin に変更
-	
+
 2009-03-26: Takuya Murakami
 	* バグ修正: 12/24時間制切り替え時にデータが見えなくなる問題を修正
 	* ver 1.11 (r337)
-	
+
 2009-03-20: Takuya Murakami
 	* バグ修正: 資産削除時に一部誤ってデータが削除される問題を修正
 	* ver 1.11 (r332) → 取り下げ
@@ -177,11 +181,11 @@
 2009-03-06: Takuya Murakami
 	* ネットワーク接続されていないときのエラー処理を追加
 	* ver 1.10 (r329)
-	
+
 2009-03-01: Takuya Murakami
 	* CSVエクスポートでクラッシュしていたバグを修正（カテゴリ回り）
 	* ver 1.10 (r326) -> reject された
-	
+
 2009-02-09: Takuya Murakami
 	* CSV にカテゴリ(費目)も出力するようにした
 	* 資産残高合計を表示
@@ -194,7 +198,7 @@
 	* ver 1.9
 	* Copyright 表示変更
 	* 資産削除時の確認処理追加
-	
+
 2009-01-15 : Takuya Murakami
 	* AssetListView の ActionSheet を分割 (TBDツールバー変更)
 	* AssetListView	から資産を削除できるようにした　(TBD AssetView での削除を廃止)
@@ -211,7 +215,7 @@
 2009-01-08 : Takuya Murakami
 	* ver 1.8 (r276)
 	* de, fr, it, es, kr, zh-Hans, zh-Hant 追加
-	
+
 2009-01-05 : Takuya Murakami
 	* zh_TW (Traditional Chinese) 追加
 	* ExportView.xib の localization を削除
@@ -233,7 +237,7 @@
 2008-11-11: ver 1.5? (r227)
 	リファクタリング
 	あと何直したっけ？
-	
+
 2008-11-9 : ver 1.4 (Subversion r203)
 	全資産のレポート機能を追加
 	費目設定機能を追加
@@ -248,7 +252,7 @@
 	データ保存を SQLite データベースに変更
 	Asset を追加
 	リファクタリング
-	
+
 2008-11-5 : ver 1.3 (Subversion r109)
 	Ver 1.3 (AppStore)
 
@@ -262,7 +266,7 @@
 	初期残高を表示するようにした
 	数値入力時にキーボード音を鳴らすようにした。
 	フォントサイズ変更
-	
+
 2008-10-23 : ver 1.1 (Subversion r33)
 	Ver 1.1 (AppStore)
 
