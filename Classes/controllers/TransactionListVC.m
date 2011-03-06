@@ -314,51 +314,15 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell;
+    TransactionCell *cell;
 	
     AssetEntry *e = [self entryWithIndexPath:indexPath];
     if (e) {
         cell = [[TransactionCell transactionCell:tv] updateWithAssetEntry:e];
     }
     else {
-        cell = [self initialBalanceCell];
+        cell = [[TransactionCell transactionCell:tv] updateAsInitialBalance:mAsset.initialBalance];
     }
-
-    return cell;
-}
-
-// 初期残高セルの生成 (private)
-- (UITableViewCell *)initialBalanceCell
-{
-    NSString *cellid = @"initialBalanceCell";
-
-    UITableViewCell *cell = [mTableView dequeueReusableCellWithIdentifier:cellid];
-    UILabel *descLabel, *balanceLabel;
-
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellid] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-		
-        descLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-        descLabel.font = [UIFont systemFontOfSize: 18.0];
-        descLabel.textColor = [UIColor blackColor];
-        descLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        descLabel.text = NSLocalizedString(@"Initial Balance", @"");
-        [cell.contentView addSubview:descLabel];
-
-        balanceLabel = [[[UILabel alloc] initWithFrame:CGRectMake(150, 24, 160, 20)] autorelease];
-        balanceLabel.tag = TAG_BALANCE;
-        balanceLabel.font = [UIFont systemFontOfSize: 14.0];
-        balanceLabel.textAlignment = UITextAlignmentRight;
-        balanceLabel.textColor = [UIColor grayColor];
-        balanceLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:balanceLabel];
-    } else {
-        balanceLabel = (UILabel *)[cell.contentView viewWithTag:TAG_BALANCE];
-    }
-
-    balanceLabel.text = [NSString stringWithFormat:@"%@ %@", NSLocalizedString(@"Balance", @""), 
-                                  [CurrencyManager formatCurrency:mAsset.initialBalance]];
 
     return cell;
 }

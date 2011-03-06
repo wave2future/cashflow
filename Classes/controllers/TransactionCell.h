@@ -17,10 +17,14 @@
 
 //- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier;
 - (TransactionCell *)updateWithAssetEntry:(AssetEntry *)entry;
+- (TransactionCell *)updateAsInitialBalance:(double)initialBalance;
+
 - (void)setDescriptionLabel:(NSString *)desc;
 - (void)setDateLabel:(NSDate *)date;
 - (void)setValueLabel:(double)value;
 - (void)setBalanceLabel:(double)balance;
+- (void)clearValueLabel;
+- (void)clearDateLabel;
 - (void)clearBalanceLabel;
 
 @end
