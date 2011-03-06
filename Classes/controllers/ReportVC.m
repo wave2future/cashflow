@@ -149,6 +149,7 @@
     cell.income = report.totalIncome;
     cell.outgo = report.totalOutgo;
     cell.maxAbsValue = mMaxAbsValue;
+    [cell updateGraph];
 
     return cell;
 }
