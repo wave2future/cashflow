@@ -15,7 +15,11 @@
 
     TransactionCell *cell = (TransactionCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[TransactionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        //cell = [[[TransactionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        
+        UIViewController *vc = [[UIViewController alloc] initWithNibName:@"TransactionCell" bundle:nil];
+        cell = (TransactionCell *)vc.view;
+        [vc release];
     }
     return cell;
 }
@@ -24,6 +28,7 @@
     [super dealloc];
 }
 
+/*
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
 {
     self = [super initWithStyle:style reuseIdentifier:identifier];
@@ -60,6 +65,7 @@
 
     return self;
 }
+*/
 
 - (TransactionCell *)updateWithAssetEntry:(AssetEntry *)entry
 {

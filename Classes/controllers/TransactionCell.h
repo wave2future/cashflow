@@ -7,15 +7,15 @@
 #import "AssetEntry.h"
 
 @interface TransactionCell : UITableViewCell {
-    UILabel *mDescLabel;
-    UILabel *mDateLabel;
-    UILabel *mValueLabel;
-    UILabel *mBalanceLabel;
+    IBOutlet UILabel *mDescLabel;
+    IBOutlet UILabel *mDateLabel;
+    IBOutlet UILabel *mValueLabel;
+    IBOutlet UILabel *mBalanceLabel;
 }
 
 + (TransactionCell *)transactionCell:(UITableView *)tableView;
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier;
+//- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier;
 - (TransactionCell *)updateWithAssetEntry:(AssetEntry *)entry;
 - (void)setDescriptionLabel:(NSString *)desc;
 - (void)setDateLabel:(NSDate *)date;

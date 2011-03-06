@@ -275,6 +275,9 @@
 		3EC0B7A411EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3ED30E721323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
+		3ED30E731323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
+		3ED30E741323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
 		3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
 		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
@@ -527,6 +530,7 @@
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
+		3ED30E711323B53E007E46DC /* TransactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		3ED97C130F1A0D8D0063A578 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServer.h; sourceTree = "<group>"; };
 		3ED97C140F1A0D8D0063A578 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServer.m; sourceTree = "<group>"; };
 		3ED97C260F1A0E8E0063A578 /* BackupServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupServer.h; sourceTree = "<group>"; };
@@ -726,6 +730,7 @@
 				3EA011310EC344CC008CEEB7 /* AssetListView.xib */,
 				3E588D450EC34CFE00D3853D /* AssetView.xib */,
 				2899E55F0DE3E45000AC0155 /* TransactionListView.xib */,
+				3ED30E711323B53E007E46DC /* TransactionCell.xib */,
 				3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */,
 				3EB2FCDD0EC7314100F356A3 /* CategoryListView.xib */,
 				3E0887EF0E6EAC5C00739AC9 /* EditDescView.xib */,
@@ -1241,6 +1246,7 @@
 				3EAFE1D212DAE020008819C0 /* Icon-72.png in Resources */,
 				3EAFE1D312DAE020008819C0 /* Icon.png in Resources */,
 				3EAFE1D412DAE020008819C0 /* Icon@2x.png in Resources */,
+				3ED30E731323B53E007E46DC /* TransactionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1283,6 +1289,7 @@
 				3EAFE1CB12DADFC9008819C0 /* Icon-72.png in Resources */,
 				3EAFE1CC12DADFC9008819C0 /* Icon.png in Resources */,
 				3EAFE1CD12DADFC9008819C0 /* Icon@2x.png in Resources */,
+				3ED30E741323B53E007E46DC /* TransactionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1325,6 +1332,7 @@
 				3E3FEFEB11F3387E00A0FC41 /* Default-Portrait.png in Resources */,
 				3E3FEFEE11F3387E00A0FC41 /* icon-rendered.png in Resources */,
 				3E3FEFF011F3387E00A0FC41 /* redButton.png in Resources */,
+				3ED30E721323B53E007E46DC /* TransactionCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
