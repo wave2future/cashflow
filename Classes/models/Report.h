@@ -39,7 +39,7 @@
 #define REPORT_DAILY 0
 #define REPORT_WEEKLY 1
 #define REPORT_MONTHLY 2
-#define REPORT_YEARLY 3
+#define REPORT_ANNUAL 3
 
 /*
   レポートの構造
