@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2011, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -49,7 +49,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //self.title = NSLocalizedString(@"Report", @"");
+    self.navigationItem.rightBarButtonItem =
+        [[[UIBarButtonItem alloc]
+             initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+             target:self
+             action:@selector(doneAction:)] autorelease];
+}
+
+- (void)doneAction:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

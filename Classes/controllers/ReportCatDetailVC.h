@@ -13,4 +13,6 @@
 
 @property(nonatomic,retain) CatReport *catReport;
 
+- (void)doneAction:(id)sender;
+
 @end

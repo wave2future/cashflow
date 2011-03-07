@@ -26,7 +26,6 @@
 - (id)initWithAsset:(Asset*)asset; 
 
 - (void)doneAction:(id)sender;
-//- (void)generateReport:(int)type asset:(Asset*)asset;
 - (void)_updateReport;
 - (NSString *)_reportTitle:(ReporEntry *)report;
 
