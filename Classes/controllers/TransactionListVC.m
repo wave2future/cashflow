@@ -39,7 +39,7 @@
 #import "Transaction.h"
 #import "InfoVC.h"
 #import "CalcVC.h"
-#import "ReportVC.h"
+#import "ReportTypeVC.h"
 #import "ConfigViewController.h"
 #import "AssetListVC.h"
 #import "Backup.h"
@@ -448,9 +448,7 @@
          delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil otherButtonTitles:
-         NSLocalizedString(@"Daily Report", @""),
-         NSLocalizedString(@"Weekly Report", @""),
-         NSLocalizedString(@"Monthly Report", @""),
+         NSLocalizedString(@"Report", @""),
          NSLocalizedString(@"Export", @""),
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
@@ -465,7 +463,7 @@
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    ReportViewController *reportVC;
+    ReportTypeViewController *reportTypeVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
     Backup *backup;
@@ -477,38 +475,23 @@
     
     switch (buttonIndex) {
         case 0:
-            reportVC = [[[ReportViewController alloc] init] autorelease];
-            reportVC.title = NSLocalizedString(@"Daily Report", @"");
-            [reportVC generateReport:REPORT_DAILY asset:mAsset];
-            vc = reportVC;
+            reportTypeVC = [[[ReportTypeViewController alloc] init] autorelease];
+            reportTypeVC.asset = mAsset;
+            vc = reportTypeVC;
             break;
             
         case 1:
-            reportVC = [[[ReportViewController alloc] init] autorelease];
-            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-            [reportVC generateReport:REPORT_WEEKLY asset:mAsset];
-            vc = reportVC;
-            break;
-            
-        case 2:
-            reportVC = [[[ReportViewController alloc] init] autorelease];
-            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-            [reportVC generateReport:REPORT_MONTHLY asset:mAsset];
-            vc = reportVC;
-            break;
-			
-        case 3:
             exportVC = [[[ExportVC alloc] initWithAsset:mAsset] autorelease];
             vc = exportVC;
             modalPresentationStyle = UIModalPresentationFormSheet;
             break;
             
-        case 4:
+        case 2:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release back instance here!
             
-        case 5:
+        case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
             modalPresentationStyle = UIModalPresentationFormSheet;

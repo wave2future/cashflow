@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2011, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -33,11 +33,12 @@
 */
 
 #import "AppDelegate.h"
+#import "ReportTypeVC.h"
 #import "ReportVC.h"
-#import "ReportCatVC.h"
-#import "ReportCell.h"
 
-@implementation ReportViewController
+@implementation ReportTypeViewController
+
+@synthesize asset = mAsset;
 
 - (id)init
 {
@@ -48,22 +49,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = NSLocalizedString(@"Report", @"");
 
-    /*
     self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc]
              initWithBarButtonSystemItem:UIBarButtonSystemItemDone
              target:self
              action:@selector(doneAction:)] autorelease];
-    */
 }
 
-/*
 - (void)doneAction:(id)sender
 {
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -71,88 +69,32 @@
 
 - (void)dealloc
 {
-    if (mReports) {
-        [mReports release];
-    }
-    [mDateFormatter release];
+    [mAsset release];
     [super dealloc];
-}
-
-- (void)generateReport:(int)type asset:(Asset*)asset
-{
-    if (mReports == nil) {
-        mReports = [[Report alloc] init];
-    }
-    [mReports generate:type asset:asset];
-	
-    if (mDateFormatter == nil) {
-        mDateFormatter = [[NSDateFormatter alloc] init];
-    }
-	
-    switch (type) {
-        case REPORT_DAILY:
-            [mDateFormatter setDateFormat:@"yyyy/MM/dd"];
-            break;
-        case REPORT_WEEKLY:
-            [mDateFormatter setDateFormat:@"yyyy/MM/dd~"];
-            break;
-        case REPORT_MONTHLY:
-            //[dateFormatter setDateFormat:@"yyyy/MM"];
-            [mDateFormatter setDateFormat:@"~yyyy/MM/dd"];
-            break;
-    }
-
-    mMaxAbsValue = 1;
-    for (ReporEntry *rep in mReports.reportEntries) {
-        if (rep.totalIncome > mMaxAbsValue) mMaxAbsValue = rep.totalIncome;
-        if (-rep.totalOutgo > mMaxAbsValue) mMaxAbsValue = -rep.totalOutgo;
-    }
-}
-
-// レポートのタイトルを得る
-- (NSString *)_reportTitle:(ReporEntry *)report
-{
-    if (mReports.type == REPORT_MONTHLY) {
-        // 終了日の時刻の１分前の時刻から年月を得る
-        //
-        // 1) 締め日が月末の場合、endDate は翌月1日0:00を指しているので、
-        //    1分前は当月最終日の23:59である。
-        // 2) 締め日が任意の日、例えば25日の場合、endDate は当月25日を
-        //    指している。そのまま年月を得る。
-        NSDate *d = [report.end addTimeInterval:-60];
-        return [mDateFormatter stringFromDate:d];
-    } else {
-        return [mDateFormatter stringFromDate:report.start];
-    }
 }
 
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"%d", tableView.rowHeight);
     return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [mReports.reportEntries count];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 62;
+    return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    int count = [mReports.reportEntries count];
-    ReporEntry *report = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
+    static NSString *MyIdentifier = @"ReportTypeListViewCells";
 	
-    ReportCell *cell = [ReportCell reportCell:tv];
-    cell.name = [self _reportTitle:report];
-    cell.income = report.totalIncome;
-    cell.outgo = report.totalOutgo;
-    cell.maxAbsValue = mMaxAbsValue;
-    [cell updateGraph];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier] autorelease];
+    }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+
+    cell.textLabel.text = [self _getTitle:indexPath.row];
 
     return cell;
 }
@@ -160,16 +102,37 @@
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
-	
-    int count = [mReports.reportEntries count];
-    ReporEntry *re = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
+    
+    ReportViewController *reportVC;
+    reportVC = [[[ReportViewController alloc] init] autorelease];
 
-    CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
-    vc.title = [self _reportTitle:re];
-    vc.reportEntry = re;
-    [self.navigationController pushViewController:vc animated:YES];
+    int type = indexPath.row;
+    reportVC.title = [self _getTitle:type];
+    [reportVC generateReport:type asset:mAsset];
+
+    [self.navigationController pushViewController:reportVC animated:YES];
 }
 
+- (NSString *)_getTitle:(int)type
+{
+    NSString *text = nil;
+
+    switch (type) {
+    case REPORT_DAILY:
+        text = NSLocalizableString(@"Daily Report", @"");
+        break;
+    case REPORT_WEEKLY:
+        text = NSLocalizableString(@"Weekly Report", @"");
+        break;
+    case REPORT_MONTHLY:
+        text = NSLocalizableString(@"Monthly Report", @"");
+        break;
+    case REPORT_ANNUAL:
+        text = NSLocalizableString(@"Annual Report", @"");
+        break;
+    }
+    return text;
+}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if (IS_IPAD) return YES;

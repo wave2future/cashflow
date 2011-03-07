@@ -39,7 +39,7 @@
 #import "AssetVC.h"
 #import "TransactionListVC.h"
 //#import "CategoryListVC.h"
-#import "ReportVC.h"
+#import "ReportTypeVC.h"
 #import "InfoVC.h"
 #import "Backup.h"
 #import "PinController.h"
@@ -490,9 +490,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
          initWithTitle:@"" delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil
-         otherButtonTitles:NSLocalizedString(@"Daily Report", @""),
-         NSLocalizedString(@"Weekly Report", @""),
-         NSLocalizedString(@"Monthly Report", @""),
+         otherButtonTitles:NSLocalizedString(@"Report", @""),
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
          nil];
@@ -506,7 +504,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
 - (void)_actionActionButton:(NSInteger)buttonIndex
 {
-    ReportViewController *reportVC;
+    ReportTypeViewController *reportTypeVC;
     ConfigViewController *configVC;
     Backup *backup;
     UIViewController *vc;
@@ -515,32 +513,17 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     
     switch (buttonIndex) {
         case 0:
-            reportVC = [[[ReportViewController alloc] init] autorelease];
-            reportVC.title = NSLocalizedString(@"Daily Report", @"");
-            [reportVC generateReport:REPORT_DAILY asset:nil];
-            vc = reportVC;
+            reportTypeVC = [[[ReportTypeViewController alloc] init] autorelease];
+            reportTypeVC.asset = nil;
+            vc = reportTypeVC;
             break;
             
         case 1:
-            reportVC = [[[ReportViewController alloc] init] autorelease];
-            reportVC.title = NSLocalizedString(@"Weekly Report", @"");
-            [reportVC generateReport:REPORT_WEEKLY asset:nil];
-            vc = reportVC;
-            break;
-            
-        case 2:
-            reportVC = [[[ReportViewController alloc] init] autorelease];
-            reportVC.title = NSLocalizedString(@"Monthly Report", @"");
-            [reportVC generateReport:REPORT_MONTHLY asset:nil];
-            vc = reportVC;
-            break;
-
-        case 3:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release backup instance here!
             
-        case 4:
+        case 2:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
             break;
