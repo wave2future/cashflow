@@ -41,9 +41,10 @@
 "Transfer" = "資産間移動";
 
 "Report" = "レポート";
-"Monthly Report" = "月別レポート";
-"Weekly Report" = "週別レポート";
 "Daily Report" = "日別レポート";
+"Weekly Report" = "週別レポート";
+"Monthly Report" = "月別レポート";
+"Annual Report" = "年別レポート";
 
 /* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help-j.html";

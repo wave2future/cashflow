@@ -41,9 +41,10 @@
 "Transfer" = "이체";
 
 "Report" = "통계";
-"Monthly Report" = "월별 통계";
+"Daily Report" = "매일 통계";
 "Weekly Report" = "주간 통계";
-"Daily Report" = "Daily Report";
+"Monthly Report" = "월별 통계";
+"Annual Report" = "매년 통계";
 
 /* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help-j.html";

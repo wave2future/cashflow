@@ -41,9 +41,10 @@
 "Transfer" = "Transfer";
 
 "Report" = "Report";
-"Monthly Report" = "Monthly Report";
-"Weekly Report" = "Weekly Report";
 "Daily Report" = "Daily Report";
+"Weekly Report" = "Weekly Report";
+"Monthly Report" = "Monthly Report";
+"Annual Report" = "Annual Report";
 
 /* No need to translate HelpURL */
 "HelpURL" = "http://iphone.tmurakam.org/cashflow/help.html";
