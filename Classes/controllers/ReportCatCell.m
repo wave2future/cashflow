@@ -59,7 +59,6 @@
     if (mMaxAbsValue < 0.0000001) {
         mMaxAbsValue = 0.0000001; // for safety
     }
-    [self updateGraph];
 }
 
 - (void)updateGraph
@@ -81,9 +80,11 @@
         mGraphView.backgroundColor = [UIColor redColor];        
         ratio = -ratio;
     }
-    int width = fullWidth * ratio + 6;
+    int width = fullWidth * ratio + 1;
 
-    mGraphView.frame = CGRectMake(100, 2, width, 20);
+    CGRect frame = mGraphView.frame;
+    frame.size.width = width;
+    mGraphView.frame = frame; //CGRectMake(100, 2, width, 20);
 }
 
 @end

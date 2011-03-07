@@ -42,7 +42,7 @@
 
 - (id)init
 {
-    self = [super initWithNibName:@"SimpletableView" bundle:nil];
+    self = [super initWithNibName:@"SimpleTableView" bundle:nil];
     return self;
 }
 
@@ -126,8 +126,8 @@
         cell.name = NSLocalizedString(@"No category", @"");
     }
 
+    cell.maxAbsValue = mMaxAbsValue; // TODO: value 設定前に maxAbsValue を設定する必要がある
     cell.value = cr.sum;
-    cell.maxAbsValue = mMaxAbsValue;
 
     return cell;
 }
