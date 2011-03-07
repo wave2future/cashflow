@@ -39,6 +39,7 @@
 
 @implementation ReportViewController
 
+@synthesize tableView = mTableView;
 @synthesize designatedAsset = mDesignatedAsset;
 
 - (id)initWithAsset:(Asset*)asset withType:(int)type

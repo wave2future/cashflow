@@ -7,8 +7,10 @@
 #import "Report.h"
 #import "Asset.h"
 
-@interface ReportViewController : UITableViewController
+@interface ReportViewController : UIViewController <UITableViewDelegate,UITableViewDataSource>
 {
+    IBOutlet UITableView *mTableView;
+
     int mType;
     Asset mDesignatedAsset;
     Report *mReports;
@@ -17,6 +19,7 @@
     NSDateFormatter *mDateFormatter;
 }
 
+@property(nonatomic,retain) UITableView *tableView;
 @property(nonatomic,retain) Asset *designatedAsset;
 
 - (id)initWithAsset:(Asset*)asset withType:(int)type;    // designated initializer

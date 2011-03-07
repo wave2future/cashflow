@@ -160,7 +160,7 @@
 		3E3FEFCA11F3385F00A0FC41 /* EditDateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E0887F50E6EAC8900739AC9 /* EditDateView.xib */; };
 		3E3FEFCB11F3385F00A0FC41 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
 		3E3FEFCC11F3385F00A0FC41 /* EditMemoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5868230EEFFB6E00951C2F /* EditMemoView.xib */; };
-		3E3FEFCD11F3385F00A0FC41 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
+		3E3FEFCD11F3385F00A0FC41 /* SimpleTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */; };
 		3E3FEFCE11F3385F00A0FC41 /* ExportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */; };
 		3E3FEFCF11F3385F00A0FC41 /* PinView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E8C36150F1E0D82004AFFCA /* PinView.xib */; };
 		3E3FEFD011F3385F00A0FC41 /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
@@ -173,6 +173,9 @@
 		3E3FEFEB11F3387E00A0FC41 /* Default-Portrait.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DD9E911898E9600542042 /* Default-Portrait.png */; };
 		3E3FEFEE11F3387E00A0FC41 /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3E3FEFF011F3387E00A0FC41 /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
+		3E43FC6D1324E8130059B198 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43FC6C1324E8130059B198 /* ReportView.xib */; };
+		3E43FC6E1324E8130059B198 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43FC6C1324E8130059B198 /* ReportView.xib */; };
+		3E43FC6F1324E8130059B198 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43FC6C1324E8130059B198 /* ReportView.xib */; };
 		3E4A7D25131FB94B0008C37D /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
 		3E4A7D26131FB94B0008C37D /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D24131FB94B0008C37D /* DateFormatter2.m */; };
 		3E4A7D27131FB94B0008C37D /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
@@ -219,7 +222,7 @@
 		3E8B25820F348C090007929E /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
 		3E8B25830F348C090007929E /* icon-rendered.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EA0C24E0E8E5B41005A04F5 /* icon-rendered.png */; };
 		3E8B25840F348C090007929E /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */; };
-		3E8B25850F348C090007929E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
+		3E8B25850F348C090007929E /* SimpleTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */; };
 		3E8B25860F348C090007929E /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3E8B25870F348C090007929E /* AssetView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E588D450EC34CFE00D3853D /* AssetView.xib */; };
 		3E8B25880F348C090007929E /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
@@ -280,7 +283,7 @@
 		3ED30E741323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
 		3ED97C150F1A0D8D0063A578 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
 		3ED97C280F1A0E8E0063A578 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
-		3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* ReportView.xib */; };
+		3EDC72BB0EBB493100366F1E /* SimpleTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
 		3EE4015211F3353F00171A15 /* AssetEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014411F3353F00171A15 /* AssetEntryTests.m */; };
@@ -475,6 +478,7 @@
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E40E98811F33C95001E91B5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E43FC6C1324E8130059B198 /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
 		3E4A7D21131FB94B0008C37D /* CashflowDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashflowDatabase.h; sourceTree = "<group>"; };
 		3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashflowDatabase.m; sourceTree = "<group>"; };
 		3E4A7D23131FB94B0008C37D /* DateFormatter2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateFormatter2.h; sourceTree = "<group>"; };
@@ -535,7 +539,7 @@
 		3ED97C140F1A0D8D0063A578 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServer.m; sourceTree = "<group>"; };
 		3ED97C260F1A0E8E0063A578 /* BackupServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupServer.h; sourceTree = "<group>"; };
 		3ED97C270F1A0E8E0063A578 /* BackupServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupServer.m; sourceTree = "<group>"; };
-		3EDC72BA0EBB493100366F1E /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
+		3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SimpleTableView.xib; sourceTree = "<group>"; };
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		3EE400E711F3348000171A15 /* CashFlow-iUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CashFlow-iUnitTest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -738,7 +742,8 @@
 				3E0887F50E6EAC8900739AC9 /* EditDateView.xib */,
 				3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */,
 				3E5868230EEFFB6E00951C2F /* EditMemoView.xib */,
-				3EDC72BA0EBB493100366F1E /* ReportView.xib */,
+				3E43FC6C1324E8130059B198 /* ReportView.xib */,
+				3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */,
 				3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */,
 				3E8C36150F1E0D82004AFFCA /* PinView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
@@ -1220,7 +1225,7 @@
 				3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */,
 				3EA0C24F0E8E5B41005A04F5 /* icon-rendered.png in Resources */,
 				3E4DA8B30EAB6DE4001FBB70 /* Entitlements.plist in Resources */,
-				3EDC72BB0EBB493100366F1E /* ReportView.xib in Resources */,
+				3EDC72BB0EBB493100366F1E /* SimpleTableView.xib in Resources */,
 				3EA011320EC344CC008CEEB7 /* AssetListView.xib in Resources */,
 				3E588D460EC34CFE00D3853D /* AssetView.xib in Resources */,
 				3E5B83A90EC359440035AF05 /* MainWindow.xib in Resources */,
@@ -1247,6 +1252,7 @@
 				3EAFE1D312DAE020008819C0 /* Icon.png in Resources */,
 				3EAFE1D412DAE020008819C0 /* Icon@2x.png in Resources */,
 				3ED30E731323B53E007E46DC /* TransactionCell.xib in Resources */,
+				3E43FC6F1324E8130059B198 /* ReportView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1263,7 +1269,7 @@
 				3E8B25820F348C090007929E /* InfoView.xib in Resources */,
 				3E8B25830F348C090007929E /* icon-rendered.png in Resources */,
 				3E8B25840F348C090007929E /* Entitlements.plist in Resources */,
-				3E8B25850F348C090007929E /* ReportView.xib in Resources */,
+				3E8B25850F348C090007929E /* SimpleTableView.xib in Resources */,
 				3E8B25860F348C090007929E /* AssetListView.xib in Resources */,
 				3E8B25870F348C090007929E /* AssetView.xib in Resources */,
 				3E8B25880F348C090007929E /* MainWindow.xib in Resources */,
@@ -1290,6 +1296,7 @@
 				3EAFE1CC12DADFC9008819C0 /* Icon.png in Resources */,
 				3EAFE1CD12DADFC9008819C0 /* Icon@2x.png in Resources */,
 				3ED30E741323B53E007E46DC /* TransactionCell.xib in Resources */,
+				3E43FC6E1324E8130059B198 /* ReportView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1319,7 +1326,7 @@
 				3E3FEFCA11F3385F00A0FC41 /* EditDateView.xib in Resources */,
 				3E3FEFCB11F3385F00A0FC41 /* EditTypeView.xib in Resources */,
 				3E3FEFCC11F3385F00A0FC41 /* EditMemoView.xib in Resources */,
-				3E3FEFCD11F3385F00A0FC41 /* ReportView.xib in Resources */,
+				3E3FEFCD11F3385F00A0FC41 /* SimpleTableView.xib in Resources */,
 				3E3FEFCE11F3385F00A0FC41 /* ExportView.xib in Resources */,
 				3E3FEFCF11F3385F00A0FC41 /* PinView.xib in Resources */,
 				3E3FEFD011F3385F00A0FC41 /* InfoView.xib in Resources */,
@@ -1333,6 +1340,7 @@
 				3E3FEFEE11F3387E00A0FC41 /* icon-rendered.png in Resources */,
 				3E3FEFF011F3387E00A0FC41 /* redButton.png in Resources */,
 				3ED30E721323B53E007E46DC /* TransactionCell.xib in Resources */,
+				3E43FC6D1324E8130059B198 /* ReportView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
