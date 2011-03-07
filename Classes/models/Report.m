@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008-2010, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2011, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -60,7 +60,7 @@
 /**
  レポート生成
 
- @param type タイプ (REPORT_DAILY/WEEKLY/MONTHLY/YEARLY)
+ @param type タイプ (REPORT_DAILY/WEEKLY/MONTHLY/ANNUAL)
  @param asset 対象資産 (nil の場合は全資産)
  */
 - (void)generate:(int)type asset:(Asset*)asset
@@ -133,7 +133,7 @@
             [steps setMonth:1];
             break;
 			
-        case REPORT_YEARLY:
+        case REPORT_ANNUAL:
             dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit) fromDate:firstDate];
             [dateComponents setMonth:1];
             [dateComponents setDay:1];
