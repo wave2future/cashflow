@@ -39,31 +39,41 @@
 
 @implementation ReportViewController
 
-- (id)init
+@synthesize designatedAsset = mDesignatedAsset;
+
+- (id)initWithAsset:(Asset*)asset withType:(int)type
 {
     self = [super initWithNibName:@"ReportView" bundle:nil];
+    if (self != nil) {
+        self.designatedAsset = asset;
+        mType = type;
+
+        mDateFormatter = [[NSDateFormatter alloc] init];
+        [self _generateReport];
+    }
     return self;
+}
+
+- (id)initWithAsset:(Asset*)asset
+{
+    return [self init:asset withType:REPORT_WEEKLY];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    /*
     self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc]
              initWithBarButtonSystemItem:UIBarButtonSystemItemDone
              target:self
              action:@selector(doneAction:)] autorelease];
-    */
 }
 
-/*
 - (void)doneAction:(id)sender
 {
     [self.navigationController dismissModalViewControllerAnimated:YES];
 }
-*/
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -71,46 +81,47 @@
 
 - (void)dealloc
 {
-    if (mReports) {
-        [mReports release];
-    }
+    [mDesignatedAsset release];
+    [mReports release];
     [mDateFormatter release];
     [super dealloc];
 }
 
-- (void)generateReport:(int)type asset:(Asset*)asset
+- (void)_updateReport
 {
+    /*
+      レポート(再)生成
+    */
     if (mReports == nil) {
         mReports = [[Report alloc] init];
     }
-    [mReports generate:type asset:asset];
-	
-    if (mDateFormatter == nil) {
-        mDateFormatter = [[NSDateFormatter alloc] init];
-    }
-	
-    switch (type) {
+    [mReports generate:mType asset:mDesignatedAsset];
+    mMaxAbsValue = [mReports getMaxAbsValue];
+
+    switch (mType) {
         case REPORT_DAILY:
+            self.title = NSLocalizableString(@"Daily Report", @"");
             [mDateFormatter setDateFormat:@"yyyy/MM/dd"];
             break;
+
         case REPORT_WEEKLY:
+            self.title = NSLocalizableString(@"Weekly Report", @"");
             [mDateFormatter setDateFormat:@"yyyy/MM/dd~"];
             break;
+
         case REPORT_MONTHLY:
+            self.title = NSLocalizableString(@"Monthly Report", @"");
             //[dateFormatter setDateFormat:@"yyyy/MM"];
             [mDateFormatter setDateFormat:@"~yyyy/MM/dd"];
             break;
+
         case REPORT_ANNUAL:
-            //[dateFormatter setDateFormat:@"yyyy/MM"];
+            self.title = NSLocalizableString(@"Annual Report", @"");
             [mDateFormatter setDateFormat:@"yyyy"];
             break;
     }
 
-    mMaxAbsValue = 1;
-    for (ReporEntry *rep in mReports.reportEntries) {
-        if (rep.totalIncome > mMaxAbsValue) mMaxAbsValue = rep.totalIncome;
-        if (-rep.totalOutgo > mMaxAbsValue) mMaxAbsValue = -rep.totalOutgo;
-    }
+    [self.tableView reloadData];
 }
 
 // レポートのタイトルを得る
@@ -130,10 +141,35 @@
     }
 }
 
+#pragma mark Event Handlers
+
+- (IBAction)setReportDaily:(id)sender
+{
+    mType = REPORT_DAILY;
+    [self _updateReport];
+}
+
+- (IBAction)setReportWeekly:(id)sender;
+{
+    mType = REPORT_WEEKLY;
+    [self _updateReport];
+}
+
+- (IBAction)setReportMonthly:(id)sender;
+{
+    mType = REPORT_MONTHLY;
+    [self _updateReport];
+}
+
+- (IBAction)setReportAnnual:(id)sender;
+{
+    mType = REPORT_ANNUAL;
+    [self _updateReport];
+}
+
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"%d", tableView.rowHeight);
     return 1;
 }
 

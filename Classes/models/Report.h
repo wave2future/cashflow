@@ -57,6 +57,7 @@
 @property(nonatomic,retain) NSMutableArray *reportEntries;
 
 - (void)generate:(int)type asset:(Asset *)asset;
+- (double)getMaxAbsValue;
 
 // private
 - (NSDate*)firstDateOfAsset:(int)asset;

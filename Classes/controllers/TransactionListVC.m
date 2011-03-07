@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008-2009, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2011, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -39,7 +39,7 @@
 #import "Transaction.h"
 #import "InfoVC.h"
 #import "CalcVC.h"
-#import "ReportTypeVC.h"
+#import "ReportVC.h"
 #import "ConfigViewController.h"
 #import "AssetListVC.h"
 #import "Backup.h"
@@ -463,7 +463,7 @@
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    ReportTypeViewController *reportTypeVC;
+    ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
     Backup *backup;
@@ -475,9 +475,8 @@
     
     switch (buttonIndex) {
         case 0:
-            reportTypeVC = [[[ReportTypeViewController alloc] init] autorelease];
-            reportTypeVC.asset = mAsset;
-            vc = reportTypeVC;
+            reportVC = [[[ReportViewController alloc] initWithAsset:mAsset] autorelease];
+            vc = reportVC;
             break;
             
         case 1:

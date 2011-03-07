@@ -157,6 +157,19 @@
 }
 
 /**
+   レポート内の値の最大絶対値を得る
+*/
+- (double)getMaxAbsValue
+{
+    double maxAbsValue = 1;
+    for (ReporEntry *rep in mReportEntries) {
+        if (rep.totalIncome > maxAbsValue) maxAbsValue = rep.totalIncome;
+        if (-rep.totalOutgo > maxAbsValue) maxAbsValue = -rep.totalOutgo;
+    }
+    return maxAbsValue;
+}
+
+/**
  指定された資産の最初の取引日を取得
  */
 - (NSDate*)firstDateOfAsset:(int)asset
