@@ -12,7 +12,7 @@
     IBOutlet UITableView *mTableView;
 
     int mType;
-    Asset mDesignatedAsset;
+    Asset *mDesignatedAsset;
     Report *mReports;
     double mMaxAbsValue;
 

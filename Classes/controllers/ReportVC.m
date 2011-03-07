@@ -50,14 +50,14 @@
         mType = type;
 
         mDateFormatter = [[NSDateFormatter alloc] init];
-        [self _generateReport];
+        [self _updateReport];
     }
     return self;
 }
 
 - (id)initWithAsset:(Asset*)asset
 {
-    return [self init:asset withType:REPORT_WEEKLY];
+    return [self initWithAsset:asset withType:REPORT_WEEKLY];
 }
 
 - (void)viewDidLoad
@@ -101,23 +101,23 @@
 
     switch (mType) {
         case REPORT_DAILY:
-            self.title = NSLocalizableString(@"Daily Report", @"");
+            self.title = NSLocalizedString(@"Daily Report", @"");
             [mDateFormatter setDateFormat:@"yyyy/MM/dd"];
             break;
 
         case REPORT_WEEKLY:
-            self.title = NSLocalizableString(@"Weekly Report", @"");
+            self.title = NSLocalizedString(@"Weekly Report", @"");
             [mDateFormatter setDateFormat:@"yyyy/MM/dd~"];
             break;
 
         case REPORT_MONTHLY:
-            self.title = NSLocalizableString(@"Monthly Report", @"");
+            self.title = NSLocalizedString(@"Monthly Report", @"");
             //[dateFormatter setDateFormat:@"yyyy/MM"];
             [mDateFormatter setDateFormat:@"~yyyy/MM/dd"];
             break;
 
         case REPORT_ANNUAL:
-            self.title = NSLocalizableString(@"Annual Report", @"");
+            self.title = NSLocalizedString(@"Annual Report", @"");
             [mDateFormatter setDateFormat:@"yyyy"];
             break;
     }
