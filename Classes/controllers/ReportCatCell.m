@@ -17,38 +17,13 @@
 
     ReportCatCell *cell = (ReportCatCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[ReportCatCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        UIViewController *vc = [[UIViewController alloc] initWithNibName:@"ReportCatCell" bundle:nil];
+        cell = (ReportCatCell *)vc.view;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [vc release];
     }
     return cell;
-}
-
-- (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
-{
-    self = [super initWithStyle:style reuseIdentifier:identifier];
-    
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    mGraphView = [[[UIView alloc] initWithFrame:CGRectMake(100, 2, 210,20)] autorelease];
-    mGraphView.backgroundColor = [UIColor greenColor];
-    mGraphView.opaque = YES;
-    [self.contentView addSubview:mGraphView];
-
-    mNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 100, 44)] autorelease];
-    mNameLabel.font = [UIFont systemFontOfSize: 14.0];
-    mNameLabel.textColor = [UIColor blackColor];
-    mNameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:mNameLabel];
-
-    mValueLabel = [[[UILabel alloc] initWithFrame:CGRectMake(100, 23, 130, 20)] autorelease];
-    mValueLabel.font = [UIFont systemFontOfSize: 13.0];
-    //valueLabel.textAlignment = UITextAlignmentRight;
-    mValueLabel.textAlignment = UITextAlignmentLeft;
-    mValueLabel.textColor = [UIColor blackColor];
-    mValueLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [self.contentView addSubview:mValueLabel];
-
-    return self;
 }
 
 - (void)dealloc {

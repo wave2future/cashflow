@@ -10,9 +10,9 @@
     double mValue;
     double mMaxAbsValue;
 
-    UILabel *mNameLabel;
-    UILabel *mValueLabel;
-    UIView *mGraphView;
+    IBOutlet UILabel *mNameLabel;
+    IBOutlet UILabel *mValueLabel;
+    IBOutlet UIView *mGraphView;
 }
 
 @property(nonatomic,retain) NSString *name;

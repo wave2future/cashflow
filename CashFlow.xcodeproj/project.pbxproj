@@ -377,6 +377,9 @@
 		3EFEFE5C1324EEAA00EF369E /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEFE5B1324EEAA00EF369E /* ReportCell.xib */; };
 		3EFEFE5D1324EEAA00EF369E /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEFE5B1324EEAA00EF369E /* ReportCell.xib */; };
 		3EFEFE5E1324EEAA00EF369E /* ReportCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEFE5B1324EEAA00EF369E /* ReportCell.xib */; };
+		3EFEFE9A1324F3C800EF369E /* ReportCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEFE991324F3C800EF369E /* ReportCatCell.xib */; };
+		3EFEFE9B1324F3C800EF369E /* ReportCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEFE991324F3C800EF369E /* ReportCatCell.xib */; };
+		3EFEFE9C1324F3C800EF369E /* ReportCatCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFEFE991324F3C800EF369E /* ReportCatCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -636,6 +639,7 @@
 		3EFEFE161324ED2E00EF369E /* Icon-free.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-free.png"; sourceTree = "<group>"; };
 		3EFEFE171324ED2E00EF369E /* Icon-free@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-free@2x.png"; sourceTree = "<group>"; };
 		3EFEFE5B1324EEAA00EF369E /* ReportCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportCell.xib; sourceTree = "<group>"; };
+		3EFEFE991324F3C800EF369E /* ReportCatCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportCatCell.xib; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = ../Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -761,6 +765,7 @@
 				3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */,
 				3E43FC6C1324E8130059B198 /* ReportView.xib */,
 				3EFEFE5B1324EEAA00EF369E /* ReportCell.xib */,
+				3EFEFE991324F3C800EF369E /* ReportCatCell.xib */,
 				3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */,
 				3E8C36150F1E0D82004AFFCA /* PinView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
@@ -1258,6 +1263,7 @@
 				3EFEFE1C1324ED2E00EF369E /* Icon-free.png in Resources */,
 				3EFEFE1D1324ED2E00EF369E /* Icon-free@2x.png in Resources */,
 				3EFEFE5D1324EEAA00EF369E /* ReportCell.xib in Resources */,
+				3EFEFE9B1324F3C800EF369E /* ReportCatCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1306,6 +1312,7 @@
 				3EFEFE1F1324ED2E00EF369E /* Icon-free.png in Resources */,
 				3EFEFE201324ED2E00EF369E /* Icon-free@2x.png in Resources */,
 				3EFEFE5E1324EEAA00EF369E /* ReportCell.xib in Resources */,
+				3EFEFE9C1324F3C800EF369E /* ReportCatCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1357,6 +1364,7 @@
 				3EFEFE191324ED2E00EF369E /* Icon-free.png in Resources */,
 				3EFEFE1A1324ED2E00EF369E /* Icon-free@2x.png in Resources */,
 				3EFEFE5C1324EEAA00EF369E /* ReportCell.xib in Resources */,
+				3EFEFE9A1324F3C800EF369E /* ReportCatCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
