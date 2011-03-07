@@ -17,53 +17,18 @@
 
     ReportCell *cell = (ReportCell*)[tableView dequeueReusableCellWithIdentifier:identifier];
     if (cell == nil) {
-        cell = [[[ReportCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier] autorelease];
+        UIViewController *vc = [[UIViewController alloc] initWithNibName:@"ReportCell" bundle:nil];
+        cell = (ReportCell *)vc.view;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        [vc release];
     }
     return cell;
 }
 
-- (UITableViewCell *)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)identifier
++ (CGFloat)cellHeight
 {
-    self = [super initWithStyle:style reuseIdentifier:identifier];
-    
-    self.selectionStyle = UITableViewCellSelectionStyleNone;
-    self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
-    mNameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(5, 0, 190, 24)] autorelease];
-    mNameLabel.font = [UIFont systemFontOfSize: 14.0];
-    mNameLabel.textColor = [UIColor grayColor];
-    mNameLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
-    [self.contentView addSubview:mNameLabel];
-
-    mIncomeGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 22, 170, 16)] autorelease];
-    mIncomeGraph.backgroundColor = [UIColor blueColor];
-    mIncomeGraph.opaque = YES;
-    [self.contentView addSubview:mIncomeGraph];
-
-    mIncomeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 20, 100, 20)] autorelease];
-    mIncomeLabel.font = [UIFont systemFontOfSize: 14.0];
-    mIncomeLabel.textAlignment = UITextAlignmentRight;
-    mIncomeLabel.textColor = [UIColor blueColor];
-    //incomeLabel.lineBreakMode = UILineBreakModeWordWrap;
-    mIncomeLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
-    [self.contentView addSubview:mIncomeLabel];
-
-    mOutgoGraph = [[[UIView alloc] initWithFrame:CGRectMake(120, 42, 170, 16)] autorelease];
-    mOutgoGraph.backgroundColor = [UIColor redColor];
-    mOutgoGraph.opaque = YES;
-    [self.contentView addSubview:mOutgoGraph];
-
-    mOutgoLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 40, 100, 20)] autorelease];
-    mOutgoLabel.font = [UIFont systemFontOfSize: 14.0];
-    mOutgoLabel.textAlignment = UITextAlignmentRight;
-    mOutgoLabel.textColor = [UIColor redColor];
-    //outgoLabel.lineBreakMode = UILineBreakModeWordWrap;
-    mOutgoLabel.autoresizingMask = 0;//UIViewAutoresizingFlexibleWidth;
-    [self.contentView addSubview:mOutgoLabel];
-    
-    mMaxAbsValue = 0.000001;
-
-    return self;
+    return 62;
 }
 
 - (void)dealloc {

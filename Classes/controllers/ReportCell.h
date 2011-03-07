@@ -11,11 +11,11 @@
     double mOutgo;
     double mMaxAbsValue;
 
-    UILabel *mNameLabel;
-    UILabel *mIncomeLabel;
-    UILabel *mOutgoLabel;
-    UIView *mIncomeGraph;
-    UIView *mOutgoGraph;
+    IBOutlet UILabel *mNameLabel;
+    IBOutlet UILabel *mIncomeLabel;
+    IBOutlet UILabel *mOutgoLabel;
+    IBOutlet UIView *mIncomeGraph;
+    IBOutlet UIView *mOutgoGraph;
 }
 
 @property(nonatomic,retain) NSString *name;
@@ -24,6 +24,8 @@
 @property(nonatomic,assign) double maxAbsValue;
 
 + (ReportCell *)reportCell:(UITableView *)tableView;
++ (CGFloat)cellHeight;
+
 - (void)updateGraph;
 
 @end

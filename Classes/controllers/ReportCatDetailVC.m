@@ -96,6 +96,8 @@
     [cell setDateLabel:t.date];
     [cell setValueLabel:value];
     [cell clearBalanceLabel];
+
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     return cell;
 }
