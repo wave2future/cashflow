@@ -60,7 +60,7 @@
 /**
  レポート生成
 
- @param type タイプ (REPORT_DAILY/WEEKLY/MONTHLY)
+ @param type タイプ (REPORT_DAILY/WEEKLY/MONTHLY/YEARLY)
  @param asset 対象資産 (nil の場合は全資産)
  */
 - (void)generate:(int)type asset:(Asset*)asset
@@ -91,6 +91,21 @@
 	
     steps = [[[NSDateComponents alloc] init] autorelease];
     switch (mType) {
+        case REPORT_DAILY:;
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+            nextStartDay = [greg dateFromComponents:dateComponents];
+            [steps setDay:1];
+            break;
+
+        case REPORT_WEEKLY:
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
+            nextStartDay = [greg dateFromComponents:dateComponents];
+            int weekday = [dateComponents weekday];
+            [steps setDay:-weekday+1];
+            nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
+            [steps setDay:7];
+            break;
+
         case REPORT_MONTHLY:
             dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
 
@@ -118,19 +133,11 @@
             [steps setMonth:1];
             break;
 			
-        case REPORT_WEEKLY:
-            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
-            nextStartDay = [greg dateFromComponents:dateComponents];
-            int weekday = [dateComponents weekday];
-            [steps setDay:-weekday+1];
-            nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
-            [steps setDay:7];
-            break;
-            
-        case REPORT_DAILY:;
-            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
-            nextStartDay = [greg dateFromComponents:dateComponents];
-            [steps setDay:1];
+        case REPORT_YEARLY:
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit) fromDate:firstDate];
+            [dateComponents setMonth:1];
+            [dateComponents setDay:1];
+            [steps setYear:1];
             break;
     }
 	
