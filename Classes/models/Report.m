@@ -134,9 +134,10 @@
             break;
 			
         case REPORT_ANNUAL:
-            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekdayCalendarUnit) fromDate:firstDate];
+            dateComponents = [greg components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:firstDate];
             [dateComponents setMonth:1];
             [dateComponents setDay:1];
+            nextStartDay = [greg dateFromComponents:dateComponents];
             [steps setYear:1];
             break;
     }
