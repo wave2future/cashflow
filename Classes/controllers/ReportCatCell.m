@@ -9,7 +9,7 @@
 
 @implementation ReportCatCell
 
-@synthesize name = mName, value = mValue, maxAbsValue = mMaxAbsValue;
+@synthesize name = mName;
 
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView
 {
@@ -41,24 +41,17 @@
     mNameLabel.text = mName;
 }
 
-- (void)setValue:(double)v
+- (void)setValue:(double)value maxAbsValue:(double)maxAbsValue
 {
-    mValue = v;
-    mValueLabel.text = [CurrencyManager formatCurrency:mValue];
-    if (mValue >= 0) {
-        mValueLabel.textColor = [UIColor blackColor];
-    } else {
-        mValueLabel.textColor = [UIColor blackColor];
-    }
-    [self updateGraph];
-}
-
-- (void)setMaxAbsValue:(double)mav
-{
-    mMaxAbsValue = mav;
+    mValue = value;
+    mMaxAbsValue = maxAbsValue;
     if (mMaxAbsValue < 0.0000001) {
         mMaxAbsValue = 0.0000001; // for safety
     }
+    
+    mValueLabel.text = [CurrencyManager formatCurrency:mValue];
+
+    [self updateGraph];
 }
 
 - (void)updateGraph
@@ -73,6 +66,7 @@
     
     ratio = mValue / mMaxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
+    if (ratio < -1.0) ratio = -1.0;
 
     if (ratio > 0.0) {
         mGraphView.backgroundColor = [UIColor blueColor];

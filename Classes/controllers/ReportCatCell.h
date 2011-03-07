@@ -16,10 +16,10 @@
 }
 
 @property(nonatomic,retain) NSString *name;
-@property(nonatomic,assign) double value;
-@property(nonatomic,assign) double maxAbsValue;
 
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView;
+
+- (void)setValue:(double)value maxAbsValue:(double)maxAbsValue;
 - (void)updateGraph;
 
 @end

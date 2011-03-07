@@ -87,6 +87,8 @@
     }
 
     // 合計値を計算
+    // TODO: ここの計算はかなりいい加減。
+    // 本来なら、支出額/入金額別々に合計値を計算する必要がある。
     mMaxAbsValue = 0.0;
     for (CatReport *cr in mReportEntry.catReports) {
 #if 0
@@ -126,8 +128,7 @@
         cell.name = NSLocalizedString(@"No category", @"");
     }
 
-    cell.maxAbsValue = mMaxAbsValue; // TODO: value 設定前に maxAbsValue を設定する必要がある
-    cell.value = cr.sum;
+    [cell setValue:cr.sum maxAbsValue:mMaxAbsValue];
 
     return cell;
 }
