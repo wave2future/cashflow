@@ -126,7 +126,7 @@
 }
 
 // レポートのタイトルを得る
-- (NSString *)_reportTitle:(ReporEntry *)report
+- (NSString *)_reportTitle:(ReportEntry *)report
 {
     if (mReports.type == REPORT_MONTHLY) {
         // 終了日の時刻の１分前の時刻から年月を得る
@@ -186,7 +186,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     int count = [mReports.reportEntries count];
-    ReporEntry *report = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
+    ReportEntry *report = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
 	
     ReportCell *cell = [ReportCell reportCell:tv];
     cell.name = [self _reportTitle:report];
@@ -203,7 +203,7 @@
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
     int count = [mReports.reportEntries count];
-    ReporEntry *re = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
+    ReportEntry *re = [mReports.reportEntries objectAtIndex:count - indexPath.row - 1];
 
     CatReportViewController *vc = [[[CatReportViewController alloc] init] autorelease];
     vc.title = [self _reportTitle:re];

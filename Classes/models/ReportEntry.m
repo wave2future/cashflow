@@ -37,7 +37,7 @@
 #import "Database.h"
 #import "Config.h"
 
-@implementation ReporEntry
+@implementation ReportEntry
 
 @synthesize start = mStart, end = mEnd;
 @synthesize totalIncome = mTotalIncome, totalOutgo = mTotalOutgo;
@@ -182,7 +182,7 @@ static int sortCatReport(id x, id y, void *context);
     // 集計
     double total = 0.0;
     for (CatReport *cr in ary) {
-        total += cr.value;
+        total += cr.sum;
     }
     return total;
 }
@@ -195,8 +195,8 @@ static int sortCatReport(id x, id y, void *context)
     CatReport *xr = (CatReport *)x;
     CatReport *yr = (CatReport *)y;
 
-    double xv = xr.value;
-    double yv = yr.value;
+    double xv = xr.sum;
+    double yv = yr.sum;
     if (xv < 0) xv = -xv;
     if (yv < 0) yv = -yv;
 	

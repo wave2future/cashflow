@@ -62,18 +62,17 @@
 - (void)addTransaction:(Transaction*)t
 {
     if (mAssetKey >= 0 && t.dstAsset == mAssetKey) {
-        mSum += -value; // 資産間移動の移動先
+        mSum += -t.value; // 資産間移動の移動先
     } else {
-        mSum += value;
+        mSum += t.value;
     }
 
     [mTransactions addObject:t];
-    mSum += value;
 }
 
 - (NSString *)title
 {
-    return [[DataModel categories] categorySringWithKey:mCategory];
+    return [[DataModel categories] categoryStringWithKey:mCategory];
 }
 
 @end

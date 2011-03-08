@@ -8,10 +8,10 @@
 
 @interface CatReportViewController : UITableViewController
 {
-    ReporEntry *mReportEntry;
+    ReportEntry *mReportEntry;
 }
 
-@property(nonatomic,retain) ReporEntry *reportEntry;
+@property(nonatomic,retain) ReportEntry *reportEntry;
 
 - (void)doneAction:(id)sender;
 

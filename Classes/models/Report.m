@@ -150,7 +150,7 @@
         nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
 
         // Report 生成
-        ReportEntry *r = [[[ReporEntry alloc] initWithAsset:assetKey
+        ReportEntry *r = [[[ReportEntry alloc] initWithAsset:assetKey
                             start:start end:nextStartDay] autorelease];
         [mReportEntries addObject:r];
 
@@ -180,7 +180,7 @@
 - (double)getMaxAbsValue
 {
     double maxAbsValue = 1;
-    for (ReporEntry *rep in mReportEntries) {
+    for (ReportEntry *rep in mReportEntries) {
         if (rep.totalIncome > maxAbsValue) maxAbsValue = rep.totalIncome;
         if (-rep.totalOutgo > maxAbsValue) maxAbsValue = -rep.totalOutgo;
     }

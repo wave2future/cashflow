@@ -75,7 +75,10 @@
 /**
    各期間毎のレポートエントリ
 */
-@interface ReporEntry : NSObject {
+@interface ReportEntry : NSObject {
+    /** 資産キー */
+    int mAssetKey;
+    
     /** 期間開始日 */
     NSDate *mStart;
 

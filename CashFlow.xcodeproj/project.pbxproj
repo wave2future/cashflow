@@ -135,6 +135,12 @@
 		3E0AD7A11214173500CFDDAC /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78C1214173500CFDDAC /* TransactionBase.m */; };
 		3E13EE59114007D600523938 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
 		3E13EE70114008E400523938 /* libGoogleAds.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE6F114008E400523938 /* libGoogleAds.a */; };
+		3E17800413263CBD00D74DED /* CatReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800213263CBD00D74DED /* CatReport.m */; };
+		3E17800513263CBD00D74DED /* ReportEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800313263CBD00D74DED /* ReportEntry.m */; };
+		3E17800613263CBD00D74DED /* CatReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800213263CBD00D74DED /* CatReport.m */; };
+		3E17800713263CBD00D74DED /* ReportEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800313263CBD00D74DED /* ReportEntry.m */; };
+		3E17800813263CBD00D74DED /* CatReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800213263CBD00D74DED /* CatReport.m */; };
+		3E17800913263CBD00D74DED /* ReportEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800313263CBD00D74DED /* ReportEntry.m */; };
 		3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
@@ -501,6 +507,8 @@
 		3E13EE6D114008E400523938 /* GADAdSenseParameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdSenseParameters.h; sourceTree = "<group>"; };
 		3E13EE6E114008E400523938 /* GADAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GADAdViewController.h; sourceTree = "<group>"; };
 		3E13EE6F114008E400523938 /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
+		3E17800213263CBD00D74DED /* CatReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatReport.m; sourceTree = "<group>"; };
+		3E17800313263CBD00D74DED /* ReportEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportEntry.m; sourceTree = "<group>"; };
 		3E197B0E121268CF00105B20 /* CrashReportSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReportSender.h; sourceTree = "<group>"; };
 		3E197B0F121268CF00105B20 /* CrashReportSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReportSender.m; sourceTree = "<group>"; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -852,6 +860,8 @@
 				3E0AD6B1121415DD00CFDDAC /* Ledger.m */,
 				3E0AD6B2121415DD00CFDDAC /* Report.h */,
 				3E0AD6B3121415DD00CFDDAC /* Report.m */,
+				3E17800313263CBD00D74DED /* ReportEntry.m */,
+				3E17800213263CBD00D74DED /* CatReport.m */,
 				3E0AD6B4121415DD00CFDDAC /* Transaction.h */,
 				3E0AD6B5121415DD00CFDDAC /* Transaction.m */,
 			);
@@ -1496,6 +1506,8 @@
 				3E4A7D2E131FB9680008C37D /* Dbstmt.m in Sources */,
 				3E02EB9413226A600086F492 /* TransactionCell.m in Sources */,
 				3E02EBF913226FDC0086F492 /* ReportCatDetailVC.m in Sources */,
+				3E17800613263CBD00D74DED /* CatReport.m in Sources */,
+				3E17800713263CBD00D74DED /* ReportEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1560,6 +1572,8 @@
 				3E4A7D2D131FB9680008C37D /* Dbstmt.m in Sources */,
 				3E02EB9313226A600086F492 /* TransactionCell.m in Sources */,
 				3E02EBF813226FDC0086F492 /* ReportCatDetailVC.m in Sources */,
+				3E17800813263CBD00D74DED /* CatReport.m in Sources */,
+				3E17800913263CBD00D74DED /* ReportEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1658,6 +1672,8 @@
 				3E4A7D2F131FB9680008C37D /* Dbstmt.m in Sources */,
 				3E02EB9513226A600086F492 /* TransactionCell.m in Sources */,
 				3E02EBFA13226FDC0086F492 /* ReportCatDetailVC.m in Sources */,
+				3E17800413263CBD00D74DED /* CatReport.m in Sources */,
+				3E17800513263CBD00D74DED /* ReportEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

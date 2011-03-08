@@ -27,7 +27,7 @@
 
 - (void)doneAction:(id)sender;
 - (void)_updateReport;
-- (NSString *)_reportTitle:(ReporEntry *)report;
+- (NSString *)_reportTitle:(ReportEntry *)report;
 
 - (IBAction)setReportDaily:(id)sender;
 - (IBAction)setReportWeekly:(id)sender;
