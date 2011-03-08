@@ -144,30 +144,33 @@
 	
     // レポートエントリを生成する
     while ([nextStartDay compare:lastDate] != NSOrderedDescending) {
-        NSDate *start = nextStartDay;
+        // Report 生成
+        ReportEntry *r = [[[ReporEntry alloc] init] autorelease];
+        [mReportEntries addObject:r];
+
+        r.start = nextStartDay;
 
         // 次の期間開始時期を計算する
         nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
+        r.end = nextStartDay;
 
-        // Report 生成
-        ReporEntry *r = [[ReporEntry alloc] init];
-        //[r totalUp:assetKey start:start end:nextStartDay];
-
-        [mReportEntries addObject:r];
-        [r release];
+        // レポート上限数を制限
+        if ([mReportEntries count] > MAX_REPORT_ENTRIES) {
+            [mReportEntries removeObjectAtIndex:0];
+        }
     }
 
-    // 集計開始
-    int reportEntryIndex = 0;
-    ReportEntry *reportEntry = [mReportEntries objectAtIndex:reportEntryIndex];
-
-    // 全取引について処理を実行
+    // 集計実行
+    // 全取引について、該当する ReportEntry へ transaction を追加する
     for (Transaction *t in [DataModel journal]) {
-        // レポートエントリに取引を追加
-        while (![reportEntry addTransaction:t])
-            reportEntryIndex++;
-            reportEntry = [mReportEntries objectAtInex:reportEntryIndex];
+        for (ReportEntry *r in mReportEntries) {
+            if ([r addTransaction:t]) {
+                break;
+            }
         }
+    }
+    for (ReportEntry *r in mReportEntries) {
+        [r sortAndTotalUp];
     }
 }
 

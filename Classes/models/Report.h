@@ -41,6 +41,8 @@
 #define REPORT_MONTHLY 2
 #define REPORT_ANNUAL 3
 
+#define MAX_REPORT_ENTRIES      365
+
 /*
   レポートの構造
 
@@ -49,8 +51,8 @@
 
 // レポート
 @interface Report : NSObject {
-    int mType;
-    NSMutableArray *mReportEntries;  // Report の配列
+    int mType; // REPORT_XXX
+    NSMutableArray *mReportEntries;  // ReportEntry の配列
 }
 
 @property(nonatomic,assign) int type;
@@ -84,6 +86,8 @@
 @property(nonatomic,readonly) NSMutableArray *outgoCatReports;
 
 - (BOOL)addTransaction:(Transaction*)t;
+- (void)sortAndTotalUp;
+- (double)_sortAndTotalUp:(NSMutableArray*)array;
 
 @end
 // レポート(カテゴリ毎)
