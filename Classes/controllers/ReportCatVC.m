@@ -90,11 +90,6 @@
     return nil;
 }
 
-- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return tableView.sectionHeaderHeight;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     int rows = 0;
 
