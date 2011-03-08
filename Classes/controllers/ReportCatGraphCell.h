@@ -14,9 +14,12 @@
 }
 
 + (ReportCatGraphCell *)reportCatGraphCell:(UITableView *)tableView;
-- (void)setReport:(ReportEntry *)reportEntry isOutgo:(BOOL)isOutgo
+- (void)setReport:(ReportEntry *)reportEntry isOutgo:(BOOL)isOutgo;
 
 - (void)drawRect:(CGRect)rect; // override
 
+- (void)_drawCircleGraph:(CGContextRef)context;
+- (void)_drawLegend:(CGContextRef)context;
+- (UIColor *)_getColor:(int)index;
 
 @end

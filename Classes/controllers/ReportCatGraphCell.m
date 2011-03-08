@@ -6,11 +6,6 @@
 #import "ReportCatGraphCell.h"
 
 #define CELL_HEIGHT     160   /* iOS, not retina */
-#define CIRCLE_GRAPH_SIZE   140      
-
-@implementation GraphEntry
-@synthesize value = mValue, title = mTitle;
-@end
 
 @implementation ReportCatGraphCell
 
@@ -61,7 +56,7 @@
 /**
    セル描画
 */
-- (void)drawRect:(CGrect)rect
+- (void)drawRect:(CGRect)rect
 {
     CGContextRef context = UIGraphicsGetCurrentContext();
 
@@ -100,7 +95,7 @@ static inline double radians(double deg)
 
     for (CatReport *cr in mCatReports) {
         n++;
-        sum += ge.value;
+        sum += cr.sum;
 
         // context, x, y, R, start rad, end rad, direction
         double start_rad = radians(-90 + prev / mTotal * 360);
@@ -125,8 +120,6 @@ static inline double radians(double deg)
 - (void)_drawLegend:(CGContextRef)context
 {
     double width = self.frame.size.width;
-    double x = width * 0.5;
-    double y = 0;
 
     int n = -1;
     for (CatReport *cr in mCatReports) {
@@ -134,7 +127,7 @@ static inline double radians(double deg)
 
         // 色設定
         UIColor *color = [self _getColor:n];
-        CGContextSetFillColor(context, CGColorGetComponents([color CGColor])
+        CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
 
         // ■を描画
         CGContextAddRect(context, CGRectMake(width * 0.5, n * 10, 8.0, 8.0));
@@ -151,7 +144,7 @@ static inline double radians(double deg)
         n++;
 
         // 文字を描画
-        [[cr title] drawAtPoint:CGPointMake(width * 0.5 + 10, n * 10, font)];
+        [[cr title] drawInRect:CGRectMake(width * 0.5 + 10, n * 10, width * 0.5 - 10, 10) withFont:font];
     }
 }
 

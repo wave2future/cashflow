@@ -141,4 +141,6 @@
 - (id)initWithCategory:(int)category withAsset:(int)assetKey;
 - (void)addTransaction:(Transaction*)t;
 
+- (NSString *)title;
+
 @end

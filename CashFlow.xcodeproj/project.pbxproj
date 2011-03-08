@@ -141,6 +141,9 @@
 		3E17800713263CBD00D74DED /* ReportEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800313263CBD00D74DED /* ReportEntry.m */; };
 		3E17800813263CBD00D74DED /* CatReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800213263CBD00D74DED /* CatReport.m */; };
 		3E17800913263CBD00D74DED /* ReportEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800313263CBD00D74DED /* ReportEntry.m */; };
+		3E17805F132641D700D74DED /* ReportCatGraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17805E132641D700D74DED /* ReportCatGraphCell.m */; };
+		3E178060132641D700D74DED /* ReportCatGraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17805E132641D700D74DED /* ReportCatGraphCell.m */; };
+		3E178061132641D700D74DED /* ReportCatGraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17805E132641D700D74DED /* ReportCatGraphCell.m */; };
 		3E197B10121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
@@ -509,6 +512,8 @@
 		3E13EE6F114008E400523938 /* libGoogleAds.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libGoogleAds.a; sourceTree = "<group>"; };
 		3E17800213263CBD00D74DED /* CatReport.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatReport.m; sourceTree = "<group>"; };
 		3E17800313263CBD00D74DED /* ReportEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportEntry.m; sourceTree = "<group>"; };
+		3E17805D132641D700D74DED /* ReportCatGraphCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReportCatGraphCell.h; sourceTree = "<group>"; };
+		3E17805E132641D700D74DED /* ReportCatGraphCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatGraphCell.m; sourceTree = "<group>"; };
 		3E197B0E121268CF00105B20 /* CrashReportSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReportSender.h; sourceTree = "<group>"; };
 		3E197B0F121268CF00105B20 /* CrashReportSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReportSender.m; sourceTree = "<group>"; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
@@ -917,6 +922,8 @@
 				3E0AD7071214169700CFDDAC /* ReportCatVC.m */,
 				3E0AD7041214169700CFDDAC /* ReportCatCell.h */,
 				3E0AD7051214169700CFDDAC /* ReportCatCell.m */,
+				3E17805D132641D700D74DED /* ReportCatGraphCell.h */,
+				3E17805E132641D700D74DED /* ReportCatGraphCell.m */,
 				3E02EBF613226FDC0086F492 /* ReportCatDetailVC.h */,
 				3E02EBF713226FDC0086F492 /* ReportCatDetailVC.m */,
 			);
@@ -1508,6 +1515,7 @@
 				3E02EBF913226FDC0086F492 /* ReportCatDetailVC.m in Sources */,
 				3E17800613263CBD00D74DED /* CatReport.m in Sources */,
 				3E17800713263CBD00D74DED /* ReportEntry.m in Sources */,
+				3E178060132641D700D74DED /* ReportCatGraphCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1574,6 +1582,7 @@
 				3E02EBF813226FDC0086F492 /* ReportCatDetailVC.m in Sources */,
 				3E17800813263CBD00D74DED /* CatReport.m in Sources */,
 				3E17800913263CBD00D74DED /* ReportEntry.m in Sources */,
+				3E178061132641D700D74DED /* ReportCatGraphCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1674,6 +1683,7 @@
 				3E02EBFA13226FDC0086F492 /* ReportCatDetailVC.m in Sources */,
 				3E17800413263CBD00D74DED /* CatReport.m in Sources */,
 				3E17800513263CBD00D74DED /* ReportEntry.m in Sources */,
+				3E17805F132641D700D74DED /* ReportCatGraphCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
