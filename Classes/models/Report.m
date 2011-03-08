@@ -214,7 +214,7 @@
 @implementation ReporEntry
 @synthesize start = mStart, end = mEnd;
 @synthesize totalIncome = mTotalIncome, totalOutgo = mTotalOutgo;
-@synthesize catReports = mCatReports;
+@synthesize incomeCatReports = mIncomeCatReports, outgoCatReports = mOutgoCatReports;
 
 - (id)init
 {
@@ -223,7 +223,8 @@
     mTotalIncome = 0.0;
     mTotalOutgo = 0.0;
 
-    mCatReports = [[NSMutableArray alloc] init];
+    mIncomeCatReports = [[NSMutableArray alloc] init];
+    mOutgoCatReports = [[NSMutableArray alloc] init];
 
     return self;
 }
@@ -232,19 +233,34 @@
 {
     [mStart release];
     [mEnd release];
-    [mCatReports release];
+    [mIncomeCatReports release];
+    [mOutgoCatReports release];
     [super dealloc];
 }
 
-static int compareCatReport(id x, id y, void *context)
+static int sortIncomeCatReport(id x, id y, void *context)
 {
     CatReport *xr = (CatReport *)x;
     CatReport *yr = (CatReport *)y;
 	
-    if (xr.sum == yr.sum) {
+    if (xr.income == yr.income) {
         return NSOrderedSame;
     }
-    if (xr.sum > yr.sum) {
+    if (xr.income > yr.income) {
+        return NSOrderedAscending;
+    }
+    return NSOrderedDescending;
+}
+
+static int sortOutgoCatReport(id x, id y, void *context)
+{
+    CatReport *xr = (CatReport *)x;
+    CatReport *yr = (CatReport *)y;
+	
+    if (xr.outgo == yr.outgo) {
+        return NSOrderedSame;
+    }
+    if (xr.outgo > yr.outgo) {
         return NSOrderedDescending;
     }
     return NSOrderedAscending;
@@ -272,24 +288,37 @@ static int compareCatReport(id x, id y, void *context)
 
         [cr totalUp:c.pid asset:assetKey start:self.start end:self.end];
 
-        [mCatReports addObject:cr];
+        if (cr.income > 0) {
+            [mIncomeCatReports addObject:cr];
+        }
+        if (cr.outgo < 0) {
+            [mOutgoCatReports addObject:cr];
+        }
         [cr release];
     }
 		
     // 未分類項目
     CatReport *cr = [[CatReport alloc] init];
     [cr totalUp:-1 asset:assetKey start:mStart end:mEnd];
-    [mCatReports addObject:cr];
+    if (cr.income > 0) {
+        [mIncomeCatReports addObject:cr];
+    }
+    if (cr.outgo < 0) {
+        [mOutgoCatReports addObject:cr];
+    }
     [cr release];
 		
     // ソート
-    [mCatReports sortUsingFunction:compareCatReport context:nil];
+    [mIncomeCatReports sortUsingFunction:sortIncomeCatReport context:nil];
+    [mOutgoCatReports sortUsingFunction:sortOutgoCatReport context:nil];
 
     // 集計
     mTotalIncome = 0.0;
     mTotalOutgo = 0.0;
-    for (cr in self.catReports) {
+    for (cr in mIncomeCatReports) {
         mTotalIncome += cr.income;
+    }
+    for (cr in mOutgoCatReports) {
         mTotalOutgo += cr.outgo;
     }
 }

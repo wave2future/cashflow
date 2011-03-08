@@ -66,29 +66,22 @@
     mNameLabel.text = mName;
 }
 
-- (void)setValue:(double)v
+- (void)setValue:(double)value maxValue:(double)maxValue
 {
-    mValue = v;
+    mValue = value;
     mValueLabel.text = [CurrencyManager formatCurrency:mValue];
     if (mValue >= 0) {
         mValueLabel.textColor = [UIColor blackColor];
+        mGraphView.backgroundColor = [UIColor blueColor];
+        mValue = -mValue; // abs
     } else {
         mValueLabel.textColor = [UIColor blackColor];
+        mGraphView.backgroundColor = [UIColor redColor];        
     }
-    [self updateGraph];
-}
 
-- (void)setMaxAbsValue:(double)mav
-{
-    mMaxAbsValue = mav;
-    if (mMaxAbsValue < 0.0000001) {
-        mMaxAbsValue = 0.0000001; // for safety
-    }
-    [self updateGraph];
-}
+    if (maxValue < 0) maxValue = -maxValue; // abs
+    if (maxValue < 0.001) maxValue = 0.001; // for safety
 
-- (void)updateGraph
-{
     double ratio;
     int fullWidth;
     if (IS_IPAD) {
@@ -96,17 +89,10 @@
     } else {
         fullWidth = 170;
     }
-    
-    ratio = mValue / mMaxAbsValue;
-    if (ratio > 1.0) ratio = 1.0;
 
-    if (ratio > 0.0) {
-        mGraphView.backgroundColor = [UIColor blueColor];
-    } else {
-        mGraphView.backgroundColor = [UIColor redColor];        
-        ratio = -ratio;
-    }
-    int width = fullWidth * ratio + 6;
+    ratio = mValue / maxValue;
+    if (ratio > 1.0) ratio = 1.0;
+    int width = fullWidth * ratio + 1;
 
     mGraphView.frame = CGRectMake(100, 2, width, 20);
 }
