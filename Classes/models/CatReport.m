@@ -71,4 +71,9 @@
     mSum += value;
 }
 
+- (NSString *)title
+{
+    return [[DataModel categories] categorySringWithKey:mCategory];
+}
+
 @end

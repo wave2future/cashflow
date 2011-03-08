@@ -32,22 +32,8 @@
 
 - (void)dealloc
 {
-    [mGraphEntries release];
+    [mCatReports release];
     [super dealloc];
-}
-
-static int compareGraphEntry(id x, id y, void *context)
-{
-    GraphEntry *xr = (GraphEntry *)x;
-    GraphEntry *yr = (GraphEntry *)y;
-	
-    if (xr.value == yr.value) {
-        return NSOrderedSame;
-    }
-    if (xr.value > yr.value) {
-        return NSOrderedAscending;
-    }
-    return NSOrderedDescending;
 }
 
 /**
@@ -55,29 +41,21 @@ static int compareGraphEntry(id x, id y, void *context)
 */
 - (void)setReport:(ReportEntry*)reportEntry isOutgo:(BOOL)isOutgo
 {
-    // GraphEntry の配列を作る
-    [mGraphEntries release];
-    mGraphEntries = [[NSMutableArray alloc] init];
+    NSMutableArray *ary;
 
-    Categories *categories = [DataModel instance].categories;
-
-    for (CatReport *cr in mReportEntry.catReports) {
-        double value;
-        if (mIsOutgo && cr.outgo < 0) {
-            value = -cr.outgo;
-        } else if (mIsIncome && cr.income > 0) {
-            value = cr.income;
-        } else {
-            continue;
-        }
-
-        GraphEntry *e = [[[GraphEntry alloc] init] autorelease];
-        e.value = value;
-        e.title = [categories categoryStringWithKey:cr.catkey];
-        [mGraphEntries addObject:e];
+    if (isOutgo) {
+        ary = reportEntry.outgoCatReports;
+        mTotal = reportEntry.totalOutgo;
+    } else {
+        ary = reportEntry.incomeCatReports;
+        mTotal = reportEntry.totalIncome;
     }
 
-    [mGraphEntries sortUsingFunction:compareGraphEntry context:nil];
+    if (mCatReports != ary) {
+        [mCatReports release];
+        mCatReports = ary;
+        [mCatReports retain];
+    }
 }
 
 /**
@@ -91,7 +69,19 @@ static int compareGraphEntry(id x, id y, void *context)
     CGContextTranslateCTM(context, 0, rect.size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
 
+    // 背景消去
+    [[UIColor clearColor] set];
+    UIRectFill(rect);
+
     [self _drawCircleGraph:context];
+    [self _drawLegend:context];
+}
+
+#define PI 3.14159265358979323846
+
+static inline double radians(double deg)
+{
+    return deg * PI / 180.0;
 }
 
 /*
@@ -103,21 +93,26 @@ static int compareGraphEntry(id x, id y, void *context)
     double width = self.frame.size.width;
     double graph_x = width * 0.25;
     double graph_y = width * 0.25;
-    double graph_r = width * 0.25 * 0.8;
+    double graph_r = width * 0.25 * 0.9;
 
     double sum = 0.0, prev = 0.0;
-    for (GraphEntry *ge in mGraphEntries) {
+    int n = -1;
+
+    for (CatReport *cr in mCatReports) {
+        n++;
         sum += ge.value;
 
         // context, x, y, R, start rad, end rad, direction
-        double start_rad = - PI / 2 + prev / total * 2 * PI;
-        double end_rad   = - PI / 2 + sum  / total * 2 * PI;
+        double start_rad = radians(-90 + prev / mTotal * 360);
+        double end_rad   = radians(-90 + sum  / mTotal * 360);
 
         // 色設定
-        TODO;
+        UIColor *color = [self _getColor:n];
+        CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
 
         // 円弧の描画
-        CGContextAddArc(context, graph_x, graph_y, graph_r, start_rad, end_rad);
+        CGContextMoveToPoint(context, graph_x, graph_y);
+        CGContextAddArc(context, graph_x, graph_y, graph_r, start_rad, end_rad, 0);
         CGContextFillPath(context);
 
         prev = sum;
@@ -134,24 +129,70 @@ static int compareGraphEntry(id x, id y, void *context)
     double y = 0;
 
     int n = -1;
-    for (GraphEntry *ge in mGraphEntries) {
+    for (CatReport *cr in mCatReports) {
         n++;
 
         // 色設定
-        TODO;
-        // CGContextSetRGBStrokeColor(context, ....);
-        // CGContextSetRGBFillColor(context, ....);
+        UIColor *color = [self _getColor:n];
+        CGContextSetFillColor(context, CGColorGetComponents([color CGColor])
 
         // ■を描画
         CGContextAddRect(context, CGRectMake(width * 0.5, n * 10, 8.0, 8.0));
         CGContextStrokePath(context);
-                         
-        
-        
     }
 
+    // 黒のフォント
+    UIColor *color = [UIColor blackColor];
+    [color set];
+    UIFont *font = [UIFont systemFontOfSize:4];
+    
+    n = -1;
+    for (CatReport *cr in mCatReports) {
+        n++;
+
+        // 文字を描画
+        [[cr title] drawAtPoint:CGPointMake(width * 0.5 + 10, n * 10, font)];
+    }
 }
 
+/**
+   円グラフ用の色を生成する
 
+   ６色毎に G / B / R / G+B / B+R / R+G を回転する。
+   １周目は緑⇒青⇒赤⇒シアン⇒マゼンタ⇒黄で開始。
+*/
+- (UIColor *)_getColor:(int)index
+{
+    int n = index / 6;
+
+    double c1 = 1.0 - n * 0.2;
+    double c2 = n * 0.12;
+    double c3 = n * 0.1;
+
+    double r, g, b;
+
+    switch (index % 6) {
+    case 0:
+        r = c3; b = c2; g = c1;
+        break;
+    case 1:
+        r = c2; b = c1; g = c3;
+        break;
+    case 2:
+        r = c1; b = c3; g = c2;
+        break;
+    case 3:
+        r = c3; b = c1; g = c1;
+        break;
+    case 4:
+        r = c1; b = c1; g = c3;
+        break;
+    case 5:
+        r = c1; b = c3; g = c1;
+        break;
+    }
+
+    return [UIColor colorWithRed:r green:g blue:b alpha:1];
+}
 
 @end

@@ -9,24 +9,14 @@
 @class GraphEntry;
 
 @interface ReportCatGraphCell : UITableViewCell {
-    NSMutableArray *mGraphEntries;
+    double mTotal;
+    NSMutableArray *mCatReports;
 }
 
 + (ReportCatGraphCell *)reportCatGraphCell:(UITableView *)tableView;
-- (void)drawRect:(CGRect)rect; // override
-
 - (void)setReport:(ReportEntry *)reportEntry isOutgo:(BOOL)isOutgo
 
+- (void)drawRect:(CGRect)rect; // override
 
-// internal use
-@interface GraphEntry : NSObject
-{
-    double mValue;
-    NSString *mTitle;
-}
-
-@property(nonatomic,assign) double value;
-@property(nonatomic,assign) NSString *title;
-@end
 
 @end
