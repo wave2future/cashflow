@@ -107,5 +107,3 @@
 - (id)initWithCategory:(int)category withAsset:(int)assetKey;
 
 @end
-
-

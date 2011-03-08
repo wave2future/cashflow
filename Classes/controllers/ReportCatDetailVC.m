@@ -94,7 +94,6 @@
         value = t.value;
     } else {
         // 資産指定の場合
-        // この場合、CatReportVC 側で資産間移動は計上しないようになっているが、一応
         if (t.asset == mCatReport.assetKey) {
             value = t.value;
         } else {
