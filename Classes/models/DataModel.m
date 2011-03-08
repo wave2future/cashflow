@@ -168,9 +168,11 @@ static DataModel *theDataModel = nil;
 
     if (!dfDateTime) {
         dfDateTime = [self _dateFormatterWithDayOfWeek:NSDateFormatterShortStyle];
+        [dfDateTime retain];
     }
     if (!dfDateOnly) {
         dfDateOnly = [self _dateFormatterWithDayOfWeek:NSDateFormatterNoStyle];
+        [dfDateOnly retain];
     }
 
     if ([Config instance].dateTimeMode == DateTimeModeDateOnly) {
@@ -181,7 +183,7 @@ static DataModel *theDataModel = nil;
 
 + (NSDateFormatter *)_dateFormatterWithDayOfWeek:(NSDateFormatterStyle)timeStyle
 {
-    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    NSDateFormatter *df = [[[NSDateFormatter alloc] init] autorelease];
     [df setDateStyle:NSDateFormatterMediumStyle];
     [df setTimeStyle:timeStyle];
     

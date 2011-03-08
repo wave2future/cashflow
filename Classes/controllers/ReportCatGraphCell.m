@@ -102,7 +102,7 @@ static inline double radians(double deg)
         double end_rad   = radians(-90 + sum  / mTotal * 360);
 
         // 色設定
-        UIColor *color = [self _getColor:n];
+        UIColor *color = [ReportCatGraphCell getGraphColor:n];
         CGContextSetFillColorWithColor(context, [color CGColor]);
 
         // 円弧の描画
@@ -128,7 +128,7 @@ static inline double radians(double deg)
         n++;
 
         // 色設定
-        UIColor *color = [self _getColor:n];
+        UIColor *color = [ReportCatGraphCell getGraphColor:n];
         CGContextSetFillColorWithColor(context, [color CGColor]);
 
         // ■を描画
@@ -156,7 +156,7 @@ static inline double radians(double deg)
    ６色毎に G / B / R / G+B / B+R / R+G を回転する。
    １周目は緑⇒青⇒赤⇒シアン⇒マゼンタ⇒黄で開始。
 */
-- (UIColor *)_getColor:(int)index
++ (UIColor *)getGraphColor:(int)index
 {
     int n = index / 6;
 
@@ -164,7 +164,7 @@ static inline double radians(double deg)
     double c2 = n * 0.12;
     double c3 = n * 0.1;
 
-    double r, g, b;
+    double r = 0, g= 0, b = 0;
 
     switch (index % 6) {
     case 0:

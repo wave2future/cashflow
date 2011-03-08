@@ -41,8 +41,7 @@
 
 - (id)init
 {
-    if (self = [super initWithNibName:@"InfoView" bundle:nil]) {
-    }
+    self = [super initWithNibName:@"InfoView" bundle:nil];
     return self;
 }
 

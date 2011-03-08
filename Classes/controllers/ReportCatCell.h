@@ -17,5 +17,6 @@
 + (CGFloat)cellHeight;
 
 - (void)setValue:(double)value maxValue:(double)maxValue;
+- (void)setGraphColor:(UIColor *)color;
 
 @end

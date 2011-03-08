@@ -28,7 +28,7 @@
 
 + (CGFloat)cellHeight
 {
-    return 62;
+    return 44; // 62
 }
 
 - (void)dealloc {
@@ -69,7 +69,6 @@
 - (void)updateGraph
 {
     double ratio;
-    int width;
     int fullWidth;
     
     if (IS_IPAD) {
@@ -80,13 +79,17 @@
 
     ratio = mIncome / mMaxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
-    width = fullWidth * ratio + 1;
-    mIncomeGraph.frame = CGRectMake(120, 22, width, 16);
+
+    CGRect frame = mIncomeGraph.frame;
+    frame.size.width = fullWidth * ratio + 1;
+    mIncomeGraph.frame = frame;
 
     ratio = -mOutgo / mMaxAbsValue;
     if (ratio > 1.0) ratio = 1.0;
-    width = fullWidth * ratio + 1;
-    mOutgoGraph.frame = CGRectMake(120, 42, width, 16);
+    
+    frame = mOutgoGraph.frame;
+    frame.size.width = fullWidth * ratio + 1;
+    mOutgoGraph.frame = frame;
 }
 
 @end

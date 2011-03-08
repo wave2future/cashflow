@@ -90,6 +90,12 @@
 
     /** 期間内の総支出 */
     double mTotalOutgo;
+    
+    /** 収入の最大値 */
+    double mMaxIncome;
+    
+    /** 支出の最大値（絶対値の) */
+    double mMaxOutgo;
 
     /** カテゴリ毎の収入レポート */
     NSMutableArray *mIncomeCatReports;
@@ -102,6 +108,8 @@
 @property(nonatomic,readonly) NSDate *end;
 @property(nonatomic,readonly) double totalIncome;
 @property(nonatomic,readonly) double totalOutgo;
+@property(nonatomic,readonly) double maxIncome;
+@property(nonatomic,readonly) double maxOutgo;
 @property(nonatomic,readonly) NSMutableArray *incomeCatReports;
 @property(nonatomic,readonly) NSMutableArray *outgoCatReports;
 

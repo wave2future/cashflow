@@ -82,13 +82,22 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    NSString *title = nil;
     switch (section) {
-    case 0:
-        return NSLocalizedString(@"Outgo", @"");
-    case 1:
-        return NSLocalizedString(@"Income", @"");
+        case 0:
+            title = [NSString stringWithFormat:@"%@ : %@",
+                     NSLocalizedString(@"Outgo", @""),
+                     [CurrencyManager formatCurrency:mReportEntry.totalOutgo]];
+            break;
+        case 1:
+            title = [NSString stringWithFormat:@"%@ : %@",
+                     NSLocalizedString(@"Income", @""),
+                     [CurrencyManager formatCurrency:mReportEntry.totalIncome]];
+            
+            break;
     }
-    return nil;
+    
+    return title;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -103,7 +112,10 @@
         break;
     }
 
-    return 1 + rows;
+    if (rows > 0) {
+        return 1 + rows; // graph + rows
+    }
+    return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -129,14 +141,16 @@
         switch (indexPath.section) {
             case 0:
                 cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row - 1];
-                [cell setValue:cr.sum maxValue:mReportEntry.totalOutgo];
+                [cell setValue:cr.sum maxValue:mReportEntry.maxOutgo];
                 break;
 
             case 1:
                 cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row - 1];
-                [cell setValue:cr.sum maxValue:mReportEntry.totalIncome];
+                [cell setValue:cr.sum maxValue:mReportEntry.maxIncome];
                 break;
         }
+        
+        [cell setGraphColor:[ReportCatGraphCell getGraphColor:indexPath.row - 1]];
 
         if (cr.category >= 0) {
             cell.name = [[DataModel instance].categories categoryStringWithKey:cr.category];
@@ -153,7 +167,7 @@
 	
     if (indexPath.row == 0) return; // graph cell
     
-    CatReport *cr;
+    CatReport *cr = nil;
     switch (indexPath.section) {
     case 0:
         cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row - 1];

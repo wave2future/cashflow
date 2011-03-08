@@ -63,7 +63,7 @@
     if (IS_IPAD) {
         fullWidth = 500;
     } else {
-        fullWidth = 170;
+        fullWidth = 190;
     }
 
     ratio = value / maxValue;
@@ -73,6 +73,11 @@
     CGRect frame = mGraphView.frame;
     frame.size.width = width;
     mGraphView.frame = frame;
+}
+
+- (void)setGraphColor:(UIColor *)color
+{
+    mGraphView.backgroundColor = color;
 }
 
 @end

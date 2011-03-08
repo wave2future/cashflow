@@ -15,13 +15,16 @@
 
 + (ReportCatGraphCell *)reportCatGraphCell:(UITableView *)tableView;
 + (CGFloat)cellHeight;
++ (UIColor *)getGraphColor:(int)index;
 
 - (void)setReport:(ReportEntry *)reportEntry isOutgo:(BOOL)isOutgo;
 
+// internal
 - (void)drawRect:(CGRect)rect; // override
 
 - (void)_drawCircleGraph:(CGContextRef)context;
 - (void)_drawLegend:(CGContextRef)context;
-- (UIColor *)_getColor:(int)index;
+
+
 
 @end

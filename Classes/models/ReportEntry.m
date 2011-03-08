@@ -41,10 +41,10 @@
 
 @synthesize start = mStart, end = mEnd;
 @synthesize totalIncome = mTotalIncome, totalOutgo = mTotalOutgo;
+@synthesize maxIncome = mMaxIncome, maxOutgo = mMaxOutgo;
 @synthesize incomeCatReports = mIncomeCatReports, outgoCatReports = mOutgoCatReports;
 
 static int sortCatReport(id x, id y, void *context);
-
 
 /**
    イニシャライザ
@@ -161,6 +161,17 @@ static int sortCatReport(id x, id y, void *context);
 {
     mTotalIncome = [self _sortAndTotalUp:mIncomeCatReports];
     mTotalOutgo  = [self _sortAndTotalUp:mOutgoCatReports];
+    
+    mMaxIncome = mMaxOutgo = 0;
+    CatReport *cr;
+    if ([mIncomeCatReports count] > 0) {
+        cr = [mIncomeCatReports objectAtIndex:0];
+        mMaxIncome = cr.sum;
+    }
+    if ([mOutgoCatReports count] > 0) {
+        cr = [mOutgoCatReports objectAtIndex:0];
+        mMaxOutgo = cr.sum;
+    }
 }
 
 - (double)_sortAndTotalUp:(NSMutableArray *)ary
