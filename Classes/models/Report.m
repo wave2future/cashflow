@@ -142,6 +142,7 @@
             break;
     }
 	
+    // レポートエントリを生成する
     while ([nextStartDay compare:lastDate] != NSOrderedDescending) {
         NSDate *start = nextStartDay;
 
@@ -150,10 +151,23 @@
 
         // Report 生成
         ReporEntry *r = [[ReporEntry alloc] init];
-        [r totalUp:assetKey start:start end:nextStartDay];
+        //[r totalUp:assetKey start:start end:nextStartDay];
 
         [mReportEntries addObject:r];
         [r release];
+    }
+
+    // 集計開始
+    int reportEntryIndex = 0;
+    ReportEntry *reportEntry = [mReportEntries objectAtIndex:reportEntryIndex];
+
+    // 全取引について処理を実行
+    for (Transaction *t in [DataModel journal]) {
+        // レポートエントリに取引を追加
+        while (![reportEntry addTransaction:t])
+            reportEntryIndex++;
+            reportEntry = [mReportEntries objectAtInex:reportEntryIndex];
+        }
     }
 }
 
@@ -238,88 +252,131 @@
     [super dealloc];
 }
 
-static int sortIncomeCatReport(id x, id y, void *context)
+/**
+   絶対値比較
+*/
+static int sortCatReport(id x, id y, void *context)
 {
     CatReport *xr = (CatReport *)x;
     CatReport *yr = (CatReport *)y;
+
+    double xv = xr.value;
+    double yv = yr.value;
+    if (xv < 0) xv = -xv;
+    if (yv < 0) yv = -yv;
 	
-    if (xr.income == yr.income) {
+    if (xv == yv) {
         return NSOrderedSame;
     }
-    if (xr.income > yr.income) {
+    if (xv > yv) {
         return NSOrderedAscending;
     }
     return NSOrderedDescending;
 }
 
-static int sortOutgoCatReport(id x, id y, void *context)
-{
-    CatReport *xr = (CatReport *)x;
-    CatReport *yr = (CatReport *)y;
-	
-    if (xr.outgo == yr.outgo) {
-        return NSOrderedSame;
-    }
-    if (xr.outgo > yr.outgo) {
-        return NSOrderedDescending;
-    }
-    return NSOrderedAscending;
-}
-
 /**
- 集計
+ セットアップ
  
  @param assetKey 資産キー (-1の場合は全資産)
  @param start 開始日
  @param end 終了日
  */
-- (void)totalUp:(int)assetKey start:(NSDate *)a_start end:(NSDate *)a_end
+- (void)setUp:(int)assetKey start:(NSDate *)a_start end:(NSDate *)a_end
 {
     mStart = [a_start retain];
     mEnd = [a_end retain];
 
-    // カテゴリ毎の集計
+    // カテゴリ毎のレポート (CatReport) の生成
     Categories *categories = [DataModel instance].categories;
     int numCategories = [categories count];
 
     for (int i = 0; i < numCategories; i++) {
         Category *c = [categories categoryAtIndex:i];
-        CatReport *cr = [[CatReport alloc] init];
+        CatReport *cr = [[CatReport alloc] initWithCategory:c.pid withAsset:assetKey];
 
-        [cr totalUp:c.pid asset:assetKey start:self.start end:self.end];
+        [mIncomeCatReports addObject:cr];
+        [mOutgoCatReports addObject:cr];
 
-        if (cr.income > 0) {
-            [mIncomeCatReports addObject:cr];
-        }
-        if (cr.outgo < 0) {
-            [mOutgoCatReports addObject:cr];
-        }
         [cr release];
     }
 		
-    // 未分類項目
+    // 未分類項目用レポート
     CatReport *cr = [[CatReport alloc] init];
-    [cr totalUp:-1 asset:assetKey start:mStart end:mEnd];
-    if (cr.income > 0) {
-        [mIncomeCatReports addObject:cr];
-    }
-    if (cr.outgo < 0) {
-        [mOutgoCatReports addObject:cr];
-    }
+    cr.catKey = -1;
+    cr.assetKey = assetKey;
+
+    [mIncomeCatReports addObject:cr];
+    [mOutgoCatReports addObject:cr];
+
     [cr release];
-		
+}
+
+/**
+   取引をレポートに追加
+
+   @return YES - 日付範囲内、NO - 日付範囲外
+*/
+- (BOOL)addTransaction:(Transaction *)t
+{
+    // 日付チェック
+    NSComparisonResult cpr;
+    if (mStart) {
+        cpr = [t.date compare:mStart];
+        if (cpr == NSOrderedAscending) return NO;
+    }
+    if (mEnd) {
+        cpr = [t.date compare:mEnd];
+        if (cpr == NSOrderedSame || cpr == NSOrderedDescending) {
+            return NO;
+        }
+    }
+
+    // 資産 ID チェック
+    double value;
+    if (mAssetKey < 0) {
+        // 資産指定なしレポートの場合、資産間移動は計上しない
+        if (t.type == TYPE_TRANSFER) return YES;
+    } else {
+        if (t.asset == mAssetKey) {
+            value = t.value;
+        } else if (t.dstAsset == mAssetKey) {
+            value = -t.value;
+        } else {
+            return YES; // 対象外資産
+        }
+    }
+
+    // 該当カテゴリを検索して追加
+    NSMutableArray *ary = mIncomeCatReports;
+    if (value < 0) {
+        ary = mOutgoCatReports;
+    }
+    for (CatReport *cr in ary) {
+        if (cr.catkey == t.category) {
+            [cr addTransaction:t value:value];
+            break;
+        }
+    }
+    return YES;
+}
+
+- (void)totalUp
+{		
     // ソート
-    [mIncomeCatReports sortUsingFunction:sortIncomeCatReport context:nil];
-    [mOutgoCatReports sortUsingFunction:sortOutgoCatReport context:nil];
+    [mIncomeCatReports sortUsingFunction:sortCatReport context:nil];
+    [mOutgoCatReports sortUsingFunction:sortCatReport context:nil];
+
+    // 金額が 0 のエントリを削除する
+    // TODO:
 
     // 集計
     mTotalIncome = 0.0;
     mTotalOutgo = 0.0;
     for (cr in mIncomeCatReports) {
-        mTotalIncome += cr.income;
+        mTotalIncome += cr.value;
     }
     for (cr in mOutgoCatReports) {
-        mTotalOutgo += cr.outgo;
+        mTotalOutgo += cr.value;
     }
 }
 
@@ -330,15 +387,19 @@ static int sortOutgoCatReport(id x, id y, void *context)
 
 @implementation CatReport
 
-@synthesize catkey = mCatkey, assetKey = mAssetKey;
-@synthesize income = mIncome, outgo = mOutgo, sum = mSum;
+@synthesize category = mCategory;
+@synthesize assetKey = mAssetKey;
+@synthesize sum = mSum;
 @synthesize transactions = mTransactions;
 
-- (id)init
+- (id)initWithCategory:(int)category withAsset:(int)assetKey
 {
-    [super init];
-    mTransactions = [[NSMutableArray alloc] init];
-
+    self = [super init];
+    if (self != nil) {
+        mCategory = category;
+        mAssetKey = assetKey;
+        mTransactions = [[NSMutableArray alloc] init];
+    }
     return self;
 }
 
@@ -348,66 +409,10 @@ static int sortOutgoCatReport(id x, id y, void *context)
     [super dealloc];
 }
 
-/**
- 集計
- 
- @param key カテゴリID
- @param assetKey 資産ID (-1の場合は全資産)
- @param start 開始日
- @param end 終了日
- */
-- (void)totalUp:(int)key asset:(int)assetKey start:(NSDate*)start end:(NSDate*)end
+- (void)addTransaction:(Transaction*)t value:(double)value
 {
-    mCatkey = key;
-    mAssetKey = assetKey;
-    mSum = 0.0;
-
-    double value;
-
-    for (Transaction *t in [DataModel journal]) {
-        // match filter
-        if (t.category != mCatkey) {
-            continue;
-        }
-        NSComparisonResult cpr;
-        if (start) {
-            cpr = [t.date compare:start];
-            if (cpr == NSOrderedAscending) continue;
-        }
-        if (end) {
-            cpr = [t.date compare:end];
-            if (cpr == NSOrderedSame || cpr == NSOrderedDescending) {
-                continue;
-            }
-        }
-
-        if (assetKey < 0) {
-            // 資産指定なしレポートの場合、資産間移動は計上しない
-            if (t.type == TYPE_TRANSFER) {
-                continue;
-            }
-            value = t.value;
-        }
-        else {
-            if (t.asset == assetKey) {
-                value = t.value;
-            }
-            else if (t.dstAsset == assetKey) {
-                value = -t.value;
-            }
-            else {
-                continue;
-            }
-        }
-        [mTransactions addObject:t];
-        
-        if (value >= 0) {
-            mIncome += value;
-        } else {
-            mOutgo += value;
-        }
-        mSum += value;
-    }
+    [mTransactions addObject:t];
+    mSum += value;
 }
 
 @end

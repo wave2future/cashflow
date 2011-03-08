@@ -83,28 +83,24 @@
 @property(nonatomic,readonly) NSMutableArray *incomeCatReports;
 @property(nonatomic,readonly) NSMutableArray *outgoCatReports;
 
-- (void)totalUp:(int)assetKey start:(NSDate *)start end:(NSDate *)end;
+- (BOOL)addTransaction:(Transaction*)t;
 
 @end
 // レポート(カテゴリ毎)
 @interface CatReport : NSObject {
-    int mCatkey; // カテゴリキー
-    int mAssetKey; // 資産キー
-    double mIncome;
-    double mOutgo;    
-    double mSum; // 合計値
+    int mCategory;
+    int mAssetKey;
+    double mSum;
 
     NSMutableArray *mTransactions; // Transaction の配列
 }
 
-@property(nonatomic,readonly) int catkey;
+@property(nonatomic,readonly) int category;
 @property(nonatomic,readonly) int assetKey;
-@property(nonatomic,readonly) double income;
-@property(nonatomic,readonly) double outgo;
 @property(nonatomic,readonly) double sum;
 @property(nonatomic,readonly) NSMutableArray *transactions;
 
-- (void)totalUp:(int)key asset:(int)asset start:(NSDate*)start end:(NSDate*)end;
+- (id)initWithCategory:(int)category withAsset:(int)assetKey;
 
 @end
 
