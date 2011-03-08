@@ -16,6 +16,5 @@
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView;
 
 - (void)setValue:(double)value maxValue:(double)maxValue;
-- (void)updateGraph;
 
 @end

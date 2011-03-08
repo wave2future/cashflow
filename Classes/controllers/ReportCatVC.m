@@ -40,6 +40,8 @@
 
 @implementation CatReportViewController
 
+@synthesize reportEntry = mReportEntry;
+
 - (id)init
 {
     self = [super initWithNibName:@"SimpleTableView" bundle:nil];
@@ -67,44 +69,8 @@
 
 - (void)dealloc
 {
-    if (mReportEntry) {
-        [mReportEntry release];
-    }
-    //[dateFormatter release];
+    [mReportEntry release];
     [super dealloc];
-}
-
-- (id)reportEntry
-{
-    return mReportEntry;
-}
-
-- (void)setReportEntry:(ReporEntry *)rep
-{
-    if (mReportEntry != rep) {
-        [mReportEntry release];
-        mReportEntry = [rep retain];
-    }
-
-    // 合計値を計算
-    // TODO: ここの計算はかなりいい加減。
-    // 本来なら、支出額/入金額別々に合計値を計算する必要がある。
-    mMaxAbsValue = 0.0;
-    for (CatReport *cr in mReportEntry.catReports) {
-#if 0
-        if (cr.value > maxAbsValue) {
-            maxAbsValue = cr.value;
-        }
-        else if (-cr.value > -maxAbsValue) {
-            maxAbsValue = -cr.value;
-        }
-#endif
-        if (cr.sum >= 0.0) {
-            mMaxAbsValue += cr.sum;
-        } else {
-            mMaxAbsValue -= cr.sum;
-        }
-    }
 }
 
 #pragma mark TableViewDataSource
@@ -122,6 +88,11 @@
         return NSLocalizedString(@"Income", @"");
     }
     return nil;
+}
+
+- (CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return tableView.sectionHeaderHeight;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {

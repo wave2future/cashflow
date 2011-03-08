@@ -44,10 +44,10 @@
     if (value >= 0) {
         mValueLabel.textColor = [UIColor blackColor];
         mGraphView.backgroundColor = [UIColor blueColor];
-        value = -value; // abs
     } else {
         mValueLabel.textColor = [UIColor blackColor];
         mGraphView.backgroundColor = [UIColor redColor];        
+        value = -value; // abs
     }
 
     if (maxValue < 0) maxValue = -maxValue; // abs
