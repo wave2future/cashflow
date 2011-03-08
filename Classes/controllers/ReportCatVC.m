@@ -110,25 +110,57 @@
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    switch (section) {
+    case 0:
+        return NSLocalizedString(@"Outgo", @"");
+    case 1:
+        return NSLocalizedString(@"Income", @"");
+    }
+    return nil;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [mReportEntry.catReports count];
+    int rows = 0;
+
+    switch (section) {
+    case 0:
+        rows = [mReportEntry.outgoCatReports count];
+        break;
+    case 1:
+        rows = [mReportEntry.incomeCatReports count];
+        break;
+    }
+
+    return rows;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     ReportCatCell *cell = [ReportCatCell reportCatCell:tv];
 
-    CatReport *cr = [mReportEntry.catReports objectAtIndex:indexPath.row];
+    CatReport *cr = nil;
+    switch (indexPath.section) {
+    case 0:
+        cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row];
+        [cell setValue:cr.outgo maxValue:mReportEntry.totalOutgo];
+        break;
+
+    case 1:
+        cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row];
+        [cell setValue:cr.income maxValue:mReportEntry.totalIncome];
+        break;
+    }
+
     if (cr.catkey >= 0) {
         cell.name = [[DataModel instance].categories categoryStringWithKey:cr.catkey];
     } else {
         cell.name = NSLocalizedString(@"No category", @"");
     }
-
-    [cell setValue:cr.sum maxAbsValue:mMaxAbsValue];
 
     return cell;
 }
@@ -137,7 +169,15 @@
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
-    CatReport *cr = [mReportEntry.catReports objectAtIndex:indexPath.row];
+    CatReport *cr;
+    switch (indexPath.section) {
+    case 0:
+        cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row];
+        break;
+    case 1:
+        cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row];
+        break;
+    }
 
     CatReportDetailViewController *vc = [[[CatReportDetailViewController alloc] init] autorelease];
     vc.title = [[DataModel instance].categories categoryStringWithKey:cr.catkey];

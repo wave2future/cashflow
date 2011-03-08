@@ -6,10 +6,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ReportCatCell : UITableViewCell {
-    NSString *mName;
-    double mValue;
-    double mMaxAbsValue;
-
     IBOutlet UILabel *mNameLabel;
     IBOutlet UILabel *mValueLabel;
     IBOutlet UIView *mGraphView;
@@ -19,7 +15,7 @@
 
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView;
 
-- (void)setValue:(double)value maxAbsValue:(double)maxAbsValue;
+- (void)setValue:(double)value maxValue:(double)maxValue;
 - (void)updateGraph;
 
 @end

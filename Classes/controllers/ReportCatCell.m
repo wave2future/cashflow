@@ -9,8 +9,6 @@
 
 @implementation ReportCatCell
 
-@synthesize name = mName;
-
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView
 {
     NSString *identifier = @"ReportCatCell";
@@ -27,35 +25,34 @@
 }
 
 - (void)dealloc {
-    [mName release];
     [super dealloc];
 }
 
-- (void)setName:(NSString *)n
+- (NSString *)name
 {
-    if (mName == n) return;
-
-    [mName release];
-    mName = [n retain];
-
-    mNameLabel.text = mName;
+    return mNameLabel.text;
 }
 
-- (void)setValue:(double)value maxAbsValue:(double)maxAbsValue
+- (void)setName:(NSString *)name
 {
-    mValue = value;
-    mMaxAbsValue = maxAbsValue;
-    if (mMaxAbsValue < 0.0000001) {
-        mMaxAbsValue = 0.0000001; // for safety
+    mNameLabel.text = name;
+}
+
+- (void)setValue:(double)value maxValue:(double)maxValue
+{
+    mValueLabel.text = [CurrencyManager formatCurrency:value];
+    if (value >= 0) {
+        mValueLabel.textColor = [UIColor blackColor];
+        mGraphView.backgroundColor = [UIColor blueColor];
+        value = -value; // abs
+    } else {
+        mValueLabel.textColor = [UIColor blackColor];
+        mGraphView.backgroundColor = [UIColor redColor];        
     }
-    
-    mValueLabel.text = [CurrencyManager formatCurrency:mValue];
 
-    [self updateGraph];
-}
+    if (maxValue < 0) maxValue = -maxValue; // abs
+    if (maxValue < 0.001) maxValue = 0.001; // for safety
 
-- (void)updateGraph
-{
     double ratio;
     int fullWidth;
     if (IS_IPAD) {
@@ -63,22 +60,14 @@
     } else {
         fullWidth = 170;
     }
-    
-    ratio = mValue / mMaxAbsValue;
-    if (ratio > 1.0) ratio = 1.0;
-    if (ratio < -1.0) ratio = -1.0;
 
-    if (ratio > 0.0) {
-        mGraphView.backgroundColor = [UIColor blueColor];
-    } else {
-        mGraphView.backgroundColor = [UIColor redColor];        
-        ratio = -ratio;
-    }
+    ratio = value / maxValue;
+    if (ratio > 1.0) ratio = 1.0;
     int width = fullWidth * ratio + 1;
 
     CGRect frame = mGraphView.frame;
     frame.size.width = width;
-    mGraphView.frame = frame; //CGRectMake(100, 2, width, 20);
+    mGraphView.frame = frame;
 }
 
 @end
