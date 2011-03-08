@@ -5,7 +5,7 @@
 
 #import "ReportCatGraphCell.h"
 
-#define CELL_HEIGHT     160   /* iOS, not retina */
+#define CELL_HEIGHT     120   /* iOS, not retina */
 
 @implementation ReportCatGraphCell
 
@@ -86,9 +86,9 @@ static inline double radians(double deg)
 {
     /* 中心座標を計算 */
     double width = self.frame.size.width;
-    double graph_x = width * 0.25;
-    double graph_y = width * 0.25;
-    double graph_r = width * 0.25 * 0.9;
+    double graph_x = width * 0.3;
+    double graph_y = CELL_HEIGHT / 2;
+    double graph_r = CELL_HEIGHT / 2 * 0.9;
 
     double sum = 0.0, prev = 0.0;
     int n = -1;
@@ -103,7 +103,7 @@ static inline double radians(double deg)
 
         // 色設定
         UIColor *color = [self _getColor:n];
-        CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
+        CGContextSetFillColorWithColor(context, [color CGColor]);
 
         // 円弧の描画
         CGContextMoveToPoint(context, graph_x, graph_y);
@@ -119,6 +119,8 @@ static inline double radians(double deg)
 */
 - (void)_drawLegend:(CGContextRef)context
 {
+    const int LegendHeight = 14;
+    
     double width = self.frame.size.width;
 
     int n = -1;
@@ -127,11 +129,11 @@ static inline double radians(double deg)
 
         // 色設定
         UIColor *color = [self _getColor:n];
-        CGContextSetFillColor(context, CGColorGetComponents([color CGColor]));
+        CGContextSetFillColorWithColor(context, [color CGColor]);
 
         // ■を描画
-        CGContextAddRect(context, CGRectMake(width * 0.5, n * 10, 8.0, 8.0));
-        CGContextStrokePath(context);
+        CGContextAddRect(context, CGRectMake(width * 0.6, n * LegendHeight + 5, LegendHeight * 0.8, LegendHeight * 0.8));
+        CGContextFillPath(context);
     }
 
     // 黒のフォント
@@ -144,7 +146,7 @@ static inline double radians(double deg)
         n++;
 
         // 文字を描画
-        [[cr title] drawInRect:CGRectMake(width * 0.5 + 10, n * 10, width * 0.5 - 10, 10) withFont:font];
+        [[cr title] drawInRect:CGRectMake(width * 0.6 + LegendHeight, n * LegendHeight + 5, width * 0.6 - LegendHeight, LegendHeight) withFont:font];
     }
 }
 
@@ -158,7 +160,7 @@ static inline double radians(double deg)
 {
     int n = index / 6;
 
-    double c1 = 1.0 - n * 0.2;
+    double c1 = 0.95 - n * 0.2;
     double c2 = n * 0.12;
     double c3 = n * 0.1;
 
@@ -185,7 +187,7 @@ static inline double radians(double deg)
         break;
     }
 
-    return [UIColor colorWithRed:r green:g blue:b alpha:1];
+    return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
 }
 
 @end
