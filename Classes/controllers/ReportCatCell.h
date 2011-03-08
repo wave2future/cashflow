@@ -14,6 +14,7 @@
 @property(nonatomic,retain) NSString *name;
 
 + (ReportCatCell *)reportCatCell:(UITableView *)tableView;
++ (CGFloat)cellHeight;
 
 - (void)setValue:(double)value maxValue:(double)maxValue;
 

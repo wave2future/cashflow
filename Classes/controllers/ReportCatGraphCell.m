@@ -61,11 +61,11 @@
     CGContextRef context = UIGraphicsGetCurrentContext();
 
     // 左上原点にしておく
-    CGContextTranslateCTM(context, 0, rect.size.height);
-    CGContextScaleCTM(context, 1.0, -1.0);
+    //CGContextTranslateCTM(context, 0, rect.size.height);
+    //CGContextScaleCTM(context, 1.0, -1.0);
 
     // 背景消去
-    [[UIColor clearColor] set];
+    [[UIColor whiteColor] set];
     UIRectFill(rect);
 
     [self _drawCircleGraph:context];
@@ -137,7 +137,7 @@ static inline double radians(double deg)
     // 黒のフォント
     UIColor *color = [UIColor blackColor];
     [color set];
-    UIFont *font = [UIFont systemFontOfSize:4];
+    UIFont *font = [UIFont systemFontOfSize:9];
     
     n = -1;
     for (CatReport *cr in mCatReports) {

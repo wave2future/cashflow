@@ -14,6 +14,8 @@
 }
 
 + (ReportCatGraphCell *)reportCatGraphCell:(UITableView *)tableView;
++ (CGFloat)cellHeight;
+
 - (void)setReport:(ReportEntry *)reportEntry isOutgo:(BOOL)isOutgo;
 
 - (void)drawRect:(CGRect)rect; // override

@@ -36,6 +36,7 @@
 #import "DataModel.h"
 #import "ReportCatVC.h"
 #import "ReportCatCell.h"
+#import "ReportCatGraphCell.h"
 #import "ReportCatDetailVC.h"
 
 @implementation CatReportViewController
@@ -102,46 +103,63 @@
         break;
     }
 
-    return rows;
+    return 1 + rows;
+}
+
+- (CGFloat)tableView:(UITableView *)tv heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.row == 0) {
+        return [ReportCatGraphCell cellHeight];
+    } else {
+        return [ReportCatCell cellHeight];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tv cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ReportCatCell *cell = [ReportCatCell reportCatCell:tv];
-
-    CatReport *cr = nil;
-    switch (indexPath.section) {
-    case 0:
-        cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row];
-        [cell setValue:cr.sum maxValue:mReportEntry.totalOutgo];
-        break;
-
-    case 1:
-        cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row];
-        [cell setValue:cr.sum maxValue:mReportEntry.totalIncome];
-        break;
-    }
-
-    if (cr.category >= 0) {
-        cell.name = [[DataModel instance].categories categoryStringWithKey:cr.category];
+    if (indexPath.row == 0) {
+        /* graph cell */
+        ReportCatGraphCell *cell = [ReportCatGraphCell reportCatGraphCell:tv];
+        [cell setReport:mReportEntry isOutgo:(indexPath.section == 0 ? YES : NO)];
+        return cell;
     } else {
-        cell.name = NSLocalizedString(@"No category", @"");
-    }
+        ReportCatCell *cell = [ReportCatCell reportCatCell:tv];
 
-    return cell;
+        CatReport *cr = nil;
+        switch (indexPath.section) {
+            case 0:
+                cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row - 1];
+                [cell setValue:cr.sum maxValue:mReportEntry.totalOutgo];
+                break;
+
+            case 1:
+                cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row - 1];
+                [cell setValue:cr.sum maxValue:mReportEntry.totalIncome];
+                break;
+        }
+
+        if (cr.category >= 0) {
+            cell.name = [[DataModel instance].categories categoryStringWithKey:cr.category];
+        } else {
+            cell.name = NSLocalizedString(@"No category", @"");
+        }
+        return cell;
+    }
 }
 
 - (void)tableView:(UITableView *)tv didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tv deselectRowAtIndexPath:indexPath animated:NO];
 	
+    if (indexPath.row == 0) return; // graph cell
+    
     CatReport *cr;
     switch (indexPath.section) {
     case 0:
-        cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row];
+        cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row - 1];
         break;
     case 1:
-        cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row];
+        cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row - 1];
         break;
     }
 

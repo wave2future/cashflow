@@ -24,6 +24,11 @@
     return cell;
 }
 
++ (CGFloat)cellHeight
+{
+    return 44;
+}
+
 - (void)dealloc {
     [super dealloc];
 }
