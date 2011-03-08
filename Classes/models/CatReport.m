@@ -48,6 +48,7 @@
         mCategory = category;
         mAssetKey = assetKey;
         mTransactions = [[NSMutableArray alloc] init];
+        mSum = 0.0;
     }
     return self;
 }
@@ -58,8 +59,14 @@
     [super dealloc];
 }
 
-- (void)addTransaction:(Transaction*)t value:(double)value
+- (void)addTransaction:(Transaction*)t
 {
+    if (mAssetKey >= 0 && t.dstAsset == mAssetKey) {
+        mSum += -value; // 資産間移動の移動先
+    } else {
+        mSum += value;
+    }
+
     [mTransactions addObject:t];
     mSum += value;
 }

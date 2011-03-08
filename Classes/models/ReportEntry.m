@@ -46,15 +46,48 @@
 static int sortCatReport(id x, id y, void *context);
 
 
-- (id)init
+/**
+   イニシャライザ
+ 
+   @param assetKey 資産キー (-1の場合は全資産)
+   @param start 開始日
+   @param end 終了日
+ */
+- (id)initWithAsset:(int)assetKey start:(NSDate *)start end:(NSDate *)end
 {
-    [super init];
-    mStart = nil;
+    self = [super init];
+    if (self == nil) return nil;
+
+    mAssetKey = assetKey;
+    mStart = [start retain];
+    mEnd = [end retain];
+
     mTotalIncome = 0.0;
     mTotalOutgo = 0.0;
 
-    mIncomeCatReports = [[NSMutableArray alloc] init];
-    mOutgoCatReports = [[NSMutableArray alloc] init];
+    // カテゴリ毎のレポート (CatReport) の生成
+    Categories *categories = [DataModel instance].categories;
+    int numCategories = [categories count];
+
+    mIncomeCatReports = [[NSMutableArray alloc] initWithCapacity:numCategories + 1];
+    mOutgoCatReports  = [[NSMutableArray alloc] initWithCapacity:numCategories + 1];
+
+    for (int i = -1; i < numCategories; i++) {
+        int catkey;
+        CatReport *cr;
+
+        if (i == -1) {
+            catkey = -1; // 未分類項目用
+        } else {
+            catkey = [categories categoryAtIndex:i].pid;
+        }
+
+        cr = [[[CatReport alloc] initWithCategory:catkey withAsset:assetKey] autorelease];
+        [mIncomeCatReports addObject:cr];
+
+        cr = [[[CatReport alloc] initWithCategory:catkey withAsset:assetKey] autorelease];
+        [mOutgoCatReports addObject:cr];
+    }
 
     return self;
 }
@@ -69,35 +102,6 @@ static int sortCatReport(id x, id y, void *context);
 }
 
 /**
-   セットアップ
- 
-   @param assetKey 資産キー (-1の場合は全資産)
-   @param start 開始日
-   @param end 終了日
- */
-- (void)setUp:(int)assetKey start:(NSDate *)start end:(NSDate *)end
-{
-    mStart = [start retain];
-    mEnd = [end retain];
-
-    // カテゴリ毎のレポート (CatReport) の生成
-    Categories *categories = [DataModel instance].categories;
-    int numCategories = [categories count];
-
-    for (int i = 0; i < numCategories; i++) {
-        Category *c = [categories categoryAtIndex:i];
-        CatReport *cr = [[[CatReport alloc] initWithCategory:c.pid withAsset:assetKey] autorelease];
-        [mIncomeCatReports addObject:cr];
-        [mOutgoCatReports addObject:cr];
-    }
-		
-    // 未分類項目用レポート
-    CatReport *cr = [[[CatReport alloc] initWithCategory:-1 withAsset:assetKey] autorelease];
-    [mIncomeCatReports addObject:cr];
-    [mOutgoCatReports addObject:cr];
-}
-
-/**
    取引をレポートに追加
 
    @return NO - 日付範囲外, YES - 日付範囲ない、もしくは処理必要なし
@@ -109,14 +113,16 @@ static int sortCatReport(id x, id y, void *context);
     if (mAssetKey < 0) {
         // 資産指定なしレポートの場合、資産間移動は計上しない
         if (t.type == TYPE_TRANSFER) return YES;
+        value = t.value;
+    } else if (t.asset == mAssetKey) {
+        // 通常または移動元
+        value = t.value;        
+    } else if (t.dstAsset == mAssetKey) {
+        // 移動先
+        value = -t.value;
     } else {
-        if (t.asset == mAssetKey) {
-            value = t.value;
-        } else if (t.dstAsset == mAssetKey) {
-            value = -t.value;
-        } else {
-            return YES; // 対象外資産
-        }
+        // 対象外
+        return YES;
     }
 
     // 日付チェック
@@ -133,13 +139,15 @@ static int sortCatReport(id x, id y, void *context);
     }
 
     // 該当カテゴリを検索して追加
-    NSMutableArray *ary = mIncomeCatReports;
+    NSMutableArray *ary;
     if (value < 0) {
         ary = mOutgoCatReports;
+    } else {
+        ary = mIncomeCatReports;
     }
     for (CatReport *cr in ary) {
-        if (cr.catkey == t.category) {
-            [cr addTransaction:t value:value];
+        if (cr.category == t.category) {
+            [cr addTransaction:t];
             break;
         }
     }
@@ -180,7 +188,7 @@ static int sortCatReport(id x, id y, void *context);
 }
 
 /**
-   絶対値比較
+   CatReport 比較用関数 : 絶対値降順でソート
 */
 static int sortCatReport(id x, id y, void *context)
 {
@@ -200,6 +208,5 @@ static int sortCatReport(id x, id y, void *context)
     }
     return NSOrderedDescending;
 }
-
 
 @end

@@ -144,15 +144,15 @@
 	
     // レポートエントリを生成する
     while ([nextStartDay compare:lastDate] != NSOrderedDescending) {
-        // Report 生成
-        ReportEntry *r = [[[ReporEntry alloc] init] autorelease];
-        [mReportEntries addObject:r];
-
-        r.start = nextStartDay;
+        NSDate *start = nextStartDay;
 
         // 次の期間開始時期を計算する
         nextStartDay = [greg dateByAddingComponents:steps toDate:nextStartDay options:0];
-        r.end = nextStartDay;
+
+        // Report 生成
+        ReportEntry *r = [[[ReporEntry alloc] initWithAsset:assetKey
+                            start:start end:nextStartDay] autorelease];
+        [mReportEntries addObject:r];
 
         // レポート上限数を制限
         if ([mReportEntries count] > MAX_REPORT_ENTRIES) {

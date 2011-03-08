@@ -49,10 +49,15 @@
   Report -> ReportEntry -> CatReport
  */
 
-// レポート
+/**
+   レポート
+*/
 @interface Report : NSObject {
-    int mType; // REPORT_XXX
-    NSMutableArray *mReportEntries;  // ReportEntry の配列
+    /** レポート種別 (REPORT_XXX) */
+    int mType;
+
+    /** 期間毎の ReportEntry の配列 */
+    NSMutableArray *mReportEntries;
 }
 
 @property(nonatomic,assign) int type;
@@ -67,15 +72,27 @@
 
 @end
 
-// レポートエントリ
+/**
+   各期間毎のレポートエントリ
+*/
 @interface ReporEntry : NSObject {
+    /** 期間開始日 */
     NSDate *mStart;
+
+    /** 期間終了日 */
     NSDate *mEnd;
+
+    /** 期間内の総収入 */
     double mTotalIncome;
+
+    /** 期間内の総支出 */
     double mTotalOutgo;
 
-    NSMutableArray *mIncomeCatReports; // CatReport の配列
-    NSMutableArray *mOutgoCatReports; // CatReport の配列
+    /** カテゴリ毎の収入レポート */
+    NSMutableArray *mIncomeCatReports;
+
+    /** カテゴリ毎の支出レポート */
+    NSMutableArray *mOutgoCatReports;
 }
 
 @property(nonatomic,readonly) NSDate *start;
@@ -85,18 +102,32 @@
 @property(nonatomic,readonly) NSMutableArray *incomeCatReports;
 @property(nonatomic,readonly) NSMutableArray *outgoCatReports;
 
+- (id)initWithAsset:(int)assetKey start:(NSDate *)start end:(NSDate *)end;
+
 - (BOOL)addTransaction:(Transaction*)t;
 - (void)sortAndTotalUp;
+
 - (double)_sortAndTotalUp:(NSMutableArray*)array;
 
 @end
-// レポート(カテゴリ毎)
+
+/**
+   レポート(カテゴリ毎)
+
+   本エントリは、期間(ReportEntry)毎、カテゴリ毎に１つ生成
+*/
 @interface CatReport : NSObject {
+    /** カテゴリ (-1 は未分類) */
     int mCategory;
+    
+    /** 資産キー (-1 の場合は指定なし) */
     int mAssetKey;
+
+    /** 該当カテゴリ内の金額合計 */
     double mSum;
 
-    NSMutableArray *mTransactions; // Transaction の配列
+    /** 本カテゴリに含まれる Transaction 一覧 */
+    NSMutableArray *mTransactions;
 }
 
 @property(nonatomic,readonly) int category;
@@ -105,5 +136,6 @@
 @property(nonatomic,readonly) NSMutableArray *transactions;
 
 - (id)initWithCategory:(int)category withAsset:(int)assetKey;
+- (void)addTransaction:(Transaction*)t;
 
 @end
