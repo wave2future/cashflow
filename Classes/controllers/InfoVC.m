@@ -72,11 +72,11 @@
     [mVersionLabel setText:[NSString stringWithFormat:@"Version %@", version]];
 
     [self _setButtonTitle:mPurchaseButton
-                    title:NSLocalizedString("Purchase Standard Version", @"")];
+                    title:NSLocalizedString(@"Purchase Standard Version", @"")];
     [self _setButtonTitle:mHelpButton
-                    title:NSLocalizedString("Show help page", @"")];
+                    title:NSLocalizedString(@"Show help page", @"")];
     [self _setButtonTitle:mSendMailButton
-                    title:NSLocalizedString("Send support mail", @"")];
+                    title:NSLocalizedString(@"Send support mail", @"")];
 }
 
 - (void)_setButtonTitle:(UIButton*)button title:(NSString*)title
