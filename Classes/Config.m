@@ -2,7 +2,7 @@
 /*
   CashFlow for iPhone/iPod touch
 
-  Copyright (c) 2008-2010, Takuya Murakami, All rights reserved.
+  Copyright (c) 2008-2011, Takuya Murakami, All rights reserved.
 
   Redistribution and use in source and binary forms, with or without
   modification, are permitted provided that the following conditions are
@@ -38,15 +38,16 @@
 
 @synthesize dateTimeMode = mDateTimeMode;
 @synthesize cutoffDate = mCutoffDate;
+@synthesize lastReportType = mLastReportType;
 
-static Config *theConfig = nil;
+static Config *sConfig = nil;
 
 + (Config *)instance
 {
-    if (!theConfig) {
-        theConfig = [[Config alloc] init];
+    if (!sConfig) {
+        sConfig = [[Config alloc] init];
     }
-    return theConfig;
+    return sConfig;
 }
 
 - (id)init
@@ -68,6 +69,8 @@ static Config *theConfig = nil;
     if (mCutoffDate < 0 || mCutoffDate > 28) {
         mCutoffDate = 0;
     }
+
+    mLastReportType = [defaults integerForKey:@"LastReportType"];
     return self;
 }
 
@@ -77,6 +80,7 @@ static Config *theConfig = nil;
 
     [defaults setInteger:mDateTimeMode forKey:@"DateTimeMode"];
     [defaults setInteger:mCutoffDate   forKey:@"CutoffDate"];
+    [defaults setInteger:mLastReportType forKey:@"LastReportType"];
 
     [defaults synchronize];
 }

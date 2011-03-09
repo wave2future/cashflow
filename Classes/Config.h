@@ -44,10 +44,14 @@
 
     // 締め日 (1～29)、月末を指定する場合は 0
     int mCutoffDate;
+
+    // 最後に選択されたレポート種別 (REPORT_DAILY/WEEKLY/MONTHLY/ANNUAL/...)
+    int mLastReportType;
 }
 
 @property(nonatomic,assign) int dateTimeMode;
 @property(nonatomic,assign) int cutoffDate;
+@property(nonatomic,assign) int lastReportType;
 
 + (Config *)instance;
 - (void)save;

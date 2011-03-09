@@ -131,3 +131,8 @@
 
 /* Текст отображающийся в окне обработки, когда данные о повреждении начали отправляться на сервер */
 "Sending" = "Отправляется ...";
+
+/* InfoViewController */
+"Purchase Standard Version" = "Purchase Standard Version";
+"Show help page" = "Show help page";
+"Send support mail" = "Send support mail";

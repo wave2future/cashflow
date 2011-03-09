@@ -70,12 +70,24 @@
 	
     NSString *version = [[[NSBundle mainBundle] infoDictionary] valueForKey:@"CFBundleVersion"];
     [mVersionLabel setText:[NSString stringWithFormat:@"Version %@", version]];
+
+    [self _setButtonTitle:mPurchaseButton
+                    title:NSLocalizedString(@"Purchase Standard Version", @"")];
+    [self _setButtonTitle:mHelpButton
+                    title:NSLocalizedString(@"Show help page", @"")];
+    [self _setButtonTitle:mSendMailButton
+                    title:NSLocalizedString(@"Send support mail", @"")];
+}
+
+- (void)_setButtonTitle:(UIButton*)button title:(NSString*)title
+{
+    [button setTitle:title forState:UIControlStateNormal];
+    [button setTitle:title forState:UIControlStateHighlighted];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
 
 - (void)dealloc {
     [super dealloc];

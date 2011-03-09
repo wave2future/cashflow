@@ -36,17 +36,19 @@
 #import "ReportVC.h"
 #import "ReportCatVC.h"
 #import "ReportCell.h"
+#import "Config.h"
 
 @implementation ReportViewController
 
 @synthesize tableView = mTableView;
 @synthesize designatedAsset = mDesignatedAsset;
 
-- (id)initWithAsset:(Asset*)asset withType:(int)type
+- (id)initWithAsset:(Asset*)asset type:(int)type
 {
     self = [super initWithNibName:@"ReportView" bundle:nil];
     if (self != nil) {
         self.designatedAsset = asset;
+
         mType = type;
 
         mDateFormatter = [[NSDateFormatter alloc] init];
@@ -57,7 +59,7 @@
 
 - (id)initWithAsset:(Asset*)asset
 {
-    return [self initWithAsset:asset withType:REPORT_WEEKLY];
+    return [self initWithAsset:asset type:-1];
 }
 
 - (void)viewDidLoad
@@ -88,18 +90,21 @@
     [super dealloc];
 }
 
+/**
+   レポート(再)生成
+*/
 - (void)_updateReport
 {
-    /*
-      レポート(再)生成
-    */
-    if (mReports == nil) {
-        mReports = [[Report alloc] init];
+    // レポート種別を設定から読み込む
+    Config *config = [Config instance];
+    if (mType < 0) {
+        mType = config.lastReportType;
     }
-    [mReports generate:mType asset:mDesignatedAsset];
-    mMaxAbsValue = [mReports getMaxAbsValue];
 
     switch (mType) {
+        default:
+            mType = REPORT_DAILY;
+            // FALLTHROUGH
         case REPORT_DAILY:
             self.title = NSLocalizedString(@"Daily Report", @"");
             [mDateFormatter setDateFormat:@"yyyy/MM/dd"];
@@ -121,6 +126,17 @@
             [mDateFormatter setDateFormat:@"yyyy"];
             break;
     }
+
+    // 設定保存
+    config.lastReportType = mType;
+    [config save];
+
+    // レポート生成
+    if (mReports == nil) {
+        mReports = [[Report alloc] init];
+    }
+    [mReports generate:mType asset:mDesignatedAsset];
+    mMaxAbsValue = [mReports getMaxAbsValue];
 
     [self.tableView reloadData];
 }
