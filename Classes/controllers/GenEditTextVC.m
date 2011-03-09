@@ -82,6 +82,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     mTextField.text = mText;
+    [mTextField becomeFirstResponder];
     [super viewWillAppear:animated];
 }
 
