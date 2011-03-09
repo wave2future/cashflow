@@ -131,3 +131,8 @@
 
 /* Text showing in a processing box that the crash data is being uploaded to the server */
 "Sending" = "送信中 ...";
+
+/* InfoViewController */
+"Purchase Standard Version" = "スタンダード版を購入";
+"Show help page" = "ヘルプページを表示";
+"Send support mail" = "サポートにメールを送る";

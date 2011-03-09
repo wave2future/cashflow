@@ -131,3 +131,8 @@
 
 /* Text showing in a processing box that the crash data is being uploaded to the server */
 "Sending" = "Sending ...";
+
+/* InfoViewController */
+"Purchase Standard Version" = "Purchase Standard Version";
+"Show help page" = "Show help page";
+"Send support mail" = "Send support mail";

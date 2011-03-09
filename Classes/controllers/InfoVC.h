@@ -37,7 +37,10 @@
 @interface InfoVC : UIViewController {
     IBOutlet UILabel *mNameLabel;
     IBOutlet UILabel *mVersionLabel;
+
     IBOutlet UIButton *mPurchaseButton;
+    IBOutlet UIButton *mHelpButton;
+    IBOutlet UIButton *mSendMailButton;
 }
 
 - (void)doneAction:(id)sender;
