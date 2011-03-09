@@ -37,11 +37,11 @@
 #import <Foundation/Foundation.h>
 #import "Transaction.h"
 
-#import "EditTypeVC.h"; // type
-#import "EditDescVC.h";
+#import "EditTypeVC.h"
+#import "EditDescVC.h"
 #import "CalcVC.h"
-#import "EditDateVC.h";
-#import "EditMemoVC.h";
+#import "EditDateVC.h"
+#import "EditMemoVC.h"
 #import "CategoryListVC.h"
 
 @interface TransactionViewController : UITableViewController 

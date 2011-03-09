@@ -184,26 +184,30 @@
         // あるいは = が押された場合 (5x= など)
         // メモリしてある式を計算する
         switch (mStoredOperator) {
-        case OP_PLUS:
-            mValue = mStoredValue + mValue;
-            break;
+            case OP_PLUS:
+                mValue = mStoredValue + mValue;
+                break;
 
-        case OP_MINUS:
-            mValue = mStoredValue - mValue;
-            break;
+            case OP_MINUS:
+                mValue = mStoredValue - mValue;
+                break;
 
-        case OP_MULTIPLY:
-            mValue = mStoredValue * mValue;
-            break;
+            case OP_MULTIPLY:
+                mValue = mStoredValue * mValue;
+                break;
 
-        case OP_DIVIDE:
-            if (mValue == 0.0) {
-                // divided by zero error
-                mValue = 0.0;
-            } else {
-                mValue = mStoredValue / mValue;
-            }
-            break;
+            case OP_DIVIDE:
+                if (mValue == 0.0) {
+                    // divided by zero error
+                    mValue = 0.0;
+                } else {
+                    mValue = mStoredValue / mValue;
+                }
+                break;
+                
+            default:
+                // ignore
+                break;
         }
 
         // 表示中の値を記憶

@@ -45,7 +45,8 @@
 
 - (id)init
 {
-    if (self = [super init]) {
+    self = [super init];
+    if (self) {
         mEntries = nil;
     }
     return self;

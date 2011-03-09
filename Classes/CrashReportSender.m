@@ -152,7 +152,7 @@
             
             NSDirectoryEnumerator *dirEnum = [fm enumeratorAtPath: _crashesDir];
 			
-            while (file = [dirEnum nextObject])
+            while ((file = [dirEnum nextObject]) != nil)
             {
                 NSDictionary *fileAttributes = [fm attributesOfItemAtPath:[_crashesDir stringByAppendingPathComponent:file] error:&error];
                 if ([[fileAttributes objectForKey:NSFileSize] intValue] > 0)
