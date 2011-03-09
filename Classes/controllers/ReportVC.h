@@ -22,7 +22,7 @@
 @property(nonatomic,retain) UITableView *tableView;
 @property(nonatomic,retain) Asset *designatedAsset;
 
-- (id)initWithAsset:(Asset*)asset withType:(int)type;    // designated initializer
+- (id)initWithAsset:(Asset*)asset type:(int)type;    // designated initializer
 - (id)initWithAsset:(Asset*)asset; 
 
 - (void)doneAction:(id)sender;
