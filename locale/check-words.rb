@@ -15,7 +15,7 @@ end
 
 # start
 
-if ARGV.count != 1
+if ARGV.size != 1
    puts "Usage: #{$0} <lang>"
    exit 1
 end
@@ -35,3 +35,5 @@ if ww.length > 0
     puts "Badly contained:"
     puts "  " + ww.join(",")
 end
+
+puts "done"
