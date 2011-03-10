@@ -1,7 +1,5 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 
-#import <SenTestingKit/SenTestingKit.h>
-
 #import "TestCommon.h"
 #import "DataModel.h"
 #import "Report.h"
@@ -31,7 +29,7 @@
 {
     [manager setBaseCurrency:nil];
     NSString *s = [CurrencyManager formatCurrency:1234.56];
-    //AssertEqual(s, @"$1,234.56");
+    //AssertEqualObjects(s, @"$1,234.56");
     AssertEqualObjects(@"￥1,235", s);
 }
 
@@ -46,7 +44,7 @@
 {
     [manager setBaseCurrency:@"JPY"];
     NSString *s = [CurrencyManager formatCurrency:1234];
-    //AssertEqual(@"¥1,234", s);
+    //AssertEqualObjects(@"¥1,234", s);
     AssertEqualObjects(@"￥1,234", s);
 }
 

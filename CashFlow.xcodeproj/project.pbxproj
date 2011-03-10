@@ -309,6 +309,77 @@
 		3EC1B23013291A6D00721A71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EC1B22E13291A6D00721A71 /* InfoPlist.strings */; };
 		3EC1B23D13291A9800721A71 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */; };
 		3EC1B23F13291BE700721A71 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
+		3EC1B24113291D4200721A71 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B24013291D4200721A71 /* TestCommon.m */; };
+		3EC1B24213291DC900721A71 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
+		3EC1B24313291DE500721A71 /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
+		3EC1B24413291DE500721A71 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D24131FB94B0008C37D /* DateFormatter2.m */; };
+		3EC1B24513291DE500721A71 /* DescLRUManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD776121416CB00CFDDAC /* DescLRUManager.m */; };
+		3EC1B24613291DE500721A71 /* Asset.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A7121415DD00CFDDAC /* Asset.m */; };
+		3EC1B24713291DE500721A71 /* AssetEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6A9121415DD00CFDDAC /* AssetEntry.m */; };
+		3EC1B24813291DE500721A71 /* Category.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AB121415DD00CFDDAC /* Category.m */; };
+		3EC1B24913291DE500721A71 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AD121415DD00CFDDAC /* DataModel.m */; };
+		3EC1B24A13291DE500721A71 /* Journal.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6AF121415DD00CFDDAC /* Journal.m */; };
+		3EC1B24B13291DE500721A71 /* Ledger.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B1121415DD00CFDDAC /* Ledger.m */; };
+		3EC1B24C13291DE500721A71 /* Report.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B3121415DD00CFDDAC /* Report.m */; };
+		3EC1B24D13291DE500721A71 /* ReportEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800313263CBD00D74DED /* ReportEntry.m */; };
+		3EC1B24E13291DE500721A71 /* CatReport.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17800213263CBD00D74DED /* CatReport.m */; };
+		3EC1B24F13291DE500721A71 /* Transaction.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6B5121415DD00CFDDAC /* Transaction.m */; };
+		3EC1B25013291DFC00721A71 /* AssetBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7801214173500CFDDAC /* AssetBase.m */; };
+		3EC1B25113291DFC00721A71 /* CategoryBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7821214173500CFDDAC /* CategoryBase.m */; };
+		3EC1B25213291DFC00721A71 /* Database.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7841214173500CFDDAC /* Database.m */; };
+		3EC1B25313291DFC00721A71 /* Dbstmt.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D2C131FB9680008C37D /* Dbstmt.m */; };
+		3EC1B25413291DFC00721A71 /* DescLRU.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7881214173500CFDDAC /* DescLRU.m */; };
+		3EC1B25513291DFC00721A71 /* ORRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78A1214173500CFDDAC /* ORRecord.m */; };
+		3EC1B25613291DFC00721A71 /* TransactionBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD78C1214173500CFDDAC /* TransactionBase.m */; };
+		3EC1B25713291E1C00721A71 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC1B25813291E1C00721A71 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
+		3EC1B25913291E1C00721A71 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
+		3EC1B25A13291E1C00721A71 /* ExportCsv.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710420EAA196A00E57E51 /* ExportCsv.m */; };
+		3EC1B25B13291E1C00721A71 /* ExportOfx.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710440EAA196A00E57E51 /* ExportOfx.m */; };
+		3EC1B25C13291E1C00721A71 /* WebServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C140F1A0D8D0063A578 /* WebServer.m */; };
+		3EC1B25D13291E1C00721A71 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
+		3EC1B25E13291E1C00721A71 /* BackupServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED97C270F1A0E8E0063A578 /* BackupServer.m */; };
+		3EC1B25F13291E1C00721A71 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
+		3EC1B26013291E1C00721A71 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */; };
+		3EC1B26113291E1C00721A71 /* SupportMail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7109B3121108ED00C47539 /* SupportMail.m */; };
+		3EC1B26313291E2100721A71 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D3623250D0F684500981E51 /* AppDelegate.m */; };
+		3EC1B26413291E4400721A71 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
+		3EC1B26513291E4900721A71 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
+		3EC1B26613291E5100721A71 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB554B3103B92D700BA13D4 /* QuartzCore.framework */; };
+		3EC1B26713291E5500721A71 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB55574103B96CE00BA13D4 /* CoreLocation.framework */; };
+		3EC1B26813291E5800721A71 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EB5552D103B930D00BA13D4 /* AddressBook.framework */; };
+		3EC1B26913291E5A00721A71 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */; };
+		3EC1B26A13291E5E00721A71 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
+		3EC1B26B13291E6000721A71 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
+		3EC1B26C13291E6400721A71 /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE8551312123DA400A6B3CF /* CrashReporter.framework */; };
+		3EC1B26D13291E7600721A71 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
+		3EC1B26E13291EA700721A71 /* AssetListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6E51214169700CFDDAC /* AssetListVC.m */; };
+		3EC1B26F13291EA700721A71 /* AssetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6E71214169700CFDDAC /* AssetVC.m */; };
+		3EC1B27013291EA700721A71 /* TransactionListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD70D1214169700CFDDAC /* TransactionListVC.m */; };
+		3EC1B27113291EA700721A71 /* TransactionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EB9213226A600086F492 /* TransactionCell.m */; };
+		3EC1B27213291EA700721A71 /* TransactionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD70F1214169700CFDDAC /* TransactionVC.m */; };
+		3EC1B27313291EA700721A71 /* CalcVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6E91214169700CFDDAC /* CalcVC.m */; };
+		3EC1B27413291EA700721A71 /* CategoryListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6EB1214169700CFDDAC /* CategoryListVC.m */; };
+		3EC1B27513291EA700721A71 /* ConfigViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6ED1214169700CFDDAC /* ConfigViewController.m */; };
+		3EC1B27613291EA700721A71 /* EditDateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6EF1214169700CFDDAC /* EditDateVC.m */; };
+		3EC1B27713291EA700721A71 /* EditDescVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6F11214169700CFDDAC /* EditDescVC.m */; };
+		3EC1B27813291EA700721A71 /* EditMemoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6F31214169700CFDDAC /* EditMemoVC.m */; };
+		3EC1B27913291EA700721A71 /* EditTypeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6F51214169700CFDDAC /* EditTypeVC.m */; };
+		3EC1B27A13291EA700721A71 /* EditValueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6F71214169700CFDDAC /* EditValueVC.m */; };
+		3EC1B27B13291EA700721A71 /* ExportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6F91214169700CFDDAC /* ExportVC.m */; };
+		3EC1B27C13291EA700721A71 /* GenEditTextVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6FB1214169700CFDDAC /* GenEditTextVC.m */; };
+		3EC1B27D13291EA700721A71 /* GenSelectListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6FD1214169700CFDDAC /* GenSelectListVC.m */; };
+		3EC1B27E13291EA700721A71 /* InfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD6FF1214169700CFDDAC /* InfoVC.m */; };
+		3EC1B27F13291EA700721A71 /* PinController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7011214169700CFDDAC /* PinController.m */; };
+		3EC1B28013291EA700721A71 /* PinVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7031214169700CFDDAC /* PinVC.m */; };
+		3EC1B28113291EA700721A71 /* ReportVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD70B1214169700CFDDAC /* ReportVC.m */; };
+		3EC1B28213291EA700721A71 /* ReportCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7091214169700CFDDAC /* ReportCell.m */; };
+		3EC1B28313291EA700721A71 /* ReportCatVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7071214169700CFDDAC /* ReportCatVC.m */; };
+		3EC1B28413291EA700721A71 /* ReportCatCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E0AD7051214169700CFDDAC /* ReportCatCell.m */; };
+		3EC1B28513291EA700721A71 /* ReportCatGraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17805E132641D700D74DED /* ReportCatGraphCell.m */; };
+		3EC1B28613291EA700721A71 /* ReportCatDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EBF713226FDC0086F492 /* ReportCatDetailVC.m */; };
+		3EC1B28813291F3500721A71 /* AssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B28713291F3500721A71 /* AssetTests.m */; };
+		3EC1B2891329202B00721A71 /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EE4016011F3355F00171A15 /* testdata1.sql */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED30E721323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
@@ -600,6 +671,8 @@
 		3EC1B23113291A6D00721A71 /* CashFlowTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CashFlowTest-Prefix.pch"; sourceTree = "<group>"; };
 		3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
 		3EC1B23E13291AD700721A71 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
+		3EC1B24013291D4200721A71 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
+		3EC1B28713291F3500721A71 /* AssetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTests.m; sourceTree = "<group>"; };
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
@@ -748,6 +821,16 @@
 				3EC1B22813291A6D00721A71 /* UIKit.framework in Frameworks */,
 				3EC1B22913291A6D00721A71 /* Foundation.framework in Frameworks */,
 				3EC1B22A13291A6D00721A71 /* CoreGraphics.framework in Frameworks */,
+				3EC1B24213291DC900721A71 /* libsqlite3.0.dylib in Frameworks */,
+				3EC1B26413291E4400721A71 /* AVFoundation.framework in Frameworks */,
+				3EC1B26513291E4900721A71 /* AudioToolbox.framework in Frameworks */,
+				3EC1B26613291E5100721A71 /* QuartzCore.framework in Frameworks */,
+				3EC1B26713291E5500721A71 /* CoreLocation.framework in Frameworks */,
+				3EC1B26813291E5800721A71 /* AddressBook.framework in Frameworks */,
+				3EC1B26913291E5A00721A71 /* MediaPlayer.framework in Frameworks */,
+				3EC1B26A13291E5E00721A71 /* SystemConfiguration.framework in Frameworks */,
+				3EC1B26B13291E6000721A71 /* MessageUI.framework in Frameworks */,
+				3EC1B26C13291E6400721A71 /* CrashReporter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,7 +1147,9 @@
 		3EC1B22B13291A6D00721A71 /* CashFlowTest */ = {
 			isa = PBXGroup;
 			children = (
+				3EC1B28713291F3500721A71 /* AssetTests.m */,
 				3EC1B23E13291AD700721A71 /* TestCommon.h */,
+				3EC1B24013291D4200721A71 /* TestCommon.m */,
 				3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */,
 				3EC1B22C13291A6D00721A71 /* Supporting Files */,
 			);
@@ -1457,6 +1542,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC1B23013291A6D00721A71 /* InfoPlist.strings in Resources */,
+				3EC1B2891329202B00721A71 /* testdata1.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1679,6 +1765,66 @@
 			files = (
 				3EC1B23D13291A9800721A71 /* CurrencyManagerTests.m in Sources */,
 				3EC1B23F13291BE700721A71 /* CurrencyManager.m in Sources */,
+				3EC1B24113291D4200721A71 /* TestCommon.m in Sources */,
+				3EC1B24313291DE500721A71 /* CashflowDatabase.m in Sources */,
+				3EC1B24413291DE500721A71 /* DateFormatter2.m in Sources */,
+				3EC1B24513291DE500721A71 /* DescLRUManager.m in Sources */,
+				3EC1B24613291DE500721A71 /* Asset.m in Sources */,
+				3EC1B24713291DE500721A71 /* AssetEntry.m in Sources */,
+				3EC1B24813291DE500721A71 /* Category.m in Sources */,
+				3EC1B24913291DE500721A71 /* DataModel.m in Sources */,
+				3EC1B24A13291DE500721A71 /* Journal.m in Sources */,
+				3EC1B24B13291DE500721A71 /* Ledger.m in Sources */,
+				3EC1B24C13291DE500721A71 /* Report.m in Sources */,
+				3EC1B24D13291DE500721A71 /* ReportEntry.m in Sources */,
+				3EC1B24E13291DE500721A71 /* CatReport.m in Sources */,
+				3EC1B24F13291DE500721A71 /* Transaction.m in Sources */,
+				3EC1B25013291DFC00721A71 /* AssetBase.m in Sources */,
+				3EC1B25113291DFC00721A71 /* CategoryBase.m in Sources */,
+				3EC1B25213291DFC00721A71 /* Database.m in Sources */,
+				3EC1B25313291DFC00721A71 /* Dbstmt.m in Sources */,
+				3EC1B25413291DFC00721A71 /* DescLRU.m in Sources */,
+				3EC1B25513291DFC00721A71 /* ORRecord.m in Sources */,
+				3EC1B25613291DFC00721A71 /* TransactionBase.m in Sources */,
+				3EC1B25713291E1C00721A71 /* AdUtil.m in Sources */,
+				3EC1B25813291E1C00721A71 /* Config.m in Sources */,
+				3EC1B25913291E1C00721A71 /* ExportBase.m in Sources */,
+				3EC1B25A13291E1C00721A71 /* ExportCsv.m in Sources */,
+				3EC1B25B13291E1C00721A71 /* ExportOfx.m in Sources */,
+				3EC1B25C13291E1C00721A71 /* WebServer.m in Sources */,
+				3EC1B25D13291E1C00721A71 /* ExportServer.m in Sources */,
+				3EC1B25E13291E1C00721A71 /* BackupServer.m in Sources */,
+				3EC1B25F13291E1C00721A71 /* Backup.m in Sources */,
+				3EC1B26013291E1C00721A71 /* UIDevice-Hardware.m in Sources */,
+				3EC1B26113291E1C00721A71 /* SupportMail.m in Sources */,
+				3EC1B26313291E2100721A71 /* AppDelegate.m in Sources */,
+				3EC1B26D13291E7600721A71 /* CrashReportSender.m in Sources */,
+				3EC1B26E13291EA700721A71 /* AssetListVC.m in Sources */,
+				3EC1B26F13291EA700721A71 /* AssetVC.m in Sources */,
+				3EC1B27013291EA700721A71 /* TransactionListVC.m in Sources */,
+				3EC1B27113291EA700721A71 /* TransactionCell.m in Sources */,
+				3EC1B27213291EA700721A71 /* TransactionVC.m in Sources */,
+				3EC1B27313291EA700721A71 /* CalcVC.m in Sources */,
+				3EC1B27413291EA700721A71 /* CategoryListVC.m in Sources */,
+				3EC1B27513291EA700721A71 /* ConfigViewController.m in Sources */,
+				3EC1B27613291EA700721A71 /* EditDateVC.m in Sources */,
+				3EC1B27713291EA700721A71 /* EditDescVC.m in Sources */,
+				3EC1B27813291EA700721A71 /* EditMemoVC.m in Sources */,
+				3EC1B27913291EA700721A71 /* EditTypeVC.m in Sources */,
+				3EC1B27A13291EA700721A71 /* EditValueVC.m in Sources */,
+				3EC1B27B13291EA700721A71 /* ExportVC.m in Sources */,
+				3EC1B27C13291EA700721A71 /* GenEditTextVC.m in Sources */,
+				3EC1B27D13291EA700721A71 /* GenSelectListVC.m in Sources */,
+				3EC1B27E13291EA700721A71 /* InfoVC.m in Sources */,
+				3EC1B27F13291EA700721A71 /* PinController.m in Sources */,
+				3EC1B28013291EA700721A71 /* PinVC.m in Sources */,
+				3EC1B28113291EA700721A71 /* ReportVC.m in Sources */,
+				3EC1B28213291EA700721A71 /* ReportCell.m in Sources */,
+				3EC1B28313291EA700721A71 /* ReportCatVC.m in Sources */,
+				3EC1B28413291EA700721A71 /* ReportCatCell.m in Sources */,
+				3EC1B28513291EA700721A71 /* ReportCatGraphCell.m in Sources */,
+				3EC1B28613291EA700721A71 /* ReportCatDetailVC.m in Sources */,
+				3EC1B28813291F3500721A71 /* AssetTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2203,6 +2349,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2228,6 +2375,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -2253,6 +2401,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2276,6 +2425,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -2299,6 +2449,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
