@@ -303,6 +303,12 @@
 		3EB8EA500F1F7919000A8276 /* config.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EB8EA4F0F1F7919000A8276 /* config.png */; };
 		3EC0B7A311EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
 		3EC0B7A411EC8B4900AA02A8 /* AdUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */; };
+		3EC1B22813291A6D00721A71 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		3EC1B22913291A6D00721A71 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		3EC1B22A13291A6D00721A71 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2892E40F0DC94CBA00A64D0F /* CoreGraphics.framework */; };
+		3EC1B23013291A6D00721A71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EC1B22E13291A6D00721A71 /* InfoPlist.strings */; };
+		3EC1B23D13291A9800721A71 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */; };
+		3EC1B23F13291BE700721A71 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED30E721323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
@@ -588,6 +594,12 @@
 		3EB8EA4F0F1F7919000A8276 /* config.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = config.png; sourceTree = "<group>"; };
 		3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdUtil.h; sourceTree = "<group>"; };
 		3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdUtil.m; sourceTree = "<group>"; };
+		3EC1B22713291A6D00721A71 /* CashFlowTest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CashFlowTest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3EC1B22D13291A6D00721A71 /* CashFlowTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CashFlowTest-Info.plist"; sourceTree = "<group>"; };
+		3EC1B22F13291A6D00721A71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3EC1B23113291A6D00721A71 /* CashFlowTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CashFlowTest-Prefix.pch"; sourceTree = "<group>"; };
+		3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
+		3EC1B23E13291AD700721A71 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
@@ -729,6 +741,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EC1B22313291A6D00721A71 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC1B22813291A6D00721A71 /* UIKit.framework in Frameworks */,
+				3EC1B22913291A6D00721A71 /* Foundation.framework in Frameworks */,
+				3EC1B22A13291A6D00721A71 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EE400E511F3348000171A15 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -758,6 +780,7 @@
 				1D6058910D05DD3D006BFB54 /* CashFlow.app */,
 				3E8B25C20F348C090007929E /* CashFlowFree.app */,
 				3EE400E711F3348000171A15 /* CashFlow-iUnitTest.app */,
+				3EC1B22713291A6D00721A71 /* CashFlowTest.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -774,6 +797,7 @@
 				3EB5406B0E8E907B00608B77 /* images */,
 				3EE400FC11F334D900171A15 /* Tests */,
 				3EE400EF11F3348E00171A15 /* iUnitTest */,
+				3EC1B22B13291A6D00721A71 /* CashFlowTest */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 				3E4DA8B20EAB6DE4001FBB70 /* Entitlements.plist */,
@@ -1037,6 +1061,26 @@
 			path = Classes;
 			sourceTree = "<group>";
 		};
+		3EC1B22B13291A6D00721A71 /* CashFlowTest */ = {
+			isa = PBXGroup;
+			children = (
+				3EC1B23E13291AD700721A71 /* TestCommon.h */,
+				3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */,
+				3EC1B22C13291A6D00721A71 /* Supporting Files */,
+			);
+			path = CashFlowTest;
+			sourceTree = "<group>";
+		};
+		3EC1B22C13291A6D00721A71 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3EC1B22D13291A6D00721A71 /* CashFlowTest-Info.plist */,
+				3EC1B22E13291A6D00721A71 /* InfoPlist.strings */,
+				3EC1B23113291A6D00721A71 /* CashFlowTest-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		3EE400EF11F3348E00171A15 /* iUnitTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -1218,6 +1262,24 @@
 			productReference = 3E8B25C20F348C090007929E /* CashFlowFree.app */;
 			productType = "com.apple.product-type.application";
 		};
+		3EC1B22613291A6D00721A71 /* CashFlowTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3EC1B23B13291A6D00721A71 /* Build configuration list for PBXNativeTarget "CashFlowTest" */;
+			buildPhases = (
+				3EC1B22213291A6D00721A71 /* Sources */,
+				3EC1B22313291A6D00721A71 /* Frameworks */,
+				3EC1B22413291A6D00721A71 /* Resources */,
+				3EC1B22513291A6D00721A71 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CashFlowTest;
+			productName = CashFlowTest;
+			productReference = 3EC1B22713291A6D00721A71 /* CashFlowTest.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 		3EE400E611F3348000171A15 /* CashFlow-iUnitTest */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3EE400EE11F3348000171A15 /* Build configuration list for PBXNativeTarget "CashFlow-iUnitTest" */;
@@ -1270,6 +1332,7 @@
 				1D6058900D05DD3D006BFB54 /* CashFlow */,
 				3E8B25780F348C090007929E /* CashFlowFree */,
 				3EE400E611F3348000171A15 /* CashFlow-iUnitTest */,
+				3EC1B22613291A6D00721A71 /* CashFlowTest */,
 			);
 		};
 /* End PBXProject section */
@@ -1389,6 +1452,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EC1B22413291A6D00721A71 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC1B23013291A6D00721A71 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EE400E311F3348000171A15 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1450,6 +1521,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3EC1B22513291A6D00721A71 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {
@@ -1586,6 +1673,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		3EC1B22213291A6D00721A71 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3EC1B23D13291A9800721A71 /* CurrencyManagerTests.m in Sources */,
+				3EC1B23F13291BE700721A71 /* CurrencyManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		3EE400E411F3348000171A15 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1705,6 +1801,14 @@
 				3EEED4E212F59C2E00C67F4C /* ru */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		3EC1B22E13291A6D00721A71 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3EC1B22F13291A6D00721A71 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -2092,6 +2196,125 @@
 			};
 			name = "Ad hoc distribution";
 		};
+		3EC1B23613291A6D00721A71 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		3EC1B23713291A6D00721A71 /* DebugCoverage */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = DebugCoverage;
+		};
+		3EC1B23813291A6D00721A71 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+		3EC1B23913291A6D00721A71 /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Distribution;
+		};
+		3EC1B23A13291A6D00721A71 /* Ad hoc distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_LDFLAGS = (
+					"-framework",
+					SenTestingKit,
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = "Ad hoc distribution";
+		};
 		3EE400EA11F3348000171A15 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2269,6 +2492,17 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		3EC1B23B13291A6D00721A71 /* Build configuration list for PBXNativeTarget "CashFlowTest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3EC1B23613291A6D00721A71 /* Debug */,
+				3EC1B23713291A6D00721A71 /* DebugCoverage */,
+				3EC1B23813291A6D00721A71 /* Release */,
+				3EC1B23913291A6D00721A71 /* Distribution */,
+				3EC1B23A13291A6D00721A71 /* Ad hoc distribution */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		3EE400EE11F3348000171A15 /* Build configuration list for PBXNativeTarget "CashFlow-iUnitTest" */ = {
 			isa = XCConfigurationList;
