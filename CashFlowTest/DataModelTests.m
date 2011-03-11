@@ -2,7 +2,7 @@
 
 #import "TestCommon.h"
 
-@interface DataModelTest : IUTTest {
+@interface DataModelTest : SenTestCase {
     DataModel *dm;
 }
 @end
@@ -32,7 +32,7 @@
     AssertEqualInt(0, [dm.journal.entries count]);
 
     Asset *as = [dm.ledger.assets objectAtIndex:0];
-    Assert([as.name isEqualToString:@"Cash"]); 
+    AssertEqualObjects(@"Cash", as.name);
                   
     AssertEqualInt(0, [dm.categories count]);
 }
@@ -43,9 +43,9 @@
     [TestCommon installDatabase:@"testdata1"];
     dm = [DataModel instance];
 
-    Assert([dm.journal.entries count] == 6);
-    Assert([dm.ledger.assets count] == 3);
-    Assert([dm.categories count] == 3);
+    AssertEquals(6, dm.journal.entries count);
+    AssertEquals(3, dm.ledger.assets count);
+    AssertEquals(3, dm.categories count);
 }
 
 @end

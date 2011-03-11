@@ -3,8 +3,8 @@
 #import "TestCommon.h"
 #import "AssetListVC.h"
 
-@interface AssetListViewControllerTest : UINavigationBarBasedTest {
-    AssetListViewController *vc;
+@interface AssetListViewControllerTest : ViewControllerWithNavBarTestCase {
+    AssertListViewController *vc;
 }
 
 - (void)waitUntilDataLoaded;
@@ -13,10 +13,9 @@
 
 @implementation AssetListViewControllerTest
 
-- (UIViewController *)rootViewController
+- (UIViewController *)createViewController
 {
     vc = [[[AssetListViewController alloc] initWithNibName:@"AssetListView" bundle:nil] autorelease];
-    //[vc viewDidLoad];
     return vc;
 }
 
