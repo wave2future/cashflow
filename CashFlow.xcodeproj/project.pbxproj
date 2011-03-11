@@ -213,6 +213,14 @@
 		3E7109B9121108ED00C47539 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */; };
 		3E7109BA121108ED00C47539 /* SupportMail.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7109B3121108ED00C47539 /* SupportMail.m */; };
 		3E7109BB121108ED00C47539 /* UIDevice-Hardware.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */; };
+		3E71A64D132A224A007AB4AB /* AssetEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A644132A224A007AB4AB /* AssetEntryTests.m */; };
+		3E71A64E132A224A007AB4AB /* DataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A645132A224A007AB4AB /* DataModelTests.m */; };
+		3E71A64F132A224A007AB4AB /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A646132A224A007AB4AB /* DescLRUManagerTests.m */; };
+		3E71A651132A224A007AB4AB /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A648132A224A007AB4AB /* JournalTests.m */; };
+		3E71A652132A224A007AB4AB /* LedgerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A649132A224A007AB4AB /* LedgerTests.m */; };
+		3E71A653132A224A007AB4AB /* ReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A64A132A224A007AB4AB /* ReportTests.m */; };
+		3E71A654132A224A007AB4AB /* TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A64B132A224A007AB4AB /* TimeTests.m */; };
+		3E71A655132A224A007AB4AB /* TransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E71A64C132A224A007AB4AB /* TransactionTests.m */; };
 		3E774E3E1188807900687776 /* AssetListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774E3D1188807900687776 /* AssetListView-ipad.xib */; };
 		3E774E3F1188807900687776 /* AssetListView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774E3D1188807900687776 /* AssetListView-ipad.xib */; };
 		3E774EEA11888C6600687776 /* PinView-ipad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E774EE911888C6600687776 /* PinView-ipad.xib */; };
@@ -309,7 +317,6 @@
 		3EC1B23013291A6D00721A71 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EC1B22E13291A6D00721A71 /* InfoPlist.strings */; };
 		3EC1B23D13291A9800721A71 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */; };
 		3EC1B23F13291BE700721A71 /* CurrencyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E98A66811E8368800B7F289 /* CurrencyManager.m */; };
-		3EC1B24113291D4200721A71 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B24013291D4200721A71 /* TestCommon.m */; };
 		3EC1B24213291DC900721A71 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3EC1B24313291DE500721A71 /* CashflowDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */; };
 		3EC1B24413291DE500721A71 /* DateFormatter2.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E4A7D24131FB94B0008C37D /* DateFormatter2.m */; };
@@ -379,7 +386,6 @@
 		3EC1B28513291EA700721A71 /* ReportCatGraphCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E17805E132641D700D74DED /* ReportCatGraphCell.m */; };
 		3EC1B28613291EA700721A71 /* ReportCatDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E02EBF713226FDC0086F492 /* ReportCatDetailVC.m */; };
 		3EC1B28813291F3500721A71 /* AssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B28713291F3500721A71 /* AssetTests.m */; };
-		3EC1B2891329202B00721A71 /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EE4016011F3355F00171A15 /* testdata1.sql */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
 		3ED30E721323B53E007E46DC /* TransactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3ED30E711323B53E007E46DC /* TransactionCell.xib */; };
@@ -390,50 +396,6 @@
 		3EDC72BB0EBB493100366F1E /* SimpleTableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */; };
 		3EDDAC750E89148500268AED /* redButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDAC740E89148500268AED /* redButton.png */; };
 		3EDDADAB0E8925AB00268AED /* InfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EDDADAA0E8925AB00268AED /* InfoView.xib */; };
-		3EE4015211F3353F00171A15 /* AssetEntryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014411F3353F00171A15 /* AssetEntryTests.m */; };
-		3EE4015311F3353F00171A15 /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014511F3353F00171A15 /* AssetListVCTests.m */; };
-		3EE4015411F3353F00171A15 /* AssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014611F3353F00171A15 /* AssetTests.m */; };
-		3EE4015511F3353F00171A15 /* CurrencyManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014711F3353F00171A15 /* CurrencyManagerTests.m */; };
-		3EE4015611F3353F00171A15 /* DataModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014811F3353F00171A15 /* DataModelTests.m */; };
-		3EE4015711F3353F00171A15 /* DescLRUManagerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014911F3353F00171A15 /* DescLRUManagerTests.m */; };
-		3EE4015811F3353F00171A15 /* EditDescVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014A11F3353F00171A15 /* EditDescVCTests.m */; };
-		3EE4015911F3353F00171A15 /* JournalTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014B11F3353F00171A15 /* JournalTests.m */; };
-		3EE4015A11F3353F00171A15 /* LedgerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014C11F3353F00171A15 /* LedgerTests.m */; };
-		3EE4015B11F3353F00171A15 /* ReportTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014D11F3353F00171A15 /* ReportTests.m */; };
-		3EE4015C11F3353F00171A15 /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4014F11F3353F00171A15 /* TestCommon.m */; };
-		3EE4015D11F3353F00171A15 /* TimeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4015011F3353F00171A15 /* TimeTests.m */; };
-		3EE4015E11F3353F00171A15 /* TransactionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4015111F3353F00171A15 /* TransactionTests.m */; };
-		3EE4016111F3355F00171A15 /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3EE4016011F3355F00171A15 /* testdata1.sql */; };
-		3EE4016511F335B300171A15 /* IUTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4016411F335B300171A15 /* IUTAppDelegate.m */; };
-		3EE4018511F335D900171A15 /* AppAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4016811F335D900171A15 /* AppAgent.m */; };
-		3EE4018611F335D900171A15 /* GTMSenTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4016B11F335D900171A15 /* GTMSenTestCase.m */; };
-		3EE4018711F335D900171A15 /* IUTAssertion.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4016D11F335D900171A15 /* IUTAssertion.m */; };
-		3EE4018811F335D900171A15 /* IUTAssertionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4016F11F335D900171A15 /* IUTAssertionInfo.m */; };
-		3EE4018911F335D900171A15 /* IUTDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017111F335D900171A15 /* IUTDetailViewController.m */; };
-		3EE4018A11F335D900171A15 /* IUTPreference.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017411F335D900171A15 /* IUTPreference.m */; };
-		3EE4018B11F335D900171A15 /* IUTResultTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017611F335D900171A15 /* IUTResultTableViewCell.m */; };
-		3EE4018C11F335D900171A15 /* IUTResultTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017811F335D900171A15 /* IUTResultTableViewController.m */; };
-		3EE4018D11F335D900171A15 /* IUTTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017A11F335D900171A15 /* IUTTest.m */; };
-		3EE4018E11F335D900171A15 /* IUTTestRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017C11F335D900171A15 /* IUTTestRunner.m */; };
-		3EE4018F11F335D900171A15 /* IUTTestRunnerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4017E11F335D900171A15 /* IUTTestRunnerViewController.m */; };
-		3EE4019011F335D900171A15 /* NSExceptionExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4018011F335D900171A15 /* NSExceptionExtension.m */; };
-		3EE4019111F335D900171A15 /* SourceCodeOpener.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4018311F335D900171A15 /* SourceCodeOpener.m */; };
-		3EE401A111F335F400171A15 /* UINavigationBarBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4019411F335F400171A15 /* UINavigationBarBasedTest.m */; };
-		3EE401A211F335F400171A15 /* UITabBarAndNavigationBarBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4019611F335F400171A15 /* UITabBarAndNavigationBarBasedTest.m */; };
-		3EE401A311F335F400171A15 /* UITabBarBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4019811F335F400171A15 /* UITabBarBasedTest.m */; };
-		3EE401A411F335F400171A15 /* UITableViewBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4019A11F335F400171A15 /* UITableViewBasedTest.m */; };
-		3EE401A511F335F400171A15 /* UITableViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4019C11F335F400171A15 /* UITableViewControllerTest.m */; };
-		3EE401A611F335F400171A15 /* UIViewBasedTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE4019E11F335F400171A15 /* UIViewBasedTest.m */; };
-		3EE401A711F335F400171A15 /* UIViewControllerTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE401A011F335F400171A15 /* UIViewControllerTest.m */; };
-		3EE401AB11F3362800171A15 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EE401AA11F3362800171A15 /* main.m */; };
-		3EE401BA11F3365000171A15 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B111F3365000171A15 /* Default.png */; };
-		3EE401BB11F3365000171A15 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B211F3365000171A15 /* icon.png */; };
-		3EE401BD11F3365000171A15 /* isd_logo_60x40_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B411F3365000171A15 /* isd_logo_60x40_w.png */; };
-		3EE401BE11F3365000171A15 /* isd_logo_60x40.png in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B511F3365000171A15 /* isd_logo_60x40.png */; };
-		3EE401C011F3365000171A15 /* IUTDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B711F3365000171A15 /* IUTDetailView.xib */; };
-		3EE401C111F3365000171A15 /* IUTMainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B811F3365000171A15 /* IUTMainWindow.xib */; };
-		3EE401C211F3365000171A15 /* IUTTestView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401B911F3365000171A15 /* IUTTestView.xib */; };
-		3EE401C811F3367B00171A15 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 3EE401C711F3367B00171A15 /* Settings.bundle */; };
 		3EE4030311F336A200171A15 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E94339E0EC1E7650033D50A /* libsqlite3.0.dylib */; };
 		3EE4030411F336A200171A15 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
 		3EE4030511F336A200171A15 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6F5D5E0EB8C30B0082F50A /* AudioToolbox.framework */; };
@@ -462,6 +424,8 @@
 		3EE8551412123DA400A6B3CF /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE8551312123DA400A6B3CF /* CrashReporter.framework */; };
 		3EE8551712123DAB00A6B3CF /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE8551312123DA400A6B3CF /* CrashReporter.framework */; };
 		3EE8551812123DAC00A6B3CF /* CrashReporter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EE8551312123DA400A6B3CF /* CrashReporter.framework */; };
+		3EED9134132A236D009DE68B /* TestCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EED9131132A236D009DE68B /* TestCommon.m */; };
+		3EED9135132A236D009DE68B /* ViewControllerTestCase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EED9133132A236D009DE68B /* ViewControllerTestCase.m */; };
 		3EF054831182DCB200411C71 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
 		3EF054841182DCB200411C71 /* MainWindow-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EF054821182DCB200411C71 /* MainWindow-iPad.xib */; };
 		3EFD00340F95E31D00F4B4C4 /* EditTypeView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EFD00330F95E31D00F4B4C4 /* EditTypeView.xib */; };
@@ -609,7 +573,6 @@
 		3E2CBDA90F1615880025A682 /* zh-Hant */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
-		3E40E98811F33C95001E91B5 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E43FC6C1324E8130059B198 /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
 		3E4A7D21131FB94B0008C37D /* CashflowDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CashflowDatabase.h; sourceTree = "<group>"; };
 		3E4A7D22131FB94B0008C37D /* CashflowDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CashflowDatabase.m; sourceTree = "<group>"; };
@@ -632,6 +595,14 @@
 		3E7109B3121108ED00C47539 /* SupportMail.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SupportMail.m; sourceTree = "<group>"; };
 		3E7109B4121108ED00C47539 /* UIDevice-Hardware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice-Hardware.h"; sourceTree = "<group>"; };
 		3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice-Hardware.m"; sourceTree = "<group>"; };
+		3E71A644132A224A007AB4AB /* AssetEntryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTests.m; sourceTree = "<group>"; };
+		3E71A645132A224A007AB4AB /* DataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTests.m; sourceTree = "<group>"; };
+		3E71A646132A224A007AB4AB /* DescLRUManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManagerTests.m; sourceTree = "<group>"; };
+		3E71A648132A224A007AB4AB /* JournalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
+		3E71A649132A224A007AB4AB /* LedgerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedgerTests.m; sourceTree = "<group>"; };
+		3E71A64A132A224A007AB4AB /* ReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTests.m; sourceTree = "<group>"; };
+		3E71A64B132A224A007AB4AB /* TimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTests.m; sourceTree = "<group>"; };
+		3E71A64C132A224A007AB4AB /* TransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTests.m; sourceTree = "<group>"; };
 		3E774E3D1188807900687776 /* AssetListView-ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "AssetListView-ipad.xib"; sourceTree = "<group>"; };
 		3E774EE911888C6600687776 /* PinView-ipad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "PinView-ipad.xib"; sourceTree = "<group>"; };
 		3E7BB12C11539997004B7D03 /* ConfigView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigView.xib; sourceTree = "<group>"; };
@@ -670,8 +641,6 @@
 		3EC1B22F13291A6D00721A71 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3EC1B23113291A6D00721A71 /* CashFlowTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CashFlowTest-Prefix.pch"; sourceTree = "<group>"; };
 		3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
-		3EC1B23E13291AD700721A71 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
-		3EC1B24013291D4200721A71 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
 		3EC1B28713291F3500721A71 /* AssetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTests.m; sourceTree = "<group>"; };
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
@@ -685,79 +654,12 @@
 		3EDDAC740E89148500268AED /* redButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = redButton.png; sourceTree = "<group>"; };
 		3EDDADAA0E8925AB00268AED /* InfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoView.xib; sourceTree = "<group>"; };
 		3EE400E711F3348000171A15 /* CashFlow-iUnitTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CashFlow-iUnitTest.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		3EE4014411F3353F00171A15 /* AssetEntryTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetEntryTests.m; sourceTree = "<group>"; };
-		3EE4014511F3353F00171A15 /* AssetListVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetListVCTests.m; sourceTree = "<group>"; };
-		3EE4014611F3353F00171A15 /* AssetTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AssetTests.m; sourceTree = "<group>"; };
-		3EE4014711F3353F00171A15 /* CurrencyManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrencyManagerTests.m; sourceTree = "<group>"; };
-		3EE4014811F3353F00171A15 /* DataModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModelTests.m; sourceTree = "<group>"; };
-		3EE4014911F3353F00171A15 /* DescLRUManagerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescLRUManagerTests.m; sourceTree = "<group>"; };
-		3EE4014A11F3353F00171A15 /* EditDescVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditDescVCTests.m; sourceTree = "<group>"; };
-		3EE4014B11F3353F00171A15 /* JournalTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JournalTests.m; sourceTree = "<group>"; };
-		3EE4014C11F3353F00171A15 /* LedgerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LedgerTests.m; sourceTree = "<group>"; };
-		3EE4014D11F3353F00171A15 /* ReportTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportTests.m; sourceTree = "<group>"; };
-		3EE4014E11F3353F00171A15 /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestCommon.h; sourceTree = "<group>"; };
-		3EE4014F11F3353F00171A15 /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestCommon.m; sourceTree = "<group>"; };
-		3EE4015011F3353F00171A15 /* TimeTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeTests.m; sourceTree = "<group>"; };
-		3EE4015111F3353F00171A15 /* TransactionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TransactionTests.m; sourceTree = "<group>"; };
-		3EE4016011F3355F00171A15 /* testdata1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = testdata1.sql; sourceTree = "<group>"; };
-		3EE4016311F335B300171A15 /* IUTAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTAppDelegate.h; sourceTree = "<group>"; };
-		3EE4016411F335B300171A15 /* IUTAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTAppDelegate.m; sourceTree = "<group>"; };
-		3EE4016711F335D900171A15 /* AppAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAgent.h; sourceTree = "<group>"; };
-		3EE4016811F335D900171A15 /* AppAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppAgent.m; sourceTree = "<group>"; };
-		3EE4016911F335D900171A15 /* AppAgentHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppAgentHelper.h; sourceTree = "<group>"; };
-		3EE4016A11F335D900171A15 /* GTMSenTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMSenTestCase.h; sourceTree = "<group>"; };
-		3EE4016B11F335D900171A15 /* GTMSenTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMSenTestCase.m; sourceTree = "<group>"; };
-		3EE4016C11F335D900171A15 /* IUTAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTAssertion.h; sourceTree = "<group>"; };
-		3EE4016D11F335D900171A15 /* IUTAssertion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTAssertion.m; sourceTree = "<group>"; };
-		3EE4016E11F335D900171A15 /* IUTAssertionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTAssertionInfo.h; sourceTree = "<group>"; };
-		3EE4016F11F335D900171A15 /* IUTAssertionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTAssertionInfo.m; sourceTree = "<group>"; };
-		3EE4017011F335D900171A15 /* IUTDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTDetailViewController.h; sourceTree = "<group>"; };
-		3EE4017111F335D900171A15 /* IUTDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTDetailViewController.m; sourceTree = "<group>"; };
-		3EE4017211F335D900171A15 /* IUTLog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTLog.h; sourceTree = "<group>"; };
-		3EE4017311F335D900171A15 /* IUTPreference.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTPreference.h; sourceTree = "<group>"; };
-		3EE4017411F335D900171A15 /* IUTPreference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTPreference.m; sourceTree = "<group>"; };
-		3EE4017511F335D900171A15 /* IUTResultTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTResultTableViewCell.h; sourceTree = "<group>"; };
-		3EE4017611F335D900171A15 /* IUTResultTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTResultTableViewCell.m; sourceTree = "<group>"; };
-		3EE4017711F335D900171A15 /* IUTResultTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTResultTableViewController.h; sourceTree = "<group>"; };
-		3EE4017811F335D900171A15 /* IUTResultTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTResultTableViewController.m; sourceTree = "<group>"; };
-		3EE4017911F335D900171A15 /* IUTTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTTest.h; sourceTree = "<group>"; };
-		3EE4017A11F335D900171A15 /* IUTTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTTest.m; sourceTree = "<group>"; };
-		3EE4017B11F335D900171A15 /* IUTTestRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTTestRunner.h; sourceTree = "<group>"; };
-		3EE4017C11F335D900171A15 /* IUTTestRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTTestRunner.m; sourceTree = "<group>"; };
-		3EE4017D11F335D900171A15 /* IUTTestRunnerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUTTestRunnerViewController.h; sourceTree = "<group>"; };
-		3EE4017E11F335D900171A15 /* IUTTestRunnerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUTTestRunnerViewController.m; sourceTree = "<group>"; };
-		3EE4017F11F335D900171A15 /* NSExceptionExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSExceptionExtension.h; sourceTree = "<group>"; };
-		3EE4018011F335D900171A15 /* NSExceptionExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSExceptionExtension.m; sourceTree = "<group>"; };
-		3EE4018111F335D900171A15 /* SenTestAssertion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SenTestAssertion.h; sourceTree = "<group>"; };
-		3EE4018211F335D900171A15 /* SourceCodeOpener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SourceCodeOpener.h; sourceTree = "<group>"; };
-		3EE4018311F335D900171A15 /* SourceCodeOpener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SourceCodeOpener.m; sourceTree = "<group>"; };
-		3EE4018411F335D900171A15 /* UITableViewControllerTestHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerTestHelper.h; sourceTree = "<group>"; };
-		3EE4019311F335F400171A15 /* UINavigationBarBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UINavigationBarBasedTest.h; sourceTree = "<group>"; };
-		3EE4019411F335F400171A15 /* UINavigationBarBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UINavigationBarBasedTest.m; sourceTree = "<group>"; };
-		3EE4019511F335F400171A15 /* UITabBarAndNavigationBarBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarAndNavigationBarBasedTest.h; sourceTree = "<group>"; };
-		3EE4019611F335F400171A15 /* UITabBarAndNavigationBarBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarAndNavigationBarBasedTest.m; sourceTree = "<group>"; };
-		3EE4019711F335F400171A15 /* UITabBarBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITabBarBasedTest.h; sourceTree = "<group>"; };
-		3EE4019811F335F400171A15 /* UITabBarBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITabBarBasedTest.m; sourceTree = "<group>"; };
-		3EE4019911F335F400171A15 /* UITableViewBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewBasedTest.h; sourceTree = "<group>"; };
-		3EE4019A11F335F400171A15 /* UITableViewBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewBasedTest.m; sourceTree = "<group>"; };
-		3EE4019B11F335F400171A15 /* UITableViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITableViewControllerTest.h; sourceTree = "<group>"; };
-		3EE4019C11F335F400171A15 /* UITableViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITableViewControllerTest.m; sourceTree = "<group>"; };
-		3EE4019D11F335F400171A15 /* UIViewBasedTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewBasedTest.h; sourceTree = "<group>"; };
-		3EE4019E11F335F400171A15 /* UIViewBasedTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewBasedTest.m; sourceTree = "<group>"; };
-		3EE4019F11F335F400171A15 /* UIViewControllerTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIViewControllerTest.h; sourceTree = "<group>"; };
-		3EE401A011F335F400171A15 /* UIViewControllerTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIViewControllerTest.m; sourceTree = "<group>"; };
-		3EE401A911F3362800171A15 /* iUnitTest_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iUnitTest_Prefix.pch; sourceTree = "<group>"; };
-		3EE401AA11F3362800171A15 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		3EE401B111F3365000171A15 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		3EE401B211F3365000171A15 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
-		3EE401B411F3365000171A15 /* isd_logo_60x40_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40_w.png; sourceTree = "<group>"; };
-		3EE401B511F3365000171A15 /* isd_logo_60x40.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = isd_logo_60x40.png; sourceTree = "<group>"; };
-		3EE401B711F3365000171A15 /* IUTDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTDetailView.xib; sourceTree = "<group>"; };
-		3EE401B811F3365000171A15 /* IUTMainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTMainWindow.xib; sourceTree = "<group>"; };
-		3EE401B911F3365000171A15 /* IUTTestView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IUTTestView.xib; sourceTree = "<group>"; };
-		3EE401C711F3367B00171A15 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		3EE629E910D7E8C500EB7399 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3EE8551312123DA400A6B3CF /* CrashReporter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CrashReporter.framework; path = plcrashreporter/CrashReporter.framework; sourceTree = SOURCE_ROOT; };
+		3EED9130132A236D009DE68B /* TestCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TestCommon.h; path = Common/TestCommon.h; sourceTree = "<group>"; };
+		3EED9131132A236D009DE68B /* TestCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TestCommon.m; path = Common/TestCommon.m; sourceTree = "<group>"; };
+		3EED9132132A236D009DE68B /* ViewControllerTestCase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewControllerTestCase.h; path = Common/ViewControllerTestCase.h; sourceTree = "<group>"; };
+		3EED9133132A236D009DE68B /* ViewControllerTestCase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewControllerTestCase.m; path = Common/ViewControllerTestCase.m; sourceTree = "<group>"; };
 		3EEED4E112F59C1200C67F4C /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3EEED4E212F59C2E00C67F4C /* ru */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3EF054821182DCB200411C71 /* MainWindow-iPad.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = "MainWindow-iPad.xib"; sourceTree = "<group>"; };
@@ -878,8 +780,6 @@
 				3EF054671182D9CC00411C71 /* Resources-iPad */,
 				3E2CBD9B0F1614E90025A682 /* locale */,
 				3EB5406B0E8E907B00608B77 /* images */,
-				3EE400FC11F334D900171A15 /* Tests */,
-				3EE400EF11F3348E00171A15 /* iUnitTest */,
 				3EC1B22B13291A6D00721A71 /* CashFlowTest */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
@@ -1147,10 +1047,18 @@
 		3EC1B22B13291A6D00721A71 /* CashFlowTest */ = {
 			isa = PBXGroup;
 			children = (
+				3E71A644132A224A007AB4AB /* AssetEntryTests.m */,
+				3E71A645132A224A007AB4AB /* DataModelTests.m */,
+				3E71A646132A224A007AB4AB /* DescLRUManagerTests.m */,
+				3E71A648132A224A007AB4AB /* JournalTests.m */,
+				3E71A649132A224A007AB4AB /* LedgerTests.m */,
+				3E71A64A132A224A007AB4AB /* ReportTests.m */,
+				3E71A64B132A224A007AB4AB /* TimeTests.m */,
+				3E71A64C132A224A007AB4AB /* TransactionTests.m */,
 				3EC1B28713291F3500721A71 /* AssetTests.m */,
-				3EC1B23E13291AD700721A71 /* TestCommon.h */,
-				3EC1B24013291D4200721A71 /* TestCommon.m */,
 				3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */,
+				3EED912E132A233D009DE68B /* Common */,
+				3EED912F132A2353009DE68B /* controller */,
 				3EC1B22C13291A6D00721A71 /* Supporting Files */,
 			);
 			path = CashFlowTest;
@@ -1166,138 +1074,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		3EE400EF11F3348E00171A15 /* iUnitTest */ = {
+		3EED912E132A233D009DE68B /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				3EE4016211F3359800171A15 /* Classes */,
-				3EE401A811F3360600171A15 /* Other Sources */,
-				3EE401AC11F3362E00171A15 /* Resources */,
+				3EED9130132A236D009DE68B /* TestCommon.h */,
+				3EED9131132A236D009DE68B /* TestCommon.m */,
+				3EED9132132A236D009DE68B /* ViewControllerTestCase.h */,
+				3EED9133132A236D009DE68B /* ViewControllerTestCase.m */,
 			);
-			path = iUnitTest;
+			name = Common;
 			sourceTree = "<group>";
 		};
-		3EE400FC11F334D900171A15 /* Tests */ = {
+		3EED912F132A2353009DE68B /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				3EE4015F11F3354300171A15 /* testdata */,
-				3EE4014411F3353F00171A15 /* AssetEntryTests.m */,
-				3EE4014511F3353F00171A15 /* AssetListVCTests.m */,
-				3EE4014611F3353F00171A15 /* AssetTests.m */,
-				3EE4014711F3353F00171A15 /* CurrencyManagerTests.m */,
-				3EE4014811F3353F00171A15 /* DataModelTests.m */,
-				3EE4014911F3353F00171A15 /* DescLRUManagerTests.m */,
-				3EE4014A11F3353F00171A15 /* EditDescVCTests.m */,
-				3EE4014B11F3353F00171A15 /* JournalTests.m */,
-				3EE4014C11F3353F00171A15 /* LedgerTests.m */,
-				3EE4014D11F3353F00171A15 /* ReportTests.m */,
-				3EE4014E11F3353F00171A15 /* TestCommon.h */,
-				3EE4014F11F3353F00171A15 /* TestCommon.m */,
-				3EE4015011F3353F00171A15 /* TimeTests.m */,
-				3EE4015111F3353F00171A15 /* TransactionTests.m */,
 			);
-			path = Tests;
-			sourceTree = "<group>";
-		};
-		3EE4015F11F3354300171A15 /* testdata */ = {
-			isa = PBXGroup;
-			children = (
-				3EE4016011F3355F00171A15 /* testdata1.sql */,
-			);
-			path = testdata;
-			sourceTree = "<group>";
-		};
-		3EE4016211F3359800171A15 /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				3EE4016611F335B800171A15 /* UnitTest */,
-				3EE4016311F335B300171A15 /* IUTAppDelegate.h */,
-				3EE4016411F335B300171A15 /* IUTAppDelegate.m */,
-			);
-			path = Classes;
-			sourceTree = "<group>";
-		};
-		3EE4016611F335B800171A15 /* UnitTest */ = {
-			isa = PBXGroup;
-			children = (
-				3EE4019211F335DD00171A15 /* ControllerTest */,
-				3EE4016711F335D900171A15 /* AppAgent.h */,
-				3EE4016811F335D900171A15 /* AppAgent.m */,
-				3EE4016911F335D900171A15 /* AppAgentHelper.h */,
-				3EE4016A11F335D900171A15 /* GTMSenTestCase.h */,
-				3EE4016B11F335D900171A15 /* GTMSenTestCase.m */,
-				3EE4016C11F335D900171A15 /* IUTAssertion.h */,
-				3EE4016D11F335D900171A15 /* IUTAssertion.m */,
-				3EE4016E11F335D900171A15 /* IUTAssertionInfo.h */,
-				3EE4016F11F335D900171A15 /* IUTAssertionInfo.m */,
-				3EE4017011F335D900171A15 /* IUTDetailViewController.h */,
-				3EE4017111F335D900171A15 /* IUTDetailViewController.m */,
-				3EE4017211F335D900171A15 /* IUTLog.h */,
-				3EE4017311F335D900171A15 /* IUTPreference.h */,
-				3EE4017411F335D900171A15 /* IUTPreference.m */,
-				3EE4017511F335D900171A15 /* IUTResultTableViewCell.h */,
-				3EE4017611F335D900171A15 /* IUTResultTableViewCell.m */,
-				3EE4017711F335D900171A15 /* IUTResultTableViewController.h */,
-				3EE4017811F335D900171A15 /* IUTResultTableViewController.m */,
-				3EE4017911F335D900171A15 /* IUTTest.h */,
-				3EE4017A11F335D900171A15 /* IUTTest.m */,
-				3EE4017B11F335D900171A15 /* IUTTestRunner.h */,
-				3EE4017C11F335D900171A15 /* IUTTestRunner.m */,
-				3EE4017D11F335D900171A15 /* IUTTestRunnerViewController.h */,
-				3EE4017E11F335D900171A15 /* IUTTestRunnerViewController.m */,
-				3EE4017F11F335D900171A15 /* NSExceptionExtension.h */,
-				3EE4018011F335D900171A15 /* NSExceptionExtension.m */,
-				3EE4018111F335D900171A15 /* SenTestAssertion.h */,
-				3EE4018211F335D900171A15 /* SourceCodeOpener.h */,
-				3EE4018311F335D900171A15 /* SourceCodeOpener.m */,
-				3EE4018411F335D900171A15 /* UITableViewControllerTestHelper.h */,
-			);
-			path = UnitTest;
-			sourceTree = "<group>";
-		};
-		3EE4019211F335DD00171A15 /* ControllerTest */ = {
-			isa = PBXGroup;
-			children = (
-				3EE4019311F335F400171A15 /* UINavigationBarBasedTest.h */,
-				3EE4019411F335F400171A15 /* UINavigationBarBasedTest.m */,
-				3EE4019511F335F400171A15 /* UITabBarAndNavigationBarBasedTest.h */,
-				3EE4019611F335F400171A15 /* UITabBarAndNavigationBarBasedTest.m */,
-				3EE4019711F335F400171A15 /* UITabBarBasedTest.h */,
-				3EE4019811F335F400171A15 /* UITabBarBasedTest.m */,
-				3EE4019911F335F400171A15 /* UITableViewBasedTest.h */,
-				3EE4019A11F335F400171A15 /* UITableViewBasedTest.m */,
-				3EE4019B11F335F400171A15 /* UITableViewControllerTest.h */,
-				3EE4019C11F335F400171A15 /* UITableViewControllerTest.m */,
-				3EE4019D11F335F400171A15 /* UIViewBasedTest.h */,
-				3EE4019E11F335F400171A15 /* UIViewBasedTest.m */,
-				3EE4019F11F335F400171A15 /* UIViewControllerTest.h */,
-				3EE401A011F335F400171A15 /* UIViewControllerTest.m */,
-			);
-			path = ControllerTest;
-			sourceTree = "<group>";
-		};
-		3EE401A811F3360600171A15 /* Other Sources */ = {
-			isa = PBXGroup;
-			children = (
-				3EE401A911F3362800171A15 /* iUnitTest_Prefix.pch */,
-				3EE401AA11F3362800171A15 /* main.m */,
-			);
-			name = "Other Sources";
-			sourceTree = "<group>";
-		};
-		3EE401AC11F3362E00171A15 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				3E40E98811F33C95001E91B5 /* Info.plist */,
-				3EE401C711F3367B00171A15 /* Settings.bundle */,
-				3EE401B111F3365000171A15 /* Default.png */,
-				3EE401B211F3365000171A15 /* icon.png */,
-				3EE401B411F3365000171A15 /* isd_logo_60x40_w.png */,
-				3EE401B511F3365000171A15 /* isd_logo_60x40.png */,
-				3EE401B711F3365000171A15 /* IUTDetailView.xib */,
-				3EE401B811F3365000171A15 /* IUTMainWindow.xib */,
-				3EE401B911F3365000171A15 /* IUTTestView.xib */,
-			);
-			name = Resources;
+			name = controller;
 			sourceTree = "<group>";
 		};
 		3EF054671182D9CC00411C71 /* Resources-iPad */ = {
@@ -1542,7 +1334,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EC1B23013291A6D00721A71 /* InfoPlist.strings in Resources */,
-				3EC1B2891329202B00721A71 /* testdata1.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1550,15 +1341,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EE4016111F3355F00171A15 /* testdata1.sql in Resources */,
-				3EE401BA11F3365000171A15 /* Default.png in Resources */,
-				3EE401BB11F3365000171A15 /* icon.png in Resources */,
-				3EE401BD11F3365000171A15 /* isd_logo_60x40_w.png in Resources */,
-				3EE401BE11F3365000171A15 /* isd_logo_60x40.png in Resources */,
-				3EE401C011F3365000171A15 /* IUTDetailView.xib in Resources */,
-				3EE401C111F3365000171A15 /* IUTMainWindow.xib in Resources */,
-				3EE401C211F3365000171A15 /* IUTTestView.xib in Resources */,
-				3EE401C811F3367B00171A15 /* Settings.bundle in Resources */,
 				3E3FEFC011F3385F00A0FC41 /* MainWindow.xib in Resources */,
 				3E3FEFC111F3385F00A0FC41 /* GenEditTextView.xib in Resources */,
 				3E3FEFC211F3385F00A0FC41 /* GenSelectListView.xib in Resources */,
@@ -1765,7 +1547,6 @@
 			files = (
 				3EC1B23D13291A9800721A71 /* CurrencyManagerTests.m in Sources */,
 				3EC1B23F13291BE700721A71 /* CurrencyManager.m in Sources */,
-				3EC1B24113291D4200721A71 /* TestCommon.m in Sources */,
 				3EC1B24313291DE500721A71 /* CashflowDatabase.m in Sources */,
 				3EC1B24413291DE500721A71 /* DateFormatter2.m in Sources */,
 				3EC1B24513291DE500721A71 /* DescLRUManager.m in Sources */,
@@ -1825,6 +1606,16 @@
 				3EC1B28513291EA700721A71 /* ReportCatGraphCell.m in Sources */,
 				3EC1B28613291EA700721A71 /* ReportCatDetailVC.m in Sources */,
 				3EC1B28813291F3500721A71 /* AssetTests.m in Sources */,
+				3E71A64D132A224A007AB4AB /* AssetEntryTests.m in Sources */,
+				3E71A64E132A224A007AB4AB /* DataModelTests.m in Sources */,
+				3E71A64F132A224A007AB4AB /* DescLRUManagerTests.m in Sources */,
+				3E71A651132A224A007AB4AB /* JournalTests.m in Sources */,
+				3E71A652132A224A007AB4AB /* LedgerTests.m in Sources */,
+				3E71A653132A224A007AB4AB /* ReportTests.m in Sources */,
+				3E71A654132A224A007AB4AB /* TimeTests.m in Sources */,
+				3E71A655132A224A007AB4AB /* TransactionTests.m in Sources */,
+				3EED9134132A236D009DE68B /* TestCommon.m in Sources */,
+				3EED9135132A236D009DE68B /* ViewControllerTestCase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1832,41 +1623,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3EE4015211F3353F00171A15 /* AssetEntryTests.m in Sources */,
-				3EE4015311F3353F00171A15 /* AssetListVCTests.m in Sources */,
-				3EE4015411F3353F00171A15 /* AssetTests.m in Sources */,
-				3EE4015511F3353F00171A15 /* CurrencyManagerTests.m in Sources */,
-				3EE4015611F3353F00171A15 /* DataModelTests.m in Sources */,
-				3EE4015711F3353F00171A15 /* DescLRUManagerTests.m in Sources */,
-				3EE4015811F3353F00171A15 /* EditDescVCTests.m in Sources */,
-				3EE4015911F3353F00171A15 /* JournalTests.m in Sources */,
-				3EE4015A11F3353F00171A15 /* LedgerTests.m in Sources */,
-				3EE4015B11F3353F00171A15 /* ReportTests.m in Sources */,
-				3EE4015C11F3353F00171A15 /* TestCommon.m in Sources */,
-				3EE4015D11F3353F00171A15 /* TimeTests.m in Sources */,
-				3EE4015E11F3353F00171A15 /* TransactionTests.m in Sources */,
-				3EE4016511F335B300171A15 /* IUTAppDelegate.m in Sources */,
-				3EE4018511F335D900171A15 /* AppAgent.m in Sources */,
-				3EE4018611F335D900171A15 /* GTMSenTestCase.m in Sources */,
-				3EE4018711F335D900171A15 /* IUTAssertion.m in Sources */,
-				3EE4018811F335D900171A15 /* IUTAssertionInfo.m in Sources */,
-				3EE4018911F335D900171A15 /* IUTDetailViewController.m in Sources */,
-				3EE4018A11F335D900171A15 /* IUTPreference.m in Sources */,
-				3EE4018B11F335D900171A15 /* IUTResultTableViewCell.m in Sources */,
-				3EE4018C11F335D900171A15 /* IUTResultTableViewController.m in Sources */,
-				3EE4018D11F335D900171A15 /* IUTTest.m in Sources */,
-				3EE4018E11F335D900171A15 /* IUTTestRunner.m in Sources */,
-				3EE4018F11F335D900171A15 /* IUTTestRunnerViewController.m in Sources */,
-				3EE4019011F335D900171A15 /* NSExceptionExtension.m in Sources */,
-				3EE4019111F335D900171A15 /* SourceCodeOpener.m in Sources */,
-				3EE401A111F335F400171A15 /* UINavigationBarBasedTest.m in Sources */,
-				3EE401A211F335F400171A15 /* UITabBarAndNavigationBarBasedTest.m in Sources */,
-				3EE401A311F335F400171A15 /* UITabBarBasedTest.m in Sources */,
-				3EE401A411F335F400171A15 /* UITableViewBasedTest.m in Sources */,
-				3EE401A511F335F400171A15 /* UITableViewControllerTest.m in Sources */,
-				3EE401A611F335F400171A15 /* UIViewBasedTest.m in Sources */,
-				3EE401A711F335F400171A15 /* UIViewControllerTest.m in Sources */,
-				3EE401AB11F3362800171A15 /* main.m in Sources */,
 				3EE4031C11F3374000171A15 /* AdUtil.m in Sources */,
 				3EE4031E11F3374000171A15 /* CurrencyManager.m in Sources */,
 				3EE4032811F3374000171A15 /* Config.m in Sources */,
@@ -2654,6 +2410,7 @@
 				3EC1B23A13291A6D00721A71 /* Ad hoc distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3EE400EE11F3348000171A15 /* Build configuration list for PBXNativeTarget "CashFlow-iUnitTest" */ = {
 			isa = XCConfigurationList;

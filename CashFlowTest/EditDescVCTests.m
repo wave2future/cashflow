@@ -4,9 +4,8 @@
 #import "EditDescVC.h"
 #import "DescLRU.h"
 #import "DescLRUManager.h"
-#import "UIViewControllerTest.h"
 
-@interface EditDescViewControllerTest : UIViewControllerTest <EditDescViewDelegate> {
+@interface EditDescViewControllerTest : ViewControllerWithNavBarTest <EditDescViewDelegate> {
     NSString *description;
 }
 

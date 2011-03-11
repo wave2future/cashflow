@@ -4,7 +4,7 @@
 #import "DataModel.h"
 #import "Report.h"
 
-@interface ReportTest : IUTTest {
+@interface ReportTest : SenTestCase {
     Report *reports;
 }
 @end
@@ -29,7 +29,7 @@
     [reports generate:REPORT_MONTHLY asset:nil];
 
     AssertEqualInt(1, [reports.reportEntries count]);
-    ReporEntry *report = [reports.reportEntries objectAtIndex:0];
+    ReportEntry *report = [reports.reportEntries objectAtIndex:0];
 
     //NSString *s = [TestCommon stringWithDate:report.date];
     //Assert([s isEqualToString:@"200901010000"]);

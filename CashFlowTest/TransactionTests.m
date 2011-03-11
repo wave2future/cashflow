@@ -2,7 +2,7 @@
 
 #import "TestCommon.h"
 
-@interface TransactionTest : IUTTest {
+@interface TransactionTest : SenTestCase {
     Transaction *transaction;
 }
 @end
@@ -43,7 +43,7 @@
     Assert([stmt step] == SQLITE_ROW);
     do {
         NSString *s = [stmt colString:0];
-        AssertEqual(@"20090101135600", s);
+        AssertEqualObjects(@"20090101135600", s);
     } while ([stmt step] == SQLITE_ROW);
 }
 

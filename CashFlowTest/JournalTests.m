@@ -2,7 +2,7 @@
 
 #import "TestCommon.h"
 
-@interface JournalTest : IUTTest {
+@interface JournalTest : SenTestCase {
     Journal *journal;
 }
 @end

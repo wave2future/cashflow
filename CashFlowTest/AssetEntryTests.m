@@ -123,7 +123,7 @@
     e.value = 10000;
     AssertEquals(e.evalue, -10000);
     e.evalue = 20000;
-    AssertEquals(e.transaction.value = -20000);
+    AssertEquals(e.transaction.value, -20000);
 
     t.type = TYPE_ADJ;
     e.balance = 99999;
