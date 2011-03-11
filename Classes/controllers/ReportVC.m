@@ -124,7 +124,7 @@
         //    1分前は当月最終日の23:59である。
         // 2) 締め日が任意の日、例えば25日の場合、endDate は当月25日を
         //    指している。そのまま年月を得る。
-        NSDate *d = [report.end addTimeInterval:-60];
+        NSDate *d = [report.end dateByAddingTimeInterval:-60];
         return [mDateFormatter stringFromDate:d];
     } else {
         return [mDateFormatter stringFromDate:report.start];

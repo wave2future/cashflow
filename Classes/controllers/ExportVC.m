@@ -120,7 +120,7 @@
     NSDate *date = nil;
     if (range > 0) {
         date = [[[NSDate alloc] init] autorelease];
-        date = [date addTimeInterval:(- range * 24.0 * 60 * 60)];
+        date = [date dateByAddingTimeInterval:(- range * 24.0 * 60 * 60)];
     }
 	
     BOOL result;

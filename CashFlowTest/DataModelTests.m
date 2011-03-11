@@ -43,9 +43,9 @@
     [TestCommon installDatabase:@"testdata1"];
     dm = [DataModel instance];
 
-    AssertEquals(6, [dm.journal.entries count]);
-    AssertEquals(3, [dm.ledger.assets count]);
-    AssertEquals(3, [dm.categories count]);
+    AssertEquals(6, (int)[dm.journal.entries count]);
+    AssertEquals(3, (int)[dm.ledger.assets count]);
+    AssertEquals(3, (int)[dm.categories count]);
 }
 
 @end

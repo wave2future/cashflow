@@ -115,27 +115,27 @@
 
     t.type = TYPE_INCOME;
     e.value = 10000;
-    AssertEquals(e.evalue, 10000);
+    AssertEquals(e.evalue, 10000.0);
     e.evalue = 20000;
-    AssertEquals(e.transaction.value, 20000);
+    AssertEquals(e.transaction.value, 20000.0);
 
     t.type = TYPE_OUTGO;
     e.value = 10000;
-    AssertEquals(e.evalue, -10000);
+    AssertEquals(e.evalue, -10000.0);
     e.evalue = 20000;
-    AssertEquals(e.transaction.value, -20000);
+    AssertEquals(e.transaction.value, -20000.0);
 
     t.type = TYPE_ADJ;
     e.balance = 99999;
-    AssertEquals([e evalue], 99999);
+    AssertEquals([e evalue], 99999.0);
     e.evalue = 88888;
-    AssertEquals(e.balance, 88888);
+    AssertEquals(e.balance, 88888.0);
 
     t.type = TYPE_TRANSFER;
     e.value = 10000;
-    AssertEquals([e evalue], -10000);
+    AssertEquals([e evalue], -10000.0);
     e.evalue = 20000;
-    AssertEquals(e.transaction.value, -20000);
+    AssertEquals(e.transaction.value, -20000.0);
 }
 
 @end

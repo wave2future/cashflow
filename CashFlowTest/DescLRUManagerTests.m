@@ -41,7 +41,7 @@
 
 - (void) testInit {
     NSMutableArray *ary = [DescLRUManager getDescLRUs:-1];
-    STAssertEquals(0, [ary count], @"LRU count must be 0.");
+    STAssertEquals(0, (int)[ary count], @"LRU count must be 0.");
 }
 
 - (void)testAnyCategory
@@ -50,7 +50,7 @@
     
     NSMutableArray *ary;
     ary = [DescLRUManager getDescLRUs:-1];
-    STAssertEquals(6, [ary count], @"LRU count must be 6.");
+    STAssertEquals(6, (int)[ary count], @"LRU count must be 6.");
 
     DescLRU *lru;
     lru = [ary objectAtIndex:0];
@@ -65,7 +65,7 @@
 
     NSMutableArray *ary;
     ary = [DescLRUManager getDescLRUs:1];
-    STAssertEquals(2, [ary count], @"LRU count must be 2.");
+    STAssertEquals(2, (int)[ary count], @"LRU count must be 2.");
 
     DescLRU *lru;
     lru = [ary objectAtIndex:0];
@@ -82,7 +82,7 @@
 
     NSMutableArray *ary;
     ary = [DescLRUManager getDescLRUs:1];
-    STAssertEquals(2, [ary count], @"LRU count must be 2.");
+    STAssertEquals(2, (int)[ary count], @"LRU count must be 2.");
 
     DescLRU *lru;
     lru = [ary objectAtIndex:0];
@@ -99,14 +99,14 @@
 
     NSMutableArray *ary;
     ary = [DescLRUManager getDescLRUs:1];
-    STAssertEquals(1, [ary count], @"LRU count must be 2.");
+    STAssertEquals(1, (int)[ary count], @"LRU count must be 2.");
 
     DescLRU *lru;
     lru = [ary objectAtIndex:0];
     STAssertEqualObjects(@"test4", lru.description, @"first entry");
 
     ary = [DescLRUManager getDescLRUs:2];
-    STAssertEquals(3, [ary count], @"LRU count must be 3.");
+    STAssertEquals(3, (int)[ary count], @"LRU count must be 3.");
     lru = [ary objectAtIndex:0];
     STAssertEqualObjects(@"test1", lru.description, @"new entry");
 }
