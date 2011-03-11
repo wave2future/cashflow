@@ -47,11 +47,9 @@
 {
     [TestCommon deleteDatabase];
 
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     //NSString *sqlPath = [[NSBundle mainBundle] pathForResource:sqlFileName ofType:@"sql"];
-    NSString *sqlPath = [[NSBundle bundleForClass:[self class]] pathForResource:sqlFileName ofType:@"sql"];
-
-#if 0 // for LogcTests
-    NSString *sqlPath = [[NSBundle bundleForClass:[self class]] pathForResource:sqlFileName ofType:@"sql"];
+    NSString *sqlPath = [bundle pathForResource:sqlFileName ofType:@"sql"];
     if (sqlPath == NULL) {
         NSLog(@"FATAL: no SQL data file : %@", sqlFileName);
         return NO;
@@ -64,7 +62,6 @@
         [fm createDirectoryAtPath:dbdir withIntermediateDirectories:NO
                        attributes:nil error:NULL];
     }
-#endif
 
     NSString *dbPath = [[Database instance] dbPath:@"CashFlow.db"];
     //NSLog(@"install db: %@", dbPath);

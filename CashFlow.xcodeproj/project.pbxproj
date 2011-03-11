@@ -148,6 +148,7 @@
 		3E197B11121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197B12121268CF00105B20 /* CrashReportSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E197B0F121268CF00105B20 /* CrashReportSender.m */; };
 		3E197BF7121271D200105B20 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E035E9A1182B6E000711865 /* SystemConfiguration.framework */; };
+		3E1E7D43132A30F600678AF7 /* testdata1.sql in Resources */ = {isa = PBXBuildFile; fileRef = 3E1E7D3F132A303400678AF7 /* testdata1.sql */; };
 		3E1F6EC10E76E93C00CCDF57 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E1F6EC00E76E93C00CCDF57 /* Default.png */; };
 		3E2376C51107481F00E4C329 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3E2710450EAA196A00E57E51 /* ExportBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E2710400EAA196A00E57E51 /* ExportBase.m */; };
@@ -388,7 +389,6 @@
 		3EC1B28813291F3500721A71 /* AssetTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3EC1B28713291F3500721A71 /* AssetTests.m */; };
 		3EC572D71107451F00A551D5 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EC572D61107451F00A551D5 /* MessageUI.framework */; };
 		3ECF38040EA9CF4900420060 /* ExportServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ECF38030EA9CF4900420060 /* ExportServer.m */; };
-		3ED0AA9A132A27590032B9DC /* AssetListVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0AA99132A27590032B9DC /* AssetListVCTests.m */; };
 		3ED0AA9B132A28060032B9DC /* AssetListView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3EA011310EC344CC008CEEB7 /* AssetListView.xib */; };
 		3ED0AA9C132A28100032B9DC /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83A80EC359440035AF05 /* MainWindow.xib */; };
 		3ED0AA9D132A28100032B9DC /* GenEditTextView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */; };
@@ -580,6 +580,7 @@
 		3E17805E132641D700D74DED /* ReportCatGraphCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReportCatGraphCell.m; sourceTree = "<group>"; };
 		3E197B0E121268CF00105B20 /* CrashReportSender.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CrashReportSender.h; sourceTree = "<group>"; };
 		3E197B0F121268CF00105B20 /* CrashReportSender.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CrashReportSender.m; sourceTree = "<group>"; };
+		3E1E7D3F132A303400678AF7 /* testdata1.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = testdata1.sql; path = Tests/testdata/testdata1.sql; sourceTree = SOURCE_ROOT; };
 		3E1F6EC00E76E93C00CCDF57 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		3E27103F0EAA196A00E57E51 /* ExportBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportBase.h; sourceTree = "<group>"; };
 		3E2710400EAA196A00E57E51 /* ExportBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportBase.m; sourceTree = "<group>"; };
@@ -668,7 +669,6 @@
 		3EC572D61107451F00A551D5 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		3ECF38030EA9CF4900420060 /* ExportServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExportServer.m; sourceTree = "<group>"; };
 		3ECF38080EA9CFB600420060 /* ExportServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExportServer.h; sourceTree = "<group>"; };
-		3ED0AA99132A27590032B9DC /* AssetListVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AssetListVCTests.m; path = controller/AssetListVCTests.m; sourceTree = "<group>"; };
 		3ED30E711323B53E007E46DC /* TransactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionCell.xib; sourceTree = "<group>"; };
 		3ED97C130F1A0D8D0063A578 /* WebServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebServer.h; sourceTree = "<group>"; };
 		3ED97C140F1A0D8D0063A578 /* WebServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebServer.m; sourceTree = "<group>"; };
@@ -992,6 +992,14 @@
 			path = GoogleAds;
 			sourceTree = "<group>";
 		};
+		3E1E7D3E132A301100678AF7 /* testdata */ = {
+			isa = PBXGroup;
+			children = (
+				3E1E7D3F132A303400678AF7 /* testdata1.sql */,
+			);
+			name = testdata;
+			sourceTree = "<group>";
+		};
 		3E2CBD9B0F1614E90025A682 /* locale */ = {
 			isa = PBXGroup;
 			children = (
@@ -1083,6 +1091,7 @@
 				3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */,
 				3EED912E132A233D009DE68B /* Common */,
 				3EED912F132A2353009DE68B /* controller */,
+				3E1E7D3E132A301100678AF7 /* testdata */,
 				3EC1B22C13291A6D00721A71 /* Supporting Files */,
 			);
 			path = CashFlowTest;
@@ -1112,7 +1121,6 @@
 		3EED912F132A2353009DE68B /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				3ED0AA99132A27590032B9DC /* AssetListVCTests.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1381,6 +1389,7 @@
 				3ED0AAAE132A28100032B9DC /* PinView.xib in Resources */,
 				3ED0AAAF132A28100032B9DC /* InfoView.xib in Resources */,
 				3ED0AAB0132A28100032B9DC /* ConfigView.xib in Resources */,
+				3E1E7D43132A30F600678AF7 /* testdata1.sql in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1663,7 +1672,6 @@
 				3E71A655132A224A007AB4AB /* TransactionTests.m in Sources */,
 				3EED9134132A236D009DE68B /* TestCommon.m in Sources */,
 				3EED9135132A236D009DE68B /* ViewControllerTestCase.m in Sources */,
-				3ED0AA9A132A27590032B9DC /* AssetListVCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,7 +15,8 @@
 
 - (UIViewController *)createViewController
 {
-    vc = [[[AssetListViewController alloc] initWithNibName:@"AssetListView" bundle:nil] autorelease];
+    NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+    vc = [[[AssetListViewController alloc] initWithNibName:@"AssetListView" bundle:bundle] autorelease];
     return vc;
 }
 

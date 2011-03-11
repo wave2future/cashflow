@@ -19,7 +19,8 @@ static UIWindow *sKeyWindow;
     //UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UIWindow *window = sKeyWindow;
     if (window == nil) {
-        window = [[UIWindow alloc] init];
+        //window = [[UIWindow alloc] init];
+        window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
         [window makeKeyAndVisible];
         sKeyWindow = window;
     }
