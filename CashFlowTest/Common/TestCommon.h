@@ -1,19 +1,21 @@
 // -*-  Mode:ObjC; c-basic-offset:4; tab-width:8; indent-tabs-mode:nil -*-
 
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 #import <SenTestingKit/SenTestingKit.h>
-//#import <Foundation/Foundation.h>
-//#import <UIKit/UIKit.h>
-//#import "IUTTest.h"
 
-//#import "UINavigationBarBasedTest.h"
+#import "ViewControllerTestCase.h"
+
 #import "Database.h"
 #import "DataModel.h"
 #import "DateFormatter2.h"
 
-#define NOTYET ASSERT_FAIL(@"not yet")
+#define NOTYET STFail(@"not yet")
 
 // Simplefied macros
 #define Assert(x) STAssertTrue(x, @"")
+#define AssertTrue(x) STAssertTrue(x, @"")
+#define AssertFalse(x) STAssertFalse(x, @"")
 #define AssertNil(x) STAssertNil(x, @"")
 #define AssertNotNil(x) STAssertNotNil(x, @"")
 #define AssertEquals(a, b) STAssertEquals(a, b, @"")
@@ -32,4 +34,3 @@
 + (BOOL)installDatabase:(NSString *)sqlFileName;
 
 @end
-
