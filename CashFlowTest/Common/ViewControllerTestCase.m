@@ -8,6 +8,7 @@
 @synthesize viewController = mViewController;
 @synthesize baseViewController = mBaseViewController;
 
+static UIWindow *sKeyWindow;
 - (void)setUp
 {
     [super setUp];
@@ -15,7 +16,14 @@
     self.viewController = [self createViewController];
     self.baseViewController = [self createBaseViewController];
 
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    //UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = sKeyWindow;
+    if (window == nil) {
+        window = [[UIWindow alloc] init];
+        [window makeKeyAndVisible];
+        sKeyWindow = window;
+    }
+    
     [window addSubview:mBaseViewController.view];
     [window bringSubviewToFront:mBaseViewController.view];
 }

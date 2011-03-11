@@ -4,7 +4,7 @@
 #import "AssetListVC.h"
 
 @interface AssetListViewControllerTest : ViewControllerWithNavBarTestCase {
-    AssertListViewController *vc;
+    AssetListViewController *vc;
 }
 
 - (void)waitUntilDataLoaded;
@@ -67,9 +67,9 @@
     AssertEqualInt(3, [vc tableView:vc.tableView numberOfRowsInSection:0]);
 
     // test cell
-    AssertEqual(@"Cash : ￥9,000", [self cellText:0 section:0]);
-    AssertEqual(@"Bank : ￥195,000", [self cellText:1 section:0]);
-    AssertEqual(@"Card : -￥12,100", [self cellText:2 section:0]);
+    AssertEqualObjects(@"Cash : ￥9,000", [self cellText:0 section:0]);
+    AssertEqualObjects(@"Bank : ￥195,000", [self cellText:1 section:0]);
+    AssertEqualObjects(@"Card : -￥12,100", [self cellText:2 section:0]);
 }
 
 @end
