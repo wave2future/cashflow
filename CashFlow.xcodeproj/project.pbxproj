@@ -1826,6 +1826,7 @@
 					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -1876,6 +1877,7 @@
 					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -1928,6 +1930,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -2128,7 +2131,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -2154,7 +2156,6 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -2178,7 +2179,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -2202,7 +2202,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -2226,7 +2225,6 @@
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CashFlowTest/CashFlowTest-Prefix.pch";
-				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				INFOPLIST_FILE = "CashFlowTest/CashFlowTest-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				OTHER_LDFLAGS = (
@@ -2343,6 +2341,7 @@
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PREPROCESSOR_DEFINITIONS = DEBUG;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
@@ -2371,6 +2370,7 @@
 					"\"$(SRCROOT)/plcrashreporter\"",
 				);
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INFOPLIST_FILE = "";
