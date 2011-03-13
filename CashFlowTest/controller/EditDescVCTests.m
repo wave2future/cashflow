@@ -58,7 +58,9 @@
 {
     [super setUp];
     
-    [DataModel instance];
+    [TestCommon deleteDatabase];
+    [TestCommon installDatabase:@"testdata1"];
+
     description = nil;
 
     // erase all desc LRU data
