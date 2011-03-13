@@ -155,6 +155,7 @@
 		3E7BB12E11539997004B7D03 /* ConfigView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E7BB12C11539997004B7D03 /* ConfigView.xib */; };
 		3E7BB138115399C5004B7D03 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
 		3E7BB13A115399C5004B7D03 /* Config.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7BB135115399C5004B7D03 /* Config.m */; };
+		3E7D18CD132C4CFE007A325C /* EditDescVCTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E7D18CB132C4CFE007A325C /* EditDescVCTests.m */; };
 		3E80DF6B0E6AC6D100736FB7 /* TransactionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */; };
 		3E895E8513252A8000251E36 /* report-annual.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E895E8113252A8000251E36 /* report-annual.png */; };
 		3E895E8613252A8000251E36 /* report-annual.png in Resources */ = {isa = PBXBuildFile; fileRef = 3E895E8113252A8000251E36 /* report-annual.png */; };
@@ -516,6 +517,7 @@
 		3E7BB12C11539997004B7D03 /* ConfigView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfigView.xib; sourceTree = "<group>"; };
 		3E7BB134115399C5004B7D03 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		3E7BB135115399C5004B7D03 /* Config.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Config.m; sourceTree = "<group>"; };
+		3E7D18CB132C4CFE007A325C /* EditDescVCTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditDescVCTests.m; path = controller/EditDescVCTests.m; sourceTree = "<group>"; };
 		3E80DF6A0E6AC6D100736FB7 /* TransactionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionView.xib; sourceTree = "<group>"; };
 		3E8919F90F16194500FEB19C /* ko */ = {isa = PBXFileReference; explicitFileType = text.plist.strings; fileEncoding = 4; name = ko; path = ko.lproj/Localizable.strings; sourceTree = "<group>"; };
 		3E895E8113252A8000251E36 /* report-annual.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "report-annual.png"; sourceTree = "<group>"; };
@@ -951,8 +953,8 @@
 				3E71A64C132A224A007AB4AB /* TransactionTests.m */,
 				3EC1B28713291F3500721A71 /* AssetTests.m */,
 				3EC1B23C13291A9800721A71 /* CurrencyManagerTests.m */,
-				3EED912E132A233D009DE68B /* Common */,
 				3EED912F132A2353009DE68B /* controller */,
+				3EED912E132A233D009DE68B /* Common */,
 				3E1E7D3E132A301100678AF7 /* testdata */,
 				3EC1B22C13291A6D00721A71 /* Supporting Files */,
 			);
@@ -983,6 +985,7 @@
 		3EED912F132A2353009DE68B /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				3E7D18CB132C4CFE007A325C /* EditDescVCTests.m */,
 			);
 			name = controller;
 			sourceTree = "<group>";
@@ -1465,6 +1468,7 @@
 				3E71A655132A224A007AB4AB /* TransactionTests.m in Sources */,
 				3EED9134132A236D009DE68B /* TestCommon.m in Sources */,
 				3EED9135132A236D009DE68B /* ViewControllerTestCase.m in Sources */,
+				3E7D18CD132C4CFE007A325C /* EditDescVCTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,7 +5,7 @@
 #import "DescLRU.h"
 #import "DescLRUManager.h"
 
-@interface EditDescViewControllerTest : ViewControllerWithNavBarTest <EditDescViewDelegate> {
+@interface EditDescViewControllerTest : ViewControllerWithNavBarTestCase <EditDescViewDelegate> {
     NSString *description;
 }
 
@@ -95,7 +95,7 @@
     Assert(cell != nil);
 
     [self.vc doneAction];
-    AssertEqual(@"TEST", description);
+    AssertEqualObjects(@"TEST", description);
 }
 
 - (void)testEmptyLRU
@@ -122,9 +122,9 @@
 
     UITableViewCell *cell;
     cell = [self _cellForRow:0 section:1];
-    AssertEqual(@"test5", cell.textLabel.text);
+    AssertEqualObjects(@"test5", cell.textLabel.text);
     cell = [self _cellForRow:5 section:1];
-    AssertEqual(@"test0", cell.textLabel.text);
+    AssertEqualObjects(@"test0", cell.textLabel.text);
 }
 
 - (void)testSpecificCategory
@@ -145,9 +145,9 @@
 
     UITableViewCell *cell;
     cell = [self _cellForRow:0 section:1];
-    AssertEqual(@"test4", cell.textLabel.text);
+    AssertEqualObjects(@"test4", cell.textLabel.text);
     cell = [self _cellForRow:1 section:1];
-    AssertEqual(@"test1", cell.textLabel.text);
+    AssertEqualObjects(@"test1", cell.textLabel.text);
 }
 
 - (void)testClickCell
@@ -165,7 +165,7 @@
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:indexPath];
-    AssertEqual(@"test4", description);
+    AssertEqualObjects(@"test4", description);
 }
 
 @end

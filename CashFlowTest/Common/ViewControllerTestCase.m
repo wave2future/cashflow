@@ -16,7 +16,8 @@ static UIWindow *sKeyWindow;
     self.viewController = [self createViewController];
     self.baseViewController = [self createBaseViewController];
 
-    //UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    /*
     UIWindow *window = sKeyWindow;
     if (window == nil) {
         //window = [[UIWindow alloc] init];
@@ -24,6 +25,7 @@ static UIWindow *sKeyWindow;
         [window makeKeyAndVisible];
         sKeyWindow = window;
     }
+     */
     
     [window addSubview:mBaseViewController.view];
     [window bringSubviewToFront:mBaseViewController.view];
