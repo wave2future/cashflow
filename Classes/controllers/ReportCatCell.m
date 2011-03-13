@@ -48,7 +48,13 @@
 
 - (void)setValue:(double)value maxValue:(double)maxValue
 {
-    mValueLabel.text = [CurrencyManager formatCurrency:value];
+    double ratio;
+    ratio = value / maxValue;
+    if (ratio > 1.0) ratio = 1.0;
+    
+    mValueLabel.text = [NSString stringWithFormat:@"%@ (%.1f%%)",
+                        [CurrencyManager formatCurrency:value],
+                        ratio * 100.0, nil];
     if (value >= 0) {
         mValueLabel.textColor = [UIColor blackColor];
         mGraphView.backgroundColor = [UIColor blueColor];
@@ -61,7 +67,6 @@
     if (maxValue < 0) maxValue = -maxValue; // abs
     if (maxValue < 0.001) maxValue = 0.001; // for safety
 
-    double ratio;
     int fullWidth;
     if (IS_IPAD) {
         fullWidth = 500;
@@ -69,8 +74,6 @@
         fullWidth = 190;
     }
 
-    ratio = value / maxValue;
-    if (ratio > 1.0) ratio = 1.0;
     int width = fullWidth * ratio + 1;
 
     CGRect frame = mGraphView.frame;

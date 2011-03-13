@@ -114,22 +114,18 @@
         switch (indexPath.section) {
             case 0:
                 cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row - 1];
-                [cell setValue:cr.sum maxValue:mReportEntry.maxOutgo];
+                [cell setValue:cr.sum maxValue:mReportEntry.totalOutgo];
                 break;
 
             case 1:
                 cr = [mReportEntry.incomeCatReports objectAtIndex:indexPath.row - 1];
-                [cell setValue:cr.sum maxValue:mReportEntry.maxIncome];
+                [cell setValue:cr.sum maxValue:mReportEntry.totalIncome];
                 break;
         }
         
         [cell setGraphColor:[ReportCatGraphCell getGraphColor:indexPath.row - 1]];
+        cell.name = [cr title];
 
-        if (cr.category >= 0) {
-            cell.name = [[DataModel instance].categories categoryStringWithKey:cr.category];
-        } else {
-            cell.name = NSLocalizedString(@"No category", @"");
-        }
         return cell;
     }
 }
@@ -151,7 +147,7 @@
     }
 
     CatReportDetailViewController *vc = [[[CatReportDetailViewController alloc] init] autorelease];
-    vc.title = [[DataModel instance].categories categoryStringWithKey:cr.category];
+    vc.title = [cr title];
     vc.catReport = cr;
     
     [self.navigationController pushViewController:vc animated:YES];

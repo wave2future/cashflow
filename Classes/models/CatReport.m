@@ -45,6 +45,9 @@
 
 - (NSString *)title
 {
+    if (mCategory < 0) {
+        return NSLocalizedString(@"No category", @"");
+    }
     return [[DataModel categories] categoryStringWithKey:mCategory];
 }
 
