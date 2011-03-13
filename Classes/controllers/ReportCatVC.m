@@ -60,7 +60,7 @@
         case 0:
             title = [NSString stringWithFormat:@"%@ : %@",
                      NSLocalizedString(@"Outgo", @""),
-                     [CurrencyManager formatCurrency:mReportEntry.totalOutgo]];
+                     [CurrencyManager formatCurrency:-mReportEntry.totalOutgo]];
             break;
         case 1:
             title = [NSString stringWithFormat:@"%@ : %@",
@@ -114,7 +114,7 @@
         switch (indexPath.section) {
             case 0:
                 cr = [mReportEntry.outgoCatReports objectAtIndex:indexPath.row - 1];
-                [cell setValue:cr.sum maxValue:mReportEntry.totalOutgo];
+                [cell setValue:-cr.sum maxValue:-mReportEntry.totalOutgo];
                 break;
 
             case 1:
