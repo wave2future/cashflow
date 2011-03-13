@@ -18,6 +18,9 @@
 @property(retain) UIViewController *baseViewController;
 
 - (UIViewController *)createViewController; // you must override this!
+- (NSString *)viewControllerName;
+- (NSString *)viewControllerNibName;
+
 - (UIViewController *)createBaseViewController;
 
 @end

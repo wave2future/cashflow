@@ -8,7 +8,6 @@
 @synthesize viewController = mViewController;
 @synthesize baseViewController = mBaseViewController;
 
-static UIWindow *sKeyWindow;
 - (void)setUp
 {
     [super setUp];
@@ -17,16 +16,7 @@ static UIWindow *sKeyWindow;
     self.baseViewController = [self createBaseViewController];
 
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    /*
-    UIWindow *window = sKeyWindow;
-    if (window == nil) {
-        //window = [[UIWindow alloc] init];
-        window = [[UIWindow alloc] initWithFrame:CGRectMake(0, 0, 320, 480)];
-        [window makeKeyAndVisible];
-        sKeyWindow = window;
-    }
-     */
-    
+
     [window addSubview:mBaseViewController.view];
     [window bringSubviewToFront:mBaseViewController.view];
 }
@@ -42,7 +32,32 @@ static UIWindow *sKeyWindow;
 
 - (UIViewController *)createViewController
 {
-    STFail(@"You must override createViewController!");
+    NSString *nibName = [self viewControllerNibName];
+    NSString *className = [self viewControllerName];
+    if (nibName && className == nil) {
+        className = nibName;
+    }
+    if (className == nil) {
+        STFail(@"You must override viewControllerName/viewControllerNibName or createViewController!");
+        return nil;
+    }
+    
+    Class class = NSClassFromString(className);
+    if (nibName) {
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        return [[[class alloc] initWithNibName:nibName bundle:bundle] autorelease];
+    } else {
+        return [[class new] autorelease];
+    }
+}
+
+- (NSString *)viewControllerName
+{
+    return nil;
+}
+
+- (NSString *)viewControllerNibName
+{
     return nil;
 }
 
