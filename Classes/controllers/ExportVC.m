@@ -126,6 +126,13 @@
     BOOL result;
     ExportBase *ex;
     UIAlertView *v;
+    
+    NSArray *assets;
+    if (mAsset != nil) {
+        assets = [NSArray arrayWithObject:mAsset];
+    } else {
+        assets = [DataModel instance].ledger.assets;
+    }
 
     switch (mFormatControl.selectedSegmentIndex) {
         case 0:
@@ -133,7 +140,7 @@
             if (mCsv == nil) {
                 mCsv = [[ExportCsv alloc] init];
             }
-            mCsv.assets = [NSMutableArray arrayWithObject:mAsset];
+            mCsv.assets = assets;
             ex = mCsv;
             break;
 
@@ -142,7 +149,7 @@
             if (mOfx == nil) {
                 mOfx = [[ExportOfx alloc] init];
             }
-            mOfx.assets = [NSMutableArray arrayWithObject:mAsset];
+            mOfx.assets = assets;
             ex = mOfx;
             break;
 //#endif

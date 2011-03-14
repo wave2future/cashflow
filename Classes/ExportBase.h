@@ -18,13 +18,13 @@
 	
 @interface ExportBase : NSObject <UIAlertViewDelegate, MFMailComposeViewControllerDelegate> {
     NSDate *mFirstDate;
-    NSMutableArray *mAssets;
+    NSArray *mAssets;
 
     ExportServer *mWebServer;
 }
 
 @property(nonatomic,retain) NSDate *firstDate;
-@property(nonatomic,assign) NSMutableArray *assets;
+@property(nonatomic,assign) NSArray *assets;
 
 - (NSData*)generateBody;
 - (BOOL)sendMail:(UIViewController*)parent;
