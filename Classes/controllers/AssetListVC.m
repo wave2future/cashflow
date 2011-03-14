@@ -532,7 +532,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:vc];
     if (IS_IPAD) {
-        nv.modalPresentationStyle = UIModalPresentationPageSheet;
+        nv.modalPresentationStyle = UIModalPresentationFormSheet; //UIModalPresentationPageSheet;
     }
     [self.navigationController presentModalViewController:nv animated:YES];
     [nv release];

@@ -399,7 +399,7 @@
 
     UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:reportVC];
     if (IS_IPAD) {
-        nv.modalPresentationStyle = UIModalPresentationFormSheet;
+        nv.modalPresentationStyle = UIModalPresentationPageSheet;
     }
     
     //[self.navigationController pushViewController:vc animated:YES];
