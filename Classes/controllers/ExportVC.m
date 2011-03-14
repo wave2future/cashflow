@@ -133,7 +133,7 @@
         if (mCsv == nil) {
             mCsv = [[ExportCsv alloc] init];
         }
-        mCsv.mAsset = mAsset;
+        mCsv.asset = mAsset;
         ex = mCsv;
         break;
 
@@ -142,12 +142,12 @@
         if (mOfx == nil) {
             mOfx = [[ExportOfx alloc] init];
         }
-        mOfx.mAsset = mAsset;
+        mOfx.asset = mAsset;
         ex = mOfx;
         break;
 //#endif
     }
-    ex.mFirstDate = date;
+    ex.firstDate = date;
 	
     switch (mMethodControl.selectedSegmentIndex) {
     case 0:

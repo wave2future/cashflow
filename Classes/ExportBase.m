@@ -9,7 +9,8 @@
 
 @implementation ExportBase
 
-@synthesize mFirstDate, mAsset;
+@synthesize firstDate = mFirstDate;
+@synthesize asset = mAsset;
 
 - (BOOL)sendMail:(UIViewController*)parent { return NO; }
 - (BOOL)sendWithWebServer { return NO; }

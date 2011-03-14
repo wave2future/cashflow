@@ -23,8 +23,8 @@
     ExportServer *mWebServer;
 }
 
-@property(nonatomic,retain) NSDate *mFirstDate;
-@property(nonatomic,assign) Asset *mAsset;
+@property(nonatomic,retain) NSDate *firstDate;
+@property(nonatomic,assign) Asset *asset;
 
 - (NSData*)generateBody;
 - (BOOL)sendMail:(UIViewController*)parent;
