@@ -872,6 +872,41 @@
 			path = locale;
 			sourceTree = "<group>";
 		};
+		3E85A722132E54D6002C44DF /* Support files */ = {
+			isa = PBXGroup;
+			children = (
+				1D3623240D0F684500981E51 /* AppDelegate.h */,
+				1D3623250D0F684500981E51 /* AppDelegate.m */,
+				3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */,
+				3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */,
+				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
+				3E98A66811E8368800B7F289 /* CurrencyManager.m */,
+				3E7BB134115399C5004B7D03 /* Config.h */,
+				3E7BB135115399C5004B7D03 /* Config.m */,
+				3E27103F0EAA196A00E57E51 /* ExportBase.h */,
+				3E2710400EAA196A00E57E51 /* ExportBase.m */,
+				3E2710410EAA196A00E57E51 /* ExportCsv.h */,
+				3E2710420EAA196A00E57E51 /* ExportCsv.m */,
+				3E2710430EAA196A00E57E51 /* ExportOfx.h */,
+				3E2710440EAA196A00E57E51 /* ExportOfx.m */,
+				3ED97C130F1A0D8D0063A578 /* WebServer.h */,
+				3ED97C140F1A0D8D0063A578 /* WebServer.m */,
+				3ECF38080EA9CFB600420060 /* ExportServer.h */,
+				3ECF38030EA9CF4900420060 /* ExportServer.m */,
+				3ED97C260F1A0E8E0063A578 /* BackupServer.h */,
+				3ED97C270F1A0E8E0063A578 /* BackupServer.m */,
+				3E3566181189697E007DAF44 /* Backup.h */,
+				3E3566191189697E007DAF44 /* Backup.m */,
+				3E7109B4121108ED00C47539 /* UIDevice-Hardware.h */,
+				3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */,
+				3E7109B2121108ED00C47539 /* SupportMail.h */,
+				3E7109B3121108ED00C47539 /* SupportMail.m */,
+				3E197B0E121268CF00105B20 /* CrashReportSender.h */,
+				3E197B0F121268CF00105B20 /* CrashReportSender.m */,
+			);
+			name = "Support files";
+			sourceTree = "<group>";
+		};
 		3EB5406B0E8E907B00608B77 /* images */ = {
 			isa = PBXGroup;
 			children = (
@@ -908,34 +943,7 @@
 				3E0AD77E1214170700CFDDAC /* ormapper */,
 				3E0AD6A5121415C300CFDDAC /* models */,
 				3E0AD6D21214160600CFDDAC /* controllers */,
-				1D3623240D0F684500981E51 /* AppDelegate.h */,
-				1D3623250D0F684500981E51 /* AppDelegate.m */,
-				3EC0B7A011EC8B4900AA02A8 /* AdUtil.h */,
-				3EC0B7A111EC8B4900AA02A8 /* AdUtil.m */,
-				3E98A66711E8367B00B7F289 /* CurrencyManager.h */,
-				3E98A66811E8368800B7F289 /* CurrencyManager.m */,
-				3E7BB134115399C5004B7D03 /* Config.h */,
-				3E7BB135115399C5004B7D03 /* Config.m */,
-				3E27103F0EAA196A00E57E51 /* ExportBase.h */,
-				3E2710400EAA196A00E57E51 /* ExportBase.m */,
-				3E2710410EAA196A00E57E51 /* ExportCsv.h */,
-				3E2710420EAA196A00E57E51 /* ExportCsv.m */,
-				3E2710430EAA196A00E57E51 /* ExportOfx.h */,
-				3E2710440EAA196A00E57E51 /* ExportOfx.m */,
-				3ED97C130F1A0D8D0063A578 /* WebServer.h */,
-				3ED97C140F1A0D8D0063A578 /* WebServer.m */,
-				3ECF38080EA9CFB600420060 /* ExportServer.h */,
-				3ECF38030EA9CF4900420060 /* ExportServer.m */,
-				3ED97C260F1A0E8E0063A578 /* BackupServer.h */,
-				3ED97C270F1A0E8E0063A578 /* BackupServer.m */,
-				3E3566181189697E007DAF44 /* Backup.h */,
-				3E3566191189697E007DAF44 /* Backup.m */,
-				3E7109B4121108ED00C47539 /* UIDevice-Hardware.h */,
-				3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */,
-				3E7109B2121108ED00C47539 /* SupportMail.h */,
-				3E7109B3121108ED00C47539 /* SupportMail.m */,
-				3E197B0E121268CF00105B20 /* CrashReportSender.h */,
-				3E197B0F121268CF00105B20 /* CrashReportSender.m */,
+				3E85A722132E54D6002C44DF /* Support files */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
