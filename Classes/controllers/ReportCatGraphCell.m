@@ -156,41 +156,15 @@ static inline double radians(double deg)
 /**
    円グラフ用の色を生成する
 
-   ６色毎に G / B / R / G+B / B+R / R+G を回転する。
-   １周目は緑⇒青⇒赤⇒シアン⇒マゼンタ⇒黄で開始。
+   Hue の値を一定角度で回転する。
 */
 + (UIColor *)getGraphColor:(int)index
 {
-    int n = index / 6;
-
-    double c1 = 0.95 - n * 0.2;
-    double c2 = n * 0.12;
-    double c3 = n * 0.1;
-
-    double r = 0, g= 0, b = 0;
-
-    switch (index % 6) {
-    case 0:
-        r = c3; b = c2; g = c1;
-        break;
-    case 1:
-        r = c2; b = c1; g = c3;
-        break;
-    case 2:
-        r = c1; b = c3; g = c2;
-        break;
-    case 3:
-        r = c3; b = c1; g = c1;
-        break;
-    case 4:
-        r = c1; b = c1; g = c3;
-        break;
-    case 5:
-        r = c1; b = c3; g = c1;
-        break;
-    }
-
-    return [UIColor colorWithRed:r green:g blue:b alpha:1.0];
+    CGFloat hue = ((30 + index * 78) % 360) / 360.0;
+    CGFloat satulation = 0.8;
+    CGFloat brightness = 0.9;
+    
+    return [UIColor colorWithHue:hue saturation:satulation brightness:brightness alpha:1.0];
 }
 
 @end
