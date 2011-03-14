@@ -92,19 +92,23 @@
 - (NSData *)generateBody
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
-
-    int max = [mAsset entryCount];
-
-    int firstIndex = 0;
-    if (mFirstDate != nil) {
-        firstIndex = [mAsset firstEntryByDate:mFirstDate];
-        if (firstIndex < 0) {
-            return nil;
+    
+    // get last date
+    NSDate *last = nil;
+    for (Asset *asset in mAssets) {
+        if ([asset entryCount] > 0) {
+            AssetEntry *e = [asset entryAt:[asset entryCount] - 1];
+            if (last == nil) {
+                last = e.transaction.date;
+            }
+            else if ([last compare:e.transaction.date] == NSOrderedDescending) {
+                last = e.transaction.date;
+            }
         }
     }
-	
-    AssetEntry *first = [mAsset entryAt:firstIndex];
-    AssetEntry *last  = [mAsset entryAt:max-1];
+    if (last == nil) {
+        return nil;
+    }
 
     [data appendString:@"OFXHEADER:100\n"];
     [data appendString:@"DATA:OFXSGML\n"];
@@ -136,6 +140,35 @@
     [data appendString:@"</SONRS>\n"];
     [data appendString:@"</SIGNONMSGSRSV1>\n"];
 
+    for (Asset *asset in mAssets) {
+        [self _bankMessageSetResponse:data asset:asset];
+    }
+        
+    [data appendString:@"</OFX>\n"];
+
+    const char *p = [data UTF8String];
+    //const unsigned char bom[3] = {0xEF, 0xBB, 0xBF};
+    NSMutableData *d = [NSMutableData dataWithLength:0];
+    //[d appendBytes:bom length:sizeof(bom)];
+    [d appendBytes:p length:strlen(p)];
+    return d;
+}
+
+- (void)_bankMessageSetResponse:(NSMutableString *)data asset:(Asset *)asset
+{
+    int max = [asset entryCount];
+
+    int firstIndex = 0;
+    if (mFirstDate != nil) {
+        firstIndex = [asset firstEntryByDate:mFirstDate];
+        if (firstIndex < 0) {
+            return;
+        }
+    }
+	
+    AssetEntry *first = [asset entryAt:firstIndex];
+    AssetEntry *last  = [asset entryAt:max-1];
+    
     /* 口座情報(バンクメッセージレスポンス) */
     [data appendString:@"<BANKMSGSRSV1>\n"];
 
@@ -156,26 +189,26 @@
     [data appendString:@"<BANKACCTFROM>\n"];
     [data appendString:@"<BANKID>CashFlow\n"];
     [data appendString:@"<BRANCHID>000\n"];
-    [data appendFormat:@"<ACCTID>%d\n", mAsset.pid];
+    [data appendFormat:@"<ACCTID>%d\n", asset.pid];
     [data appendString:@"<ACCTTYPE>SAVINGS\n"]; // ### Use asset.type?
     [data appendString:@"</BANKACCTFROM>\n"];
 
     /* 明細情報開始(バンクトランザクションリスト) */
     [data appendString:@"<BANKTRANLIST>\n"];
     [data appendString:@"<DTSTART>"];
-    [data appendString:[self dateStr:first]];
+    [data appendString:[self dateStr:first.transaction.date]];
     [data appendString:@"\n"];
     [data appendString:@"<DTEND>"];
-    [data appendString:[self dateStr:last]];
+    [data appendString:[self dateStr:last.transaction.date]];
     [data appendString:@"\n"];
     /* トランザクション */
     int i;
     for (i = firstIndex; i < max; i++) {
-        AssetEntry *e = [mAsset entryAt:i];
+        AssetEntry *e = [asset entryAt:i];
 		
         [data appendString:@"<STMTTRN>\n"];
         [data appendFormat:@"<TRNTYPE>%@\n", [self typeString:e]];
-        [data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:e]];
+        [data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:e.transaction.date]];
         [data appendFormat:@"<TRNAMT>%.2f\n", e.value];
 
         /* トランザクションの ID は日付と取引番号で生成 */
@@ -192,21 +225,13 @@
     /* 残高 */
     [data appendString:@"<LEDGERBAL>\n"];
     [data appendFormat:@"<BALAMT>%.2f\n", last.balance];
-    [data appendFormat:@"<DTASOF>%@\n", [self dateStr:last]];
+    [data appendFormat:@"<DTASOF>%@\n", [self dateStr:last.transaction.date]];
     [data appendString:@"</LEDGERBAL>\n"];
 
     /* OFX 終了 */
     [data appendString:@"</STMTRS>\n"];
     [data appendString:@"</STMTTRNRS>\n"];
     [data appendString:@"</BANKMSGSRSV1>\n"];
-    [data appendString:@"</OFX>\n"];
-
-    const char *p = [data UTF8String];
-    //const unsigned char bom[3] = {0xEF, 0xBB, 0xBF};
-    NSMutableData *d = [NSMutableData dataWithLength:0];
-    //[d appendBytes:bom length:sizeof(bom)];
-    [d appendBytes:p length:strlen(p)];
-    return d;
 }
 
 - (NSString*)typeString:(AssetEntry*)e
@@ -217,7 +242,7 @@
     return @"PAYMENT";
 }
 
-- (NSString*)dateStr:(AssetEntry *)e
+- (NSString*)dateStr:(NSDate *)date
 {
     if (mGregCalendar == nil) {
         mGregCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -227,7 +252,7 @@
 			  
     NSDateComponents *c = [mGregCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit 
                                             | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit)
-                                fromDate:e.transaction.date];
+                                fromDate:date];
 
     NSString *d = [NSString stringWithFormat:@"%04d%02d%02d%02d%02d%02d[%+d:%@]",
                             [c year], [c month], [c day], [c hour], [c minute], [c second], [tz secondsFromGMT]/3600, [tz abbreviation]];

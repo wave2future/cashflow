@@ -23,8 +23,9 @@
 - (BOOL)sendWithWebServer;
 
 // private
+- (void)_bankMessageSetResponse:(NSMutableString *)data asset:(Asset *)asset;
 - (NSString*)typeString:(AssetEntry*)t;
-- (NSString*)dateStr:(AssetEntry*)t;
+- (NSString*)dateStr:(NSDate*)date;
 - (NSString*)fitId:(AssetEntry*)t;
 - (NSString*)encodeString:(NSString *)s;
 @end

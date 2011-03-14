@@ -128,23 +128,23 @@
     UIAlertView *v;
 
     switch (mFormatControl.selectedSegmentIndex) {
-    case 0:
-    default:
-        if (mCsv == nil) {
-            mCsv = [[ExportCsv alloc] init];
-        }
-        mCsv.asset = mAsset;
-        ex = mCsv;
-        break;
+        case 0:
+        default:
+            if (mCsv == nil) {
+                mCsv = [[ExportCsv alloc] init];
+            }
+            mCsv.assets = [NSMutableArray arrayWithObject:mAsset];
+            ex = mCsv;
+            break;
 
 //#ifndef FREE_VERSION
-    case 1:
-        if (mOfx == nil) {
-            mOfx = [[ExportOfx alloc] init];
-        }
-        mOfx.asset = mAsset;
-        ex = mOfx;
-        break;
+        case 1:
+            if (mOfx == nil) {
+                mOfx = [[ExportOfx alloc] init];
+            }
+            mOfx.assets = [NSMutableArray arrayWithObject:mAsset];
+            ex = mOfx;
+            break;
 //#endif
     }
     ex.firstDate = date;

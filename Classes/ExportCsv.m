@@ -47,34 +47,43 @@
 - (NSData *)generateBody
 {
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
-    [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
     
-    int max = [mAsset entryCount];
-
-    /* トランザクション */
-    int i = 0;
-    if (mFirstDate != nil) {
-        i = [mAsset firstEntryByDate:mFirstDate];
-        if (i < 0) {
-            return nil;
+    for (Asset *asset in mAssets) {
+        if ([mAssets count] > 1) {
+            // show asset name
+            [data appendString:asset.name];
+            [data appendString:@"\n"];
         }
-    }
-    for (; i < max; i++) {
-        AssetEntry *e = [mAsset entryAt:i];
+        [data appendString:@"Serial,Date,Value,Balance,Description,Category,Memo\n"];
+    
+        int max = [asset entryCount];
 
-        if (mFirstDate != nil && [e.transaction.date compare:mFirstDate] == NSOrderedAscending) continue;
-		
-        NSMutableString *d = [[NSMutableString alloc] init];
-        [d appendFormat:@"%d,", e.transaction.pid];
-        [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:e.transaction.date]];
-        [d appendFormat:@"%.2f,", e.value];
-        [d appendFormat:@"%.2f,", e.balance];
-        [d appendFormat:@"%@,", e.transaction.description];
-        [d appendFormat:@"%@,", [[DataModel instance].categories categoryStringWithKey:e.transaction.category]];
-        [d appendFormat:@"%@", e.transaction.memo];
-        [d appendString:@"\n"];
-        [data appendString:d];
-        [d release];
+        /* トランザクション */
+        int i = 0;
+        if (mFirstDate != nil) {
+            i = [asset firstEntryByDate:mFirstDate];
+            if (i < 0) {
+                return nil;
+            }
+        }
+        for (; i < max; i++) {
+            AssetEntry *e = [asset entryAt:i];
+
+            if (mFirstDate != nil && [e.transaction.date compare:mFirstDate] == NSOrderedAscending) continue;
+            
+            NSMutableString *d = [[NSMutableString alloc] init];
+            [d appendFormat:@"%d,", e.transaction.pid];
+            [d appendFormat:@"%@,", [[DataModel dateFormatter] stringFromDate:e.transaction.date]];
+            [d appendFormat:@"%.2f,", e.value];
+            [d appendFormat:@"%.2f,", e.balance];
+            [d appendFormat:@"%@,", e.transaction.description];
+            [d appendFormat:@"%@,", [[DataModel instance].categories categoryStringWithKey:e.transaction.category]];
+            [d appendFormat:@"%@", e.transaction.memo];
+            [d appendString:@"\n"];
+            [data appendString:d];
+            [d release];
+        }
+        [data appendString:@"\n"];
     }
 
     // locale 毎の encoding を決める
