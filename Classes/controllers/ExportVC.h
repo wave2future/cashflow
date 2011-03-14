@@ -13,16 +13,16 @@
 #import "ExportOfx.h"
 
 @interface ExportVC : UIViewController {
-    IBOutlet UIButton *exportButton;
-    IBOutlet UISegmentedControl *formatControl;
-    IBOutlet UISegmentedControl *rangeControl;
-    IBOutlet UISegmentedControl *methodControl;
-    IBOutlet UILabel *formatLabel;
-    IBOutlet UILabel *rangeLabel;
-    IBOutlet UILabel *methodLabel;
+    IBOutlet UIButton *mExportButton;
+    IBOutlet UISegmentedControl *mFormatControl;
+    IBOutlet UISegmentedControl *mRangeControl;
+    IBOutlet UISegmentedControl *mMethodControl;
+    IBOutlet UILabel *mFormatLabel;
+    IBOutlet UILabel *mRangeLabel;
+    IBOutlet UILabel *mMethodLabel;
 
-    ExportCsv *csv;
-    ExportOfx *ofx;
+    ExportCsv *mCsv;
+    ExportOfx *mOfx;
 
     Asset *mAsset;
 }

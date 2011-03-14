@@ -27,25 +27,25 @@
     // Localization
     [self setTitle:NSLocalizedString(@"Export", @"")];
 
-    formatLabel.text = NSLocalizedString(@"Data format", @"");
-    [formatControl setTitle:NSLocalizedString(@"OFX", @"") forSegmentAtIndex:1];
+    mFormatLabel.text = NSLocalizedString(@"Data format", @"");
+    [mFormatControl setTitle:NSLocalizedString(@"OFX", @"") forSegmentAtIndex:1];
 
-    rangeLabel.text = NSLocalizedString(@"Export data within", @"");
-    [rangeControl setTitle:NSLocalizedString(@"7 days", @"") forSegmentAtIndex:0];
-    [rangeControl setTitle:NSLocalizedString(@"30 days", @"") forSegmentAtIndex:1];
-    [rangeControl setTitle:NSLocalizedString(@"90 days", @"") forSegmentAtIndex:2];
-    [rangeControl setTitle:NSLocalizedString(@"All", @"") forSegmentAtIndex:3];
+    mRangeLabel.text = NSLocalizedString(@"Export data within", @"");
+    [mRangeControl setTitle:NSLocalizedString(@"7 days", @"") forSegmentAtIndex:0];
+    [mRangeControl setTitle:NSLocalizedString(@"30 days", @"") forSegmentAtIndex:1];
+    [mRangeControl setTitle:NSLocalizedString(@"90 days", @"") forSegmentAtIndex:2];
+    [mRangeControl setTitle:NSLocalizedString(@"All", @"") forSegmentAtIndex:3];
     
-    methodLabel.text = NSLocalizedString(@"Export method", @"");
-    [methodControl setTitle:NSLocalizedString(@"Mail", @"") forSegmentAtIndex:0];
+    mMethodLabel.text = NSLocalizedString(@"Export method", @"");
+    [mMethodControl setTitle:NSLocalizedString(@"Mail", @"") forSegmentAtIndex:0];
     
     NSString *exportString = NSLocalizedString(@"Export", @"");
-    [exportButton setTitle:exportString forState:UIControlStateNormal];
-    [exportButton setTitle:exportString forState:UIControlStateHighlighted];
+    [mExportButton setTitle:exportString forState:UIControlStateNormal];
+    [mExportButton setTitle:exportString forState:UIControlStateHighlighted];
 
     UIImage *bg = [[UIImage imageNamed:@"redButton.png"] stretchableImageWithLeftCapWidth:12.0 topCapHeight:0];
-    [exportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [exportButton setBackgroundImage:bg forState:UIControlStateNormal];
+    [mExportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [mExportButton setBackgroundImage:bg forState:UIControlStateNormal];
 	
 #ifdef FREE_VERSION
 //    formatLabel.hidden = YES;
@@ -58,9 +58,9 @@
 
     // load defaults
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    formatControl.selectedSegmentIndex = [defaults integerForKey:@"exportFormat"];
-    rangeControl.selectedSegmentIndex = [defaults integerForKey:@"exportRange"];
-    methodControl.selectedSegmentIndex = [defaults integerForKey:@"exportMethod"];	
+    mFormatControl.selectedSegmentIndex = [defaults integerForKey:@"exportFormat"];
+    mRangeControl.selectedSegmentIndex = [defaults integerForKey:@"exportRange"];
+    mMethodControl.selectedSegmentIndex = [defaults integerForKey:@"exportMethod"];	
 
     self.navigationItem.rightBarButtonItem =
         [[[UIBarButtonItem alloc]
@@ -88,11 +88,11 @@
 
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 
-    [defaults setObject:[NSNumber numberWithInt:formatControl.selectedSegmentIndex] 
+    [defaults setObject:[NSNumber numberWithInt:mFormatControl.selectedSegmentIndex] 
               forKey:@"exportFormat"];
-    [defaults setObject:[NSNumber numberWithInt:rangeControl.selectedSegmentIndex] 
+    [defaults setObject:[NSNumber numberWithInt:mRangeControl.selectedSegmentIndex] 
               forKey:@"exportRange"];
-    [defaults setObject:[NSNumber numberWithInt:methodControl.selectedSegmentIndex] 
+    [defaults setObject:[NSNumber numberWithInt:mMethodControl.selectedSegmentIndex] 
               forKey:@"exportMethod"];
     [defaults synchronize];
 }
@@ -102,7 +102,7 @@
     //[[DataModel instance] saveToStorage]; // for safety...
 	
     int range;
-    switch (rangeControl.selectedSegmentIndex) {
+    switch (mRangeControl.selectedSegmentIndex) {
     case 0:
         range = 7;
         break;
@@ -127,29 +127,29 @@
     ExportBase *ex;
     UIAlertView *v;
 
-    switch (formatControl.selectedSegmentIndex) {
+    switch (mFormatControl.selectedSegmentIndex) {
     case 0:
     default:
-        if (csv == nil) {
-            csv = [[ExportCsv alloc] init];
+        if (mCsv == nil) {
+            mCsv = [[ExportCsv alloc] init];
         }
-        csv.mAsset = mAsset;
-        ex = csv;
+        mCsv.mAsset = mAsset;
+        ex = mCsv;
         break;
 
 //#ifndef FREE_VERSION
     case 1:
-        if (ofx == nil) {
-            ofx = [[ExportOfx alloc] init];
+        if (mOfx == nil) {
+            mOfx = [[ExportOfx alloc] init];
         }
-        ofx.mAsset = mAsset;
-        ex = ofx;
+        mOfx.mAsset = mAsset;
+        ex = mOfx;
         break;
 //#endif
     }
     ex.mFirstDate = date;
 	
-    switch (methodControl.selectedSegmentIndex) {
+    switch (mMethodControl.selectedSegmentIndex) {
     case 0:
     default:
         result = [ex sendMail:self];
