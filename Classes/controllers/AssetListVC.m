@@ -448,6 +448,24 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
+// Report
+
+#pragma mark Show Report
+
+- (void)showReport:(id)sender
+{
+    ReportViewController *reportVC = [[[ReportViewController alloc] initWithAsset:nil] autorelease];
+    
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:reportVC];
+    if (IS_IPAD) {
+        nv.modalPresentationStyle = UIModalPresentationPageSheet;
+    }
+    [self.navigationController presentModalViewController:nv animated:YES];
+    [nv release];
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////
 // Action Sheet 処理
 
 #pragma mark Action Sheet
@@ -462,10 +480,11 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
          initWithTitle:@"" delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil
-         otherButtonTitles:NSLocalizedString(@"Report", @""),
+         otherButtonTitles:
          NSLocalizedString(@"Export", @""),
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
+         NSLocalizedString(@"Info", @""),
          nil];
     if (IS_IPAD) {
         [mAsActionButton showFromBarButtonItem:mBarActionButton animated:YES];
@@ -477,9 +496,9 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 
 - (void)_actionActionButton:(NSInteger)buttonIndex
 {
-    ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
+    InfoVC *infoVC;
     Backup *backup;
     UIViewController *vc;
     
@@ -487,24 +506,24 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     
     switch (buttonIndex) {
         case 0:
-            reportVC = [[[ReportViewController alloc] initWithAsset:nil] autorelease];
-            vc = reportVC;
-            break;
-            
-        case 1:
             exportVC = [[[ExportVC alloc] initWithAsset:nil]
                         autorelease];
             vc = exportVC;
             break;
             
-        case 2:
+        case 1:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release backup instance here!
             
-        case 3:
+        case 2:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
+            break;
+            
+        case 3:
+            infoVC = [[[InfoVC alloc] init] autorelease];
+            vc = infoVC;
             break;
             
         default:
@@ -535,6 +554,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     }
 }
 
+/*
 - (IBAction)showHelp:(id)sender
 {
     InfoVC *v = [[[InfoVC alloc] init] autorelease];
@@ -547,6 +567,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     [self presentModalViewController:nc animated:YES];
     [nc release];
 }
+*/
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if (IS_IPAD) return YES;

@@ -225,20 +225,6 @@
 - (void)viewDidDisappear:(BOOL)animated {
 }
 
-- (IBAction)showHelp:(id)sender
-{
-    InfoVC *v = [[[InfoVC alloc] init] autorelease];
-    //[self.navigationController pushViewController:v animated:YES];
-
-    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:v];
-    if (IS_IPAD) {
-        nc.modalPresentationStyle = UIModalPresentationFormSheet;
-    }
-    [self presentModalViewController:nc animated:YES];
-    [nc release];
-}
-
-
 #pragma mark TableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -406,6 +392,21 @@
     }
 }
 
+#pragma mark Show Report
+- (void)showReport:(id)sender
+{
+    ReportViewController *reportVC = [[[ReportViewController alloc] initWithAsset:mAsset] autorelease];
+
+    UINavigationController *nv = [[UINavigationController alloc] initWithRootViewController:reportVC];
+    if (IS_IPAD) {
+        nv.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    
+    //[self.navigationController pushViewController:vc animated:YES];
+    [self.navigationController presentModalViewController:nv animated:YES];
+    [nv release];
+}
+
 #pragma mark Action sheet handling
 
 // action sheet
@@ -420,10 +421,10 @@
          delegate:self 
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil otherButtonTitles:
-         NSLocalizedString(@"Report", @""),
          NSLocalizedString(@"Export", @""),
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
+         NSLocalizedString(@"Info", @""),
          nil];
     if (IS_IPAD) {
         [as showFromBarButtonItem:mBarActionButton animated:YES];
@@ -435,37 +436,35 @@
 
 - (void)actionSheet:(UIActionSheet*)as clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    ReportViewController *reportVC;
     ExportVC *exportVC;
     ConfigViewController *configVC;
+    InfoVC *infoVC;
     Backup *backup;
     
     UIViewController *vc;
-    UIModalPresentationStyle modalPresentationStyle = UIModalPresentationPageSheet;
+    UIModalPresentationStyle modalPresentationStyle = UIModalPresentationFormSheet;
     
     mAsDisplaying = NO;
     
     switch (buttonIndex) {
         case 0:
-            reportVC = [[[ReportViewController alloc] initWithAsset:mAsset] autorelease];
-            vc = reportVC;
+            exportVC = [[[ExportVC alloc] initWithAsset:mAsset] autorelease];
+            vc = exportVC;
             break;
             
         case 1:
-            exportVC = [[[ExportVC alloc] initWithAsset:mAsset] autorelease];
-            vc = exportVC;
-            modalPresentationStyle = UIModalPresentationFormSheet;
-            break;
-            
-        case 2:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release back instance here!
             
-        case 3:
+        case 2:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
-            modalPresentationStyle = UIModalPresentationFormSheet;
+            break;
+            
+        case 3:
+            infoVC = [[[InfoVC alloc] init] autorelease];
+            vc = infoVC;
             break;
             
         default:
@@ -481,6 +480,21 @@
     [self.navigationController presentModalViewController:nv animated:YES];
     [nv release];
 }
+
+/*
+- (IBAction)showHelp:(id)sender
+{
+    InfoVC *v = [[[InfoVC alloc] init] autorelease];
+    //[self.navigationController pushViewController:v animated:YES];
+
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:v];
+    if (IS_IPAD) {
+        nc.modalPresentationStyle = UIModalPresentationFormSheet;
+    }
+    [self presentModalViewController:nc animated:YES];
+    [nc release];
+}
+*/
 
 #pragma mark Split View Delegate
 

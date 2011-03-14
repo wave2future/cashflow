@@ -51,8 +51,10 @@
 - (void)reload;
 - (void)updateBalance;
 - (void)addTransaction;
+
+- (IBAction)showReport:(id)sender;
 - (IBAction)doAction:(id)sender;
-- (IBAction)showHelp:(id)sender;
+//- (IBAction)showHelp:(id)sender;
 
 - (void)_replaceAd;
 

@@ -52,9 +52,8 @@
 
 - (void)_actionDelete:(NSInteger)buttonIndex;
 
+- (IBAction)showReport:(id)sender;
 - (IBAction)doAction:(id)sender;
 - (void)_actionActionButton:(NSInteger)buttonIndex;
-
-- (IBAction)showHelp:(id)sender;
 
 @end
