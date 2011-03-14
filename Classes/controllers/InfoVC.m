@@ -92,8 +92,8 @@
              initWithTitle:@"Error" message:@"Can't send email" delegate:nil
               cancelButtonTitle:@"OK" otherButtonTitles:nil] autorelease];
         [v show];
-        [m release];
     }
+    [m release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

@@ -46,6 +46,8 @@
     }
     [v show];
     [v release];
+    
+    [self retain]; // release in alert view delegate
 }
 
 - (void)alertView:(UIAlertView*)alertView clickedButtonAtIndex:(NSInteger)buttonIndex

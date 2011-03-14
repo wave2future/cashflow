@@ -49,6 +49,8 @@
     [vc addAttachmentData:d mimeType:@"text/plain" fileName:@"SupportInfo.txt"];
     
     [parent presentModalViewController:vc animated:YES];
+    
+    [self retain]; // release in callback
     return YES;
 }
 

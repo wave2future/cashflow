@@ -512,9 +512,9 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
             break;
             
         case 1:
-            backup = [[Backup alloc] init];
+            backup = [[[Backup alloc] init] autorelease];
             [backup execute];
-            return; // do not release backup instance here!
+            return;
             
         case 2:
             configVC = [[[ConfigViewController alloc] init] autorelease];

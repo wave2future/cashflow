@@ -51,6 +51,7 @@
 {
     double ratio;
     ratio = value / maxValue;
+    if (ratio < 0) ratio = -ratio; // fail safe...
     if (ratio > 1.0) ratio = 1.0;
     
     mValueLabel.text = [NSString stringWithFormat:@"%@ (%.1f%%)",
@@ -62,11 +63,7 @@
     } else {
         mValueLabel.textColor = [UIColor blackColor];
         mGraphView.backgroundColor = [UIColor redColor];        
-        value = -value; // abs
     }
-
-    if (maxValue < 0) maxValue = -maxValue; // abs
-    if (maxValue < 0.001) maxValue = 0.001; // for safety
 
     int fullWidth;
     if (IS_IPAD) {
