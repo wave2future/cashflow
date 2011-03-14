@@ -129,6 +129,7 @@ static inline double radians(double deg)
     int n = -1;
     for (CatReport *cr in mCatReports) {
         n++;
+        if (n >= 8) break;
 
         // 色設定
         UIColor *color = [ReportCatGraphCell getGraphColor:n];
