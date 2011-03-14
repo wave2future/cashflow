@@ -6,7 +6,7 @@
 #import "DescLRUManager.h"
 
 @interface EditDescViewControllerTest : ViewControllerWithNavBarTestCase <EditDescViewDelegate> {
-    NSString *description;
+    NSString *mDescription;
 }
 
 @property(retain, readonly) EditDescViewController *vc;
@@ -41,16 +41,18 @@
 
 - (void)editDescViewChanged:(EditDescViewController*)v
 {
-    [description release];
-    description = v.description;
-    [description retain];
+    if (mDescription != v.description) {
+        [mDescription release];
+        mDescription = v.description;
+        [mDescription retain];
+    }
 }
 
 #pragma mark -
 
 - (void)dealloc
 {
-    [description release];
+    [mDescription release];
     [super dealloc];
 }
 
@@ -59,9 +61,12 @@
     [super setUp];
     
     [TestCommon deleteDatabase];
-    [TestCommon installDatabase:@"testdata1"];
 
-    description = nil;
+    //[TestCommon installDatabase:@"testdata1"];
+    DataModel *dm = [DataModel instance];
+    [dm load];
+
+    mDescription = nil;
 
     // erase all desc LRU data
     [DescLRU delete_cond:nil];
@@ -70,14 +75,14 @@
     self.vc.category = 100;
     self.vc.delegate = self;
 
-    //[vc viewDidLoad];
-    //[vc viewWillAppear:YES];
+    [self.vc viewDidLoad]; // ###
+    [self.vc viewWillAppear:YES]; // ###
 }
 
 - (void)tearDown
 {
     //[vc viewWillDisappear:YES];
-    [description release];
+    [mDescription release];
     [super tearDown];
 }
 
@@ -97,7 +102,7 @@
     Assert(cell != nil);
 
     [self.vc doneAction];
-    AssertEqualObjects(@"TEST", description);
+    AssertEqualObjects(@"TEST", mDescription);
 }
 
 - (void)testEmptyLRU
@@ -167,7 +172,7 @@
 
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:1 inSection:1];
     [self.vc tableView:self.vc.tableView didSelectRowAtIndexPath:indexPath];
-    AssertEqualObjects(@"test4", description);
+    AssertEqualObjects(@"test4", mDescription);
 }
 
 @end
