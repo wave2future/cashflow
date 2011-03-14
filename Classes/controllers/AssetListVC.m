@@ -463,6 +463,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
          cancelButtonTitle:NSLocalizedString(@"Cancel", @"")
          destructiveButtonTitle:nil
          otherButtonTitles:NSLocalizedString(@"Report", @""),
+         NSLocalizedString(@"Export", @""),
          NSLocalizedString(@"Backup", @""),
          NSLocalizedString(@"Config", @""),
          nil];
@@ -477,6 +478,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
 - (void)_actionActionButton:(NSInteger)buttonIndex
 {
     ReportViewController *reportVC;
+    ExportVC *exportVC;
     ConfigViewController *configVC;
     Backup *backup;
     UIViewController *vc;
@@ -490,11 +492,17 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
             break;
             
         case 1:
+            exportVC = [[[ExportVC alloc] initWithAsset:nil]
+                        autorelease];
+            vc = exportVC;
+            break;
+            
+        case 2:
             backup = [[Backup alloc] init];
             [backup execute];
             return; // do not release backup instance here!
             
-        case 2:
+        case 3:
             configVC = [[[ConfigViewController alloc] init] autorelease];
             vc = configVC;
             break;
