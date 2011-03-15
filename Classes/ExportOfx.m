@@ -41,43 +41,6 @@
     return YES;
 }
 
-#if 0 
-// old : iPhone 2.0
-- (BOOL)sendMail:(UIViewController*)parent
-{
-    NSMutableString *data = [[[NSMutableString alloc] init] autorelease];
-    [data appendString:@"mailto:?Subject=CashFlow%20OFX&body="];
-
-    NSMutableString *tmp = [[[NSMutableString alloc] init] autorelease];
-    [tmp setString:NSLocalizedString(@"OFXHeadString", @"OFX header notification")];
-    [tmp appendString:@"\n\n--- BEGIN ---\n"];
-    [self EncodeMailBody:tmp];
-    [data appendString:tmp];
-	
-    NSMutableString *body = [self generateBody];
-    if (body == nil) {
-        return NO;
-    }
-
-    [self EncodeMailBody:body];
-
-    [data appendString:body];
-
-    [tmp setString:@"--- END ---\n"];
-    [self EncodeMailBody:tmp];
-    [data appendString:tmp];
-	
-    NSLog(@"%@", data);
-
-    NSURL *url = [NSURL URLWithString:data];
-
-    [[UIApplication sharedApplication] openURL:url];
-	
-    // not reach here...
-    return YES;
-}
-#endif
-
 - (BOOL)sendWithWebServer
 {
     NSData *body = [self generateBody];
