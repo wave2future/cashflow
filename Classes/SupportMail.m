@@ -23,7 +23,9 @@
     
     [vc setSubject:@"[CashFlow Support]"];
     [vc setToRecipients:[NSArray arrayWithObject:@"cashflow-support@tmurakam.org"]];
-    [vc setMessageBody:@"\n\n" isHTML:NO];
+    NSString *body = [NSString stringWithFormat:@"%@\n\n", 
+                               NSLocalizedString(@"(Write an inquiry here.)", @"")];
+    [vc setMessageBody:body isHTML:NO];
     
     NSMutableString *info = [NSMutableString stringWithString:@""];
 #ifdef FREE_VERSION
