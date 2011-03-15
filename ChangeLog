@@ -1,6 +1,9 @@
 2011-03-14 : Takuya Murakami
 	* 複数資産の Export (CSV/OFX) を可能にした
 
+2011-03-08 : Takuya Murakami
+	* カテゴリ別レポートで円グラフ表示
+
 2011-03-06 : Takuya Murakami
 	* TransactionCell を修正。文字サイズを自動修正。
 	* 曜日を表示追加
