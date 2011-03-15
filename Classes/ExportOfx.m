@@ -94,19 +94,19 @@
     NSMutableString *data = [[[NSMutableString alloc] initWithCapacity:1024] autorelease];
     
     // get last date
-    NSDate *last = nil;
+    NSDate *lastDate = nil;
     for (Asset *asset in mAssets) {
         if ([asset entryCount] > 0) {
             AssetEntry *e = [asset entryAt:[asset entryCount] - 1];
-            if (last == nil) {
-                last = e.transaction.date;
+            if (lastDate == nil) {
+                lastDate = e.transaction.date;
             }
-            else if ([last compare:e.transaction.date] == NSOrderedDescending) {
-                last = e.transaction.date;
+            else if ([lastDate compare:e.transaction.date] == NSOrderedDescending) {
+                lastDate = e.transaction.date;
             }
         }
     }
-    if (last == nil) {
+    if (lastDate == nil) {
         return nil;
     }
 
@@ -124,20 +124,18 @@
     /* 金融機関情報(サインオンレスポンス) */
     [data appendString:@"<OFX>\n"];
     [data appendString:@"<SIGNONMSGSRSV1>\n"];
-    [data appendString:@"<SONRS>\n"];
-    [data appendString:@"<STATUS>\n"];
-    [data appendString:@"<CODE>0\n"];
-    [data appendString:@"<SEVERITY>INFO\n"];
-    [data appendString:@"</STATUS>\n"];
-    [data appendString:@"<DTSERVER>"];
-    [data appendString:[self dateStr:last]];
-    [data appendString:@"\n"];
+    [data appendString:@" <SONRS>\n"];
+    [data appendString:@"  <STATUS>\n"];
+    [data appendString:@"   <CODE>0</CODE>\n"];
+    [data appendString:@"   <SEVERITY>INFO</SEVERITY>\n"];
+    [data appendString:@"  </STATUS>\n"];
+    [data appendFormat:@"  <DTSERVER>%@</DTSERVER>\n", [self _dateStr:lastDate]];
 	
-    [data appendString:@"<LANGUAGE>JPN\n"];
-    [data appendString:@"<FI>\n"];
-    [data appendString:@"<ORG>000\n"];
-    [data appendString:@"</FI>\n"];
-    [data appendString:@"</SONRS>\n"];
+    [data appendString:@"  <LANGUAGE>JPN</LANGUAGE>\n"];
+    [data appendString:@"  <FI>\n"];
+    [data appendString:@"   <ORG>000</ORG>\n"];
+    [data appendString:@"  </FI>\n"];
+    [data appendString:@" </SONRS>\n"];
     [data appendString:@"</SIGNONMSGSRSV1>\n"];
 
     for (Asset *asset in mAssets) {
@@ -154,10 +152,13 @@
     return d;
 }
 
+/**
+ Bank Message Set Response の生成
+ */
 - (void)_bankMessageSetResponse:(NSMutableString *)data asset:(Asset *)asset
 {
     int max = [asset entryCount];
-
+    
     int firstIndex = 0;
     if (mFirstDate != nil) {
         firstIndex = [asset firstEntryByDate:mFirstDate];
@@ -166,75 +167,79 @@
         }
     }
 	
-    AssetEntry *first = [asset entryAt:firstIndex];
-    AssetEntry *last  = [asset entryAt:max-1];
+    AssetEntry *firstEntry = [asset entryAt:firstIndex];
+    AssetEntry *lastEntry  = [asset entryAt:max-1];
     
     /* 口座情報(バンクメッセージレスポンス) */
     [data appendString:@"<BANKMSGSRSV1>\n"];
 
     /* 預金口座型明細情報作成 */
-    [data appendString:@"<STMTTRNRS>\n"];
-    [data appendString:@"<TRNUID>0\n"];
-    [data appendString:@"<STATUS>\n"];
-    [data appendString:@"<CODE>0\n"];
-    [data appendString:@"<SEVERITY>INFO\n"];
-    [data appendString:@"</STATUS>\n"];
+    [data appendString:@" <STMTTRNRS>\n"];
+    [data appendString:@"  <TRNUID>0</TRNUID>\n"];
+    [data appendString:@"  <STATUS>\n"];
+    [data appendString:@"   <CODE>0</CODE>\n"];
+    [data appendString:@"   <SEVERITY>INFO</SEVERITY>\n"];
+    [data appendString:@"  </STATUS>\n"];
 
-    [data appendString:@"<STMTRS>\n"];
+    [data appendString:@"  <STMTRS>\n"];
 	
     NSNumberFormatter *fmt = [[[NSNumberFormatter alloc] init] autorelease];
     NSString *ccode = [fmt currencyCode];
-    [data appendFormat:@"<CURDEF>%@\n", ccode];
+    [data appendFormat:@"   <CURDEF>%@</CURDEF>\n", ccode];
 
-    [data appendString:@"<BANKACCTFROM>\n"];
-    [data appendString:@"<BANKID>CashFlow\n"];
-    [data appendString:@"<BRANCHID>000\n"];
-    [data appendFormat:@"<ACCTID>%d\n", asset.pid];
-    [data appendString:@"<ACCTTYPE>SAVINGS\n"]; // ### Use asset.type?
-    [data appendString:@"</BANKACCTFROM>\n"];
+    [data appendString:@"   <BANKACCTFROM>\n"];
+    [data appendString:@"    <BANKID>CashFlow</BANKID>\n"];
+    [data appendString:@"    <BRANCHID>000</BRANCHID>\n"];
+    [data appendFormat:@"    <ACCTID>%d</ACCTID>\n", asset.pid];
+    [data appendString:@"    <ACCTTYPE>SAVINGS</ACCTTYPE>\n"]; // ### Use asset.type?
+    [data appendString:@"   </BANKACCTFROM>\n"];
 
     /* 明細情報開始(バンクトランザクションリスト) */
-    [data appendString:@"<BANKTRANLIST>\n"];
-    [data appendString:@"<DTSTART>"];
-    [data appendString:[self dateStr:first.transaction.date]];
+    [data appendString:@"   <BANKTRANLIST>\n"];
+    [data appendString:@"    <DTSTART>"];
+    [data appendString:[self _dateStrWithAssetEntry:firstEntry]];
     [data appendString:@"\n"];
-    [data appendString:@"<DTEND>"];
-    [data appendString:[self dateStr:last.transaction.date]];
+    [data appendString:@"    <DTEND>"];
+    [data appendString:[self _dateStrWithAssetEntry:lastEntry]];
     [data appendString:@"\n"];
+    
     /* トランザクション */
     int i;
     for (i = firstIndex; i < max; i++) {
         AssetEntry *e = [asset entryAt:i];
 		
-        [data appendString:@"<STMTTRN>\n"];
-        [data appendFormat:@"<TRNTYPE>%@\n", [self typeString:e]];
-        [data appendFormat:@"<DTPOSTED>%@\n", [self dateStr:e.transaction.date]];
-        [data appendFormat:@"<TRNAMT>%.2f\n", e.value];
+        [data appendString:@"    <STMTTRN>\n"];
+        [data appendFormat:@"     <TRNTYPE>%@</TRNTYPE>\n", [self _typeStringWithAssetEntry:e]];
+        [data appendFormat:@"     <DTPOSTED>%@</DTPOSTED>\n", [self _dateStrWithAssetEntry:e]];
+        [data appendFormat:@"     <TRNAMT>%.2f</TRNAMT>\n", e.value];
 
         /* トランザクションの ID は日付と取引番号で生成 */
-        [data appendFormat:@"<FITID>%@\n", [self fitId:e]];
-        [data appendFormat:@"<NAME>%@\n", [self encodeString:e.transaction.description]];
+        [data appendFormat:@"     <FITID>%@</FITID>\n", [self _fitIdWithAssetEntry:e]];
+        [data appendFormat:@"     <NAME>%@</NAME>\n", [self _escapeXmlString:e.transaction.description]];
         if ([e.transaction.memo length] > 0) {
-            [data appendFormat:@"<MEMO>%@\n", [self encodeString:e.transaction.memo]];
+            [data appendFormat:@"     <MEMO>%@</MEMO>\n", [self _escapeXmlString:e.transaction.memo]];
         }
-        [data appendString:@"</STMTTRN>\n"];
+        [data appendString:@"    </STMTTRN>\n"];
     }
 
-    [data appendString:@"</BANKTRANLIST>\n"];
+    [data appendString:@"   </BANKTRANLIST>\n"];
 
     /* 残高 */
-    [data appendString:@"<LEDGERBAL>\n"];
-    [data appendFormat:@"<BALAMT>%.2f\n", last.balance];
-    [data appendFormat:@"<DTASOF>%@\n", [self dateStr:last.transaction.date]];
-    [data appendString:@"</LEDGERBAL>\n"];
+    [data appendString:@"   <LEDGERBAL>\n"];
+    [data appendFormat:@"    <BALAMT>%.2f</BALAMT>\n", lastEntry.balance];
+    [data appendFormat:@"    <DTASOF>%@</DTASOF>\n", [self _dateStrWithAssetEntry:lastEntry]];
+    [data appendString:@"   </LEDGERBAL>\n"];
 
     /* OFX 終了 */
-    [data appendString:@"</STMTRS>\n"];
-    [data appendString:@"</STMTTRNRS>\n"];
+    [data appendString:@"  </STMTRS>\n"];
+    [data appendString:@" </STMTTRNRS>\n"];
     [data appendString:@"</BANKMSGSRSV1>\n"];
 }
 
-- (NSString*)typeString:(AssetEntry*)e
+/**
+ AssetEntry に対する type 文字列を返す
+ */
+- (NSString*)_typeStringWithAssetEntry:(AssetEntry*)e
 {
     if (e.value >= 0) {
         return @"DEP";
@@ -242,7 +247,18 @@
     return @"PAYMENT";
 }
 
-- (NSString*)dateStr:(NSDate *)date
+/**
+ 日付文字列を返す
+ */
+- (NSString*)_dateStrWithAssetEntry:(AssetEntry *)e
+{
+    return [self _dateStr:e.transaction.date];
+}
+
+/**
+ 日付文字列を返す
+ */
+- (NSString*)_dateStr:(NSDate *)date
 {
     if (mGregCalendar == nil) {
         mGregCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSGregorianCalendar];
@@ -259,14 +275,20 @@
     return d;
 }
 
-- (NSString*)fitId:(AssetEntry*)e
+/**
+ 取引IDの割り当て
+ */
+- (NSString*)_fitIdWithAssetEntry:(AssetEntry*)e
 {
     NSDateComponents *c = [mGregCalendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit) fromDate:e.transaction.date];
     NSString *f = [NSString stringWithFormat:@"%04d%02d%02d%d", [c year], [c month], [c day], e.transaction.pid];
     return f;
 }
 
-- (NSString *)encodeString:(NSString *)s
+/**
+ XML文字列のエスケープ
+ */
+- (NSString *)_escapeXmlString:(NSString *)s
 {
     NSMutableString *str = [[[NSMutableString alloc] init] autorelease];
     [str setString:s];
