@@ -16,6 +16,15 @@
 
 @implementation DropboxBackup
 
+- (id)init:(id<DropboxBackupDelegate>)delegate
+{
+    self = [super init];
+    if (self) {
+        mDelegate = delegate;
+    }
+    return self;
+}
+
 - (void)dealloc
 {
     [mRestClient release];
@@ -24,6 +33,8 @@
 
 - (void)doBackup:(UIViewController *)viewController
 {
+    [self retain];
+    
     mMode = MODE_BACKUP;
     mViewController = viewController;
     [self _login];
@@ -31,9 +42,21 @@
 
 - (void)doRestore:(UIViewController *)viewController
 {
+    [self retain];
+    
     mMode = MODE_RESTORE;
     mViewController = viewController;
     [self _login];
+}
+
+- (void)unlink
+{
+    DBSession *session = [DBSession sharedSession];
+    if ([session isLinked]) {
+        [session unlink];
+
+        [self _showResult:@"Your dropbox account has been unlinked"];
+    }
 }
 
 - (void)_login
@@ -84,22 +107,44 @@
 // backup finished
 - (void)restClient:(DBRestClient*)client uploadedFile:(NSString*)destPath from:(NSString*)srcPath
 {
+    [self _showResult:@"Backup done."];
+    [mDelegate dropboxBackupFinished];
+    [self release];
 }
 
 // backup failed
 - (void)restClient:(DBRestClient*)client uploadFileFailedWithError:(NSError*)error
 {
+    [self _showResult:@"Backup failed!"];
+    [mDelegate dropboxBackupFinished];
+    [self release];
 }
 
 // restore done
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath
 {
+    [self _showResult:@"Restore done."];
+    [mDelegate dropboxBackupFinished];
+    [self release];
 }
 
 // restore failed
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error
 {
+    [self _showResult:@"Restore failed!"];
+    [mDelegate dropboxBackupFinished];
+    [self release];
 }
+
+- (void)_showResult:(NSString *)message
+{
+    [[[[UIAlertView alloc] 
+       initWithTitle:@"Backup" message:message
+       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil]
+        autorelease]
+        show];
+}
+
 
 #pragma mark DBLoginControllerDelegate methods
 
@@ -108,7 +153,8 @@
 }
 
 - (void)loginControllerDidCancel:(DBLoginController*)controller {
-    // callback?
+    [mDelegate dropboxBackupFinished];
+    [self release];
 }
 
 @end

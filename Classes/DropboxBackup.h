@@ -8,8 +8,14 @@
 #import <UIKit/UIKit.h>
 #import "DropboxSDK.h"
 
+@protocol DropboxBackupDelegate
+- (void)dropboxBackupFinished;
+@end
+
 @interface DropboxBackup : NSObject <DBRestClientDelegate, DBLoginControllerDelegate>
 {
+    id<DropboxBackupDelegate> mDelegate;
+    
     UIViewController *mViewController;
     DBRestClient *mRestClient;
     int mMode;
@@ -17,10 +23,14 @@
 
 @property(readonly) DBRestClient *restClient;
 
+- (id)init:(id<DropboxBackupDelegate>)delegate;
+
 - (void)doBackup:(UIViewController *)viewController;
 - (void)doRestore:(UIViewController *)viewController;
+- (void)unlink;
 
 - (void)_login;
 - (void)_exec;
+- (void)_showResult:(NSString *)message;
 
 @end

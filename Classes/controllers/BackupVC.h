@@ -8,13 +8,18 @@
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
 
-@interface BackupViewController : UITableViewController
+#import "DropboxBackup.h"
+
+@interface BackupViewController : UITableViewController <DropboxBackupDelegate>
 {
-    //id<GenSelectListViewDelegate> mDelegate;
+    UIView *mLoadingView;
 }
 
 + (BackupViewController *)backupViewController;
 
 - (void)doneAction:(id)sender;
+
+- (void)_showActivityIndicator;
+- (void)_dismissActivityIndicator;
 
 @end

@@ -13,7 +13,7 @@
 #import "CrashReportSender.h"
 #import "DropboxSDK.h"
 
-#import "DropBoxSecret.h"
+#import "DropboxSecret.h"
 
 @interface AppDelegate() <CrashReportSenderDelegate>
 @end
