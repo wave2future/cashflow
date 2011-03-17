@@ -15,4 +15,6 @@
 
 + (BackupViewController *)backupViewController;
 
+- (void)doneAction:(id)sender;
+
 @end

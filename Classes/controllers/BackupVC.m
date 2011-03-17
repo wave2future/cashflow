@@ -19,6 +19,20 @@
     return vc;
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.navigationItem.rightBarButtonItem =
+        [[[UIBarButtonItem alloc]
+          initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneAction:)] autorelease];
+}
+
+- (void)doneAction:(id)sender
+{
+    [self.navigationController dismissModalViewControllerAnimated:YES];
+}
+
 - (void)dealloc
 {
     [super dealloc];
@@ -75,6 +89,7 @@
                     cell.textLabel.text = @"Restore";
                     break;
             }
+            break;
             
         case 1:
             cell.textLabel.text = @"Backup / Restore";

@@ -14,7 +14,7 @@
 #import "ReportVC.h"
 #import "ConfigViewController.h"
 #import "AssetListVC.h"
-#import "WebServerBackup.h"
+#import "BackupVC.h"
 
 #if FREE_VERSION
 #import "AdUtil.h"
@@ -439,7 +439,7 @@
     ExportVC *exportVC;
     ConfigViewController *configVC;
     InfoVC *infoVC;
-    WebServerBackup *backup;
+    BackupViewController *backupVC;
     
     UIViewController *vc;
     UIModalPresentationStyle modalPresentationStyle = UIModalPresentationFormSheet;
@@ -453,9 +453,9 @@
             break;
             
         case 1:
-            backup = [[[WebServerBackup alloc] init] autorelease];
-            [backup execute];
-            return;
+            backupVC = [BackupViewController backupViewController];
+            vc = backupVC;
+            break;
             
         case 2:
             configVC = [[[ConfigViewController alloc] init] autorelease];

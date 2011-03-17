@@ -13,10 +13,9 @@
 //#import "CategoryListVC.h"
 #import "ReportVC.h"
 #import "InfoVC.h"
-#import "WebServerBackup.h"
+#import "BackupVC.h"
 #import "PinController.h"
 #import "ConfigViewController.h"
-#import "DropboxBackup.h"
 
 @implementation AssetListViewController
 
@@ -500,8 +499,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     ExportVC *exportVC;
     ConfigViewController *configVC;
     InfoVC *infoVC;
-    WebServerBackup *backup;
-    DropboxBackup *dbb;
+    BackupViewController *backupVC;
     UIViewController *vc;
     
     mAsDisplaying = NO;
@@ -514,14 +512,9 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
             break;
             
         case 1:
-#if 0
-            backup = [[[Backup alloc] init] autorelease];
-            [backup execute];
-#else
-            dbb = [[DropboxBackup alloc] init];
-            [dbb doBackup:self];
-#endif
-            return;
+            backupVC = [BackupViewController backupViewController];
+            vc = backupVC;
+            break;
             
         case 2:
             configVC = [[[ConfigViewController alloc] init] autorelease];
