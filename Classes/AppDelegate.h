@@ -10,10 +10,11 @@
 #import "AssetListVC.h"
 #import "TransactionListVC.h"
 #import "CurrencyManager.h"
+#import "DropboxSDK.h"
 
 #define DBNAME  @"CashFlow.db"
 
-@interface AppDelegate : NSObject <UIApplicationDelegate> {
+@interface AppDelegate : NSObject <UIApplicationDelegate, DBSessionDelegate> {
     IBOutlet UIWindow *window;
     IBOutlet UINavigationController *navigationController;
     UIApplication *_application;

@@ -11,6 +11,9 @@
 #import "Transaction.h"
 #import "PinController.h"
 #import "CrashReportSender.h"
+#import "DropboxSDK.h"
+
+#import "DropBoxSecret.h"
 
 @interface AppDelegate() <CrashReportSenderDelegate>
 @end
@@ -34,12 +37,22 @@
     NSLog(@"applicationDidFinishLaunching");
     _application = application;
 
+    // send crash report
     NSURL *reportUrl = [NSURL URLWithString:@"http://itemshelf.com/cgi-bin/crashreport.cgi"];
     [[CrashReportSender sharedCrashReportSender] 
         sendCrashReportToURL:reportUrl
         delegate:self 
         activateFeedback:NO];
     
+    // Dropbox config
+    DBSession *dbSession =
+        [[[DBSession alloc]
+             initWithConsumerKey:DROPBOX_CONSUMER_KEY
+                  consumerSecret:DROPBOX_CONSUMER_SECRET]
+            autorelease];
+    dbSession.delegate = self;
+    [DBSession setSharedSession:dbSession];
+
     // Configure and show the window
     if (IS_IPAD) {
         [window addSubview:splitViewController.view];
@@ -106,6 +119,22 @@
 {
     _application.networkActivityIndicatorVisible = NO;
 }
+
+
+#pragma mark DBSessionDelegate methods
+
+- (void)sessionDidReceiveAuthorizationFailure:(DBSession*)session
+{
+    DBLoginController* loginController = [[DBLoginController new] autorelease];
+    if (IS_IPAD) {
+        [loginController presentFromController:splitViewController]; // # TBD
+    } else {
+        [loginController presentFromController:navigationController];
+    }        
+}
+
+
+#pragma mark Debug
 
 void AssertFailed(const char *filename, int lineno)
 {
