@@ -247,6 +247,9 @@
 		3E3382181332122700861610 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E338212133211C500861610 /* Security.framework */; };
 		3E3382191332122700861610 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E338212133211C500861610 /* Security.framework */; };
 		3E33821A1332123200861610 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
+		3E33821E1332134800861610 /* DropBoxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33821C1332134700861610 /* DropBoxBackup.m */; };
+		3E33821F1332134800861610 /* DropBoxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33821C1332134700861610 /* DropBoxBackup.m */; };
+		3E3382201332134800861610 /* DropBoxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33821C1332134700861610 /* DropBoxBackup.m */; };
 		3E35661A1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
 		3E35661B1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
 		3E43FC6E1324E8130059B198 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43FC6C1324E8130059B198 /* ReportView.xib */; };
@@ -704,6 +707,9 @@
 		3E33818C133210B700861610 /* db_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = db_logo.png; sourceTree = "<group>"; };
 		3E33818D133210B700861610 /* db_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "db_logo@2x.png"; sourceTree = "<group>"; };
 		3E338212133211C500861610 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		3E33821B1332134700861610 /* DropBoxBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropBoxBackup.h; sourceTree = "<group>"; };
+		3E33821C1332134700861610 /* DropBoxBackup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropBoxBackup.m; sourceTree = "<group>"; };
+		3E33821D1332134700861610 /* DropBoxSecret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropBoxSecret.h; sourceTree = "<group>"; };
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E43FC6C1324E8130059B198 /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
@@ -1258,6 +1264,9 @@
 				3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */,
 				3E7109B2121108ED00C47539 /* SupportMail.h */,
 				3E7109B3121108ED00C47539 /* SupportMail.m */,
+				3E33821B1332134700861610 /* DropBoxBackup.h */,
+				3E33821C1332134700861610 /* DropBoxBackup.m */,
+				3E33821D1332134700861610 /* DropBoxSecret.h */,
 				3E197B0E121268CF00105B20 /* CrashReportSender.h */,
 				3E197B0F121268CF00105B20 /* CrashReportSender.m */,
 			);
@@ -1762,6 +1771,7 @@
 				3E3381E8133210B700861610 /* NSURL+MPURLParameterAdditions.m in Sources */,
 				3E3381EB133210B700861610 /* NSURLResponse+Encoding.m in Sources */,
 				3E3381EE133210B700861610 /* NSString+Dropbox.m in Sources */,
+				3E33821E1332134800861610 /* DropBoxBackup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1862,6 +1872,7 @@
 				3E3381E9133210B700861610 /* NSURL+MPURLParameterAdditions.m in Sources */,
 				3E3381EC133210B700861610 /* NSURLResponse+Encoding.m in Sources */,
 				3E3381EF133210B700861610 /* NSString+Dropbox.m in Sources */,
+				3E33821F1332134800861610 /* DropBoxBackup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1974,6 +1985,7 @@
 				3E3381EA133210B700861610 /* NSURL+MPURLParameterAdditions.m in Sources */,
 				3E3381ED133210B700861610 /* NSURLResponse+Encoding.m in Sources */,
 				3E3381F0133210B700861610 /* NSString+Dropbox.m in Sources */,
+				3E3382201332134800861610 /* DropBoxBackup.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
