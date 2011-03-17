@@ -5,10 +5,10 @@
  * For conditions of distribution and use, see LICENSE file.
  */
 
-#import "Backup.h"
+#import "WebServerBackup.h"
 #import "BackupServer.h"
 
-@implementation Backup
+@implementation WebServerBackup
 
 - (void)execute
 {

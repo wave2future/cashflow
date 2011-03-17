@@ -13,7 +13,7 @@
 //#import "CategoryListVC.h"
 #import "ReportVC.h"
 #import "InfoVC.h"
-#import "Backup.h"
+#import "WebServerBackup.h"
 #import "PinController.h"
 #import "ConfigViewController.h"
 #import "DropboxBackup.h"
@@ -500,7 +500,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     ExportVC *exportVC;
     ConfigViewController *configVC;
     InfoVC *infoVC;
-    Backup *backup;
+    WebServerBackup *backup;
     DropboxBackup *dbb;
     UIViewController *vc;
     

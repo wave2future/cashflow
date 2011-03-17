@@ -8,7 +8,7 @@
 #import "AppDelegate.h"
 #import "BackupVC.h"
 #import "DropboxBackup.h"
-#import "Backup.h"
+#import "WebServerBackup.h"
 
 @implementation BackupViewController
 
@@ -88,7 +88,7 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    Backup *webBackup;
+    WebServerBackup *webBackup;
     DropboxBackup *dropboxBackup;
     
     switch (indexPath.section) {
@@ -107,7 +107,7 @@
 
         case 1:
             // internal web server
-            webBackup = [[[Backup alloc] init] autorelease];
+            webBackup = [[[WebServerBackup alloc] init] autorelease];
             [webBackup execute];
             break;
     }
