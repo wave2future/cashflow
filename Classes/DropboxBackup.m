@@ -84,6 +84,8 @@
             break;
 
         case MODE_RESTORE:
+            // shutdown database
+            [DataModel finalize];
             [self.restClient loadFile:@"/" BACKUP_FILENAME intoPath:dbPath];
             break;
     }
@@ -118,14 +120,14 @@
 - (void)restClient:(DBRestClient*)client loadedFile:(NSString*)destPath
 {
     [self _showResult:@"Restore done."];
-    [mDelegate dropboxBackupFinished];
+    [[DataModel instance] startLoad:self];
 }
 
 // restore failed
 - (void)restClient:(DBRestClient*)client loadFileFailedWithError:(NSError*)error
 {
     [self _showResult:@"Restore failed!"];
-    [mDelegate dropboxBackupFinished];
+    [[DataModel instance] startLoad:self];
 }
 
 - (void)_showResult:(NSString *)message
@@ -137,6 +139,10 @@
         show];
 }
 
+- (void)dataModelLoaded
+{
+    [mDelegate dropboxBackupFinished];
+}
 
 #pragma mark DBLoginControllerDelegate methods
 

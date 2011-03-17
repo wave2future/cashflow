@@ -162,6 +162,7 @@
 {
     if (!mIsLoadDone) return;
     
+    mLedger = [DataModel ledger];
     [mLedger rebuild];
     [mTableView reloadData];
 
