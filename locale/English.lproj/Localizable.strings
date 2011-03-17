@@ -51,6 +51,7 @@
 
 "Export" = "Export";
 "Backup" = "Backup";
+"Restore" = "Restore";
 "WebExportNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
 "BackupNotation" = "Access following URL with browser of your PC:\n%@\nAfter download the file, tap Dismiss button.";
 "Network is unreachable." = "Network is unreachable.";

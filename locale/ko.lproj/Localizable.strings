@@ -51,6 +51,7 @@
 
 "Export" = "내보내기";
 "Backup" = "백업";
+"Restore" = "Restore";
 "WebExportNotation" = "아래의 URL로 PC의 브라우저로 접속해주세요:\n%@\n다운로드가 완료되면 닫기 버튼을 누르세요.";
 "BackupNotation" = "아래의 URL로 PC의 브라우저로 접속해주세요:\n%@\n다운로드가 완료되면 닫기 버튼을 누르세요.";
 "Network is unreachable." = "네트워크에 접속되어있지 않습니다.";

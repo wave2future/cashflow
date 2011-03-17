@@ -51,6 +51,7 @@
 
 "Export" = "输出";
 "Backup" = "Backup";
+"Restore" = "Restore";
 "WebExportNotation" = "在PC上的浏览器中输入下列的网址：\n%@\n下载档桉后，点一下关闭按钮。";
 "BackupNotation" = "在PC上的浏览器中输入下列的网址：\n%@\n下载档桉后，点一下关闭按钮。";
 "Network is unreachable." = "Network is unreachable.";

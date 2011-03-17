@@ -51,6 +51,7 @@
 
 "Export" = "Export";
 "Backup" = "Backup";
+"Restore" = "Restore";
 "WebExportNotation" = "Folge folgender URL mit deinem Browser auf deinem Mac oder PC:\n%@\nNach dem Download der Datei, druecke den Ablehnen Button.";
 "BackupNotation" = "Folge folgender URL mit deinem Browser auf deinem Mac oder PC:\n%@\nNach dem Download der Datei, druecke den Ablehnen Button.";
 "Network is unreachable." = "Network is unreachable.";

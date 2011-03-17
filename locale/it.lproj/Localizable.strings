@@ -50,6 +50,7 @@
 
 "Export" = "Export";
 "Backup" = "Backup";
+"Restore" = "Restore";
 "WebExportNotation" = "Immetti il seguente URL sul tuo PC:\n%@\nDopo aver scaricato il file, clicka su escludi.";
 "BackupNotation" = "Immetti il seguente URL sul tuo PC:\n%@\nDopo aver scaricato il file, clicka su escludi.";
 "Network is unreachable." = "Network is unreachable.";

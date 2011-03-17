@@ -83,21 +83,23 @@
         case 0:
             switch (indexPath.row) {
                 case 0:
-                    cell.textLabel.text = @"Backup";
+                    cell.textLabel.text = NSLocalizedString(@"Backup", @"");
                     break;
                     
                 case 1:
-                    cell.textLabel.text = @"Restore";
+                    cell.textLabel.text = NSLocalizedString(@"Restore", @"");
                     break;
                     
                 case 2:
-                    cell.textLabel.text = @"Unlink dropbox account";
+                    cell.textLabel.text = NSLocalizedString(@"Unlink dropbox account", @"");
                     break;
             }
             break;
             
         case 1:
-            cell.textLabel.text = @"Backup / Restore";
+            cell.textLabel.text = [NSString stringWithFormat:@"%@ / %@",
+                                   NSLocalizedString(@"Backup", @""),
+                                   NSLocalizedString(@"Restore", @"")];
             break;
     }
 

@@ -51,6 +51,7 @@
 
 "Export" = "エクスポート";
 "Backup" = "バックアップ";
+"Restore" = "リストア";
 "WebExportNotation" = "以下の URL に PC のブラウザからアクセスしてください:\n%@\nダウンロードが完了したら閉じるボタンをタップしてください。";
 "BackupNotation" = "以下の URL に PC のブラウザからアクセスしてください:\n%@\n完了したら閉じるボタンをタップしてください。";
 "Network is unreachable." = "ネットワークに接続されていません。";
