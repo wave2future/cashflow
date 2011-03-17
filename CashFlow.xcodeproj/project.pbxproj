@@ -247,9 +247,15 @@
 		3E3382181332122700861610 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E338212133211C500861610 /* Security.framework */; };
 		3E3382191332122700861610 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E338212133211C500861610 /* Security.framework */; };
 		3E33821A1332123200861610 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E13EE58114007D600523938 /* AVFoundation.framework */; };
-		3E33821E1332134800861610 /* DropBoxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33821C1332134700861610 /* DropBoxBackup.m */; };
-		3E33821F1332134800861610 /* DropBoxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33821C1332134700861610 /* DropBoxBackup.m */; };
-		3E3382201332134800861610 /* DropBoxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E33821C1332134700861610 /* DropBoxBackup.m */; };
+		3E3382241332284000861610 /* DropboxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3382221332284000861610 /* DropboxBackup.m */; };
+		3E3382251332284000861610 /* DropboxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3382221332284000861610 /* DropboxBackup.m */; };
+		3E3382261332284000861610 /* DropboxBackup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3382221332284000861610 /* DropboxBackup.m */; };
+		3E3382291332298400861610 /* BackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3382281332298400861610 /* BackupVC.m */; };
+		3E33822A1332298400861610 /* BackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3382281332298400861610 /* BackupVC.m */; };
+		3E33822B1332298400861610 /* BackupVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3382281332298400861610 /* BackupVC.m */; };
+		3E33822D133229C600861610 /* BackupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E33822C133229C600861610 /* BackupView.xib */; };
+		3E33822E133229C600861610 /* BackupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E33822C133229C600861610 /* BackupView.xib */; };
+		3E33822F133229C600861610 /* BackupView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E33822C133229C600861610 /* BackupView.xib */; };
 		3E35661A1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
 		3E35661B1189697E007DAF44 /* Backup.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E3566191189697E007DAF44 /* Backup.m */; };
 		3E43FC6E1324E8130059B198 /* ReportView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3E43FC6C1324E8130059B198 /* ReportView.xib */; };
@@ -707,9 +713,12 @@
 		3E33818C133210B700861610 /* db_logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = db_logo.png; sourceTree = "<group>"; };
 		3E33818D133210B700861610 /* db_logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "db_logo@2x.png"; sourceTree = "<group>"; };
 		3E338212133211C500861610 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		3E33821B1332134700861610 /* DropBoxBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropBoxBackup.h; sourceTree = "<group>"; };
-		3E33821C1332134700861610 /* DropBoxBackup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropBoxBackup.m; sourceTree = "<group>"; };
-		3E33821D1332134700861610 /* DropBoxSecret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropBoxSecret.h; sourceTree = "<group>"; };
+		3E3382211332284000861610 /* DropboxBackup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxBackup.h; sourceTree = "<group>"; };
+		3E3382221332284000861610 /* DropboxBackup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropboxBackup.m; sourceTree = "<group>"; };
+		3E3382231332284000861610 /* DropboxSecret.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropboxSecret.h; sourceTree = "<group>"; };
+		3E3382271332298400861610 /* BackupVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackupVC.h; sourceTree = "<group>"; };
+		3E3382281332298400861610 /* BackupVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackupVC.m; sourceTree = "<group>"; };
+		3E33822C133229C600861610 /* BackupView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BackupView.xib; sourceTree = "<group>"; };
 		3E3566181189697E007DAF44 /* Backup.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Backup.h; sourceTree = "<group>"; };
 		3E3566191189697E007DAF44 /* Backup.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Backup.m; sourceTree = "<group>"; };
 		3E43FC6C1324E8130059B198 /* ReportView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReportView.xib; sourceTree = "<group>"; };
@@ -926,7 +935,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				3E5B83A80EC359440035AF05 /* MainWindow.xib */,
 				3E5B83AA0EC359590035AF05 /* GenEditTextView.xib */,
 				3EAEBC860F9DE0C700AD3D15 /* GenSelectListView.xib */,
 				3EA011310EC344CC008CEEB7 /* AssetListView.xib */,
@@ -942,10 +950,12 @@
 				3E5868230EEFFB6E00951C2F /* EditMemoView.xib */,
 				3EDC72BA0EBB493100366F1E /* SimpleTableView.xib */,
 				3E43FC6C1324E8130059B198 /* ReportView.xib */,
+				3E5B83A80EC359440035AF05 /* MainWindow.xib */,
 				3EFEFE5B1324EEAA00EF369E /* ReportCell.xib */,
 				3EFEFE991324F3C800EF369E /* ReportCatCell.xib */,
 				3E6B2EBE0F12259C0008AFB6 /* ExportView.xib */,
 				3E8C36150F1E0D82004AFFCA /* PinView.xib */,
+				3E33822C133229C600861610 /* BackupView.xib */,
 				3EDDADAA0E8925AB00268AED /* InfoView.xib */,
 				3E7BB12C11539997004B7D03 /* ConfigView.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
@@ -1060,6 +1070,8 @@
 				3E17805E132641D700D74DED /* ReportCatGraphCell.m */,
 				3E02EBF613226FDC0086F492 /* ReportCatDetailVC.h */,
 				3E02EBF713226FDC0086F492 /* ReportCatDetailVC.m */,
+				3E3382271332298400861610 /* BackupVC.h */,
+				3E3382281332298400861610 /* BackupVC.m */,
 			);
 			path = controllers;
 			sourceTree = "<group>";
@@ -1264,9 +1276,9 @@
 				3E7109B5121108ED00C47539 /* UIDevice-Hardware.m */,
 				3E7109B2121108ED00C47539 /* SupportMail.h */,
 				3E7109B3121108ED00C47539 /* SupportMail.m */,
-				3E33821B1332134700861610 /* DropBoxBackup.h */,
-				3E33821C1332134700861610 /* DropBoxBackup.m */,
-				3E33821D1332134700861610 /* DropBoxSecret.h */,
+				3E3382211332284000861610 /* DropboxBackup.h */,
+				3E3382221332284000861610 /* DropboxBackup.m */,
+				3E3382231332284000861610 /* DropboxSecret.h */,
 				3E197B0E121268CF00105B20 /* CrashReportSender.h */,
 				3E197B0F121268CF00105B20 /* CrashReportSender.m */,
 			);
@@ -1538,6 +1550,7 @@
 				3E338209133210B700861610 /* db_link_header@2x.png in Resources */,
 				3E33820C133210B700861610 /* db_logo.png in Resources */,
 				3E33820F133210B700861610 /* db_logo@2x.png in Resources */,
+				3E33822D133229C600861610 /* BackupView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1608,6 +1621,7 @@
 				3E33820A133210B700861610 /* db_link_header@2x.png in Resources */,
 				3E33820D133210B700861610 /* db_logo.png in Resources */,
 				3E338210133210B700861610 /* db_logo@2x.png in Resources */,
+				3E33822E133229C600861610 /* BackupView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1652,6 +1666,7 @@
 				3E33820B133210B700861610 /* db_link_header@2x.png in Resources */,
 				3E33820E133210B700861610 /* db_logo.png in Resources */,
 				3E338211133210B700861610 /* db_logo@2x.png in Resources */,
+				3E33822F133229C600861610 /* BackupView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1771,7 +1786,8 @@
 				3E3381E8133210B700861610 /* NSURL+MPURLParameterAdditions.m in Sources */,
 				3E3381EB133210B700861610 /* NSURLResponse+Encoding.m in Sources */,
 				3E3381EE133210B700861610 /* NSString+Dropbox.m in Sources */,
-				3E33821E1332134800861610 /* DropBoxBackup.m in Sources */,
+				3E3382241332284000861610 /* DropboxBackup.m in Sources */,
+				3E3382291332298400861610 /* BackupVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1872,7 +1888,8 @@
 				3E3381E9133210B700861610 /* NSURL+MPURLParameterAdditions.m in Sources */,
 				3E3381EC133210B700861610 /* NSURLResponse+Encoding.m in Sources */,
 				3E3381EF133210B700861610 /* NSString+Dropbox.m in Sources */,
-				3E33821F1332134800861610 /* DropBoxBackup.m in Sources */,
+				3E3382251332284000861610 /* DropboxBackup.m in Sources */,
+				3E33822A1332298400861610 /* BackupVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1985,7 +2002,8 @@
 				3E3381EA133210B700861610 /* NSURL+MPURLParameterAdditions.m in Sources */,
 				3E3381ED133210B700861610 /* NSURLResponse+Encoding.m in Sources */,
 				3E3381F0133210B700861610 /* NSString+Dropbox.m in Sources */,
-				3E3382201332134800861610 /* DropBoxBackup.m in Sources */,
+				3E3382261332284000861610 /* DropboxBackup.m in Sources */,
+				3E33822B1332298400861610 /* BackupVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

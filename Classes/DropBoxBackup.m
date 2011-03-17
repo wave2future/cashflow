@@ -9,7 +9,7 @@
 #import "Database.h"
 #import "AppDelegate.h"
 
-#define	BACKUP_FILENAME	@"cashflow.db"
+#define	BACKUP_FILENAME	@"CashFlowBackup.db"
 
 #define MODE_BACKUP 0
 #define MODE_RESTORE 1
