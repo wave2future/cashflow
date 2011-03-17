@@ -109,6 +109,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     WebServerBackup *webBackup;
+    UIAlertView *alertView;
     
     switch (indexPath.section) {
         case 0:
@@ -117,15 +118,21 @@
                 mDropboxBackup = [[DropboxBackup alloc] init:self];
             }
             switch (indexPath.row) {
-                case 0:
+                case 0: // backup
                     [self _showActivityIndicator];
                     [mDropboxBackup doBackup:self];
                     break;
-                case 1:
-                    [self _showActivityIndicator];
-                    [mDropboxBackup doRestore:self];
+                    
+                case 1: //restore
+                    alertView = [[[UIAlertView alloc] initWithTitle:@"Confirm" 
+                                                            message:@"This will overwrite all current data." 
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Cancel" 
+                                                  otherButtonTitles:@"OK", nil] autorelease];
+                    [alertView show];
                     break;
-                case 2:
+                    
+                case 2: // unlink dropbox account
                     [mDropboxBackup unlink];
                     break;
             }
@@ -138,6 +145,25 @@
             break;
     }
 }
+
+#pragma mark UIAlertViewDelegate protocol
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) { // OK
+        [self _showActivityIndicator];
+        [mDropboxBackup doRestore:self];
+    }
+}
+
+#pragma mark DropboxBackupDelegate
+
+- (void)dropboxBackupFinished
+{
+    [self _dismissActivityIndicator];
+}
+
+#pragma mark utils
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     if (IS_IPAD) return YES;
@@ -176,13 +202,6 @@
 {
     [mLoadingView removeFromSuperview];
     mLoadingView = nil;
-}
-
-#pragma mark DropboxBackupDelegate
-
-- (void)dropboxBackupFinished
-{
-    [self _dismissActivityIndicator];
 }
 
 @end

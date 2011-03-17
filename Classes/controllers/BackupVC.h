@@ -10,7 +10,7 @@
 
 #import "DropboxBackup.h"
 
-@interface BackupViewController : UITableViewController <DropboxBackupDelegate>
+@interface BackupViewController : UITableViewController <DropboxBackupDelegate, UIAlertViewDelegate>
 {
     UIView *mLoadingView;
     DropboxBackup *mDropboxBackup;
