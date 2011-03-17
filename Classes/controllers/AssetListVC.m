@@ -16,6 +16,7 @@
 #import "Backup.h"
 #import "PinController.h"
 #import "ConfigViewController.h"
+#import "DropboxBackup.h"
 
 @implementation AssetListViewController
 
@@ -500,6 +501,7 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
     ConfigViewController *configVC;
     InfoVC *infoVC;
     Backup *backup;
+    DropboxBackup *dbb;
     UIViewController *vc;
     
     mAsDisplaying = NO;
@@ -512,8 +514,13 @@ targetIndexPathForMoveFromRowAtIndexPath:(NSIndexPath *)fromIndexPath
             break;
             
         case 1:
+#if 0
             backup = [[[Backup alloc] init] autorelease];
             [backup execute];
+#else
+            dbb = [[DropboxBackup alloc] init];
+            [dbb doBackup:self];
+#endif
             return;
             
         case 2:

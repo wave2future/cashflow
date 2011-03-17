@@ -8,7 +8,7 @@
 #import <UIKit/UIKit.h>
 #import "DropboxSDK.h"
 
-@interface DropBoxBackup : NSObject <DBRestClientDelegate, DBLoginControllerDelegate>
+@interface DropboxBackup : NSObject <DBRestClientDelegate, DBLoginControllerDelegate>
 {
     UIViewController *mViewController;
     DBRestClient *mRestClient;

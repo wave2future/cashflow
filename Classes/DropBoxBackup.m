@@ -5,7 +5,7 @@
  * For conditions of distribution and use, see LICENSE file.
  */
 
-#import "DropBoxBackup.h"
+#import "DropboxBackup.h"
 #import "Database.h"
 #import "AppDelegate.h"
 
@@ -14,7 +14,7 @@
 #define MODE_BACKUP 0
 #define MODE_RESTORE 1
 
-@implementation DropBoxBackup
+@implementation DropboxBackup
 
 - (void)dealloc
 {
