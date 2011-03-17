@@ -77,7 +77,7 @@
     // ActivityIndicator を表示させる
     UIView *parent;
     if (IS_IPAD) {
-        AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+        AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
         parent = appDelegate.splitViewController.view;
     } else {
         parent = self.navigationController.view;
