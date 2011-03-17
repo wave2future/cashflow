@@ -50,7 +50,7 @@
             return @"Dropbox";
 
         case 1:
-            return @"Internal web server";  // TODO:
+            return NSLocalizedString(@"Internal web server", @"");
     }
     return nil;
 }

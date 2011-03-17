@@ -1,3 +1,7 @@
+2011-03-17 : Takuya Murakami
+
+	* Dropboxバックアップ/リストア機能を追加
+
 2011-03-14 : Takuya Murakami
 	* 複数資産の Export (CSV/OFX) を可能にした
 
