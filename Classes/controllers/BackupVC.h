@@ -13,6 +13,7 @@
 @interface BackupViewController : UITableViewController <DropboxBackupDelegate>
 {
     UIView *mLoadingView;
+    DropboxBackup *mDropboxBackup;
 }
 
 + (BackupViewController *)backupViewController;

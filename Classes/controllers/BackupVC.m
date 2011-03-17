@@ -35,6 +35,7 @@
 
 - (void)dealloc
 {
+    [mDropboxBackup release];
     [super dealloc];
 }
 
@@ -108,23 +109,24 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     WebServerBackup *webBackup;
-    DropboxBackup *dropboxBackup;
     
     switch (indexPath.section) {
         case 0:
             // dropbox
-            dropboxBackup = [[[DropboxBackup alloc] init:self] autorelease];
+            if (mDropboxBackup == nil) {
+                mDropboxBackup = [[DropboxBackup alloc] init:self];
+            }
             switch (indexPath.row) {
                 case 0:
                     [self _showActivityIndicator];
-                    [dropboxBackup doBackup:self];
+                    [mDropboxBackup doBackup:self];
                     break;
                 case 1:
                     [self _showActivityIndicator];
-                    [dropboxBackup doRestore:self];
+                    [mDropboxBackup doRestore:self];
                     break;
                 case 2:
-                    [dropboxBackup unlink];
+                    [mDropboxBackup unlink];
                     break;
             }
             break;

@@ -33,8 +33,6 @@
 
 - (void)doBackup:(UIViewController *)viewController
 {
-    [self retain];
-    
     mMode = MODE_BACKUP;
     mViewController = viewController;
     [self _login];
@@ -42,8 +40,6 @@
 
 - (void)doRestore:(UIViewController *)viewController
 {
-    [self retain];
-    
     mMode = MODE_RESTORE;
     mViewController = viewController;
     [self _login];
@@ -109,7 +105,6 @@
 {
     [self _showResult:@"Backup done."];
     [mDelegate dropboxBackupFinished];
-    [self release];
 }
 
 // backup failed
@@ -117,7 +112,6 @@
 {
     [self _showResult:@"Backup failed!"];
     [mDelegate dropboxBackupFinished];
-    [self release];
 }
 
 // restore done
@@ -125,7 +119,6 @@
 {
     [self _showResult:@"Restore done."];
     [mDelegate dropboxBackupFinished];
-    [self release];
 }
 
 // restore failed
@@ -133,7 +126,6 @@
 {
     [self _showResult:@"Restore failed!"];
     [mDelegate dropboxBackupFinished];
-    [self release];
 }
 
 - (void)_showResult:(NSString *)message
@@ -154,7 +146,6 @@
 
 - (void)loginControllerDidCancel:(DBLoginController*)controller {
     [mDelegate dropboxBackupFinished];
-    [self release];
 }
 
 @end
